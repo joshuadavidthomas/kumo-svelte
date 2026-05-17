@@ -34,6 +34,10 @@ Port Cloudflare's Kumo package from React/Base UI to Svelte 5, using:
 - `DeleteResource` is ported because upstream exports it from the root package.
 - Style entrypoints expose the existing Tailwind, standalone, Kumo, binding, and theme CSS files.
 - Registry TypeScript types are available from `kumo-svelte/registry`.
+- Registry metadata is generated from source `*Props` interfaces and
+  `variants.ts` files, including variant values, defaults, classes,
+  descriptions, base styles, and explicit `KUMO_*_STYLING` objects where
+  present.
 
 ## Current Gates
 
@@ -53,11 +57,14 @@ The generated metadata surfaces are currently basic:
 - `./ai/schemas`
 - `./catalog`
 
-They are generated from the Svelte package export list and source `*Props`
-interfaces. They validate tree shape and known component names. They include
-basic prop names, type strings, and required flags, but do not yet include
-upstream-equivalent prop descriptions, extracted examples, style metadata, or
-rich component documentation.
+They are generated from the Svelte package export list, source `*Props`
+interfaces, and source variant metadata. They validate tree shape and known
+component names. They include prop names, type strings, required flags, variant
+values, variant defaults, variant classes, variant descriptions, base styles,
+and explicit styling metadata where present.
+
+They do not yet include upstream-equivalent natural-language prop descriptions,
+extracted examples, or rich component documentation.
 
 ## Intentional Differences
 
@@ -68,5 +75,5 @@ rich component documentation.
 ## Completion Rule
 
 Do not mark the port complete until the generated metadata/catalog surfaces have
-upstream-equivalent descriptions, examples, style metadata, and prop validation,
-or that metadata work is explicitly declared out of scope by the maintainer.
+upstream-equivalent descriptions, examples, and prop validation, or that
+metadata work is explicitly declared out of scope by the maintainer.

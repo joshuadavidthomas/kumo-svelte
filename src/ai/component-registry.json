@@ -122,7 +122,12 @@
         }
       },
       "examples": [],
-      "colors": []
+      "colors": [],
+      "styling": {
+        "defaultVariants": {
+          "size": "base"
+        }
+      }
     },
     "Badge": {
       "name": "Badge",
@@ -133,7 +138,65 @@
       "props": {
         "variant": {
           "type": "KumoBadgeVariant",
-          "required": false
+          "required": false,
+          "default": "primary",
+          "classes": {
+            "primary": "bg-kumo-badge-inverted text-kumo-badge-inverted",
+            "secondary": "bg-kumo-fill text-kumo-badge-neutral-subtle",
+            "error": "bg-kumo-danger-tint/60 text-kumo-danger",
+            "warning": "bg-kumo-warning-tint/70 text-kumo-warning",
+            "success": "bg-kumo-success-tint/70 text-kumo-success",
+            "destructive": "bg-kumo-badge-red text-white",
+            "info": "bg-kumo-info-tint/70 text-kumo-info",
+            "beta": "border border-dashed border-kumo-brand bg-transparent text-kumo-link",
+            "outline": "border border-kumo-fill bg-transparent text-kumo-default",
+            "red": "bg-kumo-badge-red text-white",
+            "green": "bg-kumo-badge-green text-white",
+            "neutral": "bg-kumo-badge-neutral text-white",
+            "orange": "bg-kumo-badge-orange text-black",
+            "purple": "bg-kumo-badge-purple text-white",
+            "teal": "bg-kumo-badge-teal text-white",
+            "teal-subtle": "bg-kumo-badge-teal-subtle text-kumo-badge-teal-subtle",
+            "blue": "bg-kumo-badge-blue text-white"
+          },
+          "descriptions": {
+            "primary": "Primary badge",
+            "secondary": "Secondary badge",
+            "error": "Error badge",
+            "warning": "Warning badge",
+            "success": "Success badge",
+            "destructive": "Deprecated. Use red instead.",
+            "info": "Info badge",
+            "beta": "Indicates beta or experimental features",
+            "outline": "Bordered badge with transparent background",
+            "red": "Red badge",
+            "green": "Green badge",
+            "neutral": "Neutral badge",
+            "orange": "Orange badge",
+            "purple": "Purple badge",
+            "teal": "Teal badge",
+            "teal-subtle": "Subtle teal badge",
+            "blue": "Blue badge"
+          },
+          "values": [
+            "primary",
+            "secondary",
+            "error",
+            "warning",
+            "success",
+            "destructive",
+            "info",
+            "beta",
+            "outline",
+            "red",
+            "green",
+            "neutral",
+            "orange",
+            "purple",
+            "teal",
+            "teal-subtle",
+            "blue"
+          ]
         },
         "class": {
           "type": "string",
@@ -145,7 +208,74 @@
         }
       },
       "examples": [],
-      "colors": []
+      "colors": [],
+      "baseStyles": "inline-flex w-fit flex-none shrink-0 items-center justify-self-start rounded-full px-2 py-0.5 text-xs font-medium whitespace-nowrap",
+      "styling": {
+        "variants": {
+          "variant": {
+            "values": [
+              "primary",
+              "secondary",
+              "error",
+              "warning",
+              "success",
+              "destructive",
+              "info",
+              "beta",
+              "outline",
+              "red",
+              "green",
+              "neutral",
+              "orange",
+              "purple",
+              "teal",
+              "teal-subtle",
+              "blue"
+            ],
+            "classes": {
+              "primary": "bg-kumo-badge-inverted text-kumo-badge-inverted",
+              "secondary": "bg-kumo-fill text-kumo-badge-neutral-subtle",
+              "error": "bg-kumo-danger-tint/60 text-kumo-danger",
+              "warning": "bg-kumo-warning-tint/70 text-kumo-warning",
+              "success": "bg-kumo-success-tint/70 text-kumo-success",
+              "destructive": "bg-kumo-badge-red text-white",
+              "info": "bg-kumo-info-tint/70 text-kumo-info",
+              "beta": "border border-dashed border-kumo-brand bg-transparent text-kumo-link",
+              "outline": "border border-kumo-fill bg-transparent text-kumo-default",
+              "red": "bg-kumo-badge-red text-white",
+              "green": "bg-kumo-badge-green text-white",
+              "neutral": "bg-kumo-badge-neutral text-white",
+              "orange": "bg-kumo-badge-orange text-black",
+              "purple": "bg-kumo-badge-purple text-white",
+              "teal": "bg-kumo-badge-teal text-white",
+              "teal-subtle": "bg-kumo-badge-teal-subtle text-kumo-badge-teal-subtle",
+              "blue": "bg-kumo-badge-blue text-white"
+            },
+            "descriptions": {
+              "primary": "Primary badge",
+              "secondary": "Secondary badge",
+              "error": "Error badge",
+              "warning": "Warning badge",
+              "success": "Success badge",
+              "destructive": "Deprecated. Use red instead.",
+              "info": "Info badge",
+              "beta": "Indicates beta or experimental features",
+              "outline": "Bordered badge with transparent background",
+              "red": "Red badge",
+              "green": "Green badge",
+              "neutral": "Neutral badge",
+              "orange": "Orange badge",
+              "purple": "Purple badge",
+              "teal": "Teal badge",
+              "teal-subtle": "Subtle teal badge",
+              "blue": "Blue badge"
+            }
+          }
+        },
+        "defaultVariants": {
+          "variant": "primary"
+        }
+      }
     },
     "Banner": {
       "name": "Banner",
@@ -184,11 +314,44 @@
         },
         "variant": {
           "type": "KumoBannerVariant",
-          "required": false
+          "required": false,
+          "default": "default",
+          "classes": {
+            "default": "bg-kumo-info-tint/30 border-kumo-info/50 text-kumo-info",
+            "alert": "bg-kumo-warning-tint/15 border-kumo-warning/50 text-kumo-warning",
+            "error": "bg-kumo-danger-tint/15 border-kumo-danger/50 text-kumo-danger"
+          },
+          "descriptions": {
+            "default": "Informational banner for general messages",
+            "alert": "Warning banner for cautionary messages",
+            "error": "Error banner for critical issues"
+          },
+          "values": ["default", "alert", "error"]
         }
       },
       "examples": [],
-      "colors": []
+      "colors": [],
+      "baseStyles": "flex w-full items-start gap-3 rounded-lg border px-4 py-3 text-base",
+      "styling": {
+        "variants": {
+          "variant": {
+            "values": ["default", "alert", "error"],
+            "classes": {
+              "default": "bg-kumo-info-tint/30 border-kumo-info/50 text-kumo-info",
+              "alert": "bg-kumo-warning-tint/15 border-kumo-warning/50 text-kumo-warning",
+              "error": "bg-kumo-danger-tint/15 border-kumo-danger/50 text-kumo-danger"
+            },
+            "descriptions": {
+              "default": "Informational banner for general messages",
+              "alert": "Warning banner for cautionary messages",
+              "error": "Error banner for critical issues"
+            }
+          }
+        },
+        "defaultVariants": {
+          "variant": "default"
+        }
+      }
     },
     "Breadcrumbs": {
       "name": "Breadcrumbs",
@@ -235,11 +398,39 @@
         },
         "size": {
           "type": "KumoBreadcrumbsSize",
-          "required": false
+          "required": false,
+          "default": "base",
+          "classes": {
+            "sm": "text-sm h-10 gap-0.5",
+            "base": "text-base h-12 gap-1"
+          },
+          "descriptions": {
+            "sm": "Compact breadcrumbs for dense UIs",
+            "base": "Default breadcrumbs size"
+          },
+          "values": ["sm", "base"]
         }
       },
       "examples": [],
-      "colors": []
+      "colors": [],
+      "styling": {
+        "variants": {
+          "size": {
+            "values": ["sm", "base"],
+            "classes": {
+              "sm": "text-sm h-10 gap-0.5",
+              "base": "text-base h-12 gap-1"
+            },
+            "descriptions": {
+              "sm": "Compact breadcrumbs for dense UIs",
+              "base": "Default breadcrumbs size"
+            }
+          }
+        },
+        "defaultVariants": {
+          "size": "base"
+        }
+      }
     },
     "Button": {
       "name": "Button",
@@ -250,15 +441,66 @@
       "props": {
         "shape": {
           "type": "KumoButtonShape",
-          "required": false
+          "required": false,
+          "default": "base",
+          "classes": {
+            "base": "",
+            "square": "items-center justify-center p-0",
+            "circle": "items-center justify-center p-0 rounded-full"
+          },
+          "descriptions": {
+            "base": "Default rectangular button shape",
+            "square": "Square button for icon-only actions",
+            "circle": "Circular button for icon-only actions"
+          },
+          "values": ["base", "square", "circle"]
         },
         "size": {
           "type": "KumoButtonSize",
-          "required": false
+          "required": false,
+          "default": "base",
+          "classes": {
+            "xs": "h-5 gap-1 rounded-sm px-1.5 text-xs",
+            "sm": "h-6.5 gap-1 rounded-md px-2 text-xs",
+            "base": "h-9 gap-1.5 rounded-lg px-3 text-base",
+            "lg": "h-10 gap-2 rounded-lg px-4 text-base"
+          },
+          "descriptions": {
+            "xs": "Extra small button for compact UIs",
+            "sm": "Small button for secondary actions",
+            "base": "Default button size",
+            "lg": "Large button for primary CTAs"
+          },
+          "values": ["xs", "sm", "base", "lg"]
         },
         "variant": {
           "type": "KumoButtonVariant",
-          "required": false
+          "required": false,
+          "default": "secondary",
+          "classes": {
+            "primary": "bg-kumo-brand !text-white hover:bg-kumo-brand-hover disabled:bg-kumo-brand/50",
+            "secondary": "bg-kumo-base !text-kumo-default ring not-disabled:hover:bg-kumo-tint disabled:bg-kumo-base/50 disabled:!text-kumo-default/70 ring-kumo-hairline data-[state=open]:bg-kumo-base",
+            "ghost": "text-kumo-default hover:bg-kumo-tint shadow-none bg-inherit",
+            "destructive": "bg-kumo-danger !text-white hover:bg-kumo-danger/70",
+            "secondary-destructive": "bg-kumo-base !text-kumo-danger ring not-disabled:hover:bg-kumo-base disabled:bg-kumo-base/50 disabled:!text-kumo-danger/70 ring-kumo-hairline data-[state=open]:bg-kumo-base",
+            "outline": "bg-transparent text-kumo-default ring ring-kumo-hairline"
+          },
+          "descriptions": {
+            "primary": "High-emphasis button for primary actions",
+            "secondary": "Default button style for most actions",
+            "ghost": "Minimal button with no background",
+            "destructive": "Danger button for destructive actions like delete",
+            "secondary-destructive": "Secondary button with destructive text for less prominent dangerous actions",
+            "outline": "Bordered button with transparent background"
+          },
+          "values": [
+            "primary",
+            "secondary",
+            "ghost",
+            "destructive",
+            "secondary-destructive",
+            "outline"
+          ]
         },
         "class": {
           "type": "string",
@@ -290,7 +532,79 @@
         }
       },
       "examples": [],
-      "colors": []
+      "colors": [],
+      "styling": {
+        "variants": {
+          "shape": {
+            "values": ["base", "square", "circle"],
+            "classes": {
+              "base": "",
+              "square": "items-center justify-center p-0",
+              "circle": "items-center justify-center p-0 rounded-full"
+            },
+            "descriptions": {
+              "base": "Default rectangular button shape",
+              "square": "Square button for icon-only actions",
+              "circle": "Circular button for icon-only actions"
+            }
+          },
+          "size": {
+            "values": ["xs", "sm", "base", "lg"],
+            "classes": {
+              "xs": "h-5 gap-1 rounded-sm px-1.5 text-xs",
+              "sm": "h-6.5 gap-1 rounded-md px-2 text-xs",
+              "base": "h-9 gap-1.5 rounded-lg px-3 text-base",
+              "lg": "h-10 gap-2 rounded-lg px-4 text-base"
+            },
+            "descriptions": {
+              "xs": "Extra small button for compact UIs",
+              "sm": "Small button for secondary actions",
+              "base": "Default button size",
+              "lg": "Large button for primary CTAs"
+            }
+          },
+          "compactSize": {
+            "values": ["xs", "sm", "base", "lg"],
+            "classes": {
+              "xs": "size-3.5",
+              "sm": "size-6.5",
+              "base": "size-9",
+              "lg": "size-10"
+            }
+          },
+          "variant": {
+            "values": [
+              "primary",
+              "secondary",
+              "ghost",
+              "destructive",
+              "secondary-destructive",
+              "outline"
+            ],
+            "classes": {
+              "primary": "bg-kumo-brand !text-white hover:bg-kumo-brand-hover disabled:bg-kumo-brand/50",
+              "secondary": "bg-kumo-base !text-kumo-default ring not-disabled:hover:bg-kumo-tint disabled:bg-kumo-base/50 disabled:!text-kumo-default/70 ring-kumo-hairline data-[state=open]:bg-kumo-base",
+              "ghost": "text-kumo-default hover:bg-kumo-tint shadow-none bg-inherit",
+              "destructive": "bg-kumo-danger !text-white hover:bg-kumo-danger/70",
+              "secondary-destructive": "bg-kumo-base !text-kumo-danger ring not-disabled:hover:bg-kumo-base disabled:bg-kumo-base/50 disabled:!text-kumo-danger/70 ring-kumo-hairline data-[state=open]:bg-kumo-base",
+              "outline": "bg-transparent text-kumo-default ring ring-kumo-hairline"
+            },
+            "descriptions": {
+              "primary": "High-emphasis button for primary actions",
+              "secondary": "Default button style for most actions",
+              "ghost": "Minimal button with no background",
+              "destructive": "Danger button for destructive actions like delete",
+              "secondary-destructive": "Secondary button with destructive text for less prominent dangerous actions",
+              "outline": "Bordered button with transparent background"
+            }
+          }
+        },
+        "defaultVariants": {
+          "shape": "base",
+          "size": "base",
+          "variant": "secondary"
+        }
+      }
     },
     "Checkbox": {
       "name": "Checkbox",
@@ -357,7 +671,17 @@
         },
         "variant": {
           "type": "KumoCheckboxVariant",
-          "required": false
+          "required": false,
+          "default": "default",
+          "classes": {
+            "default": "[&:focus-within>span]:ring-kumo-focus [&:hover>span]:ring-kumo-hairline",
+            "error": "[&>span]:ring-kumo-danger"
+          },
+          "descriptions": {
+            "default": "Default checkbox appearance",
+            "error": "Error state for validation failures"
+          },
+          "values": ["default", "error"]
         },
         "label": {
           "type": "Snippet | string",
@@ -389,7 +713,25 @@
         }
       },
       "examples": [],
-      "colors": []
+      "colors": [],
+      "styling": {
+        "variants": {
+          "variant": {
+            "values": ["default", "error"],
+            "classes": {
+              "default": "[&:focus-within>span]:ring-kumo-focus [&:hover>span]:ring-kumo-hairline",
+              "error": "[&>span]:ring-kumo-danger"
+            },
+            "descriptions": {
+              "default": "Default checkbox appearance",
+              "error": "Error state for validation failures"
+            }
+          }
+        },
+        "defaultVariants": {
+          "variant": "default"
+        }
+      }
     },
     "ClipboardText": {
       "name": "ClipboardText",
@@ -412,7 +754,19 @@
         },
         "size": {
           "type": "KumoClipboardTextSize",
-          "required": false
+          "required": false,
+          "default": "lg",
+          "classes": {
+            "sm": "text-xs",
+            "base": "text-sm",
+            "lg": "text-sm"
+          },
+          "descriptions": {
+            "sm": "Small clipboard text for compact UIs",
+            "base": "Default clipboard text size",
+            "lg": "Large clipboard text for prominent display"
+          },
+          "values": ["sm", "base", "lg"]
         },
         "text": {
           "type": "string",
@@ -428,7 +782,27 @@
         }
       },
       "examples": [],
-      "colors": []
+      "colors": [],
+      "styling": {
+        "variants": {
+          "size": {
+            "values": ["sm", "base", "lg"],
+            "classes": {
+              "sm": "text-xs",
+              "base": "text-sm",
+              "lg": "text-sm"
+            },
+            "descriptions": {
+              "sm": "Small clipboard text for compact UIs",
+              "base": "Default clipboard text size",
+              "lg": "Large clipboard text for prominent display"
+            }
+          }
+        },
+        "defaultVariants": {
+          "size": "lg"
+        }
+      }
     },
     "CloudflareLogo": {
       "name": "CloudflareLogo",
@@ -443,15 +817,51 @@
         },
         "color": {
           "type": "CloudflareLogoColor",
-          "required": false
+          "required": false,
+          "default": "color",
+          "descriptions": {
+            "color": "Brand colors (orange/yellow gradient cloud, dark gray text)",
+            "black": "Solid black logo",
+            "white": "Solid white logo (for dark backgrounds)"
+          },
+          "values": ["color", "black", "white"]
         },
         "variant": {
           "type": "CloudflareLogoVariant",
-          "required": false
+          "required": false,
+          "default": "full",
+          "descriptions": {
+            "glyph": "Cloud glyph only (logomark)",
+            "full": "Full logo with cloud glyph and wordmark stacked"
+          },
+          "values": ["glyph", "full"]
         }
       },
       "examples": [],
-      "colors": []
+      "colors": [],
+      "styling": {
+        "variants": {
+          "variant": {
+            "values": ["glyph", "full"],
+            "descriptions": {
+              "glyph": "Cloud glyph only (logomark)",
+              "full": "Full logo with cloud glyph and wordmark stacked"
+            }
+          },
+          "color": {
+            "values": ["color", "black", "white"],
+            "descriptions": {
+              "color": "Brand colors (orange/yellow gradient cloud, dark gray text)",
+              "black": "Solid black logo",
+              "white": "Solid white logo (for dark backgrounds)"
+            }
+          }
+        },
+        "defaultVariants": {
+          "variant": "full",
+          "color": "color"
+        }
+      }
     },
     "Collapsible": {
       "name": "Collapsible",
@@ -498,7 +908,10 @@
         }
       },
       "examples": [],
-      "colors": []
+      "colors": [],
+      "styling": {
+        "defaultVariants": {}
+      }
     },
     "Combobox": {
       "name": "Combobox",
@@ -621,11 +1034,40 @@
         },
         "inputSide": {
           "type": "KumoComboboxInputSide",
-          "required": false
+          "required": false,
+          "default": "right",
+          "classes": {
+            "right": "",
+            "top": ""
+          },
+          "descriptions": {
+            "right": "Input positioned inline to the right of chips",
+            "top": "Input positioned above chips"
+          },
+          "values": ["right", "top"]
         }
       },
       "examples": [],
-      "colors": []
+      "colors": [],
+      "styling": {
+        "variants": {
+          "inputSide": {
+            "values": ["right", "top"],
+            "classes": {
+              "right": "",
+              "top": ""
+            },
+            "descriptions": {
+              "right": "Input positioned inline to the right of chips",
+              "top": "Input positioned above chips"
+            }
+          }
+        },
+        "defaultVariants": {
+          "size": "base",
+          "inputSide": "right"
+        }
+      }
     },
     "CommandPalette": {
       "name": "CommandPalette",
@@ -768,7 +1210,10 @@
         }
       },
       "examples": [],
-      "colors": []
+      "colors": [],
+      "styling": {
+        "defaultVariants": {}
+      }
     },
     "Code": {
       "name": "Code",
@@ -783,7 +1228,23 @@
         },
         "lang": {
           "type": "KumoCodeLang",
-          "required": false
+          "required": false,
+          "default": "ts",
+          "classes": {
+            "ts": "",
+            "tsx": "",
+            "jsonc": "",
+            "bash": "",
+            "css": ""
+          },
+          "descriptions": {
+            "ts": "TypeScript code",
+            "tsx": "TypeScript JSX code",
+            "jsonc": "JSON with comments",
+            "bash": "Shell/Bash commands",
+            "css": "CSS styles"
+          },
+          "values": ["ts", "tsx", "jsonc", "bash", "css"]
         },
         "class": {
           "type": "string",
@@ -795,7 +1256,43 @@
         }
       },
       "examples": [],
-      "colors": []
+      "colors": [],
+      "styling": {
+        "baseTokens": ["bg-kumo-base", "border-kumo-fill"],
+        "container": {
+          "background": "bg-kumo-base",
+          "border": "border border-kumo-fill",
+          "borderRadius": "rounded-md",
+          "minWidth": "min-w-0"
+        },
+        "dimensions": {
+          "borderRadius": 6,
+          "padding": 10
+        },
+        "innerPadding": "[&>pre]:p-2.5",
+        "variants": {
+          "lang": {
+            "values": ["ts", "tsx", "jsonc", "bash", "css"],
+            "classes": {
+              "ts": "",
+              "tsx": "",
+              "jsonc": "",
+              "bash": "",
+              "css": ""
+            },
+            "descriptions": {
+              "ts": "TypeScript code",
+              "tsx": "TypeScript JSX code",
+              "jsonc": "JSON with comments",
+              "bash": "Shell/Bash commands",
+              "css": "CSS styles"
+            }
+          }
+        },
+        "defaultVariants": {
+          "lang": "ts"
+        }
+      }
     },
     "Chart": {
       "name": "Chart",
@@ -1160,7 +1657,19 @@
         },
         "size": {
           "type": "KumoDateRangePickerSize",
-          "required": false
+          "required": false,
+          "default": "base",
+          "classes": {
+            "sm": "gap-2 p-3 text-xs",
+            "base": "gap-2.5 p-4 text-sm",
+            "lg": "gap-3 p-5 text-base"
+          },
+          "descriptions": {
+            "sm": "Compact calendar for tight spaces",
+            "base": "Default calendar size",
+            "lg": "Large calendar for prominent date selection"
+          },
+          "values": ["sm", "base", "lg"]
         },
         "timezone": {
           "type": "string",
@@ -1172,11 +1681,53 @@
         },
         "variant": {
           "type": "KumoDateRangePickerVariant",
-          "required": false
+          "required": false,
+          "default": "default",
+          "classes": {
+            "default": "bg-kumo-overlay",
+            "subtle": "bg-kumo-base"
+          },
+          "descriptions": {
+            "default": "Default calendar appearance",
+            "subtle": "Subtle calendar with minimal background"
+          },
+          "values": ["default", "subtle"]
         }
       },
       "examples": [],
-      "colors": []
+      "colors": [],
+      "styling": {
+        "variants": {
+          "size": {
+            "values": ["sm", "base", "lg"],
+            "classes": {
+              "sm": "gap-2 p-3 text-xs",
+              "base": "gap-2.5 p-4 text-sm",
+              "lg": "gap-3 p-5 text-base"
+            },
+            "descriptions": {
+              "sm": "Compact calendar for tight spaces",
+              "base": "Default calendar size",
+              "lg": "Large calendar for prominent date selection"
+            }
+          },
+          "variant": {
+            "values": ["default", "subtle"],
+            "classes": {
+              "default": "bg-kumo-overlay",
+              "subtle": "bg-kumo-base"
+            },
+            "descriptions": {
+              "default": "Default calendar appearance",
+              "subtle": "Subtle calendar with minimal background"
+            }
+          }
+        },
+        "defaultVariants": {
+          "size": "base",
+          "variant": "default"
+        }
+      }
     },
     "Dialog": {
       "name": "Dialog",
@@ -1207,7 +1758,21 @@
         },
         "size": {
           "type": "KumoDialogSize",
-          "required": false
+          "required": false,
+          "default": "base",
+          "classes": {
+            "base": "sm:min-w-96",
+            "sm": "min-w-72",
+            "lg": "min-w-[32rem]",
+            "xl": "min-w-[48rem]"
+          },
+          "descriptions": {
+            "base": "Default dialog width",
+            "sm": "Small dialog for simple confirmations",
+            "lg": "Large dialog for complex content",
+            "xl": "Extra large dialog for detailed views"
+          },
+          "values": ["base", "sm", "lg", "xl"]
         },
         "style": {
           "type": "string",
@@ -1215,7 +1780,17 @@
         },
         "role": {
           "type": "KumoDialogRole",
-          "required": false
+          "required": false,
+          "default": "dialog",
+          "classes": {
+            "dialog": "",
+            "alertdialog": ""
+          },
+          "descriptions": {
+            "dialog": "Standard dialog for general-purpose modals",
+            "alertdialog": "Alert dialog for confirmation flows requiring explicit user acknowledgment"
+          },
+          "values": ["dialog", "alertdialog"]
         },
         "open": {
           "type": "boolean",
@@ -1231,7 +1806,110 @@
         }
       },
       "examples": [],
-      "colors": []
+      "colors": [],
+      "styling": {
+        "dimensions": {
+          "sm": {
+            "width": 350,
+            "titleSize": 20,
+            "descSize": 16,
+            "padding": 16,
+            "gap": 8,
+            "buttonSize": "sm"
+          },
+          "base": {
+            "width": 384,
+            "titleSize": 20,
+            "descSize": 16,
+            "padding": 24,
+            "gap": 16,
+            "buttonSize": "base"
+          },
+          "lg": {
+            "width": 512,
+            "titleSize": 20,
+            "descSize": 16,
+            "padding": 24,
+            "gap": 16,
+            "buttonSize": "base"
+          },
+          "xl": {
+            "width": 768,
+            "titleSize": 20,
+            "descSize": 16,
+            "padding": 24,
+            "gap": 16,
+            "buttonSize": "base"
+          }
+        },
+        "baseTokens": {
+          "background": "color-surface",
+          "text": "text-color-surface",
+          "borderRadius": 12,
+          "shadow": "shadow-m"
+        },
+        "backdrop": {
+          "background": "color-surface-secondary",
+          "opacity": 0.8
+        },
+        "header": {
+          "title": {
+            "fontWeight": 600,
+            "color": "text-color-surface"
+          },
+          "closeIcon": {
+            "name": "ph-x",
+            "size": 20,
+            "color": "text-color-muted"
+          }
+        },
+        "description": {
+          "fontWeight": 400,
+          "color": "text-color-muted"
+        },
+        "buttons": {
+          "primary": {
+            "background": "color-primary",
+            "text": "white"
+          },
+          "secondary": {
+            "ring": "color-border",
+            "text": "text-color-surface"
+          }
+        },
+        "variants": {
+          "size": {
+            "values": ["base", "sm", "lg", "xl"],
+            "classes": {
+              "base": "sm:min-w-96",
+              "sm": "min-w-72",
+              "lg": "min-w-[32rem]",
+              "xl": "min-w-[48rem]"
+            },
+            "descriptions": {
+              "base": "Default dialog width",
+              "sm": "Small dialog for simple confirmations",
+              "lg": "Large dialog for complex content",
+              "xl": "Extra large dialog for detailed views"
+            }
+          },
+          "role": {
+            "values": ["dialog", "alertdialog"],
+            "classes": {
+              "dialog": "",
+              "alertdialog": ""
+            },
+            "descriptions": {
+              "dialog": "Standard dialog for general-purpose modals",
+              "alertdialog": "Alert dialog for confirmation flows requiring explicit user acknowledgment"
+            }
+          }
+        },
+        "defaultVariants": {
+          "size": "base",
+          "role": "dialog"
+        }
+      }
     },
     "Dropdown": {
       "name": "Dropdown",
@@ -1262,11 +1940,39 @@
         },
         "variant": {
           "type": "KumoDropdownVariant",
-          "required": false
+          "required": false,
+          "default": "default",
+          "classes": {
+            "default": "",
+            "danger": "text-kumo-danger data-[highlighted]:bg-kumo-danger/5 data-[highlighted]:text-kumo-danger"
+          },
+          "descriptions": {
+            "default": "Default dropdown item appearance",
+            "danger": "Destructive action item"
+          },
+          "values": ["default", "danger"]
         }
       },
       "examples": [],
-      "colors": []
+      "colors": [],
+      "styling": {
+        "variants": {
+          "variant": {
+            "values": ["default", "danger"],
+            "classes": {
+              "default": "",
+              "danger": "text-kumo-danger data-[highlighted]:bg-kumo-danger/5 data-[highlighted]:text-kumo-danger"
+            },
+            "descriptions": {
+              "default": "Default dropdown item appearance",
+              "danger": "Destructive action item"
+            }
+          }
+        },
+        "defaultVariants": {
+          "variant": "default"
+        }
+      }
     },
     "Empty": {
       "name": "Empty",
@@ -1301,7 +2007,19 @@
         },
         "size": {
           "type": "KumoEmptySize",
-          "required": false
+          "required": false,
+          "default": "base",
+          "classes": {
+            "sm": "px-6 py-8 gap-4",
+            "base": "px-10 py-16 gap-6",
+            "lg": "px-12 py-20 gap-8"
+          },
+          "descriptions": {
+            "sm": "Compact empty state for smaller containers",
+            "base": "Default empty state size",
+            "lg": "Large empty state for prominent placement"
+          },
+          "values": ["sm", "base", "lg"]
         },
         "title": {
           "type": "string",
@@ -1309,7 +2027,27 @@
         }
       },
       "examples": [],
-      "colors": []
+      "colors": [],
+      "styling": {
+        "variants": {
+          "size": {
+            "values": ["sm", "base", "lg"],
+            "classes": {
+              "sm": "px-6 py-8 gap-4",
+              "base": "px-10 py-16 gap-6",
+              "lg": "px-12 py-20 gap-8"
+            },
+            "descriptions": {
+              "sm": "Compact empty state for smaller containers",
+              "base": "Default empty state size",
+              "lg": "Large empty state for prominent placement"
+            }
+          }
+        },
+        "defaultVariants": {
+          "size": "base"
+        }
+      }
     },
     "Field": {
       "name": "Field",
@@ -1360,7 +2098,10 @@
         }
       },
       "examples": [],
-      "colors": []
+      "colors": [],
+      "styling": {
+        "defaultVariants": {}
+      }
     },
     "Flow": {
       "name": "Flow",
@@ -1454,7 +2195,21 @@
         },
         "gap": {
           "type": "KumoGridGap",
-          "required": false
+          "required": false,
+          "default": "base",
+          "classes": {
+            "none": "gap-0",
+            "sm": "gap-3",
+            "base": "gap-2 md:gap-6 lg:gap-8",
+            "lg": "gap-8"
+          },
+          "descriptions": {
+            "none": "No gap between grid items",
+            "sm": "Small gap between grid items",
+            "base": "Default responsive gap between grid items",
+            "lg": "Large gap between grid items"
+          },
+          "values": ["none", "sm", "base", "lg"]
         },
         "mobileDivider": {
           "type": "boolean",
@@ -1462,11 +2217,91 @@
         },
         "variant": {
           "type": "KumoGridVariant",
-          "required": false
+          "required": false,
+          "classes": {
+            "2up": "grid-cols-1 md:grid-cols-2",
+            "side-by-side": "grid-cols-2",
+            "2-1": "grid-cols-1 md:grid-cols-[2fr_1fr]",
+            "1-2": "grid-cols-1 md:grid-cols-[1fr_2fr]",
+            "1-3up": "grid-cols-1 lg:grid-cols-3",
+            "3up": "grid-cols-1 md:grid-cols-2 lg:grid-cols-3",
+            "4up": "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4",
+            "6up": "grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6",
+            "1-2-4up": "grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
+          },
+          "descriptions": {
+            "2up": "Grid items stack on small screens, display side-by-side on medium screens and up",
+            "side-by-side": "Grid items always displayed side-by-side",
+            "2-1": "Two-thirds / one-third split on medium screens and up",
+            "1-2": "One-third / two-thirds split on medium screens and up",
+            "1-3up": "Grid items stack on small screens, expand to 3 across on large screens",
+            "3up": "Grid items stack on small screens, 2 across on medium, 3 across on large",
+            "4up": "Grid items stack on small screens, progressively increase columns at larger breakpoints",
+            "6up": "Grid items start at 2 across, expand to 6 across on XL",
+            "1-2-4up": "Grid items stack on small screens, 2 across on medium, 4 across on large"
+          },
+          "values": ["2up", "side-by-side", "2-1", "1-2", "1-3up", "3up", "4up", "6up", "1-2-4up"]
         }
       },
       "examples": [],
-      "colors": []
+      "colors": [],
+      "styling": {
+        "variants": {
+          "variant": {
+            "values": [
+              "2up",
+              "side-by-side",
+              "2-1",
+              "1-2",
+              "1-3up",
+              "3up",
+              "4up",
+              "6up",
+              "1-2-4up"
+            ],
+            "classes": {
+              "2up": "grid-cols-1 md:grid-cols-2",
+              "side-by-side": "grid-cols-2",
+              "2-1": "grid-cols-1 md:grid-cols-[2fr_1fr]",
+              "1-2": "grid-cols-1 md:grid-cols-[1fr_2fr]",
+              "1-3up": "grid-cols-1 lg:grid-cols-3",
+              "3up": "grid-cols-1 md:grid-cols-2 lg:grid-cols-3",
+              "4up": "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4",
+              "6up": "grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6",
+              "1-2-4up": "grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
+            },
+            "descriptions": {
+              "2up": "Grid items stack on small screens, display side-by-side on medium screens and up",
+              "side-by-side": "Grid items always displayed side-by-side",
+              "2-1": "Two-thirds / one-third split on medium screens and up",
+              "1-2": "One-third / two-thirds split on medium screens and up",
+              "1-3up": "Grid items stack on small screens, expand to 3 across on large screens",
+              "3up": "Grid items stack on small screens, 2 across on medium, 3 across on large",
+              "4up": "Grid items stack on small screens, progressively increase columns at larger breakpoints",
+              "6up": "Grid items start at 2 across, expand to 6 across on XL",
+              "1-2-4up": "Grid items stack on small screens, 2 across on medium, 4 across on large"
+            }
+          },
+          "gap": {
+            "values": ["none", "sm", "base", "lg"],
+            "classes": {
+              "none": "gap-0",
+              "sm": "gap-3",
+              "base": "gap-2 md:gap-6 lg:gap-8",
+              "lg": "gap-8"
+            },
+            "descriptions": {
+              "none": "No gap between grid items",
+              "sm": "Small gap between grid items",
+              "base": "Default responsive gap between grid items",
+              "lg": "Large gap between grid items"
+            }
+          }
+        },
+        "defaultVariants": {
+          "gap": "base"
+        }
+      }
     },
     "Input": {
       "name": "Input",
@@ -1497,7 +2332,21 @@
         },
         "size": {
           "type": "KumoInputSize",
-          "required": false
+          "required": false,
+          "default": "base",
+          "classes": {
+            "xs": "h-5 gap-1 rounded-sm px-1.5 text-xs",
+            "sm": "h-6.5 gap-1 rounded-md px-2 text-xs",
+            "base": "h-9 gap-1.5 rounded-lg px-3 text-base",
+            "lg": "h-10 gap-2 rounded-lg px-4 text-base"
+          },
+          "descriptions": {
+            "xs": "Extra small input for compact UIs",
+            "sm": "Small input for secondary fields",
+            "base": "Default input size",
+            "lg": "Large input for prominent fields"
+          },
+          "values": ["xs", "sm", "base", "lg"]
         },
         "value": {
           "type": "string | number | string[] | undefined",
@@ -1505,7 +2354,17 @@
         },
         "variant": {
           "type": "KumoInputVariant",
-          "required": false
+          "required": false,
+          "default": "default",
+          "classes": {
+            "default": "focus:ring-kumo-focus/50 focus:ring-[1.5px]",
+            "error": "!ring-kumo-danger focus:ring-kumo-danger/50 focus:ring-[1.5px]"
+          },
+          "descriptions": {
+            "default": "Default input appearance",
+            "error": "Error state for validation failures"
+          },
+          "values": ["default", "error"]
         },
         "passwordManagerIgnore": {
           "type": "boolean",
@@ -1521,7 +2380,89 @@
         }
       },
       "examples": [],
-      "colors": []
+      "colors": [],
+      "styling": {
+        "dimensions": {
+          "xs": {
+            "height": 20,
+            "paddingX": 6,
+            "fontSize": 12,
+            "borderRadius": 2,
+            "width": 160
+          },
+          "sm": {
+            "height": 26,
+            "paddingX": 8,
+            "fontSize": 12,
+            "borderRadius": 6,
+            "width": 200
+          },
+          "base": {
+            "height": 36,
+            "paddingX": 12,
+            "fontSize": 16,
+            "borderRadius": 8,
+            "width": 280
+          },
+          "lg": {
+            "height": 40,
+            "paddingX": 16,
+            "fontSize": 16,
+            "borderRadius": 8,
+            "width": 320
+          }
+        },
+        "baseTokens": {
+          "background": "color-secondary",
+          "placeholder": "text-color-muted",
+          "ring": "color-border",
+          "text": "text-color-surface"
+        },
+        "stateTokens": {
+          "disabled": {
+            "opacity": 0.5,
+            "text": "text-color-muted"
+          },
+          "error": {
+            "ring": "color-error"
+          },
+          "focus": {
+            "ring": "color-active"
+          }
+        },
+        "variants": {
+          "size": {
+            "values": ["xs", "sm", "base", "lg"],
+            "classes": {
+              "xs": "h-5 gap-1 rounded-sm px-1.5 text-xs",
+              "sm": "h-6.5 gap-1 rounded-md px-2 text-xs",
+              "base": "h-9 gap-1.5 rounded-lg px-3 text-base",
+              "lg": "h-10 gap-2 rounded-lg px-4 text-base"
+            },
+            "descriptions": {
+              "xs": "Extra small input for compact UIs",
+              "sm": "Small input for secondary fields",
+              "base": "Default input size",
+              "lg": "Large input for prominent fields"
+            }
+          },
+          "variant": {
+            "values": ["default", "error"],
+            "classes": {
+              "default": "focus:ring-kumo-focus/50 focus:ring-[1.5px]",
+              "error": "!ring-kumo-danger focus:ring-kumo-danger/50 focus:ring-[1.5px]"
+            },
+            "descriptions": {
+              "default": "Default input appearance",
+              "error": "Error state for validation failures"
+            }
+          }
+        },
+        "defaultVariants": {
+          "size": "base",
+          "variant": "default"
+        }
+      }
     },
     "InputGroup": {
       "name": "InputGroup",
@@ -1592,11 +2533,47 @@
         },
         "size": {
           "type": "KumoInputSize",
-          "required": false
+          "required": false,
+          "default": "base",
+          "classes": {
+            "xs": "h-6 text-xs",
+            "sm": "h-7 text-xs",
+            "base": "h-9 text-base",
+            "lg": "h-11 text-base"
+          },
+          "descriptions": {
+            "xs": "Extra small size.",
+            "sm": "Small size.",
+            "base": "Default size.",
+            "lg": "Large size."
+          },
+          "values": ["xs", "sm", "base", "lg"]
         }
       },
       "examples": [],
-      "colors": []
+      "colors": [],
+      "styling": {
+        "variants": {
+          "size": {
+            "values": ["xs", "sm", "base", "lg"],
+            "classes": {
+              "xs": "h-6 text-xs",
+              "sm": "h-7 text-xs",
+              "base": "h-9 text-base",
+              "lg": "h-11 text-base"
+            },
+            "descriptions": {
+              "xs": "Extra small size.",
+              "sm": "Small size.",
+              "base": "Default size.",
+              "lg": "Large size."
+            }
+          }
+        },
+        "defaultVariants": {
+          "size": "base"
+        }
+      }
     },
     "Label": {
       "name": "Label",
@@ -1635,7 +2612,10 @@
         }
       },
       "examples": [],
-      "colors": []
+      "colors": [],
+      "styling": {
+        "defaultVariants": {}
+      }
     },
     "LayerCard": {
       "name": "LayerCard",
@@ -1662,7 +2642,10 @@
         }
       },
       "examples": [],
-      "colors": []
+      "colors": [],
+      "styling": {
+        "defaultVariants": {}
+      }
     },
     "Switch": {
       "name": "Switch",
@@ -1701,7 +2684,19 @@
         },
         "size": {
           "type": "KumoSwitchSize",
-          "required": false
+          "required": false,
+          "default": "base",
+          "classes": {
+            "sm": "h-5.5 w-8.5",
+            "base": "h-6.5 w-10.5",
+            "lg": "h-7.5 w-12.5"
+          },
+          "descriptions": {
+            "sm": "Small switch for compact UIs",
+            "base": "Default switch size",
+            "lg": "Large switch for prominent toggles"
+          },
+          "values": ["sm", "base", "lg"]
         },
         "transitioning": {
           "type": "boolean",
@@ -1713,7 +2708,17 @@
         },
         "variant": {
           "type": "KumoSwitchVariant",
-          "required": false
+          "required": false,
+          "default": "default",
+          "classes": {
+            "default": "",
+            "neutral": ""
+          },
+          "descriptions": {
+            "default": "Default switch with squircle shape and brand blue color",
+            "neutral": "Monochrome switch with squircle shape for subtle toggles"
+          },
+          "values": ["default", "neutral"]
         },
         "aria-label": {
           "type": "string",
@@ -1753,7 +2758,39 @@
         }
       },
       "examples": [],
-      "colors": []
+      "colors": [],
+      "styling": {
+        "variants": {
+          "size": {
+            "values": ["sm", "base", "lg"],
+            "classes": {
+              "sm": "h-5.5 w-8.5",
+              "base": "h-6.5 w-10.5",
+              "lg": "h-7.5 w-12.5"
+            },
+            "descriptions": {
+              "sm": "Small switch for compact UIs",
+              "base": "Default switch size",
+              "lg": "Large switch for prominent toggles"
+            }
+          },
+          "variant": {
+            "values": ["default", "neutral"],
+            "classes": {
+              "default": "",
+              "neutral": ""
+            },
+            "descriptions": {
+              "default": "Default switch with squircle shape and brand blue color",
+              "neutral": "Monochrome switch with squircle shape for subtle toggles"
+            }
+          }
+        },
+        "defaultVariants": {
+          "size": "base",
+          "variant": "default"
+        }
+      }
     },
     "TableOfContents": {
       "name": "TableOfContents",
@@ -1788,7 +2825,25 @@
         }
       },
       "examples": [],
-      "colors": []
+      "colors": [],
+      "styling": {
+        "variants": {
+          "state": {
+            "values": ["default", "active"],
+            "classes": {
+              "default": "text-kumo-subtle hover:border-kumo-line hover:text-kumo-default hover:font-medium",
+              "active": "border-kumo-brand font-medium text-kumo-default"
+            },
+            "descriptions": {
+              "default": "Inactive section link",
+              "active": "Currently visible / active section"
+            }
+          }
+        },
+        "defaultVariants": {
+          "state": "default"
+        }
+      }
     },
     "Tabs": {
       "name": "Tabs",
@@ -1823,7 +2878,9 @@
         },
         "size": {
           "type": "KumoTabsSize",
-          "required": false
+          "required": false,
+          "default": "base",
+          "values": ["base", "sm"]
         },
         "tabs": {
           "type": "TabsItem[]",
@@ -1835,11 +2892,48 @@
         },
         "variant": {
           "type": "KumoTabsVariant",
-          "required": false
+          "required": false,
+          "default": "segmented",
+          "values": ["segmented", "underline"]
         }
       },
       "examples": [],
-      "colors": []
+      "colors": [],
+      "styling": {
+        "container": {
+          "background": "color-accent",
+          "borderRadius": 8,
+          "height": 34,
+          "padding": 1
+        },
+        "indicator": {
+          "background": "color-surface-secondary",
+          "borderRadius": 6,
+          "ring": "color-color-2",
+          "shadow": "shadow-sm"
+        },
+        "tab": {
+          "activeColor": "text-color-surface",
+          "borderRadius": 8,
+          "fontSize": 16,
+          "fontWeight": 500,
+          "inactiveColor": "text-color-label",
+          "paddingX": 10,
+          "verticalMargin": 1
+        },
+        "variants": {
+          "size": {
+            "values": ["base", "sm"]
+          },
+          "variant": {
+            "values": ["segmented", "underline"]
+          }
+        },
+        "defaultVariants": {
+          "size": "base",
+          "variant": "segmented"
+        }
+      }
     },
     "Link": {
       "name": "Link",
@@ -1854,7 +2948,19 @@
         },
         "variant": {
           "type": "KumoLinkVariant",
-          "required": false
+          "required": false,
+          "default": "inline",
+          "classes": {
+            "inline": "text-kumo-link underline underline-offset-[0.15em] decoration-[0.0625em] link-current transition-colors",
+            "current": "text-current underline underline-offset-[0.15em] decoration-[0.0625em] link-current transition-colors",
+            "plain": "text-kumo-link hover:text-kumo-link/70 transition-colors"
+          },
+          "descriptions": {
+            "inline": "Inline text link that flows with content",
+            "current": "Link that inherits color from parent text",
+            "plain": "Link without underline decoration"
+          },
+          "values": ["inline", "current", "plain"]
         },
         "children": {
           "type": "Snippet",
@@ -1866,7 +2972,27 @@
         }
       },
       "examples": [],
-      "colors": []
+      "colors": [],
+      "styling": {
+        "variants": {
+          "variant": {
+            "values": ["inline", "current", "plain"],
+            "classes": {
+              "inline": "text-kumo-link underline underline-offset-[0.15em] decoration-[0.0625em] link-current transition-colors",
+              "current": "text-current underline underline-offset-[0.15em] decoration-[0.0625em] link-current transition-colors",
+              "plain": "text-kumo-link hover:text-kumo-link/70 transition-colors"
+            },
+            "descriptions": {
+              "inline": "Inline text link that flows with content",
+              "current": "Link that inherits color from parent text",
+              "plain": "Link without underline decoration"
+            }
+          }
+        },
+        "defaultVariants": {
+          "variant": "inline"
+        }
+      }
     },
     "Loader": {
       "name": "Loader",
@@ -1881,7 +3007,14 @@
         },
         "size": {
           "type": "KumoLoaderSize | number",
-          "required": false
+          "required": false,
+          "default": "base",
+          "descriptions": {
+            "sm": "Small loader for inline use",
+            "base": "Default loader size",
+            "lg": "Large loader for prominent loading states"
+          },
+          "values": ["sm", "base", "lg"]
         },
         "blockHeight": {
           "type": "string | number",
@@ -1917,7 +3050,22 @@
         }
       },
       "examples": [],
-      "colors": []
+      "colors": [],
+      "styling": {
+        "variants": {
+          "size": {
+            "values": ["sm", "base", "lg"],
+            "descriptions": {
+              "sm": "Small loader for inline use",
+              "base": "Default loader size",
+              "lg": "Large loader for prominent loading states"
+            }
+          }
+        },
+        "defaultVariants": {
+          "size": "base"
+        }
+      }
     },
     "Menubar": {
       "name": "Menubar",
@@ -1944,7 +3092,10 @@
         }
       },
       "examples": [],
-      "colors": []
+      "colors": [],
+      "styling": {
+        "defaultVariants": {}
+      }
     },
     "Meter": {
       "name": "Meter",
@@ -1995,7 +3146,10 @@
         }
       },
       "examples": [],
-      "colors": []
+      "colors": [],
+      "styling": {
+        "defaultVariants": {}
+      }
     },
     "Pagination": {
       "name": "Pagination",
@@ -2010,7 +3164,17 @@
         },
         "controls": {
           "type": "KumoPaginationControls",
-          "required": false
+          "required": false,
+          "default": "full",
+          "classes": {
+            "full": "",
+            "simple": ""
+          },
+          "descriptions": {
+            "full": "Full pagination controls with first, previous, page input, next, and last buttons",
+            "simple": "Simple pagination controls with only previous and next buttons"
+          },
+          "values": ["full", "simple"]
         },
         "pageSelector": {
           "type": "\"input\" | \"dropdown\"",
@@ -2066,7 +3230,25 @@
         }
       },
       "examples": [],
-      "colors": []
+      "colors": [],
+      "styling": {
+        "variants": {
+          "controls": {
+            "values": ["full", "simple"],
+            "classes": {
+              "full": "",
+              "simple": ""
+            },
+            "descriptions": {
+              "full": "Full pagination controls with first, previous, page input, next, and last buttons",
+              "simple": "Simple pagination controls with only previous and next buttons"
+            }
+          }
+        },
+        "defaultVariants": {
+          "controls": "full"
+        }
+      }
     },
     "Popover": {
       "name": "Popover",
@@ -2093,11 +3275,47 @@
         },
         "side": {
           "type": "KumoPopoverSide",
-          "required": false
+          "required": false,
+          "default": "bottom",
+          "classes": {
+            "top": "",
+            "bottom": "",
+            "left": "",
+            "right": ""
+          },
+          "descriptions": {
+            "top": "Popover appears above the trigger",
+            "bottom": "Popover appears below the trigger",
+            "left": "Popover appears to the left of the trigger",
+            "right": "Popover appears to the right of the trigger"
+          },
+          "values": ["top", "bottom", "left", "right"]
         }
       },
       "examples": [],
-      "colors": []
+      "colors": [],
+      "styling": {
+        "variants": {
+          "side": {
+            "values": ["top", "bottom", "left", "right"],
+            "classes": {
+              "top": "",
+              "bottom": "",
+              "left": "",
+              "right": ""
+            },
+            "descriptions": {
+              "top": "Popover appears above the trigger",
+              "bottom": "Popover appears below the trigger",
+              "left": "Popover appears to the left of the trigger",
+              "right": "Popover appears to the right of the trigger"
+            }
+          }
+        },
+        "defaultVariants": {
+          "side": "bottom"
+        }
+      }
     },
     "Radio": {
       "name": "Radio",
@@ -2108,7 +3326,17 @@
       "props": {
         "appearance": {
           "type": "KumoRadioAppearance",
-          "required": false
+          "required": false,
+          "default": "default",
+          "classes": {
+            "default": "",
+            "card": "rounded-lg border border-kumo-hairline bg-kumo-base p-3 transition-colors hover:bg-kumo-tint has-[[data-checked]]:border-kumo-interact has-[[data-checked]]:bg-kumo-tint"
+          },
+          "descriptions": {
+            "default": "Standard inline radio item",
+            "card": "Choice card appearance with border, padding, and highlighted selection state"
+          },
+          "values": ["default", "card"]
         },
         "children": {
           "type": "Snippet",
@@ -2172,11 +3400,51 @@
         },
         "variant": {
           "type": "KumoRadioVariant",
-          "required": false
+          "required": false,
+          "default": "default",
+          "classes": {
+            "default": "ring-kumo-hairline",
+            "error": "ring-kumo-danger"
+          },
+          "descriptions": {
+            "default": "Default radio appearance",
+            "error": "Error state for validation failures"
+          },
+          "values": ["default", "error"]
         }
       },
       "examples": [],
-      "colors": []
+      "colors": [],
+      "styling": {
+        "variants": {
+          "variant": {
+            "values": ["default", "error"],
+            "classes": {
+              "default": "ring-kumo-hairline",
+              "error": "ring-kumo-danger"
+            },
+            "descriptions": {
+              "default": "Default radio appearance",
+              "error": "Error state for validation failures"
+            }
+          },
+          "appearance": {
+            "values": ["default", "card"],
+            "classes": {
+              "default": "",
+              "card": "rounded-lg border border-kumo-hairline bg-kumo-base p-3 transition-colors hover:bg-kumo-tint has-[[data-checked]]:border-kumo-interact has-[[data-checked]]:bg-kumo-tint"
+            },
+            "descriptions": {
+              "default": "Standard inline radio item",
+              "card": "Choice card appearance with border, padding, and highlighted selection state"
+            }
+          }
+        },
+        "defaultVariants": {
+          "variant": "default",
+          "appearance": "default"
+        }
+      }
     },
     "Select": {
       "name": "Select",
@@ -2275,7 +3543,53 @@
         }
       },
       "examples": [],
-      "colors": []
+      "colors": [],
+      "styling": {
+        "trigger": {
+          "background": "bg-kumo-elevated",
+          "borderRadius": 8,
+          "fontSize": 16,
+          "fontWeight": 400,
+          "height": 36,
+          "paddingX": 12,
+          "ring": "color-border",
+          "text": "text-color-surface"
+        },
+        "stateTokens": {
+          "disabled": {
+            "opacity": 0.5
+          },
+          "focus": {
+            "ring": "color-active"
+          }
+        },
+        "icons": {
+          "caret": {
+            "name": "caret-up-down",
+            "size": 20
+          },
+          "check": {
+            "name": "check",
+            "size": 20
+          }
+        },
+        "option": {
+          "borderRadius": 4,
+          "fontSize": 16,
+          "highlightBackground": "color-surface-secondary",
+          "paddingX": 8,
+          "paddingY": 6
+        },
+        "popup": {
+          "background": "bg-kumo-elevated",
+          "borderRadius": 8,
+          "padding": 6,
+          "ring": "border-kumo-line"
+        },
+        "defaultVariants": {
+          "size": "base"
+        }
+      }
     },
     "SensitiveInput": {
       "name": "SensitiveInput",
@@ -2357,7 +3671,19 @@
         },
         "collapsible": {
           "type": "SidebarCollapsible",
-          "required": false
+          "required": false,
+          "default": "icon",
+          "classes": {
+            "icon": "",
+            "offcanvas": "",
+            "none": ""
+          },
+          "descriptions": {
+            "icon": "Collapses to show icons only",
+            "offcanvas": "Slides off screen when collapsed",
+            "none": "Cannot be collapsed"
+          },
+          "values": ["icon", "offcanvas", "none"]
         },
         "defaultOpen": {
           "type": "boolean",
@@ -2425,7 +3751,17 @@
         },
         "side": {
           "type": "SidebarSide",
-          "required": false
+          "required": false,
+          "default": "left",
+          "classes": {
+            "left": "",
+            "right": ""
+          },
+          "descriptions": {
+            "left": "Left-aligned sidebar",
+            "right": "Right-aligned sidebar"
+          },
+          "values": ["left", "right"]
         },
         "style": {
           "type": "string",
@@ -2433,7 +3769,19 @@
         },
         "variant": {
           "type": "SidebarVariant",
-          "required": false
+          "required": false,
+          "default": "sidebar",
+          "classes": {
+            "sidebar": "",
+            "floating": "",
+            "inset": ""
+          },
+          "descriptions": {
+            "sidebar": "Standard sidebar with border separator",
+            "floating": "Floating sidebar with shadow and rounded corners",
+            "inset": "Inset sidebar within the content area"
+          },
+          "values": ["sidebar", "floating", "inset"]
         },
         "width": {
           "type": "number",
@@ -2449,7 +3797,60 @@
         }
       },
       "examples": [],
-      "colors": []
+      "colors": [],
+      "styling": {
+        "width": {
+          "expanded": "16rem",
+          "icon": "3rem"
+        },
+        "mobile": {
+          "breakpoint": 768
+        },
+        "variants": {
+          "variant": {
+            "values": ["sidebar", "floating", "inset"],
+            "classes": {
+              "sidebar": "",
+              "floating": "",
+              "inset": ""
+            },
+            "descriptions": {
+              "sidebar": "Standard sidebar with border separator",
+              "floating": "Floating sidebar with shadow and rounded corners",
+              "inset": "Inset sidebar within the content area"
+            }
+          },
+          "collapsible": {
+            "values": ["icon", "offcanvas", "none"],
+            "classes": {
+              "icon": "",
+              "offcanvas": "",
+              "none": ""
+            },
+            "descriptions": {
+              "icon": "Collapses to show icons only",
+              "offcanvas": "Slides off screen when collapsed",
+              "none": "Cannot be collapsed"
+            }
+          },
+          "side": {
+            "values": ["left", "right"],
+            "classes": {
+              "left": "",
+              "right": ""
+            },
+            "descriptions": {
+              "left": "Left-aligned sidebar",
+              "right": "Right-aligned sidebar"
+            }
+          }
+        },
+        "defaultVariants": {
+          "variant": "sidebar",
+          "collapsible": "icon",
+          "side": "left"
+        }
+      }
     },
     "Surface": {
       "name": "Surface",
@@ -2472,11 +3873,39 @@
         },
         "color": {
           "type": "KumoSurfaceColor",
-          "required": false
+          "required": false,
+          "default": "primary",
+          "classes": {
+            "primary": "",
+            "secondary": ""
+          },
+          "descriptions": {
+            "primary": "Primary surface color",
+            "secondary": "Secondary surface color"
+          },
+          "values": ["primary", "secondary"]
         }
       },
       "examples": [],
-      "colors": []
+      "colors": [],
+      "styling": {
+        "variants": {
+          "color": {
+            "values": ["primary", "secondary"],
+            "classes": {
+              "primary": "",
+              "secondary": ""
+            },
+            "descriptions": {
+              "primary": "Primary surface color",
+              "secondary": "Secondary surface color"
+            }
+          }
+        },
+        "defaultVariants": {
+          "color": "primary"
+        }
+      }
     },
     "Table": {
       "name": "Table",
@@ -2495,7 +3924,16 @@
         },
         "sticky": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "classes": {
+            "left": "sticky left-0",
+            "right": "sticky right-0"
+          },
+          "descriptions": {
+            "left": "Pin column to the left edge of the scroll container",
+            "right": "Pin column to the right edge of the scroll container"
+          },
+          "values": ["left", "right"]
         },
         "checked": {
           "type": "boolean",
@@ -2523,15 +3961,76 @@
         },
         "variant": {
           "type": "KumoTableRowVariant",
-          "required": false
+          "required": false,
+          "default": "default",
+          "classes": {
+            "default": "",
+            "selected": "bg-kumo-tint"
+          },
+          "descriptions": {
+            "default": "Default row variant",
+            "selected": "Selected row variant"
+          },
+          "values": ["default", "selected"]
         },
         "layout": {
           "type": "KumoTableLayout",
-          "required": false
+          "required": false,
+          "default": "auto",
+          "classes": {
+            "auto": "",
+            "fixed": "table-fixed"
+          },
+          "descriptions": {
+            "auto": "Auto table layout - columns resize based on content",
+            "fixed": "Fixed table layout - columns have equal width, controlled via colgroup"
+          },
+          "values": ["auto", "fixed"]
         }
       },
       "examples": [],
-      "colors": []
+      "colors": [],
+      "styling": {
+        "variants": {
+          "layout": {
+            "values": ["auto", "fixed"],
+            "classes": {
+              "auto": "",
+              "fixed": "table-fixed"
+            },
+            "descriptions": {
+              "auto": "Auto table layout - columns resize based on content",
+              "fixed": "Fixed table layout - columns have equal width, controlled via colgroup"
+            }
+          },
+          "variant": {
+            "values": ["default", "selected"],
+            "classes": {
+              "default": "",
+              "selected": "bg-kumo-tint"
+            },
+            "descriptions": {
+              "default": "Default row variant",
+              "selected": "Selected row variant"
+            }
+          },
+          "sticky": {
+            "values": ["left", "right"],
+            "classes": {
+              "left": "sticky left-0",
+              "right": "sticky right-0"
+            },
+            "descriptions": {
+              "left": "Pin column to the left edge of the scroll container",
+              "right": "Pin column to the right edge of the scroll container"
+            }
+          }
+        },
+        "defaultVariants": {
+          "layout": "auto",
+          "variant": "default"
+        }
+      }
     },
     "Text": {
       "name": "Text",
@@ -2542,11 +4041,59 @@
       "props": {
         "variant": {
           "type": "KumoTextVariant",
-          "required": false
+          "required": false,
+          "default": "body",
+          "classes": {
+            "heading1": "text-3xl font-semibold",
+            "heading2": "text-2xl font-semibold",
+            "heading3": "text-lg font-semibold",
+            "body": "text-kumo-default",
+            "secondary": "text-kumo-subtle",
+            "success": "text-kumo-link",
+            "error": "text-kumo-danger",
+            "mono": "font-mono",
+            "mono-secondary": "font-mono text-kumo-subtle"
+          },
+          "descriptions": {
+            "heading1": "Large heading for page titles",
+            "heading2": "Medium heading for section titles",
+            "heading3": "Small heading for subsections",
+            "body": "Default body text",
+            "secondary": "Muted text for secondary information",
+            "success": "Success state text",
+            "error": "Error state text",
+            "mono": "Monospace text for code",
+            "mono-secondary": "Muted monospace text"
+          },
+          "values": [
+            "heading1",
+            "heading2",
+            "heading3",
+            "body",
+            "secondary",
+            "success",
+            "error",
+            "mono",
+            "mono-secondary"
+          ]
         },
         "size": {
           "type": "KumoTextSize",
-          "required": false
+          "required": false,
+          "default": "base",
+          "classes": {
+            "xs": "text-xs",
+            "sm": "text-sm",
+            "base": "text-base",
+            "lg": "text-lg"
+          },
+          "descriptions": {
+            "xs": "Extra small text",
+            "sm": "Small text",
+            "base": "Default text size",
+            "lg": "Large text"
+          },
+          "values": ["xs", "sm", "base", "lg"]
         },
         "bold": {
           "type": "boolean",
@@ -2574,7 +4121,92 @@
         }
       },
       "examples": [],
-      "colors": []
+      "colors": [],
+      "styling": {
+        "fontSizes": {
+          "xs": 12,
+          "sm": 14,
+          "base": 16,
+          "lg": 18,
+          "xl": 20,
+          "2xl": 24,
+          "3xl": 30
+        },
+        "fontWeights": {
+          "normal": 400,
+          "medium": 500,
+          "semibold": 600
+        },
+        "baseColor": "text-kumo-default",
+        "variantColors": {
+          "body": "text-kumo-default",
+          "secondary": "text-kumo-subtle",
+          "success": "text-kumo-link",
+          "error": "text-kumo-danger",
+          "mono": "text-kumo-default",
+          "mono-secondary": "text-kumo-subtle"
+        },
+        "fontFamilies": {
+          "default": "sans-serif",
+          "mono": "monospace"
+        },
+        "variants": {
+          "variant": {
+            "values": [
+              "heading1",
+              "heading2",
+              "heading3",
+              "body",
+              "secondary",
+              "success",
+              "error",
+              "mono",
+              "mono-secondary"
+            ],
+            "classes": {
+              "heading1": "text-3xl font-semibold",
+              "heading2": "text-2xl font-semibold",
+              "heading3": "text-lg font-semibold",
+              "body": "text-kumo-default",
+              "secondary": "text-kumo-subtle",
+              "success": "text-kumo-link",
+              "error": "text-kumo-danger",
+              "mono": "font-mono",
+              "mono-secondary": "font-mono text-kumo-subtle"
+            },
+            "descriptions": {
+              "heading1": "Large heading for page titles",
+              "heading2": "Medium heading for section titles",
+              "heading3": "Small heading for subsections",
+              "body": "Default body text",
+              "secondary": "Muted text for secondary information",
+              "success": "Success state text",
+              "error": "Error state text",
+              "mono": "Monospace text for code",
+              "mono-secondary": "Muted monospace text"
+            }
+          },
+          "size": {
+            "values": ["xs", "sm", "base", "lg"],
+            "classes": {
+              "xs": "text-xs",
+              "sm": "text-sm",
+              "base": "text-base",
+              "lg": "text-lg"
+            },
+            "descriptions": {
+              "xs": "Extra small text",
+              "sm": "Small text",
+              "base": "Default text size",
+              "lg": "Large text"
+            }
+          }
+        },
+        "defaultVariants": {
+          "variant": "body",
+          "size": "base"
+        }
+      }
     },
     "Toast": {
       "name": "Toast",
@@ -2589,11 +4221,91 @@
         },
         "variant": {
           "type": "KumoToastVariant",
-          "required": false
+          "required": false,
+          "default": "default",
+          "classes": {
+            "default": "border-kumo-fill bg-kumo-base",
+            "success": "ring-[0.3px] ring-kumo-success [&_[data-icon]]:text-kumo-success [&_[data-title]]:text-kumo-success",
+            "error": "ring-[0.3px] ring-kumo-danger [&_[data-icon]]:text-kumo-danger [&_[data-title]]:text-kumo-danger",
+            "warning": "ring-[0.3px] ring-kumo-warning [&_[data-icon]]:text-kumo-warning [&_[data-title]]:text-kumo-warning",
+            "info": "ring-[0.3px] ring-kumo-info [&_[data-icon]]:text-kumo-info [&_[data-title]]:text-kumo-info"
+          },
+          "descriptions": {
+            "default": "Default toast style",
+            "success": "Success toast for confirmations and positive outcomes",
+            "error": "Error toast for critical issues",
+            "warning": "Warning toast for cautionary messages",
+            "info": "Info toast for neutral informational messages"
+          },
+          "values": ["default", "success", "error", "warning", "info"]
         }
       },
       "examples": [],
-      "colors": []
+      "colors": [],
+      "styling": {
+        "container": {
+          "width": 356,
+          "padding": 16,
+          "borderRadius": 12,
+          "background": "bg-kumo-base",
+          "border": "border-kumo-fill",
+          "shadow": "shadow-lg",
+          "gap": 4
+        },
+        "title": {
+          "fontSize": 16,
+          "fontWeight": 500,
+          "color": "text-kumo-default"
+        },
+        "description": {
+          "fontSize": 15,
+          "fontWeight": 400,
+          "color": "text-kumo-subtle"
+        },
+        "closeButton": {
+          "size": 20,
+          "iconSize": 16,
+          "iconName": "ph-x",
+          "iconColor": "text-kumo-subtle",
+          "hoverBackground": "bg-kumo-fill-hover",
+          "hoverColor": "text-kumo-default",
+          "borderRadius": 4
+        },
+        "variants": {
+          "root": {
+            "values": ["classes", "description"]
+          },
+          "title": {
+            "values": ["classes", "description"]
+          },
+          "description": {
+            "values": ["classes", "description"]
+          },
+          "close": {
+            "values": ["classes", "description"]
+          },
+          "variant": {
+            "values": ["default", "success", "error", "warning", "info"],
+            "classes": {
+              "default": "border-kumo-fill bg-kumo-base",
+              "success": "ring-[0.3px] ring-kumo-success [&_[data-icon]]:text-kumo-success [&_[data-title]]:text-kumo-success",
+              "error": "ring-[0.3px] ring-kumo-danger [&_[data-icon]]:text-kumo-danger [&_[data-title]]:text-kumo-danger",
+              "warning": "ring-[0.3px] ring-kumo-warning [&_[data-icon]]:text-kumo-warning [&_[data-title]]:text-kumo-warning",
+              "info": "ring-[0.3px] ring-kumo-info [&_[data-icon]]:text-kumo-info [&_[data-title]]:text-kumo-info"
+            },
+            "descriptions": {
+              "default": "Default toast style",
+              "success": "Success toast for confirmations and positive outcomes",
+              "error": "Error toast for critical issues",
+              "warning": "Warning toast for cautionary messages",
+              "info": "Info toast for neutral informational messages"
+            }
+          }
+        },
+        "defaultVariants": {
+          "variant": "default"
+        }
+      }
     },
     "Tooltip": {
       "name": "Tooltip",
@@ -2628,7 +4340,21 @@
         },
         "side": {
           "type": "KumoTooltipSide",
-          "required": false
+          "required": false,
+          "default": "top",
+          "classes": {
+            "top": "",
+            "bottom": "",
+            "left": "",
+            "right": ""
+          },
+          "descriptions": {
+            "top": "Tooltip appears above the trigger",
+            "bottom": "Tooltip appears below the trigger",
+            "left": "Tooltip appears to the left of the trigger",
+            "right": "Tooltip appears to the right of the trigger"
+          },
+          "values": ["top", "bottom", "left", "right"]
         },
         "align": {
           "type": "KumoTooltipAlign",
@@ -2652,7 +4378,29 @@
         }
       },
       "examples": [],
-      "colors": []
+      "colors": [],
+      "styling": {
+        "variants": {
+          "side": {
+            "values": ["top", "bottom", "left", "right"],
+            "classes": {
+              "top": "",
+              "bottom": "",
+              "left": "",
+              "right": ""
+            },
+            "descriptions": {
+              "top": "Tooltip appears above the trigger",
+              "bottom": "Tooltip appears below the trigger",
+              "left": "Tooltip appears to the left of the trigger",
+              "right": "Tooltip appears to the right of the trigger"
+            }
+          }
+        },
+        "defaultVariants": {
+          "side": "top"
+        }
+      }
     }
   },
   "blocks": {
@@ -2709,13 +4457,41 @@
         },
         "size": {
           "type": "KumoDeleteResourceSize",
-          "required": false
+          "required": false,
+          "default": "base",
+          "classes": {
+            "sm": "",
+            "base": ""
+          },
+          "descriptions": {
+            "sm": "Small dialog for simple delete confirmations",
+            "base": "Default delete confirmation dialog size"
+          },
+          "values": ["sm", "base"]
         }
       },
       "examples": [],
       "colors": [],
       "files": [],
-      "dependencies": []
+      "dependencies": [],
+      "styling": {
+        "variants": {
+          "size": {
+            "values": ["sm", "base"],
+            "classes": {
+              "sm": "",
+              "base": ""
+            },
+            "descriptions": {
+              "sm": "Small dialog for simple delete confirmations",
+              "base": "Default delete confirmation dialog size"
+            }
+          }
+        },
+        "defaultVariants": {
+          "size": "base"
+        }
+      }
     }
   },
   "search": {

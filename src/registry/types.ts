@@ -82,11 +82,18 @@ export interface PartStyling extends DimensionConfig {
   shadow?: string;
 }
 
+export interface VariantOptionStyling {
+  classes?: Record<string, string>;
+  descriptions?: Record<string, string>;
+  values: readonly string[];
+}
+
 export interface ComponentStyling {
   baseTokens?: string[];
   borderRadius?: string;
   button?: PartStyling;
   container?: PartStyling;
+  defaultVariants?: Record<string, string>;
   dimensions?: string;
   icons?: {
     name: string;
@@ -107,6 +114,7 @@ export interface ComponentStyling {
   states?: Record<string, string[]>;
   tab?: PartStyling;
   trigger?: PartStyling;
+  variants?: Record<string, VariantOptionStyling>;
   [key: string]: unknown;
 }
 
