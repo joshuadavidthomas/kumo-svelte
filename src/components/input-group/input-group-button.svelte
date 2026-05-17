@@ -4,6 +4,7 @@
   import type { KumoTooltipSide } from "../tooltip";
   import Button, { type ButtonProps } from "../button/button.svelte";
   import { cn } from "../../utils/cn";
+  import { getKumoPortalContext } from "../../utils/portal-provider.svelte";
   import { getInputGroupContext, type InputGroupFocusMode } from "./context";
   import type { KumoButtonSize } from "../button";
 
@@ -32,6 +33,7 @@
   }: InputGroupButtonProps = $props();
 
   const group = getInputGroupContext("Button");
+  const portalContext = getKumoPortalContext();
   let focusMode = $derived<InputGroupFocusMode>(group?.focusMode ?? "container");
   let isIndividual = $derived(focusMode === "individual");
   let buttonSize = $derived(size ?? (isIndividual ? (group?.size ?? "sm") : COMPACT_BUTTON_SIZE[group?.size ?? "base"]));
@@ -78,7 +80,7 @@
         {@render control(props)}
       {/snippet}
     </TooltipPrimitive.Trigger>
-    <TooltipPrimitive.Portal>
+    <TooltipPrimitive.Portal to={portalContext.container}>
       <TooltipPrimitive.Content
         side={tooltipSide}
         sideOffset={8}

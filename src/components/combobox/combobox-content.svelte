@@ -3,6 +3,7 @@
   import { Combobox as ComboboxPrimitive } from "bits-ui";
   import type { PortalProps } from "bits-ui";
   import { cn } from "../../utils/cn";
+  import { getKumoPortalContext } from "../../utils/portal-provider.svelte";
 
   export interface ComboboxContentProps {
     children?: Snippet;
@@ -17,9 +18,12 @@
     container,
     sideOffset = 4,
   }: ComboboxContentProps = $props();
+
+  const portalContext = getKumoPortalContext();
+  let portalContainer = $derived(container ?? portalContext.container);
 </script>
 
-<ComboboxPrimitive.Portal to={container}>
+<ComboboxPrimitive.Portal to={portalContainer}>
   <ComboboxPrimitive.Content
     {sideOffset}
     class={cn(

@@ -3,6 +3,7 @@
   import type { Snippet } from "svelte";
   import type { HTMLAttributes } from "svelte/elements";
   import { cn } from "../../utils";
+  import { getKumoPortalContext } from "../../utils/portal-provider.svelte";
   import { useSidebar } from "./context.svelte";
 
   export interface SidebarProps
@@ -16,6 +17,7 @@
     $props();
 
   const sidebar = useSidebar();
+  const portalContext = getKumoPortalContext();
 
   let desktopWidth = $derived.by(() => {
     if (sidebar.state === "expanded") {
@@ -46,7 +48,7 @@
   </aside>
 {:else if sidebar.isMobile}
   <DialogPrimitive.Root open={sidebar.openMobile} onOpenChange={sidebar.setOpenMobile}>
-    <DialogPrimitive.Portal>
+    <DialogPrimitive.Portal to={portalContext.container}>
       <DialogPrimitive.Overlay
         data-sidebar-backdrop
         class="fixed inset-0 z-40 bg-black/50 transition-opacity duration-200 data-[ending-style]:opacity-0 data-[starting-style]:opacity-0"

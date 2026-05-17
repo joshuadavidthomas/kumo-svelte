@@ -4,6 +4,7 @@
   import { Select as SelectPrimitive } from "bits-ui";
   import type { PortalProps } from "bits-ui";
   import { cn, safeRandomId } from "../../utils/cn";
+  import { getKumoPortalContext } from "../../utils/portal-provider.svelte";
   import Field from "../field/field.svelte";
   import { normalizeFieldError, type FieldErrorMatch } from "../field";
   import SkeletonLine from "../loader/skeleton-line.svelte";
@@ -110,6 +111,9 @@
     internalValue = nextValue;
     onValueChange?.(nextValue);
   }
+
+  const portalContext = getKumoPortalContext();
+  let portalContainer = $derived(container ?? portalContext.container);
 </script>
 
 {#snippet selectControl()}
@@ -163,7 +167,7 @@
       <CaretUpDownIcon aria-hidden="true" size={iconStyle.iconSize} weight="bold" />
     </span>
   </SelectPrimitive.Trigger>
-  <SelectPrimitive.Portal to={container}>
+  <SelectPrimitive.Portal to={portalContainer}>
     <SelectPrimitive.Content
       sideOffset={8}
       preventScroll

@@ -3,6 +3,7 @@
   import { Tooltip as TooltipPrimitive } from "bits-ui";
   import type { HTMLAnchorAttributes, HTMLButtonAttributes } from "svelte/elements";
   import { cn } from "../../utils";
+  import { getKumoPortalContext } from "../../utils/portal-provider.svelte";
   import { isInsideSidebarMenuItem, useSidebar } from "./context.svelte";
 
   export type SidebarMenuButtonSize = "base" | "sm";
@@ -32,6 +33,7 @@
   }: SidebarMenuButtonProps = $props();
 
   const sidebar = useSidebar("SidebarMenuButton");
+  const portalContext = getKumoPortalContext();
   const insideMenuItem = isInsideSidebarMenuItem();
 
   let buttonClasses = $derived(
@@ -99,7 +101,7 @@
           {@render Button(props)}
         {/snippet}
       </TooltipPrimitive.Trigger>
-      <TooltipPrimitive.Portal>
+      <TooltipPrimitive.Portal to={portalContext.container}>
         <TooltipPrimitive.Content
           side="right"
           sideOffset={10}

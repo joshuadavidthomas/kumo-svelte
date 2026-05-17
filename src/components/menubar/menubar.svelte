@@ -2,6 +2,7 @@
   import type { Snippet } from "svelte";
   import { Toolbar as ToolbarPrimitive, Tooltip as TooltipPrimitive } from "bits-ui";
   import { cn } from "../../utils/cn";
+  import { getKumoPortalContext } from "../../utils/portal-provider.svelte";
   import { menuBarVariants } from "./variants";
 
   export interface MenuBarOption {
@@ -26,6 +27,8 @@
     options,
     ...restProps
   }: MenuBarProps = $props();
+
+  const portalContext = getKumoPortalContext();
 
   function optionId(option: MenuBarOption, index: number) {
     return optionIds ? option.id : index;
@@ -58,7 +61,7 @@
           </ToolbarPrimitive.Button>
         {/snippet}
       </TooltipPrimitive.Trigger>
-      <TooltipPrimitive.Portal>
+      <TooltipPrimitive.Portal to={portalContext.container}>
         <TooltipPrimitive.Content
           side="top"
           sideOffset={8}

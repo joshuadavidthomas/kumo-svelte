@@ -1,7 +1,9 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
   import { Tooltip as TooltipPrimitive } from "bits-ui";
+  import type { PortalProps } from "bits-ui";
   import { cn } from "../../utils/cn";
+  import { getKumoPortalContext } from "../../utils/portal-provider.svelte";
   import ArrowSvg from "./arrow-svg.svelte";
   import {
     KUMO_TOOLTIP_DEFAULT_VARIANTS,
@@ -16,6 +18,7 @@
     side?: KumoTooltipSide;
     align?: KumoTooltipAlign;
     class?: string;
+    container?: PortalProps["to"];
     delay?: number;
     closeDelay?: number;
     disabled?: boolean;
@@ -27,10 +30,14 @@
     side = KUMO_TOOLTIP_DEFAULT_VARIANTS.side,
     align = "center",
     class: className,
+    container,
     delay = 600,
     closeDelay: _closeDelay = 0,
     disabled = false,
   }: TooltipProps = $props();
+
+  const portalContext = getKumoPortalContext();
+  let portalContainer = $derived(container ?? portalContext.container);
 </script>
 
 <TooltipPrimitive.Root delayDuration={delay} {disabled}>
@@ -39,7 +46,7 @@
   >
     {@render children()}
   </TooltipPrimitive.Trigger>
-  <TooltipPrimitive.Portal>
+  <TooltipPrimitive.Portal to={portalContainer}>
     <TooltipPrimitive.Content
       {side}
       {align}

@@ -5,6 +5,7 @@
   import { Tooltip as TooltipPrimitive } from "bits-ui";
   import type { HTMLAttributes } from "svelte/elements";
   import { cn } from "../../utils/cn";
+  import { getKumoPortalContext } from "../../utils/portal-provider.svelte";
   import Button from "../button/button.svelte";
   import { inputVariants } from "../input";
   import {
@@ -47,6 +48,7 @@
   }: ClipboardTextProps = $props();
 
   let copied = $state(false);
+  const portalContext = getKumoPortalContext();
   let resetTimeout: ReturnType<typeof setTimeout> | undefined;
   let buttonSize = $derived(clipboardTextButtonSize(size));
   let copyAction = $derived(labels.copyAction ?? "Copy to clipboard");
@@ -179,7 +181,7 @@
           {@render copyButton(props)}
         {/snippet}
       </TooltipPrimitive.Trigger>
-      <TooltipPrimitive.Portal>
+      <TooltipPrimitive.Portal to={portalContext.container}>
         <TooltipPrimitive.Content
           side={tooltipSide}
           sideOffset={8}
@@ -199,4 +201,3 @@
     {copied ? copiedText : ""}
   </span>
 </div>
-

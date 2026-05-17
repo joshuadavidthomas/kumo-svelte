@@ -852,4 +852,6 @@ export {
   type ToastyProps,
 } from "./components/toast";
 
-export { cn, resolveVariant, safeRandomId } from "./utils";
+export { cn, KumoPortalProvider, resolveVariant, safeRandomId } from "./utils";
+export { usePortalContainer } from "./utils/portal-provider.svelte";
+export type { KumoPortalProviderProps, PortalContainer } from "./utils";
