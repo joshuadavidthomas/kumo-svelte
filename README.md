@@ -13,6 +13,7 @@ The first porting slice includes:
 
 - `Badge`
 - `Banner`
+- `Breadcrumbs` root/link/current/separator/ellipsis/clipboard components
 - `Button`, `RefreshButton`, and `LinkButton` backed by Bits UI `Button`
 - `Checkbox`, `CheckboxGroup`, `CheckboxItem`, and `CheckboxLegend` backed by Bits UI `Checkbox`
 - `ClipboardText`

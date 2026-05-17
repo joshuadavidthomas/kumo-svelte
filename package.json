@@ -48,6 +48,11 @@
       "types": "./src/components/banner/index.ts",
       "default": "./src/components/banner/index.ts"
     },
+    "./components/breadcrumbs": {
+      "svelte": "./src/components/breadcrumbs/index.ts",
+      "types": "./src/components/breadcrumbs/index.ts",
+      "default": "./src/components/breadcrumbs/index.ts"
+    },
     "./components/button": {
       "svelte": "./src/components/button/index.ts",
       "types": "./src/components/button/index.ts",

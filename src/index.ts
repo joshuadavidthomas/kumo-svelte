@@ -23,6 +23,28 @@ export {
   type KumoBannerVariantsProps,
 } from "./components/banner";
 
+export { default as Breadcrumbs } from "./components/breadcrumbs/breadcrumbs.svelte";
+export { default as BreadcrumbsRoot } from "./components/breadcrumbs/breadcrumbs.svelte";
+export { default as BreadcrumbsClipboard } from "./components/breadcrumbs/breadcrumbs-clipboard.svelte";
+export { default as BreadcrumbsCurrent } from "./components/breadcrumbs/breadcrumbs-current.svelte";
+export { default as BreadcrumbsEllipsis } from "./components/breadcrumbs/breadcrumbs-ellipsis.svelte";
+export { default as BreadcrumbsLink } from "./components/breadcrumbs/breadcrumbs-link.svelte";
+export { default as BreadcrumbsSeparator } from "./components/breadcrumbs/breadcrumbs-separator.svelte";
+export {
+  breadcrumbsVariants,
+  KUMO_BREADCRUMBS_DEFAULT_VARIANTS,
+  KUMO_BREADCRUMBS_VARIANTS,
+  type BreadcrumbsClipboardProps,
+  type BreadcrumbsCurrentProps,
+  type BreadcrumbsEllipsisProps,
+  type BreadcrumbsLinkProps,
+  type BreadcrumbsProps,
+  type BreadcrumbsRootProps,
+  type BreadcrumbsSeparatorProps,
+  type KumoBreadcrumbsSize,
+  type KumoBreadcrumbsVariantsProps,
+} from "./components/breadcrumbs";
+
 export { default as Button } from "./components/button/button.svelte";
 export { default as LinkButton } from "./components/button/link-button.svelte";
 export { default as RefreshButton } from "./components/button/refresh-button.svelte";
