@@ -49,7 +49,6 @@ These non-primitive upstream package exports still have no faithful Svelte equiv
 - `./ai/schemas`
 - `./registry/component-registry.json`
 - `./registry/component-registry.md`
-- `./scripts/theme-generator/config`
 
 The catalog and AI schema exports depend on generated component metadata and schema output. Do not add placeholder exports for these unless the generated registry and validation behavior are implemented; otherwise consumers would get a package surface that looks complete but is not.
 
