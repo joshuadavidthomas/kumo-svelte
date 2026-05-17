@@ -259,6 +259,7 @@ export {
   ChartPalette,
   ChartLegendLargeItem,
   ChartLegendSmallItem,
+  TimeseriesChart,
   type ChartEvents,
   type ChartLegendItemProps,
   type ChartLegendLargeItemProps,
@@ -268,6 +269,8 @@ export {
   type EChartsMouseEventParams,
   type KumoChartOption,
   type SafeTooltipOption,
+  type TimeseriesChartProps,
+  type TimeseriesData,
 } from "./components/chart";
 
 export { default as DatePicker } from "./components/date-picker/date-picker.svelte";
