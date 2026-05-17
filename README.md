@@ -9,13 +9,14 @@ and keeps Kumo's styling and variant metadata on top.
 
 ## Current Scope
 
-The first porting slice includes:
+The current port includes all top-level component groups from upstream Kumo:
 
 - `Autocomplete` components backed by Bits UI `Combobox`
 - `Badge`
 - `Banner`
 - `Breadcrumbs` root/link/current/separator/ellipsis/clipboard components
 - `Button`, `RefreshButton`, and `LinkButton` backed by Bits UI `Button`
+- `Chart`, `TimeseriesChart`, `SankeyChart`, and chart legend helpers backed by ECharts
 - `Checkbox`, `CheckboxGroup`, `CheckboxItem`, and `CheckboxLegend` backed by Bits UI `Checkbox`
 - `ClipboardText`
 - `CloudflareLogo` and `PoweredByCloudflare`
@@ -23,10 +24,13 @@ The first porting slice includes:
 - `Collapsible` root/trigger/panel components backed by Bits UI `Collapsible`
 - `Combobox` components backed by Bits UI `Combobox`
 - `CommandPalette` components backed by Bits UI `Command`
+- `DatePicker` backed by Bits UI `Calendar`
+- `DateRangePicker` backed by Bits UI `RangeCalendar`
 - `Dialog`, `DialogRoot`, `DialogTrigger`, `DialogTitle`, `DialogDescription`, and `DialogClose` backed by Bits UI `Dialog` / `AlertDialog`
 - `DropdownMenu` compound components backed by Bits UI `DropdownMenu`
 - `Empty`
 - `Field`
+- `Flow`, `FlowNode`, `FlowList`, `FlowParallel`, and `FlowAnchor`
 - `Grid` and `GridItem`
 - `Input`, `InputArea`, and `Textarea`
 - `InputGroup`, `InputGroupInput`, `InputGroupButton`, `InputGroupAddon`, and `InputGroupSuffix`
@@ -41,12 +45,14 @@ The first porting slice includes:
 - `Radio`, `RadioGroup`, `RadioItem`, and `RadioLegend` backed by Bits UI `RadioGroup`
 - `Select`, `SelectOption`, grouping, and separator components backed by Bits UI `Select`
 - `SensitiveInput`
+- `Sidebar`
 - `Surface`
 - `Switch`, `SwitchGroup`, `SwitchItem`, and `SwitchLegend` backed by Bits UI `Switch`
 - `TableOfContents` root/title/list/item/group components
 - `Tabs` convenience and primitive wrapper components backed by Bits UI `Tabs`
 - `Table` and table section/cell helpers
 - `Text`
+- `Toast` backed by `svelte-sonner`
 - `Tooltip` and `TooltipProvider` backed by Bits UI `Tooltip`
 - `cn()` and `resolveVariant()`
 - Kumo style exports
@@ -82,7 +88,8 @@ import { Dialog, Popover, Select } from "bits-ui";
 
 This port leans on the Svelte ecosystem instead of rebuilding common primitives:
 
-- Bits UI is the primitive layer. Use it directly for lower-level composition.
+- Bits UI is the primitive layer. Use it directly for lower-level composition;
+  `kumo-svelte` does not re-export a primitives namespace.
 - Phosphor icons come from `phosphor-svelte`, matching upstream Kumo's Phosphor
   icon dependency.
 - Tailwind CSS is a peer dependency because Kumo component classes are Tailwind
@@ -91,3 +98,11 @@ This port leans on the Svelte ecosystem instead of rebuilding common primitives:
 - `tailwind-variants` is intentionally not included yet; Kumo's current variant
   metadata is simple enough for `resolveVariant()`. Add it only when a component
   grows slot-heavy variant logic.
+- `@internationalized/date` stays for Bits UI calendar values.
+- `svelte-sonner` replaces the notification plumbing for toast components.
+- `echarts` is a peer dependency because chart components wrap caller-provided
+  ECharts modules.
+- Upstream Kumo's `motion`, `shiki`, and `zod` dependencies are not included
+  yet. Current Svelte components do not need them: `Code` remains the simple
+  deprecated code display, flow uses local SVG geometry, and no schema-driven
+  public API has been ported.
