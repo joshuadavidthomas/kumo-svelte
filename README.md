@@ -25,6 +25,7 @@ The first porting slice includes:
 - `Field`
 - `Grid` and `GridItem`
 - `Input`, `InputArea`, and `Textarea`
+- `InputGroup`, `InputGroupInput`, `InputGroupButton`, `InputGroupAddon`, and `InputGroupSuffix`
 - `Label` backed by Bits UI `Label`
 - `LayerCard`, `LayerCardPrimary`, and `LayerCardSecondary`
 - `Link` and `ExternalIcon`

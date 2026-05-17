@@ -108,6 +108,11 @@
       "types": "./src/components/input/index.ts",
       "default": "./src/components/input/index.ts"
     },
+    "./components/input-group": {
+      "svelte": "./src/components/input-group/index.ts",
+      "types": "./src/components/input-group/index.ts",
+      "default": "./src/components/input-group/index.ts"
+    },
     "./components/label": {
       "svelte": "./src/components/label/index.ts",
       "types": "./src/components/label/index.ts",

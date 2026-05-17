@@ -249,6 +249,32 @@ export {
   type TextareaProps,
 } from "./components/input";
 
+export { default as InputGroup } from "./components/input-group/input-group.svelte";
+export { default as InputGroupRoot } from "./components/input-group/input-group.svelte";
+export { default as InputGroupAddon } from "./components/input-group/input-group-addon.svelte";
+export { default as InputGroupButton } from "./components/input-group/input-group-button.svelte";
+export { default as InputGroupDescription } from "./components/input-group/input-group-suffix.svelte";
+export { default as InputGroupInput } from "./components/input-group/input-group-input.svelte";
+export { default as InputGroupLabel } from "./components/input-group/input-group-addon.svelte";
+export { default as InputGroupSuffix } from "./components/input-group/input-group-suffix.svelte";
+export {
+  INPUT_GROUP_HAS_CLASSES,
+  INPUT_GROUP_SIZE,
+  inputGroupVariants,
+  KUMO_INPUT_GROUP_DEFAULT_VARIANTS,
+  KUMO_INPUT_GROUP_VARIANTS,
+  type InputGroupAddonProps,
+  type InputGroupButtonProps,
+  type InputGroupFocusMode,
+  type InputGroupInputProps,
+  type InputGroupProps,
+  type InputGroupRootProps,
+  type InputGroupSizeTokens,
+  type InputGroupSuffixProps,
+  type KumoInputGroupSize,
+  type KumoInputGroupVariantsProps,
+} from "./components/input-group";
+
 export { default as Tooltip } from "./components/tooltip/tooltip.svelte";
 export { default as TooltipProvider } from "./components/tooltip/tooltip-provider.svelte";
 export {
