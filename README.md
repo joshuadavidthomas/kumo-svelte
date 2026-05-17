@@ -12,6 +12,7 @@ and keeps Kumo's styling and variant metadata on top.
 The first porting slice includes:
 
 - `Badge`
+- `Banner`
 - `Button`, `RefreshButton`, and `LinkButton` backed by Bits UI `Button`
 - `Checkbox`, `CheckboxGroup`, `CheckboxItem`, and `CheckboxLegend` backed by Bits UI `Checkbox`
 - `Code` and `CodeBlock`

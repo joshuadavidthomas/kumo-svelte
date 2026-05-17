@@ -39,6 +39,11 @@
       "types": "./src/components/badge/index.ts",
       "default": "./src/components/badge/index.ts"
     },
+    "./components/banner": {
+      "svelte": "./src/components/banner/index.ts",
+      "types": "./src/components/banner/index.ts",
+      "default": "./src/components/banner/index.ts"
+    },
     "./components/button": {
       "svelte": "./src/components/button/index.ts",
       "types": "./src/components/button/index.ts",

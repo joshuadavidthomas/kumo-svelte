@@ -10,6 +10,19 @@ export {
   type KumoBadgeVariantsProps,
 } from "./components/badge";
 
+export { default as Banner } from "./components/banner/banner.svelte";
+export {
+  bannerIconVariants,
+  bannerVariants,
+  KUMO_BANNER_BASE_STYLES,
+  KUMO_BANNER_DEFAULT_VARIANTS,
+  KUMO_BANNER_VARIANTS,
+  type BannerProps,
+  type BannerVariant,
+  type KumoBannerVariant,
+  type KumoBannerVariantsProps,
+} from "./components/banner";
+
 export { default as Button } from "./components/button/button.svelte";
 export { default as LinkButton } from "./components/button/link-button.svelte";
 export { default as RefreshButton } from "./components/button/refresh-button.svelte";
