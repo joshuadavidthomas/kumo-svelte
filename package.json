@@ -228,6 +228,11 @@
       "types": "./src/components/text/index.ts",
       "default": "./src/components/text/index.ts"
     },
+    "./components/toast": {
+      "svelte": "./src/components/toast/index.ts",
+      "types": "./src/components/toast/index.ts",
+      "default": "./src/components/toast/index.ts"
+    },
     "./components/tooltip": {
       "svelte": "./src/components/tooltip/index.ts",
       "types": "./src/components/tooltip/index.ts",
@@ -257,6 +262,7 @@
     "bits-ui": "^2.14.0",
     "clsx": "^2.1.1",
     "phosphor-svelte": "^3.1.0",
+    "svelte-sonner": "^1.0.7",
     "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {
