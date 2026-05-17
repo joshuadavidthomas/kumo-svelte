@@ -252,6 +252,19 @@ export {
   type KumoCodeVariantsProps,
 } from "./components/code";
 
+export { default as Chart } from "./components/chart/chart.svelte";
+export {
+  CHART_DARK_COLORS,
+  CHART_LIGHT_COLORS,
+  ChartPalette,
+  type ChartEvents,
+  type ChartProps,
+  type ChartSemanticColorName,
+  type EChartsMouseEventParams,
+  type KumoChartOption,
+  type SafeTooltipOption,
+} from "./components/chart";
+
 export { default as DatePicker } from "./components/date-picker/date-picker.svelte";
 export {
   type DatePickerMode,
