@@ -1,7 +1,6 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
-  import { Tooltip as TooltipPrimitive } from "bits-ui";
-  import type { HTMLAttributes } from "svelte/elements";
+  import { Toolbar as ToolbarPrimitive, Tooltip as TooltipPrimitive } from "bits-ui";
   import { cn } from "../../utils/cn";
   import { menuBarVariants } from "./variants";
 
@@ -13,7 +12,7 @@
   }
 
   export interface MenuBarProps
-    extends Omit<HTMLAttributes<HTMLElement>, "class" | "children"> {
+    extends Omit<ToolbarPrimitive.RootProps, "class" | "child" | "children"> {
     class?: string;
     isActive: number | boolean | string | undefined;
     optionIds?: boolean;
@@ -31,49 +30,10 @@
   function optionId(option: MenuBarOption, index: number) {
     return optionIds ? option.id : index;
   }
-
-  function handleKeydown(event: KeyboardEvent) {
-    if (
-      event.key !== "ArrowRight" &&
-      event.key !== "ArrowLeft" &&
-      event.key !== "Home" &&
-      event.key !== "End"
-    ) {
-      return;
-    }
-
-    const target = event.currentTarget;
-    if (!(target instanceof HTMLElement)) {
-      return;
-    }
-
-    const buttons = Array.from(target.querySelectorAll<HTMLButtonElement>("button:not(:disabled)"));
-    if (buttons.length === 0) {
-      return;
-    }
-
-    const activeIndex = buttons.indexOf(document.activeElement as HTMLButtonElement);
-    const currentIndex = activeIndex === -1 ? 0 : activeIndex;
-    let nextIndex = currentIndex;
-
-    if (event.key === "ArrowRight") {
-      nextIndex = (currentIndex + 1) % buttons.length;
-    } else if (event.key === "ArrowLeft") {
-      nextIndex = (currentIndex - 1 + buttons.length) % buttons.length;
-    } else if (event.key === "Home") {
-      nextIndex = 0;
-    } else if (event.key === "End") {
-      nextIndex = buttons.length - 1;
-    }
-
-    event.preventDefault();
-    buttons[nextIndex]?.focus();
-  }
 </script>
 
-<nav
+<ToolbarPrimitive.Root
   class={cn(menuBarVariants(), className)}
-  onkeydown={handleKeydown}
   {...restProps}
 >
   {#each options as option, index (option.id ?? index)}
@@ -81,9 +41,8 @@
     <TooltipPrimitive.Root>
       <TooltipPrimitive.Trigger>
         {#snippet child({ props })}
-          <button
+          <ToolbarPrimitive.Button
             {...props}
-            type="button"
             aria-label={option.tooltip}
             aria-pressed={active}
             onclick={() => option.onClick()}
@@ -96,7 +55,7 @@
             <span class="flex items-center justify-center [&_svg]:size-[18px]">
               {@render option.icon()}
             </span>
-          </button>
+          </ToolbarPrimitive.Button>
         {/snippet}
       </TooltipPrimitive.Trigger>
       <TooltipPrimitive.Portal>
@@ -113,5 +72,4 @@
       </TooltipPrimitive.Portal>
     </TooltipPrimitive.Root>
   {/each}
-</nav>
-
+</ToolbarPrimitive.Root>
