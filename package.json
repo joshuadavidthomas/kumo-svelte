@@ -178,6 +178,11 @@
       "types": "./src/components/select/index.ts",
       "default": "./src/components/select/index.ts"
     },
+    "./components/sensitive-input": {
+      "svelte": "./src/components/sensitive-input/index.ts",
+      "types": "./src/components/sensitive-input/index.ts",
+      "default": "./src/components/sensitive-input/index.ts"
+    },
     "./components/surface": {
       "svelte": "./src/components/surface/index.ts",
       "types": "./src/components/surface/index.ts",

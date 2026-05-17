@@ -455,6 +455,17 @@ export {
   type SelectSize,
 } from "./components/select";
 
+export { default as SensitiveInput } from "./components/sensitive-input/sensitive-input.svelte";
+export {
+  KUMO_SENSITIVE_INPUT_DEFAULT_VARIANTS,
+  KUMO_SENSITIVE_INPUT_VARIANTS,
+  sensitiveInputVariants,
+  type KumoSensitiveInputSize,
+  type KumoSensitiveInputVariant,
+  type KumoSensitiveInputVariantsProps,
+  type SensitiveInputProps,
+} from "./components/sensitive-input";
+
 export { default as Surface } from "./components/surface/surface.svelte";
 export {
   surfaceVariants,

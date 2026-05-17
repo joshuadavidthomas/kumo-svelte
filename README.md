@@ -37,6 +37,7 @@ The first porting slice includes:
 - `Popover` root/trigger/content/title/description/close components backed by Bits UI `Popover`
 - `Radio`, `RadioGroup`, `RadioItem`, and `RadioLegend` backed by Bits UI `RadioGroup`
 - `Select`, `SelectOption`, grouping, and separator components backed by Bits UI `Select`
+- `SensitiveInput`
 - `Surface`
 - `Switch`, `SwitchGroup`, `SwitchItem`, and `SwitchLegend` backed by Bits UI `Switch`
 - `Tabs` convenience and primitive wrapper components backed by Bits UI `Tabs`
