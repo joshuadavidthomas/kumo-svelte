@@ -285,6 +285,17 @@
       "types": "./src/registry/index.ts",
       "default": "./src/registry/index.ts"
     },
+    "./registry/component-registry.json": "./src/registry/component-registry.json",
+    "./registry/component-registry.md": "./src/registry/component-registry.md",
+    "./ai/component-registry.json": "./src/ai/component-registry.json",
+    "./ai/schemas": {
+      "types": "./src/ai/schemas.ts",
+      "default": "./src/ai/schemas.ts"
+    },
+    "./catalog": {
+      "types": "./src/catalog/index.ts",
+      "default": "./src/catalog/index.ts"
+    },
     "./scripts/theme-generator/types": {
       "types": "./src/scripts/theme-generator/types.ts",
       "default": "./src/scripts/theme-generator/types.ts"

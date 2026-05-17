@@ -42,15 +42,20 @@ Port Cloudflare's Kumo package from React/Base UI to Svelte 5, using:
 
 ## Remaining Gaps
 
-These non-primitive upstream package exports still have no faithful Svelte equivalent:
+The upstream non-primitive package export keys now exist in `package.json`,
+excluding intentionally omitted `./primitives/*` exports.
 
-- `./catalog`
-- `./ai/component-registry.json`
-- `./ai/schemas`
+The generated metadata surfaces are currently basic:
+
 - `./registry/component-registry.json`
 - `./registry/component-registry.md`
+- `./ai/component-registry.json`
+- `./ai/schemas`
+- `./catalog`
 
-The catalog and AI schema exports depend on generated component metadata and schema output. Do not add placeholder exports for these unless the generated registry and validation behavior are implemented; otherwise consumers would get a package surface that looks complete but is not.
+They are generated from the Svelte package export list and validate tree shape
+and known component names. They do not yet include upstream-equivalent prop-level
+schemas, extracted examples, style metadata, or rich component documentation.
 
 ## Intentional Differences
 
@@ -60,4 +65,6 @@ The catalog and AI schema exports depend on generated component metadata and sch
 
 ## Completion Rule
 
-Do not mark the port complete until the remaining generated metadata/catalog surfaces are either faithfully ported or explicitly declared out of scope by the maintainer.
+Do not mark the port complete until the generated metadata/catalog surfaces have
+upstream-equivalent prop-level schemas and registry metadata, or that metadata
+work is explicitly declared out of scope by the maintainer.
