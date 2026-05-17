@@ -600,6 +600,66 @@ export {
   type SensitiveInputProps,
 } from "./components/sensitive-input";
 
+export { default as Sidebar } from "./components/sidebar/sidebar.svelte";
+export { default as SidebarCollapsibleContent } from "./components/sidebar/sidebar-collapsible-content.svelte";
+export { default as SidebarContent } from "./components/sidebar/sidebar-content.svelte";
+export { default as SidebarFooter } from "./components/sidebar/sidebar-footer.svelte";
+export { default as SidebarGroup } from "./components/sidebar/sidebar-group.svelte";
+export { default as SidebarGroupContent } from "./components/sidebar/sidebar-group-content.svelte";
+export { default as SidebarGroupLabel } from "./components/sidebar/sidebar-group-label.svelte";
+export { default as SidebarHeader } from "./components/sidebar/sidebar-header.svelte";
+export { default as SidebarInput } from "./components/sidebar/sidebar-input.svelte";
+export { default as SidebarMenu } from "./components/sidebar/sidebar-menu.svelte";
+export { default as SidebarMenuAction } from "./components/sidebar/sidebar-menu-action.svelte";
+export { default as SidebarMenuBadge } from "./components/sidebar/sidebar-menu-badge.svelte";
+export { default as SidebarMenuButton } from "./components/sidebar/sidebar-menu-button.svelte";
+export { default as SidebarMenuChevron } from "./components/sidebar/sidebar-menu-chevron.svelte";
+export { default as SidebarMenuItem } from "./components/sidebar/sidebar-menu-item.svelte";
+export { default as SidebarMenuSub } from "./components/sidebar/sidebar-menu-sub.svelte";
+export { default as SidebarMenuSubButton } from "./components/sidebar/sidebar-menu-sub-button.svelte";
+export { default as SidebarMenuSubItem } from "./components/sidebar/sidebar-menu-sub-item.svelte";
+export { default as SidebarProvider } from "./components/sidebar/sidebar-provider.svelte";
+export { default as SidebarRail } from "./components/sidebar/sidebar-rail.svelte";
+export { default as SidebarResizeHandle } from "./components/sidebar/sidebar-resize-handle.svelte";
+export { default as SidebarSeparator } from "./components/sidebar/sidebar-separator.svelte";
+export { default as SidebarTrigger } from "./components/sidebar/sidebar-trigger.svelte";
+export {
+  KUMO_SIDEBAR_DEFAULT_VARIANTS,
+  KUMO_SIDEBAR_STYLING,
+  KUMO_SIDEBAR_VARIANTS,
+  SidebarCollapsible,
+  SidebarCollapsibleTrigger,
+  sidebarVariants,
+  useSidebar,
+  type KumoSidebarVariantsProps,
+  type SidebarCollapsibleContentProps,
+  type SidebarCollapsibleMode,
+  type SidebarContentProps,
+  type SidebarFooterProps,
+  type SidebarGroupContentProps,
+  type SidebarGroupLabelProps,
+  type SidebarGroupProps,
+  type SidebarHeaderProps,
+  type SidebarInputProps,
+  type SidebarMenuActionProps,
+  type SidebarMenuBadgeProps,
+  type SidebarMenuButtonProps,
+  type SidebarMenuChevronProps,
+  type SidebarMenuItemProps,
+  type SidebarMenuProps,
+  type SidebarMenuSubButtonProps,
+  type SidebarMenuSubItemProps,
+  type SidebarMenuSubProps,
+  type SidebarProps,
+  type SidebarProviderProps,
+  type SidebarRailProps,
+  type SidebarResizeHandleProps,
+  type SidebarSeparatorProps,
+  type SidebarSide,
+  type SidebarTriggerProps,
+  type SidebarVariant,
+} from "./components/sidebar";
+
 export { default as Surface } from "./components/surface/surface.svelte";
 export {
   surfaceVariants,

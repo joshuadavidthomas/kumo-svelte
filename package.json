@@ -218,6 +218,11 @@
       "types": "./src/components/sensitive-input/index.ts",
       "default": "./src/components/sensitive-input/index.ts"
     },
+    "./components/sidebar": {
+      "svelte": "./src/components/sidebar/index.ts",
+      "types": "./src/components/sidebar/index.ts",
+      "default": "./src/components/sidebar/index.ts"
+    },
     "./components/surface": {
       "svelte": "./src/components/surface/index.ts",
       "types": "./src/components/surface/index.ts",
