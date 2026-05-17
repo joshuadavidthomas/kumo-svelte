@@ -254,8 +254,14 @@
       "default": "./src/components/tooltip/index.ts"
     },
     "./styles": "./src/styles/kumo.css",
+    "./styles/tailwind": "./src/styles/kumo.css",
+    "./styles/standalone": "./src/styles/kumo-standalone.css",
     "./styles/kumo.css": "./src/styles/kumo.css",
+    "./styles/kumo-binding.css": "./src/styles/kumo-binding.css",
+    "./styles/kumo-standalone.css": "./src/styles/kumo-standalone.css",
+    "./styles/theme-fedramp.css": "./src/styles/theme-fedramp.css",
     "./styles/theme-kumo.css": "./src/styles/theme-kumo.css",
+    "./styles/*": "./src/styles/*",
     "./utils": {
       "types": "./src/utils/index.ts",
       "default": "./src/utils/index.ts"

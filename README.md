@@ -65,6 +65,13 @@ component CSS. Import Tailwind and the Kumo CSS once in your app:
 @import "kumo-svelte/styles";
 ```
 
+The upstream-style aliases are also available:
+
+```css
+@import "kumo-svelte/styles/tailwind";
+@import "kumo-svelte/styles/standalone";
+```
+
 Then use components from the root package or component subpaths:
 
 ```svelte
