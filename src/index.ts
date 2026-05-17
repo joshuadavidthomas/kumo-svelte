@@ -302,6 +302,15 @@ export {
   type KumoDateRangePickerVariantsProps,
 } from "./components/date-range-picker";
 
+export { default as DeleteResource } from "./blocks/delete-resource/delete-resource.svelte";
+export {
+  KUMO_DELETE_RESOURCE_DEFAULT_VARIANTS,
+  KUMO_DELETE_RESOURCE_VARIANTS,
+  type DeleteResourceProps,
+  type KumoDeleteResourceSize,
+  type KumoDeleteResourceVariantsProps,
+} from "./blocks/delete-resource";
+
 export { default as Dialog } from "./components/dialog/dialog-content.svelte";
 export { default as DialogRoot } from "./components/dialog/dialog-root.svelte";
 export { default as DialogTrigger } from "./components/dialog/dialog-trigger.svelte";

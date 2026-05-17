@@ -26,6 +26,7 @@ The current port includes all top-level component groups from upstream Kumo:
 - `CommandPalette` components backed by Bits UI `Command`
 - `DatePicker` backed by Bits UI `Calendar`
 - `DateRangePicker` backed by Bits UI `RangeCalendar`
+- `DeleteResource`
 - `Dialog`, `DialogRoot`, `DialogTrigger`, `DialogTitle`, `DialogDescription`, and `DialogClose` backed by Bits UI `Dialog` / `AlertDialog`
 - `DropdownMenu` compound components backed by Bits UI `DropdownMenu`
 - `Empty`

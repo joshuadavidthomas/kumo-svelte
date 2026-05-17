@@ -253,6 +253,11 @@
       "types": "./src/components/tooltip/index.ts",
       "default": "./src/components/tooltip/index.ts"
     },
+    "./blocks/delete-resource": {
+      "svelte": "./src/blocks/delete-resource/index.ts",
+      "types": "./src/blocks/delete-resource/index.ts",
+      "default": "./src/blocks/delete-resource/index.ts"
+    },
     "./styles": "./src/styles/kumo.css",
     "./styles/tailwind": "./src/styles/kumo.css",
     "./styles/standalone": "./src/styles/kumo-standalone.css",
