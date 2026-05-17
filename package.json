@@ -98,6 +98,11 @@
       "types": "./src/components/code/index.ts",
       "default": "./src/components/code/index.ts"
     },
+    "./components/date-picker": {
+      "svelte": "./src/components/date-picker/index.ts",
+      "types": "./src/components/date-picker/index.ts",
+      "default": "./src/components/date-picker/index.ts"
+    },
     "./components/dialog": {
       "svelte": "./src/components/dialog/index.ts",
       "types": "./src/components/dialog/index.ts",
@@ -243,6 +248,7 @@
     "typecheck": "svelte-check --workspace ./src --no-tsconfig && tsc --noEmit"
   },
   "dependencies": {
+    "@internationalized/date": "^3.12.1",
     "bits-ui": "^2.14.0",
     "clsx": "^2.1.1",
     "phosphor-svelte": "^3.1.0",

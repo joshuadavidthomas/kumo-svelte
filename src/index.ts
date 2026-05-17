@@ -252,6 +252,15 @@ export {
   type KumoCodeVariantsProps,
 } from "./components/code";
 
+export { default as DatePicker } from "./components/date-picker/date-picker.svelte";
+export {
+  type DatePickerMode,
+  type DatePickerProps,
+  type DatePickerSnippetProps,
+  type DatePickerValue,
+  type WeekStartsOn,
+} from "./components/date-picker";
+
 export { default as Dialog } from "./components/dialog/dialog-content.svelte";
 export { default as DialogRoot } from "./components/dialog/dialog-root.svelte";
 export { default as DialogTrigger } from "./components/dialog/dialog-trigger.svelte";
