@@ -133,6 +133,11 @@
       "types": "./src/components/field/index.ts",
       "default": "./src/components/field/index.ts"
     },
+    "./components/flow": {
+      "svelte": "./src/components/flow/index.ts",
+      "types": "./src/components/flow/index.ts",
+      "default": "./src/components/flow/index.ts"
+    },
     "./components/grid": {
       "svelte": "./src/components/grid/index.ts",
       "types": "./src/components/grid/index.ts",

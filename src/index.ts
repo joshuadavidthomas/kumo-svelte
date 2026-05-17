@@ -372,6 +372,36 @@ export {
   type NormalizedFieldError,
 } from "./components/field";
 
+export { default as Flow } from "./components/flow/flow.svelte";
+export { default as FlowRoot } from "./components/flow/flow.svelte";
+export { default as FlowAnchor } from "./components/flow/flow-anchor.svelte";
+export { default as FlowConnectors } from "./components/flow/connectors.svelte";
+export { default as FlowList } from "./components/flow/flow-list.svelte";
+export { default as FlowNode } from "./components/flow/flow-node.svelte";
+export { default as FlowParallel } from "./components/flow/flow-parallel.svelte";
+export {
+  createRoundedPath,
+  type FlowAlign,
+  type FlowAnchorProps,
+  type FlowAnchorRenderProps,
+  type FlowAnchorRenderSnippet,
+  type FlowAnchorType,
+  type FlowConnector,
+  type FlowConnectorsProps,
+  type FlowListProps,
+  type FlowNodeData,
+  type FlowNodeProps,
+  type FlowNodeRenderProps,
+  type FlowNodeRenderSnippet,
+  type FlowOrientation,
+  type FlowPathOptions,
+  type FlowParallelAlign,
+  type FlowParallelProps,
+  type FlowProps,
+  type FlowRootProps,
+  type RectLike,
+} from "./components/flow";
+
 export { default as Grid } from "./components/grid/grid.svelte";
 export { default as GridItem } from "./components/grid/grid-item.svelte";
 export {

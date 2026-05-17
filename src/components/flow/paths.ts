@@ -1,0 +1,97 @@
+import type { FlowOrientation } from "./types";
+
+export interface FlowPathOptions {
+  arrowheadOffset?: number;
+  cornerRadius?: number;
+  isBottom?: boolean;
+  midOffset?: number;
+  orientation?: FlowOrientation;
+  single?: boolean;
+}
+
+const FLAT_THRESHOLD = 2;
+
+export function createRoundedPath(
+  { x1, y1, x2, y2 }: { x1: number; x2: number; y1: number; y2: number },
+  {
+    arrowheadOffset = 8,
+    cornerRadius: maxCornerRadius = 8,
+    isBottom = false,
+    midOffset = 32,
+    orientation = "vertical",
+    single = false,
+  }: FlowPathOptions = {},
+) {
+  const cornerRadius = Math.min(
+    maxCornerRadius,
+    Math.abs(orientation === "horizontal" ? (y2 - y1) / 2 : (x2 - x1) / 2),
+  );
+
+  if (orientation === "horizontal") {
+    if (Math.abs(y2 - y1) <= FLAT_THRESHOLD) {
+      return `M ${x1} ${y1} L ${x2 - arrowheadOffset} ${y2}`;
+    }
+
+    const verticalX = single || isBottom ? x2 - midOffset : x1 + midOffset;
+    const horizontalSign = x2 > x1 ? 1 : -1;
+    const verticalSign = y2 > y1 ? 1 : -1;
+    const firstHorizontalEnd = verticalX - horizontalSign * cornerRadius;
+    const verticalStart = y1 + verticalSign * cornerRadius;
+    const verticalEnd = y2 - verticalSign * cornerRadius;
+    const secondHorizontalStart = verticalX + horizontalSign * cornerRadius;
+    const pathEndX = x2 - horizontalSign * arrowheadOffset;
+
+    const bottomCurveCommands = [
+      `L ${firstHorizontalEnd} ${y1}`,
+      `Q ${verticalX} ${y1} ${verticalX} ${verticalStart}`,
+      single
+        ? `L ${verticalX} ${verticalEnd} Q ${verticalX} ${y2} ${secondHorizontalStart} ${y2}`
+        : `L ${verticalX} ${y2}`,
+    ];
+
+    const topCurveCommands = [
+      single
+        ? `L ${firstHorizontalEnd} ${y1} Q ${verticalX} ${y1} ${verticalX} ${verticalStart}`
+        : `L ${verticalX} ${y1}`,
+      `L ${verticalX} ${verticalEnd}`,
+      `Q ${verticalX} ${y2} ${secondHorizontalStart} ${y2}`,
+    ];
+
+    return [
+      `M ${x1} ${y1}`,
+      isBottom ? bottomCurveCommands : topCurveCommands,
+      `L ${pathEndX} ${y2}`,
+    ].join(" ");
+  }
+
+  if (Math.abs(x2 - x1) <= FLAT_THRESHOLD) {
+    return `M ${x1} ${y1} L ${x2} ${y2 - arrowheadOffset}`;
+  }
+
+  const horizontalY = single || isBottom ? y2 - midOffset : y1 + midOffset;
+  const horizontalSign = x2 > x1 ? 1 : -1;
+  const verticalSign = y2 > y1 ? 1 : -1;
+  const firstVerticalEnd = horizontalY - cornerRadius;
+  const horizontalStart = x1 + horizontalSign * cornerRadius;
+  const horizontalEnd = x2 - horizontalSign * cornerRadius;
+  const secondVerticalStart = horizontalY + cornerRadius;
+  const pathEndY = y2 - verticalSign * arrowheadOffset;
+
+  const bottomCurveCommands = [
+    `L ${x1} ${firstVerticalEnd}`,
+    `Q ${x1} ${horizontalY} ${horizontalStart} ${horizontalY}`,
+    `L ${x2} ${horizontalY}`,
+  ];
+
+  const topCurveCommands = [
+    `L ${x1} ${horizontalY}`,
+    `L ${horizontalEnd} ${horizontalY}`,
+    `Q ${x2} ${horizontalY} ${x2} ${secondVerticalStart}`,
+  ];
+
+  return [
+    `M ${x1} ${y1}`,
+    isBottom ? bottomCurveCommands : topCurveCommands,
+    `L ${x2} ${pathEndY}`,
+  ].join(" ");
+}
