@@ -40,6 +40,7 @@ The first porting slice includes:
 - `SensitiveInput`
 - `Surface`
 - `Switch`, `SwitchGroup`, `SwitchItem`, and `SwitchLegend` backed by Bits UI `Switch`
+- `TableOfContents` root/title/list/item/group components
 - `Tabs` convenience and primitive wrapper components backed by Bits UI `Tabs`
 - `Table` and table section/cell helpers
 - `Text`

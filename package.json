@@ -133,6 +133,11 @@
       "types": "./src/components/switch/index.ts",
       "default": "./src/components/switch/index.ts"
     },
+    "./components/table-of-contents": {
+      "svelte": "./src/components/table-of-contents/index.ts",
+      "types": "./src/components/table-of-contents/index.ts",
+      "default": "./src/components/table-of-contents/index.ts"
+    },
     "./components/tabs": {
       "svelte": "./src/components/tabs/index.ts",
       "types": "./src/components/tabs/index.ts",

@@ -496,6 +496,27 @@ export {
   type SwitchVariant,
 } from "./components/switch";
 
+export { default as TableOfContents } from "./components/table-of-contents/table-of-contents.svelte";
+export { default as TableOfContentsRoot } from "./components/table-of-contents/table-of-contents.svelte";
+export { default as TableOfContentsGroup } from "./components/table-of-contents/table-of-contents-group.svelte";
+export { default as TableOfContentsItem } from "./components/table-of-contents/table-of-contents-item.svelte";
+export { default as TableOfContentsList } from "./components/table-of-contents/table-of-contents-list.svelte";
+export { default as TableOfContentsTitle } from "./components/table-of-contents/table-of-contents-title.svelte";
+export {
+  KUMO_TABLE_OF_CONTENTS_DEFAULT_VARIANTS,
+  KUMO_TABLE_OF_CONTENTS_VARIANTS,
+  TABLE_OF_CONTENTS_ITEM_BASE,
+  TABLE_OF_CONTENTS_NESTED_LIST_CLASSES,
+  tableOfContentsItemVariants,
+  type KumoTableOfContentsState,
+  type TableOfContentsGroupProps,
+  type TableOfContentsItemProps,
+  type TableOfContentsListProps,
+  type TableOfContentsProps,
+  type TableOfContentsRootProps,
+  type TableOfContentsTitleProps,
+} from "./components/table-of-contents";
+
 export { default as Tabs } from "./components/tabs/tabs.svelte";
 export { default as TabsRoot } from "./components/tabs/tabs-root.svelte";
 export { default as TabsList } from "./components/tabs/tabs-list.svelte";
