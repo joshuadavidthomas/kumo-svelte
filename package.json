@@ -58,6 +58,11 @@
       "types": "./src/components/checkbox/index.ts",
       "default": "./src/components/checkbox/index.ts"
     },
+    "./components/cloudflare-logo": {
+      "svelte": "./src/components/cloudflare-logo/index.ts",
+      "types": "./src/components/cloudflare-logo/index.ts",
+      "default": "./src/components/cloudflare-logo/index.ts"
+    },
     "./components/collapsible": {
       "svelte": "./src/components/collapsible/index.ts",
       "types": "./src/components/collapsible/index.ts",

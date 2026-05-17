@@ -67,6 +67,21 @@ export {
   type KumoCheckboxVariantsProps,
 } from "./components/checkbox";
 
+export { default as CloudflareLogo } from "./components/cloudflare-logo/cloudflare-logo.svelte";
+export { default as PoweredByCloudflare } from "./components/cloudflare-logo/powered-by-cloudflare.svelte";
+export {
+  generateCloudflareLogoSvg,
+  KUMO_CLOUDFLARE_LOGO_DEFAULT_VARIANTS,
+  KUMO_CLOUDFLARE_LOGO_VARIANTS,
+  type CloudflareLogoColor,
+  type CloudflareLogoProps,
+  type CloudflareLogoSvgColor,
+  type CloudflareLogoSvgVariant,
+  type CloudflareLogoVariant,
+  type GenerateCloudflareLogoSvgOptions,
+  type PoweredByCloudflareProps,
+} from "./components/cloudflare-logo";
+
 export { default as Collapsible } from "./components/collapsible/collapsible-root.svelte";
 export { default as CollapsibleRoot } from "./components/collapsible/collapsible-root.svelte";
 export { default as CollapsibleTrigger } from "./components/collapsible/collapsible-trigger.svelte";
