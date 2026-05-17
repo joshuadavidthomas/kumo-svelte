@@ -303,6 +303,15 @@ export {
   type SkeletonLineProps,
 } from "./components/loader";
 
+export { default as MenuBar } from "./components/menubar/menubar.svelte";
+export {
+  KUMO_MENUBAR_DEFAULT_VARIANTS,
+  KUMO_MENUBAR_VARIANTS,
+  menuBarVariants,
+  type KumoMenuBarVariantsProps,
+  type MenuBarProps,
+} from "./components/menubar";
+
 export { default as Meter } from "./components/meter/meter.svelte";
 export {
   meterVariants,

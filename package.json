@@ -138,6 +138,11 @@
       "types": "./src/components/loader/index.ts",
       "default": "./src/components/loader/index.ts"
     },
+    "./components/menubar": {
+      "svelte": "./src/components/menubar/index.ts",
+      "types": "./src/components/menubar/index.ts",
+      "default": "./src/components/menubar/index.ts"
+    },
     "./components/meter": {
       "svelte": "./src/components/meter/index.ts",
       "types": "./src/components/meter/index.ts",
