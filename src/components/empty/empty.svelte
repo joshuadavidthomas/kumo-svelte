@@ -1,10 +1,10 @@
 <script lang="ts">
   import { onDestroy, type Snippet } from "svelte";
+  import CheckIcon from "phosphor-svelte/lib/CheckIcon.svelte";
+  import CopyIcon from "phosphor-svelte/lib/CopyIcon.svelte";
   import type { HTMLAttributes } from "svelte/elements";
   import { cn } from "../../utils/cn";
   import Button from "../button/button.svelte";
-  import CheckIcon from "./check-icon.svelte";
-  import CopyIcon from "./copy-icon.svelte";
   import { emptyVariants, KUMO_EMPTY_DEFAULT_VARIANTS, type KumoEmptySize } from "./variants";
 
   export interface EmptyProps
@@ -91,9 +91,9 @@
         onclick={copyCommand}
       >
         {#if copied}
-          <CheckIcon size={16} class="animate-bounce-in text-kumo-success" />
+          <CheckIcon aria-hidden="true" size={16} weight="bold" class="animate-bounce-in text-kumo-success" />
         {:else}
-          <CopyIcon size={16} class="text-kumo-inactive group-hover:text-kumo-brand" />
+          <CopyIcon aria-hidden="true" size={16} class="text-kumo-inactive group-hover:text-kumo-brand" />
         {/if}
       </Button>
     </div>

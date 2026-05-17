@@ -1,8 +1,8 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
+  import CaretRightIcon from "phosphor-svelte/lib/CaretRightIcon.svelte";
   import { DropdownMenu as DropdownMenuPrimitive } from "bits-ui";
   import { cn } from "../../utils/cn";
-  import CaretRightIcon from "./caret-right-icon.svelte";
 
   export type DropdownMenuSubTriggerProps = Omit<
     DropdownMenuPrimitive.SubTriggerProps,
@@ -39,6 +39,6 @@
   {/if}
   {@render children?.()}
   <span class="ml-auto inline-flex">
-    <CaretRightIcon />
+    <CaretRightIcon aria-hidden="true" size={16} weight="bold" />
   </span>
 </DropdownMenuPrimitive.SubTrigger>

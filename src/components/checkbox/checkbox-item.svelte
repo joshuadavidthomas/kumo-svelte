@@ -1,9 +1,9 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
+  import CheckIcon from "phosphor-svelte/lib/CheckIcon.svelte";
+  import MinusIcon from "phosphor-svelte/lib/MinusIcon.svelte";
   import { Checkbox as CheckboxPrimitive } from "bits-ui";
   import { cn } from "../../utils/cn";
-  import CheckIcon from "./check-icon.svelte";
-  import MinusIcon from "./minus-icon.svelte";
   import { getCheckboxGroupContext } from "./context";
   import {
     KUMO_CHECKBOX_DEFAULT_VARIANTS,
@@ -78,9 +78,9 @@
         )}
       >
         {#if indeterminate}
-          <MinusIcon />
+          <MinusIcon aria-hidden="true" size={12} weight="bold" />
         {:else}
-          <CheckIcon />
+          <CheckIcon aria-hidden="true" size={12} weight="bold" />
         {/if}
       </span>
     {/snippet}

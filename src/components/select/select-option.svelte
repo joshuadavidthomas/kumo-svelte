@@ -1,8 +1,8 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
+  import CheckIcon from "phosphor-svelte/lib/CheckIcon.svelte";
   import { Select as SelectPrimitive } from "bits-ui";
   import { cn } from "../../utils/cn";
-  import CheckIcon from "./check-icon.svelte";
 
   export interface SelectOptionProps {
     children?: Snippet;
@@ -42,7 +42,7 @@
       {/if}
     </span>
     <span class={cn("ml-auto inline-flex", !selected && "invisible")}>
-      <CheckIcon />
+      <CheckIcon aria-hidden="true" size={16} weight="bold" />
     </span>
   {/snippet}
 </SelectPrimitive.Item>

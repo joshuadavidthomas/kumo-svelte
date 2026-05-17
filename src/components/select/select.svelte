@@ -1,12 +1,12 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
+  import CaretUpDownIcon from "phosphor-svelte/lib/CaretUpDownIcon.svelte";
   import { Select as SelectPrimitive } from "bits-ui";
   import type { PortalProps } from "bits-ui";
   import { cn, safeRandomId } from "../../utils/cn";
   import Field from "../field/field.svelte";
   import { normalizeFieldError, type FieldErrorMatch } from "../field";
   import SkeletonLine from "../loader/skeleton-line.svelte";
-  import CaretUpDownIcon from "./caret-up-down-icon.svelte";
   import SelectOption from "./select-option.svelte";
   import {
     KUMO_SELECT_DEFAULT_VARIANTS,
@@ -160,7 +160,7 @@
       />
     {/if}
     <span class={cn("flex shrink-0 items-center", iconStyle.className)}>
-      <CaretUpDownIcon size={iconStyle.iconSize} class="fill-current" />
+      <CaretUpDownIcon aria-hidden="true" size={iconStyle.iconSize} weight="bold" />
     </span>
   </SelectPrimitive.Trigger>
   <SelectPrimitive.Portal to={container}>

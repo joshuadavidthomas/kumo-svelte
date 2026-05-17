@@ -14,6 +14,9 @@ importers:
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
+      phosphor-svelte:
+        specifier: ^3.1.0
+        version: 3.1.0(svelte@5.55.7)(vite@8.0.13(@types/node@25.8.0))
       tailwind-merge:
         specifier: ^3.4.0
         version: 3.6.0
@@ -36,6 +39,9 @@ importers:
       svelte-check:
         specifier: ^4.3.4
         version: 4.4.8(picomatch@4.0.4)(svelte@5.55.7)(typescript@6.0.3)
+      tailwindcss:
+        specifier: ^4.3.0
+        version: 4.3.0
       typescript:
         specifier: ^6.0.3
         version: 6.0.3
@@ -710,6 +716,15 @@ packages:
   pathe@2.0.3:
     resolution: {integrity: sha512-WUjGcAqP1gQacoQe+OBJsFA7Ld4DyXuUIjZ5cc75cLHvJ7dtNsTugphxIADwspS+AraAUePCKrSVtPLFj/F88w==}
 
+  phosphor-svelte@3.1.0:
+    resolution: {integrity: sha512-nldtxx+XCgNREvrb7O5xgDsefytXpSkPTx8Rnu3f2qQCUZLDV1rLxYSd2Jcwckuo9lZB1qKMqGR17P4UDC0PrA==}
+    peerDependencies:
+      svelte: ^5.0.0 || ^5.0.0-next.96
+      vite: '>=5'
+    peerDependenciesMeta:
+      vite:
+        optional: true
+
   picocolors@1.1.1:
     resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
 
@@ -782,6 +797,9 @@ packages:
 
   tailwind-merge@3.6.0:
     resolution: {integrity: sha512-uxL7qAVQriqRQPAyK3pj66VqskWqoZ37PW94jwOTwNfq/z9oyu1V+eqrZqtR2+fCiXdYOZe/Modt8GtvqNzu+w==}
+
+  tailwindcss@4.3.0:
+    resolution: {integrity: sha512-y6nxMGB1nMW9R6k96e5gdIFzcfL/gTJRNaqGes1YvkLnPVXzWgbqFF2yLC0T8G774n24cx3Pe8XrKoniCOAH+Q==}
 
   tinybench@2.9.0:
     resolution: {integrity: sha512-0+DUvqWMValLmha6lr4kD8iAMK1HzV0/aKnCtWb9v9641TnP/MFb7Pc2bxoxQjTXAErryXVgUOfv2YqNllqGeg==}
@@ -1396,6 +1414,14 @@ snapshots:
 
   pathe@2.0.3: {}
 
+  phosphor-svelte@3.1.0(svelte@5.55.7)(vite@8.0.13(@types/node@25.8.0)):
+    dependencies:
+      estree-walker: 3.0.3
+      magic-string: 0.30.21
+      svelte: 5.55.7
+    optionalDependencies:
+      vite: 8.0.13(@types/node@25.8.0)
+
   picocolors@1.1.1: {}
 
   picomatch@4.0.4: {}
@@ -1497,6 +1523,8 @@ snapshots:
   tabbable@6.4.0: {}
 
   tailwind-merge@3.6.0: {}
+
+  tailwindcss@4.3.0: {}
 
   tinybench@2.9.0: {}
 

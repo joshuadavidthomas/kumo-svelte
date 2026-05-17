@@ -40,10 +40,12 @@ The first porting slice includes:
 - `cn()` and `resolveVariant()`
 - Kumo style exports
 
-Import the Kumo CSS once in your app:
+Kumo styles are Tailwind utility classes plus the Kumo CSS variables and
+component CSS. Import Tailwind and the Kumo CSS once in your app:
 
-```ts
-import "kumo-svelte/styles";
+```css
+@import "tailwindcss";
+@import "kumo-svelte/styles";
 ```
 
 Then use components from the root package or component subpaths:
@@ -64,3 +66,17 @@ builds Kumo components on those primitives, but does not re-export them:
 ```ts
 import { Dialog, Popover, Select } from "bits-ui";
 ```
+
+## Dependency Policy
+
+This port leans on the Svelte ecosystem instead of rebuilding common primitives:
+
+- Bits UI is the primitive layer. Use it directly for lower-level composition.
+- Phosphor icons come from `phosphor-svelte`, matching upstream Kumo's Phosphor
+  icon dependency.
+- Tailwind CSS is a peer dependency because Kumo component classes are Tailwind
+  utilities.
+- `tailwind-merge` stays because `cn()` needs Tailwind-aware conflict merging.
+- `tailwind-variants` is intentionally not included yet; Kumo's current variant
+  metadata is simple enough for `resolveVariant()`. Add it only when a component
+  grows slot-heavy variant logic.

@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
+  import InfoIcon from "phosphor-svelte/lib/InfoIcon.svelte";
   import { Label as BitsLabel } from "bits-ui";
   import { cn } from "../../utils/cn";
   import Tooltip from "../tooltip/tooltip.svelte";
@@ -37,11 +38,7 @@
         aria-label="More information"
         class="inline-flex size-4 items-center justify-center rounded-full text-kumo-subtle"
       >
-        <svg aria-hidden="true" viewBox="0 0 256 256" fill="currentColor">
-          <path
-            d="M128 24a104 104 0 1 0 104 104A104.1 104.1 0 0 0 128 24Zm0 192a88 88 0 1 1 88-88 88.1 88.1 0 0 1-88 88Zm-8-80v-8a8 8 0 0 1 16 0v8a8 8 0 0 1-16 0Zm20-44a12 12 0 1 1-12-12 12 12 0 0 1 12 12Z"
-          />
-        </svg>
+        <InfoIcon aria-hidden="true" size={16} weight="fill" />
       </span>
     </Tooltip>
   {/if}

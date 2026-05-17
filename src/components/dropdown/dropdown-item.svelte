@@ -1,8 +1,8 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
+  import CheckIcon from "phosphor-svelte/lib/CheckIcon.svelte";
   import { DropdownMenu as DropdownMenuPrimitive } from "bits-ui";
   import { cn } from "../../utils/cn";
-  import CheckIcon from "./check-icon.svelte";
   import {
     dropdownVariants,
     KUMO_DROPDOWN_DEFAULT_VARIANTS,
@@ -41,7 +41,7 @@
   {@render children?.()}
   {#if selected}
     <span class="ml-auto inline-flex">
-      <CheckIcon />
+      <CheckIcon aria-hidden="true" size={16} weight="bold" />
     </span>
   {/if}
 </DropdownMenuPrimitive.Item>

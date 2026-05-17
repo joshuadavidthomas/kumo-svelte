@@ -1,9 +1,9 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
+  import CheckIcon from "phosphor-svelte/lib/CheckIcon.svelte";
+  import MinusIcon from "phosphor-svelte/lib/MinusIcon.svelte";
   import { DropdownMenu as DropdownMenuPrimitive } from "bits-ui";
   import { cn } from "../../utils/cn";
-  import CheckIcon from "./check-icon.svelte";
-  import MinusIcon from "./minus-icon.svelte";
 
   export type DropdownMenuCheckboxItemProps = Omit<
     DropdownMenuPrimitive.CheckboxItemProps,
@@ -35,9 +35,9 @@
   {#snippet children({ checked, indeterminate })}
     <span class="absolute left-2 flex h-3.5 w-3.5 items-center justify-center text-inherit">
       {#if indeterminate}
-        <MinusIcon />
+        <MinusIcon aria-hidden="true" size={16} weight="bold" />
       {:else if checked}
-        <CheckIcon />
+        <CheckIcon aria-hidden="true" size={16} weight="bold" />
       {/if}
     </span>
     {@render childrenProp?.()}

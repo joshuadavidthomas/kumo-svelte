@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
+  import CaretDownIcon from "phosphor-svelte/lib/CaretDownIcon.svelte";
   import { Collapsible as CollapsiblePrimitive } from "bits-ui";
   import { cn } from "../../utils/cn";
 
@@ -28,14 +29,10 @@
   )}
 >
   {@render children()}
-  <svg
+  <CaretDownIcon
     aria-hidden="true"
-    viewBox="0 0 256 256"
-    fill="currentColor"
+    size={16}
+    weight="bold"
     class="h-4 w-4 transition-transform group-data-[state=open]:rotate-180"
-  >
-    <path
-      d="M213.7 101.7l-80 80a8.2 8.2 0 0 1-11.4 0l-80-80a8 8 0 0 1 11.4-11.4L128 164.7l74.3-74.4a8 8 0 0 1 11.4 11.4Z"
-    />
-  </svg>
+  />
 </CollapsiblePrimitive.Trigger>
