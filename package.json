@@ -260,6 +260,16 @@
       "types": "./src/utils/index.ts",
       "default": "./src/utils/index.ts"
     },
+    "./code": {
+      "svelte": "./src/code/index.ts",
+      "types": "./src/code/index.ts",
+      "default": "./src/code/index.ts"
+    },
+    "./code/server": {
+      "svelte": "./src/code/server.ts",
+      "types": "./src/code/server.ts",
+      "default": "./src/code/server.ts"
+    },
     "./package.json": "./package.json"
   },
   "publishConfig": {
@@ -274,9 +284,12 @@
   },
   "dependencies": {
     "@internationalized/date": "^3.12.1",
+    "@shikijs/langs": "^4.0.2",
+    "@shikijs/themes": "^4.0.2",
     "bits-ui": "^2.14.0",
     "clsx": "^2.1.1",
     "phosphor-svelte": "^3.1.0",
+    "shiki": "^4.0.2",
     "svelte-sonner": "^1.0.7",
     "tailwind-merge": "^3.4.0"
   },

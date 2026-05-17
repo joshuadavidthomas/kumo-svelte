@@ -20,7 +20,7 @@ The current port includes all top-level component groups from upstream Kumo:
 - `Checkbox`, `CheckboxGroup`, `CheckboxItem`, and `CheckboxLegend` backed by Bits UI `Checkbox`
 - `ClipboardText`
 - `CloudflareLogo` and `PoweredByCloudflare`
-- `Code` and `CodeBlock`
+- `Code`, `CodeBlock`, and the Shiki-backed `CodeHighlighted` entrypoint
 - `Collapsible` root/trigger/panel components backed by Bits UI `Collapsible`
 - `Combobox` components backed by Bits UI `Combobox`
 - `CommandPalette` components backed by Bits UI `Command`
@@ -102,7 +102,9 @@ This port leans on the Svelte ecosystem instead of rebuilding common primitives:
 - `svelte-sonner` replaces the notification plumbing for toast components.
 - `echarts` is a peer dependency because chart components wrap caller-provided
   ECharts modules.
-- Upstream Kumo's `motion`, `shiki`, and `zod` dependencies are not included
-  yet. Current Svelte components do not need them: `Code` remains the simple
-  deprecated code display, flow uses local SVG geometry, and no schema-driven
-  public API has been ported.
+- `shiki`, `@shikijs/langs`, and `@shikijs/themes` are isolated behind
+  `kumo-svelte/code`, matching upstream Kumo's separate syntax-highlighting
+  entrypoint.
+- Upstream Kumo's `motion` and `zod` dependencies are not included yet. Current
+  Svelte components do not need them: flow uses local SVG geometry, and no
+  schema-driven public API has been ported.
