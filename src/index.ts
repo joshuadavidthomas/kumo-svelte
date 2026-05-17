@@ -400,6 +400,39 @@ export {
   type TabsTriggerProps,
 } from "./components/tabs";
 
+export { default as Table } from "./components/table/table.svelte";
+export { default as TableBody } from "./components/table/table-body.svelte";
+export { default as TableCell } from "./components/table/table-cell.svelte";
+export { default as TableCheckCell } from "./components/table/table-check-cell.svelte";
+export { default as TableCheckHead } from "./components/table/table-check-head.svelte";
+export { default as TableFooter } from "./components/table/table-footer.svelte";
+export { default as TableHead } from "./components/table/table-head.svelte";
+export { default as TableHeader } from "./components/table/table-header.svelte";
+export { default as TableResizeHandle } from "./components/table/table-resize-handle.svelte";
+export { default as TableRow } from "./components/table/table-row.svelte";
+export {
+  stickyColumnClasses,
+  tableRowVariants,
+  tableVariants,
+  KUMO_TABLE_DEFAULT_VARIANTS,
+  KUMO_TABLE_VARIANTS,
+  type KumoTableLayout,
+  type KumoTableRowVariant,
+  type KumoTableRowVariantsProps,
+  type KumoTableStickyColumn,
+  type KumoTableVariantsProps,
+  type TableBodyProps,
+  type TableCellProps,
+  type TableCheckCellProps,
+  type TableCheckHeadProps,
+  type TableFooterProps,
+  type TableHeadProps,
+  type TableHeaderProps,
+  type TableProps,
+  type TableResizeHandleProps,
+  type TableRowProps,
+} from "./components/table";
+
 export { default as Text } from "./components/text/text.svelte";
 export {
   textVariants,

@@ -149,6 +149,11 @@
       "types": "./src/components/surface/index.ts",
       "default": "./src/components/surface/index.ts"
     },
+    "./components/table": {
+      "svelte": "./src/components/table/index.ts",
+      "types": "./src/components/table/index.ts",
+      "default": "./src/components/table/index.ts"
+    },
     "./components/text": {
       "svelte": "./src/components/text/index.ts",
       "types": "./src/components/text/index.ts",

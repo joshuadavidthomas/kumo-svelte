@@ -34,6 +34,7 @@ The first porting slice includes:
 - `Surface`
 - `Switch`, `SwitchGroup`, `SwitchItem`, and `SwitchLegend` backed by Bits UI `Switch`
 - `Tabs` convenience and primitive wrapper components backed by Bits UI `Tabs`
+- `Table` and table section/cell helpers
 - `Text`
 - `Tooltip` and `TooltipProvider` backed by Bits UI `Tooltip`
 - `cn()` and `resolveVariant()`
