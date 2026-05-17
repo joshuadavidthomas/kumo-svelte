@@ -1,0 +1,191 @@
+{
+  "name": "kumo-svelte",
+  "version": "0.0.0",
+  "private": false,
+  "description": "Svelte 5 port of Cloudflare's Kumo component library",
+  "keywords": [
+    "cloudflare",
+    "components",
+    "design-system",
+    "kumo",
+    "svelte"
+  ],
+  "homepage": "https://github.com/joshuadavidthomas/kumo-svelte#readme",
+  "bugs": {
+    "url": "https://github.com/joshuadavidthomas/kumo-svelte/issues"
+  },
+  "license": "MIT",
+  "author": "Josh Thomas",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joshuadavidthomas/kumo-svelte.git"
+  },
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "type": "module",
+  "types": "./src/index.ts",
+  "svelte": "./src/index.ts",
+  "exports": {
+    ".": {
+      "svelte": "./src/index.ts",
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./components/badge": {
+      "svelte": "./src/components/badge/index.ts",
+      "types": "./src/components/badge/index.ts",
+      "default": "./src/components/badge/index.ts"
+    },
+    "./components/button": {
+      "svelte": "./src/components/button/index.ts",
+      "types": "./src/components/button/index.ts",
+      "default": "./src/components/button/index.ts"
+    },
+    "./components/checkbox": {
+      "svelte": "./src/components/checkbox/index.ts",
+      "types": "./src/components/checkbox/index.ts",
+      "default": "./src/components/checkbox/index.ts"
+    },
+    "./components/collapsible": {
+      "svelte": "./src/components/collapsible/index.ts",
+      "types": "./src/components/collapsible/index.ts",
+      "default": "./src/components/collapsible/index.ts"
+    },
+    "./components/code": {
+      "svelte": "./src/components/code/index.ts",
+      "types": "./src/components/code/index.ts",
+      "default": "./src/components/code/index.ts"
+    },
+    "./components/dialog": {
+      "svelte": "./src/components/dialog/index.ts",
+      "types": "./src/components/dialog/index.ts",
+      "default": "./src/components/dialog/index.ts"
+    },
+    "./components/dropdown": {
+      "svelte": "./src/components/dropdown/index.ts",
+      "types": "./src/components/dropdown/index.ts",
+      "default": "./src/components/dropdown/index.ts"
+    },
+    "./components/field": {
+      "svelte": "./src/components/field/index.ts",
+      "types": "./src/components/field/index.ts",
+      "default": "./src/components/field/index.ts"
+    },
+    "./components/grid": {
+      "svelte": "./src/components/grid/index.ts",
+      "types": "./src/components/grid/index.ts",
+      "default": "./src/components/grid/index.ts"
+    },
+    "./components/input": {
+      "svelte": "./src/components/input/index.ts",
+      "types": "./src/components/input/index.ts",
+      "default": "./src/components/input/index.ts"
+    },
+    "./components/label": {
+      "svelte": "./src/components/label/index.ts",
+      "types": "./src/components/label/index.ts",
+      "default": "./src/components/label/index.ts"
+    },
+    "./components/layer-card": {
+      "svelte": "./src/components/layer-card/index.ts",
+      "types": "./src/components/layer-card/index.ts",
+      "default": "./src/components/layer-card/index.ts"
+    },
+    "./components/switch": {
+      "svelte": "./src/components/switch/index.ts",
+      "types": "./src/components/switch/index.ts",
+      "default": "./src/components/switch/index.ts"
+    },
+    "./components/tabs": {
+      "svelte": "./src/components/tabs/index.ts",
+      "types": "./src/components/tabs/index.ts",
+      "default": "./src/components/tabs/index.ts"
+    },
+    "./components/link": {
+      "svelte": "./src/components/link/index.ts",
+      "types": "./src/components/link/index.ts",
+      "default": "./src/components/link/index.ts"
+    },
+    "./components/loader": {
+      "svelte": "./src/components/loader/index.ts",
+      "types": "./src/components/loader/index.ts",
+      "default": "./src/components/loader/index.ts"
+    },
+    "./components/meter": {
+      "svelte": "./src/components/meter/index.ts",
+      "types": "./src/components/meter/index.ts",
+      "default": "./src/components/meter/index.ts"
+    },
+    "./components/popover": {
+      "svelte": "./src/components/popover/index.ts",
+      "types": "./src/components/popover/index.ts",
+      "default": "./src/components/popover/index.ts"
+    },
+    "./components/radio": {
+      "svelte": "./src/components/radio/index.ts",
+      "types": "./src/components/radio/index.ts",
+      "default": "./src/components/radio/index.ts"
+    },
+    "./components/select": {
+      "svelte": "./src/components/select/index.ts",
+      "types": "./src/components/select/index.ts",
+      "default": "./src/components/select/index.ts"
+    },
+    "./components/surface": {
+      "svelte": "./src/components/surface/index.ts",
+      "types": "./src/components/surface/index.ts",
+      "default": "./src/components/surface/index.ts"
+    },
+    "./components/text": {
+      "svelte": "./src/components/text/index.ts",
+      "types": "./src/components/text/index.ts",
+      "default": "./src/components/text/index.ts"
+    },
+    "./components/tooltip": {
+      "svelte": "./src/components/tooltip/index.ts",
+      "types": "./src/components/tooltip/index.ts",
+      "default": "./src/components/tooltip/index.ts"
+    },
+    "./styles": "./src/styles/kumo.css",
+    "./styles/kumo.css": "./src/styles/kumo.css",
+    "./styles/theme-kumo.css": "./src/styles/theme-kumo.css",
+    "./utils": {
+      "types": "./src/utils/index.ts",
+      "default": "./src/utils/index.ts"
+    },
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "check": "pnpm format:check && pnpm lint && pnpm typecheck",
+    "format": "oxfmt --write package.json pnpm-workspace.yaml tsconfig.json svelte.config.js README.md src",
+    "format:check": "oxfmt --check package.json pnpm-workspace.yaml tsconfig.json svelte.config.js README.md src",
+    "lint": "oxlint src package.json svelte.config.js",
+    "typecheck": "svelte-check --workspace ./src --no-tsconfig && tsc --noEmit"
+  },
+  "dependencies": {
+    "bits-ui": "^2.14.0",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.4.0"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^7.0.0",
+    "@types/node": "^25.6.0",
+    "oxfmt": "^0.48.0",
+    "oxlint": "^1.60.0",
+    "svelte": "^5.0.0",
+    "svelte-check": "^4.3.4",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.8",
+    "vitest": "4.1.5"
+  },
+  "peerDependencies": {
+    "svelte": "^5.0.0"
+  },
+  "packageManager": "pnpm@11.1.1"
+}

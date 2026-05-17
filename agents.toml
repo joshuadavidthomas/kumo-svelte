@@ -1,0 +1,21 @@
+version = 1
+agents = ["codex", "opencode"]
+
+[trust]
+allow_all = true
+
+[[skills]]
+name = "dotagents"
+source = "getsentry/dotagents"
+
+[[skills]]
+name = "svelte5"
+source = "joshuadavidthomas/agent-skills"
+
+[[skills]]
+name = "sveltekit"
+source = "joshuadavidthomas/agent-skills"
+
+[[skills]]
+name = "grug-brained-dev"
+source = "joshuadavidthomas/agent-skills"
