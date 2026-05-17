@@ -261,6 +261,17 @@ export {
   type WeekStartsOn,
 } from "./components/date-picker";
 
+export { default as DateRangePicker } from "./components/date-range-picker/date-range-picker.svelte";
+export {
+  dateRangePickerVariants,
+  KUMO_DATE_RANGE_PICKER_DEFAULT_VARIANTS,
+  KUMO_DATE_RANGE_PICKER_VARIANTS,
+  type DateRangePickerProps,
+  type KumoDateRangePickerSize,
+  type KumoDateRangePickerVariant,
+  type KumoDateRangePickerVariantsProps,
+} from "./components/date-range-picker";
+
 export { default as Dialog } from "./components/dialog/dialog-content.svelte";
 export { default as DialogRoot } from "./components/dialog/dialog-root.svelte";
 export { default as DialogTrigger } from "./components/dialog/dialog-trigger.svelte";

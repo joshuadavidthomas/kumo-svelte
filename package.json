@@ -103,6 +103,11 @@
       "types": "./src/components/date-picker/index.ts",
       "default": "./src/components/date-picker/index.ts"
     },
+    "./components/date-range-picker": {
+      "svelte": "./src/components/date-range-picker/index.ts",
+      "types": "./src/components/date-range-picker/index.ts",
+      "default": "./src/components/date-range-picker/index.ts"
+    },
     "./components/dialog": {
       "svelte": "./src/components/dialog/index.ts",
       "types": "./src/components/dialog/index.ts",
