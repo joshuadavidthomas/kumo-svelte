@@ -15,6 +15,7 @@ The first porting slice includes:
 - `Banner`
 - `Button`, `RefreshButton`, and `LinkButton` backed by Bits UI `Button`
 - `Checkbox`, `CheckboxGroup`, `CheckboxItem`, and `CheckboxLegend` backed by Bits UI `Checkbox`
+- `ClipboardText`
 - `CloudflareLogo` and `PoweredByCloudflare`
 - `Code` and `CodeBlock`
 - `Collapsible` root/trigger/panel components backed by Bits UI `Collapsible`

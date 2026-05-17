@@ -67,6 +67,18 @@ export {
   type KumoCheckboxVariantsProps,
 } from "./components/checkbox";
 
+export { default as ClipboardText } from "./components/clipboard-text/clipboard-text.svelte";
+export {
+  clipboardTextButtonSize,
+  clipboardTextVariants,
+  KUMO_CLIPBOARD_TEXT_DEFAULT_VARIANTS,
+  KUMO_CLIPBOARD_TEXT_VARIANTS,
+  type ClipboardTextProps,
+  type ClipboardTextSize,
+  type KumoClipboardTextSize,
+  type KumoClipboardTextVariantsProps,
+} from "./components/clipboard-text";
+
 export { default as CloudflareLogo } from "./components/cloudflare-logo/cloudflare-logo.svelte";
 export { default as PoweredByCloudflare } from "./components/cloudflare-logo/powered-by-cloudflare.svelte";
 export {
