@@ -38,6 +38,11 @@
       "types": "./src/index.ts",
       "default": "./src/index.ts"
     },
+    "./components/autocomplete": {
+      "svelte": "./src/components/autocomplete/index.ts",
+      "types": "./src/components/autocomplete/index.ts",
+      "default": "./src/components/autocomplete/index.ts"
+    },
     "./components/badge": {
       "svelte": "./src/components/badge/index.ts",
       "types": "./src/components/badge/index.ts",

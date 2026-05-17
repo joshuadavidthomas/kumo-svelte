@@ -1,3 +1,33 @@
+export { default as Autocomplete } from "./components/autocomplete/autocomplete.svelte";
+export { default as AutocompleteRoot } from "./components/autocomplete/autocomplete.svelte";
+export { default as AutocompleteContent } from "./components/autocomplete/autocomplete-content.svelte";
+export { default as AutocompleteEmpty } from "./components/autocomplete/autocomplete-empty.svelte";
+export { default as AutocompleteGroup } from "./components/autocomplete/autocomplete-group.svelte";
+export { default as AutocompleteGroupLabel } from "./components/autocomplete/autocomplete-group-label.svelte";
+export { default as AutocompleteInput } from "./components/autocomplete/autocomplete-input.svelte";
+export { default as AutocompleteInputGroup } from "./components/autocomplete/autocomplete-input.svelte";
+export { default as AutocompleteItem } from "./components/autocomplete/autocomplete-item.svelte";
+export { default as AutocompleteList } from "./components/autocomplete/autocomplete-list.svelte";
+export { default as AutocompleteSeparator } from "./components/autocomplete/autocomplete-separator.svelte";
+export {
+  autocompleteVariants,
+  KUMO_AUTOCOMPLETE_DEFAULT_VARIANTS,
+  KUMO_AUTOCOMPLETE_VARIANTS,
+  type AutocompleteContentProps,
+  type AutocompleteEmptyProps,
+  type AutocompleteGroupLabelProps,
+  type AutocompleteGroupProps,
+  type AutocompleteInputGroupProps,
+  type AutocompleteInputProps,
+  type AutocompleteItemProps,
+  type AutocompleteListProps,
+  type AutocompleteProps,
+  type AutocompleteRootProps,
+  type AutocompleteSeparatorProps,
+  type KumoAutocompleteSize,
+  type KumoAutocompleteVariantsProps,
+} from "./components/autocomplete";
+
 export { default as Badge } from "./components/badge/badge.svelte";
 export {
   badgeVariants,

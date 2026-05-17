@@ -11,6 +11,7 @@ and keeps Kumo's styling and variant metadata on top.
 
 The first porting slice includes:
 
+- `Autocomplete` components backed by Bits UI `Combobox`
 - `Badge`
 - `Banner`
 - `Breadcrumbs` root/link/current/separator/ellipsis/clipboard components
