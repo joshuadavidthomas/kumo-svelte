@@ -1,4 +1,5 @@
 import type { UIElement, UITree } from "../catalog/types";
+import { KUMO_COMPONENT_PROP_SCHEMAS } from "./component-props";
 
 export const KUMO_COMPONENT_NAMES = [
   "Autocomplete",
@@ -60,6 +61,10 @@ interface ParseResult<T = unknown> {
   success: boolean;
 }
 
+interface RuntimePropSchema {
+  values?: readonly string[];
+}
+
 const componentNameSet = new Set<string>(KUMO_COMPONENT_NAMES);
 
 export const UIElementBaseSchema = {
@@ -71,29 +76,36 @@ export const UIElementBaseSchema = {
 };
 
 export function validateElementProps(element: UIElement): ParseResult<UIElement> {
+  const issues: Issue[] = [];
+
   if (!componentNameSet.has(element.type)) {
-    return {
-      success: false,
-      error: {
-        issues: [
-          {
-            message: `Unknown Kumo component: ${element.type}`,
-            path: ["type"],
-          },
-        ],
-      },
-    };
+    issues.push({
+      message: `Unknown Kumo component: ${element.type}`,
+      path: ["type"],
+    });
   }
 
   if (element.props === null || typeof element.props !== "object" || Array.isArray(element.props)) {
-    return {
-      success: false,
-      error: {
-        issues: [{ message: "Element props must be an object", path: ["props"] }],
-      },
-    };
+    issues.push({ message: "Element props must be an object", path: ["props"] });
+  } else {
+    const propSchemas = KUMO_COMPONENT_PROP_SCHEMAS[
+      element.type as keyof typeof KUMO_COMPONENT_PROP_SCHEMAS
+    ] as Record<string, RuntimePropSchema> | undefined;
+
+    for (const [name, value] of Object.entries(element.props)) {
+      const schema = propSchemas?.[name];
+      if (!schema?.values || isDynamicValue(value)) continue;
+
+      if (typeof value !== "string" || !schema.values.includes(value as never)) {
+        issues.push({
+          message: `Invalid value for ${element.type}.${name}: expected one of ${schema.values.join(", ")}`,
+          path: ["props", name],
+        });
+      }
+    }
   }
 
+  if (issues.length > 0) return { success: false, error: { issues } };
   return { success: true, data: element };
 }
 
@@ -191,4 +203,13 @@ function validateElementShape(element: unknown): Issue[] {
   }
 
   return issues;
+}
+
+function isDynamicValue(value: unknown): boolean {
+  return (
+    value !== null &&
+    typeof value === "object" &&
+    !Array.isArray(value) &&
+    typeof (value as { path?: unknown }).path === "string"
+  );
 }

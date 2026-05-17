@@ -66,10 +66,7 @@ export function createKumoCatalog(config: CatalogConfig = {}): KumoCatalog {
       if (!propsResult.success) {
         return {
           success: false,
-          error: propsResult.error?.issues.map((issue) => ({
-            message: issue.message,
-            path: ["props", ...issue.path],
-          })),
+          error: propsResult.error?.issues,
         };
       }
 
