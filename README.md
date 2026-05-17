@@ -57,8 +57,8 @@ The current port includes all top-level component groups from upstream Kumo:
 - `Tooltip` and `TooltipProvider` backed by Bits UI `Tooltip`
 - `KumoPortalProvider`, `LinkProvider`, `cn()`, and `resolveVariant()`
 - Registry metadata from `kumo-svelte/registry`, including component props,
-  generated examples, variant values, variant classes, defaults, and available
-  style metadata
+  common prop descriptions, generated examples, variant values, variant classes,
+  defaults, and available style metadata
 - Catalog validation from `kumo-svelte/catalog` for UI tree shape, known
   components, literal variant prop values, and simple primitive prop values
 - Kumo style exports

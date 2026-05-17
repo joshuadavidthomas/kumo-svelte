@@ -7,6 +7,41 @@ const registry = JSON.parse(
   fs.readFileSync("src/registry/component-registry.json", "utf8"),
 );
 
+const COMMON_PROP_DESCRIPTIONS = {
+  "aria-label": "Accessible label for controls without visible text.",
+  checked: "Controlled checked state.",
+  children: "Content rendered inside the component.",
+  class: "Additional CSS classes.",
+  container: "Portal container target.",
+  defaultChecked: "Initial checked state for uncontrolled usage.",
+  defaultOpen: "Initial open state for uncontrolled usage.",
+  defaultValue: "Initial value for uncontrolled usage.",
+  description: "Supporting description text or content.",
+  disabled: "Whether the control is disabled.",
+  error: "Validation error content.",
+  href: "URL to navigate to.",
+  icon: "Icon content rendered with the component.",
+  id: "Element id.",
+  items: "Items rendered by the component.",
+  label: "Visible label text or content.",
+  labelTooltip: "Tooltip content for the label.",
+  loading: "Whether the component is in a loading state.",
+  multiple: "Whether multiple values can be selected.",
+  name: "Form field name.",
+  onCheckedChange: "Callback fired when the checked state changes.",
+  onClick: "Callback fired when the component is clicked.",
+  onOpenChange: "Callback fired when the open state changes.",
+  onValueChange: "Callback fired when the value changes.",
+  open: "Controlled open state.",
+  placeholder: "Placeholder text shown before a value is selected.",
+  required: "Whether the form field is required.",
+  sideOffset: "Distance in pixels from the trigger.",
+  target: "Link target attribute.",
+  text: "Primary text content.",
+  title: "Title text or content.",
+  value: "Controlled value.",
+};
+
 function pascal(slug) {
   return slug
     .split("-")
@@ -212,6 +247,14 @@ function applyVariantMetadata(schema, metadata) {
   }
 }
 
+function applyCommonPropDescriptions(schema) {
+  for (const [name, prop] of Object.entries(schema.props)) {
+    if (!prop.description && COMMON_PROP_DESCRIPTIONS[name]) {
+      prop.description = COMMON_PROP_DESCRIPTIONS[name];
+    }
+  }
+}
+
 function runtimePropSchemas(registry) {
   const schemas = {};
 
@@ -267,6 +310,7 @@ for (const key of Object.keys(pkg.exports).filter((entry) =>
     delete registry.components[name].baseStyles;
     delete registry.components[name].styling;
     applyVariantMetadata(registry.components[name], readVariantMetadata(dir));
+    applyCommonPropDescriptions(registry.components[name]);
     applyGeneratedExamples(registry.components[name]);
   }
 }
@@ -282,6 +326,7 @@ for (const key of Object.keys(pkg.exports).filter((entry) =>
     delete registry.blocks[name].baseStyles;
     delete registry.blocks[name].styling;
     applyVariantMetadata(registry.blocks[name], readVariantMetadata(dir));
+    applyCommonPropDescriptions(registry.blocks[name]);
     applyGeneratedExamples(registry.blocks[name]);
   }
 }

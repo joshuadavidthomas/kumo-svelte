@@ -38,6 +38,9 @@ Port Cloudflare's Kumo package from React/Base UI to Svelte 5, using:
   `variants.ts` files, including variant values, defaults, classes,
   descriptions, base styles, simple generated examples, and explicit
   `KUMO_*_STYLING` objects where present.
+- Registry generation also fills common public prop descriptions for repeated
+  props such as `class`, `children`, `disabled`, `value`, labels, placeholders,
+  portal containers, and common callbacks.
 - Catalog validation checks known component names, element/tree shape, props
   object shape, and literal variant prop values. Dynamic `{ path }` values pass
   through for runtime binding.
@@ -67,13 +70,13 @@ They are generated from the Svelte package export list, source `*Props`
 interfaces, and source variant metadata. They validate tree shape and known
 component names. They include prop names, type strings, required flags, variant
 values, variant defaults, variant classes, variant descriptions, base styles,
-simple generated examples, and explicit styling metadata where present. Runtime
-catalog validation uses the generated prop metadata for literal variant checks
-and simple primitive type checks.
+common prop descriptions, simple generated examples, and explicit styling
+metadata where present. Runtime catalog validation uses the generated prop
+metadata for literal variant checks and simple primitive type checks.
 
-They do not yet include upstream-equivalent natural-language prop descriptions,
-extracted demo examples, rich component documentation, or full TypeScript-derived
-runtime validation for complex prop types.
+They do not yet include upstream-equivalent natural-language prop descriptions
+for every prop, extracted demo examples, rich component documentation, or full
+TypeScript-derived runtime validation for complex prop types.
 
 ## Intentional Differences
 
