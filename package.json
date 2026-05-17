@@ -285,6 +285,10 @@
       "types": "./src/registry/index.ts",
       "default": "./src/registry/index.ts"
     },
+    "./scripts/theme-generator/types": {
+      "types": "./src/scripts/theme-generator/types.ts",
+      "default": "./src/scripts/theme-generator/types.ts"
+    },
     "./package.json": "./package.json"
   },
   "publishConfig": {
