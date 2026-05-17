@@ -62,6 +62,7 @@ interface ParseResult<T = unknown> {
 }
 
 interface RuntimePropSchema {
+  type: string;
   values?: readonly string[];
 }
 
@@ -94,11 +95,20 @@ export function validateElementProps(element: UIElement): ParseResult<UIElement>
 
     for (const [name, value] of Object.entries(element.props)) {
       const schema = propSchemas?.[name];
-      if (!schema?.values || isDynamicValue(value)) continue;
+      if (!schema || isDynamicValue(value)) continue;
 
-      if (typeof value !== "string" || !schema.values.includes(value as never)) {
+      if (schema.values && (typeof value !== "string" || !schema.values.includes(value as never))) {
         issues.push({
           message: `Invalid value for ${element.type}.${name}: expected one of ${schema.values.join(", ")}`,
+          path: ["props", name],
+        });
+        continue;
+      }
+
+      const primitiveIssue = validatePrimitivePropValue(schema.type, value);
+      if (primitiveIssue) {
+        issues.push({
+          message: `Invalid value for ${element.type}.${name}: ${primitiveIssue}`,
           path: ["props", name],
         });
       }
@@ -212,4 +222,61 @@ function isDynamicValue(value: unknown): boolean {
     !Array.isArray(value) &&
     typeof (value as { path?: unknown }).path === "string"
   );
+}
+
+function validatePrimitivePropValue(type: string, value: unknown): string | undefined {
+  const expected = primitiveExpectation(type);
+  if (!expected) return undefined;
+
+  if (expected === "string") {
+    return typeof value === "string" ? undefined : "expected a string";
+  }
+
+  if (expected === "number") {
+    return typeof value === "number" ? undefined : "expected a number";
+  }
+
+  if (expected === "boolean") {
+    return typeof value === "boolean" ? undefined : "expected a boolean";
+  }
+
+  if (expected === "string[]") {
+    return isArrayOf(value, "string") ? undefined : "expected an array of strings";
+  }
+
+  if (expected === "number[]") {
+    return isArrayOf(value, "number") ? undefined : "expected an array of numbers";
+  }
+
+  if (expected === "boolean[]") {
+    return isArrayOf(value, "boolean") ? undefined : "expected an array of booleans";
+  }
+
+  if (expected === "string|string[]") {
+    return typeof value === "string" || isArrayOf(value, "string")
+      ? undefined
+      : "expected a string or an array of strings";
+  }
+
+  return undefined;
+}
+
+function primitiveExpectation(type: string) {
+  const normalized = type.replace(/\s+/g, " ").trim();
+
+  if (normalized === "string") return "string";
+  if (normalized === "number") return "number";
+  if (normalized === "boolean") return "boolean";
+  if (normalized === "string[]") return "string[]";
+  if (normalized === "number[]") return "number[]";
+  if (normalized === "boolean[]") return "boolean[]";
+  if (normalized === "string | string[]" || normalized === "string[] | string") {
+    return "string|string[]";
+  }
+
+  return undefined;
+}
+
+function isArrayOf(value: unknown, itemType: "boolean" | "number" | "string") {
+  return Array.isArray(value) && value.every((item) => typeof item === itemType);
 }

@@ -220,15 +220,13 @@ function runtimePropSchemas(registry) {
     ...Object.values(registry.blocks ?? {}),
   ]) {
     schemas[schema.name] = Object.fromEntries(
-      Object.entries(schema.props)
-        .filter(([, prop]) => prop.values)
-        .map(([name, prop]) => [
-          name,
-          {
-            type: prop.type,
-            values: prop.values,
-          },
-        ]),
+      Object.entries(schema.props).map(([name, prop]) => [
+        name,
+        {
+          type: prop.type,
+          ...(prop.values ? { values: prop.values } : {}),
+        },
+      ]),
     );
   }
 

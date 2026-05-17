@@ -41,6 +41,9 @@ Port Cloudflare's Kumo package from React/Base UI to Svelte 5, using:
 - Catalog validation checks known component names, element/tree shape, props
   object shape, and literal variant prop values. Dynamic `{ path }` values pass
   through for runtime binding.
+- Catalog validation also checks simple generated primitive prop types
+  (`string`, `number`, `boolean`, and simple primitive arrays/unions) for
+  literal values.
 
 ## Current Gates
 
@@ -65,11 +68,12 @@ interfaces, and source variant metadata. They validate tree shape and known
 component names. They include prop names, type strings, required flags, variant
 values, variant defaults, variant classes, variant descriptions, base styles,
 simple generated examples, and explicit styling metadata where present. Runtime
-catalog validation uses the generated variant values for literal prop checks.
+catalog validation uses the generated prop metadata for literal variant checks
+and simple primitive type checks.
 
 They do not yet include upstream-equivalent natural-language prop descriptions,
 extracted demo examples, rich component documentation, or full TypeScript-derived
-runtime validation for non-variant prop types.
+runtime validation for complex prop types.
 
 ## Intentional Differences
 
@@ -80,6 +84,6 @@ runtime validation for non-variant prop types.
 ## Completion Rule
 
 Do not mark the port complete until the generated metadata/catalog surfaces have
-upstream-equivalent descriptions, extracted demo examples, and non-variant prop
+upstream-equivalent descriptions, extracted demo examples, and complex prop
 validation, or that metadata work is explicitly declared out of scope by the
 maintainer.
