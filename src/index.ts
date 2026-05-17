@@ -347,6 +347,29 @@ export {
   type MeterProps,
 } from "./components/meter";
 
+export { default as Pagination } from "./components/pagination/pagination.svelte";
+export { default as PaginationControls } from "./components/pagination/pagination-controls.svelte";
+export { default as PaginationInfo } from "./components/pagination/pagination-info.svelte";
+export { default as PaginationPageSize } from "./components/pagination/pagination-page-size.svelte";
+export { default as PaginationRoot } from "./components/pagination/pagination.svelte";
+export { default as PaginationSeparator } from "./components/pagination/pagination-separator.svelte";
+export {
+  DEFAULT_PAGINATION_LABELS,
+  KUMO_PAGINATION_DEFAULT_VARIANTS,
+  KUMO_PAGINATION_VARIANTS,
+  paginationVariants,
+  type KumoPaginationControls,
+  type KumoPaginationVariantsProps,
+  type PaginationContextValue,
+  type PaginationControlsProps,
+  type PaginationInfoProps,
+  type PaginationLabels,
+  type PaginationPageSizeProps,
+  type PaginationProps,
+  type PaginationRootProps,
+  type PaginationSeparatorProps,
+} from "./components/pagination";
+
 export { default as Popover } from "./components/popover/popover-root.svelte";
 export { default as PopoverRoot } from "./components/popover/popover-root.svelte";
 export { default as PopoverTrigger } from "./components/popover/popover-trigger.svelte";

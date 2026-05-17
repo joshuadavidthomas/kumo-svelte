@@ -153,6 +153,11 @@
       "types": "./src/components/meter/index.ts",
       "default": "./src/components/meter/index.ts"
     },
+    "./components/pagination": {
+      "svelte": "./src/components/pagination/index.ts",
+      "types": "./src/components/pagination/index.ts",
+      "default": "./src/components/pagination/index.ts"
+    },
     "./components/popover": {
       "svelte": "./src/components/popover/index.ts",
       "types": "./src/components/popover/index.ts",

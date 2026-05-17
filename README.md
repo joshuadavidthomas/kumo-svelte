@@ -32,6 +32,7 @@ The first porting slice includes:
 - `Loader` and `SkeletonLine`
 - `MenuBar`
 - `Meter` backed by Bits UI `Meter`
+- `Pagination` root/info/page-size/controls/separator components
 - `Popover` root/trigger/content/title/description/close components backed by Bits UI `Popover`
 - `Radio`, `RadioGroup`, `RadioItem`, and `RadioLegend` backed by Bits UI `RadioGroup`
 - `Select`, `SelectOption`, grouping, and separator components backed by Bits UI `Select`
