@@ -167,6 +167,16 @@ export {
   type KumoDropdownVariantsProps,
 } from "./components/dropdown";
 
+export { default as Empty } from "./components/empty/empty.svelte";
+export {
+  emptyVariants,
+  KUMO_EMPTY_DEFAULT_VARIANTS,
+  KUMO_EMPTY_VARIANTS,
+  type EmptyProps,
+  type KumoEmptySize,
+  type KumoEmptyVariantsProps,
+} from "./components/empty";
+
 export { default as Field } from "./components/field/field.svelte";
 export {
   fieldVariants,

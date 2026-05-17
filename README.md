@@ -19,6 +19,7 @@ The first porting slice includes:
 - `Collapsible` root/trigger/panel components backed by Bits UI `Collapsible`
 - `Dialog`, `DialogRoot`, `DialogTrigger`, `DialogTitle`, `DialogDescription`, and `DialogClose` backed by Bits UI `Dialog` / `AlertDialog`
 - `DropdownMenu` compound components backed by Bits UI `DropdownMenu`
+- `Empty`
 - `Field`
 - `Grid` and `GridItem`
 - `Input`, `InputArea`, and `Textarea`

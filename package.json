@@ -74,6 +74,11 @@
       "types": "./src/components/dropdown/index.ts",
       "default": "./src/components/dropdown/index.ts"
     },
+    "./components/empty": {
+      "svelte": "./src/components/empty/index.ts",
+      "types": "./src/components/empty/index.ts",
+      "default": "./src/components/empty/index.ts"
+    },
     "./components/field": {
       "svelte": "./src/components/field/index.ts",
       "types": "./src/components/field/index.ts",
