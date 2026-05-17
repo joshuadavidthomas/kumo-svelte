@@ -207,7 +207,12 @@
           "required": true
         }
       },
-      "examples": [],
+      "examples": [
+        "<Badge variant=\"primary\">Badge</Badge>",
+        "<Badge variant=\"secondary\">Badge</Badge>",
+        "<Badge variant=\"error\">Badge</Badge>",
+        "<Badge variant=\"warning\">Badge</Badge>"
+      ],
       "colors": [],
       "baseStyles": "inline-flex w-fit flex-none shrink-0 items-center justify-self-start rounded-full px-2 py-0.5 text-xs font-medium whitespace-nowrap",
       "styling": {
@@ -329,7 +334,11 @@
           "values": ["default", "alert", "error"]
         }
       },
-      "examples": [],
+      "examples": [
+        "<Banner variant=\"default\">Banner</Banner>",
+        "<Banner variant=\"alert\">Banner</Banner>",
+        "<Banner variant=\"error\">Banner</Banner>"
+      ],
       "colors": [],
       "baseStyles": "flex w-full items-start gap-3 rounded-lg border px-4 py-3 text-base",
       "styling": {
@@ -411,7 +420,10 @@
           "values": ["sm", "base"]
         }
       },
-      "examples": [],
+      "examples": [
+        "<Breadcrumbs size=\"sm\">Breadcrumbs</Breadcrumbs>",
+        "<Breadcrumbs size=\"base\">Breadcrumbs</Breadcrumbs>"
+      ],
       "colors": [],
       "styling": {
         "variants": {
@@ -531,7 +543,12 @@
           "required": false
         }
       },
-      "examples": [],
+      "examples": [
+        "<Button variant=\"primary\">Button</Button>",
+        "<Button variant=\"secondary\">Button</Button>",
+        "<Button variant=\"ghost\">Button</Button>",
+        "<Button variant=\"destructive\">Button</Button>"
+      ],
       "colors": [],
       "styling": {
         "variants": {
@@ -712,7 +729,10 @@
           "required": false
         }
       },
-      "examples": [],
+      "examples": [
+        "<Checkbox variant=\"default\">Checkbox</Checkbox>",
+        "<Checkbox variant=\"error\">Checkbox</Checkbox>"
+      ],
       "colors": [],
       "styling": {
         "variants": {
@@ -781,7 +801,11 @@
           "required": false
         }
       },
-      "examples": [],
+      "examples": [
+        "<ClipboardText size=\"sm\" />",
+        "<ClipboardText size=\"base\" />",
+        "<ClipboardText size=\"lg\" />"
+      ],
       "colors": [],
       "styling": {
         "variants": {
@@ -837,7 +861,7 @@
           "values": ["glyph", "full"]
         }
       },
-      "examples": [],
+      "examples": ["<CloudflareLogo variant=\"glyph\" />", "<CloudflareLogo variant=\"full\" />"],
       "colors": [],
       "styling": {
         "variants": {
@@ -1047,7 +1071,10 @@
           "values": ["right", "top"]
         }
       },
-      "examples": [],
+      "examples": [
+        "<Combobox inputSide=\"right\">Combobox</Combobox>",
+        "<Combobox inputSide=\"top\">Combobox</Combobox>"
+      ],
       "colors": [],
       "styling": {
         "variants": {
@@ -1255,7 +1282,12 @@
           "required": false
         }
       },
-      "examples": [],
+      "examples": [
+        "<Code lang=\"ts\" />",
+        "<Code lang=\"tsx\" />",
+        "<Code lang=\"jsonc\" />",
+        "<Code lang=\"bash\" />"
+      ],
       "colors": [],
       "styling": {
         "baseTokens": ["bg-kumo-base", "border-kumo-fill"],
@@ -1694,7 +1726,10 @@
           "values": ["default", "subtle"]
         }
       },
-      "examples": [],
+      "examples": [
+        "<DateRangePicker variant=\"default\" />",
+        "<DateRangePicker variant=\"subtle\" />"
+      ],
       "colors": [],
       "styling": {
         "variants": {
@@ -1805,7 +1840,12 @@
           "required": false
         }
       },
-      "examples": [],
+      "examples": [
+        "<Dialog size=\"base\">Dialog</Dialog>",
+        "<Dialog size=\"sm\">Dialog</Dialog>",
+        "<Dialog size=\"lg\">Dialog</Dialog>",
+        "<Dialog size=\"xl\">Dialog</Dialog>"
+      ],
       "colors": [],
       "styling": {
         "dimensions": {
@@ -1953,7 +1993,10 @@
           "values": ["default", "danger"]
         }
       },
-      "examples": [],
+      "examples": [
+        "<Dropdown variant=\"default\">Dropdown</Dropdown>",
+        "<Dropdown variant=\"danger\">Dropdown</Dropdown>"
+      ],
       "colors": [],
       "styling": {
         "variants": {
@@ -2026,7 +2069,11 @@
           "required": true
         }
       },
-      "examples": [],
+      "examples": [
+        "<Empty size=\"sm\">Empty</Empty>",
+        "<Empty size=\"base\">Empty</Empty>",
+        "<Empty size=\"lg\">Empty</Empty>"
+      ],
       "colors": [],
       "styling": {
         "variants": {
@@ -2243,7 +2290,12 @@
           "values": ["2up", "side-by-side", "2-1", "1-2", "1-3up", "3up", "4up", "6up", "1-2-4up"]
         }
       },
-      "examples": [],
+      "examples": [
+        "<Grid variant=\"2up\">Grid</Grid>",
+        "<Grid variant=\"side-by-side\">Grid</Grid>",
+        "<Grid variant=\"2-1\">Grid</Grid>",
+        "<Grid variant=\"1-2\">Grid</Grid>"
+      ],
       "colors": [],
       "styling": {
         "variants": {
@@ -2379,7 +2431,7 @@
           "required": false
         }
       },
-      "examples": [],
+      "examples": ["<Input variant=\"default\" />", "<Input variant=\"error\" />"],
       "colors": [],
       "styling": {
         "dimensions": {
@@ -2550,7 +2602,12 @@
           "values": ["xs", "sm", "base", "lg"]
         }
       },
-      "examples": [],
+      "examples": [
+        "<InputGroup size=\"xs\">InputGroup</InputGroup>",
+        "<InputGroup size=\"sm\">InputGroup</InputGroup>",
+        "<InputGroup size=\"base\">InputGroup</InputGroup>",
+        "<InputGroup size=\"lg\">InputGroup</InputGroup>"
+      ],
       "colors": [],
       "styling": {
         "variants": {
@@ -2757,7 +2814,10 @@
           "required": false
         }
       },
-      "examples": [],
+      "examples": [
+        "<Switch variant=\"default\">Switch</Switch>",
+        "<Switch variant=\"neutral\">Switch</Switch>"
+      ],
       "colors": [],
       "styling": {
         "variants": {
@@ -2897,7 +2957,7 @@
           "values": ["segmented", "underline"]
         }
       },
-      "examples": [],
+      "examples": ["<Tabs variant=\"segmented\" />", "<Tabs variant=\"underline\" />"],
       "colors": [],
       "styling": {
         "container": {
@@ -2971,7 +3031,11 @@
           "required": false
         }
       },
-      "examples": [],
+      "examples": [
+        "<Link variant=\"inline\">Link</Link>",
+        "<Link variant=\"current\">Link</Link>",
+        "<Link variant=\"plain\">Link</Link>"
+      ],
       "colors": [],
       "styling": {
         "variants": {
@@ -3049,7 +3113,7 @@
           "required": false
         }
       },
-      "examples": [],
+      "examples": ["<Loader size=\"sm\" />", "<Loader size=\"base\" />", "<Loader size=\"lg\" />"],
       "colors": [],
       "styling": {
         "variants": {
@@ -3229,7 +3293,10 @@
           "required": false
         }
       },
-      "examples": [],
+      "examples": [
+        "<Pagination controls=\"full\">Pagination</Pagination>",
+        "<Pagination controls=\"simple\">Pagination</Pagination>"
+      ],
       "colors": [],
       "styling": {
         "variants": {
@@ -3292,7 +3359,12 @@
           "values": ["top", "bottom", "left", "right"]
         }
       },
-      "examples": [],
+      "examples": [
+        "<Popover side=\"top\">Popover</Popover>",
+        "<Popover side=\"bottom\">Popover</Popover>",
+        "<Popover side=\"left\">Popover</Popover>",
+        "<Popover side=\"right\">Popover</Popover>"
+      ],
       "colors": [],
       "styling": {
         "variants": {
@@ -3413,7 +3485,10 @@
           "values": ["default", "error"]
         }
       },
-      "examples": [],
+      "examples": [
+        "<Radio variant=\"default\">Radio</Radio>",
+        "<Radio variant=\"error\">Radio</Radio>"
+      ],
       "colors": [],
       "styling": {
         "variants": {
@@ -3796,7 +3871,11 @@
           "required": false
         }
       },
-      "examples": [],
+      "examples": [
+        "<Sidebar variant=\"sidebar\">Sidebar</Sidebar>",
+        "<Sidebar variant=\"floating\">Sidebar</Sidebar>",
+        "<Sidebar variant=\"inset\">Sidebar</Sidebar>"
+      ],
       "colors": [],
       "styling": {
         "width": {
@@ -3886,7 +3965,10 @@
           "values": ["primary", "secondary"]
         }
       },
-      "examples": [],
+      "examples": [
+        "<Surface color=\"primary\">Surface</Surface>",
+        "<Surface color=\"secondary\">Surface</Surface>"
+      ],
       "colors": [],
       "styling": {
         "variants": {
@@ -3988,7 +4070,10 @@
           "values": ["auto", "fixed"]
         }
       },
-      "examples": [],
+      "examples": [
+        "<Table variant=\"default\">Table</Table>",
+        "<Table variant=\"selected\">Table</Table>"
+      ],
       "colors": [],
       "styling": {
         "variants": {
@@ -4120,7 +4205,12 @@
           "required": false
         }
       },
-      "examples": [],
+      "examples": [
+        "<Text variant=\"heading1\">Text</Text>",
+        "<Text variant=\"heading2\">Text</Text>",
+        "<Text variant=\"heading3\">Text</Text>",
+        "<Text variant=\"body\">Text</Text>"
+      ],
       "colors": [],
       "styling": {
         "fontSizes": {
@@ -4240,7 +4330,12 @@
           "values": ["default", "success", "error", "warning", "info"]
         }
       },
-      "examples": [],
+      "examples": [
+        "<Toast variant=\"default\">Toast</Toast>",
+        "<Toast variant=\"success\">Toast</Toast>",
+        "<Toast variant=\"error\">Toast</Toast>",
+        "<Toast variant=\"warning\">Toast</Toast>"
+      ],
       "colors": [],
       "styling": {
         "container": {
@@ -4377,7 +4472,12 @@
           "required": false
         }
       },
-      "examples": [],
+      "examples": [
+        "<Tooltip side=\"top\">Tooltip</Tooltip>",
+        "<Tooltip side=\"bottom\">Tooltip</Tooltip>",
+        "<Tooltip side=\"left\">Tooltip</Tooltip>",
+        "<Tooltip side=\"right\">Tooltip</Tooltip>"
+      ],
       "colors": [],
       "styling": {
         "variants": {
@@ -4470,7 +4570,7 @@
           "values": ["sm", "base"]
         }
       },
-      "examples": [],
+      "examples": ["<DeleteResource size=\"sm\" />", "<DeleteResource size=\"base\" />"],
       "colors": [],
       "files": [],
       "dependencies": [],

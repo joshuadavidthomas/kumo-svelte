@@ -235,6 +235,29 @@ function runtimePropSchemas(registry) {
   return schemas;
 }
 
+function applyGeneratedExamples(schema) {
+  const variantProps = Object.entries(schema.props).filter(([, prop]) => prop.values?.length > 0);
+  const variantProp = variantProps.find(([name]) => name === "variant") ?? variantProps[0];
+  if (!variantProp) return;
+
+  const [propName, prop] = variantProp;
+  const hasChildren = "children" in schema.props;
+
+  schema.examples = prop.values.slice(0, 4).map((value) => {
+    const props = `${propName}=${formatExampleValue(value)}`;
+
+    if (hasChildren) {
+      return `<${schema.name} ${props}>${schema.name}</${schema.name}>`;
+    }
+
+    return `<${schema.name} ${props} />`;
+  });
+}
+
+function formatExampleValue(value) {
+  return typeof value === "number" ? `{${value}}` : `"${value}"`;
+}
+
 for (const key of Object.keys(pkg.exports).filter((entry) =>
   entry.startsWith("./components/"),
 )) {
@@ -246,6 +269,7 @@ for (const key of Object.keys(pkg.exports).filter((entry) =>
     delete registry.components[name].baseStyles;
     delete registry.components[name].styling;
     applyVariantMetadata(registry.components[name], readVariantMetadata(dir));
+    applyGeneratedExamples(registry.components[name]);
   }
 }
 
@@ -260,6 +284,7 @@ for (const key of Object.keys(pkg.exports).filter((entry) =>
     delete registry.blocks[name].baseStyles;
     delete registry.blocks[name].styling;
     applyVariantMetadata(registry.blocks[name], readVariantMetadata(dir));
+    applyGeneratedExamples(registry.blocks[name]);
   }
 }
 

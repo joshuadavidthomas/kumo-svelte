@@ -36,8 +36,8 @@ Port Cloudflare's Kumo package from React/Base UI to Svelte 5, using:
 - Registry TypeScript types are available from `kumo-svelte/registry`.
 - Registry metadata is generated from source `*Props` interfaces and
   `variants.ts` files, including variant values, defaults, classes,
-  descriptions, base styles, and explicit `KUMO_*_STYLING` objects where
-  present.
+  descriptions, base styles, simple generated examples, and explicit
+  `KUMO_*_STYLING` objects where present.
 - Catalog validation checks known component names, element/tree shape, props
   object shape, and literal variant prop values. Dynamic `{ path }` values pass
   through for runtime binding.
@@ -64,11 +64,11 @@ They are generated from the Svelte package export list, source `*Props`
 interfaces, and source variant metadata. They validate tree shape and known
 component names. They include prop names, type strings, required flags, variant
 values, variant defaults, variant classes, variant descriptions, base styles,
-and explicit styling metadata where present. Runtime catalog validation uses the
-generated variant values for literal prop checks.
+simple generated examples, and explicit styling metadata where present. Runtime
+catalog validation uses the generated variant values for literal prop checks.
 
 They do not yet include upstream-equivalent natural-language prop descriptions,
-extracted examples, rich component documentation, or full TypeScript-derived
+extracted demo examples, rich component documentation, or full TypeScript-derived
 runtime validation for non-variant prop types.
 
 ## Intentional Differences
@@ -80,5 +80,6 @@ runtime validation for non-variant prop types.
 ## Completion Rule
 
 Do not mark the port complete until the generated metadata/catalog surfaces have
-upstream-equivalent descriptions, examples, and non-variant prop validation, or
-that metadata work is explicitly declared out of scope by the maintainer.
+upstream-equivalent descriptions, extracted demo examples, and non-variant prop
+validation, or that metadata work is explicitly declared out of scope by the
+maintainer.
