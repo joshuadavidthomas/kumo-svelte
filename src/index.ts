@@ -871,3 +871,11 @@ export type {
   LinkProviderProps,
   PortalContainer,
 } from "./utils";
+export type {
+  ComponentRegistry,
+  ComponentSchema,
+  ComponentStyling,
+  ComponentType,
+  PropSchema,
+  SubComponentSchema,
+} from "./registry";

@@ -56,6 +56,7 @@ The current port includes all top-level component groups from upstream Kumo:
 - `Toast` backed by `svelte-sonner`
 - `Tooltip` and `TooltipProvider` backed by Bits UI `Tooltip`
 - `KumoPortalProvider`, `LinkProvider`, `cn()`, and `resolveVariant()`
+- Registry metadata types from `kumo-svelte/registry`
 - Kumo style exports
 
 Kumo styles are Tailwind utility classes plus the Kumo CSS variables and

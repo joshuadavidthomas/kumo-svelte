@@ -281,6 +281,10 @@
       "types": "./src/code/server.ts",
       "default": "./src/code/server.ts"
     },
+    "./registry": {
+      "types": "./src/registry/index.ts",
+      "default": "./src/registry/index.ts"
+    },
     "./package.json": "./package.json"
   },
   "publishConfig": {
