@@ -7,7 +7,120 @@
       "description": "Svelte port of Kumo Autocomplete.",
       "importPath": "kumo-svelte/components/autocomplete",
       "category": "input",
-      "props": {},
+      "props": {
+        "children": {
+          "type": "Snippet",
+          "required": false
+        },
+        "class": {
+          "type": "string",
+          "required": false
+        },
+        "container": {
+          "type": "PortalProps[\"to\"]",
+          "required": false
+        },
+        "sideOffset": {
+          "type": "number",
+          "required": false
+        },
+        "aria-label": {
+          "type": "string",
+          "required": false
+        },
+        "autocomplete": {
+          "type": "HTMLInputAttributes[\"autocomplete\"]",
+          "required": false
+        },
+        "clearOnDeselect": {
+          "type": "boolean",
+          "required": false
+        },
+        "defaultValue": {
+          "type": "string",
+          "required": false
+        },
+        "disabled": {
+          "type": "boolean",
+          "required": false
+        },
+        "id": {
+          "type": "string",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "required": false
+        },
+        "onblur": {
+          "type": "(event: FocusEvent & { currentTarget: HTMLInputElement }) => void",
+          "required": false
+        },
+        "onfocus": {
+          "type": "(event: FocusEvent & { currentTarget: HTMLInputElement }) => void",
+          "required": false
+        },
+        "oninput": {
+          "type": "(event: Event & { currentTarget: HTMLInputElement }) => void",
+          "required": false
+        },
+        "onkeydown": {
+          "type": "(event: KeyboardEvent & { currentTarget: HTMLInputElement }) => void",
+          "required": false
+        },
+        "onValueChange": {
+          "type": "(value: string) => void",
+          "required": false
+        },
+        "placeholder": {
+          "type": "string",
+          "required": false
+        },
+        "required": {
+          "type": "boolean",
+          "required": false
+        },
+        "size": {
+          "type": "KumoAutocompleteSize",
+          "required": false
+        },
+        "label": {
+          "type": "Snippet | string",
+          "required": false
+        },
+        "value": {
+          "type": "string",
+          "required": false
+        },
+        "allowDeselect": {
+          "type": "boolean",
+          "required": false
+        },
+        "description": {
+          "type": "Snippet | string",
+          "required": false
+        },
+        "error": {
+          "type": "string | { message: Snippet | string; match: FieldErrorMatch }",
+          "required": false
+        },
+        "items": {
+          "type": "AutocompleteItemDescriptor[]",
+          "required": false
+        },
+        "labelTooltip": {
+          "type": "Snippet",
+          "required": false
+        },
+        "onOpenChange": {
+          "type": "(open: boolean) => void",
+          "required": false
+        },
+        "open": {
+          "type": "boolean",
+          "required": false
+        }
+      },
       "examples": [],
       "colors": []
     },
@@ -17,7 +130,20 @@
       "description": "Svelte port of Kumo Badge.",
       "importPath": "kumo-svelte/components/badge",
       "category": "display",
-      "props": {},
+      "props": {
+        "variant": {
+          "type": "KumoBadgeVariant",
+          "required": false
+        },
+        "class": {
+          "type": "string",
+          "required": false
+        },
+        "children": {
+          "type": "Snippet",
+          "required": true
+        }
+      },
       "examples": [],
       "colors": []
     },
@@ -27,7 +153,40 @@
       "description": "Svelte port of Kumo Banner.",
       "importPath": "kumo-svelte/components/banner",
       "category": "feedback",
-      "props": {},
+      "props": {
+        "action": {
+          "type": "Snippet",
+          "required": false
+        },
+        "children": {
+          "type": "Snippet",
+          "required": false
+        },
+        "class": {
+          "type": "string",
+          "required": false
+        },
+        "description": {
+          "type": "Snippet | string",
+          "required": false
+        },
+        "icon": {
+          "type": "Snippet",
+          "required": false
+        },
+        "text": {
+          "type": "string",
+          "required": false
+        },
+        "title": {
+          "type": "string",
+          "required": false
+        },
+        "variant": {
+          "type": "KumoBannerVariant",
+          "required": false
+        }
+      },
       "examples": [],
       "colors": []
     },
@@ -37,7 +196,48 @@
       "description": "Svelte port of Kumo Breadcrumbs.",
       "importPath": "kumo-svelte/components/breadcrumbs",
       "category": "navigation",
-      "props": {},
+      "props": {
+        "class": {
+          "type": "string",
+          "required": false
+        },
+        "copiedLabel": {
+          "type": "string",
+          "required": false
+        },
+        "label": {
+          "type": "string",
+          "required": false
+        },
+        "onCopy": {
+          "type": "() => void",
+          "required": false
+        },
+        "text": {
+          "type": "string",
+          "required": true
+        },
+        "children": {
+          "type": "Snippet",
+          "required": false
+        },
+        "icon": {
+          "type": "Snippet",
+          "required": false
+        },
+        "loading": {
+          "type": "boolean",
+          "required": false
+        },
+        "mobileChildren": {
+          "type": "Snippet",
+          "required": false
+        },
+        "size": {
+          "type": "KumoBreadcrumbsSize",
+          "required": false
+        }
+      },
       "examples": [],
       "colors": []
     },
@@ -47,7 +247,48 @@
       "description": "Svelte port of Kumo Button.",
       "importPath": "kumo-svelte/components/button",
       "category": "action",
-      "props": {},
+      "props": {
+        "shape": {
+          "type": "KumoButtonShape",
+          "required": false
+        },
+        "size": {
+          "type": "KumoButtonSize",
+          "required": false
+        },
+        "variant": {
+          "type": "KumoButtonVariant",
+          "required": false
+        },
+        "class": {
+          "type": "string",
+          "required": false
+        },
+        "children": {
+          "type": "Snippet",
+          "required": false
+        },
+        "icon": {
+          "type": "Snippet",
+          "required": false
+        },
+        "loading": {
+          "type": "boolean",
+          "required": false
+        },
+        "title": {
+          "type": "string",
+          "required": false
+        },
+        "external": {
+          "type": "boolean",
+          "required": false
+        },
+        "linksExternal": {
+          "type": "boolean",
+          "required": false
+        }
+      },
       "examples": [],
       "colors": []
     },
@@ -57,7 +298,96 @@
       "description": "Svelte port of Kumo Checkbox.",
       "importPath": "kumo-svelte/components/checkbox",
       "category": "input",
-      "props": {},
+      "props": {
+        "legend": {
+          "type": "string",
+          "required": false
+        },
+        "children": {
+          "type": "Snippet",
+          "required": false
+        },
+        "error": {
+          "type": "string",
+          "required": false
+        },
+        "description": {
+          "type": "Snippet | string",
+          "required": false
+        },
+        "defaultValue": {
+          "type": "string[]",
+          "required": false
+        },
+        "value": {
+          "type": "string",
+          "required": false
+        },
+        "onValueChange": {
+          "type": "(value: string[]) => void",
+          "required": false
+        },
+        "allValues": {
+          "type": "string[]",
+          "required": false
+        },
+        "disabled": {
+          "type": "boolean",
+          "required": false
+        },
+        "controlFirst": {
+          "type": "boolean",
+          "required": false
+        },
+        "class": {
+          "type": "string",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "required": false
+        },
+        "required": {
+          "type": "boolean",
+          "required": false
+        },
+        "id": {
+          "type": "string",
+          "required": false
+        },
+        "variant": {
+          "type": "KumoCheckboxVariant",
+          "required": false
+        },
+        "label": {
+          "type": "Snippet | string",
+          "required": false
+        },
+        "checked": {
+          "type": "boolean",
+          "required": false
+        },
+        "indeterminate": {
+          "type": "boolean",
+          "required": false
+        },
+        "onCheckedChange": {
+          "type": "(checked: boolean) => void",
+          "required": false
+        },
+        "aria-label": {
+          "type": "string",
+          "required": false
+        },
+        "aria-labelledby": {
+          "type": "string",
+          "required": false
+        },
+        "labelTooltip": {
+          "type": "Snippet",
+          "required": false
+        }
+      },
       "examples": [],
       "colors": []
     },
@@ -67,7 +397,36 @@
       "description": "Svelte port of Kumo ClipboardText.",
       "importPath": "kumo-svelte/components/clipboard-text",
       "category": "action",
-      "props": {},
+      "props": {
+        "class": {
+          "type": "string",
+          "required": false
+        },
+        "labels": {
+          "type": "ClipboardTextLabels",
+          "required": false
+        },
+        "onCopy": {
+          "type": "() => void",
+          "required": false
+        },
+        "size": {
+          "type": "KumoClipboardTextSize",
+          "required": false
+        },
+        "text": {
+          "type": "string",
+          "required": true
+        },
+        "textToCopy": {
+          "type": "string",
+          "required": false
+        },
+        "tooltip": {
+          "type": "ClipboardTextTooltipConfig",
+          "required": false
+        }
+      },
       "examples": [],
       "colors": []
     },
@@ -77,7 +436,20 @@
       "description": "Svelte port of Kumo CloudflareLogo.",
       "importPath": "kumo-svelte/components/cloudflare-logo",
       "category": "brand",
-      "props": {},
+      "props": {
+        "class": {
+          "type": "string",
+          "required": false
+        },
+        "color": {
+          "type": "CloudflareLogoColor",
+          "required": false
+        },
+        "variant": {
+          "type": "CloudflareLogoVariant",
+          "required": false
+        }
+      },
       "examples": [],
       "colors": []
     },
@@ -87,7 +459,44 @@
       "description": "Svelte port of Kumo Collapsible.",
       "importPath": "kumo-svelte/components/collapsible",
       "category": "disclosure",
-      "props": {},
+      "props": {
+        "children": {
+          "type": "Snippet",
+          "required": false
+        },
+        "class": {
+          "type": "string",
+          "required": false
+        },
+        "forceMount": {
+          "type": "boolean",
+          "required": false
+        },
+        "hiddenUntilFound": {
+          "type": "boolean",
+          "required": false
+        },
+        "id": {
+          "type": "string",
+          "required": false
+        },
+        "disabled": {
+          "type": "boolean",
+          "required": false
+        },
+        "open": {
+          "type": "boolean",
+          "required": false
+        },
+        "onOpenChange": {
+          "type": "(open: boolean) => void",
+          "required": false
+        },
+        "onOpenChangeComplete": {
+          "type": "(open: boolean) => void",
+          "required": false
+        }
+      },
       "examples": [],
       "colors": []
     },
@@ -97,7 +506,124 @@
       "description": "Svelte port of Kumo Combobox.",
       "importPath": "kumo-svelte/components/combobox",
       "category": "input",
-      "props": {},
+      "props": {
+        "children": {
+          "type": "Snippet",
+          "required": false
+        },
+        "class": {
+          "type": "string",
+          "required": false
+        },
+        "container": {
+          "type": "PortalProps[\"to\"]",
+          "required": false
+        },
+        "sideOffset": {
+          "type": "number",
+          "required": false
+        },
+        "aria-label": {
+          "type": "string",
+          "required": false
+        },
+        "autocomplete": {
+          "type": "HTMLInputAttributes[\"autocomplete\"]",
+          "required": false
+        },
+        "clearOnDeselect": {
+          "type": "boolean",
+          "required": false
+        },
+        "defaultValue": {
+          "type": "string | string[]",
+          "required": false
+        },
+        "disabled": {
+          "type": "boolean",
+          "required": false
+        },
+        "id": {
+          "type": "string",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "required": false
+        },
+        "oninput": {
+          "type": "(event: Event & { currentTarget: HTMLInputElement }) => void",
+          "required": false
+        },
+        "onValueChange": {
+          "type": "(value: string | string[]) => void",
+          "required": false
+        },
+        "placeholder": {
+          "type": "string",
+          "required": false
+        },
+        "required": {
+          "type": "boolean",
+          "required": false
+        },
+        "size": {
+          "type": "KumoComboboxSize",
+          "required": false
+        },
+        "label": {
+          "type": "Snippet | string",
+          "required": false
+        },
+        "value": {
+          "type": "string | string[]",
+          "required": false
+        },
+        "clearLabel": {
+          "type": "string",
+          "required": false
+        },
+        "showOptionsLabel": {
+          "type": "string",
+          "required": false
+        },
+        "allowDeselect": {
+          "type": "boolean",
+          "required": false
+        },
+        "description": {
+          "type": "Snippet | string",
+          "required": false
+        },
+        "error": {
+          "type": "string | { message: Snippet | string; match: FieldErrorMatch }",
+          "required": false
+        },
+        "items": {
+          "type": "ComboboxItemDescriptor[]",
+          "required": false
+        },
+        "labelTooltip": {
+          "type": "Snippet",
+          "required": false
+        },
+        "multiple": {
+          "type": "boolean",
+          "required": false
+        },
+        "onOpenChange": {
+          "type": "(open: boolean) => void",
+          "required": false
+        },
+        "open": {
+          "type": "boolean",
+          "required": false
+        },
+        "inputSide": {
+          "type": "KumoComboboxInputSide",
+          "required": false
+        }
+      },
       "examples": [],
       "colors": []
     },
@@ -107,7 +633,140 @@
       "description": "Svelte port of Kumo CommandPalette.",
       "importPath": "kumo-svelte/components/command-palette",
       "category": "navigation",
-      "props": {},
+      "props": {
+        "children": {
+          "type": "Snippet",
+          "required": false
+        },
+        "class": {
+          "type": "string",
+          "required": false
+        },
+        "onOpenChange": {
+          "type": "(open: boolean) => void",
+          "required": false
+        },
+        "open": {
+          "type": "boolean",
+          "required": false
+        },
+        "forceMount": {
+          "type": "boolean",
+          "required": false
+        },
+        "value": {
+          "type": "string",
+          "required": false
+        },
+        "aria-label": {
+          "type": "string",
+          "required": false
+        },
+        "autocomplete": {
+          "type": "HTMLInputAttributes[\"autocomplete\"]",
+          "required": false
+        },
+        "autofocus": {
+          "type": "boolean",
+          "required": false
+        },
+        "leading": {
+          "type": "Snippet",
+          "required": false
+        },
+        "onkeydown": {
+          "type": "(event: KeyboardEvent & { currentTarget: HTMLInputElement }) => void",
+          "required": false
+        },
+        "placeholder": {
+          "type": "string",
+          "required": false
+        },
+        "trailing": {
+          "type": "Snippet",
+          "required": false
+        },
+        "disabled": {
+          "type": "boolean",
+          "required": false
+        },
+        "keywords": {
+          "type": "string[]",
+          "required": false
+        },
+        "onSelect": {
+          "type": "() => void",
+          "required": false
+        },
+        "progress": {
+          "type": "number",
+          "required": false
+        },
+        "breadcrumbHighlights": {
+          "type": "HighlightRange[][]",
+          "required": false
+        },
+        "breadcrumbs": {
+          "type": "string[]",
+          "required": false
+        },
+        "description": {
+          "type": "string",
+          "required": false
+        },
+        "external": {
+          "type": "boolean",
+          "required": false
+        },
+        "icon": {
+          "type": "Snippet",
+          "required": false
+        },
+        "nonInteractive": {
+          "type": "boolean",
+          "required": false
+        },
+        "showArrow": {
+          "type": "boolean",
+          "required": false
+        },
+        "title": {
+          "type": "string",
+          "required": true
+        },
+        "titleHighlights": {
+          "type": "HighlightRange[]",
+          "required": false
+        },
+        "filter": {
+          "type": "(value: string, search: string, keywords?: string[]) => number",
+          "required": false
+        },
+        "label": {
+          "type": "string",
+          "required": false
+        },
+        "loop": {
+          "type": "boolean",
+          "required": false
+        },
+        "onValueChange": {
+          "type": "(value: string) => void",
+          "required": false
+        },
+        "shouldFilter": {
+          "type": "boolean",
+          "required": false
+        },
+        "highlights": {
+          "type": "HighlightRange[]",
+          "required": false
+        },
+        "text": {
+          "type": "string",
+          "required": true
+        }
+      },
       "examples": [],
       "colors": []
     },
@@ -117,7 +776,24 @@
       "description": "Svelte port of Kumo Code.",
       "importPath": "kumo-svelte/components/code",
       "category": "display",
-      "props": {},
+      "props": {
+        "code": {
+          "type": "string",
+          "required": true
+        },
+        "lang": {
+          "type": "KumoCodeLang",
+          "required": false
+        },
+        "class": {
+          "type": "string",
+          "required": false
+        },
+        "values": {
+          "type": "Record<string, { highlight?: boolean; value: string }>",
+          "required": false
+        }
+      },
       "examples": [],
       "colors": []
     },
@@ -127,7 +803,184 @@
       "description": "Svelte port of Kumo Chart.",
       "importPath": "kumo-svelte/components/chart",
       "category": "display",
-      "props": {},
+      "props": {
+        "class": {
+          "type": "string",
+          "required": false
+        },
+        "color": {
+          "type": "string",
+          "required": true
+        },
+        "inactive": {
+          "type": "boolean",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "unit": {
+          "type": "string",
+          "required": false
+        },
+        "value": {
+          "type": "string",
+          "required": true
+        },
+        "className": {
+          "type": "string",
+          "required": false
+        },
+        "defaultNodeColor": {
+          "type": "string",
+          "required": false
+        },
+        "echarts": {
+          "type": "typeof echarts",
+          "required": true
+        },
+        "formatValue": {
+          "type": "(value: number) => string",
+          "required": false
+        },
+        "height": {
+          "type": "number",
+          "required": false
+        },
+        "isDarkMode": {
+          "type": "boolean",
+          "required": false
+        },
+        "left": {
+          "type": "number | string",
+          "required": false
+        },
+        "linkColor": {
+          "type": "\"gradient\" | \"gray\"",
+          "required": false
+        },
+        "linkOpacity": {
+          "type": "number",
+          "required": false
+        },
+        "links": {
+          "type": "SankeyLinkData[]",
+          "required": true
+        },
+        "nodePadding": {
+          "type": "number",
+          "required": false
+        },
+        "nodeWidth": {
+          "type": "number",
+          "required": false
+        },
+        "nodes": {
+          "type": "SankeyNodeData[]",
+          "required": true
+        },
+        "onLinkClick": {
+          "type": "(link: SankeyLinkData) => void",
+          "required": false
+        },
+        "onNodeClick": {
+          "type": "(node: SankeyNodeData) => void",
+          "required": false
+        },
+        "right": {
+          "type": "number | string",
+          "required": false
+        },
+        "showNodeValues": {
+          "type": "boolean",
+          "required": false
+        },
+        "showTooltip": {
+          "type": "boolean",
+          "required": false
+        },
+        "tooltipFormatter": {
+          "type": "(params: SankeyTooltipParams) => string",
+          "required": false
+        },
+        "ariaDescription": {
+          "type": "string",
+          "required": false
+        },
+        "data": {
+          "type": "TimeseriesData[]",
+          "required": true
+        },
+        "gradient": {
+          "type": "boolean",
+          "required": false
+        },
+        "incomplete": {
+          "type": "{ after?: number; before?: number }",
+          "required": false
+        },
+        "loading": {
+          "type": "boolean",
+          "required": false
+        },
+        "onTimeRangeChange": {
+          "type": "(from: number, to: number) => void",
+          "required": false
+        },
+        "optionUpdateBehavior": {
+          "type": "SetOptionOpts",
+          "required": false
+        },
+        "tooltipValueFormat": {
+          "type": "(value: number) => string",
+          "required": false
+        },
+        "type": {
+          "type": "\"bar\" | \"line\"",
+          "required": false
+        },
+        "xAxisName": {
+          "type": "string",
+          "required": false
+        },
+        "xAxisTickCount": {
+          "type": "number",
+          "required": false
+        },
+        "xAxisTickFormat": {
+          "type": "(value: number) => string",
+          "required": false
+        },
+        "yAxisName": {
+          "type": "string",
+          "required": false
+        },
+        "yAxisTickCount": {
+          "type": "number",
+          "required": false
+        },
+        "yAxisTickFormat": {
+          "type": "(value: number) => string",
+          "required": false
+        },
+        "yAxisTickLabelFormat": {
+          "type": "(value: number) => string",
+          "required": false
+        },
+        "onEvents": {
+          "type": "Partial<ChartEvents>",
+          "required": false
+        },
+        "options": {
+          "type": "KumoChartOption",
+          "required": true
+        },
+        "ref": {
+          "type": "echarts.ECharts | null",
+          "required": false
+        }
+      },
       "examples": [],
       "colors": []
     },
@@ -137,7 +990,144 @@
       "description": "Svelte port of Kumo DatePicker.",
       "importPath": "kumo-svelte/components/date-picker",
       "category": "input",
-      "props": {},
+      "props": {
+        "mode": {
+          "type": "DatePickerMode",
+          "required": false
+        },
+        "months": {
+          "type": "Month<DateValue>[]",
+          "required": true
+        },
+        "weekdays": {
+          "type": "string[]",
+          "required": true
+        },
+        "calendarLabel": {
+          "type": "string",
+          "required": false
+        },
+        "children": {
+          "type": "Snippet<[DatePickerSnippetProps]>",
+          "required": false
+        },
+        "class": {
+          "type": "string",
+          "required": false
+        },
+        "disableDaysOutsideMonth": {
+          "type": "boolean",
+          "required": false
+        },
+        "disabled": {
+          "type": "boolean",
+          "required": false
+        },
+        "excludeDisabled": {
+          "type": "boolean",
+          "required": false
+        },
+        "fixedWeeks": {
+          "type": "boolean",
+          "required": false
+        },
+        "initialFocus": {
+          "type": "boolean",
+          "required": false
+        },
+        "isDateDisabled": {
+          "type": "DateMatcher",
+          "required": false
+        },
+        "isDateUnavailable": {
+          "type": "DateMatcher",
+          "required": false
+        },
+        "locale": {
+          "type": "string",
+          "required": false
+        },
+        "maxDays": {
+          "type": "number",
+          "required": false
+        },
+        "maxValue": {
+          "type": "DateValue",
+          "required": false
+        },
+        "minDays": {
+          "type": "number",
+          "required": false
+        },
+        "minValue": {
+          "type": "DateValue",
+          "required": false
+        },
+        "monthFormat": {
+          "type": "Intl.DateTimeFormatOptions[\"month\"] | ((month: number) => string)",
+          "required": false
+        },
+        "numberOfMonths": {
+          "type": "number",
+          "required": false
+        },
+        "onChange": {
+          "type": "(value: DatePickerValue) => void",
+          "required": false
+        },
+        "onEndValueChange": {
+          "type": "(value: DateValue | undefined) => void",
+          "required": false
+        },
+        "onPlaceholderChange": {
+          "type": "(value: DateValue) => void",
+          "required": false
+        },
+        "onStartValueChange": {
+          "type": "(value: DateValue | undefined) => void",
+          "required": false
+        },
+        "onValueChange": {
+          "type": "(value: DatePickerValue) => void",
+          "required": false
+        },
+        "pagedNavigation": {
+          "type": "boolean",
+          "required": false
+        },
+        "placeholder": {
+          "type": "DateValue",
+          "required": false
+        },
+        "preventDeselect": {
+          "type": "boolean",
+          "required": false
+        },
+        "readonly": {
+          "type": "boolean",
+          "required": false
+        },
+        "ref": {
+          "type": "HTMLDivElement | null",
+          "required": false
+        },
+        "value": {
+          "type": "DatePickerValue",
+          "required": false
+        },
+        "weekStartsOn": {
+          "type": "WeekStartsOn",
+          "required": false
+        },
+        "weekdayFormat": {
+          "type": "Intl.DateTimeFormatOptions[\"weekday\"]",
+          "required": false
+        },
+        "yearFormat": {
+          "type": "Intl.DateTimeFormatOptions[\"year\"] | ((year: number) => string)",
+          "required": false
+        }
+      },
       "examples": [],
       "colors": []
     },
@@ -147,7 +1137,44 @@
       "description": "Svelte port of Kumo DateRangePicker.",
       "importPath": "kumo-svelte/components/date-range-picker",
       "category": "input",
-      "props": {},
+      "props": {
+        "class": {
+          "type": "string",
+          "required": false
+        },
+        "className": {
+          "type": "string",
+          "required": false
+        },
+        "onEndDateChange": {
+          "type": "(date: Date | null) => void",
+          "required": false
+        },
+        "onStartDateChange": {
+          "type": "(date: Date | null) => void",
+          "required": false
+        },
+        "onValueChange": {
+          "type": "(value: DateRange) => void",
+          "required": false
+        },
+        "size": {
+          "type": "KumoDateRangePickerSize",
+          "required": false
+        },
+        "timezone": {
+          "type": "string",
+          "required": false
+        },
+        "value": {
+          "type": "DateRange",
+          "required": false
+        },
+        "variant": {
+          "type": "KumoDateRangePickerVariant",
+          "required": false
+        }
+      },
       "examples": [],
       "colors": []
     },
@@ -157,7 +1184,52 @@
       "description": "Svelte port of Kumo Dialog.",
       "importPath": "kumo-svelte/components/dialog",
       "category": "overlay",
-      "props": {},
+      "props": {
+        "children": {
+          "type": "Snippet",
+          "required": false
+        },
+        "class": {
+          "type": "string",
+          "required": false
+        },
+        "disabled": {
+          "type": "boolean",
+          "required": false
+        },
+        "id": {
+          "type": "string",
+          "required": false
+        },
+        "container": {
+          "type": "PortalProps[\"to\"]",
+          "required": false
+        },
+        "size": {
+          "type": "KumoDialogSize",
+          "required": false
+        },
+        "style": {
+          "type": "string",
+          "required": false
+        },
+        "role": {
+          "type": "KumoDialogRole",
+          "required": false
+        },
+        "open": {
+          "type": "boolean",
+          "required": false
+        },
+        "onOpenChange": {
+          "type": "(open: boolean) => void",
+          "required": false
+        },
+        "level": {
+          "type": "1 | 2 | 3 | 4 | 5 | 6",
+          "required": false
+        }
+      },
       "examples": [],
       "colors": []
     },
@@ -167,7 +1239,32 @@
       "description": "Svelte port of Kumo Dropdown.",
       "importPath": "kumo-svelte/components/dropdown",
       "category": "overlay",
-      "props": {},
+      "props": {
+        "children": {
+          "type": "Snippet",
+          "required": false
+        },
+        "dir": {
+          "type": "\"ltr\" | \"rtl\"",
+          "required": false
+        },
+        "onOpenChange": {
+          "type": "(open: boolean) => void",
+          "required": false
+        },
+        "onOpenChangeComplete": {
+          "type": "(open: boolean) => void",
+          "required": false
+        },
+        "open": {
+          "type": "boolean",
+          "required": false
+        },
+        "variant": {
+          "type": "KumoDropdownVariant",
+          "required": false
+        }
+      },
       "examples": [],
       "colors": []
     },
@@ -177,7 +1274,40 @@
       "description": "Svelte port of Kumo Empty.",
       "importPath": "kumo-svelte/components/empty",
       "category": "display",
-      "props": {},
+      "props": {
+        "children": {
+          "type": "Snippet",
+          "required": false
+        },
+        "class": {
+          "type": "string",
+          "required": false
+        },
+        "commandLine": {
+          "type": "string",
+          "required": false
+        },
+        "contents": {
+          "type": "Snippet",
+          "required": false
+        },
+        "description": {
+          "type": "string",
+          "required": false
+        },
+        "icon": {
+          "type": "Snippet",
+          "required": false
+        },
+        "size": {
+          "type": "KumoEmptySize",
+          "required": false
+        },
+        "title": {
+          "type": "string",
+          "required": true
+        }
+      },
       "examples": [],
       "colors": []
     },
@@ -187,7 +1317,48 @@
       "description": "Svelte port of Kumo Field.",
       "importPath": "kumo-svelte/components/field",
       "category": "form",
-      "props": {},
+      "props": {
+        "children": {
+          "type": "Snippet",
+          "required": true
+        },
+        "class": {
+          "type": "string",
+          "required": false
+        },
+        "description": {
+          "type": "Snippet | string",
+          "required": false
+        },
+        "error": {
+          "type": "NormalizedFieldError",
+          "required": false
+        },
+        "for": {
+          "type": "string",
+          "required": false
+        },
+        "hideLabel": {
+          "type": "boolean",
+          "required": false
+        },
+        "label": {
+          "type": "Snippet | string",
+          "required": true
+        },
+        "labelTooltip": {
+          "type": "Snippet",
+          "required": false
+        },
+        "required": {
+          "type": "boolean",
+          "required": false
+        },
+        "controlFirst": {
+          "type": "boolean",
+          "required": false
+        }
+      },
       "examples": [],
       "colors": []
     },
@@ -197,7 +1368,72 @@
       "description": "Svelte port of Kumo Flow.",
       "importPath": "kumo-svelte/components/flow",
       "category": "display",
-      "props": {},
+      "props": {
+        "children": {
+          "type": "Snippet",
+          "required": false
+        },
+        "connectors": {
+          "type": "FlowConnector[]",
+          "required": true
+        },
+        "markerId": {
+          "type": "string",
+          "required": false
+        },
+        "render": {
+          "type": "FlowNodeRenderSnippet",
+          "required": false
+        },
+        "type": {
+          "type": "FlowAnchorType",
+          "required": false
+        },
+        "class": {
+          "type": "string",
+          "required": false
+        },
+        "id": {
+          "type": "string",
+          "required": true
+        },
+        "disabled": {
+          "type": "boolean",
+          "required": true
+        },
+        "align": {
+          "type": "FlowAlign",
+          "required": false
+        },
+        "canvas": {
+          "type": "boolean",
+          "required": false
+        },
+        "onOverflowChange": {
+          "type": "(overflow: { x: boolean; y: boolean }) => void",
+          "required": false
+        },
+        "orientation": {
+          "type": "FlowOrientation",
+          "required": false
+        },
+        "padding": {
+          "type": "{ x?: number; y?: number }",
+          "required": false
+        },
+        "action": {
+          "type": "Action<HTMLElement>",
+          "required": true
+        },
+        "attrs": {
+          "type": "{ \"data-node-id\": string; \"data-node-index\": number; \"data-testid\": string; style: string; }",
+          "required": true
+        },
+        "index": {
+          "type": "number",
+          "required": true
+        }
+      },
       "examples": [],
       "colors": []
     },
@@ -207,7 +1443,28 @@
       "description": "Svelte port of Kumo Grid.",
       "importPath": "kumo-svelte/components/grid",
       "category": "layout",
-      "props": {},
+      "props": {
+        "children": {
+          "type": "Snippet",
+          "required": false
+        },
+        "class": {
+          "type": "string",
+          "required": false
+        },
+        "gap": {
+          "type": "KumoGridGap",
+          "required": false
+        },
+        "mobileDivider": {
+          "type": "boolean",
+          "required": false
+        },
+        "variant": {
+          "type": "KumoGridVariant",
+          "required": false
+        }
+      },
       "examples": [],
       "colors": []
     },
@@ -217,7 +1474,52 @@
       "description": "Svelte port of Kumo Input.",
       "importPath": "kumo-svelte/components/input",
       "category": "input",
-      "props": {},
+      "props": {
+        "description": {
+          "type": "Snippet | string",
+          "required": false
+        },
+        "error": {
+          "type": "string | { message: Snippet | string; match: FieldErrorMatch }",
+          "required": false
+        },
+        "label": {
+          "type": "Snippet | string",
+          "required": false
+        },
+        "labelTooltip": {
+          "type": "Snippet",
+          "required": false
+        },
+        "onValueChange": {
+          "type": "(value: string) => void",
+          "required": false
+        },
+        "size": {
+          "type": "KumoInputSize",
+          "required": false
+        },
+        "value": {
+          "type": "string | number | string[] | undefined",
+          "required": false
+        },
+        "variant": {
+          "type": "KumoInputVariant",
+          "required": false
+        },
+        "passwordManagerIgnore": {
+          "type": "boolean",
+          "required": false
+        },
+        "focusIndicator": {
+          "type": "boolean",
+          "required": false
+        },
+        "parentFocusIndicator": {
+          "type": "boolean",
+          "required": false
+        }
+      },
       "examples": [],
       "colors": []
     },
@@ -227,7 +1529,72 @@
       "description": "Svelte port of Kumo InputGroup.",
       "importPath": "kumo-svelte/components/input-group",
       "category": "input",
-      "props": {},
+      "props": {
+        "align": {
+          "type": "\"start\" | \"end\"",
+          "required": false
+        },
+        "children": {
+          "type": "Snippet",
+          "required": true
+        },
+        "class": {
+          "type": "string",
+          "required": false
+        },
+        "containsButton": {
+          "type": "boolean",
+          "required": false
+        },
+        "tooltip": {
+          "type": "Snippet | string",
+          "required": false
+        },
+        "tooltipSide": {
+          "type": "KumoTooltipSide",
+          "required": false
+        },
+        "onValueChange": {
+          "type": "(value: string) => void",
+          "required": false
+        },
+        "value": {
+          "type": "string | number | string[] | undefined",
+          "required": false
+        },
+        "description": {
+          "type": "Snippet | string",
+          "required": false
+        },
+        "disabled": {
+          "type": "boolean",
+          "required": false
+        },
+        "error": {
+          "type": "string | { message: Snippet | string; match: FieldErrorMatch }",
+          "required": false
+        },
+        "focusMode": {
+          "type": "InputGroupFocusMode",
+          "required": false
+        },
+        "label": {
+          "type": "Snippet | string",
+          "required": false
+        },
+        "labelTooltip": {
+          "type": "Snippet",
+          "required": false
+        },
+        "required": {
+          "type": "boolean",
+          "required": false
+        },
+        "size": {
+          "type": "KumoInputSize",
+          "required": false
+        }
+      },
       "examples": [],
       "colors": []
     },
@@ -237,7 +1604,36 @@
       "description": "Svelte port of Kumo Label.",
       "importPath": "kumo-svelte/components/label",
       "category": "form",
-      "props": {},
+      "props": {
+        "children": {
+          "type": "Snippet",
+          "required": true
+        },
+        "showOptional": {
+          "type": "boolean",
+          "required": false
+        },
+        "tooltip": {
+          "type": "Snippet",
+          "required": false
+        },
+        "class": {
+          "type": "string",
+          "required": false
+        },
+        "for": {
+          "type": "string",
+          "required": false
+        },
+        "id": {
+          "type": "string",
+          "required": false
+        },
+        "asContent": {
+          "type": "boolean",
+          "required": false
+        }
+      },
       "examples": [],
       "colors": []
     },
@@ -247,7 +1643,24 @@
       "description": "Svelte port of Kumo LayerCard.",
       "importPath": "kumo-svelte/components/layer-card",
       "category": "display",
-      "props": {},
+      "props": {
+        "children": {
+          "type": "Snippet",
+          "required": false
+        },
+        "class": {
+          "type": "string",
+          "required": false
+        },
+        "as": {
+          "type": "keyof HTMLElementTagNameMap",
+          "required": false
+        },
+        "layered": {
+          "type": "boolean",
+          "required": false
+        }
+      },
       "examples": [],
       "colors": []
     },
@@ -257,7 +1670,88 @@
       "description": "Svelte port of Kumo Switch.",
       "importPath": "kumo-svelte/components/switch",
       "category": "input",
-      "props": {},
+      "props": {
+        "checked": {
+          "type": "boolean",
+          "required": false
+        },
+        "class": {
+          "type": "string",
+          "required": false
+        },
+        "disabled": {
+          "type": "boolean",
+          "required": false
+        },
+        "id": {
+          "type": "string",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "required": false
+        },
+        "onCheckedChange": {
+          "type": "(checked: boolean) => void",
+          "required": false
+        },
+        "required": {
+          "type": "boolean",
+          "required": false
+        },
+        "size": {
+          "type": "KumoSwitchSize",
+          "required": false
+        },
+        "transitioning": {
+          "type": "boolean",
+          "required": false
+        },
+        "value": {
+          "type": "string",
+          "required": false
+        },
+        "variant": {
+          "type": "KumoSwitchVariant",
+          "required": false
+        },
+        "aria-label": {
+          "type": "string",
+          "required": false
+        },
+        "aria-labelledby": {
+          "type": "string",
+          "required": false
+        },
+        "children": {
+          "type": "Snippet",
+          "required": true
+        },
+        "controlFirst": {
+          "type": "boolean",
+          "required": false
+        },
+        "description": {
+          "type": "Snippet | string",
+          "required": false
+        },
+        "error": {
+          "type": "string",
+          "required": false
+        },
+        "legend": {
+          "type": "string",
+          "required": false
+        },
+        "label": {
+          "type": "Snippet | string",
+          "required": false
+        },
+        "labelTooltip": {
+          "type": "Snippet",
+          "required": false
+        }
+      },
       "examples": [],
       "colors": []
     },
@@ -267,7 +1761,32 @@
       "description": "Svelte port of Kumo TableOfContents.",
       "importPath": "kumo-svelte/components/table-of-contents",
       "category": "navigation",
-      "props": {},
+      "props": {
+        "active": {
+          "type": "boolean",
+          "required": false
+        },
+        "children": {
+          "type": "Snippet",
+          "required": false
+        },
+        "class": {
+          "type": "string",
+          "required": false
+        },
+        "href": {
+          "type": "string",
+          "required": false
+        },
+        "label": {
+          "type": "string",
+          "required": true
+        },
+        "child": {
+          "type": "Snippet<[{ props: ItemProps & { class: string } }]>",
+          "required": false
+        }
+      },
       "examples": [],
       "colors": []
     },
@@ -277,7 +1796,48 @@
       "description": "Svelte port of Kumo Tabs.",
       "importPath": "kumo-svelte/components/tabs",
       "category": "navigation",
-      "props": {},
+      "props": {
+        "activateOnFocus": {
+          "type": "boolean",
+          "required": false
+        },
+        "class": {
+          "type": "string",
+          "required": false
+        },
+        "indicatorClassName": {
+          "type": "string",
+          "required": false
+        },
+        "listClassName": {
+          "type": "string",
+          "required": false
+        },
+        "onValueChange": {
+          "type": "(value: string) => void",
+          "required": false
+        },
+        "selectedValue": {
+          "type": "string",
+          "required": false
+        },
+        "size": {
+          "type": "KumoTabsSize",
+          "required": false
+        },
+        "tabs": {
+          "type": "TabsItem[]",
+          "required": false
+        },
+        "value": {
+          "type": "string",
+          "required": false
+        },
+        "variant": {
+          "type": "KumoTabsVariant",
+          "required": false
+        }
+      },
       "examples": [],
       "colors": []
     },
@@ -287,7 +1847,24 @@
       "description": "Svelte port of Kumo Link.",
       "importPath": "kumo-svelte/components/link",
       "category": "navigation",
-      "props": {},
+      "props": {
+        "class": {
+          "type": "string",
+          "required": false
+        },
+        "variant": {
+          "type": "KumoLinkVariant",
+          "required": false
+        },
+        "children": {
+          "type": "Snippet",
+          "required": true
+        },
+        "to": {
+          "type": "string",
+          "required": false
+        }
+      },
       "examples": [],
       "colors": []
     },
@@ -297,7 +1874,48 @@
       "description": "Svelte port of Kumo Loader.",
       "importPath": "kumo-svelte/components/loader",
       "category": "feedback",
-      "props": {},
+      "props": {
+        "aria-label": {
+          "type": "string",
+          "required": false
+        },
+        "size": {
+          "type": "KumoLoaderSize | number",
+          "required": false
+        },
+        "blockHeight": {
+          "type": "string | number",
+          "required": false
+        },
+        "class": {
+          "type": "string",
+          "required": false
+        },
+        "maxDelay": {
+          "type": "number",
+          "required": false
+        },
+        "maxDuration": {
+          "type": "number",
+          "required": false
+        },
+        "maxWidth": {
+          "type": "number",
+          "required": false
+        },
+        "minDelay": {
+          "type": "number",
+          "required": false
+        },
+        "minDuration": {
+          "type": "number",
+          "required": false
+        },
+        "minWidth": {
+          "type": "number",
+          "required": false
+        }
+      },
       "examples": [],
       "colors": []
     },
@@ -307,7 +1925,24 @@
       "description": "Svelte port of Kumo Menubar.",
       "importPath": "kumo-svelte/components/menubar",
       "category": "navigation",
-      "props": {},
+      "props": {
+        "class": {
+          "type": "string",
+          "required": false
+        },
+        "isActive": {
+          "type": "number | boolean | string | undefined",
+          "required": true
+        },
+        "optionIds": {
+          "type": "boolean",
+          "required": false
+        },
+        "options": {
+          "type": "MenuBarOption[]",
+          "required": true
+        }
+      },
       "examples": [],
       "colors": []
     },
@@ -317,7 +1952,48 @@
       "description": "Svelte port of Kumo Meter.",
       "importPath": "kumo-svelte/components/meter",
       "category": "display",
-      "props": {},
+      "props": {
+        "value": {
+          "type": "number",
+          "required": false
+        },
+        "min": {
+          "type": "number",
+          "required": false
+        },
+        "max": {
+          "type": "number",
+          "required": false
+        },
+        "customValue": {
+          "type": "string",
+          "required": false
+        },
+        "label": {
+          "type": "string",
+          "required": true
+        },
+        "showValue": {
+          "type": "boolean",
+          "required": false
+        },
+        "class": {
+          "type": "string",
+          "required": false
+        },
+        "trackClass": {
+          "type": "string",
+          "required": false
+        },
+        "indicatorClass": {
+          "type": "string",
+          "required": false
+        },
+        "id": {
+          "type": "string",
+          "required": false
+        }
+      },
       "examples": [],
       "colors": []
     },
@@ -327,7 +2003,68 @@
       "description": "Svelte port of Kumo Pagination.",
       "importPath": "kumo-svelte/components/pagination",
       "category": "navigation",
-      "props": {},
+      "props": {
+        "class": {
+          "type": "string",
+          "required": false
+        },
+        "controls": {
+          "type": "KumoPaginationControls",
+          "required": false
+        },
+        "pageSelector": {
+          "type": "\"input\" | \"dropdown\"",
+          "required": false
+        },
+        "text": {
+          "type": "Snippet<[props: PaginationInfoSnippetProps]>",
+          "required": false
+        },
+        "label": {
+          "type": "Snippet | string",
+          "required": false
+        },
+        "onChange": {
+          "type": "(size: number) => void",
+          "required": true
+        },
+        "options": {
+          "type": "number[]",
+          "required": false
+        },
+        "value": {
+          "type": "number",
+          "required": true
+        },
+        "page": {
+          "type": "number",
+          "required": false
+        },
+        "pageShowingRange": {
+          "type": "string",
+          "required": true
+        },
+        "perPage": {
+          "type": "number",
+          "required": false
+        },
+        "totalCount": {
+          "type": "number",
+          "required": false
+        },
+        "children": {
+          "type": "Snippet",
+          "required": false
+        },
+        "labels": {
+          "type": "PaginationLabels",
+          "required": false
+        },
+        "setPage": {
+          "type": "(page: number) => void",
+          "required": false
+        }
+      },
       "examples": [],
       "colors": []
     },
@@ -337,7 +2074,28 @@
       "description": "Svelte port of Kumo Popover.",
       "importPath": "kumo-svelte/components/popover",
       "category": "overlay",
-      "props": {},
+      "props": {
+        "children": {
+          "type": "Snippet",
+          "required": false
+        },
+        "open": {
+          "type": "boolean",
+          "required": false
+        },
+        "onOpenChange": {
+          "type": "(open: boolean) => void",
+          "required": false
+        },
+        "onOpenChangeComplete": {
+          "type": "(open: boolean) => void",
+          "required": false
+        },
+        "side": {
+          "type": "KumoPopoverSide",
+          "required": false
+        }
+      },
       "examples": [],
       "colors": []
     },
@@ -347,7 +2105,76 @@
       "description": "Svelte port of Kumo Radio.",
       "importPath": "kumo-svelte/components/radio",
       "category": "input",
-      "props": {},
+      "props": {
+        "appearance": {
+          "type": "KumoRadioAppearance",
+          "required": false
+        },
+        "children": {
+          "type": "Snippet",
+          "required": true
+        },
+        "class": {
+          "type": "string",
+          "required": false
+        },
+        "controlPosition": {
+          "type": "RadioControlPosition",
+          "required": false
+        },
+        "defaultValue": {
+          "type": "string",
+          "required": false
+        },
+        "description": {
+          "type": "Snippet | string",
+          "required": false
+        },
+        "disabled": {
+          "type": "boolean",
+          "required": false
+        },
+        "error": {
+          "type": "string",
+          "required": false
+        },
+        "legend": {
+          "type": "string",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "required": false
+        },
+        "onValueChange": {
+          "type": "(value: string) => void",
+          "required": false
+        },
+        "orientation": {
+          "type": "\"vertical\" | \"horizontal\"",
+          "required": false
+        },
+        "required": {
+          "type": "boolean",
+          "required": false
+        },
+        "value": {
+          "type": "string",
+          "required": true
+        },
+        "id": {
+          "type": "string",
+          "required": false
+        },
+        "label": {
+          "type": "Snippet | string",
+          "required": true
+        },
+        "variant": {
+          "type": "KumoRadioVariant",
+          "required": false
+        }
+      },
       "examples": [],
       "colors": []
     },
@@ -357,7 +2184,96 @@
       "description": "Svelte port of Kumo Select.",
       "importPath": "kumo-svelte/components/select",
       "category": "input",
-      "props": {},
+      "props": {
+        "children": {
+          "type": "Snippet",
+          "required": false
+        },
+        "class": {
+          "type": "string",
+          "required": false
+        },
+        "disabled": {
+          "type": "boolean",
+          "required": false
+        },
+        "label": {
+          "type": "Snippet | string",
+          "required": false
+        },
+        "value": {
+          "type": "string | string[]",
+          "required": false
+        },
+        "aria-label": {
+          "type": "string",
+          "required": false
+        },
+        "aria-labelledby": {
+          "type": "string",
+          "required": false
+        },
+        "allowDeselect": {
+          "type": "boolean",
+          "required": false
+        },
+        "container": {
+          "type": "PortalProps[\"to\"]",
+          "required": false
+        },
+        "defaultValue": {
+          "type": "string | string[]",
+          "required": false
+        },
+        "description": {
+          "type": "Snippet | string",
+          "required": false
+        },
+        "error": {
+          "type": "string | { message: Snippet | string; match: FieldErrorMatch }",
+          "required": false
+        },
+        "hideLabel": {
+          "type": "boolean",
+          "required": false
+        },
+        "items": {
+          "type": "SelectItems",
+          "required": false
+        },
+        "labelTooltip": {
+          "type": "Snippet",
+          "required": false
+        },
+        "loading": {
+          "type": "boolean",
+          "required": false
+        },
+        "multiple": {
+          "type": "boolean",
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "required": false
+        },
+        "onValueChange": {
+          "type": "(value: string | string[]) => void",
+          "required": false
+        },
+        "placeholder": {
+          "type": "string",
+          "required": false
+        },
+        "required": {
+          "type": "boolean",
+          "required": false
+        },
+        "size": {
+          "type": "KumoSelectSize",
+          "required": false
+        }
+      },
       "examples": [],
       "colors": []
     },
@@ -367,7 +2283,60 @@
       "description": "Svelte port of Kumo SensitiveInput.",
       "importPath": "kumo-svelte/components/sensitive-input",
       "category": "input",
-      "props": {},
+      "props": {
+        "class": {
+          "type": "string",
+          "required": false
+        },
+        "defaultValue": {
+          "type": "string",
+          "required": false
+        },
+        "description": {
+          "type": "Snippet | string",
+          "required": false
+        },
+        "error": {
+          "type": "string | { message: Snippet | string; match: FieldErrorMatch }",
+          "required": false
+        },
+        "label": {
+          "type": "Snippet | string",
+          "required": false
+        },
+        "labelTooltip": {
+          "type": "Snippet",
+          "required": false
+        },
+        "onCopy": {
+          "type": "() => void",
+          "required": false
+        },
+        "onValueChange": {
+          "type": "(value: string) => void",
+          "required": false
+        },
+        "readOnly": {
+          "type": "boolean",
+          "required": false
+        },
+        "readonly": {
+          "type": "boolean | null",
+          "required": false
+        },
+        "size": {
+          "type": "KumoSensitiveInputSize",
+          "required": false
+        },
+        "value": {
+          "type": "string",
+          "required": false
+        },
+        "variant": {
+          "type": "KumoSensitiveInputVariant",
+          "required": false
+        }
+      },
       "examples": [],
       "colors": []
     },
@@ -377,7 +2346,108 @@
       "description": "Svelte port of Kumo Sidebar.",
       "importPath": "kumo-svelte/components/sidebar",
       "category": "navigation",
-      "props": {},
+      "props": {
+        "class": {
+          "type": "string",
+          "required": false
+        },
+        "children": {
+          "type": "Snippet",
+          "required": true
+        },
+        "collapsible": {
+          "type": "SidebarCollapsible",
+          "required": false
+        },
+        "defaultOpen": {
+          "type": "boolean",
+          "required": false
+        },
+        "onOpenChange": {
+          "type": "(open: boolean) => void",
+          "required": false
+        },
+        "open": {
+          "type": "boolean",
+          "required": false
+        },
+        "placeholder": {
+          "type": "string",
+          "required": false
+        },
+        "shortcut": {
+          "type": "string",
+          "required": false
+        },
+        "active": {
+          "type": "boolean",
+          "required": false
+        },
+        "href": {
+          "type": "string",
+          "required": false
+        },
+        "icon": {
+          "type": "Snippet",
+          "required": false
+        },
+        "linkProps": {
+          "type": "Omit<HTMLAnchorAttributes, \"children\" | \"class\" | \"href\">",
+          "required": false
+        },
+        "size": {
+          "type": "SidebarMenuButtonSize",
+          "required": false
+        },
+        "tooltip": {
+          "type": "string",
+          "required": false
+        },
+        "defaultWidth": {
+          "type": "number",
+          "required": false
+        },
+        "maxWidth": {
+          "type": "number",
+          "required": false
+        },
+        "minWidth": {
+          "type": "number",
+          "required": false
+        },
+        "onWidthChange": {
+          "type": "(width: number) => void",
+          "required": false
+        },
+        "resizable": {
+          "type": "boolean",
+          "required": false
+        },
+        "side": {
+          "type": "SidebarSide",
+          "required": false
+        },
+        "style": {
+          "type": "string",
+          "required": false
+        },
+        "variant": {
+          "type": "SidebarVariant",
+          "required": false
+        },
+        "width": {
+          "type": "number",
+          "required": false
+        },
+        "section": {
+          "type": "\"content\" | \"footer\" | \"header\"",
+          "required": true
+        },
+        "ref": {
+          "type": "HTMLElement | null",
+          "required": false
+        }
+      },
       "examples": [],
       "colors": []
     },
@@ -387,7 +2457,24 @@
       "description": "Svelte port of Kumo Surface.",
       "importPath": "kumo-svelte/components/surface",
       "category": "layout",
-      "props": {},
+      "props": {
+        "as": {
+          "type": "keyof HTMLElementTagNameMap",
+          "required": false
+        },
+        "children": {
+          "type": "Snippet",
+          "required": false
+        },
+        "class": {
+          "type": "string",
+          "required": false
+        },
+        "color": {
+          "type": "KumoSurfaceColor",
+          "required": false
+        }
+      },
       "examples": [],
       "colors": []
     },
@@ -397,7 +2484,52 @@
       "description": "Svelte port of Kumo Table.",
       "importPath": "kumo-svelte/components/table",
       "category": "data",
-      "props": {},
+      "props": {
+        "children": {
+          "type": "Snippet",
+          "required": false
+        },
+        "class": {
+          "type": "string",
+          "required": false
+        },
+        "sticky": {
+          "type": "boolean",
+          "required": false
+        },
+        "checked": {
+          "type": "boolean",
+          "required": false
+        },
+        "disabled": {
+          "type": "boolean",
+          "required": false
+        },
+        "indeterminate": {
+          "type": "boolean",
+          "required": false
+        },
+        "label": {
+          "type": "string",
+          "required": false
+        },
+        "onCheckedChange": {
+          "type": "(checked: boolean, eventDetails?: CheckboxChangeEventDetails) => void",
+          "required": false
+        },
+        "onValueChange": {
+          "type": "(checked: boolean) => void",
+          "required": false
+        },
+        "variant": {
+          "type": "KumoTableRowVariant",
+          "required": false
+        },
+        "layout": {
+          "type": "KumoTableLayout",
+          "required": false
+        }
+      },
       "examples": [],
       "colors": []
     },
@@ -407,7 +2539,40 @@
       "description": "Svelte port of Kumo Text.",
       "importPath": "kumo-svelte/components/text",
       "category": "typography",
-      "props": {},
+      "props": {
+        "variant": {
+          "type": "KumoTextVariant",
+          "required": false
+        },
+        "size": {
+          "type": "KumoTextSize",
+          "required": false
+        },
+        "bold": {
+          "type": "boolean",
+          "required": false
+        },
+        "truncate": {
+          "type": "boolean",
+          "required": false
+        },
+        "as": {
+          "type": "TextElement",
+          "required": false
+        },
+        "DANGEROUS_className": {
+          "type": "string",
+          "required": false
+        },
+        "DANGEROUS_style": {
+          "type": "string",
+          "required": false
+        },
+        "children": {
+          "type": "Snippet",
+          "required": false
+        }
+      },
       "examples": [],
       "colors": []
     },
@@ -417,7 +2582,16 @@
       "description": "Svelte port of Kumo Toast.",
       "importPath": "kumo-svelte/components/toast",
       "category": "feedback",
-      "props": {},
+      "props": {
+        "children": {
+          "type": "Snippet",
+          "required": false
+        },
+        "variant": {
+          "type": "KumoToastVariant",
+          "required": false
+        }
+      },
       "examples": [],
       "colors": []
     },
@@ -427,7 +2601,56 @@
       "description": "Svelte port of Kumo Tooltip.",
       "importPath": "kumo-svelte/components/tooltip",
       "category": "overlay",
-      "props": {},
+      "props": {
+        "children": {
+          "type": "Snippet",
+          "required": true
+        },
+        "delayDuration": {
+          "type": "number",
+          "required": false
+        },
+        "skipDelayDuration": {
+          "type": "number",
+          "required": false
+        },
+        "disableHoverableContent": {
+          "type": "boolean",
+          "required": false
+        },
+        "disabled": {
+          "type": "boolean",
+          "required": false
+        },
+        "content": {
+          "type": "Snippet | string",
+          "required": true
+        },
+        "side": {
+          "type": "KumoTooltipSide",
+          "required": false
+        },
+        "align": {
+          "type": "KumoTooltipAlign",
+          "required": false
+        },
+        "class": {
+          "type": "string",
+          "required": false
+        },
+        "container": {
+          "type": "PortalProps[\"to\"]",
+          "required": false
+        },
+        "delay": {
+          "type": "number",
+          "required": false
+        },
+        "closeDelay": {
+          "type": "number",
+          "required": false
+        }
+      },
       "examples": [],
       "colors": []
     }
@@ -439,7 +2662,56 @@
       "description": "Svelte port of Kumo DeleteResource block.",
       "importPath": "kumo-svelte/blocks/delete-resource",
       "category": "block",
-      "props": {},
+      "props": {
+        "caseSensitive": {
+          "type": "boolean",
+          "required": false
+        },
+        "class": {
+          "type": "string",
+          "required": false
+        },
+        "className": {
+          "type": "string",
+          "required": false
+        },
+        "deleteButtonText": {
+          "type": "string",
+          "required": false
+        },
+        "errorMessage": {
+          "type": "string",
+          "required": false
+        },
+        "isDeleting": {
+          "type": "boolean",
+          "required": false
+        },
+        "onDelete": {
+          "type": "() => void | Promise<void>",
+          "required": true
+        },
+        "onOpenChange": {
+          "type": "(open: boolean) => void",
+          "required": false
+        },
+        "open": {
+          "type": "boolean",
+          "required": false
+        },
+        "resourceName": {
+          "type": "string",
+          "required": true
+        },
+        "resourceType": {
+          "type": "string",
+          "required": true
+        },
+        "size": {
+          "type": "KumoDeleteResourceSize",
+          "required": false
+        }
+      },
       "examples": [],
       "colors": [],
       "files": [],

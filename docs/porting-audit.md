@@ -53,9 +53,11 @@ The generated metadata surfaces are currently basic:
 - `./ai/schemas`
 - `./catalog`
 
-They are generated from the Svelte package export list and validate tree shape
-and known component names. They do not yet include upstream-equivalent prop-level
-schemas, extracted examples, style metadata, or rich component documentation.
+They are generated from the Svelte package export list and source `*Props`
+interfaces. They validate tree shape and known component names. They include
+basic prop names, type strings, and required flags, but do not yet include
+upstream-equivalent prop descriptions, extracted examples, style metadata, or
+rich component documentation.
 
 ## Intentional Differences
 
@@ -66,5 +68,5 @@ schemas, extracted examples, style metadata, or rich component documentation.
 ## Completion Rule
 
 Do not mark the port complete until the generated metadata/catalog surfaces have
-upstream-equivalent prop-level schemas and registry metadata, or that metadata
-work is explicitly declared out of scope by the maintainer.
+upstream-equivalent descriptions, examples, style metadata, and prop validation,
+or that metadata work is explicitly declared out of scope by the maintainer.

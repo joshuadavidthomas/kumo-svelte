@@ -313,6 +313,7 @@
     "check": "pnpm format:check && pnpm lint && pnpm typecheck",
     "format": "oxfmt --write package.json pnpm-workspace.yaml tsconfig.json svelte.config.js README.md src",
     "format:check": "oxfmt --check package.json pnpm-workspace.yaml tsconfig.json svelte.config.js README.md src",
+    "generate:registry": "node scripts/generate-basic-registry.mjs",
     "lint": "oxlint src package.json svelte.config.js",
     "typecheck": "svelte-check --workspace ./src --no-tsconfig && tsc --noEmit"
   },
