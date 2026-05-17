@@ -165,6 +165,43 @@ export {
   type KumoCollapsibleVariantsProps,
 } from "./components/collapsible";
 
+export { default as Combobox } from "./components/combobox/combobox.svelte";
+export { default as ComboboxRoot } from "./components/combobox/combobox.svelte";
+export { default as ComboboxContent } from "./components/combobox/combobox-content.svelte";
+export { default as ComboboxEmpty } from "./components/combobox/combobox-empty.svelte";
+export { default as ComboboxGroup } from "./components/combobox/combobox-group.svelte";
+export { default as ComboboxGroupLabel } from "./components/combobox/combobox-group-label.svelte";
+export { default as ComboboxInput } from "./components/combobox/combobox-input.svelte";
+export { default as ComboboxItem } from "./components/combobox/combobox-item.svelte";
+export { default as ComboboxList } from "./components/combobox/combobox-list.svelte";
+export { default as ComboboxSeparator } from "./components/combobox/combobox-separator.svelte";
+export { default as ComboboxTrigger } from "./components/combobox/combobox-trigger.svelte";
+export { default as ComboboxTriggerInput } from "./components/combobox/combobox-trigger-input.svelte";
+export { default as ComboboxTriggerValue } from "./components/combobox/combobox-trigger.svelte";
+export {
+  comboboxVariants,
+  KUMO_COMBOBOX_DEFAULT_VARIANTS,
+  KUMO_COMBOBOX_VARIANTS,
+  type ComboboxContentProps,
+  type ComboboxEmptyProps,
+  type ComboboxGroupLabelProps,
+  type ComboboxGroupProps,
+  type ComboboxInputProps,
+  type ComboboxInputSide,
+  type ComboboxItemProps,
+  type ComboboxListProps,
+  type ComboboxProps,
+  type ComboboxRootProps,
+  type ComboboxSeparatorProps,
+  type ComboboxSize,
+  type ComboboxTriggerInputProps,
+  type ComboboxTriggerProps,
+  type ComboboxTriggerValueProps,
+  type KumoComboboxInputSide,
+  type KumoComboboxSize,
+  type KumoComboboxVariantsProps,
+} from "./components/combobox";
+
 export { default as Code } from "./components/code/code.svelte";
 export { default as CodeBlock } from "./components/code/code-block.svelte";
 export {

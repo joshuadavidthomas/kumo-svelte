@@ -21,6 +21,7 @@ The first porting slice includes:
 - `CloudflareLogo` and `PoweredByCloudflare`
 - `Code` and `CodeBlock`
 - `Collapsible` root/trigger/panel components backed by Bits UI `Collapsible`
+- `Combobox` components backed by Bits UI `Combobox`
 - `Dialog`, `DialogRoot`, `DialogTrigger`, `DialogTitle`, `DialogDescription`, and `DialogClose` backed by Bits UI `Dialog` / `AlertDialog`
 - `DropdownMenu` compound components backed by Bits UI `DropdownMenu`
 - `Empty`

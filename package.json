@@ -83,6 +83,11 @@
       "types": "./src/components/collapsible/index.ts",
       "default": "./src/components/collapsible/index.ts"
     },
+    "./components/combobox": {
+      "svelte": "./src/components/combobox/index.ts",
+      "types": "./src/components/combobox/index.ts",
+      "default": "./src/components/combobox/index.ts"
+    },
     "./components/code": {
       "svelte": "./src/components/code/index.ts",
       "types": "./src/components/code/index.ts",

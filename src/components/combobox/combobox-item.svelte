@@ -1,0 +1,46 @@
+<script lang="ts">
+  import type { Snippet } from "svelte";
+  import CheckIcon from "phosphor-svelte/lib/CheckIcon.svelte";
+  import { Combobox as ComboboxPrimitive } from "bits-ui";
+  import { cn } from "../../utils/cn";
+
+  export interface ComboboxItemProps {
+    children?: Snippet;
+    class?: string;
+    disabled?: boolean;
+    label?: string;
+    value: string;
+  }
+
+  let {
+    children: childrenProp,
+    class: className,
+    disabled = false,
+    label,
+    value,
+  }: ComboboxItemProps = $props();
+</script>
+
+<ComboboxPrimitive.Item
+  {value}
+  label={label ?? value}
+  {disabled}
+  class={cn(
+    "group mx-1.5 grid cursor-pointer grid-cols-[1fr_16px] gap-2 rounded px-2 py-1.5 text-base outline-none data-[highlighted]:bg-kumo-tint",
+    "data-[disabled]:cursor-not-allowed data-[disabled]:text-kumo-subtle data-[disabled]:opacity-60 data-[disabled]:data-[highlighted]:bg-transparent",
+    className,
+  )}
+>
+  {#snippet children({ selected })}
+    <div class="col-start-1 min-w-0 truncate">
+      {#if childrenProp}
+        {@render childrenProp()}
+      {:else}
+        {label ?? value}
+      {/if}
+    </div>
+    <span class={cn("col-start-2 flex items-center", !selected && "invisible")}>
+      <CheckIcon aria-hidden="true" size={16} />
+    </span>
+  {/snippet}
+</ComboboxPrimitive.Item>
