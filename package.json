@@ -88,6 +88,11 @@
       "types": "./src/components/combobox/index.ts",
       "default": "./src/components/combobox/index.ts"
     },
+    "./components/command-palette": {
+      "svelte": "./src/components/command-palette/index.ts",
+      "types": "./src/components/command-palette/index.ts",
+      "default": "./src/components/command-palette/index.ts"
+    },
     "./components/code": {
       "svelte": "./src/components/code/index.ts",
       "types": "./src/components/code/index.ts",

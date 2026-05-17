@@ -202,6 +202,40 @@ export {
   type KumoComboboxVariantsProps,
 } from "./components/combobox";
 
+export { default as CommandPalette } from "./components/command-palette/command-palette.svelte";
+export { default as CommandPaletteRoot } from "./components/command-palette/command-palette.svelte";
+export { default as CommandPaletteDialog } from "./components/command-palette/command-palette-dialog.svelte";
+export { default as CommandPaletteEmpty } from "./components/command-palette/command-palette-empty.svelte";
+export { default as CommandPaletteFooter } from "./components/command-palette/command-palette-footer.svelte";
+export { default as CommandPaletteGroup } from "./components/command-palette/command-palette-group.svelte";
+export { default as CommandPaletteGroupLabel } from "./components/command-palette/command-palette-group-label.svelte";
+export { default as CommandPaletteInput } from "./components/command-palette/command-palette-input.svelte";
+export { default as CommandPaletteItem } from "./components/command-palette/command-palette-item.svelte";
+export { default as CommandPaletteList } from "./components/command-palette/command-palette-list.svelte";
+export { default as CommandPaletteLoading } from "./components/command-palette/command-palette-loading.svelte";
+export { default as CommandPaletteResultItem } from "./components/command-palette/command-palette-result-item.svelte";
+export { default as CommandPaletteSeparator } from "./components/command-palette/command-palette-separator.svelte";
+export { default as HighlightedText } from "./components/command-palette/highlighted-text.svelte";
+export {
+  KUMO_COMMAND_PALETTE_DEFAULT_VARIANTS,
+  KUMO_COMMAND_PALETTE_VARIANTS,
+  type CommandPaletteDialogProps,
+  type CommandPaletteEmptyProps,
+  type CommandPaletteFooterProps,
+  type CommandPaletteGroupLabelProps,
+  type CommandPaletteGroupProps,
+  type CommandPaletteInputProps,
+  type CommandPaletteItemProps,
+  type CommandPaletteListProps,
+  type CommandPaletteLoadingProps,
+  type CommandPaletteProps,
+  type CommandPaletteResultItemProps,
+  type CommandPaletteRootProps,
+  type CommandPaletteSeparatorProps,
+  type HighlightedTextProps,
+  type HighlightRange,
+} from "./components/command-palette";
+
 export { default as Code } from "./components/code/code.svelte";
 export { default as CodeBlock } from "./components/code/code-block.svelte";
 export {
