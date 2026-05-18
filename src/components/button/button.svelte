@@ -47,6 +47,10 @@
 </script>
 
 <BitsButton.Root
+  data-slot="button"
+  data-shape={shape}
+  data-size={size}
+  data-variant={variant}
   class={cn(
     buttonVariants({ variant, size, shape }),
     disabled && "cursor-not-allowed opacity-50",

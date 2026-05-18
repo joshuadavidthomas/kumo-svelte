@@ -36,6 +36,10 @@
 </script>
 
 <a
+  data-slot="link-button"
+  data-shape={shape}
+  data-size={size}
+  data-variant={variant}
   class={cn(
     buttonVariants({ variant, size, shape }),
     "flex items-center no-underline!",
