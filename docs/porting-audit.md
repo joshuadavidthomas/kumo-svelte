@@ -1,6 +1,6 @@
 # Porting Audit
 
-Date: 2026-05-17
+Date: 2026-05-18
 
 ## Objective
 
@@ -25,6 +25,17 @@ Port Cloudflare's Kumo package from React/Base UI to Svelte 5, using:
 - All upstream top-level component directories under `src/components` have Svelte counterparts.
 - Components that map to Base UI overlay/form primitives use Bits UI rather than a local primitive layer.
 - Bits UI is documented as the lower-level primitive layer; `kumo-svelte` does not export `./primitives`.
+- Bits-backed public components follow the package wrapper model rather than
+  leaking a raw primitive export surface. Wrapper parts expose stable
+  `data-slot` anatomy markers across select, dialog, popover, tooltip,
+  dropdown menu, tabs, collapsible, checkbox, radio, switch, button, label,
+  combobox, autocomplete, command palette, sidebar, meter, date picker,
+  clipboard text, input group buttons, and menubar.
+- Tooltip consumers that previously wired Bits tooltip primitives directly now
+  use the local tooltip wrappers; Bits tooltip imports are isolated to the
+  tooltip component package.
+- Sidebar collapsible exports are local wrapper components, not raw
+  `bits-ui` primitive re-exports.
 - The package follows source exports in the style of `agents-svelte`.
 - `phosphor-svelte` is used for Phosphor icons.
 - `tailwind-merge` is kept for `cn()`.
@@ -56,6 +67,7 @@ Port Cloudflare's Kumo package from React/Base UI to Svelte 5, using:
 ## Current Gates
 
 - `pnpm check` passes.
+- `pnpm test` passes.
 - `main` is pushed and clean against `origin/main`.
 
 ## Remaining Gaps
@@ -87,6 +99,9 @@ or full TypeScript-derived runtime validation for complex prop types.
 ## Intentional Differences
 
 - Upstream `./primitives` exports are intentionally omitted. Use `bits-ui` directly.
+- Internal component wrappers still import Bits UI primitives directly. This is
+  the intended base layer; the package does not provide a second generic
+  primitive namespace.
 - Upstream React `useMenuNavigation` is omitted because the Svelte `MenuBar` is backed by Bits UI `Toolbar`, which owns keyboard navigation.
 - Pagination remains local because upstream Kumo's pagination was also local React state, not Base UI.
 
