@@ -12,6 +12,7 @@
 </script>
 
 <CollapsiblePrimitive.Content
+  data-slot="sidebar-collapsible-content"
   class={cn(
     "overflow-hidden transition-[height] duration-250 ease-[cubic-bezier(0.77,0,0.175,1)]",
     "motion-reduce:transition-none",

@@ -1,7 +1,8 @@
-import { Collapsible as CollapsiblePrimitive } from "bits-ui";
 import type { ComponentProps } from "svelte";
 import SidebarComponent from "./sidebar.svelte";
+import SidebarCollapsibleComponent from "./sidebar-collapsible.svelte";
 import SidebarCollapsibleContentComponent from "./sidebar-collapsible-content.svelte";
+import SidebarCollapsibleTriggerComponent from "./sidebar-collapsible-trigger.svelte";
 import SidebarContentComponent from "./sidebar-content.svelte";
 import SidebarFooterComponent from "./sidebar-footer.svelte";
 import SidebarGroupComponent from "./sidebar-group.svelte";
@@ -47,13 +48,17 @@ export { default as SidebarResizeHandle } from "./sidebar-resize-handle.svelte";
 export { default as SidebarSeparator } from "./sidebar-separator.svelte";
 export { default as SidebarTrigger } from "./sidebar-trigger.svelte";
 
-export const SidebarCollapsible = CollapsiblePrimitive.Root;
-export const SidebarCollapsibleTrigger = CollapsiblePrimitive.Trigger;
+export { default as SidebarCollapsible } from "./sidebar-collapsible.svelte";
 export { default as SidebarCollapsibleContent } from "./sidebar-collapsible-content.svelte";
+export { default as SidebarCollapsibleTrigger } from "./sidebar-collapsible-trigger.svelte";
 
 export type SidebarProps = ComponentProps<typeof SidebarComponent>;
+export type SidebarCollapsibleProps = ComponentProps<typeof SidebarCollapsibleComponent>;
 export type SidebarCollapsibleContentProps = ComponentProps<
   typeof SidebarCollapsibleContentComponent
+>;
+export type SidebarCollapsibleTriggerProps = ComponentProps<
+  typeof SidebarCollapsibleTriggerComponent
 >;
 export type SidebarContentProps = ComponentProps<typeof SidebarContentComponent>;
 export type SidebarFooterProps = ComponentProps<typeof SidebarFooterComponent>;

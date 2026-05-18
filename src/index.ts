@@ -699,7 +699,9 @@ export {
 } from "./components/sensitive-input";
 
 export { default as Sidebar } from "./components/sidebar/sidebar.svelte";
+export { default as SidebarCollapsible } from "./components/sidebar/sidebar-collapsible.svelte";
 export { default as SidebarCollapsibleContent } from "./components/sidebar/sidebar-collapsible-content.svelte";
+export { default as SidebarCollapsibleTrigger } from "./components/sidebar/sidebar-collapsible-trigger.svelte";
 export { default as SidebarContent } from "./components/sidebar/sidebar-content.svelte";
 export { default as SidebarFooter } from "./components/sidebar/sidebar-footer.svelte";
 export { default as SidebarGroup } from "./components/sidebar/sidebar-group.svelte";
@@ -725,13 +727,13 @@ export {
   KUMO_SIDEBAR_DEFAULT_VARIANTS,
   KUMO_SIDEBAR_STYLING,
   KUMO_SIDEBAR_VARIANTS,
-  SidebarCollapsible,
-  SidebarCollapsibleTrigger,
   sidebarVariants,
   useSidebar,
   type KumoSidebarVariantsProps,
   type SidebarCollapsibleContentProps,
   type SidebarCollapsibleMode,
+  type SidebarCollapsibleProps,
+  type SidebarCollapsibleTriggerProps,
   type SidebarContentProps,
   type SidebarFooterProps,
   type SidebarGroupContentProps,
