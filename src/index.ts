@@ -313,6 +313,11 @@ export {
 
 export { default as Dialog } from "./components/dialog/dialog-content.svelte";
 export { default as DialogRoot } from "./components/dialog/dialog-root.svelte";
+export { default as DialogPortal } from "./components/dialog/dialog-portal.svelte";
+export { default as DialogOverlay } from "./components/dialog/dialog-overlay.svelte";
+export { default as DialogContent } from "./components/dialog/dialog-content.svelte";
+export { default as DialogHeader } from "./components/dialog/dialog-header.svelte";
+export { default as DialogFooter } from "./components/dialog/dialog-footer.svelte";
 export { default as DialogTrigger } from "./components/dialog/dialog-trigger.svelte";
 export { default as DialogTitle } from "./components/dialog/dialog-title.svelte";
 export { default as DialogDescription } from "./components/dialog/dialog-description.svelte";
@@ -323,7 +328,12 @@ export {
   KUMO_DIALOG_STYLING,
   KUMO_DIALOG_VARIANTS,
   type DialogCloseProps,
+  type DialogContentProps,
   type DialogDescriptionProps,
+  type DialogFooterProps,
+  type DialogHeaderProps,
+  type DialogOverlayProps,
+  type DialogPortalProps,
   type DialogProps,
   type DialogRootProps,
   type DialogTitleProps,

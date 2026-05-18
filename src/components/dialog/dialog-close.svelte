@@ -21,11 +21,11 @@
 </script>
 
 {#if role === "alertdialog"}
-  <AlertDialog.Cancel {id} {disabled} class={className}>
+  <AlertDialog.Cancel data-slot="dialog-close" {id} {disabled} class={className}>
     {@render children?.()}
   </AlertDialog.Cancel>
 {:else}
-  <DialogPrimitive.Close {id} {disabled} class={className}>
+  <DialogPrimitive.Close data-slot="dialog-close" {id} {disabled} class={className}>
     {@render children?.()}
   </DialogPrimitive.Close>
 {/if}

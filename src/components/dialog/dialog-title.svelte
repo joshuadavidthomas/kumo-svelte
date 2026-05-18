@@ -23,11 +23,11 @@
 </script>
 
 {#if role === "alertdialog"}
-  <AlertDialog.Title {id} {level} class={titleClass}>
+  <AlertDialog.Title data-slot="dialog-title" {id} {level} class={titleClass}>
     {@render children()}
   </AlertDialog.Title>
 {:else}
-  <DialogPrimitive.Title {id} {level} class={titleClass}>
+  <DialogPrimitive.Title data-slot="dialog-title" {id} {level} class={titleClass}>
     {@render children()}
   </DialogPrimitive.Title>
 {/if}

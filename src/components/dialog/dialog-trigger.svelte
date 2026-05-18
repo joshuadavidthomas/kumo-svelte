@@ -22,11 +22,11 @@
 </script>
 
 {#if role === "alertdialog"}
-  <AlertDialog.Trigger {id} {disabled} class={className}>
+  <AlertDialog.Trigger data-slot="dialog-trigger" {id} {disabled} class={className}>
     {@render children?.()}
   </AlertDialog.Trigger>
 {:else}
-  <DialogPrimitive.Trigger {id} {disabled} class={className}>
+  <DialogPrimitive.Trigger data-slot="dialog-trigger" {id} {disabled} class={className}>
     {@render children?.()}
   </DialogPrimitive.Trigger>
 {/if}
