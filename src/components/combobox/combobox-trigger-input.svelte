@@ -55,6 +55,7 @@
 </script>
 
 <div
+  data-slot="combobox-trigger-input"
   class={cn(
     "relative inline-block w-full max-w-xs",
     "has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-50",
@@ -62,6 +63,7 @@
   )}
 >
   <ComboboxPrimitive.Input
+    data-slot="combobox-trigger-input-control"
     aria-label={ariaLabel}
     {autocomplete}
     {defaultValue}
@@ -71,6 +73,7 @@
     class={cn(inputVariants({ size: context.size }), "w-full disabled:cursor-not-allowed", iconStyles.padding)}
   />
   <button
+    data-slot="combobox-trigger-input-clear"
     type="button"
     aria-label={clearLabel}
     class={cn(
@@ -82,6 +85,7 @@
     <XIcon aria-hidden="true" size={iconStyles.iconSize} />
   </button>
   <ComboboxPrimitive.Trigger
+    data-slot="combobox-trigger-input-trigger"
     aria-label={showOptionsLabel}
     class={cn(
       "absolute top-1/2 flex -translate-y-1/2 cursor-pointer items-center justify-center text-kumo-subtle",

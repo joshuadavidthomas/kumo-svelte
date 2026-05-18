@@ -22,6 +22,7 @@
 </script>
 
 <ComboboxPrimitive.Item
+  data-slot="combobox-item"
   {value}
   label={label ?? value}
   {disabled}
@@ -39,7 +40,10 @@
         {label ?? value}
       {/if}
     </div>
-    <span class={cn("col-start-2 flex items-center", !selected && "invisible")}>
+    <span
+      data-slot="combobox-item-indicator"
+      class={cn("col-start-2 flex items-center", !selected && "invisible")}
+    >
       <CheckIcon aria-hidden="true" size={16} />
     </span>
   {/snippet}

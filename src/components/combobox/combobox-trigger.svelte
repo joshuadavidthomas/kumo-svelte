@@ -30,6 +30,7 @@
 </script>
 
 <ComboboxPrimitive.Trigger
+  data-slot="combobox-trigger"
   class={cn(
     inputVariants({ size: context.size }),
     "relative flex items-center data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 data-[placeholder]:text-kumo-placeholder",
@@ -37,7 +38,7 @@
     className,
   )}
 >
-  <span class="min-w-0 truncate">
+  <span data-slot="combobox-trigger-value" class="min-w-0 truncate">
     {#if children}
       {@render children()}
     {:else}
@@ -45,6 +46,7 @@
     {/if}
   </span>
   <span
+    data-slot="combobox-trigger-icon"
     class={cn(
       "absolute top-1/2 flex -translate-y-1/2 items-center text-kumo-subtle",
       iconStyles.iconRight,

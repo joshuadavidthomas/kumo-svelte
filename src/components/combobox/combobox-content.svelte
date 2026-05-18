@@ -25,6 +25,7 @@
 
 <ComboboxPrimitive.Portal to={portalContainer}>
   <ComboboxPrimitive.Content
+    data-slot="combobox-content"
     {sideOffset}
     class={cn(
       "flex flex-col",
