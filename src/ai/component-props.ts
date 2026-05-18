@@ -3,87 +3,217 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
   Autocomplete: {
     children: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
     class: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     container: {
       type: 'PortalProps["to"]',
     },
     sideOffset: {
       type: "number",
+      runtime: {
+        kind: "number",
+      },
     },
     "aria-label": {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     autocomplete: {
       type: 'HTMLInputAttributes["autocomplete"]',
     },
     clearOnDeselect: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     defaultValue: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     disabled: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     id: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     name: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     onblur: {
       type: "(event: FocusEvent & { currentTarget: HTMLInputElement }) => void",
+      runtime: {
+        kind: "function",
+      },
     },
     onfocus: {
       type: "(event: FocusEvent & { currentTarget: HTMLInputElement }) => void",
+      runtime: {
+        kind: "function",
+      },
     },
     oninput: {
       type: "(event: Event & { currentTarget: HTMLInputElement }) => void",
+      runtime: {
+        kind: "function",
+      },
     },
     onkeydown: {
       type: "(event: KeyboardEvent & { currentTarget: HTMLInputElement }) => void",
+      runtime: {
+        kind: "function",
+      },
     },
     onValueChange: {
       type: "(value: string) => void",
+      runtime: {
+        kind: "function",
+      },
     },
     placeholder: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     required: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     size: {
       type: "KumoAutocompleteSize",
     },
     label: {
       type: "Snippet | string",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "snippet",
+          },
+          {
+            kind: "string",
+          },
+        ],
+      },
     },
     value: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     allowDeselect: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     description: {
       type: "Snippet | string",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "snippet",
+          },
+          {
+            kind: "string",
+          },
+        ],
+      },
     },
     error: {
       type: "string | { message: Snippet | string; match: FieldErrorMatch }",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "string",
+          },
+          {
+            kind: "object",
+            props: {
+              message: {
+                kind: "union",
+                options: [
+                  {
+                    kind: "snippet",
+                  },
+                  {
+                    kind: "string",
+                  },
+                ],
+                required: true,
+              },
+            },
+          },
+        ],
+      },
     },
     items: {
       type: "AutocompleteItemDescriptor[]",
+      runtime: {
+        kind: "array",
+        item: {
+          kind: "object",
+          props: {
+            disabled: {
+              kind: "boolean",
+              required: false,
+            },
+            label: {
+              kind: "string",
+              required: true,
+            },
+            value: {
+              kind: "string",
+              required: true,
+            },
+          },
+        },
+      },
     },
     labelTooltip: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
     onOpenChange: {
       type: "(open: boolean) => void",
+      runtime: {
+        kind: "function",
+      },
     },
     open: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
   },
   Badge: {
@@ -111,32 +241,67 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     class: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     children: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
   },
   Banner: {
     action: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
     children: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
     class: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     description: {
       type: "Snippet | string",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "snippet",
+          },
+          {
+            kind: "string",
+          },
+        ],
+      },
     },
     icon: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
     text: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     title: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     variant: {
       type: "KumoBannerVariant",
@@ -146,30 +311,57 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
   Breadcrumbs: {
     class: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     copiedLabel: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     label: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     onCopy: {
       type: "() => void",
+      runtime: {
+        kind: "function",
+      },
     },
     text: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     children: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
     icon: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
     loading: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     mobileChildren: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
     size: {
       type: "KumoBreadcrumbsSize",
@@ -191,68 +383,145 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     class: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     children: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
     icon: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
     loading: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     title: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     external: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     linksExternal: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
   },
   Checkbox: {
     legend: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     children: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
     error: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     description: {
       type: "Snippet | string",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "snippet",
+          },
+          {
+            kind: "string",
+          },
+        ],
+      },
     },
     defaultValue: {
       type: "string[]",
+      runtime: {
+        kind: "array",
+        item: {
+          kind: "string",
+        },
+      },
     },
     value: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     onValueChange: {
       type: "(value: string[]) => void",
+      runtime: {
+        kind: "function",
+      },
     },
     allValues: {
       type: "string[]",
+      runtime: {
+        kind: "array",
+        item: {
+          kind: "string",
+        },
+      },
     },
     disabled: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     controlFirst: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     class: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     name: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     required: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     id: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     variant: {
       type: "KumoCheckboxVariant",
@@ -260,35 +529,79 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     label: {
       type: "Snippet | string",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "snippet",
+          },
+          {
+            kind: "string",
+          },
+        ],
+      },
     },
     checked: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     indeterminate: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     onCheckedChange: {
       type: "(checked: boolean) => void",
+      runtime: {
+        kind: "function",
+      },
     },
     "aria-label": {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     "aria-labelledby": {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     labelTooltip: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
   },
   ClipboardText: {
     class: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     labels: {
       type: "ClipboardTextLabels",
+      runtime: {
+        kind: "object",
+        props: {
+          copyAction: {
+            kind: "string",
+            required: false,
+          },
+        },
+      },
     },
     onCopy: {
       type: "() => void",
+      runtime: {
+        kind: "function",
+      },
     },
     size: {
       type: "KumoClipboardTextSize",
@@ -296,17 +609,61 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     text: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     textToCopy: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     tooltip: {
       type: "ClipboardTextTooltipConfig",
+      runtime: {
+        kind: "object",
+        props: {
+          text: {
+            kind: "string",
+            required: false,
+          },
+          copiedText: {
+            kind: "string",
+            required: false,
+          },
+          side: {
+            kind: "union",
+            options: [
+              {
+                kind: "literal",
+                value: "top",
+              },
+              {
+                kind: "literal",
+                value: "bottom",
+              },
+              {
+                kind: "literal",
+                value: "left",
+              },
+              {
+                kind: "literal",
+                value: "right",
+              },
+            ],
+            required: false,
+          },
+        },
+      },
     },
   },
   CloudflareLogo: {
     class: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     color: {
       type: "CloudflareLogoColor",
@@ -320,116 +677,295 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
   Collapsible: {
     children: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
     class: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     forceMount: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     hiddenUntilFound: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     id: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     disabled: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     open: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     onOpenChange: {
       type: "(open: boolean) => void",
+      runtime: {
+        kind: "function",
+      },
     },
     onOpenChangeComplete: {
       type: "(open: boolean) => void",
+      runtime: {
+        kind: "function",
+      },
     },
   },
   Combobox: {
     children: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
     class: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     container: {
       type: 'PortalProps["to"]',
     },
     sideOffset: {
       type: "number",
+      runtime: {
+        kind: "number",
+      },
     },
     "aria-label": {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     autocomplete: {
       type: 'HTMLInputAttributes["autocomplete"]',
     },
     clearOnDeselect: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     defaultValue: {
       type: "string | string[]",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "string",
+          },
+          {
+            kind: "array",
+            item: {
+              kind: "string",
+            },
+          },
+        ],
+      },
     },
     disabled: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     id: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     name: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     oninput: {
       type: "(event: Event & { currentTarget: HTMLInputElement }) => void",
+      runtime: {
+        kind: "function",
+      },
     },
     onValueChange: {
       type: "(value: string | string[]) => void",
+      runtime: {
+        kind: "function",
+      },
     },
     placeholder: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     required: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     size: {
       type: "KumoComboboxSize",
     },
     label: {
       type: "Snippet | string",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "snippet",
+          },
+          {
+            kind: "string",
+          },
+        ],
+      },
     },
     value: {
       type: "string | string[]",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "string",
+          },
+          {
+            kind: "array",
+            item: {
+              kind: "string",
+            },
+          },
+        ],
+      },
     },
     clearLabel: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     showOptionsLabel: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     allowDeselect: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     description: {
       type: "Snippet | string",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "snippet",
+          },
+          {
+            kind: "string",
+          },
+        ],
+      },
     },
     error: {
       type: "string | { message: Snippet | string; match: FieldErrorMatch }",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "string",
+          },
+          {
+            kind: "object",
+            props: {
+              message: {
+                kind: "union",
+                options: [
+                  {
+                    kind: "snippet",
+                  },
+                  {
+                    kind: "string",
+                  },
+                ],
+                required: true,
+              },
+            },
+          },
+        ],
+      },
     },
     items: {
       type: "ComboboxItemDescriptor[]",
+      runtime: {
+        kind: "array",
+        item: {
+          kind: "object",
+          props: {
+            disabled: {
+              kind: "boolean",
+              required: false,
+            },
+            label: {
+              kind: "string",
+              required: true,
+            },
+            value: {
+              kind: "string",
+              required: true,
+            },
+          },
+        },
+      },
     },
     labelTooltip: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
     multiple: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     onOpenChange: {
       type: "(open: boolean) => void",
+      runtime: {
+        kind: "function",
+      },
     },
     open: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     inputSide: {
       type: "KumoComboboxInputSide",
@@ -439,107 +975,248 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
   CommandPalette: {
     children: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
     class: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     onOpenChange: {
       type: "(open: boolean) => void",
+      runtime: {
+        kind: "function",
+      },
     },
     open: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     forceMount: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     value: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     "aria-label": {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     autocomplete: {
       type: 'HTMLInputAttributes["autocomplete"]',
     },
     autofocus: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     leading: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
     onkeydown: {
       type: "(event: KeyboardEvent & { currentTarget: HTMLInputElement }) => void",
+      runtime: {
+        kind: "function",
+      },
     },
     placeholder: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     trailing: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
     disabled: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     keywords: {
       type: "string[]",
+      runtime: {
+        kind: "array",
+        item: {
+          kind: "string",
+        },
+      },
     },
     onSelect: {
       type: "() => void",
+      runtime: {
+        kind: "function",
+      },
     },
     progress: {
       type: "number",
+      runtime: {
+        kind: "number",
+      },
     },
     breadcrumbHighlights: {
       type: "HighlightRange[][]",
+      runtime: {
+        kind: "array",
+        item: {
+          kind: "array",
+          item: {
+            kind: "array",
+            items: [
+              {
+                kind: "number",
+              },
+              {
+                kind: "number",
+              },
+            ],
+          },
+        },
+      },
     },
     breadcrumbs: {
       type: "string[]",
+      runtime: {
+        kind: "array",
+        item: {
+          kind: "string",
+        },
+      },
     },
     description: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     external: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     icon: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
     nonInteractive: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     showArrow: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     title: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     titleHighlights: {
       type: "HighlightRange[]",
+      runtime: {
+        kind: "array",
+        item: {
+          kind: "array",
+          items: [
+            {
+              kind: "number",
+            },
+            {
+              kind: "number",
+            },
+          ],
+        },
+      },
     },
     filter: {
       type: "(value: string, search: string, keywords?: string[]) => number",
+      runtime: {
+        kind: "function",
+      },
     },
     label: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     loop: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     onValueChange: {
       type: "(value: string) => void",
+      runtime: {
+        kind: "function",
+      },
     },
     shouldFilter: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     highlights: {
       type: "HighlightRange[]",
+      runtime: {
+        kind: "array",
+        item: {
+          kind: "array",
+          items: [
+            {
+              kind: "number",
+            },
+            {
+              kind: "number",
+            },
+          ],
+        },
+      },
     },
     text: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
   },
   Code: {
     code: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     lang: {
       type: "KumoCodeLang",
@@ -547,139 +1224,421 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     class: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     values: {
       type: "Record<string, { highlight?: boolean; value: string }>",
+      runtime: {
+        kind: "record",
+        item: {
+          kind: "object",
+          props: {
+            highlight: {
+              kind: "boolean",
+              required: false,
+            },
+            value: {
+              kind: "string",
+              required: true,
+            },
+          },
+        },
+      },
     },
   },
   Chart: {
     class: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     color: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     inactive: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     name: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     unit: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     value: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     className: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     defaultNodeColor: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     echarts: {
       type: "typeof echarts",
     },
     formatValue: {
       type: "(value: number) => string",
+      runtime: {
+        kind: "function",
+      },
     },
     height: {
       type: "number",
+      runtime: {
+        kind: "number",
+      },
     },
     isDarkMode: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     left: {
       type: "number | string",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "number",
+          },
+          {
+            kind: "string",
+          },
+        ],
+      },
     },
     linkColor: {
       type: '"gradient" | "gray"',
       values: ["gradient", "gray"],
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "literal",
+            value: "gradient",
+          },
+          {
+            kind: "literal",
+            value: "gray",
+          },
+        ],
+      },
     },
     linkOpacity: {
       type: "number",
+      runtime: {
+        kind: "number",
+      },
     },
     links: {
       type: "SankeyLinkData[]",
+      runtime: {
+        kind: "array",
+        item: {
+          kind: "object",
+          props: {
+            id: {
+              kind: "string",
+              required: false,
+            },
+            isDrillable: {
+              kind: "boolean",
+              required: false,
+            },
+            source: {
+              kind: "number",
+              required: true,
+            },
+            target: {
+              kind: "number",
+              required: true,
+            },
+            value: {
+              kind: "number",
+              required: true,
+            },
+          },
+        },
+      },
     },
     nodePadding: {
       type: "number",
+      runtime: {
+        kind: "number",
+      },
     },
     nodeWidth: {
       type: "number",
+      runtime: {
+        kind: "number",
+      },
     },
     nodes: {
       type: "SankeyNodeData[]",
+      runtime: {
+        kind: "array",
+        item: {
+          kind: "object",
+          props: {
+            childCount: {
+              kind: "number",
+              required: false,
+            },
+            color: {
+              kind: "string",
+              required: false,
+            },
+            id: {
+              kind: "string",
+              required: false,
+            },
+            isDrillable: {
+              kind: "boolean",
+              required: false,
+            },
+            name: {
+              kind: "string",
+              required: true,
+            },
+            tooltipData: {
+              kind: "record",
+              item: {
+                kind: "union",
+                options: [
+                  {
+                    kind: "number",
+                  },
+                  {
+                    kind: "string",
+                  },
+                ],
+              },
+              required: false,
+            },
+            value: {
+              kind: "number",
+              required: false,
+            },
+          },
+        },
+      },
     },
     onLinkClick: {
       type: "(link: SankeyLinkData) => void",
+      runtime: {
+        kind: "function",
+      },
     },
     onNodeClick: {
       type: "(node: SankeyNodeData) => void",
+      runtime: {
+        kind: "function",
+      },
     },
     right: {
       type: "number | string",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "number",
+          },
+          {
+            kind: "string",
+          },
+        ],
+      },
     },
     showNodeValues: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     showTooltip: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     tooltipFormatter: {
       type: "(params: SankeyTooltipParams) => string",
+      runtime: {
+        kind: "function",
+      },
     },
     ariaDescription: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     data: {
       type: "TimeseriesData[]",
+      runtime: {
+        kind: "array",
+        item: {
+          kind: "object",
+          props: {
+            color: {
+              kind: "string",
+              required: true,
+            },
+            data: {
+              kind: "array",
+              item: {
+                kind: "array",
+                items: [
+                  {
+                    kind: "number",
+                  },
+                  {
+                    kind: "number",
+                  },
+                ],
+              },
+              required: true,
+            },
+            name: {
+              kind: "string",
+              required: true,
+            },
+          },
+        },
+      },
     },
     gradient: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     incomplete: {
       type: "{ after?: number; before?: number }",
+      runtime: {
+        kind: "object",
+        props: {
+          after: {
+            kind: "number",
+            required: false,
+          },
+          before: {
+            kind: "number",
+            required: false,
+          },
+        },
+      },
     },
     loading: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     onTimeRangeChange: {
       type: "(from: number, to: number) => void",
+      runtime: {
+        kind: "function",
+      },
     },
     optionUpdateBehavior: {
       type: "SetOptionOpts",
     },
     tooltipValueFormat: {
       type: "(value: number) => string",
+      runtime: {
+        kind: "function",
+      },
     },
     type: {
       type: '"bar" | "line"',
       values: ["bar", "line"],
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "literal",
+            value: "bar",
+          },
+          {
+            kind: "literal",
+            value: "line",
+          },
+        ],
+      },
     },
     xAxisName: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     xAxisTickCount: {
       type: "number",
+      runtime: {
+        kind: "number",
+      },
     },
     xAxisTickFormat: {
       type: "(value: number) => string",
+      runtime: {
+        kind: "function",
+      },
     },
     yAxisName: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     yAxisTickCount: {
       type: "number",
+      runtime: {
+        kind: "number",
+      },
     },
     yAxisTickFormat: {
       type: "(value: number) => string",
+      runtime: {
+        kind: "function",
+      },
     },
     yAxisTickLabelFormat: {
       type: "(value: number) => string",
+      runtime: {
+        kind: "function",
+      },
     },
     onEvents: {
       type: "Partial<ChartEvents>",
+      runtime: {
+        kind: "object",
+      },
     },
     options: {
       type: "KumoChartOption",
@@ -691,36 +1650,86 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
   DatePicker: {
     mode: {
       type: "DatePickerMode",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "literal",
+            value: "single",
+          },
+          {
+            kind: "literal",
+            value: "multiple",
+          },
+          {
+            kind: "literal",
+            value: "range",
+          },
+        ],
+      },
     },
     months: {
       type: "Month<DateValue>[]",
+      runtime: {
+        kind: "array",
+      },
     },
     weekdays: {
       type: "string[]",
+      runtime: {
+        kind: "array",
+        item: {
+          kind: "string",
+        },
+      },
     },
     calendarLabel: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     children: {
       type: "Snippet<[DatePickerSnippetProps]>",
+      runtime: {
+        kind: "snippet",
+      },
     },
     class: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     disableDaysOutsideMonth: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     disabled: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     excludeDisabled: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     fixedWeeks: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     initialFocus: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     isDateDisabled: {
       type: "DateMatcher",
@@ -730,83 +1739,176 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     locale: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     maxDays: {
       type: "number",
+      runtime: {
+        kind: "number",
+      },
     },
     maxValue: {
       type: "DateValue",
     },
     minDays: {
       type: "number",
+      runtime: {
+        kind: "number",
+      },
     },
     minValue: {
       type: "DateValue",
     },
     monthFormat: {
       type: 'Intl.DateTimeFormatOptions["month"] | ((month: number) => string)',
+      runtime: {
+        kind: "function",
+      },
     },
     numberOfMonths: {
       type: "number",
+      runtime: {
+        kind: "number",
+      },
     },
     onChange: {
       type: "(value: DatePickerValue) => void",
+      runtime: {
+        kind: "function",
+      },
     },
     onEndValueChange: {
       type: "(value: DateValue | undefined) => void",
+      runtime: {
+        kind: "function",
+      },
     },
     onPlaceholderChange: {
       type: "(value: DateValue) => void",
+      runtime: {
+        kind: "function",
+      },
     },
     onStartValueChange: {
       type: "(value: DateValue | undefined) => void",
+      runtime: {
+        kind: "function",
+      },
     },
     onValueChange: {
       type: "(value: DatePickerValue) => void",
+      runtime: {
+        kind: "function",
+      },
     },
     pagedNavigation: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     placeholder: {
       type: "DateValue",
     },
     preventDeselect: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     readonly: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     ref: {
       type: "HTMLDivElement | null",
     },
     value: {
       type: "DatePickerValue",
+      runtime: {
+        kind: "array",
+      },
     },
     weekStartsOn: {
       type: "WeekStartsOn",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "literal",
+            value: 0,
+          },
+          {
+            kind: "literal",
+            value: 1,
+          },
+          {
+            kind: "literal",
+            value: 2,
+          },
+          {
+            kind: "literal",
+            value: 3,
+          },
+          {
+            kind: "literal",
+            value: 4,
+          },
+          {
+            kind: "literal",
+            value: 5,
+          },
+          {
+            kind: "literal",
+            value: 6,
+          },
+        ],
+      },
     },
     weekdayFormat: {
       type: 'Intl.DateTimeFormatOptions["weekday"]',
     },
     yearFormat: {
       type: 'Intl.DateTimeFormatOptions["year"] | ((year: number) => string)',
+      runtime: {
+        kind: "function",
+      },
     },
   },
   DateRangePicker: {
     class: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     className: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     onEndDateChange: {
       type: "(date: Date | null) => void",
+      runtime: {
+        kind: "function",
+      },
     },
     onStartDateChange: {
       type: "(date: Date | null) => void",
+      runtime: {
+        kind: "function",
+      },
     },
     onValueChange: {
       type: "(value: DateRange) => void",
+      runtime: {
+        kind: "function",
+      },
     },
     size: {
       type: "KumoDateRangePickerSize",
@@ -814,6 +1916,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     timezone: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     value: {
       type: "DateRange",
@@ -826,15 +1931,27 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
   Dialog: {
     children: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
     class: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     disabled: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     id: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     container: {
       type: 'PortalProps["to"]',
@@ -845,6 +1962,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     style: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     to: {
       type: 'PortalProps["to"]',
@@ -855,17 +1975,55 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     open: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     onOpenChange: {
       type: "(open: boolean) => void",
+      runtime: {
+        kind: "function",
+      },
     },
     level: {
       type: "1 | 2 | 3 | 4 | 5 | 6",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "literal",
+            value: 1,
+          },
+          {
+            kind: "literal",
+            value: 2,
+          },
+          {
+            kind: "literal",
+            value: 3,
+          },
+          {
+            kind: "literal",
+            value: 4,
+          },
+          {
+            kind: "literal",
+            value: 5,
+          },
+          {
+            kind: "literal",
+            value: 6,
+          },
+        ],
+      },
     },
   },
   Dropdown: {
     children: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
     to: {
       type: 'PortalProps["to"]',
@@ -873,15 +2031,37 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     dir: {
       type: '"ltr" | "rtl"',
       values: ["ltr", "rtl"],
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "literal",
+            value: "ltr",
+          },
+          {
+            kind: "literal",
+            value: "rtl",
+          },
+        ],
+      },
     },
     onOpenChange: {
       type: "(open: boolean) => void",
+      runtime: {
+        kind: "function",
+      },
     },
     onOpenChangeComplete: {
       type: "(open: boolean) => void",
+      runtime: {
+        kind: "function",
+      },
     },
     open: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     variant: {
       type: "KumoDropdownVariant",
@@ -891,21 +2071,39 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
   Empty: {
     children: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
     class: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     commandLine: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     contents: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
     description: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     icon: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
     size: {
       type: "KumoEmptySize",
@@ -913,96 +2111,292 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     title: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
   },
   Field: {
     children: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
     class: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     description: {
       type: "Snippet | string",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "snippet",
+          },
+          {
+            kind: "string",
+          },
+        ],
+      },
     },
     error: {
       type: "NormalizedFieldError",
     },
     for: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     hideLabel: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     label: {
       type: "Snippet | string",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "snippet",
+          },
+          {
+            kind: "string",
+          },
+        ],
+      },
     },
     labelTooltip: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
     required: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     controlFirst: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
   },
   Flow: {
     children: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
     connectors: {
       type: "FlowConnector[]",
+      runtime: {
+        kind: "array",
+        item: {
+          kind: "object",
+          props: {
+            disabled: {
+              kind: "boolean",
+              required: false,
+            },
+            fromId: {
+              kind: "string",
+              required: false,
+            },
+            isBottom: {
+              kind: "boolean",
+              required: false,
+            },
+            single: {
+              kind: "boolean",
+              required: false,
+            },
+            toId: {
+              kind: "string",
+              required: false,
+            },
+            x1: {
+              kind: "number",
+              required: true,
+            },
+            x2: {
+              kind: "number",
+              required: true,
+            },
+            y1: {
+              kind: "number",
+              required: true,
+            },
+            y2: {
+              kind: "number",
+              required: true,
+            },
+          },
+        },
+      },
     },
     markerId: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     render: {
       type: "FlowNodeRenderSnippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
     type: {
       type: "FlowAnchorType",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "literal",
+            value: "start",
+          },
+          {
+            kind: "literal",
+            value: "end",
+          },
+        ],
+      },
     },
     class: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     id: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     disabled: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     align: {
       type: "FlowAlign",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "literal",
+            value: "start",
+          },
+          {
+            kind: "literal",
+            value: "center",
+          },
+        ],
+      },
     },
     canvas: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     onOverflowChange: {
       type: "(overflow: { x: boolean; y: boolean }) => void",
+      runtime: {
+        kind: "function",
+      },
     },
     orientation: {
       type: "FlowOrientation",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "literal",
+            value: "horizontal",
+          },
+          {
+            kind: "literal",
+            value: "vertical",
+          },
+        ],
+      },
     },
     padding: {
       type: "{ x?: number; y?: number }",
+      runtime: {
+        kind: "object",
+        props: {
+          x: {
+            kind: "number",
+            required: false,
+          },
+          y: {
+            kind: "number",
+            required: false,
+          },
+        },
+      },
     },
     action: {
       type: "Action<HTMLElement>",
     },
     attrs: {
       type: '{ "data-node-id": string; "data-node-index": number; "data-testid": string; style: string; }',
+      runtime: {
+        kind: "object",
+        props: {
+          "data-node-id": {
+            kind: "string",
+            required: true,
+          },
+          "data-node-index": {
+            kind: "number",
+            required: true,
+          },
+          "data-testid": {
+            kind: "string",
+            required: true,
+          },
+          style: {
+            kind: "string",
+            required: true,
+          },
+        },
+      },
     },
     index: {
       type: "number",
+      runtime: {
+        kind: "number",
+      },
     },
   },
   Grid: {
     children: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
     class: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     gap: {
       type: "KumoGridGap",
@@ -1010,6 +2404,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     mobileDivider: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     variant: {
       type: "KumoGridVariant",
@@ -1019,18 +2416,71 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
   Input: {
     description: {
       type: "Snippet | string",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "snippet",
+          },
+          {
+            kind: "string",
+          },
+        ],
+      },
     },
     error: {
       type: "string | { message: Snippet | string; match: FieldErrorMatch }",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "string",
+          },
+          {
+            kind: "object",
+            props: {
+              message: {
+                kind: "union",
+                options: [
+                  {
+                    kind: "snippet",
+                  },
+                  {
+                    kind: "string",
+                  },
+                ],
+                required: true,
+              },
+            },
+          },
+        ],
+      },
     },
     label: {
       type: "Snippet | string",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "snippet",
+          },
+          {
+            kind: "string",
+          },
+        ],
+      },
     },
     labelTooltip: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
     onValueChange: {
       type: "(value: string) => void",
+      runtime: {
+        kind: "function",
+      },
     },
     size: {
       type: "KumoInputSize",
@@ -1038,6 +2488,23 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     value: {
       type: "string | number | string[] | undefined",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "string",
+          },
+          {
+            kind: "number",
+          },
+          {
+            kind: "array",
+            item: {
+              kind: "string",
+            },
+          },
+        ],
+      },
     },
     variant: {
       type: "KumoInputVariant",
@@ -1045,60 +2512,191 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     passwordManagerIgnore: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     focusIndicator: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     parentFocusIndicator: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
   },
   InputGroup: {
     align: {
       type: '"start" | "end"',
       values: ["start", "end"],
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "literal",
+            value: "start",
+          },
+          {
+            kind: "literal",
+            value: "end",
+          },
+        ],
+      },
     },
     children: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
     class: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     containsButton: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     tooltip: {
       type: "Snippet | string",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "snippet",
+          },
+          {
+            kind: "string",
+          },
+        ],
+      },
     },
     tooltipSide: {
       type: "KumoTooltipSide",
     },
     onValueChange: {
       type: "(value: string) => void",
+      runtime: {
+        kind: "function",
+      },
     },
     value: {
       type: "string | number | string[] | undefined",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "string",
+          },
+          {
+            kind: "number",
+          },
+          {
+            kind: "array",
+            item: {
+              kind: "string",
+            },
+          },
+        ],
+      },
     },
     description: {
       type: "Snippet | string",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "snippet",
+          },
+          {
+            kind: "string",
+          },
+        ],
+      },
     },
     disabled: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     error: {
       type: "string | { message: Snippet | string; match: FieldErrorMatch }",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "string",
+          },
+          {
+            kind: "object",
+            props: {
+              message: {
+                kind: "union",
+                options: [
+                  {
+                    kind: "snippet",
+                  },
+                  {
+                    kind: "string",
+                  },
+                ],
+                required: true,
+              },
+            },
+          },
+        ],
+      },
     },
     focusMode: {
       type: "InputGroupFocusMode",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "literal",
+            value: "container",
+          },
+          {
+            kind: "literal",
+            value: "individual",
+          },
+        ],
+      },
     },
     label: {
       type: "Snippet | string",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "snippet",
+          },
+          {
+            kind: "string",
+          },
+        ],
+      },
     },
     labelTooltip: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
     required: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     size: {
       type: "KumoInputSize",
@@ -1108,61 +2706,112 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
   Label: {
     children: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
     showOptional: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     tooltip: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
     class: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     for: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     id: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     asContent: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
   },
   LayerCard: {
     children: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
     class: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     as: {
       type: "keyof HTMLElementTagNameMap",
     },
     layered: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
   },
   Switch: {
     checked: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     class: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     disabled: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     id: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     name: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     onCheckedChange: {
       type: "(checked: boolean) => void",
+      runtime: {
+        kind: "function",
+      },
     },
     required: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     size: {
       type: "KumoSwitchSize",
@@ -1170,9 +2819,15 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     transitioning: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     value: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     variant: {
       type: "KumoSwitchVariant",
@@ -1180,70 +2835,149 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     "aria-label": {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     "aria-labelledby": {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     children: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
     controlFirst: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     description: {
       type: "Snippet | string",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "snippet",
+          },
+          {
+            kind: "string",
+          },
+        ],
+      },
     },
     error: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     legend: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     label: {
       type: "Snippet | string",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "snippet",
+          },
+          {
+            kind: "string",
+          },
+        ],
+      },
     },
     labelTooltip: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
   },
   TableOfContents: {
     active: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     children: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
     class: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     href: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     label: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     child: {
       type: "Snippet<[{ props: ItemProps & { class: string } }]>",
+      runtime: {
+        kind: "snippet",
+      },
     },
   },
   Tabs: {
     activateOnFocus: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     class: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     indicatorClassName: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     listClassName: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     onValueChange: {
       type: "(value: string) => void",
+      runtime: {
+        kind: "function",
+      },
     },
     selectedValue: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     size: {
       type: "KumoTabsSize",
@@ -1251,9 +2985,44 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     tabs: {
       type: "TabsItem[]",
+      runtime: {
+        kind: "array",
+        item: {
+          kind: "object",
+          props: {
+            class: {
+              kind: "string",
+              required: false,
+            },
+            disabled: {
+              kind: "boolean",
+              required: false,
+            },
+            label: {
+              kind: "union",
+              options: [
+                {
+                  kind: "snippet",
+                },
+                {
+                  kind: "string",
+                },
+              ],
+              required: true,
+            },
+            value: {
+              kind: "string",
+              required: true,
+            },
+          },
+        },
+      },
     },
     value: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     variant: {
       type: "KumoTabsVariant",
@@ -1263,6 +3032,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
   Link: {
     class: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     variant: {
       type: "KumoLinkVariant",
@@ -1270,93 +3042,222 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     children: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
     to: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
   },
   Loader: {
     "aria-label": {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     size: {
       type: "KumoLoaderSize | number",
       values: ["sm", "base", "lg"],
+      runtime: {
+        kind: "number",
+      },
     },
     blockHeight: {
       type: "string | number",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "string",
+          },
+          {
+            kind: "number",
+          },
+        ],
+      },
     },
     class: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     maxDelay: {
       type: "number",
+      runtime: {
+        kind: "number",
+      },
     },
     maxDuration: {
       type: "number",
+      runtime: {
+        kind: "number",
+      },
     },
     maxWidth: {
       type: "number",
+      runtime: {
+        kind: "number",
+      },
     },
     minDelay: {
       type: "number",
+      runtime: {
+        kind: "number",
+      },
     },
     minDuration: {
       type: "number",
+      runtime: {
+        kind: "number",
+      },
     },
     minWidth: {
       type: "number",
+      runtime: {
+        kind: "number",
+      },
     },
   },
   Menubar: {
     class: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     isActive: {
       type: "number | boolean | string | undefined",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "number",
+          },
+          {
+            kind: "boolean",
+          },
+          {
+            kind: "string",
+          },
+        ],
+      },
     },
     optionIds: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     options: {
       type: "MenuBarOption[]",
+      runtime: {
+        kind: "array",
+        item: {
+          kind: "object",
+          props: {
+            icon: {
+              kind: "snippet",
+              required: true,
+            },
+            id: {
+              kind: "union",
+              options: [
+                {
+                  kind: "number",
+                },
+                {
+                  kind: "string",
+                },
+              ],
+              required: false,
+            },
+            onClick: {
+              kind: "function",
+              required: true,
+            },
+            tooltip: {
+              kind: "string",
+              required: true,
+            },
+          },
+        },
+      },
     },
   },
   Meter: {
     value: {
       type: "number",
+      runtime: {
+        kind: "number",
+      },
     },
     min: {
       type: "number",
+      runtime: {
+        kind: "number",
+      },
     },
     max: {
       type: "number",
+      runtime: {
+        kind: "number",
+      },
     },
     customValue: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     label: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     showValue: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     class: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     trackClass: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     indicatorClass: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     id: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
   },
   Pagination: {
     class: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     controls: {
       type: "KumoPaginationControls",
@@ -1365,59 +3266,161 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     pageSelector: {
       type: '"input" | "dropdown"',
       values: ["input", "dropdown"],
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "literal",
+            value: "input",
+          },
+          {
+            kind: "literal",
+            value: "dropdown",
+          },
+        ],
+      },
     },
     text: {
       type: "Snippet<[props: PaginationInfoSnippetProps]>",
+      runtime: {
+        kind: "snippet",
+      },
     },
     label: {
       type: "Snippet | string",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "snippet",
+          },
+          {
+            kind: "string",
+          },
+        ],
+      },
     },
     onChange: {
       type: "(size: number) => void",
+      runtime: {
+        kind: "function",
+      },
     },
     options: {
       type: "number[]",
+      runtime: {
+        kind: "array",
+        item: {
+          kind: "number",
+        },
+      },
     },
     value: {
       type: "number",
+      runtime: {
+        kind: "number",
+      },
     },
     page: {
       type: "number",
+      runtime: {
+        kind: "number",
+      },
     },
     pageShowingRange: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     perPage: {
       type: "number",
+      runtime: {
+        kind: "number",
+      },
     },
     totalCount: {
       type: "number",
+      runtime: {
+        kind: "number",
+      },
     },
     children: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
     labels: {
       type: "PaginationLabels",
+      runtime: {
+        kind: "object",
+        props: {
+          navigation: {
+            kind: "string",
+            required: false,
+          },
+          firstPage: {
+            kind: "string",
+            required: false,
+          },
+          previousPage: {
+            kind: "string",
+            required: false,
+          },
+          nextPage: {
+            kind: "string",
+            required: false,
+          },
+          lastPage: {
+            kind: "string",
+            required: false,
+          },
+          pageNumber: {
+            kind: "string",
+            required: false,
+          },
+          pageSize: {
+            kind: "string",
+            required: false,
+          },
+        },
+      },
     },
     setPage: {
       type: "(page: number) => void",
+      runtime: {
+        kind: "function",
+      },
     },
   },
   Popover: {
     children: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
     to: {
       type: 'PortalProps["to"]',
     },
     open: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     onOpenChange: {
       type: "(open: boolean) => void",
+      runtime: {
+        kind: "function",
+      },
     },
     onOpenChangeComplete: {
       type: "(open: boolean) => void",
+      runtime: {
+        kind: "function",
+      },
     },
     side: {
       type: "KumoPopoverSide",
@@ -1431,49 +3434,130 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     children: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
     class: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     controlPosition: {
       type: "RadioControlPosition",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "literal",
+            value: "start",
+          },
+          {
+            kind: "literal",
+            value: "end",
+          },
+        ],
+      },
     },
     defaultValue: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     description: {
       type: "Snippet | string",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "snippet",
+          },
+          {
+            kind: "string",
+          },
+        ],
+      },
     },
     disabled: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     error: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     legend: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     name: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     onValueChange: {
       type: "(value: string) => void",
+      runtime: {
+        kind: "function",
+      },
     },
     orientation: {
       type: '"vertical" | "horizontal"',
       values: ["vertical", "horizontal"],
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "literal",
+            value: "vertical",
+          },
+          {
+            kind: "literal",
+            value: "horizontal",
+          },
+        ],
+      },
     },
     required: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     value: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     id: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     label: {
       type: "Snippet | string",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "snippet",
+          },
+          {
+            kind: "string",
+          },
+        ],
+      },
     },
     variant: {
       type: "KumoRadioVariant",
@@ -1483,66 +3567,232 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
   Select: {
     children: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
     class: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     disabled: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     label: {
       type: "Snippet | string",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "snippet",
+          },
+          {
+            kind: "string",
+          },
+        ],
+      },
     },
     value: {
       type: "string | string[]",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "string",
+          },
+          {
+            kind: "array",
+            item: {
+              kind: "string",
+            },
+          },
+        ],
+      },
     },
     "aria-label": {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     "aria-labelledby": {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     allowDeselect: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     container: {
       type: 'PortalProps["to"]',
     },
     defaultValue: {
       type: "string | string[]",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "string",
+          },
+          {
+            kind: "array",
+            item: {
+              kind: "string",
+            },
+          },
+        ],
+      },
     },
     description: {
       type: "Snippet | string",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "snippet",
+          },
+          {
+            kind: "string",
+          },
+        ],
+      },
     },
     error: {
       type: "string | { message: Snippet | string; match: FieldErrorMatch }",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "string",
+          },
+          {
+            kind: "object",
+            props: {
+              message: {
+                kind: "union",
+                options: [
+                  {
+                    kind: "snippet",
+                  },
+                  {
+                    kind: "string",
+                  },
+                ],
+                required: true,
+              },
+            },
+          },
+        ],
+      },
     },
     hideLabel: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     items: {
       type: "SelectItems",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "record",
+            item: {
+              kind: "union",
+              options: [
+                {
+                  kind: "string",
+                },
+                {
+                  kind: "object",
+                  props: {
+                    disabled: {
+                      kind: "boolean",
+                      required: false,
+                    },
+                    label: {
+                      kind: "string",
+                      required: true,
+                    },
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "array",
+            item: {
+              kind: "object",
+              props: {
+                disabled: {
+                  kind: "boolean",
+                  required: false,
+                },
+                label: {
+                  kind: "string",
+                  required: true,
+                },
+                value: {
+                  kind: "string",
+                  required: true,
+                },
+              },
+            },
+          },
+        ],
+      },
     },
     labelTooltip: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
     loading: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     multiple: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     name: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     onValueChange: {
       type: "(value: string | string[]) => void",
+      runtime: {
+        kind: "function",
+      },
     },
     placeholder: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     required: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     size: {
       type: "KumoSelectSize",
@@ -1551,39 +3801,110 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
   SensitiveInput: {
     class: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     defaultValue: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     description: {
       type: "Snippet | string",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "snippet",
+          },
+          {
+            kind: "string",
+          },
+        ],
+      },
     },
     error: {
       type: "string | { message: Snippet | string; match: FieldErrorMatch }",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "string",
+          },
+          {
+            kind: "object",
+            props: {
+              message: {
+                kind: "union",
+                options: [
+                  {
+                    kind: "snippet",
+                  },
+                  {
+                    kind: "string",
+                  },
+                ],
+                required: true,
+              },
+            },
+          },
+        ],
+      },
     },
     label: {
       type: "Snippet | string",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "snippet",
+          },
+          {
+            kind: "string",
+          },
+        ],
+      },
     },
     labelTooltip: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
     onCopy: {
       type: "() => void",
+      runtime: {
+        kind: "function",
+      },
     },
     onValueChange: {
       type: "(value: string) => void",
+      runtime: {
+        kind: "function",
+      },
     },
     readOnly: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     readonly: {
       type: "boolean | null",
+      runtime: {
+        kind: "boolean",
+      },
     },
     size: {
       type: "KumoSensitiveInputSize",
     },
     value: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     variant: {
       type: "KumoSensitiveInputVariant",
@@ -1592,24 +3913,45 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
   Sidebar: {
     class: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     children: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
     disabled: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     id: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     open: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     onOpenChange: {
       type: "(open: boolean) => void",
+      runtime: {
+        kind: "function",
+      },
     },
     onOpenChangeComplete: {
       type: "(open: boolean) => void",
+      runtime: {
+        kind: "function",
+      },
     },
     collapsible: {
       type: "SidebarCollapsible",
@@ -1617,45 +3959,97 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     defaultOpen: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     placeholder: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     shortcut: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     active: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     href: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     icon: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
     linkProps: {
       type: 'Omit<HTMLAnchorAttributes, "children" | "class" | "href">',
+      runtime: {
+        kind: "object",
+      },
     },
     size: {
       type: "SidebarMenuButtonSize",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "literal",
+            value: "base",
+          },
+          {
+            kind: "literal",
+            value: "sm",
+          },
+        ],
+      },
     },
     tooltip: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     defaultWidth: {
       type: "number",
+      runtime: {
+        kind: "number",
+      },
     },
     maxWidth: {
       type: "number",
+      runtime: {
+        kind: "number",
+      },
     },
     minWidth: {
       type: "number",
+      runtime: {
+        kind: "number",
+      },
     },
     onWidthChange: {
       type: "(width: number) => void",
+      runtime: {
+        kind: "function",
+      },
     },
     resizable: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     side: {
       type: "SidebarSide",
@@ -1663,6 +4057,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     style: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     variant: {
       type: "SidebarVariant",
@@ -1670,10 +4067,30 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     width: {
       type: "number",
+      runtime: {
+        kind: "number",
+      },
     },
     section: {
       type: '"content" | "footer" | "header"',
       values: ["content", "footer", "header"],
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "literal",
+            value: "content",
+          },
+          {
+            kind: "literal",
+            value: "footer",
+          },
+          {
+            kind: "literal",
+            value: "header",
+          },
+        ],
+      },
     },
     ref: {
       type: "HTMLElement | null",
@@ -1685,9 +4102,15 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     children: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
     class: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     color: {
       type: "KumoSurfaceColor",
@@ -1697,31 +4120,58 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
   Table: {
     children: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
     class: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     sticky: {
       type: "boolean",
       values: ["left", "right"],
+      runtime: {
+        kind: "boolean",
+      },
     },
     checked: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     disabled: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     indeterminate: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     label: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     onCheckedChange: {
       type: "(checked: boolean, eventDetails?: CheckboxChangeEventDetails) => void",
+      runtime: {
+        kind: "function",
+      },
     },
     onValueChange: {
       type: "(checked: boolean) => void",
+      runtime: {
+        kind: "function",
+      },
     },
     variant: {
       type: "KumoTableRowVariant",
@@ -1753,26 +4203,133 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     bold: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     truncate: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     as: {
       type: "TextElement",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "literal",
+            value: "h1",
+          },
+          {
+            kind: "literal",
+            value: "h2",
+          },
+          {
+            kind: "literal",
+            value: "h3",
+          },
+          {
+            kind: "literal",
+            value: "h4",
+          },
+          {
+            kind: "literal",
+            value: "h5",
+          },
+          {
+            kind: "literal",
+            value: "h6",
+          },
+          {
+            kind: "literal",
+            value: "p",
+          },
+          {
+            kind: "literal",
+            value: "span",
+          },
+          {
+            kind: "literal",
+            value: "label",
+          },
+          {
+            kind: "literal",
+            value: "dt",
+          },
+          {
+            kind: "literal",
+            value: "dd",
+          },
+          {
+            kind: "literal",
+            value: "li",
+          },
+          {
+            kind: "literal",
+            value: "figcaption",
+          },
+          {
+            kind: "literal",
+            value: "legend",
+          },
+          {
+            kind: "literal",
+            value: "pre",
+          },
+          {
+            kind: "literal",
+            value: "code",
+          },
+          {
+            kind: "literal",
+            value: "em",
+          },
+          {
+            kind: "literal",
+            value: "strong",
+          },
+          {
+            kind: "literal",
+            value: "small",
+          },
+          {
+            kind: "literal",
+            value: "abbr",
+          },
+          {
+            kind: "literal",
+            value: "time",
+          },
+        ],
+      },
     },
     DANGEROUS_className: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     DANGEROUS_style: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     children: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
   },
   Toast: {
     children: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
     variant: {
       type: "KumoToastVariant",
@@ -1782,24 +4339,50 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
   Tooltip: {
     children: {
       type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
     },
     to: {
       type: 'PortalProps["to"]',
     },
     delayDuration: {
       type: "number",
+      runtime: {
+        kind: "number",
+      },
     },
     skipDelayDuration: {
       type: "number",
+      runtime: {
+        kind: "number",
+      },
     },
     disableHoverableContent: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     disabled: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     content: {
       type: "Snippet | string",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "snippet",
+          },
+          {
+            kind: "string",
+          },
+        ],
+      },
     },
     side: {
       type: "KumoTooltipSide",
@@ -1807,53 +4390,112 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     align: {
       type: "KumoTooltipAlign",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "literal",
+            value: "start",
+          },
+          {
+            kind: "literal",
+            value: "center",
+          },
+          {
+            kind: "literal",
+            value: "end",
+          },
+        ],
+      },
     },
     class: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     container: {
       type: 'PortalProps["to"]',
     },
     delay: {
       type: "number",
+      runtime: {
+        kind: "number",
+      },
     },
     closeDelay: {
       type: "number",
+      runtime: {
+        kind: "number",
+      },
     },
   },
   DeleteResource: {
     caseSensitive: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     class: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     className: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     deleteButtonText: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     errorMessage: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     isDeleting: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     onDelete: {
       type: "() => void | Promise<void>",
+      runtime: {
+        kind: "function",
+      },
     },
     onOpenChange: {
       type: "(open: boolean) => void",
+      runtime: {
+        kind: "function",
+      },
     },
     open: {
       type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
     },
     resourceName: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     resourceType: {
       type: "string",
+      runtime: {
+        kind: "string",
+      },
     },
     size: {
       type: "KumoDeleteResourceSize",

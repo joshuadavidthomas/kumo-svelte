@@ -1,5 +1,25 @@
 export type ComponentType = "component" | "block";
 
+export interface RuntimePropValidation {
+  item?: RuntimePropValidation;
+  items?: readonly RuntimePropValidation[];
+  kind:
+    | "array"
+    | "boolean"
+    | "function"
+    | "literal"
+    | "number"
+    | "object"
+    | "record"
+    | "snippet"
+    | "string"
+    | "union";
+  options?: readonly RuntimePropValidation[];
+  props?: Record<string, RuntimePropValidation & { required?: boolean }>;
+  required?: boolean;
+  value?: unknown;
+}
+
 export interface PropSchema {
   classes?: Record<string, string>;
   default?: string;
@@ -7,6 +27,7 @@ export interface PropSchema {
   descriptions?: Record<string, string>;
   optional?: boolean;
   required?: boolean;
+  runtime?: RuntimePropValidation;
   stateClasses?: Record<string, Record<string, string>>;
   type: string;
   values?: readonly string[];

@@ -258,9 +258,14 @@ function componentAttributeValue(source, key) {
 
 function collectProps(dir) {
   const props = {};
+  const files = readFiles(dir);
+  const sourceFiles = files.map((file) => ({
+    file,
+    source: fs.readFileSync(file, "utf8"),
+  }));
+  const declarations = collectTypeDeclarations(sourceFiles);
 
-  for (const file of readFiles(dir)) {
-    const source = fs.readFileSync(file, "utf8");
+  for (const { file, source } of sourceFiles) {
     const sourceFile = ts.createSourceFile(file, source, ts.ScriptTarget.Latest, true);
 
     ts.forEachChild(sourceFile, (node) => {
@@ -278,6 +283,8 @@ function collectProps(dir) {
         };
         const values = literalUnionValues(member.type);
         if (values) schema.values = values;
+        const runtime = runtimeValidation(member.type, declarations);
+        if (runtime) schema.runtime = runtime;
         const description = jsDocDescription(member);
         if (description) schema.description = description;
 
@@ -287,6 +294,25 @@ function collectProps(dir) {
   }
 
   return props;
+}
+
+function collectTypeDeclarations(sourceFiles) {
+  const declarations = new Map();
+
+  for (const { file, source } of sourceFiles) {
+    const sourceFile = ts.createSourceFile(file, source, ts.ScriptTarget.Latest, true);
+
+    ts.forEachChild(sourceFile, (node) => {
+      if (
+        (ts.isInterfaceDeclaration(node) || ts.isTypeAliasDeclaration(node)) &&
+        ts.isIdentifier(node.name)
+      ) {
+        declarations.set(node.name.text, node);
+      }
+    });
+  }
+
+  return declarations;
 }
 
 function propName(name) {
@@ -320,6 +346,158 @@ function literalUnionValues(typeNode) {
   }
 
   return values.length > 0 ? values : undefined;
+}
+
+function runtimeValidation(typeNode, declarations = new Map(), seen = new Set()) {
+  if (ts.isParenthesizedTypeNode(typeNode)) return runtimeValidation(typeNode.type, declarations, seen);
+
+  if (typeNode.kind === ts.SyntaxKind.StringKeyword) return { kind: "string" };
+  if (typeNode.kind === ts.SyntaxKind.NumberKeyword) return { kind: "number" };
+  if (typeNode.kind === ts.SyntaxKind.BooleanKeyword) return { kind: "boolean" };
+  if (typeNode.kind === ts.SyntaxKind.UnknownKeyword) return undefined;
+  if (typeNode.kind === ts.SyntaxKind.AnyKeyword) return undefined;
+
+  if (ts.isLiteralTypeNode(typeNode)) {
+    const value = literalTypeValue(typeNode.literal);
+    return value === undefined ? undefined : { kind: "literal", value };
+  }
+
+  if (ts.isArrayTypeNode(typeNode)) {
+    return { kind: "array", item: runtimeValidation(typeNode.elementType, declarations, seen) };
+  }
+
+  if (ts.isTupleTypeNode(typeNode)) {
+    return {
+      kind: "array",
+      items: typeNode.elements
+        .map((element) => runtimeValidation(element, declarations, seen))
+        .filter(Boolean),
+    };
+  }
+
+  if (ts.isFunctionTypeNode(typeNode)) return { kind: "function" };
+
+  if (ts.isTypeLiteralNode(typeNode)) {
+    const props = {};
+
+    for (const member of typeNode.members) {
+      if (!ts.isPropertySignature(member) || !member.type) continue;
+
+      const name = propName(member.name);
+      if (!name) continue;
+
+      const runtime = runtimeValidation(member.type, declarations, seen);
+      if (runtime) {
+        props[name] = {
+          ...runtime,
+          required: !member.questionToken,
+        };
+      }
+    }
+
+    return { kind: "object", ...(Object.keys(props).length > 0 ? { props } : {}) };
+  }
+
+  if (ts.isUnionTypeNode(typeNode)) {
+    const options = typeNode.types
+      .filter((type) => !isNilType(type))
+      .map((type) => runtimeValidation(type, declarations, seen))
+      .filter(Boolean);
+
+    if (options.length === 0) return undefined;
+    if (options.length === 1) return options[0];
+
+    return { kind: "union", options };
+  }
+
+  if (ts.isIntersectionTypeNode(typeNode)) {
+    const parts = typeNode.types
+      .map((type) => runtimeValidation(type, declarations, seen))
+      .filter(Boolean);
+    if (parts.length === 0) return undefined;
+    if (parts.every((part) => part.kind === "object")) {
+      return { kind: "object" };
+    }
+    return undefined;
+  }
+
+  if (ts.isTypeReferenceNode(typeNode)) {
+    const name = typeNode.typeName.getText();
+
+    if (name === "Array" || name === "ReadonlyArray") {
+      return {
+        kind: "array",
+        item: typeNode.typeArguments?.[0]
+          ? runtimeValidation(typeNode.typeArguments[0], declarations, seen)
+          : undefined,
+      };
+    }
+
+    if (name === "Record") {
+      return {
+        kind: "record",
+        item: typeNode.typeArguments?.[1]
+          ? runtimeValidation(typeNode.typeArguments[1], declarations, seen)
+          : undefined,
+      };
+    }
+
+    if (name === "Snippet") return { kind: "snippet" };
+    if (name === "Partial") return { kind: "object" };
+    if (name === "Omit" || name === "Pick") return { kind: "object" };
+
+    const declaration = declarations.get(name);
+    if (declaration && !seen.has(name)) {
+      const nextSeen = new Set(seen);
+      nextSeen.add(name);
+
+      if (ts.isTypeAliasDeclaration(declaration)) {
+        return runtimeValidation(declaration.type, declarations, nextSeen);
+      }
+
+      if (ts.isInterfaceDeclaration(declaration)) {
+        return runtimeObjectValidation(declaration.members, declarations, nextSeen);
+      }
+    }
+  }
+
+  return undefined;
+}
+
+function runtimeObjectValidation(members, declarations, seen) {
+  const props = {};
+
+  for (const member of members) {
+    if (!ts.isPropertySignature(member) || !member.type) continue;
+
+    const name = propName(member.name);
+    if (!name) continue;
+
+    const runtime = runtimeValidation(member.type, declarations, seen);
+    if (runtime) {
+      props[name] = {
+        ...runtime,
+        required: !member.questionToken,
+      };
+    }
+  }
+
+  return { kind: "object", ...(Object.keys(props).length > 0 ? { props } : {}) };
+}
+
+function literalTypeValue(literal) {
+  if (ts.isStringLiteral(literal)) return literal.text;
+  if (ts.isNumericLiteral(literal)) return Number(literal.text);
+  if (literal.kind === ts.SyntaxKind.TrueKeyword) return true;
+  if (literal.kind === ts.SyntaxKind.FalseKeyword) return false;
+  return undefined;
+}
+
+function isNilType(typeNode) {
+  return (
+    typeNode.kind === ts.SyntaxKind.UndefinedKeyword ||
+    (ts.isLiteralTypeNode(typeNode) && typeNode.literal.kind === ts.SyntaxKind.NullKeyword)
+  );
 }
 
 function readVariantMetadata(dir) {
@@ -540,6 +718,7 @@ function runtimePropSchemas(registry) {
         {
           type: prop.type,
           ...(prop.values ? { values: prop.values } : {}),
+          ...(prop.runtime ? { runtime: prop.runtime } : {}),
         },
       ]),
     );

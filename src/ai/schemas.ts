@@ -62,8 +62,29 @@ interface ParseResult<T = unknown> {
 }
 
 interface RuntimePropSchema {
+  runtime?: RuntimeValidation;
   type: string;
   values?: readonly string[];
+}
+
+interface RuntimeValidation {
+  item?: RuntimeValidation;
+  items?: readonly RuntimeValidation[];
+  kind:
+    | "array"
+    | "boolean"
+    | "function"
+    | "literal"
+    | "number"
+    | "object"
+    | "record"
+    | "snippet"
+    | "string"
+    | "union";
+  options?: readonly RuntimeValidation[];
+  props?: Record<string, RuntimeValidation & { required?: boolean }>;
+  required?: boolean;
+  value?: unknown;
 }
 
 const componentNameSet = new Set<string>(KUMO_COMPONENT_NAMES);
@@ -105,10 +126,10 @@ export function validateElementProps(element: UIElement): ParseResult<UIElement>
         continue;
       }
 
-      const primitiveIssue = validatePrimitivePropValue(schema.type, value);
-      if (primitiveIssue) {
+      const runtimeIssue = validateRuntimePropValue(schema, value);
+      if (runtimeIssue) {
         issues.push({
-          message: `Invalid value for ${element.type}.${name}: ${primitiveIssue}`,
+          message: `Invalid value for ${element.type}.${name}: ${runtimeIssue}`,
           path: ["props", name],
         });
       }
@@ -295,6 +316,110 @@ function validatePrimitivePropValue(type: string, value: unknown): string | unde
   }
 
   return undefined;
+}
+
+function validateRuntimePropValue(schema: RuntimePropSchema, value: unknown): string | undefined {
+  if (schema.runtime) return validateRuntimeValidation(schema.runtime, value);
+  return validatePrimitivePropValue(schema.type, value);
+}
+
+function validateRuntimeValidation(schema: RuntimeValidation, value: unknown): string | undefined {
+  if (schema.kind === "string") {
+    return typeof value === "string" ? undefined : "expected a string";
+  }
+
+  if (schema.kind === "number") {
+    return typeof value === "number" ? undefined : "expected a number";
+  }
+
+  if (schema.kind === "boolean") {
+    return typeof value === "boolean" ? undefined : "expected a boolean";
+  }
+
+  if (schema.kind === "literal") {
+    return Object.is(value, schema.value) ? undefined : `expected ${JSON.stringify(schema.value)}`;
+  }
+
+  if (schema.kind === "function") {
+    return typeof value === "function" ? undefined : "expected a function";
+  }
+
+  if (schema.kind === "snippet") {
+    return typeof value === "function" ? undefined : "expected a snippet function";
+  }
+
+  if (schema.kind === "array") {
+    if (!Array.isArray(value)) return "expected an array";
+
+    if (schema.items) {
+      for (const [index, itemSchema] of schema.items.entries()) {
+        const itemIssue = validateRuntimeValidation(itemSchema, value[index]);
+        if (itemIssue) return `item ${index} ${itemIssue}`;
+      }
+    }
+
+    if (schema.item) {
+      for (const [index, item] of value.entries()) {
+        const itemIssue = validateRuntimeValidation(schema.item, item);
+        if (itemIssue) return `item ${index} ${itemIssue}`;
+      }
+    }
+
+    return undefined;
+  }
+
+  if (schema.kind === "record") {
+    if (value === null || typeof value !== "object" || Array.isArray(value)) {
+      return "expected an object";
+    }
+
+    if (schema.item) {
+      for (const [key, item] of Object.entries(value)) {
+        const itemIssue = validateRuntimeValidation(schema.item, item);
+        if (itemIssue) return `${key} ${itemIssue}`;
+      }
+    }
+
+    return undefined;
+  }
+
+  if (schema.kind === "object") {
+    if (value === null || typeof value !== "object" || Array.isArray(value)) {
+      return "expected an object";
+    }
+
+    for (const [key, propSchema] of Object.entries(schema.props ?? {})) {
+      const item = (value as Record<string, unknown>)[key];
+
+      if (item === undefined) {
+        if (propSchema.required) return `${key} is required`;
+        continue;
+      }
+
+      const itemIssue = validateRuntimeValidation(propSchema, item);
+      if (itemIssue) return `${key} ${itemIssue}`;
+    }
+
+    return undefined;
+  }
+
+  if (schema.kind === "union") {
+    const options = schema.options ?? [];
+    if (options.some((option) => !validateRuntimeValidation(option, value))) return undefined;
+
+    return `expected ${options.map(runtimeValidationLabel).join(" or ")}`;
+  }
+
+  return undefined;
+}
+
+function runtimeValidationLabel(schema: RuntimeValidation): string {
+  if (schema.kind === "literal") return JSON.stringify(schema.value);
+  if (schema.kind === "function") return "a function";
+  if (schema.kind === "snippet") return "a snippet function";
+  if (schema.kind === "array") return "an array";
+  if (schema.kind === "object" || schema.kind === "record") return "an object";
+  return `a ${schema.kind}`;
 }
 
 function runtimeExpectation(type: string) {

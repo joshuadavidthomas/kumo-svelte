@@ -103,6 +103,38 @@ describe("generated component prop validation", () => {
     ]);
   });
 
+  it("rejects invalid nested record values", () => {
+    const result = validateElementProps({
+      key: "code-1",
+      type: "Code",
+      props: { values: { javascript: { highlight: true } } },
+    });
+
+    expect(result.success).toBe(false);
+    expect(result.error?.issues).toEqual([
+      {
+        message: "Invalid value for Code.values: javascript value is required",
+        path: ["props", "values"],
+      },
+    ]);
+  });
+
+  it("rejects invalid union branch item values", () => {
+    const result = validateElementProps({
+      key: "select-1",
+      type: "Select",
+      props: { items: [{ label: "Apple", value: 1 }] },
+    });
+
+    expect(result.success).toBe(false);
+    expect(result.error?.issues).toEqual([
+      {
+        message: "Invalid value for Select.items: expected an object or an array",
+        path: ["props", "items"],
+      },
+    ]);
+  });
+
   it("rejects invalid snippet values", () => {
     const result = validateElementProps({
       key: "button-1",

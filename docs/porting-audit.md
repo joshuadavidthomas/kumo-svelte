@@ -72,6 +72,11 @@ Port Cloudflare's Kumo package from React/Base UI to Svelte 5, using:
 - Catalog validation additionally checks generated array-like, record/object,
   function, snippet, and string-or-number prop types when those checks can be
   inferred conservatively from the generated type string.
+- Registry generation now emits AST-derived runtime validation metadata for
+  representable TypeScript prop shapes, including local type aliases and
+  interfaces, arrays, records, object literals, literal unions, snippets, and
+  function props. Catalog validation uses this metadata before falling back to
+  string-based primitive checks.
 
 ## Current Gates
 
@@ -100,15 +105,16 @@ values, variant defaults, variant classes, variant descriptions, base styles,
 common prop descriptions, simple generated examples, upstream MDX docs under
 `upstreamDocs`, upstream TSX demo snippets under `upstreamExamples`, and
 explicit styling metadata where present. Runtime catalog validation uses the
-generated prop metadata for literal variant checks and simple primitive type
-checks.
+generated prop metadata for literal variant checks, AST-derived runtime checks,
+and simple string-derived primitive fallbacks.
 
 Prop description coverage is complete, but descriptions without source JSDoc,
 variant metadata, docs frontmatter, or common-description matches use generated
 fallback prose rather than upstream-authored copy.
 
-They do not yet include complete TypeScript-derived runtime validation for every
-complex prop shape.
+They do not yet include complete TypeScript-derived runtime validation for
+external or opaque imported types such as portal targets, ECharts instances,
+date-library values, and HTML element references.
 
 ## Intentional Differences
 

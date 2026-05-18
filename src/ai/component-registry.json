@@ -11,11 +11,17 @@
         "children": {
           "type": "Snippet",
           "required": false,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Content rendered inside the component."
         },
         "class": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Additional CSS classes."
         },
         "container": {
@@ -26,11 +32,17 @@
         "sideOffset": {
           "type": "number",
           "required": false,
+          "runtime": {
+            "kind": "number"
+          },
           "description": "Distance in pixels from the trigger."
         },
         "aria-label": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Accessible label for controls without visible text."
         },
         "autocomplete": {
@@ -41,61 +53,97 @@
         "clearOnDeselect": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether clear on deselect is enabled."
         },
         "defaultValue": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Initial value for uncontrolled usage."
         },
         "disabled": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether the control is disabled."
         },
         "id": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Element id."
         },
         "name": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Form field name."
         },
         "onblur": {
           "type": "(event: FocusEvent & { currentTarget: HTMLInputElement }) => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when blur occurs."
         },
         "onfocus": {
           "type": "(event: FocusEvent & { currentTarget: HTMLInputElement }) => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when focus occurs."
         },
         "oninput": {
           "type": "(event: Event & { currentTarget: HTMLInputElement }) => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when input occurs."
         },
         "onkeydown": {
           "type": "(event: KeyboardEvent & { currentTarget: HTMLInputElement }) => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when keydown occurs."
         },
         "onValueChange": {
           "type": "(value: string) => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when the value changes."
         },
         "placeholder": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Placeholder text shown before a value is selected."
         },
         "required": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether the form field is required."
         },
         "size": {
@@ -106,46 +154,128 @@
         "label": {
           "type": "Snippet | string",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "snippet"
+              },
+              {
+                "kind": "string"
+              }
+            ]
+          },
           "description": "Visible label text or content."
         },
         "value": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Controlled value."
         },
         "allowDeselect": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether to allow deselect."
         },
         "description": {
           "type": "Snippet | string",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "snippet"
+              },
+              {
+                "kind": "string"
+              }
+            ]
+          },
           "description": "Supporting description text or content."
         },
         "error": {
           "type": "string | { message: Snippet | string; match: FieldErrorMatch }",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "string"
+              },
+              {
+                "kind": "object",
+                "props": {
+                  "message": {
+                    "kind": "union",
+                    "options": [
+                      {
+                        "kind": "snippet"
+                      },
+                      {
+                        "kind": "string"
+                      }
+                    ],
+                    "required": true
+                  }
+                }
+              }
+            ]
+          },
           "description": "Validation error content."
         },
         "items": {
           "type": "AutocompleteItemDescriptor[]",
           "required": false,
+          "runtime": {
+            "kind": "array",
+            "item": {
+              "kind": "object",
+              "props": {
+                "disabled": {
+                  "kind": "boolean",
+                  "required": false
+                },
+                "label": {
+                  "kind": "string",
+                  "required": true
+                },
+                "value": {
+                  "kind": "string",
+                  "required": true
+                }
+              }
+            }
+          },
           "description": "Items rendered by the component."
         },
         "labelTooltip": {
           "type": "Snippet",
           "required": false,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Tooltip content for the label."
         },
         "onOpenChange": {
           "type": "(open: boolean) => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when the open state changes."
         },
         "open": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Controlled open state."
         }
       },
@@ -241,11 +371,17 @@
         "class": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Additional CSS classes."
         },
         "children": {
           "type": "Snippet",
           "required": true,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Content rendered inside the component."
         }
       },
@@ -345,36 +481,65 @@
         "action": {
           "type": "Snippet",
           "required": false,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Action content rendered with the component."
         },
         "children": {
           "type": "Snippet",
           "required": false,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Content rendered inside the component."
         },
         "class": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Additional CSS classes."
         },
         "description": {
           "type": "Snippet | string",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "snippet"
+              },
+              {
+                "kind": "string"
+              }
+            ]
+          },
           "description": "Supporting description text or content."
         },
         "icon": {
           "type": "Snippet",
           "required": false,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Icon content rendered with the component."
         },
         "text": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Primary text content."
         },
         "title": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Title text or content."
         },
         "variant": {
@@ -444,46 +609,73 @@
         "class": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Additional CSS classes."
         },
         "copiedLabel": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Copied label value."
         },
         "label": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Visible label text or content."
         },
         "onCopy": {
           "type": "() => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when copy occurs."
         },
         "text": {
           "type": "string",
           "required": true,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Primary text content."
         },
         "children": {
           "type": "Snippet",
           "required": false,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Content rendered inside the component."
         },
         "icon": {
           "type": "Snippet",
           "required": false,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Icon content rendered with the component."
         },
         "loading": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether the component is in a loading state."
         },
         "mobileChildren": {
           "type": "Snippet",
           "required": false,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Custom content or renderer for mobile children."
         },
         "size": {
@@ -610,36 +802,57 @@
         "class": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Additional CSS classes."
         },
         "children": {
           "type": "Snippet",
           "required": false,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Content rendered inside the component."
         },
         "icon": {
           "type": "Snippet",
           "required": false,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Icon content rendered with the component."
         },
         "loading": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether the component is in a loading state."
         },
         "title": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Title text or content."
         },
         "external": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether the link points to an external destination."
         },
         "linksExternal": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether links external is enabled."
         }
       },
@@ -744,71 +957,127 @@
         "legend": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Legend value."
         },
         "children": {
           "type": "Snippet",
           "required": false,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Content rendered inside the component."
         },
         "error": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Validation error content."
         },
         "description": {
           "type": "Snippet | string",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "snippet"
+              },
+              {
+                "kind": "string"
+              }
+            ]
+          },
           "description": "Supporting description text or content."
         },
         "defaultValue": {
           "type": "string[]",
           "required": false,
+          "runtime": {
+            "kind": "array",
+            "item": {
+              "kind": "string"
+            }
+          },
           "description": "Initial value for uncontrolled usage."
         },
         "value": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Controlled value."
         },
         "onValueChange": {
           "type": "(value: string[]) => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when the value changes."
         },
         "allValues": {
           "type": "string[]",
           "required": false,
+          "runtime": {
+            "kind": "array",
+            "item": {
+              "kind": "string"
+            }
+          },
           "description": "List of all values."
         },
         "disabled": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether the control is disabled."
         },
         "controlFirst": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether control first is enabled."
         },
         "class": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Additional CSS classes."
         },
         "name": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Form field name."
         },
         "required": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether the form field is required."
         },
         "id": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Element id."
         },
         "variant": {
@@ -829,36 +1098,65 @@
         "label": {
           "type": "Snippet | string",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "snippet"
+              },
+              {
+                "kind": "string"
+              }
+            ]
+          },
           "description": "Visible label text or content."
         },
         "checked": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Controlled checked state."
         },
         "indeterminate": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether indeterminate is enabled."
         },
         "onCheckedChange": {
           "type": "(checked: boolean) => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when the checked state changes."
         },
         "aria-label": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Accessible label for controls without visible text."
         },
         "aria-labelledby": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "ID of the element that labels the control."
         },
         "labelTooltip": {
           "type": "Snippet",
           "required": false,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Tooltip content for the label."
         }
       },
@@ -907,16 +1205,31 @@
         "class": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Additional CSS classes."
         },
         "labels": {
           "type": "ClipboardTextLabels",
           "required": false,
+          "runtime": {
+            "kind": "object",
+            "props": {
+              "copyAction": {
+                "kind": "string",
+                "required": false
+              }
+            }
+          },
           "description": "Labels value."
         },
         "onCopy": {
           "type": "() => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when copy occurs."
         },
         "size": {
@@ -939,16 +1252,57 @@
         "text": {
           "type": "string",
           "required": true,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Primary text content."
         },
         "textToCopy": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Text to copy value."
         },
         "tooltip": {
           "type": "ClipboardTextTooltipConfig",
           "required": false,
+          "runtime": {
+            "kind": "object",
+            "props": {
+              "text": {
+                "kind": "string",
+                "required": false
+              },
+              "copiedText": {
+                "kind": "string",
+                "required": false
+              },
+              "side": {
+                "kind": "union",
+                "options": [
+                  {
+                    "kind": "literal",
+                    "value": "top"
+                  },
+                  {
+                    "kind": "literal",
+                    "value": "bottom"
+                  },
+                  {
+                    "kind": "literal",
+                    "value": "left"
+                  },
+                  {
+                    "kind": "literal",
+                    "value": "right"
+                  }
+                ],
+                "required": false
+              }
+            }
+          },
           "description": "Tooltip value."
         }
       },
@@ -998,6 +1352,9 @@
         "class": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Additional CSS classes."
         },
         "color": {
@@ -1071,46 +1428,73 @@
         "children": {
           "type": "Snippet",
           "required": false,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Content rendered inside the component."
         },
         "class": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Additional CSS classes."
         },
         "forceMount": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether to keep the element mounted when it would otherwise be hidden."
         },
         "hiddenUntilFound": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether hidden until found is enabled."
         },
         "id": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Element id."
         },
         "disabled": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether the control is disabled."
         },
         "open": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Controlled open state."
         },
         "onOpenChange": {
           "type": "(open: boolean) => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when the open state changes."
         },
         "onOpenChangeComplete": {
           "type": "(open: boolean) => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when open change complete occurs."
         }
       },
@@ -1140,11 +1524,17 @@
         "children": {
           "type": "Snippet",
           "required": false,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Content rendered inside the component."
         },
         "class": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Additional CSS classes."
         },
         "container": {
@@ -1155,11 +1545,17 @@
         "sideOffset": {
           "type": "number",
           "required": false,
+          "runtime": {
+            "kind": "number"
+          },
           "description": "Distance in pixels from the trigger."
         },
         "aria-label": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Accessible label for controls without visible text."
         },
         "autocomplete": {
@@ -1170,46 +1566,84 @@
         "clearOnDeselect": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether clear on deselect is enabled."
         },
         "defaultValue": {
           "type": "string | string[]",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "string"
+              },
+              {
+                "kind": "array",
+                "item": {
+                  "kind": "string"
+                }
+              }
+            ]
+          },
           "description": "Initial value for uncontrolled usage."
         },
         "disabled": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether the control is disabled."
         },
         "id": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Element id."
         },
         "name": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Form field name."
         },
         "oninput": {
           "type": "(event: Event & { currentTarget: HTMLInputElement }) => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when input occurs."
         },
         "onValueChange": {
           "type": "(value: string | string[]) => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when the value changes."
         },
         "placeholder": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Placeholder text shown before a value is selected."
         },
         "required": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether the form field is required."
         },
         "size": {
@@ -1220,61 +1654,163 @@
         "label": {
           "type": "Snippet | string",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "snippet"
+              },
+              {
+                "kind": "string"
+              }
+            ]
+          },
           "description": "Visible label text or content."
         },
         "value": {
           "type": "string | string[]",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "string"
+              },
+              {
+                "kind": "array",
+                "item": {
+                  "kind": "string"
+                }
+              }
+            ]
+          },
           "description": "Controlled value."
         },
         "clearLabel": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Clear label value."
         },
         "showOptionsLabel": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Whether to show options label."
         },
         "allowDeselect": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether to allow deselect."
         },
         "description": {
           "type": "Snippet | string",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "snippet"
+              },
+              {
+                "kind": "string"
+              }
+            ]
+          },
           "description": "Supporting description text or content."
         },
         "error": {
           "type": "string | { message: Snippet | string; match: FieldErrorMatch }",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "string"
+              },
+              {
+                "kind": "object",
+                "props": {
+                  "message": {
+                    "kind": "union",
+                    "options": [
+                      {
+                        "kind": "snippet"
+                      },
+                      {
+                        "kind": "string"
+                      }
+                    ],
+                    "required": true
+                  }
+                }
+              }
+            ]
+          },
           "description": "Validation error content."
         },
         "items": {
           "type": "ComboboxItemDescriptor[]",
           "required": false,
+          "runtime": {
+            "kind": "array",
+            "item": {
+              "kind": "object",
+              "props": {
+                "disabled": {
+                  "kind": "boolean",
+                  "required": false
+                },
+                "label": {
+                  "kind": "string",
+                  "required": true
+                },
+                "value": {
+                  "kind": "string",
+                  "required": true
+                }
+              }
+            }
+          },
           "description": "Items rendered by the component."
         },
         "labelTooltip": {
           "type": "Snippet",
           "required": false,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Tooltip content for the label."
         },
         "multiple": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether multiple values can be selected."
         },
         "onOpenChange": {
           "type": "(open: boolean) => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when the open state changes."
         },
         "open": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Controlled open state."
         },
         "inputSide": {
@@ -1339,36 +1875,57 @@
         "children": {
           "type": "Snippet",
           "required": false,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Content rendered inside the component."
         },
         "class": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Additional CSS classes."
         },
         "onOpenChange": {
           "type": "(open: boolean) => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when the open state changes."
         },
         "open": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Controlled open state."
         },
         "forceMount": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether to keep the element mounted when it would otherwise be hidden."
         },
         "value": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Controlled value."
         },
         "aria-label": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Accessible label for controls without visible text."
         },
         "autocomplete": {
@@ -1379,126 +1936,243 @@
         "autofocus": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether the control should receive focus automatically."
         },
         "leading": {
           "type": "Snippet",
           "required": false,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Custom content or renderer for leading."
         },
         "onkeydown": {
           "type": "(event: KeyboardEvent & { currentTarget: HTMLInputElement }) => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when keydown occurs."
         },
         "placeholder": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Placeholder text shown before a value is selected."
         },
         "trailing": {
           "type": "Snippet",
           "required": false,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Custom content or renderer for trailing."
         },
         "disabled": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether the control is disabled."
         },
         "keywords": {
           "type": "string[]",
           "required": false,
+          "runtime": {
+            "kind": "array",
+            "item": {
+              "kind": "string"
+            }
+          },
           "description": "List of keywords."
         },
         "onSelect": {
           "type": "() => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when select occurs."
         },
         "progress": {
           "type": "number",
           "required": false,
+          "runtime": {
+            "kind": "number"
+          },
           "description": "Numeric progress value."
         },
         "breadcrumbHighlights": {
           "type": "HighlightRange[][]",
           "required": false,
+          "runtime": {
+            "kind": "array",
+            "item": {
+              "kind": "array",
+              "item": {
+                "kind": "array",
+                "items": [
+                  {
+                    "kind": "number"
+                  },
+                  {
+                    "kind": "number"
+                  }
+                ]
+              }
+            }
+          },
           "description": "List of breadcrumb highlights."
         },
         "breadcrumbs": {
           "type": "string[]",
           "required": false,
+          "runtime": {
+            "kind": "array",
+            "item": {
+              "kind": "string"
+            }
+          },
           "description": "List of breadcrumbs."
         },
         "description": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Supporting description text or content."
         },
         "external": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether the link points to an external destination."
         },
         "icon": {
           "type": "Snippet",
           "required": false,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Icon content rendered with the component."
         },
         "nonInteractive": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether non interactive is enabled."
         },
         "showArrow": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether to show arrow."
         },
         "title": {
           "type": "string",
           "required": true,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Title text or content."
         },
         "titleHighlights": {
           "type": "HighlightRange[]",
           "required": false,
+          "runtime": {
+            "kind": "array",
+            "item": {
+              "kind": "array",
+              "items": [
+                {
+                  "kind": "number"
+                },
+                {
+                  "kind": "number"
+                }
+              ]
+            }
+          },
           "description": "List of title highlights."
         },
         "filter": {
           "type": "(value: string, search: string, keywords?: string[]) => number",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Function used for filter."
         },
         "label": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Visible label text or content."
         },
         "loop": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether loop is enabled."
         },
         "onValueChange": {
           "type": "(value: string) => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when the value changes."
         },
         "shouldFilter": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether should filter is enabled."
         },
         "highlights": {
           "type": "HighlightRange[]",
           "required": false,
+          "runtime": {
+            "kind": "array",
+            "item": {
+              "kind": "array",
+              "items": [
+                {
+                  "kind": "number"
+                },
+                {
+                  "kind": "number"
+                }
+              ]
+            }
+          },
           "description": "List of highlights."
         },
         "text": {
           "type": "string",
           "required": true,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Primary text content."
         }
       },
@@ -1525,6 +2199,9 @@
         "code": {
           "type": "string",
           "required": true,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Code value."
         },
         "lang": {
@@ -1551,11 +2228,30 @@
         "class": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Additional CSS classes."
         },
         "values": {
           "type": "Record<string, { highlight?: boolean; value: string }>",
           "required": false,
+          "runtime": {
+            "kind": "record",
+            "item": {
+              "kind": "object",
+              "props": {
+                "highlight": {
+                  "kind": "boolean",
+                  "required": false
+                },
+                "value": {
+                  "kind": "string",
+                  "required": true
+                }
+              }
+            }
+          },
           "description": "Mapping of values."
         }
       },
@@ -1624,41 +2320,65 @@
         "class": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Additional CSS classes."
         },
         "color": {
           "type": "string",
           "required": true,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Color option used by the component."
         },
         "inactive": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether inactive is enabled."
         },
         "name": {
           "type": "string",
           "required": true,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Form field name."
         },
         "unit": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Unit value."
         },
         "value": {
           "type": "string",
           "required": true,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Controlled value."
         },
         "className": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Additional CSS classes."
         },
         "defaultNodeColor": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Initial node color value."
         },
         "echarts": {
@@ -1669,112 +2389,311 @@
         "formatValue": {
           "type": "(value: number) => string",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Function used for format value."
         },
         "height": {
           "type": "number",
           "required": false,
+          "runtime": {
+            "kind": "number"
+          },
           "description": "Numeric height value."
         },
         "isDarkMode": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether dark mode is enabled."
         },
         "left": {
           "type": "number | string",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "number"
+              },
+              {
+                "kind": "string"
+              }
+            ]
+          },
           "description": "Left value."
         },
         "linkColor": {
           "type": "\"gradient\" | \"gray\"",
           "required": false,
           "values": ["gradient", "gray"],
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "literal",
+                "value": "gradient"
+              },
+              {
+                "kind": "literal",
+                "value": "gray"
+              }
+            ]
+          },
           "description": "Link color value."
         },
         "linkOpacity": {
           "type": "number",
           "required": false,
+          "runtime": {
+            "kind": "number"
+          },
           "description": "Numeric link opacity value."
         },
         "links": {
           "type": "SankeyLinkData[]",
           "required": true,
+          "runtime": {
+            "kind": "array",
+            "item": {
+              "kind": "object",
+              "props": {
+                "id": {
+                  "kind": "string",
+                  "required": false
+                },
+                "isDrillable": {
+                  "kind": "boolean",
+                  "required": false
+                },
+                "source": {
+                  "kind": "number",
+                  "required": true
+                },
+                "target": {
+                  "kind": "number",
+                  "required": true
+                },
+                "value": {
+                  "kind": "number",
+                  "required": true
+                }
+              }
+            }
+          },
           "description": "List of links."
         },
         "nodePadding": {
           "type": "number",
           "required": false,
+          "runtime": {
+            "kind": "number"
+          },
           "description": "Numeric node padding value."
         },
         "nodeWidth": {
           "type": "number",
           "required": false,
+          "runtime": {
+            "kind": "number"
+          },
           "description": "Numeric node width value."
         },
         "nodes": {
           "type": "SankeyNodeData[]",
           "required": true,
+          "runtime": {
+            "kind": "array",
+            "item": {
+              "kind": "object",
+              "props": {
+                "childCount": {
+                  "kind": "number",
+                  "required": false
+                },
+                "color": {
+                  "kind": "string",
+                  "required": false
+                },
+                "id": {
+                  "kind": "string",
+                  "required": false
+                },
+                "isDrillable": {
+                  "kind": "boolean",
+                  "required": false
+                },
+                "name": {
+                  "kind": "string",
+                  "required": true
+                },
+                "tooltipData": {
+                  "kind": "record",
+                  "item": {
+                    "kind": "union",
+                    "options": [
+                      {
+                        "kind": "number"
+                      },
+                      {
+                        "kind": "string"
+                      }
+                    ]
+                  },
+                  "required": false
+                },
+                "value": {
+                  "kind": "number",
+                  "required": false
+                }
+              }
+            }
+          },
           "description": "List of nodes."
         },
         "onLinkClick": {
           "type": "(link: SankeyLinkData) => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when link click occurs."
         },
         "onNodeClick": {
           "type": "(node: SankeyNodeData) => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when node click occurs."
         },
         "right": {
           "type": "number | string",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "number"
+              },
+              {
+                "kind": "string"
+              }
+            ]
+          },
           "description": "Right value."
         },
         "showNodeValues": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether to show node values."
         },
         "showTooltip": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether to show tooltip."
         },
         "tooltipFormatter": {
           "type": "(params: SankeyTooltipParams) => string",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Function used for tooltip formatter."
         },
         "ariaDescription": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Aria description value."
         },
         "data": {
           "type": "TimeseriesData[]",
           "required": true,
+          "runtime": {
+            "kind": "array",
+            "item": {
+              "kind": "object",
+              "props": {
+                "color": {
+                  "kind": "string",
+                  "required": true
+                },
+                "data": {
+                  "kind": "array",
+                  "item": {
+                    "kind": "array",
+                    "items": [
+                      {
+                        "kind": "number"
+                      },
+                      {
+                        "kind": "number"
+                      }
+                    ]
+                  },
+                  "required": true
+                },
+                "name": {
+                  "kind": "string",
+                  "required": true
+                }
+              }
+            }
+          },
           "description": "List of data."
         },
         "gradient": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether gradient is enabled."
         },
         "incomplete": {
           "type": "{ after?: number; before?: number }",
           "required": false,
+          "runtime": {
+            "kind": "object",
+            "props": {
+              "after": {
+                "kind": "number",
+                "required": false
+              },
+              "before": {
+                "kind": "number",
+                "required": false
+              }
+            }
+          },
           "description": "Incomplete value."
         },
         "loading": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether the component is in a loading state."
         },
         "onTimeRangeChange": {
           "type": "(from: number, to: number) => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when time range change occurs."
         },
         "optionUpdateBehavior": {
@@ -1785,52 +2704,92 @@
         "tooltipValueFormat": {
           "type": "(value: number) => string",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Function used for tooltip value format."
         },
         "type": {
           "type": "\"bar\" | \"line\"",
           "required": false,
           "values": ["bar", "line"],
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "literal",
+                "value": "bar"
+              },
+              {
+                "kind": "literal",
+                "value": "line"
+              }
+            ]
+          },
           "description": "Type option used by the component."
         },
         "xAxisName": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "X axis name value."
         },
         "xAxisTickCount": {
           "type": "number",
           "required": false,
+          "runtime": {
+            "kind": "number"
+          },
           "description": "Numeric x axis tick count value."
         },
         "xAxisTickFormat": {
           "type": "(value: number) => string",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Function used for x axis tick format."
         },
         "yAxisName": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Y axis name value."
         },
         "yAxisTickCount": {
           "type": "number",
           "required": false,
+          "runtime": {
+            "kind": "number"
+          },
           "description": "Numeric y axis tick count value."
         },
         "yAxisTickFormat": {
           "type": "(value: number) => string",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Function used for y axis tick format."
         },
         "yAxisTickLabelFormat": {
           "type": "(value: number) => string",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Function used for y axis tick label format."
         },
         "onEvents": {
           "type": "Partial<ChartEvents>",
           "required": false,
+          "runtime": {
+            "kind": "object"
+          },
           "description": "On events value."
         },
         "options": {
@@ -1862,56 +2821,106 @@
         "mode": {
           "type": "DatePickerMode",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "literal",
+                "value": "single"
+              },
+              {
+                "kind": "literal",
+                "value": "multiple"
+              },
+              {
+                "kind": "literal",
+                "value": "range"
+              }
+            ]
+          },
           "description": "Selection mode used by the component."
         },
         "months": {
           "type": "Month<DateValue>[]",
           "required": true,
+          "runtime": {
+            "kind": "array"
+          },
           "description": "List of months."
         },
         "weekdays": {
           "type": "string[]",
           "required": true,
+          "runtime": {
+            "kind": "array",
+            "item": {
+              "kind": "string"
+            }
+          },
           "description": "List of weekdays."
         },
         "calendarLabel": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Calendar label value."
         },
         "children": {
           "type": "Snippet<[DatePickerSnippetProps]>",
           "required": false,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Content rendered inside the component."
         },
         "class": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Additional CSS classes."
         },
         "disableDaysOutsideMonth": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether to disable days outside month."
         },
         "disabled": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether the control is disabled."
         },
         "excludeDisabled": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether exclude disabled is enabled."
         },
         "fixedWeeks": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether fixed weeks is enabled."
         },
         "initialFocus": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether initial focus is enabled."
         },
         "isDateDisabled": {
@@ -1927,11 +2936,17 @@
         "locale": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Locale value."
         },
         "maxDays": {
           "type": "number",
           "required": false,
+          "runtime": {
+            "kind": "number"
+          },
           "description": "Numeric max days value."
         },
         "maxValue": {
@@ -1942,6 +2957,9 @@
         "minDays": {
           "type": "number",
           "required": false,
+          "runtime": {
+            "kind": "number"
+          },
           "description": "Numeric min days value."
         },
         "minValue": {
@@ -1952,41 +2970,65 @@
         "monthFormat": {
           "type": "Intl.DateTimeFormatOptions[\"month\"] | ((month: number) => string)",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Function used for month format."
         },
         "numberOfMonths": {
           "type": "number",
           "required": false,
+          "runtime": {
+            "kind": "number"
+          },
           "description": "Numeric number of months value."
         },
         "onChange": {
           "type": "(value: DatePickerValue) => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when change occurs."
         },
         "onEndValueChange": {
           "type": "(value: DateValue | undefined) => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when end value change occurs."
         },
         "onPlaceholderChange": {
           "type": "(value: DateValue) => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when placeholder change occurs."
         },
         "onStartValueChange": {
           "type": "(value: DateValue | undefined) => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when start value change occurs."
         },
         "onValueChange": {
           "type": "(value: DatePickerValue) => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when the value changes."
         },
         "pagedNavigation": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether paged navigation is enabled."
         },
         "placeholder": {
@@ -1997,11 +3039,17 @@
         "preventDeselect": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether to prevent deselect."
         },
         "readonly": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether the control is read-only."
         },
         "ref": {
@@ -2012,11 +3060,47 @@
         "value": {
           "type": "DatePickerValue",
           "required": false,
+          "runtime": {
+            "kind": "array"
+          },
           "description": "Controlled value."
         },
         "weekStartsOn": {
           "type": "WeekStartsOn",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "literal",
+                "value": 0
+              },
+              {
+                "kind": "literal",
+                "value": 1
+              },
+              {
+                "kind": "literal",
+                "value": 2
+              },
+              {
+                "kind": "literal",
+                "value": 3
+              },
+              {
+                "kind": "literal",
+                "value": 4
+              },
+              {
+                "kind": "literal",
+                "value": 5
+              },
+              {
+                "kind": "literal",
+                "value": 6
+              }
+            ]
+          },
           "description": "Week starts on value."
         },
         "weekdayFormat": {
@@ -2027,6 +3111,9 @@
         "yearFormat": {
           "type": "Intl.DateTimeFormatOptions[\"year\"] | ((year: number) => string)",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Function used for year format."
         }
       },
@@ -2054,26 +3141,41 @@
         "class": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Additional CSS classes."
         },
         "className": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Additional CSS classes."
         },
         "onEndDateChange": {
           "type": "(date: Date | null) => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when end date change occurs."
         },
         "onStartDateChange": {
           "type": "(date: Date | null) => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when start date change occurs."
         },
         "onValueChange": {
           "type": "(value: DateRange) => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when the value changes."
         },
         "size": {
@@ -2096,6 +3198,9 @@
         "timezone": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Timezone value."
         },
         "value": {
@@ -2167,21 +3272,33 @@
         "children": {
           "type": "Snippet",
           "required": false,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Content rendered inside the component."
         },
         "class": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Additional CSS classes."
         },
         "disabled": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether the control is disabled."
         },
         "id": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Element id."
         },
         "container": {
@@ -2211,6 +3328,9 @@
         "style": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Inline style string applied to the element."
         },
         "to": {
@@ -2236,16 +3356,51 @@
         "open": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Controlled open state."
         },
         "onOpenChange": {
           "type": "(open: boolean) => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when the open state changes."
         },
         "level": {
           "type": "1 | 2 | 3 | 4 | 5 | 6",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "literal",
+                "value": 1
+              },
+              {
+                "kind": "literal",
+                "value": 2
+              },
+              {
+                "kind": "literal",
+                "value": 3
+              },
+              {
+                "kind": "literal",
+                "value": 4
+              },
+              {
+                "kind": "literal",
+                "value": 5
+              },
+              {
+                "kind": "literal",
+                "value": 6
+              }
+            ]
+          },
           "description": "Heading level used for the rendered title."
         }
       },
@@ -2380,6 +3535,9 @@
         "children": {
           "type": "Snippet",
           "required": false,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Content rendered inside the component."
         },
         "to": {
@@ -2391,21 +3549,43 @@
           "type": "\"ltr\" | \"rtl\"",
           "required": false,
           "values": ["ltr", "rtl"],
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "literal",
+                "value": "ltr"
+              },
+              {
+                "kind": "literal",
+                "value": "rtl"
+              }
+            ]
+          },
           "description": "Text direction used by the underlying primitive."
         },
         "onOpenChange": {
           "type": "(open: boolean) => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when the open state changes."
         },
         "onOpenChangeComplete": {
           "type": "(open: boolean) => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when open change complete occurs."
         },
         "open": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Controlled open state."
         },
         "variant": {
@@ -2467,31 +3647,49 @@
         "children": {
           "type": "Snippet",
           "required": false,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Content rendered inside the component."
         },
         "class": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Additional CSS classes."
         },
         "commandLine": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Command line value."
         },
         "contents": {
           "type": "Snippet",
           "required": false,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Custom content or renderer for contents."
         },
         "description": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Supporting description text or content."
         },
         "icon": {
           "type": "Snippet",
           "required": false,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Icon content rendered with the component."
         },
         "size": {
@@ -2514,6 +3712,9 @@
         "title": {
           "type": "string",
           "required": true,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Title text or content."
         }
       },
@@ -2565,16 +3766,33 @@
         "children": {
           "type": "Snippet",
           "required": true,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Content rendered inside the component."
         },
         "class": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Additional CSS classes."
         },
         "description": {
           "type": "Snippet | string",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "snippet"
+              },
+              {
+                "kind": "string"
+              }
+            ]
+          },
           "description": "Supporting description text or content."
         },
         "error": {
@@ -2585,31 +3803,57 @@
         "for": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "For value."
         },
         "hideLabel": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether to visually hide the label while keeping it available to assistive technology."
         },
         "label": {
           "type": "Snippet | string",
           "required": true,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "snippet"
+              },
+              {
+                "kind": "string"
+              }
+            ]
+          },
           "description": "Visible label text or content."
         },
         "labelTooltip": {
           "type": "Snippet",
           "required": false,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Tooltip content for the label."
         },
         "required": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether the form field is required."
         },
         "controlFirst": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether control first is enabled."
         }
       },
@@ -2629,66 +3873,186 @@
         "children": {
           "type": "Snippet",
           "required": false,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Content rendered inside the component."
         },
         "connectors": {
           "type": "FlowConnector[]",
           "required": true,
+          "runtime": {
+            "kind": "array",
+            "item": {
+              "kind": "object",
+              "props": {
+                "disabled": {
+                  "kind": "boolean",
+                  "required": false
+                },
+                "fromId": {
+                  "kind": "string",
+                  "required": false
+                },
+                "isBottom": {
+                  "kind": "boolean",
+                  "required": false
+                },
+                "single": {
+                  "kind": "boolean",
+                  "required": false
+                },
+                "toId": {
+                  "kind": "string",
+                  "required": false
+                },
+                "x1": {
+                  "kind": "number",
+                  "required": true
+                },
+                "x2": {
+                  "kind": "number",
+                  "required": true
+                },
+                "y1": {
+                  "kind": "number",
+                  "required": true
+                },
+                "y2": {
+                  "kind": "number",
+                  "required": true
+                }
+              }
+            }
+          },
           "description": "List of connectors."
         },
         "markerId": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Marker id value."
         },
         "render": {
           "type": "FlowNodeRenderSnippet",
           "required": false,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Custom content or renderer for render."
         },
         "type": {
           "type": "FlowAnchorType",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "literal",
+                "value": "start"
+              },
+              {
+                "kind": "literal",
+                "value": "end"
+              }
+            ]
+          },
           "description": "Type option used by the component."
         },
         "class": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Additional CSS classes."
         },
         "id": {
           "type": "string",
           "required": true,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Element id."
         },
         "disabled": {
           "type": "boolean",
           "required": true,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether the control is disabled."
         },
         "align": {
           "type": "FlowAlign",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "literal",
+                "value": "start"
+              },
+              {
+                "kind": "literal",
+                "value": "center"
+              }
+            ]
+          },
           "description": "Alignment of the component content."
         },
         "canvas": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether canvas is enabled."
         },
         "onOverflowChange": {
           "type": "(overflow: { x: boolean; y: boolean }) => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when overflow change occurs."
         },
         "orientation": {
           "type": "FlowOrientation",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "literal",
+                "value": "horizontal"
+              },
+              {
+                "kind": "literal",
+                "value": "vertical"
+              }
+            ]
+          },
           "description": "Orientation value."
         },
         "padding": {
           "type": "{ x?: number; y?: number }",
           "required": false,
+          "runtime": {
+            "kind": "object",
+            "props": {
+              "x": {
+                "kind": "number",
+                "required": false
+              },
+              "y": {
+                "kind": "number",
+                "required": false
+              }
+            }
+          },
           "description": "Padding value."
         },
         "action": {
@@ -2699,11 +4063,35 @@
         "attrs": {
           "type": "{ \"data-node-id\": string; \"data-node-index\": number; \"data-testid\": string; style: string; }",
           "required": true,
+          "runtime": {
+            "kind": "object",
+            "props": {
+              "data-node-id": {
+                "kind": "string",
+                "required": true
+              },
+              "data-node-index": {
+                "kind": "number",
+                "required": true
+              },
+              "data-testid": {
+                "kind": "string",
+                "required": true
+              },
+              "style": {
+                "kind": "string",
+                "required": true
+              }
+            }
+          },
           "description": "Attrs value."
         },
         "index": {
           "type": "number",
           "required": true,
+          "runtime": {
+            "kind": "number"
+          },
           "description": "Numeric index value."
         }
       },
@@ -2731,11 +4119,17 @@
         "children": {
           "type": "Snippet",
           "required": false,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Content rendered inside the component."
         },
         "class": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Additional CSS classes."
         },
         "gap": {
@@ -2760,6 +4154,9 @@
         "mobileDivider": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether mobile divider is enabled."
         },
         "variant": {
@@ -2877,26 +4274,79 @@
         "description": {
           "type": "Snippet | string",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "snippet"
+              },
+              {
+                "kind": "string"
+              }
+            ]
+          },
           "description": "Supporting description text or content."
         },
         "error": {
           "type": "string | { message: Snippet | string; match: FieldErrorMatch }",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "string"
+              },
+              {
+                "kind": "object",
+                "props": {
+                  "message": {
+                    "kind": "union",
+                    "options": [
+                      {
+                        "kind": "snippet"
+                      },
+                      {
+                        "kind": "string"
+                      }
+                    ],
+                    "required": true
+                  }
+                }
+              }
+            ]
+          },
           "description": "Validation error content."
         },
         "label": {
           "type": "Snippet | string",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "snippet"
+              },
+              {
+                "kind": "string"
+              }
+            ]
+          },
           "description": "Visible label text or content."
         },
         "labelTooltip": {
           "type": "Snippet",
           "required": false,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Tooltip content for the label."
         },
         "onValueChange": {
           "type": "(value: string) => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when the value changes."
         },
         "size": {
@@ -2921,6 +4371,23 @@
         "value": {
           "type": "string | number | string[] | undefined",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "string"
+              },
+              {
+                "kind": "number"
+              },
+              {
+                "kind": "array",
+                "item": {
+                  "kind": "string"
+                }
+              }
+            ]
+          },
           "description": "Controlled value."
         },
         "variant": {
@@ -2941,16 +4408,25 @@
         "passwordManagerIgnore": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether password manager ignore is enabled."
         },
         "focusIndicator": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether focus indicator is enabled."
         },
         "parentFocusIndicator": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether parent focus indicator is enabled."
         }
       },
@@ -3061,26 +4537,59 @@
           "type": "\"start\" | \"end\"",
           "required": false,
           "values": ["start", "end"],
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "literal",
+                "value": "start"
+              },
+              {
+                "kind": "literal",
+                "value": "end"
+              }
+            ]
+          },
           "description": "Alignment of the component content."
         },
         "children": {
           "type": "Snippet",
           "required": true,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Content rendered inside the component."
         },
         "class": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Additional CSS classes."
         },
         "containsButton": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether contains button is enabled."
         },
         "tooltip": {
           "type": "Snippet | string",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "snippet"
+              },
+              {
+                "kind": "string"
+              }
+            ]
+          },
           "description": "Custom content or renderer for tooltip."
         },
         "tooltipSide": {
@@ -3091,46 +4600,135 @@
         "onValueChange": {
           "type": "(value: string) => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when the value changes."
         },
         "value": {
           "type": "string | number | string[] | undefined",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "string"
+              },
+              {
+                "kind": "number"
+              },
+              {
+                "kind": "array",
+                "item": {
+                  "kind": "string"
+                }
+              }
+            ]
+          },
           "description": "Controlled value."
         },
         "description": {
           "type": "Snippet | string",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "snippet"
+              },
+              {
+                "kind": "string"
+              }
+            ]
+          },
           "description": "Supporting description text or content."
         },
         "disabled": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether the control is disabled."
         },
         "error": {
           "type": "string | { message: Snippet | string; match: FieldErrorMatch }",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "string"
+              },
+              {
+                "kind": "object",
+                "props": {
+                  "message": {
+                    "kind": "union",
+                    "options": [
+                      {
+                        "kind": "snippet"
+                      },
+                      {
+                        "kind": "string"
+                      }
+                    ],
+                    "required": true
+                  }
+                }
+              }
+            ]
+          },
           "description": "Validation error content."
         },
         "focusMode": {
           "type": "InputGroupFocusMode",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "literal",
+                "value": "container"
+              },
+              {
+                "kind": "literal",
+                "value": "individual"
+              }
+            ]
+          },
           "description": "Focus mode value."
         },
         "label": {
           "type": "Snippet | string",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "snippet"
+              },
+              {
+                "kind": "string"
+              }
+            ]
+          },
           "description": "Visible label text or content."
         },
         "labelTooltip": {
           "type": "Snippet",
           "required": false,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Tooltip content for the label."
         },
         "required": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether the form field is required."
         },
         "size": {
@@ -3202,36 +4800,57 @@
         "children": {
           "type": "Snippet",
           "required": true,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Content rendered inside the component."
         },
         "showOptional": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether to show optional."
         },
         "tooltip": {
           "type": "Snippet",
           "required": false,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Custom content or renderer for tooltip."
         },
         "class": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Additional CSS classes."
         },
         "for": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "For value."
         },
         "id": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Element id."
         },
         "asContent": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether as content is enabled."
         }
       },
@@ -3260,11 +4879,17 @@
         "children": {
           "type": "Snippet",
           "required": false,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Content rendered inside the component."
         },
         "class": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Additional CSS classes."
         },
         "as": {
@@ -3275,6 +4900,9 @@
         "layered": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether layered is enabled."
         }
       },
@@ -3303,36 +4931,57 @@
         "checked": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Controlled checked state."
         },
         "class": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Additional CSS classes."
         },
         "disabled": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether the control is disabled."
         },
         "id": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Element id."
         },
         "name": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Form field name."
         },
         "onCheckedChange": {
           "type": "(checked: boolean) => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when the checked state changes."
         },
         "required": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether the form field is required."
         },
         "size": {
@@ -3355,11 +5004,17 @@
         "transitioning": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether transitioning is enabled."
         },
         "value": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Controlled value."
         },
         "variant": {
@@ -3380,46 +5035,89 @@
         "aria-label": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Accessible label for controls without visible text."
         },
         "aria-labelledby": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "ID of the element that labels the control."
         },
         "children": {
           "type": "Snippet",
           "required": true,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Content rendered inside the component."
         },
         "controlFirst": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether control first is enabled."
         },
         "description": {
           "type": "Snippet | string",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "snippet"
+              },
+              {
+                "kind": "string"
+              }
+            ]
+          },
           "description": "Supporting description text or content."
         },
         "error": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Validation error content."
         },
         "legend": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Legend value."
         },
         "label": {
           "type": "Snippet | string",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "snippet"
+              },
+              {
+                "kind": "string"
+              }
+            ]
+          },
           "description": "Visible label text or content."
         },
         "labelTooltip": {
           "type": "Snippet",
           "required": false,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Tooltip content for the label."
         }
       },
@@ -3482,31 +5180,49 @@
         "active": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether active is enabled."
         },
         "children": {
           "type": "Snippet",
           "required": false,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Content rendered inside the component."
         },
         "class": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Additional CSS classes."
         },
         "href": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "URL to navigate to."
         },
         "label": {
           "type": "string",
           "required": true,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Visible label text or content."
         },
         "child": {
           "type": "Snippet<[{ props: ItemProps & { class: string } }]>",
           "required": false,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Custom content or renderer for child."
         }
       },
@@ -3550,31 +5266,49 @@
         "activateOnFocus": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether activate on focus is enabled."
         },
         "class": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Additional CSS classes."
         },
         "indicatorClassName": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Indicator class name value."
         },
         "listClassName": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "List class name value."
         },
         "onValueChange": {
           "type": "(value: string) => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when the value changes."
         },
         "selectedValue": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Selected value value."
         },
         "size": {
@@ -3587,11 +5321,46 @@
         "tabs": {
           "type": "TabsItem[]",
           "required": false,
+          "runtime": {
+            "kind": "array",
+            "item": {
+              "kind": "object",
+              "props": {
+                "class": {
+                  "kind": "string",
+                  "required": false
+                },
+                "disabled": {
+                  "kind": "boolean",
+                  "required": false
+                },
+                "label": {
+                  "kind": "union",
+                  "options": [
+                    {
+                      "kind": "snippet"
+                    },
+                    {
+                      "kind": "string"
+                    }
+                  ],
+                  "required": true
+                },
+                "value": {
+                  "kind": "string",
+                  "required": true
+                }
+              }
+            }
+          },
           "description": "List of tabs."
         },
         "value": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Controlled value."
         },
         "variant": {
@@ -3661,6 +5430,9 @@
         "class": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Additional CSS classes."
         },
         "variant": {
@@ -3683,11 +5455,17 @@
         "children": {
           "type": "Snippet",
           "required": true,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Content rendered inside the component."
         },
         "to": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Portal target for rendered overlay content."
         }
       },
@@ -3739,11 +5517,17 @@
         "aria-label": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Accessible label for controls without visible text."
         },
         "size": {
           "type": "KumoLoaderSize | number",
           "required": false,
+          "runtime": {
+            "kind": "number"
+          },
           "default": "base",
           "descriptions": {
             "sm": "Small loader for inline use",
@@ -3756,41 +5540,73 @@
         "blockHeight": {
           "type": "string | number",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "string"
+              },
+              {
+                "kind": "number"
+              }
+            ]
+          },
           "description": "Block height value."
         },
         "class": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Additional CSS classes."
         },
         "maxDelay": {
           "type": "number",
           "required": false,
+          "runtime": {
+            "kind": "number"
+          },
           "description": "Numeric max delay value."
         },
         "maxDuration": {
           "type": "number",
           "required": false,
+          "runtime": {
+            "kind": "number"
+          },
           "description": "Numeric max duration value."
         },
         "maxWidth": {
           "type": "number",
           "required": false,
+          "runtime": {
+            "kind": "number"
+          },
           "description": "Numeric max width value."
         },
         "minDelay": {
           "type": "number",
           "required": false,
+          "runtime": {
+            "kind": "number"
+          },
           "description": "Numeric min delay value."
         },
         "minDuration": {
           "type": "number",
           "required": false,
+          "runtime": {
+            "kind": "number"
+          },
           "description": "Numeric min duration value."
         },
         "minWidth": {
           "type": "number",
           "required": false,
+          "runtime": {
+            "kind": "number"
+          },
           "description": "Numeric min width value."
         }
       },
@@ -3833,21 +5649,73 @@
         "class": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Additional CSS classes."
         },
         "isActive": {
           "type": "number | boolean | string | undefined",
           "required": true,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "number"
+              },
+              {
+                "kind": "boolean"
+              },
+              {
+                "kind": "string"
+              }
+            ]
+          },
           "description": "Whether active is enabled."
         },
         "optionIds": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether option ids is enabled."
         },
         "options": {
           "type": "MenuBarOption[]",
           "required": true,
+          "runtime": {
+            "kind": "array",
+            "item": {
+              "kind": "object",
+              "props": {
+                "icon": {
+                  "kind": "snippet",
+                  "required": true
+                },
+                "id": {
+                  "kind": "union",
+                  "options": [
+                    {
+                      "kind": "number"
+                    },
+                    {
+                      "kind": "string"
+                    }
+                  ],
+                  "required": false
+                },
+                "onClick": {
+                  "kind": "function",
+                  "required": true
+                },
+                "tooltip": {
+                  "kind": "string",
+                  "required": true
+                }
+              }
+            }
+          },
           "description": "List of options."
         }
       },
@@ -3871,51 +5739,81 @@
         "value": {
           "type": "number",
           "required": false,
+          "runtime": {
+            "kind": "number"
+          },
           "description": "Controlled value."
         },
         "min": {
           "type": "number",
           "required": false,
+          "runtime": {
+            "kind": "number"
+          },
           "description": "Numeric min value."
         },
         "max": {
           "type": "number",
           "required": false,
+          "runtime": {
+            "kind": "number"
+          },
           "description": "Numeric max value."
         },
         "customValue": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Custom value value."
         },
         "label": {
           "type": "string",
           "required": true,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Visible label text or content."
         },
         "showValue": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether to show value."
         },
         "class": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Additional CSS classes."
         },
         "trackClass": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Track class value."
         },
         "indicatorClass": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Indicator class value."
         },
         "id": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Element id."
         }
       },
@@ -3944,6 +5842,9 @@
         "class": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Additional CSS classes."
         },
         "controls": {
@@ -3965,66 +5866,156 @@
           "type": "\"input\" | \"dropdown\"",
           "required": false,
           "values": ["input", "dropdown"],
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "literal",
+                "value": "input"
+              },
+              {
+                "kind": "literal",
+                "value": "dropdown"
+              }
+            ]
+          },
           "description": "Page selector value."
         },
         "text": {
           "type": "Snippet<[props: PaginationInfoSnippetProps]>",
           "required": false,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Primary text content."
         },
         "label": {
           "type": "Snippet | string",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "snippet"
+              },
+              {
+                "kind": "string"
+              }
+            ]
+          },
           "description": "Visible label text or content."
         },
         "onChange": {
           "type": "(size: number) => void",
           "required": true,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when change occurs."
         },
         "options": {
           "type": "number[]",
           "required": false,
+          "runtime": {
+            "kind": "array",
+            "item": {
+              "kind": "number"
+            }
+          },
           "description": "List of options."
         },
         "value": {
           "type": "number",
           "required": true,
+          "runtime": {
+            "kind": "number"
+          },
           "description": "Controlled value."
         },
         "page": {
           "type": "number",
           "required": false,
+          "runtime": {
+            "kind": "number"
+          },
           "description": "Numeric page value."
         },
         "pageShowingRange": {
           "type": "string",
           "required": true,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Page showing range value."
         },
         "perPage": {
           "type": "number",
           "required": false,
+          "runtime": {
+            "kind": "number"
+          },
           "description": "Numeric per page value."
         },
         "totalCount": {
           "type": "number",
           "required": false,
+          "runtime": {
+            "kind": "number"
+          },
           "description": "Numeric total count value."
         },
         "children": {
           "type": "Snippet",
           "required": false,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Content rendered inside the component."
         },
         "labels": {
           "type": "PaginationLabels",
           "required": false,
+          "runtime": {
+            "kind": "object",
+            "props": {
+              "navigation": {
+                "kind": "string",
+                "required": false
+              },
+              "firstPage": {
+                "kind": "string",
+                "required": false
+              },
+              "previousPage": {
+                "kind": "string",
+                "required": false
+              },
+              "nextPage": {
+                "kind": "string",
+                "required": false
+              },
+              "lastPage": {
+                "kind": "string",
+                "required": false
+              },
+              "pageNumber": {
+                "kind": "string",
+                "required": false
+              },
+              "pageSize": {
+                "kind": "string",
+                "required": false
+              }
+            }
+          },
           "description": "Labels value."
         },
         "setPage": {
           "type": "(page: number) => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Function used for set page."
         }
       },
@@ -4073,6 +6064,9 @@
         "children": {
           "type": "Snippet",
           "required": false,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Content rendered inside the component."
         },
         "to": {
@@ -4083,16 +6077,25 @@
         "open": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Controlled open state."
         },
         "onOpenChange": {
           "type": "(open: boolean) => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when the open state changes."
         },
         "onOpenChangeComplete": {
           "type": "(open: boolean) => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when open change complete occurs."
         },
         "side": {
@@ -4181,77 +6184,158 @@
         "children": {
           "type": "Snippet",
           "required": true,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Content rendered inside the component."
         },
         "class": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Additional CSS classes."
         },
         "controlPosition": {
           "type": "RadioControlPosition",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "literal",
+                "value": "start"
+              },
+              {
+                "kind": "literal",
+                "value": "end"
+              }
+            ]
+          },
           "description": "Control position value."
         },
         "defaultValue": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Initial value for uncontrolled usage."
         },
         "description": {
           "type": "Snippet | string",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "snippet"
+              },
+              {
+                "kind": "string"
+              }
+            ]
+          },
           "description": "Supporting description text or content."
         },
         "disabled": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether the control is disabled."
         },
         "error": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Validation error content."
         },
         "legend": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Legend value."
         },
         "name": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Form field name."
         },
         "onValueChange": {
           "type": "(value: string) => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when the value changes."
         },
         "orientation": {
           "type": "\"vertical\" | \"horizontal\"",
           "required": false,
           "values": ["vertical", "horizontal"],
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "literal",
+                "value": "vertical"
+              },
+              {
+                "kind": "literal",
+                "value": "horizontal"
+              }
+            ]
+          },
           "description": "Orientation value."
         },
         "required": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether the form field is required."
         },
         "value": {
           "type": "string",
           "required": true,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Controlled value."
         },
         "id": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Element id."
         },
         "label": {
           "type": "Snippet | string",
           "required": true,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "snippet"
+              },
+              {
+                "kind": "string"
+              }
+            ]
+          },
           "description": "Visible label text or content."
         },
         "variant": {
@@ -4327,41 +6411,84 @@
         "children": {
           "type": "Snippet",
           "required": false,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Content rendered inside the component."
         },
         "class": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Additional CSS classes."
         },
         "disabled": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether the control is disabled."
         },
         "label": {
           "type": "Snippet | string",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "snippet"
+              },
+              {
+                "kind": "string"
+              }
+            ]
+          },
           "description": "Visible label text or content."
         },
         "value": {
           "type": "string | string[]",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "string"
+              },
+              {
+                "kind": "array",
+                "item": {
+                  "kind": "string"
+                }
+              }
+            ]
+          },
           "description": "Controlled value."
         },
         "aria-label": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Accessible label for controls without visible text."
         },
         "aria-labelledby": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "ID of the element that labels the control."
         },
         "allowDeselect": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether to allow deselect."
         },
         "container": {
@@ -4372,61 +6499,184 @@
         "defaultValue": {
           "type": "string | string[]",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "string"
+              },
+              {
+                "kind": "array",
+                "item": {
+                  "kind": "string"
+                }
+              }
+            ]
+          },
           "description": "Initial value for uncontrolled usage."
         },
         "description": {
           "type": "Snippet | string",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "snippet"
+              },
+              {
+                "kind": "string"
+              }
+            ]
+          },
           "description": "Supporting description text or content."
         },
         "error": {
           "type": "string | { message: Snippet | string; match: FieldErrorMatch }",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "string"
+              },
+              {
+                "kind": "object",
+                "props": {
+                  "message": {
+                    "kind": "union",
+                    "options": [
+                      {
+                        "kind": "snippet"
+                      },
+                      {
+                        "kind": "string"
+                      }
+                    ],
+                    "required": true
+                  }
+                }
+              }
+            ]
+          },
           "description": "Validation error content."
         },
         "hideLabel": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether to visually hide the label while keeping it available to assistive technology."
         },
         "items": {
           "type": "SelectItems",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "record",
+                "item": {
+                  "kind": "union",
+                  "options": [
+                    {
+                      "kind": "string"
+                    },
+                    {
+                      "kind": "object",
+                      "props": {
+                        "disabled": {
+                          "kind": "boolean",
+                          "required": false
+                        },
+                        "label": {
+                          "kind": "string",
+                          "required": true
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "kind": "array",
+                "item": {
+                  "kind": "object",
+                  "props": {
+                    "disabled": {
+                      "kind": "boolean",
+                      "required": false
+                    },
+                    "label": {
+                      "kind": "string",
+                      "required": true
+                    },
+                    "value": {
+                      "kind": "string",
+                      "required": true
+                    }
+                  }
+                }
+              }
+            ]
+          },
           "description": "Items rendered by the component."
         },
         "labelTooltip": {
           "type": "Snippet",
           "required": false,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Tooltip content for the label."
         },
         "loading": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether the component is in a loading state."
         },
         "multiple": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether multiple values can be selected."
         },
         "name": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Form field name."
         },
         "onValueChange": {
           "type": "(value: string | string[]) => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when the value changes."
         },
         "placeholder": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Placeholder text shown before a value is selected."
         },
         "required": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether the form field is required."
         },
         "size": {
@@ -4505,51 +6755,119 @@
         "class": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Additional CSS classes."
         },
         "defaultValue": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Initial value for uncontrolled usage."
         },
         "description": {
           "type": "Snippet | string",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "snippet"
+              },
+              {
+                "kind": "string"
+              }
+            ]
+          },
           "description": "Supporting description text or content."
         },
         "error": {
           "type": "string | { message: Snippet | string; match: FieldErrorMatch }",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "string"
+              },
+              {
+                "kind": "object",
+                "props": {
+                  "message": {
+                    "kind": "union",
+                    "options": [
+                      {
+                        "kind": "snippet"
+                      },
+                      {
+                        "kind": "string"
+                      }
+                    ],
+                    "required": true
+                  }
+                }
+              }
+            ]
+          },
           "description": "Validation error content."
         },
         "label": {
           "type": "Snippet | string",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "snippet"
+              },
+              {
+                "kind": "string"
+              }
+            ]
+          },
           "description": "Visible label text or content."
         },
         "labelTooltip": {
           "type": "Snippet",
           "required": false,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Tooltip content for the label."
         },
         "onCopy": {
           "type": "() => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when copy occurs."
         },
         "onValueChange": {
           "type": "(value: string) => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when the value changes."
         },
         "readOnly": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether read only is enabled."
         },
         "readonly": {
           "type": "boolean | null",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether the control is read-only."
         },
         "size": {
@@ -4560,6 +6878,9 @@
         "value": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Controlled value."
         },
         "variant": {
@@ -4591,36 +6912,57 @@
         "class": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Additional CSS classes."
         },
         "children": {
           "type": "Snippet",
           "required": true,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Content rendered inside the component."
         },
         "disabled": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether the control is disabled."
         },
         "id": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Element id."
         },
         "open": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Controlled open state."
         },
         "onOpenChange": {
           "type": "(open: boolean) => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when the open state changes."
         },
         "onOpenChangeComplete": {
           "type": "(open: boolean) => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when open change complete occurs."
         },
         "collapsible": {
@@ -4643,71 +6985,123 @@
         "defaultOpen": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Initial open state for uncontrolled usage."
         },
         "placeholder": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Placeholder text shown before a value is selected."
         },
         "shortcut": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Shortcut value."
         },
         "active": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether active is enabled."
         },
         "href": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "URL to navigate to."
         },
         "icon": {
           "type": "Snippet",
           "required": false,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Icon content rendered with the component."
         },
         "linkProps": {
           "type": "Omit<HTMLAnchorAttributes, \"children\" | \"class\" | \"href\">",
           "required": false,
+          "runtime": {
+            "kind": "object"
+          },
           "description": "Link props value."
         },
         "size": {
           "type": "SidebarMenuButtonSize",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "literal",
+                "value": "base"
+              },
+              {
+                "kind": "literal",
+                "value": "sm"
+              }
+            ]
+          },
           "description": "Size variant used by the component."
         },
         "tooltip": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Tooltip value."
         },
         "defaultWidth": {
           "type": "number",
           "required": false,
+          "runtime": {
+            "kind": "number"
+          },
           "description": "Initial width value."
         },
         "maxWidth": {
           "type": "number",
           "required": false,
+          "runtime": {
+            "kind": "number"
+          },
           "description": "Numeric max width value."
         },
         "minWidth": {
           "type": "number",
           "required": false,
+          "runtime": {
+            "kind": "number"
+          },
           "description": "Numeric min width value."
         },
         "onWidthChange": {
           "type": "(width: number) => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when width change occurs."
         },
         "resizable": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether resizable is enabled."
         },
         "side": {
@@ -4728,6 +7122,9 @@
         "style": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Inline style string applied to the element."
         },
         "variant": {
@@ -4750,12 +7147,32 @@
         "width": {
           "type": "number",
           "required": false,
+          "runtime": {
+            "kind": "number"
+          },
           "description": "Numeric width value."
         },
         "section": {
           "type": "\"content\" | \"footer\" | \"header\"",
           "required": true,
           "values": ["content", "footer", "header"],
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "literal",
+                "value": "content"
+              },
+              {
+                "kind": "literal",
+                "value": "footer"
+              },
+              {
+                "kind": "literal",
+                "value": "header"
+              }
+            ]
+          },
           "description": "Section value."
         },
         "ref": {
@@ -4846,11 +7263,17 @@
         "children": {
           "type": "Snippet",
           "required": false,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Content rendered inside the component."
         },
         "class": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Additional CSS classes."
         },
         "color": {
@@ -4903,16 +7326,25 @@
         "children": {
           "type": "Snippet",
           "required": false,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Content rendered inside the component."
         },
         "class": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Additional CSS classes."
         },
         "sticky": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "classes": {
             "left": "sticky left-0",
             "right": "sticky right-0"
@@ -4927,31 +7359,49 @@
         "checked": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Controlled checked state."
         },
         "disabled": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether the control is disabled."
         },
         "indeterminate": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether indeterminate is enabled."
         },
         "label": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Visible label text or content."
         },
         "onCheckedChange": {
           "type": "(checked: boolean, eventDetails?: CheckboxChangeEventDetails) => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when the checked state changes."
         },
         "onValueChange": {
           "type": "(checked: boolean) => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when the value changes."
         },
         "variant": {
@@ -5108,31 +7558,135 @@
         "bold": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether bold is enabled."
         },
         "truncate": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether truncate is enabled."
         },
         "as": {
           "type": "TextElement",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "literal",
+                "value": "h1"
+              },
+              {
+                "kind": "literal",
+                "value": "h2"
+              },
+              {
+                "kind": "literal",
+                "value": "h3"
+              },
+              {
+                "kind": "literal",
+                "value": "h4"
+              },
+              {
+                "kind": "literal",
+                "value": "h5"
+              },
+              {
+                "kind": "literal",
+                "value": "h6"
+              },
+              {
+                "kind": "literal",
+                "value": "p"
+              },
+              {
+                "kind": "literal",
+                "value": "span"
+              },
+              {
+                "kind": "literal",
+                "value": "label"
+              },
+              {
+                "kind": "literal",
+                "value": "dt"
+              },
+              {
+                "kind": "literal",
+                "value": "dd"
+              },
+              {
+                "kind": "literal",
+                "value": "li"
+              },
+              {
+                "kind": "literal",
+                "value": "figcaption"
+              },
+              {
+                "kind": "literal",
+                "value": "legend"
+              },
+              {
+                "kind": "literal",
+                "value": "pre"
+              },
+              {
+                "kind": "literal",
+                "value": "code"
+              },
+              {
+                "kind": "literal",
+                "value": "em"
+              },
+              {
+                "kind": "literal",
+                "value": "strong"
+              },
+              {
+                "kind": "literal",
+                "value": "small"
+              },
+              {
+                "kind": "literal",
+                "value": "abbr"
+              },
+              {
+                "kind": "literal",
+                "value": "time"
+              }
+            ]
+          },
           "description": "As value."
         },
         "DANGEROUS_className": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Dangerous class name value."
         },
         "DANGEROUS_style": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Dangerous style value."
         },
         "children": {
           "type": "Snippet",
           "required": false,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Content rendered inside the component."
         }
       },
@@ -5250,6 +7804,9 @@
         "children": {
           "type": "Snippet",
           "required": false,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Content rendered inside the component."
         },
         "variant": {
@@ -5367,6 +7924,9 @@
         "children": {
           "type": "Snippet",
           "required": true,
+          "runtime": {
+            "kind": "snippet"
+          },
           "description": "Content rendered inside the component."
         },
         "to": {
@@ -5377,26 +7937,49 @@
         "delayDuration": {
           "type": "number",
           "required": false,
+          "runtime": {
+            "kind": "number"
+          },
           "description": "Numeric delay duration value."
         },
         "skipDelayDuration": {
           "type": "number",
           "required": false,
+          "runtime": {
+            "kind": "number"
+          },
           "description": "Numeric skip delay duration value."
         },
         "disableHoverableContent": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether to disable hoverable content."
         },
         "disabled": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether the control is disabled."
         },
         "content": {
           "type": "Snippet | string",
           "required": true,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "snippet"
+              },
+              {
+                "kind": "string"
+              }
+            ]
+          },
           "description": "Custom content or renderer for content."
         },
         "side": {
@@ -5421,11 +8004,31 @@
         "align": {
           "type": "KumoTooltipAlign",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "literal",
+                "value": "start"
+              },
+              {
+                "kind": "literal",
+                "value": "center"
+              },
+              {
+                "kind": "literal",
+                "value": "end"
+              }
+            ]
+          },
           "description": "Alignment of the component content."
         },
         "class": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Additional CSS classes."
         },
         "container": {
@@ -5436,11 +8039,17 @@
         "delay": {
           "type": "number",
           "required": false,
+          "runtime": {
+            "kind": "number"
+          },
           "description": "Numeric delay value."
         },
         "closeDelay": {
           "type": "number",
           "required": false,
+          "runtime": {
+            "kind": "number"
+          },
           "description": "Numeric close delay value."
         }
       },
@@ -5497,56 +8106,89 @@
         "caseSensitive": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether case sensitive is enabled."
         },
         "class": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Additional CSS classes."
         },
         "className": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Additional CSS classes."
         },
         "deleteButtonText": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Delete button text value."
         },
         "errorMessage": {
           "type": "string",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Error message value."
         },
         "isDeleting": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Whether deleting is enabled."
         },
         "onDelete": {
           "type": "() => void | Promise<void>",
           "required": true,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when delete occurs."
         },
         "onOpenChange": {
           "type": "(open: boolean) => void",
           "required": false,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Callback fired when the open state changes."
         },
         "open": {
           "type": "boolean",
           "required": false,
+          "runtime": {
+            "kind": "boolean"
+          },
           "description": "Controlled open state."
         },
         "resourceName": {
           "type": "string",
           "required": true,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Resource name value."
         },
         "resourceType": {
           "type": "string",
           "required": true,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Resource type value."
         },
         "size": {
