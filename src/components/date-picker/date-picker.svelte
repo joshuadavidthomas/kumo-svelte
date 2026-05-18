@@ -60,8 +60,12 @@
 </script>
 
 {#snippet DefaultCalendar({ months, weekdays }: { months: Month<DateValue>[]; weekdays: string[] })}
-  <CalendarPrimitive.Header class="flex items-center justify-between gap-2">
+  <CalendarPrimitive.Header
+    data-slot="date-picker-header"
+    class="flex items-center justify-between gap-2"
+  >
     <CalendarPrimitive.PrevButton
+      data-slot="date-picker-prev-button"
       aria-label="Previous month"
       class={cn(
         "inline-flex size-8 items-center justify-center rounded-md text-kumo-subtle transition-colors",
@@ -71,8 +75,12 @@
     >
       <CaretLeftIcon aria-hidden="true" size={16} />
     </CalendarPrimitive.PrevButton>
-    <CalendarPrimitive.Heading class="text-sm font-medium text-kumo-default" />
+    <CalendarPrimitive.Heading
+      data-slot="date-picker-heading"
+      class="text-sm font-medium text-kumo-default"
+    />
     <CalendarPrimitive.NextButton
+      data-slot="date-picker-next-button"
       aria-label="Next month"
       class={cn(
         "inline-flex size-8 items-center justify-center rounded-md text-kumo-subtle transition-colors",
@@ -83,24 +91,42 @@
       <CaretRightIcon aria-hidden="true" size={16} />
     </CalendarPrimitive.NextButton>
   </CalendarPrimitive.Header>
-  <div class="flex flex-col gap-4 pt-4 sm:flex-row">
+  <div data-slot="date-picker-months" class="flex flex-col gap-4 pt-4 sm:flex-row">
     {#each months as month (month.value.toString())}
-      <CalendarPrimitive.Grid class="w-full border-collapse select-none space-y-1">
-        <CalendarPrimitive.GridHead>
-          <CalendarPrimitive.GridRow class="mb-1 flex w-full justify-between">
+      <CalendarPrimitive.Grid
+        data-slot="date-picker-grid"
+        class="w-full border-collapse select-none space-y-1"
+      >
+        <CalendarPrimitive.GridHead data-slot="date-picker-grid-head">
+          <CalendarPrimitive.GridRow
+            data-slot="date-picker-grid-row"
+            class="mb-1 flex w-full justify-between"
+          >
             {#each weekdays as day, index (index)}
-              <CalendarPrimitive.HeadCell class="w-9 text-center text-xs font-normal text-kumo-subtle">
+              <CalendarPrimitive.HeadCell
+                data-slot="date-picker-head-cell"
+                class="w-9 text-center text-xs font-normal text-kumo-subtle"
+              >
                 {day.slice(0, 2)}
               </CalendarPrimitive.HeadCell>
             {/each}
           </CalendarPrimitive.GridRow>
         </CalendarPrimitive.GridHead>
-        <CalendarPrimitive.GridBody>
+        <CalendarPrimitive.GridBody data-slot="date-picker-grid-body">
           {#each month.weeks as weekDates, weekIndex (weekIndex)}
-            <CalendarPrimitive.GridRow class="flex w-full justify-between">
+            <CalendarPrimitive.GridRow
+              data-slot="date-picker-grid-row"
+              class="flex w-full justify-between"
+            >
               {#each weekDates as date (date.toString())}
-                <CalendarPrimitive.Cell {date} month={month.value} class="relative size-9 p-0 text-center text-sm">
+                <CalendarPrimitive.Cell
+                  data-slot="date-picker-cell"
+                  {date}
+                  month={month.value}
+                  class="relative size-9 p-0 text-center text-sm"
+                >
                   <CalendarPrimitive.Day
+                    data-slot="date-picker-day"
                     class={cn(
                       "relative inline-flex size-9 items-center justify-center rounded-md border border-transparent",
                       "bg-transparent text-sm tabular-nums text-kumo-default outline-none transition-colors",
@@ -125,8 +151,12 @@
 {/snippet}
 
 {#snippet DefaultRangeCalendar({ months, weekdays }: { months: Month<DateValue>[]; weekdays: string[] })}
-  <RangeCalendarPrimitive.Header class="flex items-center justify-between gap-2">
+  <RangeCalendarPrimitive.Header
+    data-slot="date-picker-header"
+    class="flex items-center justify-between gap-2"
+  >
     <RangeCalendarPrimitive.PrevButton
+      data-slot="date-picker-prev-button"
       aria-label="Previous month"
       class={cn(
         "inline-flex size-8 items-center justify-center rounded-md text-kumo-subtle transition-colors",
@@ -136,8 +166,12 @@
     >
       <CaretLeftIcon aria-hidden="true" size={16} />
     </RangeCalendarPrimitive.PrevButton>
-    <RangeCalendarPrimitive.Heading class="text-sm font-medium text-kumo-default" />
+    <RangeCalendarPrimitive.Heading
+      data-slot="date-picker-heading"
+      class="text-sm font-medium text-kumo-default"
+    />
     <RangeCalendarPrimitive.NextButton
+      data-slot="date-picker-next-button"
       aria-label="Next month"
       class={cn(
         "inline-flex size-8 items-center justify-center rounded-md text-kumo-subtle transition-colors",
@@ -148,24 +182,42 @@
       <CaretRightIcon aria-hidden="true" size={16} />
     </RangeCalendarPrimitive.NextButton>
   </RangeCalendarPrimitive.Header>
-  <div class="flex flex-col gap-4 pt-4 sm:flex-row">
+  <div data-slot="date-picker-months" class="flex flex-col gap-4 pt-4 sm:flex-row">
     {#each months as month (month.value.toString())}
-      <RangeCalendarPrimitive.Grid class="w-full border-collapse select-none space-y-1">
-        <RangeCalendarPrimitive.GridHead>
-          <RangeCalendarPrimitive.GridRow class="mb-1 flex w-full justify-between">
+      <RangeCalendarPrimitive.Grid
+        data-slot="date-picker-grid"
+        class="w-full border-collapse select-none space-y-1"
+      >
+        <RangeCalendarPrimitive.GridHead data-slot="date-picker-grid-head">
+          <RangeCalendarPrimitive.GridRow
+            data-slot="date-picker-grid-row"
+            class="mb-1 flex w-full justify-between"
+          >
             {#each weekdays as day, index (index)}
-              <RangeCalendarPrimitive.HeadCell class="w-9 text-center text-xs font-normal text-kumo-subtle">
+              <RangeCalendarPrimitive.HeadCell
+                data-slot="date-picker-head-cell"
+                class="w-9 text-center text-xs font-normal text-kumo-subtle"
+              >
                 {day.slice(0, 2)}
               </RangeCalendarPrimitive.HeadCell>
             {/each}
           </RangeCalendarPrimitive.GridRow>
         </RangeCalendarPrimitive.GridHead>
-        <RangeCalendarPrimitive.GridBody>
+        <RangeCalendarPrimitive.GridBody data-slot="date-picker-grid-body">
           {#each month.weeks as weekDates, weekIndex (weekIndex)}
-            <RangeCalendarPrimitive.GridRow class="flex w-full justify-between">
+            <RangeCalendarPrimitive.GridRow
+              data-slot="date-picker-grid-row"
+              class="flex w-full justify-between"
+            >
               {#each weekDates as date (date.toString())}
-                <RangeCalendarPrimitive.Cell {date} month={month.value} class="relative size-9 p-0 text-center text-sm">
+                <RangeCalendarPrimitive.Cell
+                  data-slot="date-picker-cell"
+                  {date}
+                  month={month.value}
+                  class="relative size-9 p-0 text-center text-sm"
+                >
                   <RangeCalendarPrimitive.Day
+                    data-slot="date-picker-day"
                     class={cn(
                       "relative inline-flex size-9 items-center justify-center border border-transparent",
                       "bg-transparent text-sm tabular-nums text-kumo-default outline-none transition-colors",
