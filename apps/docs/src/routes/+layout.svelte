@@ -6,14 +6,19 @@
 </script>
 
 <div class="site-shell">
+  <div class="icon-rail" aria-hidden="true">
+    <a class="kumo-mark" href="/" tabindex="-1">雲</a>
+  </div>
+
   <aside class="sidebar" aria-label="Documentation navigation">
     <a class="brand" href="/">
-      <span class="brand-mark">K</span>
-      <span>
-        <strong>Kumo Svelte</strong>
-        <small>Documentation</small>
-      </span>
+      <strong>Kumo</strong>
     </a>
+
+    <label class="search-field">
+      <span aria-hidden="true">⌕</span>
+      <input type="search" placeholder="Search..." />
+    </label>
 
     <nav>
       {#each docsNavigation as group (group.title)}
@@ -31,6 +36,8 @@
 
   <div class="content-shell">
     <header class="topbar">
+      <span class="package-name">@cloudflare/kumo</span>
+      <span class="version-pill">v0.0.0</span>
       <a href="/installation">Installation</a>
       <a href="/components/button">Components</a>
       <a href="/registry">Registry</a>

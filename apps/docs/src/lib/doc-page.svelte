@@ -13,7 +13,7 @@
   <meta name="description" content={page.description} />
 </svelte:head>
 
-<main class="doc-page">
+<main class="doc-page" class:home-doc={page.href === "/"}>
   <header class="doc-header">
     <div>
       <p class="eyebrow">Documentation</p>

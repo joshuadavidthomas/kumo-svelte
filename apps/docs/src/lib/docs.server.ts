@@ -129,42 +129,53 @@ function pageFromSource(filePath: string, href: string): DocPage {
 }
 
 function createHomePage(): DocPage {
-  const componentLinks = componentItems
-    .map((item) => `<a class="home-card" href="${item.href}"><span>${item.label}</span></a>`)
-    .join("");
-  const chartLinks = chartItems
-    .filter((item) => item.href !== "/charts")
-    .map((item) => `<a class="home-card" href="${item.href}"><span>${item.label}</span></a>`)
-    .join("");
+  const componentLinks = [
+    demoTile(
+      "Button",
+      "/components/button",
+      `<button class="preview-button secondary">+ Create Worker</button><button class="preview-button primary">+ Create Worker</button><button class="preview-button ghost">◌ Create Worker</button>`,
+    ),
+    demoTile(
+      "Input",
+      "/components/input",
+      `<input class="preview-input" placeholder="Type something..." /><input class="preview-input danger" value="Invalid!" />`,
+    ),
+    demoTile("Select", "/components/select", `<button class="preview-select">Select version <span>⌄</span></button>`),
+    demoTile("Autocomplete", "/components/autocomplete", `<input class="preview-input wide" placeholder="Search fruits..." />`),
+    demoTile("Combobox", "/components/combobox", `<button class="preview-combobox">Select an issue... <span>⌄</span></button>`),
+    demoTile("Switch", "/components/switch", `<span class="preview-switch"><span></span></span>`),
+    demoTile(
+      "Input (with validation)",
+      "/components/input",
+      `<label class="preview-label">Email<input class="preview-input danger" placeholder="name@example.com" /></label>`,
+    ),
+    demoTile("Dialog", "/components/dialog", `<button class="preview-button secondary">Click me!</button>`),
+    demoTile("Tooltip", "/components/tooltip", `<span class="preview-tooltip">Add</span><button class="preview-square">+</button>`),
+    demoTile("Dropdown", "/components/dropdown", `<button class="preview-button secondary">+ Add</button>`),
+    demoTile("Collapsible", "/components/collapsible", `<button class="preview-link">What is Kumo?⌄</button>`),
+    demoTile("Checkbox", "/components/checkbox", `<label class="preview-checkbox"><span>✓</span> Max bandwidth</label>`),
+  ].join("");
 
   return {
     description: "A SvelteKit documentation port for the Kumo Svelte component library.",
     href: "/",
     html: `
-      <section class="home-hero">
-        <p class="eyebrow">Kumo Svelte</p>
-        <h1>Cloudflare Kumo components, ported to Svelte.</h1>
-        <p>The original Kumo docs are rendered here through SvelteKit, adapted for the <code>kumo-svelte</code> package and its Bits UI primitive layer.</p>
-        <div class="home-actions">
-          <a class="button-link primary" href="/installation">Install</a>
-          <a class="button-link" href="/components/button">Browse Components</a>
-        </div>
-      </section>
-      <section>
-        <h2 id="components">Components</h2>
-        <div class="home-grid">${componentLinks}</div>
-      </section>
-      <section>
-        <h2 id="charts">Charts</h2>
-        <div class="home-grid">${chartLinks}</div>
+      <section id="components" class="component-board" aria-label="Component previews">
+        ${componentLinks}
       </section>
     `,
     title: "Kumo Svelte",
-    toc: [
-      { depth: 2, id: "components", text: "Components" },
-      { depth: 2, id: "charts", text: "Charts" },
-    ],
+    toc: [],
   };
+}
+
+function demoTile(title: string, href: string, preview: string) {
+  return [
+    `<a class="demo-tile" href="${href}">`,
+    `<span class="demo-title">${title}</span>`,
+    `<span class="demo-preview">${preview}</span>`,
+    "</a>",
+  ].join("");
 }
 
 function createChangelogPage(): DocPage {
