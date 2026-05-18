@@ -161,6 +161,32 @@ describe("generated component prop validation", () => {
     expect(result.success).toBe(true);
   });
 
+  it("accepts portal targets described by external types", () => {
+    const result = validateElementProps({
+      key: "tooltip-1",
+      type: "Tooltip",
+      props: { to: "#tooltip-root" },
+    });
+
+    expect(result.success).toBe(true);
+  });
+
+  it("rejects invalid external object values", () => {
+    const result = validateElementProps({
+      key: "date-range-picker-1",
+      type: "DateRangePicker",
+      props: { value: "today" },
+    });
+
+    expect(result.success).toBe(false);
+    expect(result.error?.issues).toEqual([
+      {
+        message: "Invalid value for DateRangePicker.value: expected an object",
+        path: ["props", "value"],
+      },
+    ]);
+  });
+
   it("prefixes UI tree prop validation paths with the element key", () => {
     const result = validateUITree({
       root: "button-1",

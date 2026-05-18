@@ -77,6 +77,9 @@ Port Cloudflare's Kumo package from React/Base UI to Svelte 5, using:
   interfaces, arrays, records, object literals, literal unions, snippets, and
   function props. Catalog validation uses this metadata before falling back to
   string-based primitive checks.
+- Every generated prop now has either runtime validation metadata or literal
+  value validation. Opaque external types use conservative runtime categories
+  such as string, object, function, array, or a union of those categories.
 
 ## Current Gates
 
@@ -112,9 +115,10 @@ Prop description coverage is complete, but descriptions without source JSDoc,
 variant metadata, docs frontmatter, or common-description matches use generated
 fallback prose rather than upstream-authored copy.
 
-They do not yet include complete TypeScript-derived runtime validation for
-external or opaque imported types such as portal targets, ECharts instances,
-date-library values, and HTML element references.
+Runtime validation is complete at the catalog boundary, but opaque external
+types such as portal targets, ECharts instances, date-library values, and HTML
+element references are validated by broad runtime category rather than by the
+full third-party TypeScript shape.
 
 ## Intentional Differences
 

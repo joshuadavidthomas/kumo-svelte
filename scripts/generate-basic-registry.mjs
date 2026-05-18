@@ -283,7 +283,9 @@ function collectProps(dir) {
         };
         const values = literalUnionValues(member.type);
         if (values) schema.values = values;
-        const runtime = runtimeValidation(member.type, declarations);
+        const runtime =
+          runtimeValidation(member.type, declarations) ??
+          externalRuntimeValidation(schema.type, name);
         if (runtime) schema.runtime = runtime;
         const description = jsDocDescription(member);
         if (description) schema.description = description;
@@ -483,6 +485,56 @@ function runtimeObjectValidation(members, declarations, seen) {
   }
 
   return { kind: "object", ...(Object.keys(props).length > 0 ? { props } : {}) };
+}
+
+function externalRuntimeValidation(type, name) {
+  const normalized = type.replace(/\s+/g, " ").trim();
+  const withoutNil = normalized
+    .split("|")
+    .map((part) => part.trim())
+    .filter((part) => part !== "null" && part !== "undefined")
+    .join(" | ");
+
+  if (withoutNil !== normalized) return externalRuntimeValidation(withoutNil, name);
+
+  if (normalized === 'HTMLInputAttributes["autocomplete"]') return { kind: "string" };
+  if (normalized.startsWith("Intl.DateTimeFormatOptions[")) return { kind: "string" };
+  if (normalized === "keyof HTMLElementTagNameMap") return { kind: "string" };
+  if (/^Kumo[A-Za-z0-9]+(Size|Variant|Side|Role|Color|Gap|Layout|Appearance)$/.test(normalized)) {
+    return { kind: "string" };
+  }
+  if (normalized === "KumoTooltipSide") return { kind: "string" };
+  if (normalized === 'PortalProps["to"]') {
+    return {
+      kind: "union",
+      options: [{ kind: "string" }, { kind: "object" }],
+    };
+  }
+  if (normalized === "DateMatcher") {
+    return {
+      kind: "union",
+      options: [{ kind: "boolean" }, { kind: "function" }, { kind: "array" }, { kind: "object" }],
+    };
+  }
+  if (normalized === "Action<HTMLElement>") return { kind: "function" };
+  if (normalized === "HTMLElement" || /^HTML[A-Za-z]+Element$/.test(normalized)) {
+    return { kind: "object" };
+  }
+  if (
+    normalized === "DateValue" ||
+    normalized === "DateRange" ||
+    normalized === "KumoChartOption" ||
+    normalized === "NormalizedFieldError" ||
+    normalized === "SetOptionOpts" ||
+    normalized === "typeof echarts" ||
+    normalized === "echarts.ECharts"
+  ) {
+    return { kind: "object" };
+  }
+
+  if (name === "ref" && /Element|ECharts/.test(normalized)) return { kind: "object" };
+
+  return undefined;
 }
 
 function literalTypeValue(literal) {

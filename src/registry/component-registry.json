@@ -27,6 +27,17 @@
         "container": {
           "type": "PortalProps[\"to\"]",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "string"
+              },
+              {
+                "kind": "object"
+              }
+            ]
+          },
           "description": "Portal container target."
         },
         "sideOffset": {
@@ -48,6 +59,9 @@
         "autocomplete": {
           "type": "HTMLInputAttributes[\"autocomplete\"]",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Browser autocomplete attribute for the input."
         },
         "clearOnDeselect": {
@@ -149,6 +163,9 @@
         "size": {
           "type": "KumoAutocompleteSize",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Size variant used by the component."
         },
         "label": {
@@ -308,6 +325,9 @@
         "variant": {
           "type": "KumoBadgeVariant",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "default": "primary",
           "classes": {
             "primary": "bg-kumo-badge-inverted text-kumo-badge-inverted",
@@ -545,6 +565,9 @@
         "variant": {
           "type": "KumoBannerVariant",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "default": "default",
           "classes": {
             "default": "bg-kumo-info-tint/30 border-kumo-info/50 text-kumo-info",
@@ -681,6 +704,9 @@
         "size": {
           "type": "KumoBreadcrumbsSize",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "default": "base",
           "classes": {
             "sm": "text-sm h-10 gap-0.5",
@@ -753,6 +779,9 @@
         "size": {
           "type": "KumoButtonSize",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "default": "base",
           "classes": {
             "xs": "h-5 gap-1 rounded-sm px-1.5 text-xs",
@@ -772,6 +801,9 @@
         "variant": {
           "type": "KumoButtonVariant",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "default": "secondary",
           "classes": {
             "primary": "bg-kumo-brand !text-white hover:bg-kumo-brand-hover disabled:bg-kumo-brand/50",
@@ -1083,6 +1115,9 @@
         "variant": {
           "type": "KumoCheckboxVariant",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "default": "default",
           "classes": {
             "default": "[&:focus-within>span]:ring-kumo-focus [&:hover>span]:ring-kumo-hairline",
@@ -1235,6 +1270,9 @@
         "size": {
           "type": "KumoClipboardTextSize",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "default": "lg",
           "classes": {
             "sm": "text-xs",
@@ -1540,6 +1578,17 @@
         "container": {
           "type": "PortalProps[\"to\"]",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "string"
+              },
+              {
+                "kind": "object"
+              }
+            ]
+          },
           "description": "Portal container target."
         },
         "sideOffset": {
@@ -1561,6 +1610,9 @@
         "autocomplete": {
           "type": "HTMLInputAttributes[\"autocomplete\"]",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Browser autocomplete attribute for the input."
         },
         "clearOnDeselect": {
@@ -1649,6 +1701,9 @@
         "size": {
           "type": "KumoComboboxSize",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Size variant used by the component."
         },
         "label": {
@@ -1816,6 +1871,9 @@
         "inputSide": {
           "type": "KumoComboboxInputSide",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "default": "right",
           "classes": {
             "right": "",
@@ -1931,6 +1989,9 @@
         "autocomplete": {
           "type": "HTMLInputAttributes[\"autocomplete\"]",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Browser autocomplete attribute for the input."
         },
         "autofocus": {
@@ -2384,6 +2445,9 @@
         "echarts": {
           "type": "typeof echarts",
           "required": true,
+          "runtime": {
+            "kind": "object"
+          },
           "description": "Echarts value."
         },
         "formatValue": {
@@ -2699,6 +2763,9 @@
         "optionUpdateBehavior": {
           "type": "SetOptionOpts",
           "required": false,
+          "runtime": {
+            "kind": "object"
+          },
           "description": "Option update behavior value."
         },
         "tooltipValueFormat": {
@@ -2795,11 +2862,17 @@
         "options": {
           "type": "KumoChartOption",
           "required": true,
+          "runtime": {
+            "kind": "object"
+          },
           "description": "Options value."
         },
         "ref": {
           "type": "echarts.ECharts | null",
           "required": false,
+          "runtime": {
+            "kind": "object"
+          },
           "description": "Element or instance reference bound by the component."
         }
       },
@@ -2926,11 +2999,45 @@
         "isDateDisabled": {
           "type": "DateMatcher",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "boolean"
+              },
+              {
+                "kind": "function"
+              },
+              {
+                "kind": "array"
+              },
+              {
+                "kind": "object"
+              }
+            ]
+          },
           "description": "Whether date disabled is enabled."
         },
         "isDateUnavailable": {
           "type": "DateMatcher",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "boolean"
+              },
+              {
+                "kind": "function"
+              },
+              {
+                "kind": "array"
+              },
+              {
+                "kind": "object"
+              }
+            ]
+          },
           "description": "Whether date unavailable is enabled."
         },
         "locale": {
@@ -2952,6 +3059,9 @@
         "maxValue": {
           "type": "DateValue",
           "required": false,
+          "runtime": {
+            "kind": "object"
+          },
           "description": "Max value value."
         },
         "minDays": {
@@ -2965,6 +3075,9 @@
         "minValue": {
           "type": "DateValue",
           "required": false,
+          "runtime": {
+            "kind": "object"
+          },
           "description": "Min value value."
         },
         "monthFormat": {
@@ -3034,6 +3147,9 @@
         "placeholder": {
           "type": "DateValue",
           "required": false,
+          "runtime": {
+            "kind": "object"
+          },
           "description": "Placeholder text shown before a value is selected."
         },
         "preventDeselect": {
@@ -3055,6 +3171,9 @@
         "ref": {
           "type": "HTMLDivElement | null",
           "required": false,
+          "runtime": {
+            "kind": "object"
+          },
           "description": "Element or instance reference bound by the component."
         },
         "value": {
@@ -3106,6 +3225,9 @@
         "weekdayFormat": {
           "type": "Intl.DateTimeFormatOptions[\"weekday\"]",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Weekday format value."
         },
         "yearFormat": {
@@ -3181,6 +3303,9 @@
         "size": {
           "type": "KumoDateRangePickerSize",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "default": "base",
           "classes": {
             "sm": "gap-2 p-3 text-xs",
@@ -3206,11 +3331,17 @@
         "value": {
           "type": "DateRange",
           "required": false,
+          "runtime": {
+            "kind": "object"
+          },
           "description": "Controlled value."
         },
         "variant": {
           "type": "KumoDateRangePickerVariant",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "default": "default",
           "classes": {
             "default": "bg-kumo-overlay",
@@ -3304,11 +3435,25 @@
         "container": {
           "type": "PortalProps[\"to\"]",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "string"
+              },
+              {
+                "kind": "object"
+              }
+            ]
+          },
           "description": "Portal container target."
         },
         "size": {
           "type": "KumoDialogSize",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "default": "base",
           "classes": {
             "base": "sm:min-w-96",
@@ -3336,11 +3481,25 @@
         "to": {
           "type": "PortalProps[\"to\"]",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "string"
+              },
+              {
+                "kind": "object"
+              }
+            ]
+          },
           "description": "Portal target for rendered overlay content."
         },
         "role": {
           "type": "KumoDialogRole",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "default": "dialog",
           "classes": {
             "dialog": "",
@@ -3543,6 +3702,17 @@
         "to": {
           "type": "PortalProps[\"to\"]",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "string"
+              },
+              {
+                "kind": "object"
+              }
+            ]
+          },
           "description": "Portal target for rendered overlay content."
         },
         "dir": {
@@ -3591,6 +3761,9 @@
         "variant": {
           "type": "KumoDropdownVariant",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "default": "default",
           "classes": {
             "default": "",
@@ -3695,6 +3868,9 @@
         "size": {
           "type": "KumoEmptySize",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "default": "base",
           "classes": {
             "sm": "px-6 py-8 gap-4",
@@ -3798,6 +3974,9 @@
         "error": {
           "type": "NormalizedFieldError",
           "required": false,
+          "runtime": {
+            "kind": "object"
+          },
           "description": "Validation error content."
         },
         "for": {
@@ -4058,6 +4237,9 @@
         "action": {
           "type": "Action<HTMLElement>",
           "required": true,
+          "runtime": {
+            "kind": "function"
+          },
           "description": "Action content rendered with the component."
         },
         "attrs": {
@@ -4135,6 +4317,9 @@
         "gap": {
           "type": "KumoGridGap",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "default": "base",
           "classes": {
             "none": "gap-0",
@@ -4162,6 +4347,9 @@
         "variant": {
           "type": "KumoGridVariant",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "classes": {
             "2up": "grid-cols-1 md:grid-cols-2",
             "side-by-side": "grid-cols-2",
@@ -4352,6 +4540,9 @@
         "size": {
           "type": "KumoInputSize",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "default": "base",
           "classes": {
             "xs": "h-5 gap-1 rounded-sm px-1.5 text-xs",
@@ -4393,6 +4584,9 @@
         "variant": {
           "type": "KumoInputVariant",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "default": "default",
           "classes": {
             "default": "focus:ring-kumo-focus/50 focus:ring-[1.5px]",
@@ -4595,6 +4789,9 @@
         "tooltipSide": {
           "type": "KumoTooltipSide",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Tooltip side value."
         },
         "onValueChange": {
@@ -4734,6 +4931,9 @@
         "size": {
           "type": "KumoInputSize",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "default": "base",
           "classes": {
             "xs": "h-6 text-xs",
@@ -4895,6 +5095,9 @@
         "as": {
           "type": "keyof HTMLElementTagNameMap",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "As value."
         },
         "layered": {
@@ -4987,6 +5190,9 @@
         "size": {
           "type": "KumoSwitchSize",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "default": "base",
           "classes": {
             "sm": "h-5.5 w-8.5",
@@ -5020,6 +5226,9 @@
         "variant": {
           "type": "KumoSwitchVariant",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "default": "default",
           "classes": {
             "default": "",
@@ -5314,6 +5523,9 @@
         "size": {
           "type": "KumoTabsSize",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "default": "base",
           "values": ["base", "sm"],
           "description": "Size variant used by the component."
@@ -5366,6 +5578,9 @@
         "variant": {
           "type": "KumoTabsVariant",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "default": "segmented",
           "values": ["segmented", "underline"],
           "description": "Visual style variant used by the component."
@@ -5438,6 +5653,9 @@
         "variant": {
           "type": "KumoLinkVariant",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "default": "inline",
           "classes": {
             "inline": "text-kumo-link underline underline-offset-[0.15em] decoration-[0.0625em] link-current transition-colors",
@@ -6072,6 +6290,17 @@
         "to": {
           "type": "PortalProps[\"to\"]",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "string"
+              },
+              {
+                "kind": "object"
+              }
+            ]
+          },
           "description": "Portal target for rendered overlay content."
         },
         "open": {
@@ -6101,6 +6330,9 @@
         "side": {
           "type": "KumoPopoverSide",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "default": "bottom",
           "classes": {
             "top": "",
@@ -6169,6 +6401,9 @@
         "appearance": {
           "type": "KumoRadioAppearance",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "default": "default",
           "classes": {
             "default": "",
@@ -6341,6 +6576,9 @@
         "variant": {
           "type": "KumoRadioVariant",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "default": "default",
           "classes": {
             "default": "ring-kumo-hairline",
@@ -6494,6 +6732,17 @@
         "container": {
           "type": "PortalProps[\"to\"]",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "string"
+              },
+              {
+                "kind": "object"
+              }
+            ]
+          },
           "description": "Portal container target."
         },
         "defaultValue": {
@@ -6682,6 +6931,9 @@
         "size": {
           "type": "KumoSelectSize",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Size variant used by the component."
         }
       },
@@ -6873,6 +7125,9 @@
         "size": {
           "type": "KumoSensitiveInputSize",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Size variant used by the component."
         },
         "value": {
@@ -6886,6 +7141,9 @@
         "variant": {
           "type": "KumoSensitiveInputVariant",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "Visual style variant used by the component."
         }
       },
@@ -7178,6 +7436,9 @@
         "ref": {
           "type": "HTMLElement | null",
           "required": false,
+          "runtime": {
+            "kind": "object"
+          },
           "description": "Element or instance reference bound by the component."
         }
       },
@@ -7258,6 +7519,9 @@
         "as": {
           "type": "keyof HTMLElementTagNameMap",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "description": "As value."
         },
         "children": {
@@ -7279,6 +7543,9 @@
         "color": {
           "type": "KumoSurfaceColor",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "default": "primary",
           "classes": {
             "primary": "",
@@ -7407,6 +7674,9 @@
         "variant": {
           "type": "KumoTableRowVariant",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "default": "default",
           "classes": {
             "default": "",
@@ -7422,6 +7692,9 @@
         "layout": {
           "type": "KumoTableLayout",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "default": "auto",
           "classes": {
             "auto": "",
@@ -7500,6 +7773,9 @@
         "variant": {
           "type": "KumoTextVariant",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "default": "body",
           "classes": {
             "heading1": "text-3xl font-semibold",
@@ -7539,6 +7815,9 @@
         "size": {
           "type": "KumoTextSize",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "default": "base",
           "classes": {
             "xs": "text-xs",
@@ -7812,6 +8091,9 @@
         "variant": {
           "type": "KumoToastVariant",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "default": "default",
           "classes": {
             "default": "border-kumo-fill bg-kumo-base",
@@ -7932,6 +8214,17 @@
         "to": {
           "type": "PortalProps[\"to\"]",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "string"
+              },
+              {
+                "kind": "object"
+              }
+            ]
+          },
           "description": "Portal target for rendered overlay content."
         },
         "delayDuration": {
@@ -7985,6 +8278,9 @@
         "side": {
           "type": "KumoTooltipSide",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "default": "top",
           "classes": {
             "top": "",
@@ -8034,6 +8330,17 @@
         "container": {
           "type": "PortalProps[\"to\"]",
           "required": false,
+          "runtime": {
+            "kind": "union",
+            "options": [
+              {
+                "kind": "string"
+              },
+              {
+                "kind": "object"
+              }
+            ]
+          },
           "description": "Portal container target."
         },
         "delay": {
@@ -8194,6 +8501,9 @@
         "size": {
           "type": "KumoDeleteResourceSize",
           "required": false,
+          "runtime": {
+            "kind": "string"
+          },
           "default": "base",
           "classes": {
             "sm": "",

@@ -15,6 +15,17 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     container: {
       type: 'PortalProps["to"]',
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "string",
+          },
+          {
+            kind: "object",
+          },
+        ],
+      },
     },
     sideOffset: {
       type: "number",
@@ -30,6 +41,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     autocomplete: {
       type: 'HTMLInputAttributes["autocomplete"]',
+      runtime: {
+        kind: "string",
+      },
     },
     clearOnDeselect: {
       type: "boolean",
@@ -105,6 +119,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     size: {
       type: "KumoAutocompleteSize",
+      runtime: {
+        kind: "string",
+      },
     },
     label: {
       type: "Snippet | string",
@@ -238,6 +255,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
         "teal-subtle",
         "blue",
       ],
+      runtime: {
+        kind: "string",
+      },
     },
     class: {
       type: "string",
@@ -306,6 +326,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     variant: {
       type: "KumoBannerVariant",
       values: ["default", "alert", "error"],
+      runtime: {
+        kind: "string",
+      },
     },
   },
   Breadcrumbs: {
@@ -366,6 +389,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     size: {
       type: "KumoBreadcrumbsSize",
       values: ["sm", "base"],
+      runtime: {
+        kind: "string",
+      },
     },
   },
   Button: {
@@ -376,10 +402,16 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     size: {
       type: "KumoButtonSize",
       values: ["xs", "sm", "base", "lg"],
+      runtime: {
+        kind: "string",
+      },
     },
     variant: {
       type: "KumoButtonVariant",
       values: ["primary", "secondary", "ghost", "destructive", "secondary-destructive", "outline"],
+      runtime: {
+        kind: "string",
+      },
     },
     class: {
       type: "string",
@@ -526,6 +558,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     variant: {
       type: "KumoCheckboxVariant",
       values: ["default", "error"],
+      runtime: {
+        kind: "string",
+      },
     },
     label: {
       type: "Snippet | string",
@@ -606,6 +641,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     size: {
       type: "KumoClipboardTextSize",
       values: ["sm", "base", "lg"],
+      runtime: {
+        kind: "string",
+      },
     },
     text: {
       type: "string",
@@ -745,6 +783,17 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     container: {
       type: 'PortalProps["to"]',
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "string",
+          },
+          {
+            kind: "object",
+          },
+        ],
+      },
     },
     sideOffset: {
       type: "number",
@@ -760,6 +809,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     autocomplete: {
       type: 'HTMLInputAttributes["autocomplete"]',
+      runtime: {
+        kind: "string",
+      },
     },
     clearOnDeselect: {
       type: "boolean",
@@ -828,6 +880,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     size: {
       type: "KumoComboboxSize",
+      runtime: {
+        kind: "string",
+      },
     },
     label: {
       type: "Snippet | string",
@@ -970,6 +1025,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     inputSide: {
       type: "KumoComboboxInputSide",
       values: ["right", "top"],
+      runtime: {
+        kind: "string",
+      },
     },
   },
   CommandPalette: {
@@ -1017,6 +1075,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     autocomplete: {
       type: 'HTMLInputAttributes["autocomplete"]',
+      runtime: {
+        kind: "string",
+      },
     },
     autofocus: {
       type: "boolean",
@@ -1299,6 +1360,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     echarts: {
       type: "typeof echarts",
+      runtime: {
+        kind: "object",
+      },
     },
     formatValue: {
       type: "(value: number) => string",
@@ -1568,6 +1632,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     optionUpdateBehavior: {
       type: "SetOptionOpts",
+      runtime: {
+        kind: "object",
+      },
     },
     tooltipValueFormat: {
       type: "(value: number) => string",
@@ -1642,9 +1709,15 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     options: {
       type: "KumoChartOption",
+      runtime: {
+        kind: "object",
+      },
     },
     ref: {
       type: "echarts.ECharts | null",
+      runtime: {
+        kind: "object",
+      },
     },
   },
   DatePicker: {
@@ -1733,9 +1806,43 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     isDateDisabled: {
       type: "DateMatcher",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "boolean",
+          },
+          {
+            kind: "function",
+          },
+          {
+            kind: "array",
+          },
+          {
+            kind: "object",
+          },
+        ],
+      },
     },
     isDateUnavailable: {
       type: "DateMatcher",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "boolean",
+          },
+          {
+            kind: "function",
+          },
+          {
+            kind: "array",
+          },
+          {
+            kind: "object",
+          },
+        ],
+      },
     },
     locale: {
       type: "string",
@@ -1751,6 +1858,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     maxValue: {
       type: "DateValue",
+      runtime: {
+        kind: "object",
+      },
     },
     minDays: {
       type: "number",
@@ -1760,6 +1870,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     minValue: {
       type: "DateValue",
+      runtime: {
+        kind: "object",
+      },
     },
     monthFormat: {
       type: 'Intl.DateTimeFormatOptions["month"] | ((month: number) => string)',
@@ -1811,6 +1924,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     placeholder: {
       type: "DateValue",
+      runtime: {
+        kind: "object",
+      },
     },
     preventDeselect: {
       type: "boolean",
@@ -1826,6 +1942,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     ref: {
       type: "HTMLDivElement | null",
+      runtime: {
+        kind: "object",
+      },
     },
     value: {
       type: "DatePickerValue",
@@ -1871,6 +1990,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     weekdayFormat: {
       type: 'Intl.DateTimeFormatOptions["weekday"]',
+      runtime: {
+        kind: "string",
+      },
     },
     yearFormat: {
       type: 'Intl.DateTimeFormatOptions["year"] | ((year: number) => string)',
@@ -1913,6 +2035,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     size: {
       type: "KumoDateRangePickerSize",
       values: ["sm", "base", "lg"],
+      runtime: {
+        kind: "string",
+      },
     },
     timezone: {
       type: "string",
@@ -1922,10 +2047,16 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     value: {
       type: "DateRange",
+      runtime: {
+        kind: "object",
+      },
     },
     variant: {
       type: "KumoDateRangePickerVariant",
       values: ["default", "subtle"],
+      runtime: {
+        kind: "string",
+      },
     },
   },
   Dialog: {
@@ -1955,10 +2086,24 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     container: {
       type: 'PortalProps["to"]',
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "string",
+          },
+          {
+            kind: "object",
+          },
+        ],
+      },
     },
     size: {
       type: "KumoDialogSize",
       values: ["base", "sm", "lg", "xl"],
+      runtime: {
+        kind: "string",
+      },
     },
     style: {
       type: "string",
@@ -1968,10 +2113,24 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     to: {
       type: 'PortalProps["to"]',
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "string",
+          },
+          {
+            kind: "object",
+          },
+        ],
+      },
     },
     role: {
       type: "KumoDialogRole",
       values: ["dialog", "alertdialog"],
+      runtime: {
+        kind: "string",
+      },
     },
     open: {
       type: "boolean",
@@ -2027,6 +2186,17 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     to: {
       type: 'PortalProps["to"]',
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "string",
+          },
+          {
+            kind: "object",
+          },
+        ],
+      },
     },
     dir: {
       type: '"ltr" | "rtl"',
@@ -2066,6 +2236,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     variant: {
       type: "KumoDropdownVariant",
       values: ["default", "danger"],
+      runtime: {
+        kind: "string",
+      },
     },
   },
   Empty: {
@@ -2108,6 +2281,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     size: {
       type: "KumoEmptySize",
       values: ["sm", "base", "lg"],
+      runtime: {
+        kind: "string",
+      },
     },
     title: {
       type: "string",
@@ -2145,6 +2321,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     error: {
       type: "NormalizedFieldError",
+      runtime: {
+        kind: "object",
+      },
     },
     for: {
       type: "string",
@@ -2353,6 +2532,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     action: {
       type: "Action<HTMLElement>",
+      runtime: {
+        kind: "function",
+      },
     },
     attrs: {
       type: '{ "data-node-id": string; "data-node-index": number; "data-testid": string; style: string; }',
@@ -2401,6 +2583,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     gap: {
       type: "KumoGridGap",
       values: ["none", "sm", "base", "lg"],
+      runtime: {
+        kind: "string",
+      },
     },
     mobileDivider: {
       type: "boolean",
@@ -2411,6 +2596,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     variant: {
       type: "KumoGridVariant",
       values: ["2up", "side-by-side", "2-1", "1-2", "1-3up", "3up", "4up", "6up", "1-2-4up"],
+      runtime: {
+        kind: "string",
+      },
     },
   },
   Input: {
@@ -2485,6 +2673,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     size: {
       type: "KumoInputSize",
       values: ["xs", "sm", "base", "lg"],
+      runtime: {
+        kind: "string",
+      },
     },
     value: {
       type: "string | number | string[] | undefined",
@@ -2509,6 +2700,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     variant: {
       type: "KumoInputVariant",
       values: ["default", "error"],
+      runtime: {
+        kind: "string",
+      },
     },
     passwordManagerIgnore: {
       type: "boolean",
@@ -2581,6 +2775,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     tooltipSide: {
       type: "KumoTooltipSide",
+      runtime: {
+        kind: "string",
+      },
     },
     onValueChange: {
       type: "(value: string) => void",
@@ -2701,6 +2898,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     size: {
       type: "KumoInputSize",
       values: ["xs", "sm", "base", "lg"],
+      runtime: {
+        kind: "string",
+      },
     },
   },
   Label: {
@@ -2762,6 +2962,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     as: {
       type: "keyof HTMLElementTagNameMap",
+      runtime: {
+        kind: "string",
+      },
     },
     layered: {
       type: "boolean",
@@ -2816,6 +3019,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     size: {
       type: "KumoSwitchSize",
       values: ["sm", "base", "lg"],
+      runtime: {
+        kind: "string",
+      },
     },
     transitioning: {
       type: "boolean",
@@ -2832,6 +3038,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     variant: {
       type: "KumoSwitchVariant",
       values: ["default", "neutral"],
+      runtime: {
+        kind: "string",
+      },
     },
     "aria-label": {
       type: "string",
@@ -2982,6 +3191,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     size: {
       type: "KumoTabsSize",
       values: ["base", "sm"],
+      runtime: {
+        kind: "string",
+      },
     },
     tabs: {
       type: "TabsItem[]",
@@ -3027,6 +3239,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     variant: {
       type: "KumoTabsVariant",
       values: ["segmented", "underline"],
+      runtime: {
+        kind: "string",
+      },
     },
   },
   Link: {
@@ -3039,6 +3254,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     variant: {
       type: "KumoLinkVariant",
       values: ["inline", "current", "plain"],
+      runtime: {
+        kind: "string",
+      },
     },
     children: {
       type: "Snippet",
@@ -3403,6 +3621,17 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     to: {
       type: 'PortalProps["to"]',
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "string",
+          },
+          {
+            kind: "object",
+          },
+        ],
+      },
     },
     open: {
       type: "boolean",
@@ -3425,12 +3654,18 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     side: {
       type: "KumoPopoverSide",
       values: ["top", "bottom", "left", "right"],
+      runtime: {
+        kind: "string",
+      },
     },
   },
   Radio: {
     appearance: {
       type: "KumoRadioAppearance",
       values: ["default", "card"],
+      runtime: {
+        kind: "string",
+      },
     },
     children: {
       type: "Snippet",
@@ -3562,6 +3797,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     variant: {
       type: "KumoRadioVariant",
       values: ["default", "error"],
+      runtime: {
+        kind: "string",
+      },
     },
   },
   Select: {
@@ -3634,6 +3872,17 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     container: {
       type: 'PortalProps["to"]',
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "string",
+          },
+          {
+            kind: "object",
+          },
+        ],
+      },
     },
     defaultValue: {
       type: "string | string[]",
@@ -3796,6 +4045,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     size: {
       type: "KumoSelectSize",
+      runtime: {
+        kind: "string",
+      },
     },
   },
   SensitiveInput: {
@@ -3899,6 +4151,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     size: {
       type: "KumoSensitiveInputSize",
+      runtime: {
+        kind: "string",
+      },
     },
     value: {
       type: "string",
@@ -3908,6 +4163,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     variant: {
       type: "KumoSensitiveInputVariant",
+      runtime: {
+        kind: "string",
+      },
     },
   },
   Sidebar: {
@@ -4094,11 +4352,17 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     ref: {
       type: "HTMLElement | null",
+      runtime: {
+        kind: "object",
+      },
     },
   },
   Surface: {
     as: {
       type: "keyof HTMLElementTagNameMap",
+      runtime: {
+        kind: "string",
+      },
     },
     children: {
       type: "Snippet",
@@ -4115,6 +4379,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     color: {
       type: "KumoSurfaceColor",
       values: ["primary", "secondary"],
+      runtime: {
+        kind: "string",
+      },
     },
   },
   Table: {
@@ -4176,10 +4443,16 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     variant: {
       type: "KumoTableRowVariant",
       values: ["default", "selected"],
+      runtime: {
+        kind: "string",
+      },
     },
     layout: {
       type: "KumoTableLayout",
       values: ["auto", "fixed"],
+      runtime: {
+        kind: "string",
+      },
     },
   },
   Text: {
@@ -4196,10 +4469,16 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
         "mono",
         "mono-secondary",
       ],
+      runtime: {
+        kind: "string",
+      },
     },
     size: {
       type: "KumoTextSize",
       values: ["xs", "sm", "base", "lg"],
+      runtime: {
+        kind: "string",
+      },
     },
     bold: {
       type: "boolean",
@@ -4334,6 +4613,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     variant: {
       type: "KumoToastVariant",
       values: ["default", "success", "error", "warning", "info"],
+      runtime: {
+        kind: "string",
+      },
     },
   },
   Tooltip: {
@@ -4345,6 +4627,17 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     to: {
       type: 'PortalProps["to"]',
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "string",
+          },
+          {
+            kind: "object",
+          },
+        ],
+      },
     },
     delayDuration: {
       type: "number",
@@ -4387,6 +4680,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     side: {
       type: "KumoTooltipSide",
       values: ["top", "bottom", "left", "right"],
+      runtime: {
+        kind: "string",
+      },
     },
     align: {
       type: "KumoTooltipAlign",
@@ -4416,6 +4712,17 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     container: {
       type: 'PortalProps["to"]',
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "string",
+          },
+          {
+            kind: "object",
+          },
+        ],
+      },
     },
     delay: {
       type: "number",
@@ -4500,6 +4807,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     size: {
       type: "KumoDeleteResourceSize",
       values: ["sm", "base"],
+      runtime: {
+        kind: "string",
+      },
     },
   },
 } as const;
