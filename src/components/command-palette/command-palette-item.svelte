@@ -26,6 +26,7 @@
 </script>
 
 <CommandPrimitive.Item
+  data-slot="command-palette-item"
   {disabled}
   {forceMount}
   {keywords}
@@ -40,6 +41,7 @@
 >
   {@render children?.()}
   <CheckIcon
+    data-slot="command-palette-item-indicator"
     aria-hidden="true"
     class="ml-auto h-4 w-4 opacity-0 group-data-[checked=true]/command-item:opacity-100"
   />

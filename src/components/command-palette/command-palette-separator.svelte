@@ -14,6 +14,7 @@
 </script>
 
 <CommandPrimitive.Separator
+  data-slot="command-palette-separator"
   {forceMount}
   class={cn("-mx-1 my-1 h-px bg-kumo-line", className)}
 />

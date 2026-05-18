@@ -13,6 +13,12 @@
   }: CommandPaletteFooterProps = $props();
 </script>
 
-<div class={cn("flex items-center justify-between rounded-b-lg bg-kumo-elevated px-4 py-3 text-xs text-kumo-subtle", className)}>
+<div
+  data-slot="command-palette-footer"
+  class={cn(
+    "flex items-center justify-between rounded-b-lg bg-kumo-elevated px-4 py-3 text-xs text-kumo-subtle",
+    className,
+  )}
+>
   {@render children?.()}
 </div>

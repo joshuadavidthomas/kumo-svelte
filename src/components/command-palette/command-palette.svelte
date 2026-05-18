@@ -27,6 +27,7 @@
 </script>
 
 <CommandPrimitive.Root
+  data-slot="command-palette"
   bind:value
   {filter}
   {label}

@@ -13,8 +13,8 @@
   }: CommandPaletteEmptyProps = $props();
 </script>
 
-<CommandPrimitive.Empty {forceMount}>
-  <div class="p-8 text-center">
+<CommandPrimitive.Empty data-slot="command-palette-empty" {forceMount}>
+  <div data-slot="command-palette-empty-content" class="p-8 text-center">
     <p class="text-kumo-subtle">
       {#if children}
         {@render children()}

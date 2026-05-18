@@ -15,6 +15,7 @@
 </script>
 
 <CommandPrimitive.GroupHeading
+  data-slot="command-palette-group-label"
   class={cn("mb-2 px-2 pt-1 text-xs font-semibold text-kumo-subtle", className)}
 >
   {@render children?.()}

@@ -31,13 +31,17 @@
   }: CommandPaletteInputProps = $props();
 </script>
 
-<div class="flex items-center gap-3 bg-kumo-base px-4 py-3 focus-within:ring-2 focus-within:ring-kumo-brand">
+<div
+  data-slot="command-palette-input-wrapper"
+  class="flex items-center gap-3 bg-kumo-base px-4 py-3 focus-within:ring-2 focus-within:ring-kumo-brand"
+>
   {#if leading}
     {@render leading()}
   {:else}
     <MagnifyingGlassIcon aria-hidden="true" class="h-4 w-4 text-kumo-subtle" weight="bold" />
   {/if}
   <CommandPrimitive.Input
+    data-slot="command-palette-input"
     bind:value
     aria-label={ariaLabel}
     {autocomplete}

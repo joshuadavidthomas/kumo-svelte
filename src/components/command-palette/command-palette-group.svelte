@@ -18,6 +18,11 @@
   }: CommandPaletteGroupProps = $props();
 </script>
 
-<CommandPrimitive.Group {forceMount} {value} class={cn("space-y-0.5", className)}>
+<CommandPrimitive.Group
+  data-slot="command-palette-group"
+  {forceMount}
+  {value}
+  class={cn("space-y-0.5", className)}
+>
   {@render children?.()}
 </CommandPrimitive.Group>

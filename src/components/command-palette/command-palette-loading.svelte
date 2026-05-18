@@ -14,8 +14,8 @@
   }: CommandPaletteLoadingProps = $props();
 </script>
 
-<CommandPrimitive.Loading {progress}>
-  <div class="flex items-center justify-center p-8">
+<CommandPrimitive.Loading data-slot="command-palette-loading" {progress}>
+  <div data-slot="command-palette-loading-content" class="flex items-center justify-center p-8">
     {#if children}
       {@render children()}
     {:else}
