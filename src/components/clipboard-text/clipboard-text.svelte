@@ -2,12 +2,13 @@
   import { onDestroy } from "svelte";
   import CheckIcon from "phosphor-svelte/lib/CheckIcon.svelte";
   import CopyIcon from "phosphor-svelte/lib/CopyIcon.svelte";
-  import { Tooltip as TooltipPrimitive } from "bits-ui";
   import type { HTMLAttributes } from "svelte/elements";
   import { cn } from "../../utils/cn";
-  import { getKumoPortalContext } from "../../utils/portal-provider.svelte";
   import Button from "../button/button.svelte";
   import { inputVariants } from "../input";
+  import TooltipContent from "../tooltip/tooltip-content.svelte";
+  import TooltipRoot from "../tooltip/tooltip-root.svelte";
+  import TooltipTrigger from "../tooltip/tooltip-trigger.svelte";
   import {
     clipboardTextButtonSize,
     clipboardTextVariants,
@@ -48,7 +49,6 @@
   }: ClipboardTextProps = $props();
 
   let copied = $state(false);
-  const portalContext = getKumoPortalContext();
   let resetTimeout: ReturnType<typeof setTimeout> | undefined;
   let buttonSize = $derived(clipboardTextButtonSize(size));
   let copyAction = $derived(labels.copyAction ?? "Copy to clipboard");
@@ -131,6 +131,7 @@
 
 {#snippet buttonIcon()}
   <span
+    data-slot="clipboard-text-copied-icon"
     class={cn(
       "transition-all duration-200",
       copied ? iconClasses.animate : iconClasses.initial,
@@ -139,6 +140,7 @@
     <CheckIcon aria-hidden="true" size={16} weight="bold" />
   </span>
   <span
+    data-slot="clipboard-text-copy-icon"
     class={cn(
       "transition-all duration-200",
       copied ? iconClasses.end : iconClasses.animate,
@@ -151,6 +153,7 @@
 {#snippet copyButton(props: Record<string, unknown> = {})}
   <Button
     {...props}
+    data-slot="clipboard-text-button"
     size={buttonSize}
     variant="ghost"
     aria-label={copyAction}
@@ -166,6 +169,7 @@
 {/snippet}
 
 <div
+  data-slot="clipboard-text"
   class={cn(
     inputVariants({ size: buttonSize }),
     clipboardTextVariants({ size }),
@@ -173,31 +177,30 @@
   )}
   {...restProps}
 >
-  <span class="grow truncate ps-4 pe-2">{text}</span>
+  <span data-slot="clipboard-text-value" class="grow truncate ps-4 pe-2">{text}</span>
   {#if tooltip}
-    <TooltipPrimitive.Root disableCloseOnTriggerClick>
-      <TooltipPrimitive.Trigger>
+    <TooltipRoot disableCloseOnTriggerClick>
+      <TooltipTrigger>
         {#snippet child({ props })}
           {@render copyButton(props)}
         {/snippet}
-      </TooltipPrimitive.Trigger>
-      <TooltipPrimitive.Portal to={portalContext.container}>
-        <TooltipPrimitive.Content
-          side={tooltipSide}
-          sideOffset={8}
-          class={cn(
-            "flex origin-[var(--transform-origin)] flex-col rounded-md bg-kumo-base px-3 py-1.5 font-sans text-xs text-kumo-default",
-            "shadow-lg shadow-kumo-tip-shadow outline outline-kumo-fill",
-          )}
-        >
-          {copied ? copiedText : tooltipText}
-        </TooltipPrimitive.Content>
-      </TooltipPrimitive.Portal>
-    </TooltipPrimitive.Root>
+      </TooltipTrigger>
+      <TooltipContent
+        side={tooltipSide}
+        sideOffset={8}
+        arrow={false}
+        class={cn(
+          "flex origin-[var(--transform-origin)] flex-col rounded-md bg-kumo-base px-3 py-1.5 font-sans text-xs text-kumo-default",
+          "shadow-lg shadow-kumo-tip-shadow outline outline-kumo-fill",
+        )}
+      >
+        {copied ? copiedText : tooltipText}
+      </TooltipContent>
+    </TooltipRoot>
   {:else}
     {@render copyButton()}
   {/if}
-  <span class="sr-only" aria-live="polite">
+  <span data-slot="clipboard-text-status" class="sr-only" aria-live="polite">
     {copied ? copiedText : ""}
   </span>
 </div>
