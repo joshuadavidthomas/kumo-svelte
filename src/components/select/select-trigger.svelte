@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
-  import CaretUpDownIcon from "phosphor-svelte/lib/CaretUpDownIcon.svelte";
+  import CaretUpDownIcon from "phosphor-svelte/lib/CaretUpDownIcon";
   import { Select as SelectPrimitive } from "bits-ui";
   import { cn } from "../../utils/cn";
   import {

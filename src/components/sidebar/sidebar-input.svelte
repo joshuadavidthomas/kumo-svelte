@@ -1,5 +1,5 @@
 <script lang="ts">
-  import MagnifyingGlassIcon from "phosphor-svelte/lib/MagnifyingGlassIcon.svelte";
+  import MagnifyingGlassIcon from "phosphor-svelte/lib/MagnifyingGlassIcon";
   import type { Snippet } from "svelte";
   import type { HTMLButtonAttributes } from "svelte/elements";
   import { cn } from "../../utils";

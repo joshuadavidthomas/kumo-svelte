@@ -1,5 +1,5 @@
 <script lang="ts">
-  import SidebarSimpleIcon from "phosphor-svelte/lib/SidebarSimpleIcon.svelte";
+  import SidebarSimpleIcon from "phosphor-svelte/lib/SidebarSimpleIcon";
   import type { Snippet } from "svelte";
   import type { HTMLButtonAttributes } from "svelte/elements";
   import { cn } from "../../utils";

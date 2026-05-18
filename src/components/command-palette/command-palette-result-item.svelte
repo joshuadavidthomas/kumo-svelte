@@ -1,8 +1,8 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
-  import ArrowRightIcon from "phosphor-svelte/lib/ArrowRightIcon.svelte";
-  import ArrowSquareOutIcon from "phosphor-svelte/lib/ArrowSquareOutIcon.svelte";
-  import CaretRightIcon from "phosphor-svelte/lib/CaretRightIcon.svelte";
+  import ArrowRightIcon from "phosphor-svelte/lib/ArrowRightIcon";
+  import ArrowSquareOutIcon from "phosphor-svelte/lib/ArrowSquareOutIcon";
+  import CaretRightIcon from "phosphor-svelte/lib/CaretRightIcon";
   import { cn } from "../../utils/cn";
   import CommandPaletteItem from "./command-palette-item.svelte";
   import HighlightedText from "./highlighted-text.svelte";

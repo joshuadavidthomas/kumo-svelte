@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onDestroy } from "svelte";
-  import CheckIcon from "phosphor-svelte/lib/CheckIcon.svelte";
-  import CopyIcon from "phosphor-svelte/lib/CopyIcon.svelte";
+  import CheckIcon from "phosphor-svelte/lib/CheckIcon";
+  import CopyIcon from "phosphor-svelte/lib/CopyIcon";
   import type { HTMLAttributes } from "svelte/elements";
   import { cn } from "../../utils/cn";
   import Button from "../button/button.svelte";

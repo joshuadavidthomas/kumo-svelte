@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onDestroy, tick, type Snippet } from "svelte";
-  import EyeIcon from "phosphor-svelte/lib/EyeIcon.svelte";
-  import EyeSlashIcon from "phosphor-svelte/lib/EyeSlashIcon.svelte";
+  import EyeIcon from "phosphor-svelte/lib/EyeIcon";
+  import EyeSlashIcon from "phosphor-svelte/lib/EyeSlashIcon";
   import type { HTMLInputAttributes } from "svelte/elements";
   import { cn, safeRandomId } from "../../utils/cn";
   import Field from "../field/field.svelte";

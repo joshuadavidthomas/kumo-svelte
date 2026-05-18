@@ -1,8 +1,8 @@
 <script lang="ts">
-  import CaretDoubleLeftIcon from "phosphor-svelte/lib/CaretDoubleLeftIcon.svelte";
-  import CaretDoubleRightIcon from "phosphor-svelte/lib/CaretDoubleRightIcon.svelte";
-  import CaretLeftIcon from "phosphor-svelte/lib/CaretLeftIcon.svelte";
-  import CaretRightIcon from "phosphor-svelte/lib/CaretRightIcon.svelte";
+  import CaretDoubleLeftIcon from "phosphor-svelte/lib/CaretDoubleLeftIcon";
+  import CaretDoubleRightIcon from "phosphor-svelte/lib/CaretDoubleRightIcon";
+  import CaretLeftIcon from "phosphor-svelte/lib/CaretLeftIcon";
+  import CaretRightIcon from "phosphor-svelte/lib/CaretRightIcon";
   import { cn } from "../../utils/cn";
   import InputGroup from "../input-group/input-group.svelte";
   import InputGroupButton from "../input-group/input-group-button.svelte";

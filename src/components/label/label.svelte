@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
-  import InfoIcon from "phosphor-svelte/lib/InfoIcon.svelte";
+  import InfoIcon from "phosphor-svelte/lib/InfoIcon";
   import { Label as BitsLabel } from "bits-ui";
   import { cn } from "../../utils/cn";
   import Tooltip from "../tooltip/tooltip.svelte";

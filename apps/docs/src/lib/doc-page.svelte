@@ -2,10 +2,11 @@
   import type { DocPage } from "./docs.server";
 
   interface Props {
+    children?: import("svelte").Snippet;
     page: DocPage;
   }
 
-  let { page }: Props = $props();
+  let { children, page }: Props = $props();
 </script>
 
 <svelte:head>
@@ -33,7 +34,11 @@
 
   <div class="doc-layout">
     <article class="doc-content">
-      {@html page.html}
+      {#if children}
+        {@render children()}
+      {:else}
+        {@html page.html}
+      {/if}
     </article>
 
     {#if page.toc.length > 0}

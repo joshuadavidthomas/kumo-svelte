@@ -1,5 +1,5 @@
 <script lang="ts">
-  import CaretRightIcon from "phosphor-svelte/lib/CaretRightIcon.svelte";
+  import CaretRightIcon from "phosphor-svelte/lib/CaretRightIcon";
   import { cn } from "../../utils";
 
   export interface SidebarMenuChevronProps {

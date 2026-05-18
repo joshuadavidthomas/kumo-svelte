@@ -1,6 +1,6 @@
 <script lang="ts">
-  import CaretDownIcon from "phosphor-svelte/lib/CaretDownIcon.svelte";
-  import XIcon from "phosphor-svelte/lib/XIcon.svelte";
+  import CaretDownIcon from "phosphor-svelte/lib/CaretDownIcon";
+  import XIcon from "phosphor-svelte/lib/XIcon";
   import { Combobox as ComboboxPrimitive } from "bits-ui";
   import type { HTMLInputAttributes } from "svelte/elements";
   import { cn } from "../../utils/cn";

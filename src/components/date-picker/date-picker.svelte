@@ -2,8 +2,8 @@
   import type { DateValue } from "@internationalized/date";
   import { Calendar as CalendarPrimitive, RangeCalendar as RangeCalendarPrimitive } from "bits-ui";
   import type { DateRange, Month } from "bits-ui";
-  import CaretLeftIcon from "phosphor-svelte/lib/CaretLeftIcon.svelte";
-  import CaretRightIcon from "phosphor-svelte/lib/CaretRightIcon.svelte";
+  import CaretLeftIcon from "phosphor-svelte/lib/CaretLeftIcon";
+  import CaretRightIcon from "phosphor-svelte/lib/CaretRightIcon";
   import { cn } from "../../utils/cn";
   import type { DatePickerProps, DatePickerValue } from "./types";
 

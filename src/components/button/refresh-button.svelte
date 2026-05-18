@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
-  import ArrowClockwiseIcon from "phosphor-svelte/lib/ArrowClockwiseIcon.svelte";
+  import ArrowClockwiseIcon from "phosphor-svelte/lib/ArrowClockwiseIcon";
   import type { ButtonProps } from "./button.svelte";
   import Button from "./button.svelte";
   import { cn } from "../../utils/cn";

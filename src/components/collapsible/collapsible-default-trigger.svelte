@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
-  import CaretDownIcon from "phosphor-svelte/lib/CaretDownIcon.svelte";
+  import CaretDownIcon from "phosphor-svelte/lib/CaretDownIcon";
   import { Collapsible as CollapsiblePrimitive } from "bits-ui";
   import { cn } from "../../utils/cn";
 

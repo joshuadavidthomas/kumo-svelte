@@ -1,5 +1,5 @@
 <script lang="ts">
-  import MagnifyingGlassIcon from "phosphor-svelte/lib/MagnifyingGlassIcon.svelte";
+  import MagnifyingGlassIcon from "phosphor-svelte/lib/MagnifyingGlassIcon";
   import { Command as CommandPrimitive } from "bits-ui";
   import type { HTMLInputAttributes } from "svelte/elements";
   import { cn } from "../../utils/cn";

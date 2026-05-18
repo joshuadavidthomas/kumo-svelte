@@ -1,10 +1,10 @@
 <script lang="ts">
-  import CheckCircleIcon from "phosphor-svelte/lib/CheckCircleIcon.svelte";
-  import CircleNotchIcon from "phosphor-svelte/lib/CircleNotchIcon.svelte";
-  import InfoIcon from "phosphor-svelte/lib/InfoIcon.svelte";
-  import WarningIcon from "phosphor-svelte/lib/WarningIcon.svelte";
-  import WarningOctagonIcon from "phosphor-svelte/lib/WarningOctagonIcon.svelte";
-  import XIcon from "phosphor-svelte/lib/XIcon.svelte";
+  import CheckCircleIcon from "phosphor-svelte/lib/CheckCircleIcon";
+  import CircleNotchIcon from "phosphor-svelte/lib/CircleNotchIcon";
+  import InfoIcon from "phosphor-svelte/lib/InfoIcon";
+  import WarningIcon from "phosphor-svelte/lib/WarningIcon";
+  import WarningOctagonIcon from "phosphor-svelte/lib/WarningOctagonIcon";
+  import XIcon from "phosphor-svelte/lib/XIcon";
   import type { Snippet } from "svelte";
   import { Toaster as Sonner, type ToasterProps as SonnerProps } from "svelte-sonner";
   import { cn } from "../../utils";

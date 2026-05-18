@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
-  import CheckIcon from "phosphor-svelte/lib/CheckIcon.svelte";
+  import CheckIcon from "phosphor-svelte/lib/CheckIcon";
   import { Combobox as ComboboxPrimitive } from "bits-ui";
   import { cn } from "../../utils/cn";
 

@@ -319,7 +319,7 @@
     "generate:registry": "node scripts/generate-basic-registry.mjs",
     "lint": "oxlint src package.json svelte.config.js",
     "test": "vitest run --dir src",
-    "typecheck": "svelte-check --workspace ./src --no-tsconfig && tsc --noEmit"
+    "typecheck": "svelte-check --workspace ./src --tsconfig ./tsconfig.json && tsc --noEmit"
   },
   "dependencies": {
     "@internationalized/date": "^3.12.1",
@@ -334,6 +334,7 @@
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^7.0.0",
+    "@tailwindcss/vite": "^4.3.0",
     "@types/node": "^25.6.0",
     "echarts": "^6.0.0",
     "oxfmt": "^0.48.0",

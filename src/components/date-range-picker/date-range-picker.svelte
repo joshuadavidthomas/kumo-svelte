@@ -1,7 +1,7 @@
 <script lang="ts">
   import { getLocalTimeZone, type DateValue } from "@internationalized/date";
   import type { DateRange } from "bits-ui";
-  import GlobeHemisphereWestIcon from "phosphor-svelte/lib/GlobeHemisphereWestIcon.svelte";
+  import GlobeHemisphereWestIcon from "phosphor-svelte/lib/GlobeHemisphereWestIcon";
   import DatePicker from "../date-picker/date-picker.svelte";
   import type { DatePickerProps, DatePickerValue } from "../date-picker/types";
   import { cn } from "../../utils";

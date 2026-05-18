@@ -129,53 +129,13 @@ function pageFromSource(filePath: string, href: string): DocPage {
 }
 
 function createHomePage(): DocPage {
-  const componentLinks = [
-    demoTile(
-      "Button",
-      "/components/button",
-      `<button class="preview-button secondary">+ Create Worker</button><button class="preview-button primary">+ Create Worker</button><button class="preview-button ghost">◌ Create Worker</button>`,
-    ),
-    demoTile(
-      "Input",
-      "/components/input",
-      `<input class="preview-input" placeholder="Type something..." /><input class="preview-input danger" value="Invalid!" />`,
-    ),
-    demoTile("Select", "/components/select", `<button class="preview-select">Select version <span>⌄</span></button>`),
-    demoTile("Autocomplete", "/components/autocomplete", `<input class="preview-input wide" placeholder="Search fruits..." />`),
-    demoTile("Combobox", "/components/combobox", `<button class="preview-combobox">Select an issue... <span>⌄</span></button>`),
-    demoTile("Switch", "/components/switch", `<span class="preview-switch"><span></span></span>`),
-    demoTile(
-      "Input (with validation)",
-      "/components/input",
-      `<label class="preview-label">Email<input class="preview-input danger" placeholder="name@example.com" /></label>`,
-    ),
-    demoTile("Dialog", "/components/dialog", `<button class="preview-button secondary">Click me!</button>`),
-    demoTile("Tooltip", "/components/tooltip", `<span class="preview-tooltip">Add</span><button class="preview-square">+</button>`),
-    demoTile("Dropdown", "/components/dropdown", `<button class="preview-button secondary">+ Add</button>`),
-    demoTile("Collapsible", "/components/collapsible", `<button class="preview-link">What is Kumo?⌄</button>`),
-    demoTile("Checkbox", "/components/checkbox", `<label class="preview-checkbox"><span>✓</span> Max bandwidth</label>`),
-  ].join("");
-
   return {
     description: "A SvelteKit documentation port for the Kumo Svelte component library.",
     href: "/",
-    html: `
-      <section id="components" class="component-board" aria-label="Component previews">
-        ${componentLinks}
-      </section>
-    `,
+    html: "",
     title: "Kumo Svelte",
     toc: [],
   };
-}
-
-function demoTile(title: string, href: string, preview: string) {
-  return [
-    `<a class="demo-tile" href="${href}">`,
-    `<span class="demo-title">${title}</span>`,
-    `<span class="demo-preview">${preview}</span>`,
-    "</a>",
-  ].join("");
 }
 
 function createChangelogPage(): DocPage {
@@ -354,7 +314,7 @@ function normalizeSource(source: string, sourceFile: string | undefined) {
       return `<a class="doc-card" href="${href}"><strong>${title}</strong><span>${description}</span></a>`;
     })
     .replace(/<HomeGrid[\s\S]*?\/>/g, "")
-    .replace(/<\/?p[^>]*>/g, "");
+    .replace(/<\/?p(?:\s[^>]*)?>/g, "");
 
   return adaptSource(body).trim();
 }
@@ -408,7 +368,8 @@ function renderMarkdown(markdown: string, sourceFile: string | undefined) {
       flushOrderedList();
       flushTable();
       if (inFence) {
-        html.push(`<pre><code class="language-${escapeAttribute(fenceLang)}">${escapeHtml(fenceLines.join("\n"))}</code></pre>`);
+        const code = normalizeCode(fenceLines.join("\n"));
+        html.push(`<pre><code class="language-${escapeAttribute(fenceLang)}">${highlightCode(code, fenceLang)}</code></pre>`);
         inFence = false;
         fenceLines = [];
         fenceLang = "";
@@ -510,7 +471,15 @@ function renderMarkdown(markdown: string, sourceFile: string | undefined) {
 
 function renderExampleMarkdown(title: string, code: string | undefined) {
   if (!code) return `<div class="example-card"><strong>${escapeHtml(title)}</strong></div>`;
-  return `<div class="example-card"><strong>${escapeHtml(title)}</strong>\n\n\`\`\`svelte\n${code.trim()}\n\`\`\`\n</div>`;
+  const normalizedCode = normalizeCode(code);
+  const preview = previewFromCode(normalizedCode);
+  return [
+    `<div class="example-card">`,
+    `<div class="example-card-header"><strong>${escapeHtml(title)}</strong></div>`,
+    preview ? `<div class="example-demo">${preview}</div>` : "",
+    `<pre><code class="language-svelte">${highlightCode(normalizedCode, "svelte")}</code></pre>`,
+    `</div>`,
+  ].join("");
 }
 
 function propsTableHtml(componentName: string) {
@@ -725,7 +694,8 @@ function adaptHtml(html: string, sourceFile: string | undefined) {
   return html
     .replace(/<PropsTable\s+component="([^"]+)"\s*\/>/g, (_, component) => propsTableHtml(component))
     .replace(/<CodeBlock\s+code=\{`([\s\S]*?)`\}\s+lang="([^"]+)"\s*\/>/g, (_, code, lang) => {
-      return `<pre><code class="language-${escapeAttribute(lang)}">${escapeHtml(code.trim())}</code></pre>`;
+      const normalizedCode = normalizeCode(code);
+      return `<pre><code class="language-${escapeAttribute(lang)}">${highlightCode(normalizedCode, lang)}</code></pre>`;
     })
     .replace(/<ComponentExample\b([^>]*)>([\s\S]*?)<\/ComponentExample>/g, (_, attrs, content) => {
       const title = attrValue(attrs, "vrTitle") ?? attrValue(attrs, "demo") ?? "Example";
@@ -735,6 +705,57 @@ function adaptHtml(html: string, sourceFile: string | undefined) {
     .replace(/<([A-Z][A-Za-z0-9.]*)[^>]*\/>/g, "")
     .replace(/<([A-Z][A-Za-z0-9.]*)[^>]*>/g, "")
     .replace(/<\/[A-Z][A-Za-z0-9.]*>/g, "");
+}
+
+function normalizeCode(code: string) {
+  const lines = code.replace(/\t/g, "  ").trim().split("\n");
+  const indents = lines
+    .filter((line) => line.trim())
+    .map((line) => line.match(/^ */)?.[0].length ?? 0);
+  const minIndent = indents.length ? Math.min(...indents) : 0;
+  return lines.map((line) => line.slice(minIndent)).join("\n");
+}
+
+function highlightCode(code: string, lang: string) {
+  const tokens: string[] = [];
+  const token = (className: string, value: string) => {
+    const index = tokens.push(`<span class="${className}">${value}</span>`) - 1;
+    return `\uE000${index}\uE001`;
+  };
+
+  let html = escapeHtml(code);
+  html = html.replace(/(&quot;.*?&quot;|'.*?'|`.*?`)/g, (value) => token("code-string", value));
+  html = html.replace(/(&lt;\/?)([A-Z][A-Za-z0-9.]*|[a-z][A-Za-z0-9:-]*)/g, (_, prefix, tag) => `${prefix}${token("code-tag", tag)}`);
+  html = html.replace(/\s([A-Za-z_:][-A-Za-z0-9_:]*)(=)/g, (_, attr, equals) => ` ${token("code-attr", attr)}${equals}`);
+  html = html.replace(
+    /\b(import|from|export|default|function|return|const|let|type|interface|class|if|else|await|async)\b/g,
+    (value) => token("code-keyword", value),
+  );
+  if (lang === "bash" || lang === "sh") {
+    html = html.replace(/(^|\n)(#.*)/g, (_, prefix, comment) => `${prefix}${token("code-comment", comment)}`);
+  }
+  return html.replace(/\uE000(\d+)\uE001/g, (_, index) => tokens[Number(index)] ?? "");
+}
+
+function previewFromCode(code: string) {
+  const buttonMatch = code.match(/<Button\b([^>]*)>([\s\S]*?)<\/Button>/);
+  if (buttonMatch) {
+    const variant = attrValue(buttonMatch[1], "variant") ?? "secondary";
+    return `<button class="preview-button ${escapeAttribute(variant)}">${inline(stripHtml(buttonMatch[2]).trim() || "Button")}</button>`;
+  }
+
+  const badgeMatch = code.match(/<Badge\b([^>]*)>([\s\S]*?)<\/Badge>/);
+  if (badgeMatch) {
+    return `<span class="preview-badge">${inline(stripHtml(badgeMatch[2]).trim() || "Badge")}</span>`;
+  }
+
+  const inputMatch = code.match(/<Input\b([^>]*)\/>/);
+  if (inputMatch) {
+    const placeholder = attrValue(inputMatch[1], "placeholder") ?? "Type something...";
+    return `<input class="preview-input" placeholder="${escapeAttribute(placeholder)}" />`;
+  }
+
+  return undefined;
 }
 
 function inline(value: string) {

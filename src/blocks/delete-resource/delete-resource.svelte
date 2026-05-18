@@ -1,8 +1,8 @@
 <script lang="ts">
-  import CheckIcon from "phosphor-svelte/lib/CheckIcon.svelte";
-  import CopyIcon from "phosphor-svelte/lib/CopyIcon.svelte";
-  import WarningCircleIcon from "phosphor-svelte/lib/WarningCircleIcon.svelte";
-  import XIcon from "phosphor-svelte/lib/XIcon.svelte";
+  import CheckIcon from "phosphor-svelte/lib/CheckIcon";
+  import CopyIcon from "phosphor-svelte/lib/CopyIcon";
+  import WarningCircleIcon from "phosphor-svelte/lib/WarningCircleIcon";
+  import XIcon from "phosphor-svelte/lib/XIcon";
   import Banner from "../../components/banner/banner.svelte";
   import Button from "../../components/button/button.svelte";
   import Dialog from "../../components/dialog/dialog-content.svelte";
