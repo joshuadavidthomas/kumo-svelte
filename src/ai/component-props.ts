@@ -846,6 +846,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     style: {
       type: "string",
     },
+    to: {
+      type: 'PortalProps["to"]',
+    },
     role: {
       type: "KumoDialogRole",
       values: ["dialog", "alertdialog"],
@@ -863,6 +866,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
   Dropdown: {
     children: {
       type: "Snippet",
+    },
+    to: {
+      type: 'PortalProps["to"]',
     },
     dir: {
       type: '"ltr" | "rtl"',
@@ -1401,6 +1407,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     children: {
       type: "Snippet",
     },
+    to: {
+      type: 'PortalProps["to"]',
+    },
     open: {
       type: "boolean",
     },
@@ -1587,17 +1596,26 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     children: {
       type: "Snippet",
     },
-    collapsible: {
-      type: "SidebarCollapsible",
-      values: ["icon", "offcanvas", "none"],
+    disabled: {
+      type: "boolean",
     },
-    defaultOpen: {
+    id: {
+      type: "string",
+    },
+    open: {
       type: "boolean",
     },
     onOpenChange: {
       type: "(open: boolean) => void",
     },
-    open: {
+    onOpenChangeComplete: {
+      type: "(open: boolean) => void",
+    },
+    collapsible: {
+      type: "SidebarCollapsible",
+      values: ["icon", "offcanvas", "none"],
+    },
+    defaultOpen: {
       type: "boolean",
     },
     placeholder: {
@@ -1764,6 +1782,9 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
   Tooltip: {
     children: {
       type: "Snippet",
+    },
+    to: {
+      type: 'PortalProps["to"]',
     },
     delayDuration: {
       type: "number",

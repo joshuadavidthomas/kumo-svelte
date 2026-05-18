@@ -34,6 +34,7 @@ export interface ComponentSchema {
   styling?: ComponentStyling;
   subComponents?: Record<string, SubComponentSchema>;
   type: ComponentType;
+  upstreamExamples?: readonly string[];
 }
 
 export interface BlockSchema extends ComponentSchema {

@@ -49,7 +49,13 @@ const FALLBACK_COMPONENT_DESCRIPTIONS = {
   "components/surface": "LayerCard-backed surface wrapper for section backgrounds.",
 };
 
+const DEMO_SOURCE_COMPONENT_NAMES = {
+  Dropdown: "DropdownMenu",
+  Toast: "Toasty",
+};
+
 const docsDescriptions = readDocsDescriptions();
+const demoExamples = readDemoExamples();
 
 function pascal(slug) {
   return slug
@@ -91,6 +97,85 @@ function readDocsDescriptions() {
   }
 
   return descriptions;
+}
+
+function readDemoExamples() {
+  const demosRoot = "reference/cloudflare-kumo/packages/kumo-docs-astro/src/components/demos";
+  const examples = {};
+
+  if (!fs.existsSync(demosRoot)) return examples;
+
+  for (const filePath of walkFiles(demosRoot)) {
+    if (!filePath.endsWith("Demo.tsx")) continue;
+
+    const source = fs.readFileSync(filePath, "utf8");
+    const sourceFile = ts.createSourceFile(
+      filePath,
+      source,
+      ts.ScriptTarget.Latest,
+      true,
+      ts.ScriptKind.TSX,
+    );
+
+    const demoName = path.basename(filePath, ".tsx").replace(/Demo$/, "");
+    const sourceComponentName = DEMO_SOURCE_COMPONENT_NAMES[demoName] ?? demoName;
+    examples[demoName] ??= [];
+
+    ts.forEachChild(sourceFile, (node) => {
+      if (!ts.isFunctionDeclaration(node) || !node.name || !node.body) return;
+      const modifiers = ts.getModifiers(node) ?? [];
+      if (!modifiers.some((modifier) => modifier.kind === ts.SyntaxKind.ExportKeyword)) {
+        return;
+      }
+
+      for (const snippet of collectDemoSnippets(node.body, sourceFile, sourceComponentName)) {
+        addExample(examples[demoName], snippet);
+      }
+    });
+  }
+
+  return examples;
+}
+
+function collectDemoSnippets(node, sourceFile, componentName) {
+  const snippets = [];
+
+  function visit(child, insideMatchedComponent = false) {
+    if (ts.isJsxElement(child) || ts.isJsxSelfClosingElement(child)) {
+      const tagName = jsxTagName(child);
+      const matches = tagName === componentName || tagName.startsWith(`${componentName}.`);
+
+      if (matches && !insideMatchedComponent) {
+        snippets.push(normalizeDemoSnippet(child.getText(sourceFile)));
+        return;
+      }
+
+      ts.forEachChild(child, (grandchild) => visit(grandchild, insideMatchedComponent || matches));
+      return;
+    }
+
+    ts.forEachChild(child, (grandchild) => visit(grandchild, insideMatchedComponent));
+  }
+
+  visit(node);
+  return snippets;
+}
+
+function jsxTagName(node) {
+  const tagName = ts.isJsxElement(node) ? node.openingElement.tagName : node.tagName;
+  return tagName.getText();
+}
+
+function normalizeDemoSnippet(source) {
+  return source.replace(/\r\n/g, "\n").trim();
+}
+
+function addExample(examples, snippet) {
+  if (!snippet || examples.includes(snippet)) return;
+  if (snippet.length > 2000) return;
+  if (examples.length >= 8) return;
+
+  examples.push(snippet);
 }
 
 function walkFiles(dir) {
@@ -359,6 +444,8 @@ function runtimePropSchemas(registry) {
 }
 
 function applyGeneratedExamples(schema) {
+  if (schema.examples?.length > 0) return;
+
   const variantProps = Object.entries(schema.props).filter(([, prop]) => prop.values?.length > 0);
   const variantProp = variantProps.find(([name]) => name === "variant") ?? variantProps[0];
   if (!variantProp) return;
@@ -377,6 +464,30 @@ function applyGeneratedExamples(schema) {
   });
 }
 
+function applyDemoExamples(schema, demoNames) {
+  schema.upstreamExamples = [];
+
+  for (const demoName of demoNames) {
+    for (const example of demoExamples[demoName] ?? []) {
+      addExample(schema.upstreamExamples, example);
+    }
+  }
+
+  if (schema.upstreamExamples.length === 0) delete schema.upstreamExamples;
+}
+
+function demoNamesForSchema(name) {
+  const aliases = {
+    Code: ["CodeHighlighted"],
+    Dropdown: ["Dropdown"],
+    Input: ["Input", "InputArea"],
+    Loader: ["Loader", "SkeletonLine"],
+    Menubar: ["MenuBar"],
+  };
+
+  return [...new Set([name, ...(aliases[name] ?? [])])];
+}
+
 function formatExampleValue(value) {
   return typeof value === "number" ? `{${value}}` : `"${value}"`;
 }
@@ -391,10 +502,13 @@ for (const key of Object.keys(pkg.exports).filter((entry) =>
     registry.components[name].props = collectProps(dir);
     delete registry.components[name].baseStyles;
     delete registry.components[name].styling;
+    delete registry.components[name].upstreamExamples;
     applyDocsDescription(registry.components[name], `components/${slug}`);
     applyVariantMetadata(registry.components[name], readVariantMetadata(dir));
     applyCommonPropDescriptions(registry.components[name]);
+    registry.components[name].examples = [];
     applyGeneratedExamples(registry.components[name]);
+    applyDemoExamples(registry.components[name], demoNamesForSchema(name));
   }
 }
 
@@ -408,10 +522,13 @@ for (const key of Object.keys(pkg.exports).filter((entry) =>
     registry.blocks[name].props = collectProps(dir);
     delete registry.blocks[name].baseStyles;
     delete registry.blocks[name].styling;
+    delete registry.blocks[name].upstreamExamples;
     applyDocsDescription(registry.blocks[name], `blocks/${slug}`);
     applyVariantMetadata(registry.blocks[name], readVariantMetadata(dir));
     applyCommonPropDescriptions(registry.blocks[name]);
+    registry.blocks[name].examples = [];
     applyGeneratedExamples(registry.blocks[name]);
+    applyDemoExamples(registry.blocks[name], demoNamesForSchema(name));
   }
 }
 

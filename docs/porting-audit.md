@@ -47,8 +47,8 @@ Port Cloudflare's Kumo package from React/Base UI to Svelte 5, using:
 - Registry TypeScript types are available from `kumo-svelte/registry`.
 - Registry metadata is generated from source `*Props` interfaces and
   `variants.ts` files, including variant values, defaults, classes,
-  descriptions, base styles, simple generated examples, and explicit
-  `KUMO_*_STYLING` objects where present.
+  descriptions, base styles, simple generated examples, upstream TSX demo
+  snippets, and explicit `KUMO_*_STYLING` objects where present.
 - Registry generation also fills common public prop descriptions for repeated
   props such as `class`, `children`, `disabled`, `value`, labels, placeholders,
   portal containers, and common callbacks.
@@ -88,13 +88,14 @@ interfaces, source variant metadata, and upstream docs frontmatter where
 available. They validate tree shape and known component names. They include prop
 names, type strings, required flags, component descriptions, variant
 values, variant defaults, variant classes, variant descriptions, base styles,
-common prop descriptions, simple generated examples, and explicit styling
-metadata where present. Runtime catalog validation uses the generated prop
-metadata for literal variant checks and simple primitive type checks.
+common prop descriptions, simple generated examples, upstream TSX demo snippets
+under `upstreamExamples`, and explicit styling metadata where present. Runtime
+catalog validation uses the generated prop metadata for literal variant checks
+and simple primitive type checks.
 
 They do not yet include upstream-equivalent natural-language prop descriptions
-for every prop, extracted demo examples, full component documentation sections,
-or full TypeScript-derived runtime validation for complex prop types.
+for every prop, full component documentation sections, or full
+TypeScript-derived runtime validation for complex prop types.
 
 ## Intentional Differences
 
