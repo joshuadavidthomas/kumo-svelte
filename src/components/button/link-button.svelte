@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Snippet } from "svelte";
+  import type { Component, Snippet } from "svelte";
   import type { HTMLAnchorAttributes } from "svelte/elements";
   import { cn } from "../../utils/cn";
   import {
@@ -17,14 +17,14 @@
     variant?: KumoButtonVariant;
     class?: string;
     children?: Snippet;
-    icon?: Snippet;
+    icon?: Component;
     external?: boolean;
     linksExternal?: boolean;
   }
 
   let {
     children,
-    icon,
+    icon: Icon,
     class: className,
     external = false,
     href,
@@ -50,8 +50,8 @@
   rel={external ? "noopener noreferrer" : restProps.rel}
   {...restProps}
 >
-  {#if icon}
-    {@render icon()}
+  {#if Icon}
+    <Icon aria-hidden="true" />
   {/if}
 
   {#if children}

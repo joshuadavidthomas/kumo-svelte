@@ -1,0 +1,142 @@
+---
+title: Button
+description: Displays a button or a component that looks like a button.
+sourceFile: components/button
+primitive: button
+---
+
+<script lang="ts">
+  import Example from "$lib/components/example.svelte";
+  import ButtonAsLinkDemo from "./button-as-link-demo.svelte";
+  import ButtonBasicDemo from "./button-basic-demo.svelte";
+  import ButtonDestructiveDemo from "./button-destructive-demo.svelte";
+  import ButtonDisabledDemo from "./button-disabled-demo.svelte";
+  import ButtonGhostDemo from "./button-ghost-demo.svelte";
+  import ButtonIconOnlyAsChildDemo from "./button-icon-only-as-child-demo.svelte";
+  import ButtonIconOnlyAsPropDemo from "./button-icon-only-as-prop-demo.svelte";
+  import ButtonLoadingDemo from "./button-loading-demo.svelte";
+  import ButtonOutlineDemo from "./button-outline-demo.svelte";
+  import ButtonPrimaryDemo from "./button-primary-demo.svelte";
+  import ButtonSecondaryDemo from "./button-secondary-demo.svelte";
+  import ButtonSecondaryDestructiveDemo from "./button-secondary-destructive-demo.svelte";
+  import ButtonSizesDemo from "./button-sizes-demo.svelte";
+  import ButtonTitleDemo from "./button-title-demo.svelte";
+  import ButtonWithIconAsChildDemo from "./button-with-icon-as-child-demo.svelte";
+  import ButtonWithIconAsPropDemo from "./button-with-icon-as-prop-demo.svelte";
+</script>
+
+<Example title="Button" demo="button-basic-demo">
+  <ButtonBasicDemo />
+</Example>
+
+## Installation
+
+### Barrel
+
+```ts
+import { Button } from "kumo-svelte";
+```
+
+### Granular
+
+```ts
+import { Button } from "kumo-svelte/components/button";
+```
+
+## Examples
+
+### Variants
+
+#### Primary
+
+<Example demo="button-primary-demo">
+  <ButtonPrimaryDemo />
+</Example>
+
+#### Secondary
+
+<Example demo="button-secondary-demo">
+  <ButtonSecondaryDemo />
+</Example>
+
+#### Ghost
+
+<Example demo="button-ghost-demo">
+  <ButtonGhostDemo />
+</Example>
+
+#### Destructive
+
+<Example demo="button-destructive-demo">
+  <ButtonDestructiveDemo />
+</Example>
+
+#### Outline
+
+<Example demo="button-outline-demo">
+  <ButtonOutlineDemo />
+</Example>
+
+#### Secondary Destructive
+
+<Example demo="button-secondary-destructive-demo">
+  <ButtonSecondaryDestructiveDemo />
+</Example>
+
+### Sizes
+
+<Example demo="button-sizes-demo">
+  <ButtonSizesDemo />
+</Example>
+
+### With Icon
+
+#### As prop
+
+<Example demo="button-with-icon-as-prop-demo">
+  <ButtonWithIconAsPropDemo />
+</Example>
+
+#### As child
+
+<Example demo="button-with-icon-as-child-demo">
+  <ButtonWithIconAsChildDemo />
+</Example>
+
+### Icon Only
+
+#### As prop
+
+<Example demo="button-icon-only-as-prop-demo">
+  <ButtonIconOnlyAsPropDemo />
+</Example>
+
+#### As child
+
+<Example demo="button-icon-only-as-child-demo">
+  <ButtonIconOnlyAsChildDemo />
+</Example>
+
+### Loading State
+
+<Example demo="button-loading-demo">
+  <ButtonLoadingDemo />
+</Example>
+
+### Disabled State
+
+<Example demo="button-disabled-demo">
+  <ButtonDisabledDemo />
+</Example>
+
+### Title
+
+<Example demo="button-title-demo">
+  <ButtonTitleDemo />
+</Example>
+
+### Link as Button
+
+<Example demo="button-as-link-demo">
+  <ButtonAsLinkDemo />
+</Example>

@@ -48,15 +48,7 @@
     class={cn(popoverVariants({ side }), "kumo-popover-popup", className)}
     {...restProps}
   >
-    <PopoverPrimitive.Arrow
-      class={cn(
-        "flex",
-        "data-[side=bottom]:-top-2",
-        "data-[side=left]:right-[-13px] data-[side=left]:rotate-90",
-        "data-[side=right]:left-[-13px] data-[side=right]:-rotate-90",
-        "data-[side=top]:-bottom-2 data-[side=top]:rotate-180",
-      )}
-    >
+    <PopoverPrimitive.Arrow class="z-10 flex [&>svg]:-translate-y-0.5" width={20} height={10}>
       <ArrowSvg />
     </PopoverPrimitive.Arrow>
     {@render children?.()}

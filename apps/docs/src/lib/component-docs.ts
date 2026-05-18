@@ -5,6 +5,11 @@ export interface DocsNavItem {
   label: string;
 }
 
+export interface ComponentDocsNavItem extends DocsNavItem {
+  description: string;
+  slug: string;
+}
+
 export const componentMetadataSchema = v.object({
   description: v.pipe(v.string(), v.nonEmpty()),
   primitive: v.optional(v.string()),
@@ -19,12 +24,15 @@ const metadataModules = import.meta.glob<ComponentPageMetadata>("/src/routes/com
   import: "metadata",
 });
 
-export const componentItems: DocsNavItem[] = Object.entries(metadataModules)
+export const componentItems: ComponentDocsNavItem[] = Object.entries(metadataModules)
   .map(([path, metadata]) => {
     const slug = slugFromPagePath(path);
+    const page = parseComponentMetadata(slug, metadata);
     return {
+      description: page.description,
       href: `/components/${slug}`,
-      label: parseComponentMetadata(slug, metadata).title,
+      label: page.title,
+      slug,
     };
   })
   .sort((a, b) => a.label.localeCompare(b.label));

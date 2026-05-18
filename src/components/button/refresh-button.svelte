@@ -33,14 +33,9 @@
   {size}
   {...restProps}
 >
-  {#snippet icon()}
-    <ArrowClockwiseIcon
-      aria-hidden="true"
-      size={iconSizes[size]}
-      weight="bold"
-      class={cn(loading && "animate-refresh")}
-    />
-  {/snippet}
+  {#if !loading}
+    <ArrowClockwiseIcon aria-hidden="true" size={iconSizes[size]} weight="bold" class={cn(loading && "animate-refresh")} />
+  {/if}
 
   {#if children}
     {@render children()}

@@ -25,7 +25,7 @@
     container,
     side = KUMO_TOOLTIP_DEFAULT_VARIANTS.side,
     align = "center",
-    sideOffset = 10,
+    sideOffset = 0,
     ...restProps
   }: TooltipContentProps = $props();
 </script>
@@ -40,16 +40,7 @@
     {...restProps}
   >
     {#if arrow}
-      <TooltipPrimitive.Arrow
-        data-slot="tooltip-arrow"
-        class={cn(
-          "flex",
-          "data-[side=bottom]:top-[-8px]",
-          "data-[side=left]:right-[-13px] data-[side=left]:rotate-90",
-          "data-[side=right]:left-[-13px] data-[side=right]:-rotate-90",
-          "data-[side=top]:bottom-[-8px] data-[side=top]:rotate-180",
-        )}
-      >
+      <TooltipPrimitive.Arrow data-slot="tooltip-arrow" class="z-10 flex [&>svg]:-translate-y-0.5" width={20} height={10}>
         <ArrowSvg />
       </TooltipPrimitive.Arrow>
     {/if}

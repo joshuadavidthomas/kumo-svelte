@@ -5,7 +5,7 @@
   let { children, data } = $props();
 </script>
 
-<div class="site-shell" data-mode="dark">
+<div class="site-shell">
   <div data-slot="mark" aria-hidden="true">
     <a class="flex h-full w-full items-center justify-center text-2xl" href="/" tabindex="-1">雲</a>
   </div>
@@ -13,9 +13,7 @@
   <div data-slot="left-rail"></div>
 
   <div data-slot="brand" class="flex items-center px-3">
-    <a class="no-underline" href="/">
-      Kumo Svelte
-    </a>
+    Kumo Svelte
   </div>
 
   <div data-slot="sidebar" class="overflow-hidden">

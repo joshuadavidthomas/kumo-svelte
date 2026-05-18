@@ -1,0 +1,17 @@
+<script lang="ts">
+  import { Button } from "kumo-svelte";
+  import PlusIcon from "phosphor-svelte/lib/PlusIcon";
+</script>
+
+<div class="flex flex-wrap items-center gap-2">
+  <Button variant="secondary" title="Create a new Worker">
+    Create Worker
+  </Button>
+  <Button
+    variant="secondary"
+    shape="square"
+    icon={PlusIcon}
+    aria-label="Add item"
+    title="Add item"
+  />
+</div>

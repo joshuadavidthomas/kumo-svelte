@@ -1,6 +1,3 @@
-export { componentItems } from "$lib/component-docs";
-export type { DocsNavItem } from "$lib/component-docs";
-
 import { componentItems, type DocsNavItem } from "$lib/component-docs";
 
 export interface DocsNavGroup {
