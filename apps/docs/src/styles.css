@@ -1,0 +1,407 @@
+:root {
+  --color-kumo-base: #fff;
+  --color-kumo-brand: #f38020;
+  --color-kumo-canvas: #f7f7f7;
+  --color-kumo-control: #ededed;
+  --color-kumo-danger: #d12124;
+  --color-kumo-default: #1f1f1f;
+  --color-kumo-hairline: #d8d8d8;
+  --color-kumo-strong: #3f3f3f;
+  --color-kumo-subtle: #707070;
+  --color-kumo-tint: #f0f0f0;
+  color: var(--color-kumo-default, #1f1f1f);
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--color-kumo-canvas, #f7f7f7);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+}
+
+a {
+  color: inherit;
+}
+
+code,
+pre {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}
+
+.site-shell {
+  display: grid;
+  min-height: 100vh;
+  grid-template-columns: 18rem minmax(0, 1fr);
+}
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: auto;
+  border-right: 1px solid var(--color-kumo-hairline, #d8d8d8);
+  background: var(--color-kumo-base, #fff);
+  padding: 1rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  color: var(--color-kumo-default, #111);
+  text-decoration: none;
+}
+
+.brand-mark {
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  place-items: center;
+  border-radius: 0.5rem;
+  background: var(--color-kumo-brand, #f38020);
+  color: white;
+  font-weight: 700;
+}
+
+.brand strong,
+.brand small {
+  display: block;
+}
+
+.brand small {
+  color: var(--color-kumo-subtle, #707070);
+  font-size: 0.75rem;
+}
+
+.nav-group {
+  margin-top: 1.25rem;
+}
+
+.nav-group h2 {
+  margin: 0 0 0.35rem;
+  color: var(--color-kumo-subtle, #666);
+  font-size: 0.75rem;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.nav-group ul {
+  display: grid;
+  gap: 0.125rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-group a {
+  display: block;
+  border-radius: 0.375rem;
+  padding: 0.45rem 0.55rem;
+  color: var(--color-kumo-subtle, #555);
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.nav-group a:hover {
+  background: var(--color-kumo-tint, #f0f0f0);
+  color: var(--color-kumo-default, #111);
+}
+
+.content-shell {
+  min-width: 0;
+}
+
+.topbar {
+  position: sticky;
+  z-index: 5;
+  top: 0;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  border-bottom: 1px solid var(--color-kumo-hairline, #d8d8d8);
+  background: color-mix(in srgb, var(--color-kumo-canvas, #f7f7f7) 92%, transparent);
+  padding: 0.85rem 2rem;
+  backdrop-filter: blur(10px);
+}
+
+.topbar a {
+  color: var(--color-kumo-subtle, #555);
+  font-size: 0.875rem;
+  text-decoration: none;
+}
+
+.doc-page {
+  width: min(100%, 88rem);
+  margin: 0 auto;
+}
+
+.doc-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  border-bottom: 1px solid var(--color-kumo-hairline, #d8d8d8);
+  padding: 3rem 2rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.5rem;
+  color: var(--color-kumo-brand, #f38020);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.doc-header h1,
+.home-hero h1 {
+  margin: 0;
+  max-width: 48rem;
+  color: var(--color-kumo-default, #111);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1.05;
+  letter-spacing: 0;
+}
+
+.doc-header p:not(.eyebrow),
+.home-hero p:not(.eyebrow) {
+  max-width: 46rem;
+  color: var(--color-kumo-strong, #3f3f3f);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.doc-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 0.5rem;
+}
+
+.doc-links a,
+.button-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.25rem;
+  border: 1px solid var(--color-kumo-hairline, #d8d8d8);
+  border-radius: 0.5rem;
+  background: var(--color-kumo-base, #fff);
+  padding: 0.45rem 0.75rem;
+  color: var(--color-kumo-default, #111);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.button-link.primary {
+  border-color: var(--color-kumo-brand, #f38020);
+  background: var(--color-kumo-brand, #f38020);
+  color: #fff;
+}
+
+.doc-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 15rem;
+  gap: 3rem;
+  padding: 2rem;
+}
+
+.doc-content {
+  min-width: 0;
+}
+
+.doc-content h2,
+.doc-content h3,
+.doc-content h4 {
+  scroll-margin-top: 5rem;
+  color: var(--color-kumo-default, #111);
+  letter-spacing: 0;
+}
+
+.doc-content h2 {
+  margin: 3rem 0 1rem;
+  font-size: 1.75rem;
+}
+
+.doc-content h3 {
+  margin: 2rem 0 0.75rem;
+  font-size: 1.25rem;
+}
+
+.doc-content h4 {
+  margin: 1.5rem 0 0.5rem;
+  font-size: 1rem;
+}
+
+.doc-content p,
+.doc-content li {
+  color: var(--color-kumo-strong, #3f3f3f);
+  line-height: 1.75;
+}
+
+.doc-content a {
+  color: var(--color-kumo-brand, #c55a00);
+  font-weight: 600;
+}
+
+.doc-content code {
+  border-radius: 0.3rem;
+  background: var(--color-kumo-control, #ededed);
+  padding: 0.1rem 0.3rem;
+  color: var(--color-kumo-default, #111);
+  font-size: 0.9em;
+}
+
+.doc-content pre {
+  overflow: auto;
+  border: 1px solid var(--color-kumo-hairline, #d8d8d8);
+  border-radius: 0.5rem;
+  background: var(--color-kumo-base, #fff);
+  padding: 1rem;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.04);
+}
+
+.doc-content pre code {
+  background: transparent;
+  padding: 0;
+}
+
+.example-card,
+.callout,
+.doc-card,
+.home-card {
+  border: 1px solid var(--color-kumo-hairline, #d8d8d8);
+  border-radius: 0.5rem;
+  background: var(--color-kumo-base, #fff);
+  padding: 1rem;
+}
+
+.example-card {
+  margin: 1rem 0 1.5rem;
+}
+
+.callout {
+  margin: 1rem 0;
+  border-left: 4px solid var(--color-kumo-brand, #f38020);
+}
+
+.callout.warning {
+  border-left-color: var(--color-kumo-danger, #d12124);
+}
+
+.doc-card,
+.home-card {
+  display: grid;
+  gap: 0.35rem;
+  text-decoration: none;
+}
+
+.doc-card span,
+.muted {
+  color: var(--color-kumo-subtle, #666);
+}
+
+.props-table {
+  overflow: auto;
+  margin: 1rem 0;
+  border: 1px solid var(--color-kumo-hairline, #d8d8d8);
+  border-radius: 0.5rem;
+  background: var(--color-kumo-base, #fff);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border-bottom: 1px solid var(--color-kumo-hairline, #d8d8d8);
+  padding: 0.75rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  color: var(--color-kumo-default, #111);
+  font-size: 0.8rem;
+}
+
+.toc {
+  position: sticky;
+  top: 5rem;
+  align-self: start;
+  color: var(--color-kumo-subtle, #666);
+  font-size: 0.875rem;
+}
+
+.toc nav {
+  display: grid;
+  gap: 0.45rem;
+  margin-top: 0.75rem;
+}
+
+.toc a {
+  color: var(--color-kumo-subtle, #666);
+  text-decoration: none;
+}
+
+.toc a.indented {
+  padding-left: 0.75rem;
+}
+
+.home-hero {
+  border-bottom: 1px solid var(--color-kumo-hairline, #d8d8d8);
+  padding: 3rem 0;
+}
+
+.home-actions,
+.home-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.home-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+}
+
+@media (max-width: 900px) {
+  .site-shell {
+    display: block;
+  }
+
+  .sidebar {
+    position: static;
+    height: auto;
+    max-height: 22rem;
+    border-right: 0;
+    border-bottom: 1px solid var(--color-kumo-hairline, #d8d8d8);
+  }
+
+  .topbar {
+    justify-content: flex-start;
+    overflow: auto;
+    padding-inline: 1rem;
+  }
+
+  .doc-header,
+  .doc-layout {
+    display: block;
+    padding: 1.5rem;
+  }
+
+  .toc {
+    position: static;
+    margin-top: 2rem;
+  }
+}

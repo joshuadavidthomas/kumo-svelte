@@ -311,6 +311,9 @@
   },
   "scripts": {
     "check": "pnpm format:check && pnpm lint && pnpm typecheck",
+    "docs:build": "pnpm --filter @kumo-svelte/docs build",
+    "docs:check": "pnpm --filter @kumo-svelte/docs check",
+    "docs:dev": "pnpm --filter @kumo-svelte/docs dev",
     "format": "oxfmt --write package.json pnpm-workspace.yaml tsconfig.json svelte.config.js README.md src",
     "format:check": "oxfmt --check package.json pnpm-workspace.yaml tsconfig.json svelte.config.js README.md src",
     "generate:registry": "node scripts/generate-basic-registry.mjs",
