@@ -9,6 +9,7 @@ export { default as Collapsible } from "./collapsible-root.svelte";
 export { default as CollapsibleRoot } from "./collapsible-root.svelte";
 export { default as CollapsibleTrigger } from "./collapsible-trigger.svelte";
 export { default as CollapsiblePanel } from "./collapsible-panel.svelte";
+export { default as CollapsibleContent } from "./collapsible-panel.svelte";
 export { default as CollapsibleDefaultTrigger } from "./collapsible-default-trigger.svelte";
 export { default as CollapsibleDefaultPanel } from "./collapsible-default-panel.svelte";
 
@@ -16,6 +17,7 @@ export type CollapsibleProps = ComponentProps<typeof CollapsibleRootComponent>;
 export type CollapsibleRootProps = ComponentProps<typeof CollapsibleRootComponent>;
 export type CollapsibleTriggerProps = ComponentProps<typeof CollapsibleTriggerComponent>;
 export type CollapsiblePanelProps = ComponentProps<typeof CollapsiblePanelComponent>;
+export type CollapsibleContentProps = CollapsiblePanelProps;
 export type CollapsibleDefaultTriggerProps = ComponentProps<
   typeof CollapsibleDefaultTriggerComponent
 >;

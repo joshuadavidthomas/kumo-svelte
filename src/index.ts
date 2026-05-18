@@ -150,12 +150,14 @@ export { default as Collapsible } from "./components/collapsible/collapsible-roo
 export { default as CollapsibleRoot } from "./components/collapsible/collapsible-root.svelte";
 export { default as CollapsibleTrigger } from "./components/collapsible/collapsible-trigger.svelte";
 export { default as CollapsiblePanel } from "./components/collapsible/collapsible-panel.svelte";
+export { default as CollapsibleContent } from "./components/collapsible/collapsible-panel.svelte";
 export { default as CollapsibleDefaultTrigger } from "./components/collapsible/collapsible-default-trigger.svelte";
 export { default as CollapsibleDefaultPanel } from "./components/collapsible/collapsible-default-panel.svelte";
 export {
   collapsibleVariants,
   KUMO_COLLAPSIBLE_DEFAULT_VARIANTS,
   KUMO_COLLAPSIBLE_VARIANTS,
+  type CollapsibleContentProps,
   type CollapsibleDefaultPanelProps,
   type CollapsibleDefaultTriggerProps,
   type CollapsiblePanelProps,

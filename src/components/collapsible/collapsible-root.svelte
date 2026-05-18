@@ -25,6 +25,7 @@
 
 <CollapsiblePrimitive.Root
   bind:open
+  data-slot="collapsible"
   {disabled}
   {id}
   {onOpenChange}

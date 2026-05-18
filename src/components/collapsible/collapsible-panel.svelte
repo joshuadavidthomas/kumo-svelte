@@ -20,6 +20,7 @@
 </script>
 
 <CollapsiblePrimitive.Content
+  data-slot="collapsible-content"
   {id}
   {forceMount}
   {hiddenUntilFound}

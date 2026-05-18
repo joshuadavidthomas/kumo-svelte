@@ -20,6 +20,7 @@
 </script>
 
 <CollapsiblePrimitive.Trigger
+  data-slot="collapsible-trigger"
   {id}
   {disabled}
   class={cn(
