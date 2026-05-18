@@ -1,8 +1,10 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
-  import { Toolbar as ToolbarPrimitive, Tooltip as TooltipPrimitive } from "bits-ui";
+  import { Toolbar as ToolbarPrimitive } from "bits-ui";
   import { cn } from "../../utils/cn";
-  import { getKumoPortalContext } from "../../utils/portal-provider.svelte";
+  import TooltipContent from "../tooltip/tooltip-content.svelte";
+  import TooltipRoot from "../tooltip/tooltip-root.svelte";
+  import TooltipTrigger from "../tooltip/tooltip-trigger.svelte";
   import { menuBarVariants } from "./variants";
 
   export interface MenuBarOption {
@@ -28,24 +30,24 @@
     ...restProps
   }: MenuBarProps = $props();
 
-  const portalContext = getKumoPortalContext();
-
   function optionId(option: MenuBarOption, index: number) {
     return optionIds ? option.id : index;
   }
 </script>
 
 <ToolbarPrimitive.Root
+  data-slot="menubar"
   class={cn(menuBarVariants(), className)}
   {...restProps}
 >
   {#each options as option, index (option.id ?? index)}
     {@const active = isActive === optionId(option, index)}
-    <TooltipPrimitive.Root>
-      <TooltipPrimitive.Trigger>
+    <TooltipRoot>
+      <TooltipTrigger>
         {#snippet child({ props })}
           <ToolbarPrimitive.Button
             {...props}
+            data-slot="menubar-button"
             aria-label={option.tooltip}
             aria-pressed={active}
             onclick={() => option.onClick()}
@@ -55,24 +57,23 @@
               active && "z-2 bg-kumo-base shadow-xs",
             )}
           >
-            <span class="flex items-center justify-center [&_svg]:size-[18px]">
+            <span data-slot="menubar-button-icon" class="flex items-center justify-center [&_svg]:size-[18px]">
               {@render option.icon()}
             </span>
           </ToolbarPrimitive.Button>
         {/snippet}
-      </TooltipPrimitive.Trigger>
-      <TooltipPrimitive.Portal to={portalContext.container}>
-        <TooltipPrimitive.Content
-          side="top"
-          sideOffset={8}
-          class={cn(
-            "flex origin-[var(--transform-origin)] flex-col rounded-md bg-kumo-base px-3 py-1.5 text-xs text-kumo-default",
-            "shadow-lg shadow-kumo-tip-shadow outline outline-kumo-fill",
-          )}
-        >
-          {option.tooltip}
-        </TooltipPrimitive.Content>
-      </TooltipPrimitive.Portal>
-    </TooltipPrimitive.Root>
+      </TooltipTrigger>
+      <TooltipContent
+        side="top"
+        sideOffset={8}
+        arrow={false}
+        class={cn(
+          "flex origin-[var(--transform-origin)] flex-col rounded-md bg-kumo-base px-3 py-1.5 text-xs text-kumo-default",
+          "shadow-lg shadow-kumo-tip-shadow outline outline-kumo-fill",
+        )}
+      >
+        {option.tooltip}
+      </TooltipContent>
+    </TooltipRoot>
   {/each}
 </ToolbarPrimitive.Root>
