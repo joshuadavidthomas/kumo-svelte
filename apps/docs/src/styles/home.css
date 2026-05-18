@@ -1,0 +1,90 @@
+.home-doc .doc-layout {
+  display: block;
+  padding: 0;
+}
+
+.home-doc .doc-content {
+  max-width: none;
+}
+
+.home-hero {
+  display: flex;
+  min-height: 7rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  border-bottom: 1px solid var(--kumo-line);
+  padding: 1.4rem 2rem;
+}
+
+.home-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.component-board {
+  display: grid;
+  min-height: calc(100vh - 3rem);
+  grid-template-columns: repeat(4, minmax(12rem, 1fr));
+  border-bottom: 1px solid var(--kumo-line);
+  background: var(--kumo-line);
+  gap: 1px;
+}
+
+.demo-tile {
+  position: relative;
+  display: grid;
+  min-height: 16.25rem;
+  grid-template-rows: auto 1fr;
+  background: var(--kumo-black);
+  color: var(--kumo-text);
+}
+
+.demo-title {
+  position: relative;
+  z-index: 1;
+  padding: 1rem;
+  color: var(--kumo-muted);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.demo-title:hover {
+  color: var(--kumo-text);
+}
+
+.demo-component {
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+}
+
+.docs-card-preview {
+  align-content: center;
+  color: var(--kumo-muted);
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.docs-card-preview p {
+  max-width: 14rem;
+  margin: 0.75rem 0 0;
+  line-height: 1.5;
+}
+
+.status-pill {
+  border: 1px solid var(--kumo-line-strong);
+  border-radius: 999px;
+  background: var(--kumo-control);
+  padding: 0.25rem 0.6rem;
+  color: var(--kumo-muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.status-pill.ready {
+  border-color: color-mix(in srgb, var(--kumo-blue) 65%, var(--kumo-line));
+  color: #8bbcff;
+}

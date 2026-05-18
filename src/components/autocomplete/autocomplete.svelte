@@ -47,7 +47,7 @@
     name,
     onOpenChange,
     onValueChange,
-    open = $bindable(),
+    open = $bindable(false),
     required,
     size = KUMO_AUTOCOMPLETE_DEFAULT_VARIANTS.size,
     value = $bindable(defaultValue),

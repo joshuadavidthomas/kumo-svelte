@@ -1,54 +1,96 @@
 <script lang="ts">
-  import { page } from "$app/state";
-  import { docsNavigation } from "$docs/nav";
+  import Sidebar from "$lib/components/sidebar.svelte";
   import "../styles.css";
 
-  let { children } = $props();
-
-  function isActive(href: string) {
-    return href === "/" ? page.url.pathname === "/" : page.url.pathname.startsWith(href);
-  }
+  let { children, data } = $props();
 </script>
 
 <div class="site-shell" data-mode="dark">
-  <div class="icon-rail" aria-hidden="true">
-    <a class="kumo-mark" href="/" tabindex="-1">雲</a>
+  <div data-slot="mark" aria-hidden="true">
+    <a class="flex h-full w-full items-center justify-center text-2xl" href="/" tabindex="-1">雲</a>
   </div>
 
-  <aside class="sidebar" aria-label="Documentation navigation">
-    <a class="brand" href="/">
-      <strong>Kumo Svelte</strong>
+  <div data-slot="left-rail"></div>
+
+  <div data-slot="brand" class="flex items-center px-3">
+    <a class="no-underline" href="/">
+      Kumo Svelte
     </a>
+  </div>
 
-    <label class="search-field">
-      <span aria-hidden="true">⌕</span>
-      <input type="search" placeholder="Search..." />
-    </label>
+  <div data-slot="sidebar" class="overflow-hidden">
+    <Sidebar />
+  </div>
 
-    <nav>
-      {#each docsNavigation as group (group.title)}
-        <section class="nav-group">
-          <h2>{group.title}</h2>
-          <ul>
-            {#each group.items as item (item.href)}
-              <li><a aria-current={isActive(item.href) ? "page" : undefined} href={item.href}>{item.label}</a></li>
-            {/each}
-          </ul>
-        </section>
-      {/each}
-    </nav>
-  </aside>
+  <header
+    data-slot="topbar"
+    class="flex items-center justify-end gap-3.5 px-3.5 bg-[var(--kumo-black)]"
+  >
+    <a
+      href="https://github.com/joshuadavidthomas/kumo-svelte"
+      class="text-[0.8125rem] text-[var(--kumo-muted)] no-underline font-mono"
+    >
+      kumo-svelte
+    </a>
+  </header>
 
-  <div class="content-shell">
-    <header class="topbar">
-      <span class="package-name">kumo-svelte</span>
-      <span class="version-pill">v0.0.0</span>
-      <a href="/installation">Installation</a>
-      <a href="/components/button">Components</a>
-      <a href="/registry">Registry</a>
-      <a href="https://github.com/joshuadavidthomas/kumo-svelte">GitHub</a>
-    </header>
-
+  <div data-slot="main" class="min-w-0">
     {@render children()}
   </div>
 </div>
+
+<style>
+  .site-shell {
+    display: grid;
+    min-height: 100vh;
+    gap: 1px;
+    grid-template:
+      "mark brand topbar" 3rem
+      "left-rail sidebar main" 1fr / 3rem 16rem minmax(0, 1fr);
+  }
+
+  [data-slot="mark"] {
+    position: sticky;
+    top: 0;
+    grid-area: mark;
+    border-bottom: 1px solid var(--kumo-line);
+  }
+
+  [data-slot="left-rail"] {
+    position: sticky;
+    top: calc(3rem + 1px);
+    grid-area: left-rail;
+    height: calc(100dvh - 3rem - 1px);
+    min-height: 0;
+  }
+
+  [data-slot="brand"] {
+    position: sticky;
+    top: 0;
+    grid-area: brand;
+    border-right: 1px solid var(--kumo-line);
+    border-bottom: 1px solid var(--kumo-line);
+    border-left: 1px solid var(--kumo-line);
+  }
+
+  [data-slot="sidebar"] {
+    position: sticky;
+    top: calc(3rem + 1px);
+    grid-area: sidebar;
+    height: calc(100dvh - 3rem - 1px);
+    min-height: 0;
+    border-right: 1px solid var(--kumo-line);
+    border-left: 1px solid var(--kumo-line);
+  }
+
+  [data-slot="topbar"] {
+    position: sticky;
+    top: 0;
+    grid-area: topbar;
+    border-bottom: 1px solid var(--kumo-line);
+  }
+
+  [data-slot="main"] {
+    grid-area: main;
+  }
+</style>

@@ -1,11 +1,16 @@
 <script lang="ts">
-  import DocPage from "$docs/doc-page.svelte";
-  import HomeGrid from "$docs/home-grid.svelte";
-  import type { PageData } from "./$types";
-
-  let { data }: { data: PageData } = $props();
+  import HomeGrid from "$lib/components/home-grid.svelte";
 </script>
 
-<DocPage page={data.page}>
-  <HomeGrid />
-</DocPage>
+<svelte:head>
+  <title>Kumo Svelte</title>
+  <meta name="description" content="A SvelteKit documentation site for the Kumo Svelte component library." />
+</svelte:head>
+
+<main class="doc-page home-doc">
+  <div class="doc-layout">
+    <article class="doc-content">
+      <HomeGrid />
+    </article>
+  </div>
+</main>
