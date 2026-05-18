@@ -30,6 +30,7 @@
 {#if sidebar.collapsible === "none"}
   <aside
     bind:this={ref}
+    data-slot="sidebar"
     data-state="expanded"
     data-side={sidebar.side}
     data-variant={sidebar.variant}
@@ -50,10 +51,12 @@
   <DialogPrimitive.Root open={sidebar.openMobile} onOpenChange={sidebar.setOpenMobile}>
     <DialogPrimitive.Portal to={portalContext.container}>
       <DialogPrimitive.Overlay
+        data-slot="sidebar-mobile-overlay"
         data-sidebar-backdrop
         class="fixed inset-0 z-40 bg-black/50 transition-opacity duration-200 data-[ending-style]:opacity-0 data-[starting-style]:opacity-0"
       />
       <DialogPrimitive.Content
+        data-slot="sidebar-mobile-content"
         data-sidebar-popup
         class={cn(
           "fixed inset-y-0 z-50 flex w-[--sidebar-width] flex-col bg-kumo-base p-0",
@@ -65,12 +68,13 @@
         )}
         style="--sidebar-width: var(--sidebar-width); transition-property: transform, opacity;"
       >
-        <DialogPrimitive.Title class="sr-only">Sidebar</DialogPrimitive.Title>
-        <DialogPrimitive.Description class="sr-only">
+        <DialogPrimitive.Title data-slot="sidebar-mobile-title" class="sr-only">Sidebar</DialogPrimitive.Title>
+        <DialogPrimitive.Description data-slot="sidebar-mobile-description" class="sr-only">
           Displays the mobile sidebar.
         </DialogPrimitive.Description>
         <div
           bind:this={ref}
+          data-slot="sidebar"
           data-sidebar="sidebar"
           data-mobile="true"
           class={cn("flex h-full w-full flex-col bg-kumo-base text-kumo-default", className)}
@@ -84,6 +88,7 @@
 {:else}
   <aside
     bind:this={ref}
+    data-slot="sidebar"
     data-state={sidebar.state}
     data-side={sidebar.side}
     data-variant={sidebar.variant}
