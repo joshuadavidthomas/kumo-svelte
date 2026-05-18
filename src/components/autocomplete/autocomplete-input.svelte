@@ -55,6 +55,7 @@
 </script>
 
 <ComboboxPrimitive.Input
+  data-slot="autocomplete-input"
   class={cn(inputVariants({ size, focusIndicator: true }), "w-full", className)}
   aria-label={ariaLabel}
   {autocomplete}

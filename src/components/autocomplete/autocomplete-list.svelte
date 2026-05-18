@@ -15,6 +15,7 @@
 </script>
 
 <ComboboxPrimitive.Viewport
+  data-slot="autocomplete-list"
   class={cn(
     "min-h-0 flex-1 overflow-y-auto overscroll-contain scroll-pt-2 scroll-pb-2",
     className,

@@ -19,6 +19,7 @@
 </script>
 
 <ComboboxPrimitive.Item
+  data-slot="autocomplete-item"
   {value}
   label={label ?? value}
   {disabled}
@@ -32,7 +33,10 @@
         {label ?? value}
       {/if}
     </div>
-    <span class="col-start-2 hidden items-center group-data-selected:flex">
+    <span
+      data-slot="autocomplete-item-indicator"
+      class="col-start-2 hidden items-center group-data-selected:flex"
+    >
       {#if selected}
         <CheckIcon aria-hidden="true" size={14} />
       {/if}

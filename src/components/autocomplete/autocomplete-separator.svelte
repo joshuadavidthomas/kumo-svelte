@@ -9,4 +9,7 @@
   let { class: className }: AutocompleteSeparatorProps = $props();
 </script>
 
-<ComboboxPrimitive.Separator class={cn("mx-0 my-1 h-px bg-kumo-line", className)} />
+<ComboboxPrimitive.Separator
+  data-slot="autocomplete-separator"
+  class={cn("mx-0 my-1 h-px bg-kumo-line", className)}
+/>

@@ -15,6 +15,7 @@
 </script>
 
 <ComboboxPrimitive.GroupHeading
+  data-slot="autocomplete-group-label"
   class={cn("mx-1.5 px-2 py-1.5 text-sm text-kumo-strong", className)}
 >
   {@render children?.()}
