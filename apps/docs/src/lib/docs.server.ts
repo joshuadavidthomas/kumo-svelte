@@ -317,7 +317,7 @@ function normalizeSource(source: string, sourceFile: string | undefined) {
     .replace(/<Heading[^>]*level=\{?3\}?[^>]*>([\s\S]*?)<\/Heading>/g, "### $1")
     .replace(/<Heading[^>]*level=\{?4\}?[^>]*>([\s\S]*?)<\/Heading>/g, "#### $1")
     .replace(/<Callout\s+type="([^"]+)"[^>]*>([\s\S]*?)<\/Callout>/g, (_, type, content) => {
-      return `<div class="callout ${type}">${content.trim()}</div>`;
+      return `<div class="callout ${type}">${inline(compactContent(content))}</div>`;
     })
     .replace(/<CodeBlock\s+code=\{`([\s\S]*?)`\}\s+lang="([^"]+)"\s*\/>/g, (_, code, lang) => {
       return `\n\`\`\`${lang}\n${code.trim()}\n\`\`\`\n`;
@@ -354,6 +354,8 @@ function renderMarkdown(markdown: string, sourceFile: string | undefined) {
   const lines = markdown.split(/\r?\n/);
   let paragraph: string[] = [];
   let list: string[] = [];
+  let orderedList: string[] = [];
+  let table: string[][] = [];
   let inFence = false;
   let fenceLang = "";
   let fenceLines: string[] = [];
@@ -370,11 +372,30 @@ function renderMarkdown(markdown: string, sourceFile: string | undefined) {
     list = [];
   }
 
+  function flushOrderedList() {
+    if (!orderedList.length) return;
+    html.push(`<ol>${orderedList.map((item) => `<li>${inline(item)}</li>`).join("")}</ol>`);
+    orderedList = [];
+  }
+
+  function flushTable() {
+    if (!table.length) return;
+    const [head, ...body] = table;
+    html.push(
+      `<div class="props-table"><table><thead><tr>${head.map((cell) => `<th>${inline(cell)}</th>`).join("")}</tr></thead><tbody>${body
+        .map((row) => `<tr>${row.map((cell) => `<td>${inline(cell)}</td>`).join("")}</tr>`)
+        .join("")}</tbody></table></div>`,
+    );
+    table = [];
+  }
+
   for (const line of lines) {
     const fence = line.match(/^```(\w+)?/);
     if (fence) {
       flushParagraph();
       flushList();
+      flushOrderedList();
+      flushTable();
       if (inFence) {
         html.push(`<pre><code class="language-${escapeAttribute(fenceLang)}">${escapeHtml(fenceLines.join("\n"))}</code></pre>`);
         inFence = false;
@@ -395,13 +416,40 @@ function renderMarkdown(markdown: string, sourceFile: string | undefined) {
     if (!line.trim()) {
       flushParagraph();
       flushList();
+      flushOrderedList();
+      flushTable();
       continue;
     }
 
-    const heading = line.match(/^(#{2,4})\s+(.+)$/);
+    if (/^\s*\|.*\|\s*$/.test(line)) {
+      flushParagraph();
+      flushList();
+      flushOrderedList();
+      const cells = line
+        .trim()
+        .replace(/^\||\|$/g, "")
+        .split("|")
+        .map((cell) => cell.trim());
+      if (cells.every((cell) => /^:?-{3,}:?$/.test(cell))) continue;
+      table.push(cells);
+      continue;
+    }
+
+    if (/^-{3,}$/.test(line.trim())) {
+      flushParagraph();
+      flushList();
+      flushOrderedList();
+      flushTable();
+      html.push("<hr />");
+      continue;
+    }
+
+    const heading = line.match(/^\s*(#{2,4})\s+(.+)$/);
     if (heading) {
       flushParagraph();
       flushList();
+      flushOrderedList();
+      flushTable();
       const depth = heading[1].length;
       const text = stripHtml(heading[2].trim());
       const id = uniqueSlug(text, toc);
@@ -413,22 +461,38 @@ function renderMarkdown(markdown: string, sourceFile: string | undefined) {
     const unordered = line.match(/^\s*[-*]\s+(.+)$/);
     if (unordered) {
       flushParagraph();
+      flushOrderedList();
+      flushTable();
       list.push(unordered[1]);
+      continue;
+    }
+
+    const ordered = line.match(/^\s*\d+\.\s+(.+)$/);
+    if (ordered) {
+      flushParagraph();
+      flushList();
+      flushTable();
+      orderedList.push(ordered[1]);
       continue;
     }
 
     if (line.trim().startsWith("<")) {
       flushParagraph();
       flushList();
+      flushOrderedList();
+      flushTable();
       html.push(adaptHtml(line.trim(), sourceFile));
       continue;
     }
 
+    flushTable();
     paragraph.push(line.trim());
   }
 
   flushParagraph();
   flushList();
+  flushOrderedList();
+  flushTable();
 
   return { html: html.join("\n"), toc };
 }
@@ -560,6 +624,29 @@ function sourceUrl(sourceFile: string) {
 function primitiveUrl(baseUIComponent: string | undefined, sourceFile: string | undefined) {
   const name = baseUIComponent ?? sourceFile?.split("/").pop();
   if (!name) return undefined;
+  const nonPrimitivePages = new Set([
+    "chart",
+    "cloudflare-logo",
+    "code",
+    "empty",
+    "field",
+    "flow",
+    "grid",
+    "input",
+    "input-area",
+    "input-group",
+    "layer-card",
+    "link",
+    "loader",
+    "pagination",
+    "sensitive-input",
+    "surface",
+    "table",
+    "table-of-contents",
+    "text",
+    "toast",
+  ]);
+  if (!baseUIComponent && nonPrimitivePages.has(name)) return undefined;
   const bitsName = name
     .replace("dropdown", "dropdown-menu")
     .replace("radio", "radio-group")
@@ -598,7 +685,16 @@ function adaptSource(source: string) {
   return source
     .replaceAll("@cloudflare/kumo", "kumo-svelte")
     .replaceAll("@phosphor-icons/react", "phosphor-svelte")
+    .replaceAll("react react-dom ", "")
+    .replaceAll("React projects", "Svelte projects")
+    .replaceAll("React components", "Svelte components")
+    .replaceAll("React component", "Svelte component")
+    .replaceAll("ReactNode", "Snippet")
+    .replaceAll("useState", "$state")
+    .replaceAll("useEffect", "$effect")
+    .replaceAll("forwardRef", "wrapper component")
     .replaceAll("Base UI", "Bits UI")
+    .replaceAll("https://base-ui.com/react/overview/accessibility", "https://www.bits-ui.com/docs")
     .replaceAll("base-ui.com/react/components", "bits-ui.com/docs/components")
     .replaceAll("className=", "class=")
     .replaceAll("__KUMO_VERSION__", "\"latest\"")
@@ -606,7 +702,11 @@ function adaptSource(source: string) {
 }
 
 function adaptText(text: string) {
-  return text.replaceAll("@cloudflare/kumo", "kumo-svelte").replaceAll("Base UI", "Bits UI");
+  return text
+    .replaceAll("@cloudflare/kumo", "kumo-svelte")
+    .replaceAll("React components", "Svelte components")
+    .replaceAll("React component", "Svelte component")
+    .replaceAll("Base UI", "Bits UI");
 }
 
 function adaptHtml(html: string, sourceFile: string | undefined) {
@@ -631,6 +731,13 @@ function inline(value: string) {
   text = text.replace(/`([^`]+)`/g, "<code>$1</code>");
   text = text.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
   return text;
+}
+
+function compactContent(value: string) {
+  return value
+    .replace(/<[^>]+>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 function uniqueSlug(text: string, toc: DocTocItem[]) {
