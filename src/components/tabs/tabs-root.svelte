@@ -8,6 +8,11 @@
     $props();
 </script>
 
-<TabsPrimitive.Root bind:value class={cn("relative isolate min-w-0 font-medium", className)} {...restProps}>
+<TabsPrimitive.Root
+  bind:value
+  data-slot="tabs"
+  class={cn("relative isolate min-w-0 font-medium", className)}
+  {...restProps}
+>
   {@render children?.()}
 </TabsPrimitive.Root>

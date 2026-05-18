@@ -7,4 +7,8 @@
   let { class: className, ...restProps }: TabsContentProps = $props();
 </script>
 
-<TabsPrimitive.Content class={cn("flex-1 outline-none", className)} {...restProps} />
+<TabsPrimitive.Content
+  data-slot="tabs-content"
+  class={cn("flex-1 outline-none", className)}
+  {...restProps}
+/>

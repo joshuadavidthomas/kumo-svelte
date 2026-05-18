@@ -21,4 +21,9 @@
   }: TabsListProps = $props();
 </script>
 
-<TabsPrimitive.List class={cn(tabsListVariants({ size, variant }), className)} {...restProps} />
+<TabsPrimitive.List
+  data-slot="tabs-list"
+  data-variant={variant}
+  class={cn(tabsListVariants({ size, variant }), className)}
+  {...restProps}
+/>

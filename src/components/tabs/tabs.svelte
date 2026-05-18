@@ -1,11 +1,11 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
-  import { Tabs as TabsPrimitive } from "bits-ui";
   import { cn } from "../../utils/cn";
+  import TabsList from "./tabs-list.svelte";
+  import TabsRoot from "./tabs-root.svelte";
+  import TabsTrigger from "./tabs-trigger.svelte";
   import {
     KUMO_TABS_DEFAULT_VARIANTS,
-    tabsListVariants,
-    tabsTriggerVariants,
     type KumoTabsSize,
     type KumoTabsVariant,
   } from "./variants";
@@ -58,11 +58,11 @@
 </script>
 
 {#if tabs.length > 0}
-  <TabsPrimitive.Root
+  <TabsRoot
     value={activeValue}
     onValueChange={handleValueChange}
     activationMode={activationMode}
-    class={cn("relative isolate min-w-0 font-medium", className)}
+    class={className}
   >
     {#if isSegmented}
       <div
@@ -72,20 +72,22 @@
         )}
       ></div>
     {/if}
-    <TabsPrimitive.List class={cn(tabsListVariants({ size, variant }), listClassName)}>
+    <TabsList {size} {variant} class={listClassName}>
       {#each tabs as tab (tab.value)}
-        <TabsPrimitive.Trigger
+        <TabsTrigger
           value={tab.value}
           disabled={tab.disabled}
-          class={cn(tabsTriggerVariants({ size, variant }), "cursor-pointer", tab.class)}
+          {size}
+          {variant}
+          class={cn("cursor-pointer", tab.class)}
         >
           {#if typeof tab.label === "string"}
             {tab.label}
           {:else}
             {@render tab.label()}
           {/if}
-        </TabsPrimitive.Trigger>
+        </TabsTrigger>
       {/each}
-    </TabsPrimitive.List>
-  </TabsPrimitive.Root>
+    </TabsList>
+  </TabsRoot>
 {/if}

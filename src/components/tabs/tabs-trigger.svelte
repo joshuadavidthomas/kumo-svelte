@@ -21,4 +21,9 @@
   }: TabsTriggerProps = $props();
 </script>
 
-<TabsPrimitive.Trigger class={cn(tabsTriggerVariants({ size, variant }), className)} {...restProps} />
+<TabsPrimitive.Trigger
+  data-slot="tabs-trigger"
+  data-variant={variant}
+  class={cn(tabsTriggerVariants({ size, variant }), className)}
+  {...restProps}
+/>
