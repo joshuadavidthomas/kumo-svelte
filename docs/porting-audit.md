@@ -103,6 +103,10 @@ explicit styling metadata where present. Runtime catalog validation uses the
 generated prop metadata for literal variant checks and simple primitive type
 checks.
 
+Prop description coverage is complete, but descriptions without source JSDoc,
+variant metadata, docs frontmatter, or common-description matches use generated
+fallback prose rather than upstream-authored copy.
+
 They do not yet include complete TypeScript-derived runtime validation for every
 complex prop shape.
 
