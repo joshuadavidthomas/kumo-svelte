@@ -35,11 +35,13 @@
         },
         "autocomplete": {
           "type": "HTMLInputAttributes[\"autocomplete\"]",
-          "required": false
+          "required": false,
+          "description": "Browser autocomplete attribute for the input."
         },
         "clearOnDeselect": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether clear on deselect is enabled."
         },
         "defaultValue": {
           "type": "string",
@@ -63,19 +65,23 @@
         },
         "onblur": {
           "type": "(event: FocusEvent & { currentTarget: HTMLInputElement }) => void",
-          "required": false
+          "required": false,
+          "description": "Callback fired when blur occurs."
         },
         "onfocus": {
           "type": "(event: FocusEvent & { currentTarget: HTMLInputElement }) => void",
-          "required": false
+          "required": false,
+          "description": "Callback fired when focus occurs."
         },
         "oninput": {
           "type": "(event: Event & { currentTarget: HTMLInputElement }) => void",
-          "required": false
+          "required": false,
+          "description": "Callback fired when input occurs."
         },
         "onkeydown": {
           "type": "(event: KeyboardEvent & { currentTarget: HTMLInputElement }) => void",
-          "required": false
+          "required": false,
+          "description": "Callback fired when keydown occurs."
         },
         "onValueChange": {
           "type": "(value: string) => void",
@@ -94,7 +100,8 @@
         },
         "size": {
           "type": "KumoAutocompleteSize",
-          "required": false
+          "required": false,
+          "description": "Size variant used by the component."
         },
         "label": {
           "type": "Snippet | string",
@@ -108,7 +115,8 @@
         },
         "allowDeselect": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether to allow deselect."
         },
         "description": {
           "type": "Snippet | string",
@@ -227,7 +235,8 @@
             "teal",
             "teal-subtle",
             "blue"
-          ]
+          ],
+          "description": "Visual style variant used by the component."
         },
         "class": {
           "type": "string",
@@ -335,7 +344,8 @@
       "props": {
         "action": {
           "type": "Snippet",
-          "required": false
+          "required": false,
+          "description": "Action content rendered with the component."
         },
         "children": {
           "type": "Snippet",
@@ -381,7 +391,8 @@
             "alert": "Warning banner for cautionary messages",
             "error": "Error banner for critical issues"
           },
-          "values": ["default", "alert", "error"]
+          "values": ["default", "alert", "error"],
+          "description": "Visual style variant used by the component."
         }
       },
       "examples": [
@@ -437,7 +448,8 @@
         },
         "copiedLabel": {
           "type": "string",
-          "required": false
+          "required": false,
+          "description": "Copied label value."
         },
         "label": {
           "type": "string",
@@ -446,7 +458,8 @@
         },
         "onCopy": {
           "type": "() => void",
-          "required": false
+          "required": false,
+          "description": "Callback fired when copy occurs."
         },
         "text": {
           "type": "string",
@@ -470,7 +483,8 @@
         },
         "mobileChildren": {
           "type": "Snippet",
-          "required": false
+          "required": false,
+          "description": "Custom content or renderer for mobile children."
         },
         "size": {
           "type": "KumoBreadcrumbsSize",
@@ -484,7 +498,8 @@
             "sm": "Compact breadcrumbs for dense UIs",
             "base": "Default breadcrumbs size"
           },
-          "values": ["sm", "base"]
+          "values": ["sm", "base"],
+          "description": "Size variant used by the component."
         }
       },
       "examples": [
@@ -540,7 +555,8 @@
             "square": "Square button for icon-only actions",
             "circle": "Circular button for icon-only actions"
           },
-          "values": ["base", "square", "circle"]
+          "values": ["base", "square", "circle"],
+          "description": "Shape variant used by the component."
         },
         "size": {
           "type": "KumoButtonSize",
@@ -558,7 +574,8 @@
             "base": "Default button size",
             "lg": "Large button for primary CTAs"
           },
-          "values": ["xs", "sm", "base", "lg"]
+          "values": ["xs", "sm", "base", "lg"],
+          "description": "Size variant used by the component."
         },
         "variant": {
           "type": "KumoButtonVariant",
@@ -587,7 +604,8 @@
             "destructive",
             "secondary-destructive",
             "outline"
-          ]
+          ],
+          "description": "Visual style variant used by the component."
         },
         "class": {
           "type": "string",
@@ -616,11 +634,13 @@
         },
         "external": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether the link points to an external destination."
         },
         "linksExternal": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether links external is enabled."
         }
       },
       "examples": [
@@ -723,7 +743,8 @@
       "props": {
         "legend": {
           "type": "string",
-          "required": false
+          "required": false,
+          "description": "Legend value."
         },
         "children": {
           "type": "Snippet",
@@ -757,7 +778,8 @@
         },
         "allValues": {
           "type": "string[]",
-          "required": false
+          "required": false,
+          "description": "List of all values."
         },
         "disabled": {
           "type": "boolean",
@@ -766,7 +788,8 @@
         },
         "controlFirst": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether control first is enabled."
         },
         "class": {
           "type": "string",
@@ -800,7 +823,8 @@
             "default": "Default checkbox appearance",
             "error": "Error state for validation failures"
           },
-          "values": ["default", "error"]
+          "values": ["default", "error"],
+          "description": "Visual style variant used by the component."
         },
         "label": {
           "type": "Snippet | string",
@@ -814,7 +838,8 @@
         },
         "indeterminate": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether indeterminate is enabled."
         },
         "onCheckedChange": {
           "type": "(checked: boolean) => void",
@@ -828,7 +853,8 @@
         },
         "aria-labelledby": {
           "type": "string",
-          "required": false
+          "required": false,
+          "description": "ID of the element that labels the control."
         },
         "labelTooltip": {
           "type": "Snippet",
@@ -885,11 +911,13 @@
         },
         "labels": {
           "type": "ClipboardTextLabels",
-          "required": false
+          "required": false,
+          "description": "Labels value."
         },
         "onCopy": {
           "type": "() => void",
-          "required": false
+          "required": false,
+          "description": "Callback fired when copy occurs."
         },
         "size": {
           "type": "KumoClipboardTextSize",
@@ -905,7 +933,8 @@
             "base": "Default clipboard text size",
             "lg": "Large clipboard text for prominent display"
           },
-          "values": ["sm", "base", "lg"]
+          "values": ["sm", "base", "lg"],
+          "description": "Size variant used by the component."
         },
         "text": {
           "type": "string",
@@ -914,11 +943,13 @@
         },
         "textToCopy": {
           "type": "string",
-          "required": false
+          "required": false,
+          "description": "Text to copy value."
         },
         "tooltip": {
           "type": "ClipboardTextTooltipConfig",
-          "required": false
+          "required": false,
+          "description": "Tooltip value."
         }
       },
       "examples": [
@@ -978,7 +1009,8 @@
             "black": "Solid black logo",
             "white": "Solid white logo (for dark backgrounds)"
           },
-          "values": ["color", "black", "white"]
+          "values": ["color", "black", "white"],
+          "description": "Color option used by the component."
         },
         "variant": {
           "type": "CloudflareLogoVariant",
@@ -988,7 +1020,8 @@
             "glyph": "Cloud glyph only (logomark)",
             "full": "Full logo with cloud glyph and wordmark stacked"
           },
-          "values": ["glyph", "full"]
+          "values": ["glyph", "full"],
+          "description": "Visual style variant used by the component."
         }
       },
       "examples": ["<CloudflareLogo variant=\"glyph\" />", "<CloudflareLogo variant=\"full\" />"],
@@ -1047,11 +1080,13 @@
         },
         "forceMount": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether to keep the element mounted when it would otherwise be hidden."
         },
         "hiddenUntilFound": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether hidden until found is enabled."
         },
         "id": {
           "type": "string",
@@ -1075,7 +1110,8 @@
         },
         "onOpenChangeComplete": {
           "type": "(open: boolean) => void",
-          "required": false
+          "required": false,
+          "description": "Callback fired when open change complete occurs."
         }
       },
       "examples": [],
@@ -1128,11 +1164,13 @@
         },
         "autocomplete": {
           "type": "HTMLInputAttributes[\"autocomplete\"]",
-          "required": false
+          "required": false,
+          "description": "Browser autocomplete attribute for the input."
         },
         "clearOnDeselect": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether clear on deselect is enabled."
         },
         "defaultValue": {
           "type": "string | string[]",
@@ -1156,7 +1194,8 @@
         },
         "oninput": {
           "type": "(event: Event & { currentTarget: HTMLInputElement }) => void",
-          "required": false
+          "required": false,
+          "description": "Callback fired when input occurs."
         },
         "onValueChange": {
           "type": "(value: string | string[]) => void",
@@ -1175,7 +1214,8 @@
         },
         "size": {
           "type": "KumoComboboxSize",
-          "required": false
+          "required": false,
+          "description": "Size variant used by the component."
         },
         "label": {
           "type": "Snippet | string",
@@ -1189,15 +1229,18 @@
         },
         "clearLabel": {
           "type": "string",
-          "required": false
+          "required": false,
+          "description": "Clear label value."
         },
         "showOptionsLabel": {
           "type": "string",
-          "required": false
+          "required": false,
+          "description": "Whether to show options label."
         },
         "allowDeselect": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether to allow deselect."
         },
         "description": {
           "type": "Snippet | string",
@@ -1246,7 +1289,8 @@
             "right": "Input positioned inline to the right of chips",
             "top": "Input positioned above chips"
           },
-          "values": ["right", "top"]
+          "values": ["right", "top"],
+          "description": "Input side value."
         }
       },
       "examples": [
@@ -1314,7 +1358,8 @@
         },
         "forceMount": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether to keep the element mounted when it would otherwise be hidden."
         },
         "value": {
           "type": "string",
@@ -1328,19 +1373,23 @@
         },
         "autocomplete": {
           "type": "HTMLInputAttributes[\"autocomplete\"]",
-          "required": false
+          "required": false,
+          "description": "Browser autocomplete attribute for the input."
         },
         "autofocus": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether the control should receive focus automatically."
         },
         "leading": {
           "type": "Snippet",
-          "required": false
+          "required": false,
+          "description": "Custom content or renderer for leading."
         },
         "onkeydown": {
           "type": "(event: KeyboardEvent & { currentTarget: HTMLInputElement }) => void",
-          "required": false
+          "required": false,
+          "description": "Callback fired when keydown occurs."
         },
         "placeholder": {
           "type": "string",
@@ -1349,7 +1398,8 @@
         },
         "trailing": {
           "type": "Snippet",
-          "required": false
+          "required": false,
+          "description": "Custom content or renderer for trailing."
         },
         "disabled": {
           "type": "boolean",
@@ -1358,23 +1408,28 @@
         },
         "keywords": {
           "type": "string[]",
-          "required": false
+          "required": false,
+          "description": "List of keywords."
         },
         "onSelect": {
           "type": "() => void",
-          "required": false
+          "required": false,
+          "description": "Callback fired when select occurs."
         },
         "progress": {
           "type": "number",
-          "required": false
+          "required": false,
+          "description": "Numeric progress value."
         },
         "breadcrumbHighlights": {
           "type": "HighlightRange[][]",
-          "required": false
+          "required": false,
+          "description": "List of breadcrumb highlights."
         },
         "breadcrumbs": {
           "type": "string[]",
-          "required": false
+          "required": false,
+          "description": "List of breadcrumbs."
         },
         "description": {
           "type": "string",
@@ -1383,7 +1438,8 @@
         },
         "external": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether the link points to an external destination."
         },
         "icon": {
           "type": "Snippet",
@@ -1392,11 +1448,13 @@
         },
         "nonInteractive": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether non interactive is enabled."
         },
         "showArrow": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether to show arrow."
         },
         "title": {
           "type": "string",
@@ -1405,11 +1463,13 @@
         },
         "titleHighlights": {
           "type": "HighlightRange[]",
-          "required": false
+          "required": false,
+          "description": "List of title highlights."
         },
         "filter": {
           "type": "(value: string, search: string, keywords?: string[]) => number",
-          "required": false
+          "required": false,
+          "description": "Function used for filter."
         },
         "label": {
           "type": "string",
@@ -1418,7 +1478,8 @@
         },
         "loop": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether loop is enabled."
         },
         "onValueChange": {
           "type": "(value: string) => void",
@@ -1427,11 +1488,13 @@
         },
         "shouldFilter": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether should filter is enabled."
         },
         "highlights": {
           "type": "HighlightRange[]",
-          "required": false
+          "required": false,
+          "description": "List of highlights."
         },
         "text": {
           "type": "string",
@@ -1461,7 +1524,8 @@
       "props": {
         "code": {
           "type": "string",
-          "required": true
+          "required": true,
+          "description": "Code value."
         },
         "lang": {
           "type": "KumoCodeLang",
@@ -1481,7 +1545,8 @@
             "bash": "Shell/Bash commands",
             "css": "CSS styles"
           },
-          "values": ["ts", "tsx", "jsonc", "bash", "css"]
+          "values": ["ts", "tsx", "jsonc", "bash", "css"],
+          "description": "Lang value."
         },
         "class": {
           "type": "string",
@@ -1490,7 +1555,8 @@
         },
         "values": {
           "type": "Record<string, { highlight?: boolean; value: string }>",
-          "required": false
+          "required": false,
+          "description": "Mapping of values."
         }
       },
       "examples": [
@@ -1562,11 +1628,13 @@
         },
         "color": {
           "type": "string",
-          "required": true
+          "required": true,
+          "description": "Color option used by the component."
         },
         "inactive": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether inactive is enabled."
         },
         "name": {
           "type": "string",
@@ -1575,7 +1643,8 @@
         },
         "unit": {
           "type": "string",
-          "required": false
+          "required": false,
+          "description": "Unit value."
         },
         "value": {
           "type": "string",
@@ -1584,96 +1653,119 @@
         },
         "className": {
           "type": "string",
-          "required": false
+          "required": false,
+          "description": "Additional CSS classes."
         },
         "defaultNodeColor": {
           "type": "string",
-          "required": false
+          "required": false,
+          "description": "Initial node color value."
         },
         "echarts": {
           "type": "typeof echarts",
-          "required": true
+          "required": true,
+          "description": "Echarts value."
         },
         "formatValue": {
           "type": "(value: number) => string",
-          "required": false
+          "required": false,
+          "description": "Function used for format value."
         },
         "height": {
           "type": "number",
-          "required": false
+          "required": false,
+          "description": "Numeric height value."
         },
         "isDarkMode": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether dark mode is enabled."
         },
         "left": {
           "type": "number | string",
-          "required": false
+          "required": false,
+          "description": "Left value."
         },
         "linkColor": {
           "type": "\"gradient\" | \"gray\"",
           "required": false,
-          "values": ["gradient", "gray"]
+          "values": ["gradient", "gray"],
+          "description": "Link color value."
         },
         "linkOpacity": {
           "type": "number",
-          "required": false
+          "required": false,
+          "description": "Numeric link opacity value."
         },
         "links": {
           "type": "SankeyLinkData[]",
-          "required": true
+          "required": true,
+          "description": "List of links."
         },
         "nodePadding": {
           "type": "number",
-          "required": false
+          "required": false,
+          "description": "Numeric node padding value."
         },
         "nodeWidth": {
           "type": "number",
-          "required": false
+          "required": false,
+          "description": "Numeric node width value."
         },
         "nodes": {
           "type": "SankeyNodeData[]",
-          "required": true
+          "required": true,
+          "description": "List of nodes."
         },
         "onLinkClick": {
           "type": "(link: SankeyLinkData) => void",
-          "required": false
+          "required": false,
+          "description": "Callback fired when link click occurs."
         },
         "onNodeClick": {
           "type": "(node: SankeyNodeData) => void",
-          "required": false
+          "required": false,
+          "description": "Callback fired when node click occurs."
         },
         "right": {
           "type": "number | string",
-          "required": false
+          "required": false,
+          "description": "Right value."
         },
         "showNodeValues": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether to show node values."
         },
         "showTooltip": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether to show tooltip."
         },
         "tooltipFormatter": {
           "type": "(params: SankeyTooltipParams) => string",
-          "required": false
+          "required": false,
+          "description": "Function used for tooltip formatter."
         },
         "ariaDescription": {
           "type": "string",
-          "required": false
+          "required": false,
+          "description": "Aria description value."
         },
         "data": {
           "type": "TimeseriesData[]",
-          "required": true
+          "required": true,
+          "description": "List of data."
         },
         "gradient": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether gradient is enabled."
         },
         "incomplete": {
           "type": "{ after?: number; before?: number }",
-          "required": false
+          "required": false,
+          "description": "Incomplete value."
         },
         "loading": {
           "type": "boolean",
@@ -1682,60 +1774,74 @@
         },
         "onTimeRangeChange": {
           "type": "(from: number, to: number) => void",
-          "required": false
+          "required": false,
+          "description": "Callback fired when time range change occurs."
         },
         "optionUpdateBehavior": {
           "type": "SetOptionOpts",
-          "required": false
+          "required": false,
+          "description": "Option update behavior value."
         },
         "tooltipValueFormat": {
           "type": "(value: number) => string",
-          "required": false
+          "required": false,
+          "description": "Function used for tooltip value format."
         },
         "type": {
           "type": "\"bar\" | \"line\"",
           "required": false,
-          "values": ["bar", "line"]
+          "values": ["bar", "line"],
+          "description": "Type option used by the component."
         },
         "xAxisName": {
           "type": "string",
-          "required": false
+          "required": false,
+          "description": "X axis name value."
         },
         "xAxisTickCount": {
           "type": "number",
-          "required": false
+          "required": false,
+          "description": "Numeric x axis tick count value."
         },
         "xAxisTickFormat": {
           "type": "(value: number) => string",
-          "required": false
+          "required": false,
+          "description": "Function used for x axis tick format."
         },
         "yAxisName": {
           "type": "string",
-          "required": false
+          "required": false,
+          "description": "Y axis name value."
         },
         "yAxisTickCount": {
           "type": "number",
-          "required": false
+          "required": false,
+          "description": "Numeric y axis tick count value."
         },
         "yAxisTickFormat": {
           "type": "(value: number) => string",
-          "required": false
+          "required": false,
+          "description": "Function used for y axis tick format."
         },
         "yAxisTickLabelFormat": {
           "type": "(value: number) => string",
-          "required": false
+          "required": false,
+          "description": "Function used for y axis tick label format."
         },
         "onEvents": {
           "type": "Partial<ChartEvents>",
-          "required": false
+          "required": false,
+          "description": "On events value."
         },
         "options": {
           "type": "KumoChartOption",
-          "required": true
+          "required": true,
+          "description": "Options value."
         },
         "ref": {
           "type": "echarts.ECharts | null",
-          "required": false
+          "required": false,
+          "description": "Element or instance reference bound by the component."
         }
       },
       "examples": ["<Chart linkColor=\"gradient\" />", "<Chart linkColor=\"gray\" />"],
@@ -1755,19 +1861,23 @@
       "props": {
         "mode": {
           "type": "DatePickerMode",
-          "required": false
+          "required": false,
+          "description": "Selection mode used by the component."
         },
         "months": {
           "type": "Month<DateValue>[]",
-          "required": true
+          "required": true,
+          "description": "List of months."
         },
         "weekdays": {
           "type": "string[]",
-          "required": true
+          "required": true,
+          "description": "List of weekdays."
         },
         "calendarLabel": {
           "type": "string",
-          "required": false
+          "required": false,
+          "description": "Calendar label value."
         },
         "children": {
           "type": "Snippet<[DatePickerSnippetProps]>",
@@ -1781,7 +1891,8 @@
         },
         "disableDaysOutsideMonth": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether to disable days outside month."
         },
         "disabled": {
           "type": "boolean",
@@ -1790,67 +1901,83 @@
         },
         "excludeDisabled": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether exclude disabled is enabled."
         },
         "fixedWeeks": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether fixed weeks is enabled."
         },
         "initialFocus": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether initial focus is enabled."
         },
         "isDateDisabled": {
           "type": "DateMatcher",
-          "required": false
+          "required": false,
+          "description": "Whether date disabled is enabled."
         },
         "isDateUnavailable": {
           "type": "DateMatcher",
-          "required": false
+          "required": false,
+          "description": "Whether date unavailable is enabled."
         },
         "locale": {
           "type": "string",
-          "required": false
+          "required": false,
+          "description": "Locale value."
         },
         "maxDays": {
           "type": "number",
-          "required": false
+          "required": false,
+          "description": "Numeric max days value."
         },
         "maxValue": {
           "type": "DateValue",
-          "required": false
+          "required": false,
+          "description": "Max value value."
         },
         "minDays": {
           "type": "number",
-          "required": false
+          "required": false,
+          "description": "Numeric min days value."
         },
         "minValue": {
           "type": "DateValue",
-          "required": false
+          "required": false,
+          "description": "Min value value."
         },
         "monthFormat": {
           "type": "Intl.DateTimeFormatOptions[\"month\"] | ((month: number) => string)",
-          "required": false
+          "required": false,
+          "description": "Function used for month format."
         },
         "numberOfMonths": {
           "type": "number",
-          "required": false
+          "required": false,
+          "description": "Numeric number of months value."
         },
         "onChange": {
           "type": "(value: DatePickerValue) => void",
-          "required": false
+          "required": false,
+          "description": "Callback fired when change occurs."
         },
         "onEndValueChange": {
           "type": "(value: DateValue | undefined) => void",
-          "required": false
+          "required": false,
+          "description": "Callback fired when end value change occurs."
         },
         "onPlaceholderChange": {
           "type": "(value: DateValue) => void",
-          "required": false
+          "required": false,
+          "description": "Callback fired when placeholder change occurs."
         },
         "onStartValueChange": {
           "type": "(value: DateValue | undefined) => void",
-          "required": false
+          "required": false,
+          "description": "Callback fired when start value change occurs."
         },
         "onValueChange": {
           "type": "(value: DatePickerValue) => void",
@@ -1859,7 +1986,8 @@
         },
         "pagedNavigation": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether paged navigation is enabled."
         },
         "placeholder": {
           "type": "DateValue",
@@ -1868,15 +1996,18 @@
         },
         "preventDeselect": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether to prevent deselect."
         },
         "readonly": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether the control is read-only."
         },
         "ref": {
           "type": "HTMLDivElement | null",
-          "required": false
+          "required": false,
+          "description": "Element or instance reference bound by the component."
         },
         "value": {
           "type": "DatePickerValue",
@@ -1885,15 +2016,18 @@
         },
         "weekStartsOn": {
           "type": "WeekStartsOn",
-          "required": false
+          "required": false,
+          "description": "Week starts on value."
         },
         "weekdayFormat": {
           "type": "Intl.DateTimeFormatOptions[\"weekday\"]",
-          "required": false
+          "required": false,
+          "description": "Weekday format value."
         },
         "yearFormat": {
           "type": "Intl.DateTimeFormatOptions[\"year\"] | ((year: number) => string)",
-          "required": false
+          "required": false,
+          "description": "Function used for year format."
         }
       },
       "examples": [],
@@ -1924,15 +2058,18 @@
         },
         "className": {
           "type": "string",
-          "required": false
+          "required": false,
+          "description": "Additional CSS classes."
         },
         "onEndDateChange": {
           "type": "(date: Date | null) => void",
-          "required": false
+          "required": false,
+          "description": "Callback fired when end date change occurs."
         },
         "onStartDateChange": {
           "type": "(date: Date | null) => void",
-          "required": false
+          "required": false,
+          "description": "Callback fired when start date change occurs."
         },
         "onValueChange": {
           "type": "(value: DateRange) => void",
@@ -1953,11 +2090,13 @@
             "base": "Default calendar size",
             "lg": "Large calendar for prominent date selection"
           },
-          "values": ["sm", "base", "lg"]
+          "values": ["sm", "base", "lg"],
+          "description": "Size variant used by the component."
         },
         "timezone": {
           "type": "string",
-          "required": false
+          "required": false,
+          "description": "Timezone value."
         },
         "value": {
           "type": "DateRange",
@@ -1976,7 +2115,8 @@
             "default": "Default calendar appearance",
             "subtle": "Subtle calendar with minimal background"
           },
-          "values": ["default", "subtle"]
+          "values": ["default", "subtle"],
+          "description": "Visual style variant used by the component."
         }
       },
       "examples": [
@@ -2065,15 +2205,18 @@
             "lg": "Large dialog for complex content",
             "xl": "Extra large dialog for detailed views"
           },
-          "values": ["base", "sm", "lg", "xl"]
+          "values": ["base", "sm", "lg", "xl"],
+          "description": "Size variant used by the component."
         },
         "style": {
           "type": "string",
-          "required": false
+          "required": false,
+          "description": "Inline style string applied to the element."
         },
         "to": {
           "type": "PortalProps[\"to\"]",
-          "required": false
+          "required": false,
+          "description": "Portal target for rendered overlay content."
         },
         "role": {
           "type": "KumoDialogRole",
@@ -2087,7 +2230,8 @@
             "dialog": "Standard dialog for general-purpose modals",
             "alertdialog": "Alert dialog for confirmation flows requiring explicit user acknowledgment"
           },
-          "values": ["dialog", "alertdialog"]
+          "values": ["dialog", "alertdialog"],
+          "description": "ARIA role used by the component."
         },
         "open": {
           "type": "boolean",
@@ -2101,7 +2245,8 @@
         },
         "level": {
           "type": "1 | 2 | 3 | 4 | 5 | 6",
-          "required": false
+          "required": false,
+          "description": "Heading level used for the rendered title."
         }
       },
       "examples": [
@@ -2239,12 +2384,14 @@
         },
         "to": {
           "type": "PortalProps[\"to\"]",
-          "required": false
+          "required": false,
+          "description": "Portal target for rendered overlay content."
         },
         "dir": {
           "type": "\"ltr\" | \"rtl\"",
           "required": false,
-          "values": ["ltr", "rtl"]
+          "values": ["ltr", "rtl"],
+          "description": "Text direction used by the underlying primitive."
         },
         "onOpenChange": {
           "type": "(open: boolean) => void",
@@ -2253,7 +2400,8 @@
         },
         "onOpenChangeComplete": {
           "type": "(open: boolean) => void",
-          "required": false
+          "required": false,
+          "description": "Callback fired when open change complete occurs."
         },
         "open": {
           "type": "boolean",
@@ -2272,7 +2420,8 @@
             "default": "Default dropdown item appearance",
             "danger": "Destructive action item"
           },
-          "values": ["default", "danger"]
+          "values": ["default", "danger"],
+          "description": "Visual style variant used by the component."
         }
       },
       "examples": [
@@ -2327,11 +2476,13 @@
         },
         "commandLine": {
           "type": "string",
-          "required": false
+          "required": false,
+          "description": "Command line value."
         },
         "contents": {
           "type": "Snippet",
-          "required": false
+          "required": false,
+          "description": "Custom content or renderer for contents."
         },
         "description": {
           "type": "string",
@@ -2357,7 +2508,8 @@
             "base": "Default empty state size",
             "lg": "Large empty state for prominent placement"
           },
-          "values": ["sm", "base", "lg"]
+          "values": ["sm", "base", "lg"],
+          "description": "Size variant used by the component."
         },
         "title": {
           "type": "string",
@@ -2432,11 +2584,13 @@
         },
         "for": {
           "type": "string",
-          "required": false
+          "required": false,
+          "description": "For value."
         },
         "hideLabel": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether to visually hide the label while keeping it available to assistive technology."
         },
         "label": {
           "type": "Snippet | string",
@@ -2455,7 +2609,8 @@
         },
         "controlFirst": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether control first is enabled."
         }
       },
       "examples": [],
@@ -2478,19 +2633,23 @@
         },
         "connectors": {
           "type": "FlowConnector[]",
-          "required": true
+          "required": true,
+          "description": "List of connectors."
         },
         "markerId": {
           "type": "string",
-          "required": false
+          "required": false,
+          "description": "Marker id value."
         },
         "render": {
           "type": "FlowNodeRenderSnippet",
-          "required": false
+          "required": false,
+          "description": "Custom content or renderer for render."
         },
         "type": {
           "type": "FlowAnchorType",
-          "required": false
+          "required": false,
+          "description": "Type option used by the component."
         },
         "class": {
           "type": "string",
@@ -2509,35 +2668,43 @@
         },
         "align": {
           "type": "FlowAlign",
-          "required": false
+          "required": false,
+          "description": "Alignment of the component content."
         },
         "canvas": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether canvas is enabled."
         },
         "onOverflowChange": {
           "type": "(overflow: { x: boolean; y: boolean }) => void",
-          "required": false
+          "required": false,
+          "description": "Callback fired when overflow change occurs."
         },
         "orientation": {
           "type": "FlowOrientation",
-          "required": false
+          "required": false,
+          "description": "Orientation value."
         },
         "padding": {
           "type": "{ x?: number; y?: number }",
-          "required": false
+          "required": false,
+          "description": "Padding value."
         },
         "action": {
           "type": "Action<HTMLElement>",
-          "required": true
+          "required": true,
+          "description": "Action content rendered with the component."
         },
         "attrs": {
           "type": "{ \"data-node-id\": string; \"data-node-index\": number; \"data-testid\": string; style: string; }",
-          "required": true
+          "required": true,
+          "description": "Attrs value."
         },
         "index": {
           "type": "number",
-          "required": true
+          "required": true,
+          "description": "Numeric index value."
         }
       },
       "examples": [],
@@ -2587,11 +2754,13 @@
             "base": "Default responsive gap between grid items",
             "lg": "Large gap between grid items"
           },
-          "values": ["none", "sm", "base", "lg"]
+          "values": ["none", "sm", "base", "lg"],
+          "description": "Gap value."
         },
         "mobileDivider": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether mobile divider is enabled."
         },
         "variant": {
           "type": "KumoGridVariant",
@@ -2618,7 +2787,8 @@
             "6up": "Grid items start at 2 across, expand to 6 across on XL",
             "1-2-4up": "Grid items stack on small screens, 2 across on medium, 4 across on large"
           },
-          "values": ["2up", "side-by-side", "2-1", "1-2", "1-3up", "3up", "4up", "6up", "1-2-4up"]
+          "values": ["2up", "side-by-side", "2-1", "1-2", "1-3up", "3up", "4up", "6up", "1-2-4up"],
+          "description": "Visual style variant used by the component."
         }
       },
       "examples": [
@@ -2745,7 +2915,8 @@
             "base": "Default input size",
             "lg": "Large input for prominent fields"
           },
-          "values": ["xs", "sm", "base", "lg"]
+          "values": ["xs", "sm", "base", "lg"],
+          "description": "Size variant used by the component."
         },
         "value": {
           "type": "string | number | string[] | undefined",
@@ -2764,19 +2935,23 @@
             "default": "Default input appearance",
             "error": "Error state for validation failures"
           },
-          "values": ["default", "error"]
+          "values": ["default", "error"],
+          "description": "Visual style variant used by the component."
         },
         "passwordManagerIgnore": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether password manager ignore is enabled."
         },
         "focusIndicator": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether focus indicator is enabled."
         },
         "parentFocusIndicator": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether parent focus indicator is enabled."
         }
       },
       "examples": ["<Input variant=\"default\" />", "<Input variant=\"error\" />"],
@@ -2885,7 +3060,8 @@
         "align": {
           "type": "\"start\" | \"end\"",
           "required": false,
-          "values": ["start", "end"]
+          "values": ["start", "end"],
+          "description": "Alignment of the component content."
         },
         "children": {
           "type": "Snippet",
@@ -2899,15 +3075,18 @@
         },
         "containsButton": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether contains button is enabled."
         },
         "tooltip": {
           "type": "Snippet | string",
-          "required": false
+          "required": false,
+          "description": "Custom content or renderer for tooltip."
         },
         "tooltipSide": {
           "type": "KumoTooltipSide",
-          "required": false
+          "required": false,
+          "description": "Tooltip side value."
         },
         "onValueChange": {
           "type": "(value: string) => void",
@@ -2936,7 +3115,8 @@
         },
         "focusMode": {
           "type": "InputGroupFocusMode",
-          "required": false
+          "required": false,
+          "description": "Focus mode value."
         },
         "label": {
           "type": "Snippet | string",
@@ -2969,7 +3149,8 @@
             "base": "Default size.",
             "lg": "Large size."
           },
-          "values": ["xs", "sm", "base", "lg"]
+          "values": ["xs", "sm", "base", "lg"],
+          "description": "Size variant used by the component."
         }
       },
       "examples": [
@@ -3025,11 +3206,13 @@
         },
         "showOptional": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether to show optional."
         },
         "tooltip": {
           "type": "Snippet",
-          "required": false
+          "required": false,
+          "description": "Custom content or renderer for tooltip."
         },
         "class": {
           "type": "string",
@@ -3038,7 +3221,8 @@
         },
         "for": {
           "type": "string",
-          "required": false
+          "required": false,
+          "description": "For value."
         },
         "id": {
           "type": "string",
@@ -3047,7 +3231,8 @@
         },
         "asContent": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether as content is enabled."
         }
       },
       "examples": [],
@@ -3084,11 +3269,13 @@
         },
         "as": {
           "type": "keyof HTMLElementTagNameMap",
-          "required": false
+          "required": false,
+          "description": "As value."
         },
         "layered": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether layered is enabled."
         }
       },
       "examples": [],
@@ -3162,11 +3349,13 @@
             "base": "Default switch size",
             "lg": "Large switch for prominent toggles"
           },
-          "values": ["sm", "base", "lg"]
+          "values": ["sm", "base", "lg"],
+          "description": "Size variant used by the component."
         },
         "transitioning": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether transitioning is enabled."
         },
         "value": {
           "type": "string",
@@ -3185,7 +3374,8 @@
             "default": "Default switch with squircle shape and brand blue color",
             "neutral": "Monochrome switch with squircle shape for subtle toggles"
           },
-          "values": ["default", "neutral"]
+          "values": ["default", "neutral"],
+          "description": "Visual style variant used by the component."
         },
         "aria-label": {
           "type": "string",
@@ -3194,7 +3384,8 @@
         },
         "aria-labelledby": {
           "type": "string",
-          "required": false
+          "required": false,
+          "description": "ID of the element that labels the control."
         },
         "children": {
           "type": "Snippet",
@@ -3203,7 +3394,8 @@
         },
         "controlFirst": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether control first is enabled."
         },
         "description": {
           "type": "Snippet | string",
@@ -3217,7 +3409,8 @@
         },
         "legend": {
           "type": "string",
-          "required": false
+          "required": false,
+          "description": "Legend value."
         },
         "label": {
           "type": "Snippet | string",
@@ -3288,7 +3481,8 @@
       "props": {
         "active": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether active is enabled."
         },
         "children": {
           "type": "Snippet",
@@ -3312,7 +3506,8 @@
         },
         "child": {
           "type": "Snippet<[{ props: ItemProps & { class: string } }]>",
-          "required": false
+          "required": false,
+          "description": "Custom content or renderer for child."
         }
       },
       "examples": [],
@@ -3354,7 +3549,8 @@
       "props": {
         "activateOnFocus": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether activate on focus is enabled."
         },
         "class": {
           "type": "string",
@@ -3363,11 +3559,13 @@
         },
         "indicatorClassName": {
           "type": "string",
-          "required": false
+          "required": false,
+          "description": "Indicator class name value."
         },
         "listClassName": {
           "type": "string",
-          "required": false
+          "required": false,
+          "description": "List class name value."
         },
         "onValueChange": {
           "type": "(value: string) => void",
@@ -3376,17 +3574,20 @@
         },
         "selectedValue": {
           "type": "string",
-          "required": false
+          "required": false,
+          "description": "Selected value value."
         },
         "size": {
           "type": "KumoTabsSize",
           "required": false,
           "default": "base",
-          "values": ["base", "sm"]
+          "values": ["base", "sm"],
+          "description": "Size variant used by the component."
         },
         "tabs": {
           "type": "TabsItem[]",
-          "required": false
+          "required": false,
+          "description": "List of tabs."
         },
         "value": {
           "type": "string",
@@ -3397,7 +3598,8 @@
           "type": "KumoTabsVariant",
           "required": false,
           "default": "segmented",
-          "values": ["segmented", "underline"]
+          "values": ["segmented", "underline"],
+          "description": "Visual style variant used by the component."
         }
       },
       "examples": ["<Tabs variant=\"segmented\" />", "<Tabs variant=\"underline\" />"],
@@ -3475,7 +3677,8 @@
             "current": "Link that inherits color from parent text",
             "plain": "Link without underline decoration"
           },
-          "values": ["inline", "current", "plain"]
+          "values": ["inline", "current", "plain"],
+          "description": "Visual style variant used by the component."
         },
         "children": {
           "type": "Snippet",
@@ -3484,7 +3687,8 @@
         },
         "to": {
           "type": "string",
-          "required": false
+          "required": false,
+          "description": "Portal target for rendered overlay content."
         }
       },
       "examples": [
@@ -3546,11 +3750,13 @@
             "base": "Default loader size",
             "lg": "Large loader for prominent loading states"
           },
-          "values": ["sm", "base", "lg"]
+          "values": ["sm", "base", "lg"],
+          "description": "Size variant used by the component."
         },
         "blockHeight": {
           "type": "string | number",
-          "required": false
+          "required": false,
+          "description": "Block height value."
         },
         "class": {
           "type": "string",
@@ -3559,27 +3765,33 @@
         },
         "maxDelay": {
           "type": "number",
-          "required": false
+          "required": false,
+          "description": "Numeric max delay value."
         },
         "maxDuration": {
           "type": "number",
-          "required": false
+          "required": false,
+          "description": "Numeric max duration value."
         },
         "maxWidth": {
           "type": "number",
-          "required": false
+          "required": false,
+          "description": "Numeric max width value."
         },
         "minDelay": {
           "type": "number",
-          "required": false
+          "required": false,
+          "description": "Numeric min delay value."
         },
         "minDuration": {
           "type": "number",
-          "required": false
+          "required": false,
+          "description": "Numeric min duration value."
         },
         "minWidth": {
           "type": "number",
-          "required": false
+          "required": false,
+          "description": "Numeric min width value."
         }
       },
       "examples": ["<Loader size=\"sm\" />", "<Loader size=\"base\" />", "<Loader size=\"lg\" />"],
@@ -3625,15 +3837,18 @@
         },
         "isActive": {
           "type": "number | boolean | string | undefined",
-          "required": true
+          "required": true,
+          "description": "Whether active is enabled."
         },
         "optionIds": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether option ids is enabled."
         },
         "options": {
           "type": "MenuBarOption[]",
-          "required": true
+          "required": true,
+          "description": "List of options."
         }
       },
       "examples": [],
@@ -3660,15 +3875,18 @@
         },
         "min": {
           "type": "number",
-          "required": false
+          "required": false,
+          "description": "Numeric min value."
         },
         "max": {
           "type": "number",
-          "required": false
+          "required": false,
+          "description": "Numeric max value."
         },
         "customValue": {
           "type": "string",
-          "required": false
+          "required": false,
+          "description": "Custom value value."
         },
         "label": {
           "type": "string",
@@ -3677,7 +3895,8 @@
         },
         "showValue": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether to show value."
         },
         "class": {
           "type": "string",
@@ -3686,11 +3905,13 @@
         },
         "trackClass": {
           "type": "string",
-          "required": false
+          "required": false,
+          "description": "Track class value."
         },
         "indicatorClass": {
           "type": "string",
-          "required": false
+          "required": false,
+          "description": "Indicator class value."
         },
         "id": {
           "type": "string",
@@ -3737,12 +3958,14 @@
             "full": "Full pagination controls with first, previous, page input, next, and last buttons",
             "simple": "Simple pagination controls with only previous and next buttons"
           },
-          "values": ["full", "simple"]
+          "values": ["full", "simple"],
+          "description": "Controls value."
         },
         "pageSelector": {
           "type": "\"input\" | \"dropdown\"",
           "required": false,
-          "values": ["input", "dropdown"]
+          "values": ["input", "dropdown"],
+          "description": "Page selector value."
         },
         "text": {
           "type": "Snippet<[props: PaginationInfoSnippetProps]>",
@@ -3756,11 +3979,13 @@
         },
         "onChange": {
           "type": "(size: number) => void",
-          "required": true
+          "required": true,
+          "description": "Callback fired when change occurs."
         },
         "options": {
           "type": "number[]",
-          "required": false
+          "required": false,
+          "description": "List of options."
         },
         "value": {
           "type": "number",
@@ -3769,19 +3994,23 @@
         },
         "page": {
           "type": "number",
-          "required": false
+          "required": false,
+          "description": "Numeric page value."
         },
         "pageShowingRange": {
           "type": "string",
-          "required": true
+          "required": true,
+          "description": "Page showing range value."
         },
         "perPage": {
           "type": "number",
-          "required": false
+          "required": false,
+          "description": "Numeric per page value."
         },
         "totalCount": {
           "type": "number",
-          "required": false
+          "required": false,
+          "description": "Numeric total count value."
         },
         "children": {
           "type": "Snippet",
@@ -3790,11 +4019,13 @@
         },
         "labels": {
           "type": "PaginationLabels",
-          "required": false
+          "required": false,
+          "description": "Labels value."
         },
         "setPage": {
           "type": "(page: number) => void",
-          "required": false
+          "required": false,
+          "description": "Function used for set page."
         }
       },
       "examples": [
@@ -3846,7 +4077,8 @@
         },
         "to": {
           "type": "PortalProps[\"to\"]",
-          "required": false
+          "required": false,
+          "description": "Portal target for rendered overlay content."
         },
         "open": {
           "type": "boolean",
@@ -3860,7 +4092,8 @@
         },
         "onOpenChangeComplete": {
           "type": "(open: boolean) => void",
-          "required": false
+          "required": false,
+          "description": "Callback fired when open change complete occurs."
         },
         "side": {
           "type": "KumoPopoverSide",
@@ -3878,7 +4111,8 @@
             "left": "Popover appears to the left of the trigger",
             "right": "Popover appears to the right of the trigger"
           },
-          "values": ["top", "bottom", "left", "right"]
+          "values": ["top", "bottom", "left", "right"],
+          "description": "Preferred side for positioned content."
         }
       },
       "examples": [
@@ -3941,7 +4175,8 @@
             "default": "Standard inline radio item",
             "card": "Choice card appearance with border, padding, and highlighted selection state"
           },
-          "values": ["default", "card"]
+          "values": ["default", "card"],
+          "description": "Appearance value."
         },
         "children": {
           "type": "Snippet",
@@ -3955,7 +4190,8 @@
         },
         "controlPosition": {
           "type": "RadioControlPosition",
-          "required": false
+          "required": false,
+          "description": "Control position value."
         },
         "defaultValue": {
           "type": "string",
@@ -3979,7 +4215,8 @@
         },
         "legend": {
           "type": "string",
-          "required": false
+          "required": false,
+          "description": "Legend value."
         },
         "name": {
           "type": "string",
@@ -3994,7 +4231,8 @@
         "orientation": {
           "type": "\"vertical\" | \"horizontal\"",
           "required": false,
-          "values": ["vertical", "horizontal"]
+          "values": ["vertical", "horizontal"],
+          "description": "Orientation value."
         },
         "required": {
           "type": "boolean",
@@ -4028,7 +4266,8 @@
             "default": "Default radio appearance",
             "error": "Error state for validation failures"
           },
-          "values": ["default", "error"]
+          "values": ["default", "error"],
+          "description": "Visual style variant used by the component."
         }
       },
       "examples": [
@@ -4117,11 +4356,13 @@
         },
         "aria-labelledby": {
           "type": "string",
-          "required": false
+          "required": false,
+          "description": "ID of the element that labels the control."
         },
         "allowDeselect": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether to allow deselect."
         },
         "container": {
           "type": "PortalProps[\"to\"]",
@@ -4145,7 +4386,8 @@
         },
         "hideLabel": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether to visually hide the label while keeping it available to assistive technology."
         },
         "items": {
           "type": "SelectItems",
@@ -4189,7 +4431,8 @@
         },
         "size": {
           "type": "KumoSelectSize",
-          "required": false
+          "required": false,
+          "description": "Size variant used by the component."
         }
       },
       "examples": [],
@@ -4291,7 +4534,8 @@
         },
         "onCopy": {
           "type": "() => void",
-          "required": false
+          "required": false,
+          "description": "Callback fired when copy occurs."
         },
         "onValueChange": {
           "type": "(value: string) => void",
@@ -4300,15 +4544,18 @@
         },
         "readOnly": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether read only is enabled."
         },
         "readonly": {
           "type": "boolean | null",
-          "required": false
+          "required": false,
+          "description": "Whether the control is read-only."
         },
         "size": {
           "type": "KumoSensitiveInputSize",
-          "required": false
+          "required": false,
+          "description": "Size variant used by the component."
         },
         "value": {
           "type": "string",
@@ -4317,7 +4564,8 @@
         },
         "variant": {
           "type": "KumoSensitiveInputVariant",
-          "required": false
+          "required": false,
+          "description": "Visual style variant used by the component."
         }
       },
       "examples": [],
@@ -4372,7 +4620,8 @@
         },
         "onOpenChangeComplete": {
           "type": "(open: boolean) => void",
-          "required": false
+          "required": false,
+          "description": "Callback fired when open change complete occurs."
         },
         "collapsible": {
           "type": "SidebarCollapsible",
@@ -4388,7 +4637,8 @@
             "offcanvas": "Slides off screen when collapsed",
             "none": "Cannot be collapsed"
           },
-          "values": ["icon", "offcanvas", "none"]
+          "values": ["icon", "offcanvas", "none"],
+          "description": "Collapsible value."
         },
         "defaultOpen": {
           "type": "boolean",
@@ -4402,11 +4652,13 @@
         },
         "shortcut": {
           "type": "string",
-          "required": false
+          "required": false,
+          "description": "Shortcut value."
         },
         "active": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether active is enabled."
         },
         "href": {
           "type": "string",
@@ -4420,35 +4672,43 @@
         },
         "linkProps": {
           "type": "Omit<HTMLAnchorAttributes, \"children\" | \"class\" | \"href\">",
-          "required": false
+          "required": false,
+          "description": "Link props value."
         },
         "size": {
           "type": "SidebarMenuButtonSize",
-          "required": false
+          "required": false,
+          "description": "Size variant used by the component."
         },
         "tooltip": {
           "type": "string",
-          "required": false
+          "required": false,
+          "description": "Tooltip value."
         },
         "defaultWidth": {
           "type": "number",
-          "required": false
+          "required": false,
+          "description": "Initial width value."
         },
         "maxWidth": {
           "type": "number",
-          "required": false
+          "required": false,
+          "description": "Numeric max width value."
         },
         "minWidth": {
           "type": "number",
-          "required": false
+          "required": false,
+          "description": "Numeric min width value."
         },
         "onWidthChange": {
           "type": "(width: number) => void",
-          "required": false
+          "required": false,
+          "description": "Callback fired when width change occurs."
         },
         "resizable": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether resizable is enabled."
         },
         "side": {
           "type": "SidebarSide",
@@ -4462,11 +4722,13 @@
             "left": "Left-aligned sidebar",
             "right": "Right-aligned sidebar"
           },
-          "values": ["left", "right"]
+          "values": ["left", "right"],
+          "description": "Preferred side for positioned content."
         },
         "style": {
           "type": "string",
-          "required": false
+          "required": false,
+          "description": "Inline style string applied to the element."
         },
         "variant": {
           "type": "SidebarVariant",
@@ -4482,20 +4744,24 @@
             "floating": "Floating sidebar with shadow and rounded corners",
             "inset": "Inset sidebar within the content area"
           },
-          "values": ["sidebar", "floating", "inset"]
+          "values": ["sidebar", "floating", "inset"],
+          "description": "Visual style variant used by the component."
         },
         "width": {
           "type": "number",
-          "required": false
+          "required": false,
+          "description": "Numeric width value."
         },
         "section": {
           "type": "\"content\" | \"footer\" | \"header\"",
           "required": true,
-          "values": ["content", "footer", "header"]
+          "values": ["content", "footer", "header"],
+          "description": "Section value."
         },
         "ref": {
           "type": "HTMLElement | null",
-          "required": false
+          "required": false,
+          "description": "Element or instance reference bound by the component."
         }
       },
       "examples": [
@@ -4574,7 +4840,8 @@
       "props": {
         "as": {
           "type": "keyof HTMLElementTagNameMap",
-          "required": false
+          "required": false,
+          "description": "As value."
         },
         "children": {
           "type": "Snippet",
@@ -4598,7 +4865,8 @@
             "primary": "Primary surface color",
             "secondary": "Secondary surface color"
           },
-          "values": ["primary", "secondary"]
+          "values": ["primary", "secondary"],
+          "description": "Color option used by the component."
         }
       },
       "examples": [
@@ -4653,7 +4921,8 @@
             "left": "Pin column to the left edge of the scroll container",
             "right": "Pin column to the right edge of the scroll container"
           },
-          "values": ["left", "right"]
+          "values": ["left", "right"],
+          "description": "Whether sticky is enabled."
         },
         "checked": {
           "type": "boolean",
@@ -4667,7 +4936,8 @@
         },
         "indeterminate": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether indeterminate is enabled."
         },
         "label": {
           "type": "string",
@@ -4696,7 +4966,8 @@
             "default": "Default row variant",
             "selected": "Selected row variant"
           },
-          "values": ["default", "selected"]
+          "values": ["default", "selected"],
+          "description": "Visual style variant used by the component."
         },
         "layout": {
           "type": "KumoTableLayout",
@@ -4710,7 +4981,8 @@
             "auto": "Auto table layout - columns resize based on content",
             "fixed": "Fixed table layout - columns have equal width, controlled via colgroup"
           },
-          "values": ["auto", "fixed"]
+          "values": ["auto", "fixed"],
+          "description": "Layout value."
         }
       },
       "examples": [
@@ -4811,7 +5083,8 @@
             "error",
             "mono",
             "mono-secondary"
-          ]
+          ],
+          "description": "Visual style variant used by the component."
         },
         "size": {
           "type": "KumoTextSize",
@@ -4829,27 +5102,33 @@
             "base": "Default text size",
             "lg": "Large text"
           },
-          "values": ["xs", "sm", "base", "lg"]
+          "values": ["xs", "sm", "base", "lg"],
+          "description": "Size variant used by the component."
         },
         "bold": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether bold is enabled."
         },
         "truncate": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether truncate is enabled."
         },
         "as": {
           "type": "TextElement",
-          "required": false
+          "required": false,
+          "description": "As value."
         },
         "DANGEROUS_className": {
           "type": "string",
-          "required": false
+          "required": false,
+          "description": "Dangerous class name value."
         },
         "DANGEROUS_style": {
           "type": "string",
-          "required": false
+          "required": false,
+          "description": "Dangerous style value."
         },
         "children": {
           "type": "Snippet",
@@ -4991,7 +5270,8 @@
             "warning": "Warning toast for cautionary messages",
             "info": "Info toast for neutral informational messages"
           },
-          "values": ["default", "success", "error", "warning", "info"]
+          "values": ["default", "success", "error", "warning", "info"],
+          "description": "Visual style variant used by the component."
         }
       },
       "examples": [
@@ -5091,19 +5371,23 @@
         },
         "to": {
           "type": "PortalProps[\"to\"]",
-          "required": false
+          "required": false,
+          "description": "Portal target for rendered overlay content."
         },
         "delayDuration": {
           "type": "number",
-          "required": false
+          "required": false,
+          "description": "Numeric delay duration value."
         },
         "skipDelayDuration": {
           "type": "number",
-          "required": false
+          "required": false,
+          "description": "Numeric skip delay duration value."
         },
         "disableHoverableContent": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether to disable hoverable content."
         },
         "disabled": {
           "type": "boolean",
@@ -5112,7 +5396,8 @@
         },
         "content": {
           "type": "Snippet | string",
-          "required": true
+          "required": true,
+          "description": "Custom content or renderer for content."
         },
         "side": {
           "type": "KumoTooltipSide",
@@ -5130,11 +5415,13 @@
             "left": "Tooltip appears to the left of the trigger",
             "right": "Tooltip appears to the right of the trigger"
           },
-          "values": ["top", "bottom", "left", "right"]
+          "values": ["top", "bottom", "left", "right"],
+          "description": "Preferred side for positioned content."
         },
         "align": {
           "type": "KumoTooltipAlign",
-          "required": false
+          "required": false,
+          "description": "Alignment of the component content."
         },
         "class": {
           "type": "string",
@@ -5148,11 +5435,13 @@
         },
         "delay": {
           "type": "number",
-          "required": false
+          "required": false,
+          "description": "Numeric delay value."
         },
         "closeDelay": {
           "type": "number",
-          "required": false
+          "required": false,
+          "description": "Numeric close delay value."
         }
       },
       "examples": [
@@ -5207,7 +5496,8 @@
       "props": {
         "caseSensitive": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether case sensitive is enabled."
         },
         "class": {
           "type": "string",
@@ -5216,23 +5506,28 @@
         },
         "className": {
           "type": "string",
-          "required": false
+          "required": false,
+          "description": "Additional CSS classes."
         },
         "deleteButtonText": {
           "type": "string",
-          "required": false
+          "required": false,
+          "description": "Delete button text value."
         },
         "errorMessage": {
           "type": "string",
-          "required": false
+          "required": false,
+          "description": "Error message value."
         },
         "isDeleting": {
           "type": "boolean",
-          "required": false
+          "required": false,
+          "description": "Whether deleting is enabled."
         },
         "onDelete": {
           "type": "() => void | Promise<void>",
-          "required": true
+          "required": true,
+          "description": "Callback fired when delete occurs."
         },
         "onOpenChange": {
           "type": "(open: boolean) => void",
@@ -5246,11 +5541,13 @@
         },
         "resourceName": {
           "type": "string",
-          "required": true
+          "required": true,
+          "description": "Resource name value."
         },
         "resourceType": {
           "type": "string",
-          "required": true
+          "required": true,
+          "description": "Resource type value."
         },
         "size": {
           "type": "KumoDeleteResourceSize",
@@ -5264,7 +5561,8 @@
             "sm": "Small dialog for simple delete confirmations",
             "base": "Default delete confirmation dialog size"
           },
-          "values": ["sm", "base"]
+          "values": ["sm", "base"],
+          "description": "Size variant used by the component."
         }
       },
       "examples": ["<DeleteResource size=\"sm\" />", "<DeleteResource size=\"base\" />"],

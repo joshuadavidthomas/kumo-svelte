@@ -9,9 +9,11 @@ const registry = JSON.parse(
 
 const COMMON_PROP_DESCRIPTIONS = {
   "aria-label": "Accessible label for controls without visible text.",
+  "aria-labelledby": "ID of the element that labels the control.",
   checked: "Controlled checked state.",
   children: "Content rendered inside the component.",
   class: "Additional CSS classes.",
+  className: "Additional CSS classes.",
   container: "Portal container target.",
   defaultChecked: "Initial checked state for uncontrolled usage.",
   defaultOpen: "Initial open state for uncontrolled usage.",
@@ -40,6 +42,32 @@ const COMMON_PROP_DESCRIPTIONS = {
   text: "Primary text content.",
   title: "Title text or content.",
   value: "Controlled value.",
+};
+
+const PROP_DESCRIPTION_OVERRIDES = {
+  action: "Action content rendered with the component.",
+  align: "Alignment of the component content.",
+  autocomplete: "Browser autocomplete attribute for the input.",
+  autofocus: "Whether the control should receive focus automatically.",
+  color: "Color option used by the component.",
+  dir: "Text direction used by the underlying primitive.",
+  external: "Whether the link points to an external destination.",
+  forceMount: "Whether to keep the element mounted when it would otherwise be hidden.",
+  hideLabel: "Whether to visually hide the label while keeping it available to assistive technology.",
+  icon: "Icon content rendered with the component.",
+  inset: "Whether to inset content to align with items that include an icon.",
+  level: "Heading level used for the rendered title.",
+  mode: "Selection mode used by the component.",
+  readonly: "Whether the control is read-only.",
+  ref: "Element or instance reference bound by the component.",
+  role: "ARIA role used by the component.",
+  shape: "Shape variant used by the component.",
+  side: "Preferred side for positioned content.",
+  size: "Size variant used by the component.",
+  style: "Inline style string applied to the element.",
+  to: "Portal target for rendered overlay content.",
+  type: "Type option used by the component.",
+  variant: "Visual style variant used by the component.",
 };
 
 const FALLBACK_COMPONENT_DESCRIPTIONS = {
@@ -443,6 +471,54 @@ function applyCommonPropDescriptions(schema) {
   }
 }
 
+function applyGeneratedPropDescriptions(schema) {
+  for (const [name, prop] of Object.entries(schema.props)) {
+    if (!prop.description) {
+      prop.description = generatedPropDescription(name, prop.type);
+    }
+  }
+}
+
+function generatedPropDescription(name, type) {
+  if (PROP_DESCRIPTION_OVERRIDES[name]) return PROP_DESCRIPTION_OVERRIDES[name];
+
+  const label = humanizePropName(name);
+
+  if (name.startsWith("default")) return `Initial ${label.replace(/^default /, "")} value.`;
+  if (name.startsWith("on") && type.includes("=>")) {
+    return `Callback fired when ${humanizePropName(name.slice(2))} occurs.`;
+  }
+  if (name.startsWith("is")) return `Whether ${label.replace(/^is /, "")} is enabled.`;
+  if (name.startsWith("show")) return `Whether to show ${label.replace(/^show /, "")}.`;
+  if (name.startsWith("disable")) return `Whether to disable ${label.replace(/^disable /, "")}.`;
+  if (name.startsWith("prevent")) return `Whether to prevent ${label.replace(/^prevent /, "")}.`;
+  if (name.startsWith("allow")) return `Whether to allow ${label.replace(/^allow /, "")}.`;
+  if (name.startsWith("render") || type.includes("Snippet")) {
+    return `Custom content or renderer for ${label}.`;
+  }
+  if (type.includes("=>")) return `Function used for ${label}.`;
+  if (type.endsWith("[]") || type.startsWith("ReadonlyArray<")) return `List of ${label}.`;
+  if (type.startsWith("Record<")) return `Mapping of ${label}.`;
+  if (type === "boolean") return `Whether ${label} is enabled.`;
+  if (type === "number") return `Numeric ${label} value.`;
+
+  return `${capitalize(label)} value.`;
+}
+
+function humanizePropName(name) {
+  return name
+    .replace(/^aria-/, "ARIA ")
+    .replace(/([a-z0-9])([A-Z])/g, "$1 $2")
+    .replace(/[-_]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase();
+}
+
+function capitalize(value) {
+  return value.charAt(0).toUpperCase() + value.slice(1);
+}
+
 function applyDocsDescription(schema, sourceFile) {
   if (docsDescriptions[sourceFile]) schema.description = docsDescriptions[sourceFile];
 }
@@ -537,6 +613,7 @@ for (const key of Object.keys(pkg.exports).filter((entry) =>
     applyDocsContent(registry.components[name], `components/${slug}`);
     applyVariantMetadata(registry.components[name], readVariantMetadata(dir));
     applyCommonPropDescriptions(registry.components[name]);
+    applyGeneratedPropDescriptions(registry.components[name]);
     registry.components[name].examples = [];
     applyGeneratedExamples(registry.components[name]);
     applyDemoExamples(registry.components[name], demoNamesForSchema(name));
@@ -559,6 +636,7 @@ for (const key of Object.keys(pkg.exports).filter((entry) =>
     applyDocsContent(registry.blocks[name], `blocks/${slug}`);
     applyVariantMetadata(registry.blocks[name], readVariantMetadata(dir));
     applyCommonPropDescriptions(registry.blocks[name]);
+    applyGeneratedPropDescriptions(registry.blocks[name]);
     registry.blocks[name].examples = [];
     applyGeneratedExamples(registry.blocks[name]);
     applyDemoExamples(registry.blocks[name], demoNamesForSchema(name));

@@ -52,6 +52,9 @@ Port Cloudflare's Kumo package from React/Base UI to Svelte 5, using:
 - Registry generation also fills common public prop descriptions for repeated
   props such as `class`, `children`, `disabled`, `value`, labels, placeholders,
   portal containers, and common callbacks.
+- Registry generation fills every remaining prop description with conservative
+  generated prose derived from the prop name and type, after source JSDoc,
+  variant metadata, docs frontmatter, and common descriptions have had priority.
 - Registry generation extracts component-level descriptions from upstream Kumo
   docs frontmatter when the checked-in reference docs are available, with
   fallback descriptions for components that do not have a dedicated docs page.
@@ -100,8 +103,7 @@ explicit styling metadata where present. Runtime catalog validation uses the
 generated prop metadata for literal variant checks and simple primitive type
 checks.
 
-They do not yet include upstream-equivalent natural-language prop descriptions
-for every prop or complete TypeScript-derived runtime validation for every
+They do not yet include complete TypeScript-derived runtime validation for every
 complex prop shape.
 
 ## Intentional Differences
