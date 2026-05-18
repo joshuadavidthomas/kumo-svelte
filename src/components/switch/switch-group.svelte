@@ -30,7 +30,7 @@
   });
 </script>
 
-<fieldset class={cn("flex flex-col gap-4", className)} {disabled}>
+<fieldset data-slot="switch-group" class={cn("flex flex-col gap-4", className)} {disabled}>
   {#if legend}
     <legend class="text-base font-medium text-kumo-default">{legend}</legend>
   {/if}

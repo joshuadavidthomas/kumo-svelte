@@ -65,6 +65,8 @@
 </script>
 
 <SwitchPrimitive.Root
+  data-slot="switch"
+  data-size={size}
   bind:checked
   {disabled}
   {id}
@@ -87,6 +89,7 @@
   )}
 >
   <SwitchPrimitive.Thumb
+    data-slot="switch-thumb"
     class={cn(
       "absolute top-0 bottom-0 shadow-[0_0_1px_0.5px_var(--color-kumo-shadow-edge),0_1px_2px_var(--color-kumo-shadow-drop)]",
       sizeStyles.thumb,

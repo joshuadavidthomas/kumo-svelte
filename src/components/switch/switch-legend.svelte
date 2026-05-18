@@ -10,6 +10,6 @@
   let { children, class: className }: SwitchLegendProps = $props();
 </script>
 
-<legend class={cn("text-base font-medium text-kumo-default", className)}>
+<legend data-slot="switch-legend" class={cn("text-base font-medium text-kumo-default", className)}>
   {@render children()}
 </legend>

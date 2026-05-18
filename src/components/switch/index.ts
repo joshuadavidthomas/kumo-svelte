@@ -1,15 +1,18 @@
 import type { ComponentProps } from "svelte";
+import SwitchControlComponent from "./switch-control.svelte";
 import SwitchComponent from "./switch.svelte";
 import SwitchGroupComponent from "./switch-group.svelte";
 import SwitchItemComponent from "./switch-item.svelte";
 import SwitchLegendComponent from "./switch-legend.svelte";
 
 export { default as Switch } from "./switch.svelte";
+export { default as SwitchControl } from "./switch-control.svelte";
 export { default as SwitchGroup } from "./switch-group.svelte";
 export { default as SwitchItem } from "./switch-item.svelte";
 export { default as SwitchLegend } from "./switch-legend.svelte";
 
 export type SwitchProps = ComponentProps<typeof SwitchComponent>;
+export type SwitchControlProps = ComponentProps<typeof SwitchControlComponent>;
 export type SwitchGroupProps = ComponentProps<typeof SwitchGroupComponent>;
 export type SwitchItemProps = ComponentProps<typeof SwitchItemComponent>;
 export type SwitchLegendProps = ComponentProps<typeof SwitchLegendComponent>;

@@ -769,6 +769,7 @@ export {
 } from "./components/surface";
 
 export { default as Switch } from "./components/switch/switch.svelte";
+export { default as SwitchControl } from "./components/switch/switch-control.svelte";
 export { default as SwitchGroup } from "./components/switch/switch-group.svelte";
 export { default as SwitchItem } from "./components/switch/switch-item.svelte";
 export { default as SwitchLegend } from "./components/switch/switch-legend.svelte";
@@ -780,6 +781,7 @@ export {
   type KumoSwitchSize,
   type KumoSwitchVariant,
   type KumoSwitchVariantsProps,
+  type SwitchControlProps,
   type SwitchGroupProps,
   type SwitchItemProps,
   type SwitchLegendProps,
