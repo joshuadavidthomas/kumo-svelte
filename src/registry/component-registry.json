@@ -1490,7 +1490,8 @@
         },
         "linkColor": {
           "type": "\"gradient\" | \"gray\"",
-          "required": false
+          "required": false,
+          "values": ["gradient", "gray"]
         },
         "linkOpacity": {
           "type": "number",
@@ -1571,7 +1572,8 @@
         },
         "type": {
           "type": "\"bar\" | \"line\"",
-          "required": false
+          "required": false,
+          "values": ["bar", "line"]
         },
         "xAxisName": {
           "type": "string",
@@ -1614,7 +1616,7 @@
           "required": false
         }
       },
-      "examples": [],
+      "examples": ["<Chart linkColor=\"gradient\" />", "<Chart linkColor=\"gray\" />"],
       "colors": []
     },
     "DatePicker": {
@@ -2085,7 +2087,8 @@
         },
         "dir": {
           "type": "\"ltr\" | \"rtl\"",
-          "required": false
+          "required": false,
+          "values": ["ltr", "rtl"]
         },
         "onOpenChange": {
           "type": "(open: boolean) => void",
@@ -2672,7 +2675,8 @@
       "props": {
         "align": {
           "type": "\"start\" | \"end\"",
-          "required": false
+          "required": false,
+          "values": ["start", "end"]
         },
         "children": {
           "type": "Snippet",
@@ -2760,10 +2764,8 @@
         }
       },
       "examples": [
-        "<InputGroup size=\"xs\">InputGroup</InputGroup>",
-        "<InputGroup size=\"sm\">InputGroup</InputGroup>",
-        "<InputGroup size=\"base\">InputGroup</InputGroup>",
-        "<InputGroup size=\"lg\">InputGroup</InputGroup>"
+        "<InputGroup align=\"start\">InputGroup</InputGroup>",
+        "<InputGroup align=\"end\">InputGroup</InputGroup>"
       ],
       "colors": [],
       "styling": {
@@ -3435,7 +3437,8 @@
         },
         "pageSelector": {
           "type": "\"input\" | \"dropdown\"",
-          "required": false
+          "required": false,
+          "values": ["input", "dropdown"]
         },
         "text": {
           "type": "Snippet<[props: PaginationInfoSnippetProps]>",
@@ -3660,7 +3663,8 @@
         },
         "orientation": {
           "type": "\"vertical\" | \"horizontal\"",
-          "required": false
+          "required": false,
+          "values": ["vertical", "horizontal"]
         },
         "required": {
           "type": "boolean",
@@ -4110,7 +4114,8 @@
         },
         "section": {
           "type": "\"content\" | \"footer\" | \"header\"",
-          "required": true
+          "required": true,
+          "values": ["content", "footer", "header"]
         },
         "ref": {
           "type": "HTMLElement | null",

@@ -594,6 +594,7 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     linkColor: {
       type: '"gradient" | "gray"',
+      values: ["gradient", "gray"],
     },
     linkOpacity: {
       type: "number",
@@ -654,6 +655,7 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     type: {
       type: '"bar" | "line"',
+      values: ["bar", "line"],
     },
     xAxisName: {
       type: "string",
@@ -864,6 +866,7 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     dir: {
       type: '"ltr" | "rtl"',
+      values: ["ltr", "rtl"],
     },
     onOpenChange: {
       type: "(open: boolean) => void",
@@ -1047,6 +1050,7 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
   InputGroup: {
     align: {
       type: '"start" | "end"',
+      values: ["start", "end"],
     },
     children: {
       type: "Snippet",
@@ -1354,6 +1358,7 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     pageSelector: {
       type: '"input" | "dropdown"',
+      values: ["input", "dropdown"],
     },
     text: {
       type: "Snippet<[props: PaginationInfoSnippetProps]>",
@@ -1447,6 +1452,7 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     orientation: {
       type: '"vertical" | "horizontal"',
+      values: ["vertical", "horizontal"],
     },
     required: {
       type: "boolean",
@@ -1649,6 +1655,7 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
     section: {
       type: '"content" | "footer" | "header"',
+      values: ["content", "footer", "header"],
     },
     ref: {
       type: "HTMLElement | null",

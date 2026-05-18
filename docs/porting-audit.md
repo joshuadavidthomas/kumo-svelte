@@ -50,6 +50,8 @@ Port Cloudflare's Kumo package from React/Base UI to Svelte 5, using:
 - Catalog validation also checks simple generated primitive prop types
   (`string`, `number`, `boolean`, and simple primitive arrays/unions) for
   literal values.
+- Registry generation extracts string literal union values from source prop
+  types so catalog validation can reject invalid non-variant option values.
 
 ## Current Gates
 

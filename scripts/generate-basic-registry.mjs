@@ -138,6 +138,8 @@ function collectProps(dir) {
           type: member.type.getText(sourceFile).replace(/\s+/g, " ").trim(),
           required: !member.questionToken,
         };
+        const values = literalUnionValues(member.type);
+        if (values) schema.values = values;
         const description = jsDocDescription(member);
         if (description) schema.description = description;
 
@@ -164,6 +166,22 @@ function jsDocDescription(node) {
   return Array.isArray(jsDoc.comment)
     ? jsDoc.comment.map((part) => part.text).join("").trim()
     : jsDoc.comment.trim();
+}
+
+function literalUnionValues(typeNode) {
+  if (!ts.isUnionTypeNode(typeNode)) return undefined;
+
+  const values = [];
+
+  for (const type of typeNode.types) {
+    if (!ts.isLiteralTypeNode(type) || !ts.isStringLiteral(type.literal)) {
+      return undefined;
+    }
+
+    values.push(type.literal.text);
+  }
+
+  return values.length > 0 ? values : undefined;
 }
 
 function readVariantMetadata(dir) {

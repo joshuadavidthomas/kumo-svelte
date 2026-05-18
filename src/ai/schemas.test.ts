@@ -29,6 +29,22 @@ describe("generated component prop validation", () => {
     ]);
   });
 
+  it("rejects invalid literal union prop values", () => {
+    const result = validateElementProps({
+      key: "input-group-1",
+      type: "InputGroup",
+      props: { align: "middle" },
+    });
+
+    expect(result.success).toBe(false);
+    expect(result.error?.issues).toEqual([
+      {
+        message: "Invalid value for InputGroup.align: expected one of start, end",
+        path: ["props", "align"],
+      },
+    ]);
+  });
+
   it("accepts dynamic prop bindings without literal type checks", () => {
     const result = validateElementProps({
       key: "button-1",
