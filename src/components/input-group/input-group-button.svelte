@@ -1,10 +1,11 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
-  import { Tooltip as TooltipPrimitive } from "bits-ui";
   import type { KumoTooltipSide } from "../tooltip";
   import Button, { type ButtonProps } from "../button/button.svelte";
+  import TooltipContent from "../tooltip/tooltip-content.svelte";
+  import TooltipRoot from "../tooltip/tooltip-root.svelte";
+  import TooltipTrigger from "../tooltip/tooltip-trigger.svelte";
   import { cn } from "../../utils/cn";
-  import { getKumoPortalContext } from "../../utils/portal-provider.svelte";
   import { getInputGroupContext, type InputGroupFocusMode } from "./context";
   import type { KumoButtonSize } from "../button";
 
@@ -33,7 +34,6 @@
   }: InputGroupButtonProps = $props();
 
   const group = getInputGroupContext("Button");
-  const portalContext = getKumoPortalContext();
   let focusMode = $derived<InputGroupFocusMode>(group?.focusMode ?? "container");
   let isIndividual = $derived(focusMode === "individual");
   let buttonSize = $derived(size ?? (isIndividual ? (group?.size ?? "sm") : COMPACT_BUTTON_SIZE[group?.size ?? "base"]));
@@ -62,6 +62,7 @@
   <Button
     {...props}
     {...restProps}
+    data-slot="input-group-button"
     type="button"
     disabled={buttonDisabled}
     aria-label={tooltipAriaLabel}
@@ -74,29 +75,28 @@
 {/snippet}
 
 {#if tooltip}
-  <TooltipPrimitive.Root>
-    <TooltipPrimitive.Trigger>
+  <TooltipRoot>
+    <TooltipTrigger>
       {#snippet child({ props })}
         {@render control(props)}
       {/snippet}
-    </TooltipPrimitive.Trigger>
-    <TooltipPrimitive.Portal to={portalContext.container}>
-      <TooltipPrimitive.Content
-        side={tooltipSide}
-        sideOffset={8}
-        class={cn(
-          "flex origin-[var(--transform-origin)] flex-col rounded-md bg-kumo-base px-3 py-1.5 text-xs text-kumo-default",
-          "shadow-lg shadow-kumo-tip-shadow outline outline-kumo-fill",
-        )}
-      >
-        {#if typeof tooltip === "string"}
-          {tooltip}
-        {:else}
-          {@render tooltip()}
-        {/if}
-      </TooltipPrimitive.Content>
-    </TooltipPrimitive.Portal>
-  </TooltipPrimitive.Root>
+    </TooltipTrigger>
+    <TooltipContent
+      side={tooltipSide}
+      sideOffset={8}
+      arrow={false}
+      class={cn(
+        "flex origin-[var(--transform-origin)] flex-col rounded-md bg-kumo-base px-3 py-1.5 text-xs text-kumo-default",
+        "shadow-lg shadow-kumo-tip-shadow outline outline-kumo-fill",
+      )}
+    >
+      {#if typeof tooltip === "string"}
+        {tooltip}
+      {:else}
+        {@render tooltip()}
+      {/if}
+    </TooltipContent>
+  </TooltipRoot>
 {:else}
   {@render control()}
 {/if}
