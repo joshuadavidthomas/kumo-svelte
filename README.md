@@ -60,7 +60,7 @@ The current port includes all top-level component groups from upstream Kumo:
   upstream component descriptions, common prop descriptions, generated examples,
   variant values, variant classes, defaults, and available style metadata
 - Catalog validation from `kumo-svelte/catalog` for UI tree shape, known
-  components, literal variant prop values, and simple primitive prop values
+  components, literal variant prop values, and generated runtime prop metadata
 - Kumo style exports
 
 Kumo styles are Tailwind utility classes plus the Kumo CSS variables and
