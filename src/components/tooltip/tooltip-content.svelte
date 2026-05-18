@@ -13,6 +13,7 @@
 
   export type TooltipContentProps = Omit<TooltipPrimitive.ContentProps, "align" | "side"> & {
     align?: KumoTooltipAlign;
+    arrow?: boolean;
     container?: PortalProps["to"];
     side?: KumoTooltipSide;
   };
@@ -20,6 +21,7 @@
   let {
     children,
     class: className,
+    arrow = true,
     container,
     side = KUMO_TOOLTIP_DEFAULT_VARIANTS.side,
     align = "center",
@@ -37,17 +39,20 @@
     class={cn(tooltipVariants({ side }), "kumo-tooltip-popup", className)}
     {...restProps}
   >
-    <TooltipPrimitive.Arrow
-      class={cn(
-        "flex",
-        "data-[side=bottom]:top-[-8px]",
-        "data-[side=left]:right-[-13px] data-[side=left]:rotate-90",
-        "data-[side=right]:left-[-13px] data-[side=right]:-rotate-90",
-        "data-[side=top]:bottom-[-8px] data-[side=top]:rotate-180",
-      )}
-    >
-      <ArrowSvg />
-    </TooltipPrimitive.Arrow>
+    {#if arrow}
+      <TooltipPrimitive.Arrow
+        data-slot="tooltip-arrow"
+        class={cn(
+          "flex",
+          "data-[side=bottom]:top-[-8px]",
+          "data-[side=left]:right-[-13px] data-[side=left]:rotate-90",
+          "data-[side=right]:left-[-13px] data-[side=right]:-rotate-90",
+          "data-[side=top]:bottom-[-8px] data-[side=top]:rotate-180",
+        )}
+      >
+        <ArrowSvg />
+      </TooltipPrimitive.Arrow>
+    {/if}
     {@render children?.()}
   </TooltipPrimitive.Content>
 </TooltipPortal>
