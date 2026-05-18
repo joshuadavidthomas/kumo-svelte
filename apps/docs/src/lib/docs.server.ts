@@ -473,10 +473,26 @@ function findRegistryComponent(name: string) {
 
 function registryExample(sourceFile: string | undefined, title: string) {
   if (!sourceFile) return undefined;
-  const component = registry.components?.[sourceFile] ?? registry.blocks?.[sourceFile];
-  return component?.upstreamExamples?.find((example) =>
-    example.toLowerCase().includes(title.replace(/\s+/g, "").toLowerCase().replace(/^example$/, "")),
-  ) ?? component?.upstreamExamples?.[0];
+  const componentName = sourceFile
+    .split("/")
+    .pop()
+    ?.split("-")
+    .map((part) => part[0].toUpperCase() + part.slice(1))
+    .join("");
+  const component =
+    registry.components?.[componentName ?? ""] ??
+    registry.blocks?.[componentName ?? ""] ??
+    findRegistryComponent(componentName ?? "");
+  const normalizedTitle = title.replace(/^(Variant:\s*)?/i, "").toLowerCase();
+  return (
+    component?.upstreamExamples?.find((example) =>
+      example.toLowerCase().includes(`>${normalizedTitle}<`),
+    ) ??
+    component?.upstreamExamples?.find((example) =>
+      example.toLowerCase().includes(normalizedTitle.replace(/\s+/g, "-")),
+    ) ??
+    component?.upstreamExamples?.[0]
+  );
 }
 
 function codeFromExampleContent(content: string, sourceFile: string | undefined, title: string) {
