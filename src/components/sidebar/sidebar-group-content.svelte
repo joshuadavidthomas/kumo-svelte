@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { Collapsible as CollapsiblePrimitive } from "bits-ui";
   import type { Snippet } from "svelte";
   import type { HTMLAttributes } from "svelte/elements";
   import { cn } from "../../utils";
   import { useSidebarGroup } from "./context.svelte";
+  import SidebarCollapsibleContent from "./sidebar-collapsible-content.svelte";
 
   export interface SidebarGroupContentProps
     extends Omit<HTMLAttributes<HTMLDivElement>, "children" | "class"> {
@@ -16,11 +16,12 @@
 </script>
 
 {#if group.isCollapsible}
-  <CollapsiblePrimitive.Content>
+  <SidebarCollapsibleContent>
     {#snippet child({ props })}
       <div
         {...props}
         {...restProps}
+        data-slot="sidebar-group-content"
         data-sidebar="group-content"
         class={cn(
           "overflow-hidden transition-[height] duration-250 ease-[cubic-bezier(0.77,0,0.175,1)]",
@@ -28,14 +29,19 @@
           className,
         )}
       >
-        <div class="overflow-hidden">
+        <div data-slot="sidebar-group-content-inner" class="overflow-hidden">
           {@render children?.()}
         </div>
       </div>
     {/snippet}
-  </CollapsiblePrimitive.Content>
+  </SidebarCollapsibleContent>
 {:else}
-  <div data-sidebar="group-content" class={cn("flex flex-col", className)} {...restProps}>
+  <div
+    data-slot="sidebar-group-content"
+    data-sidebar="group-content"
+    class={cn("flex flex-col", className)}
+    {...restProps}
+  >
     {@render children?.()}
   </div>
 {/if}
