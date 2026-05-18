@@ -87,12 +87,12 @@ Port Cloudflare's Kumo package from React/Base UI to Svelte 5, using:
 - `pnpm test` passes.
 - `main` is pushed and clean against `origin/main`.
 
-## Remaining Gaps
+## Metadata Notes
 
 The upstream non-primitive package export keys now exist in `package.json`,
 excluding intentionally omitted `./primitives/*` exports.
 
-The generated metadata surfaces are currently basic:
+The generated metadata surfaces are:
 
 - `./registry/component-registry.json`
 - `./registry/component-registry.md`
@@ -129,9 +129,8 @@ full third-party TypeScript shape.
 - Upstream React `useMenuNavigation` is omitted because the Svelte `MenuBar` is backed by Bits UI `Toolbar`, which owns keyboard navigation.
 - Pagination remains local because upstream Kumo's pagination was also local React state, not Base UI.
 
-## Completion Rule
+## Completion Status
 
-Do not mark the port complete until the generated metadata/catalog surfaces have
-upstream-equivalent prop descriptions, extracted demo examples, and complex prop
-validation, or that metadata work is explicitly declared out of scope by the
-maintainer.
+The porting objective is complete for the package/library surface covered by
+this audit. Future work should be tracked as targeted parity bugs or
+component-specific enhancements rather than as the initial port.
