@@ -1,9 +1,10 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
-  import { Tooltip as TooltipPrimitive } from "bits-ui";
   import type { HTMLAnchorAttributes, HTMLButtonAttributes } from "svelte/elements";
   import { cn } from "../../utils";
-  import { getKumoPortalContext } from "../../utils/portal-provider.svelte";
+  import TooltipContent from "../tooltip/tooltip-content.svelte";
+  import TooltipRoot from "../tooltip/tooltip-root.svelte";
+  import TooltipTrigger from "../tooltip/tooltip-trigger.svelte";
   import { isInsideSidebarMenuItem, useSidebar } from "./context.svelte";
 
   export type SidebarMenuButtonSize = "base" | "sm";
@@ -33,7 +34,6 @@
   }: SidebarMenuButtonProps = $props();
 
   const sidebar = useSidebar("SidebarMenuButton");
-  const portalContext = getKumoPortalContext();
   const insideMenuItem = isInsideSidebarMenuItem();
 
   let buttonClasses = $derived(
@@ -71,6 +71,7 @@
       {...props}
       {...linkProps}
       href={href}
+      data-slot="sidebar-menu-button"
       data-active={active || undefined}
       data-sidebar="menu-button"
       data-size={size}
@@ -83,6 +84,7 @@
       {...props}
       {...restProps}
       type="button"
+      data-slot="sidebar-menu-button"
       data-active={active || undefined}
       data-sidebar="menu-button"
       data-size={size}
@@ -95,25 +97,24 @@
 
 {#snippet MaybeTooltip()}
   {#if sidebar.state === "collapsed" && tooltip}
-    <TooltipPrimitive.Root delayDuration={0}>
-      <TooltipPrimitive.Trigger>
+    <TooltipRoot delayDuration={0}>
+      <TooltipTrigger>
         {#snippet child({ props })}
           {@render Button(props)}
         {/snippet}
-      </TooltipPrimitive.Trigger>
-      <TooltipPrimitive.Portal to={portalContext.container}>
-        <TooltipPrimitive.Content
-          side="right"
-          sideOffset={10}
-          class={cn(
-            "flex origin-[var(--transform-origin)] flex-col rounded-md bg-kumo-base px-3 py-1.5 text-xs text-kumo-default",
-            "shadow-lg shadow-kumo-tip-shadow outline outline-kumo-fill",
-          )}
-        >
-          {tooltip}
-        </TooltipPrimitive.Content>
-      </TooltipPrimitive.Portal>
-    </TooltipPrimitive.Root>
+      </TooltipTrigger>
+      <TooltipContent
+        side="right"
+        sideOffset={10}
+        arrow={false}
+        class={cn(
+          "flex origin-[var(--transform-origin)] flex-col rounded-md bg-kumo-base px-3 py-1.5 text-xs text-kumo-default",
+          "shadow-lg shadow-kumo-tip-shadow outline outline-kumo-fill",
+        )}
+      >
+        {tooltip}
+      </TooltipContent>
+    </TooltipRoot>
   {:else}
     {@render Button()}
   {/if}
@@ -122,7 +123,7 @@
 {#if insideMenuItem}
   {@render MaybeTooltip()}
 {:else}
-  <li data-sidebar="menu-item" class="relative">
+  <li data-slot="sidebar-menu-item" data-sidebar="menu-item" class="relative">
     {@render MaybeTooltip()}
   </li>
 {/if}
