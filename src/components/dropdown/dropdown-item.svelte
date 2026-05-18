@@ -30,6 +30,7 @@
 </script>
 
 <DropdownMenuPrimitive.Item
+  data-slot="dropdown-menu-item"
   class={cn(KUMO_DROPDOWN_ITEM_CLASS, inset && "pl-8", dropdownVariants({ variant }), className)}
   {...restProps}
 >

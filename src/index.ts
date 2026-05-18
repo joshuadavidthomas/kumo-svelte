@@ -346,6 +346,7 @@ export {
 export { default as DropdownMenu } from "./components/dropdown/dropdown-root.svelte";
 export { default as DropdownMenuRoot } from "./components/dropdown/dropdown-root.svelte";
 export { default as DropdownMenuTrigger } from "./components/dropdown/dropdown-trigger.svelte";
+export { default as DropdownMenuPortal } from "./components/dropdown/dropdown-portal.svelte";
 export { default as DropdownMenuContent } from "./components/dropdown/dropdown-content.svelte";
 export { default as DropdownMenuItem } from "./components/dropdown/dropdown-item.svelte";
 export { default as DropdownMenuLinkItem } from "./components/dropdown/dropdown-link-item.svelte";
@@ -354,13 +355,13 @@ export { default as DropdownMenuRadioItem } from "./components/dropdown/dropdown
 export { default as DropdownMenuLabel } from "./components/dropdown/dropdown-label.svelte";
 export { default as DropdownMenuSeparator } from "./components/dropdown/dropdown-separator.svelte";
 export { default as DropdownMenuShortcut } from "./components/dropdown/dropdown-shortcut.svelte";
+export { default as DropdownMenuGroup } from "./components/dropdown/dropdown-group.svelte";
+export { default as DropdownMenuRadioGroup } from "./components/dropdown/dropdown-radio-group.svelte";
+export { default as DropdownMenuCheckboxGroup } from "./components/dropdown/dropdown-checkbox-group.svelte";
+export { default as DropdownMenuSub } from "./components/dropdown/dropdown-sub.svelte";
 export { default as DropdownMenuSubTrigger } from "./components/dropdown/dropdown-sub-trigger.svelte";
 export { default as DropdownMenuSubContent } from "./components/dropdown/dropdown-sub-content.svelte";
 export {
-  DropdownMenuCheckboxGroup,
-  DropdownMenuGroup,
-  DropdownMenuRadioGroup,
-  DropdownMenuSub,
   dropdownVariants,
   KUMO_DROPDOWN_CONTENT_CLASS,
   KUMO_DROPDOWN_DEFAULT_VARIANTS,
@@ -373,6 +374,7 @@ export {
   type DropdownMenuItemProps,
   type DropdownMenuLabelProps,
   type DropdownMenuLinkItemProps,
+  type DropdownMenuPortalProps,
   type DropdownMenuRadioGroupProps,
   type DropdownMenuRadioItemProps,
   type DropdownMenuRootProps,

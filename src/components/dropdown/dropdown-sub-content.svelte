@@ -10,6 +10,7 @@
 </script>
 
 <DropdownMenuPrimitive.SubContent
+  data-slot="dropdown-menu-sub-content"
   {sideOffset}
   class={cn(KUMO_DROPDOWN_CONTENT_CLASS, className)}
   {...restProps}

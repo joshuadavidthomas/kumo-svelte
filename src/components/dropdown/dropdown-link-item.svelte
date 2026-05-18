@@ -34,7 +34,7 @@
   }: DropdownMenuLinkItemProps = $props();
 </script>
 
-<DropdownMenuPrimitive.Item {...restProps}>
+<DropdownMenuPrimitive.Item data-slot="dropdown-menu-link-item" {...restProps}>
   {#snippet child({ props })}
     <a
       {...props}

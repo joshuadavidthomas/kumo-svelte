@@ -10,6 +10,7 @@
 </script>
 
 <DropdownMenuPrimitive.GroupHeading
+  data-slot="dropdown-menu-label"
   class={cn("px-2 py-1.5 text-base font-semibold", inset && "pl-8", className)}
   {...restProps}
 />

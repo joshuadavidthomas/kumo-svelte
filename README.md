@@ -28,7 +28,7 @@ The current port includes all top-level component groups from upstream Kumo:
 - `DateRangePicker` backed by Bits UI `RangeCalendar`
 - `DeleteResource`
 - `Dialog` convenience and primitive wrapper components backed by Bits UI `Dialog` / `AlertDialog`
-- `DropdownMenu` compound components backed by Bits UI `DropdownMenu`
+- `DropdownMenu` primitive wrapper components backed by Bits UI `DropdownMenu`
 - `Empty`
 - `Field`
 - `Flow`, `FlowNode`, `FlowList`, `FlowParallel`, and `FlowAnchor`

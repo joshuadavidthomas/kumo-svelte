@@ -10,6 +10,10 @@
   let { children, class: className, ...restProps }: DropdownMenuShortcutProps = $props();
 </script>
 
-<span class={cn("ml-auto text-xs tracking-widest opacity-60", className)} {...restProps}>
+<span
+  data-slot="dropdown-menu-shortcut"
+  class={cn("ml-auto text-xs tracking-widest opacity-60", className)}
+  {...restProps}
+>
   {@render children?.()}
 </span>

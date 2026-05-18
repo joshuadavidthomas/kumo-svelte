@@ -23,6 +23,7 @@
 </script>
 
 <DropdownMenuPrimitive.SubTrigger
+  data-slot="dropdown-menu-sub-trigger"
   class={cn(
     "flex cursor-default items-center rounded-sm px-2 py-1.5 text-base outline-none select-none",
     "focus:bg-kumo-tint focus:ring-kumo-focus/50 focus-visible:ring-2 focus-visible:ring-kumo-brand",

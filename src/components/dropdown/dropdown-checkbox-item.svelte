@@ -22,6 +22,7 @@
 </script>
 
 <DropdownMenuPrimitive.CheckboxItem
+  data-slot="dropdown-menu-checkbox-item"
   bind:checked
   bind:indeterminate
   class={cn(
