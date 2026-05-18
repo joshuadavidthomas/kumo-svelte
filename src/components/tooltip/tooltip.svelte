@@ -39,7 +39,14 @@
   <TooltipTrigger
     class="inline-flex cursor-default items-center border-0 bg-transparent p-0 leading-[0] shadow-none"
   >
-    {@render children()}
+    {#snippet child({ props })}
+      <span
+        {...props}
+        class="inline-flex cursor-default items-center border-0 bg-transparent p-0 leading-[0] shadow-none"
+      >
+        {@render children()}
+      </span>
+    {/snippet}
   </TooltipTrigger>
   <TooltipContent {side} {align} {container} class={className}>
     {#if typeof content === "string"}

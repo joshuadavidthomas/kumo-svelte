@@ -332,7 +332,9 @@
         {:else if item.label === "Select"}
           <Select aria-label="Select version" placeholder="Select version" items={versionItems} />
         {:else if item.label === "Sensitive Input"}
-          <SensitiveInput value="super-secret-api-key" readOnly />
+          <form class="sensitive-preview">
+            <SensitiveInput value="super-secret-api-key" readOnly />
+          </form>
         {:else if item.label === "Sidebar"}
           <SidebarProvider collapsible="none" style="--sidebar-width: 180px;">
             <Sidebar class="sidebar-preview">

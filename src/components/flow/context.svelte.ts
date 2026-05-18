@@ -1,4 +1,4 @@
-import { getContext, setContext } from "svelte";
+import { getContext, setContext, untrack } from "svelte";
 import type { FlowAlign, FlowNodeData, FlowOrientation } from "./types";
 
 export interface DescendantInfo<T> {
@@ -8,21 +8,24 @@ export interface DescendantInfo<T> {
 }
 
 export class FlowNodeGroup<T extends FlowNodeData = FlowNodeData> {
-  descendants = $state<DescendantInfo<T>[]>([]);
+  descendants = $state.raw<DescendantInfo<T>[]>([]);
   measurementEpoch = $state(0);
 
   #nodes = new Map<string, DescendantInfo<T>>();
 
   register(id: string, element: HTMLElement, props: T) {
-    this.#nodes.set(id, { element, id, props });
-    this.#sort();
-    this.measurementEpoch += 1;
+    const current = this.#nodes.get(id);
+    if (!current || current.element !== element || !sameFlowNodeProps(current.props, props)) {
+      this.#nodes.set(id, { element, id, props });
+      this.#sort();
+      this.#bumpMeasurementEpoch();
+    }
 
     return () => {
       if (this.#nodes.get(id)?.element !== element) return;
       this.#nodes.delete(id);
       this.#sort();
-      this.measurementEpoch += 1;
+      this.#bumpMeasurementEpoch();
     };
   }
 
@@ -30,8 +33,11 @@ export class FlowNodeGroup<T extends FlowNodeData = FlowNodeData> {
     const current = this.#nodes.get(id);
     if (!current) return;
 
+    const nextElement = element ?? current.element;
+    if (current.element === nextElement && sameFlowNodeProps(current.props, props)) return;
+
     this.#nodes.set(id, {
-      element: element ?? current.element,
+      element: nextElement,
       id,
       props,
     });
@@ -39,7 +45,7 @@ export class FlowNodeGroup<T extends FlowNodeData = FlowNodeData> {
   }
 
   notifySizeChange() {
-    this.measurementEpoch += 1;
+    this.#bumpMeasurementEpoch();
   }
 
   indexOf(id: string) {
@@ -59,14 +65,60 @@ export class FlowNodeGroup<T extends FlowNodeData = FlowNodeData> {
   }
 
   #sort() {
-    this.descendants = Array.from(this.#nodes.values()).sort((a, b) => {
+    const nextDescendants = Array.from(this.#nodes.values()).sort((a, b) => {
       if (a.element === b.element) return 0;
       const position = a.element.compareDocumentPosition(b.element);
       if (position & Node.DOCUMENT_POSITION_FOLLOWING) return -1;
       if (position & Node.DOCUMENT_POSITION_PRECEDING) return 1;
       return 0;
     });
+
+    if (untrack(() => sameDescendants(this.descendants, nextDescendants))) return;
+    this.descendants = nextDescendants;
   }
+
+  #bumpMeasurementEpoch() {
+    this.measurementEpoch = untrack(() => this.measurementEpoch) + 1;
+  }
+}
+
+function sameFlowNodeProps<T extends FlowNodeData>(left: T, right: T) {
+  return (
+    left.disabled === right.disabled &&
+    left.parallel === right.parallel &&
+    sameFlowRect(left.start, right.start) &&
+    sameFlowRect(left.end, right.end)
+  );
+}
+
+function sameDescendants<T>(left: DescendantInfo<T>[], right: DescendantInfo<T>[]) {
+  return (
+    left.length === right.length &&
+    left.every((descendant, index) => {
+      const next = right[index];
+      return (
+        next &&
+        descendant.id === next.id &&
+        descendant.element === next.element &&
+        sameFlowNodeProps(descendant.props as FlowNodeData, next.props as FlowNodeData)
+      );
+    })
+  );
+}
+
+function sameFlowRect(left: FlowNodeData["start"], right: FlowNodeData["start"]) {
+  if (left === right) return true;
+  if (!left || !right) return false;
+  return (
+    left.x === right.x &&
+    left.y === right.y &&
+    left.top === right.top &&
+    left.right === right.right &&
+    left.bottom === right.bottom &&
+    left.left === right.left &&
+    left.width === right.width &&
+    left.height === right.height
+  );
 }
 
 export interface FlowDiagramContextValue {
