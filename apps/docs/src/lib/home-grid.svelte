@@ -63,15 +63,6 @@
     RadioItem,
     Select,
     SensitiveInput,
-    Sidebar,
-    SidebarContent,
-    SidebarGroup,
-    SidebarGroupContent,
-    SidebarGroupLabel,
-    SidebarMenu,
-    SidebarMenuButton,
-    SidebarMenuItem,
-    SidebarProvider,
     SkeletonLine,
     Switch,
     Table,
@@ -133,6 +124,8 @@
   function tileClass(label: string) {
     return label === "Date Picker" ? "demo-component compact-calendar" : "demo-component";
   }
+
+  const homeComponentItems = componentItems.filter((item) => item.label !== "Sidebar");
 </script>
 
 {#snippet plusIcon()}
@@ -165,7 +158,7 @@
 
 <TooltipProvider>
   <section id="components" class="component-board" aria-label="Component previews">
-    {#each componentItems as item (item.href)}
+    {#each homeComponentItems as item (item.href)}
       <article class="demo-tile">
       <a class="demo-title" href={item.href}>{item.label}</a>
       <div class={tileClass(item.label)}>
@@ -335,22 +328,6 @@
           <form class="sensitive-preview">
             <SensitiveInput value="super-secret-api-key" readOnly />
           </form>
-        {:else if item.label === "Sidebar"}
-          <SidebarProvider collapsible="none" style="--sidebar-width: 180px;">
-            <Sidebar class="sidebar-preview">
-              <SidebarContent>
-                <SidebarGroup>
-                  <SidebarGroupLabel>Workers</SidebarGroupLabel>
-                  <SidebarGroupContent>
-                    <SidebarMenu>
-                      <SidebarMenuItem><SidebarMenuButton>Overview</SidebarMenuButton></SidebarMenuItem>
-                      <SidebarMenuItem><SidebarMenuButton>Deployments</SidebarMenuButton></SidebarMenuItem>
-                    </SidebarMenu>
-                  </SidebarGroupContent>
-                </SidebarGroup>
-              </SidebarContent>
-            </Sidebar>
-          </SidebarProvider>
         {:else if item.label === "Skeleton Line"}
           <div class="skeleton-preview">
             <SkeletonLine minWidth={50} maxWidth={100} />
