@@ -45,11 +45,12 @@
 {/snippet}
 
 {#if asContent}
-  <span {id} class={cn(labelContentVariants(), className)}>
+  <span data-slot="label-content" {id} class={cn(labelContentVariants(), className)}>
     {@render content()}
   </span>
 {:else}
   <BitsLabel.Root
+    data-slot="label"
     {id}
     for={htmlFor}
     class={cn(labelVariants(), labelContentVariants(), className)}
