@@ -10,6 +10,6 @@
   let { children, class: className, ...restProps }: PopoverTitleProps = $props();
 </script>
 
-<h3 class={cn("m-0 text-base font-medium leading-6", className)} {...restProps}>
+<h3 data-slot="popover-title" class={cn("m-0 text-base font-medium leading-6", className)} {...restProps}>
   {@render children?.()}
 </h3>

@@ -2,8 +2,8 @@
   import { Popover as PopoverPrimitive } from "bits-ui";
   import type { PortalProps } from "bits-ui";
   import { cn } from "../../utils/cn";
-  import { getKumoPortalContext } from "../../utils/portal-provider.svelte";
   import ArrowSvg from "../tooltip/arrow-svg.svelte";
+  import PopoverPortal from "./popover-portal.svelte";
   import {
     KUMO_POPOVER_DEFAULT_VARIANTS,
     popoverVariants,
@@ -34,13 +34,11 @@
     container,
     ...restProps
   }: PopoverContentProps = $props();
-
-  const portalContext = getKumoPortalContext();
-  let portalContainer = $derived(container ?? portalContext.container);
 </script>
 
-<PopoverPrimitive.Portal to={portalContainer}>
+<PopoverPortal to={container}>
   <PopoverPrimitive.Content
+    data-slot="popover-content"
     {side}
     {align}
     {sideOffset}
@@ -63,4 +61,4 @@
     </PopoverPrimitive.Arrow>
     {@render children?.()}
   </PopoverPrimitive.Content>
-</PopoverPrimitive.Portal>
+</PopoverPortal>

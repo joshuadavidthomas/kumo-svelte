@@ -594,8 +594,10 @@ export {
 
 export { default as Popover } from "./components/popover/popover-root.svelte";
 export { default as PopoverRoot } from "./components/popover/popover-root.svelte";
+export { default as PopoverPortal } from "./components/popover/popover-portal.svelte";
 export { default as PopoverTrigger } from "./components/popover/popover-trigger.svelte";
 export { default as PopoverContent } from "./components/popover/popover-content.svelte";
+export { default as PopoverHeader } from "./components/popover/popover-header.svelte";
 export { default as PopoverTitle } from "./components/popover/popover-title.svelte";
 export { default as PopoverDescription } from "./components/popover/popover-description.svelte";
 export { default as PopoverClose } from "./components/popover/popover-close.svelte";
@@ -609,6 +611,8 @@ export {
   type PopoverCloseProps,
   type PopoverContentProps,
   type PopoverDescriptionProps,
+  type PopoverHeaderProps,
+  type PopoverPortalProps,
   type PopoverRootProps,
   type PopoverTitleProps,
   type PopoverTriggerProps,

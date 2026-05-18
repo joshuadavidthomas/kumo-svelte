@@ -10,6 +10,10 @@
   let { children, class: className, ...restProps }: PopoverDescriptionProps = $props();
 </script>
 
-<p class={cn("m-0 text-base leading-6 text-kumo-subtle", className)} {...restProps}>
+<p
+  data-slot="popover-description"
+  class={cn("m-0 text-base leading-6 text-kumo-subtle", className)}
+  {...restProps}
+>
   {@render children?.()}
 </p>

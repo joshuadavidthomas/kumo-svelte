@@ -6,6 +6,6 @@
   let { child, children, ...restProps }: PopoverCloseProps = $props();
 </script>
 
-<PopoverPrimitive.Close {child} {...restProps}>
+<PopoverPrimitive.Close data-slot="popover-close" {child} {...restProps}>
   {@render children?.()}
 </PopoverPrimitive.Close>
