@@ -16,6 +16,10 @@
   }: CheckboxLegendProps = $props();
 </script>
 
-<legend class={cn("text-base font-medium text-kumo-default", className)} {...restProps}>
+<legend
+  data-slot="checkbox-legend"
+  class={cn("text-base font-medium text-kumo-default", className)}
+  {...restProps}
+>
   {@render children()}
 </legend>

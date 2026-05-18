@@ -53,6 +53,7 @@
   )}
 >
   <CheckboxPrimitive.Root
+    data-slot="checkbox"
     bind:checked
     bind:indeterminate
     {disabled}
@@ -72,6 +73,7 @@
   >
     {#snippet children({ checked, indeterminate })}
       <span
+        data-slot="checkbox-indicator"
         class={cn(
           "flex size-3 items-center justify-center text-kumo-inverse",
           !checked && !indeterminate && "invisible",

@@ -54,6 +54,7 @@
 </script>
 
 <CheckboxPrimitive.Group
+  data-slot="checkbox-group"
   value={groupValue}
   onValueChange={handleValueChange}
   {disabled}
