@@ -225,7 +225,7 @@ function isDynamicValue(value: unknown): boolean {
 }
 
 function validatePrimitivePropValue(type: string, value: unknown): string | undefined {
-  const expected = primitiveExpectation(type);
+  const expected = runtimeExpectation(type);
   if (!expected) return undefined;
 
   if (expected === "string") {
@@ -258,11 +258,54 @@ function validatePrimitivePropValue(type: string, value: unknown): string | unde
       : "expected a string or an array of strings";
   }
 
+  if (expected === "string|number") {
+    return typeof value === "string" || typeof value === "number"
+      ? undefined
+      : "expected a string or a number";
+  }
+
+  if (expected === "snippet") {
+    return typeof value === "function" ? undefined : "expected a snippet function";
+  }
+
+  if (expected === "snippet|string") {
+    return typeof value === "function" || typeof value === "string"
+      ? undefined
+      : "expected a string or snippet function";
+  }
+
+  if (expected === "function") {
+    return typeof value === "function" ? undefined : "expected a function";
+  }
+
+  if (expected === "array") {
+    return Array.isArray(value) ? undefined : "expected an array";
+  }
+
+  if (expected === "array[]") {
+    return Array.isArray(value) && value.every(Array.isArray)
+      ? undefined
+      : "expected an array of arrays";
+  }
+
+  if (expected === "object") {
+    return value !== null && typeof value === "object" && !Array.isArray(value)
+      ? undefined
+      : "expected an object";
+  }
+
   return undefined;
 }
 
-function primitiveExpectation(type: string) {
+function runtimeExpectation(type: string) {
   const normalized = type.replace(/\s+/g, " ").trim();
+  const withoutOptional = normalized
+    .split("|")
+    .map((part) => part.trim())
+    .filter((part) => part !== "undefined" && part !== "null")
+    .join(" | ");
+
+  if (withoutOptional !== normalized) return runtimeExpectation(withoutOptional);
 
   if (normalized === "string") return "string";
   if (normalized === "number") return "number";
@@ -272,6 +315,25 @@ function primitiveExpectation(type: string) {
   if (normalized === "boolean[]") return "boolean[]";
   if (normalized === "string | string[]" || normalized === "string[] | string") {
     return "string|string[]";
+  }
+  if (normalized === "number | string" || normalized === "string | number") {
+    return "string|number";
+  }
+  if (normalized === "Snippet") return "snippet";
+  if (normalized === "Snippet | string" || normalized === "string | Snippet") {
+    return "snippet|string";
+  }
+  if (normalized.includes("=>")) return "function";
+  if (normalized.endsWith("[][]")) return "array[]";
+  if (normalized.endsWith("[]") || normalized.startsWith("ReadonlyArray<")) {
+    return "array";
+  }
+  if (
+    normalized.startsWith("Record<") ||
+    normalized.startsWith("Partial<") ||
+    (normalized.startsWith("{") && normalized.endsWith("}"))
+  ) {
+    return "object";
   }
 
   return undefined;

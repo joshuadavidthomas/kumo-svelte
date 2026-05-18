@@ -71,6 +71,64 @@ describe("generated component prop validation", () => {
     ]);
   });
 
+  it("rejects invalid complex array values", () => {
+    const result = validateElementProps({
+      key: "autocomplete-1",
+      type: "Autocomplete",
+      props: { items: "apple" },
+    });
+
+    expect(result.success).toBe(false);
+    expect(result.error?.issues).toEqual([
+      {
+        message: "Invalid value for Autocomplete.items: expected an array",
+        path: ["props", "items"],
+      },
+    ]);
+  });
+
+  it("rejects invalid record values", () => {
+    const result = validateElementProps({
+      key: "code-1",
+      type: "Code",
+      props: { values: [] },
+    });
+
+    expect(result.success).toBe(false);
+    expect(result.error?.issues).toEqual([
+      {
+        message: "Invalid value for Code.values: expected an object",
+        path: ["props", "values"],
+      },
+    ]);
+  });
+
+  it("rejects invalid snippet values", () => {
+    const result = validateElementProps({
+      key: "button-1",
+      type: "Button",
+      props: { children: 123 },
+    });
+
+    expect(result.success).toBe(false);
+    expect(result.error?.issues).toEqual([
+      {
+        message: "Invalid value for Button.children: expected a snippet function",
+        path: ["props", "children"],
+      },
+    ]);
+  });
+
+  it("accepts string content for snippet-or-string props", () => {
+    const result = validateElementProps({
+      key: "field-1",
+      type: "Field",
+      props: { label: "Name" },
+    });
+
+    expect(result.success).toBe(true);
+  });
+
   it("prefixes UI tree prop validation paths with the element key", () => {
     const result = validateUITree({
       root: "button-1",
