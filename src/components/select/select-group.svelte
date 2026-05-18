@@ -6,4 +6,4 @@
   let props: SelectGroupProps = $props();
 </script>
 
-<SelectPrimitive.Group {...props} />
+<SelectPrimitive.Group data-slot="select-group" {...props} />

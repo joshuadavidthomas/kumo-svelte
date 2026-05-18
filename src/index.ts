@@ -623,7 +623,14 @@ export {
 } from "./components/radio";
 
 export { default as Select } from "./components/select/select.svelte";
+export { default as SelectRoot } from "./components/select/select-root.svelte";
+export { default as SelectTrigger } from "./components/select/select-trigger.svelte";
+export { default as SelectValue } from "./components/select/select-value.svelte";
+export { default as SelectPortal } from "./components/select/select-portal.svelte";
+export { default as SelectContent } from "./components/select/select-content.svelte";
+export { default as SelectViewport } from "./components/select/select-viewport.svelte";
 export { default as SelectOption } from "./components/select/select-option.svelte";
+export { default as SelectItem } from "./components/select/select-option.svelte";
 export { default as SelectGroup } from "./components/select/select-group.svelte";
 export { default as SelectGroupHeading } from "./components/select/select-group-heading.svelte";
 export { default as SelectGroupLabel } from "./components/select/select-group-heading.svelte";
@@ -636,13 +643,20 @@ export {
   KUMO_SELECT_VARIANTS,
   type KumoSelectSize,
   type KumoSelectVariantsProps,
+  type SelectContentProps,
   type SelectGroupHeadingProps,
   type SelectGroupLabelProps,
   type SelectGroupProps,
+  type SelectItemProps,
   type SelectOptionProps,
+  type SelectPortalProps,
   type SelectProps,
+  type SelectRootProps,
   type SelectSeparatorProps,
   type SelectSize,
+  type SelectTriggerProps,
+  type SelectValueProps,
+  type SelectViewportProps,
 } from "./components/select";
 
 export { default as SensitiveInput } from "./components/sensitive-input/sensitive-input.svelte";

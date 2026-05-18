@@ -8,6 +8,7 @@
 </script>
 
 <SelectPrimitive.GroupHeading
+  data-slot="select-group-heading"
   class={cn("px-3.5 py-1.5 text-sm font-semibold text-kumo-subtle", className)}
   {...restProps}
 >

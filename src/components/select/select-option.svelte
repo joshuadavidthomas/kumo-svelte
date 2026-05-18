@@ -22,6 +22,7 @@
 </script>
 
 <SelectPrimitive.Item
+  data-slot="select-item"
   {value}
   label={label ?? value}
   {disabled}

@@ -1,18 +1,19 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
-  import CaretUpDownIcon from "phosphor-svelte/lib/CaretUpDownIcon.svelte";
-  import { Select as SelectPrimitive } from "bits-ui";
   import type { PortalProps } from "bits-ui";
-  import { cn, safeRandomId } from "../../utils/cn";
-  import { getKumoPortalContext } from "../../utils/portal-provider.svelte";
+  import { safeRandomId } from "../../utils/cn";
   import Field from "../field/field.svelte";
   import { normalizeFieldError, type FieldErrorMatch } from "../field";
   import SkeletonLine from "../loader/skeleton-line.svelte";
+  import SelectContent from "./select-content.svelte";
   import SelectOption from "./select-option.svelte";
+  import SelectPortal from "./select-portal.svelte";
+  import SelectRoot from "./select-root.svelte";
+  import SelectTrigger from "./select-trigger.svelte";
+  import SelectValue from "./select-value.svelte";
+  import SelectViewport from "./select-viewport.svelte";
   import {
     KUMO_SELECT_DEFAULT_VARIANTS,
-    KUMO_SELECT_TRIGGER_ICON_STYLES,
-    selectVariants,
     type KumoSelectSize,
   } from "./variants";
 
@@ -94,7 +95,6 @@
   let triggerAriaLabel = $derived(ariaLabel ?? (!ariaLabelledby && !labelId ? fallbackAriaLabel : undefined));
   let triggerAriaLabelledby = $derived(ariaLabelledby ?? (!showField ? labelId : undefined));
   let triggerDisabled = $derived(disabled || loading);
-  let iconStyle = $derived(KUMO_SELECT_TRIGGER_ICON_STYLES[size]);
 
   function normalizeSelectItems(items: SelectItems | undefined): NormalizedSelectItem[] {
     if (!items) return [];
@@ -112,13 +112,11 @@
     onValueChange?.(nextValue);
   }
 
-  const portalContext = getKumoPortalContext();
-  let portalContainer = $derived(container ?? portalContext.container);
 </script>
 
 {#snippet selectControl()}
   {#if multiple}
-    <SelectPrimitive.Root
+    <SelectRoot
       type="multiple"
       value={selectedMultipleValue}
       onValueChange={handleValueChange}
@@ -128,9 +126,9 @@
       {required}
     >
       {@render triggerAndContent()}
-    </SelectPrimitive.Root>
+    </SelectRoot>
   {:else}
-    <SelectPrimitive.Root
+    <SelectRoot
       type="single"
       value={selectedSingleValue}
       onValueChange={handleValueChange}
@@ -141,44 +139,28 @@
       {allowDeselect}
     >
       {@render triggerAndContent()}
-    </SelectPrimitive.Root>
+    </SelectRoot>
   {/if}
 {/snippet}
 
 {#snippet triggerAndContent()}
-  <SelectPrimitive.Trigger
+  <SelectTrigger
     aria-label={triggerAriaLabel}
     aria-labelledby={triggerAriaLabelledby}
-    class={cn(
-      selectVariants({ size }),
-      triggerDisabled && "cursor-not-allowed opacity-50",
-      className,
-    )}
+    class={className}
+    disabled={triggerDisabled}
+    {loading}
+    {size}
   >
     {#if loading}
       <SkeletonLine class="w-32" />
     {:else}
-      <SelectPrimitive.Value
-        {placeholder}
-        class="min-w-0 truncate data-[placeholder]:text-kumo-placeholder"
-      />
+      <SelectValue {placeholder} />
     {/if}
-    <span class={cn("flex shrink-0 items-center", iconStyle.className)}>
-      <CaretUpDownIcon aria-hidden="true" size={iconStyle.iconSize} weight="bold" />
-    </span>
-  </SelectPrimitive.Trigger>
-  <SelectPrimitive.Portal to={portalContainer}>
-    <SelectPrimitive.Content
-      sideOffset={8}
-      preventScroll
-      class={cn(
-        "flex flex-col",
-        "max-h-[var(--bits-select-content-available-height)] bg-kumo-base text-kumo-default",
-        "rounded-lg shadow-lg ring ring-kumo-line",
-        "min-w-[calc(var(--bits-select-anchor-width)+3px)] py-1.5",
-      )}
-    >
-      <SelectPrimitive.Viewport class="min-h-0 flex-1 overflow-y-auto overscroll-none scroll-pt-2 scroll-pb-2">
+  </SelectTrigger>
+  <SelectPortal to={container}>
+    <SelectContent>
+      <SelectViewport>
         {#if children}
           {@render children()}
         {:else}
@@ -186,9 +168,9 @@
             <SelectOption value={item.value} label={item.label} disabled={item.disabled} />
           {/each}
         {/if}
-      </SelectPrimitive.Viewport>
-    </SelectPrimitive.Content>
-  </SelectPrimitive.Portal>
+      </SelectViewport>
+    </SelectContent>
+  </SelectPortal>
 {/snippet}
 
 {#if showField}

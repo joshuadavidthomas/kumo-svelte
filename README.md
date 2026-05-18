@@ -44,7 +44,7 @@ The current port includes all top-level component groups from upstream Kumo:
 - `Pagination` root/info/page-size/controls/separator components
 - `Popover` root/trigger/content/title/description/close components backed by Bits UI `Popover`
 - `Radio`, `RadioGroup`, `RadioItem`, and `RadioLegend` backed by Bits UI `RadioGroup`
-- `Select`, `SelectOption`, grouping, and separator components backed by Bits UI `Select`
+- `Select` convenience and primitive wrapper components backed by Bits UI `Select`
 - `SensitiveInput`
 - `Sidebar`
 - `Surface`
