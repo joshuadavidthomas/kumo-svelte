@@ -41,6 +41,8 @@ Port Cloudflare's Kumo package from React/Base UI to Svelte 5, using:
 - Registry generation also fills common public prop descriptions for repeated
   props such as `class`, `children`, `disabled`, `value`, labels, placeholders,
   portal containers, and common callbacks.
+- Registry generation extracts component-level descriptions from upstream Kumo
+  docs frontmatter when the checked-in reference docs are available.
 - Catalog validation checks known component names, element/tree shape, props
   object shape, and literal variant prop values. Dynamic `{ path }` values pass
   through for runtime binding.
@@ -67,16 +69,17 @@ The generated metadata surfaces are currently basic:
 - `./catalog`
 
 They are generated from the Svelte package export list, source `*Props`
-interfaces, and source variant metadata. They validate tree shape and known
-component names. They include prop names, type strings, required flags, variant
+interfaces, source variant metadata, and upstream docs frontmatter where
+available. They validate tree shape and known component names. They include prop
+names, type strings, required flags, upstream component descriptions, variant
 values, variant defaults, variant classes, variant descriptions, base styles,
 common prop descriptions, simple generated examples, and explicit styling
 metadata where present. Runtime catalog validation uses the generated prop
 metadata for literal variant checks and simple primitive type checks.
 
 They do not yet include upstream-equivalent natural-language prop descriptions
-for every prop, extracted demo examples, rich component documentation, or full
-TypeScript-derived runtime validation for complex prop types.
+for every prop, extracted demo examples, full component documentation sections,
+or full TypeScript-derived runtime validation for complex prop types.
 
 ## Intentional Differences
 
@@ -87,6 +90,6 @@ TypeScript-derived runtime validation for complex prop types.
 ## Completion Rule
 
 Do not mark the port complete until the generated metadata/catalog surfaces have
-upstream-equivalent descriptions, extracted demo examples, and complex prop
+upstream-equivalent prop descriptions, extracted demo examples, and complex prop
 validation, or that metadata work is explicitly declared out of scope by the
 maintainer.

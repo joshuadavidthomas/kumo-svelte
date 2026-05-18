@@ -42,6 +42,8 @@ const COMMON_PROP_DESCRIPTIONS = {
   value: "Controlled value.",
 };
 
+const docsDescriptions = readDocsDescriptions();
+
 function pascal(slug) {
   return slug
     .split("-")
@@ -56,6 +58,33 @@ function readFiles(dir) {
     .readdirSync(dir)
     .filter((file) => file.endsWith(".svelte") || file.endsWith(".ts"))
     .map((file) => path.join(dir, file));
+}
+
+function readDocsDescriptions() {
+  const docsRoot = "reference/cloudflare-kumo/packages/kumo-docs-astro/src/pages";
+  const descriptions = {};
+
+  for (const section of ["components", "blocks"]) {
+    const dir = path.join(docsRoot, section);
+    if (!fs.existsSync(dir)) continue;
+
+    for (const file of fs.readdirSync(dir)) {
+      if (!file.endsWith(".mdx") && !file.endsWith(".astro")) continue;
+
+      const source = fs.readFileSync(path.join(dir, file), "utf8");
+      const sourceFile = frontmatterValue(source, "sourceFile");
+      const description = frontmatterValue(source, "description");
+
+      if (sourceFile && description) descriptions[sourceFile] = description;
+    }
+  }
+
+  return descriptions;
+}
+
+function frontmatterValue(source, key) {
+  const match = source.match(new RegExp(`^${key}:\\s*"([^"]+)"`, "m"));
+  return match?.[1];
 }
 
 function collectProps(dir) {
@@ -255,6 +284,10 @@ function applyCommonPropDescriptions(schema) {
   }
 }
 
+function applyDocsDescription(schema, sourceFile) {
+  if (docsDescriptions[sourceFile]) schema.description = docsDescriptions[sourceFile];
+}
+
 function runtimePropSchemas(registry) {
   const schemas = {};
 
@@ -309,6 +342,7 @@ for (const key of Object.keys(pkg.exports).filter((entry) =>
     registry.components[name].props = collectProps(dir);
     delete registry.components[name].baseStyles;
     delete registry.components[name].styling;
+    applyDocsDescription(registry.components[name], `components/${slug}`);
     applyVariantMetadata(registry.components[name], readVariantMetadata(dir));
     applyCommonPropDescriptions(registry.components[name]);
     applyGeneratedExamples(registry.components[name]);
@@ -325,6 +359,7 @@ for (const key of Object.keys(pkg.exports).filter((entry) =>
     registry.blocks[name].props = collectProps(dir);
     delete registry.blocks[name].baseStyles;
     delete registry.blocks[name].styling;
+    applyDocsDescription(registry.blocks[name], `blocks/${slug}`);
     applyVariantMetadata(registry.blocks[name], readVariantMetadata(dir));
     applyCommonPropDescriptions(registry.blocks[name]);
     applyGeneratedExamples(registry.blocks[name]);

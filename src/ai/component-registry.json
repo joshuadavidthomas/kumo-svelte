@@ -4,7 +4,7 @@
     "Autocomplete": {
       "name": "Autocomplete",
       "type": "component",
-      "description": "Svelte port of Kumo Autocomplete.",
+      "description": "A free-form text input with an optional filtered suggestion list. Unlike Combobox, the value is not constrained to the items list.",
       "importPath": "kumo-svelte/components/autocomplete",
       "category": "input",
       "props": {
@@ -152,7 +152,7 @@
     "Badge": {
       "name": "Badge",
       "type": "component",
-      "description": "Svelte port of Kumo Badge.",
+      "description": "Displays a small label for status, categorization, or metadata.",
       "importPath": "kumo-svelte/components/badge",
       "category": "display",
       "props": {
@@ -307,7 +307,7 @@
     "Banner": {
       "name": "Banner",
       "type": "component",
-      "description": "Svelte port of Kumo Banner.",
+      "description": "Displays contextual inline messages for informational, alert, or error states.",
       "importPath": "kumo-svelte/components/banner",
       "category": "feedback",
       "props": {
@@ -393,7 +393,7 @@
     "Breadcrumbs": {
       "name": "Breadcrumbs",
       "type": "component",
-      "description": "Svelte port of Kumo Breadcrumbs.",
+      "description": "A navigation component that shows the current page's location within a navigational hierarchy.",
       "importPath": "kumo-svelte/components/breadcrumbs",
       "category": "navigation",
       "props": {
@@ -481,7 +481,7 @@
     "Button": {
       "name": "Button",
       "type": "component",
-      "description": "Svelte port of Kumo Button.",
+      "description": "Displays a button or a component that looks like a button.",
       "importPath": "kumo-svelte/components/button",
       "category": "action",
       "props": {
@@ -665,7 +665,7 @@
     "Checkbox": {
       "name": "Checkbox",
       "type": "component",
-      "description": "Svelte port of Kumo Checkbox.",
+      "description": "A control that allows the user to toggle between checked and not checked. Features built-in label support with automatic horizontal layout.",
       "importPath": "kumo-svelte/components/checkbox",
       "category": "input",
       "props": {
@@ -811,7 +811,7 @@
     "ClipboardText": {
       "name": "ClipboardText",
       "type": "component",
-      "description": "Svelte port of Kumo ClipboardText.",
+      "description": "A text component with a copy-to-clipboard button.",
       "importPath": "kumo-svelte/components/clipboard-text",
       "category": "action",
       "props": {
@@ -888,7 +888,7 @@
     "CloudflareLogo": {
       "name": "CloudflareLogo",
       "type": "component",
-      "description": "Svelte port of Kumo CloudflareLogo.",
+      "description": "Official Cloudflare logo component with glyph and full logo variants.",
       "importPath": "kumo-svelte/components/cloudflare-logo",
       "category": "brand",
       "props": {
@@ -948,7 +948,7 @@
     "Collapsible": {
       "name": "Collapsible",
       "type": "component",
-      "description": "Svelte port of Kumo Collapsible.",
+      "description": "A composable disclosure component for showing and hiding content.",
       "importPath": "kumo-svelte/components/collapsible",
       "category": "disclosure",
       "props": {
@@ -1004,7 +1004,7 @@
     "Combobox": {
       "name": "Combobox",
       "type": "component",
-      "description": "Svelte port of Kumo Combobox.",
+      "description": "A searchable select component that allows users to filter and select from a list of options.",
       "importPath": "kumo-svelte/components/combobox",
       "category": "input",
       "props": {
@@ -1184,7 +1184,7 @@
     "CommandPalette": {
       "name": "CommandPalette",
       "type": "component",
-      "description": "Svelte port of Kumo CommandPalette.",
+      "description": "A composable command palette component for search and command dialogs.",
       "importPath": "kumo-svelte/components/command-palette",
       "category": "navigation",
       "props": {
@@ -1620,7 +1620,7 @@
     "DatePicker": {
       "name": "DatePicker",
       "type": "component",
-      "description": "Svelte port of Kumo DatePicker.",
+      "description": "A date selection calendar supporting single, multiple, and range selection modes.",
       "importPath": "kumo-svelte/components/date-picker",
       "category": "input",
       "props": {
@@ -1880,7 +1880,7 @@
     "Dialog": {
       "name": "Dialog",
       "type": "component",
-      "description": "Svelte port of Kumo Dialog.",
+      "description": "A window overlaid on either the primary window or another dialog window, rendering the content underneath inert.",
       "importPath": "kumo-svelte/components/dialog",
       "category": "overlay",
       "props": {
@@ -2074,7 +2074,7 @@
     "Dropdown": {
       "name": "Dropdown",
       "type": "component",
-      "description": "Svelte port of Kumo Dropdown.",
+      "description": "Displays a menu to the user—such as a set of actions or functions—triggered by a button.",
       "importPath": "kumo-svelte/components/dropdown",
       "category": "overlay",
       "props": {
@@ -2143,7 +2143,7 @@
     "Empty": {
       "name": "Empty",
       "type": "component",
-      "description": "Svelte port of Kumo Empty.",
+      "description": "A component to display when there's no content or data to show, with optional command line and actions.",
       "importPath": "kumo-svelte/components/empty",
       "category": "display",
       "props": {
@@ -2288,7 +2288,7 @@
     "Flow": {
       "name": "Flow",
       "type": "component",
-      "description": "Svelte port of Kumo Flow.",
+      "description": "A group of components for building directed flow diagrams with nodes and connectors.",
       "importPath": "kumo-svelte/components/flow",
       "category": "display",
       "props": {
@@ -2367,7 +2367,7 @@
     "Grid": {
       "name": "Grid",
       "type": "component",
-      "description": "Svelte port of Kumo Grid.",
+      "description": "A responsive grid layout component for organizing content into columns.",
       "importPath": "kumo-svelte/components/grid",
       "category": "layout",
       "props": {
@@ -2499,7 +2499,7 @@
     "Input": {
       "name": "Input",
       "type": "component",
-      "description": "Svelte port of Kumo Input.",
+      "description": "A text input field for user input with built-in label, description, and error support.",
       "importPath": "kumo-svelte/components/input",
       "category": "input",
       "props": {
@@ -2666,7 +2666,7 @@
     "InputGroup": {
       "name": "InputGroup",
       "type": "component",
-      "description": "Svelte port of Kumo InputGroup.",
+      "description": "Compose inputs with addons, icons, buttons, and text for rich form fields.",
       "importPath": "kumo-svelte/components/input-group",
       "category": "input",
       "props": {
@@ -2792,7 +2792,7 @@
     "Label": {
       "name": "Label",
       "type": "component",
-      "description": "Svelte port of Kumo Label.",
+      "description": "A label component for form fields with support for required/optional indicators and tooltips.",
       "importPath": "kumo-svelte/components/label",
       "category": "form",
       "props": {
@@ -2837,7 +2837,7 @@
     "LayerCard": {
       "name": "LayerCard",
       "type": "component",
-      "description": "Svelte port of Kumo LayerCard.",
+      "description": "A card component with a layered visual effect, perfect for navigation or feature highlights.",
       "importPath": "kumo-svelte/components/layer-card",
       "category": "display",
       "props": {
@@ -2869,7 +2869,7 @@
     "Switch": {
       "name": "Switch",
       "type": "component",
-      "description": "Svelte port of Kumo Switch.",
+      "description": "A two-state button that can be either on or off.",
       "importPath": "kumo-svelte/components/switch",
       "category": "input",
       "props": {
@@ -3031,7 +3031,7 @@
     "TableOfContents": {
       "name": "TableOfContents",
       "type": "component",
-      "description": "Svelte port of Kumo TableOfContents.",
+      "description": "Presentational compound component for section navigation with an active indicator bar.",
       "importPath": "kumo-svelte/components/table-of-contents",
       "category": "navigation",
       "props": {
@@ -3088,7 +3088,7 @@
     "Tabs": {
       "name": "Tabs",
       "type": "component",
-      "description": "Svelte port of Kumo Tabs.",
+      "description": "A set of layered sections of content, known as tab panels, displayed one at a time.",
       "importPath": "kumo-svelte/components/tabs",
       "category": "navigation",
       "props": {
@@ -3181,7 +3181,7 @@
     "Link": {
       "name": "Link",
       "type": "component",
-      "description": "Svelte port of Kumo Link.",
+      "description": "A styled anchor component for inline text links with multiple variants and composition support.",
       "importPath": "kumo-svelte/components/link",
       "category": "navigation",
       "props": {
@@ -3246,7 +3246,7 @@
     "Loader": {
       "name": "Loader",
       "type": "component",
-      "description": "Svelte port of Kumo Loader.",
+      "description": "A loading spinner to indicate loading state.",
       "importPath": "kumo-svelte/components/loader",
       "category": "feedback",
       "props": {
@@ -3321,7 +3321,7 @@
     "Menubar": {
       "name": "Menubar",
       "type": "component",
-      "description": "Svelte port of Kumo Menubar.",
+      "description": "A horizontal menu bar with icon buttons, commonly used for text editors or toolbars.",
       "importPath": "kumo-svelte/components/menubar",
       "category": "navigation",
       "props": {
@@ -3352,7 +3352,7 @@
     "Meter": {
       "name": "Meter",
       "type": "component",
-      "description": "Svelte port of Kumo Meter.",
+      "description": "A progress/percentage meter component for displaying numeric values within a known range.",
       "importPath": "kumo-svelte/components/meter",
       "category": "display",
       "props": {
@@ -3410,7 +3410,7 @@
     "Pagination": {
       "name": "Pagination",
       "type": "component",
-      "description": "Svelte port of Kumo Pagination.",
+      "description": "A page navigation component for navigating through paginated content.",
       "importPath": "kumo-svelte/components/pagination",
       "category": "navigation",
       "props": {
@@ -3517,7 +3517,7 @@
     "Popover": {
       "name": "Popover",
       "type": "component",
-      "description": "Svelte port of Kumo Popover.",
+      "description": "An accessible popup anchored to a trigger element, used for displaying rich content like menus, forms, or additional information.",
       "importPath": "kumo-svelte/components/popover",
       "category": "overlay",
       "props": {
@@ -3592,7 +3592,7 @@
     "Radio": {
       "name": "Radio",
       "type": "component",
-      "description": "Svelte port of Kumo Radio.",
+      "description": "A control that allows the user to select one option from a set. Always used within a Radio.Group.",
       "importPath": "kumo-svelte/components/radio",
       "category": "input",
       "props": {
@@ -3736,7 +3736,7 @@
     "Select": {
       "name": "Select",
       "type": "component",
-      "description": "Svelte port of Kumo Select.",
+      "description": "Displays a list of options for the user to pick from—triggered by a button.",
       "importPath": "kumo-svelte/components/select",
       "category": "input",
       "props": {
@@ -3899,7 +3899,7 @@
     "SensitiveInput": {
       "name": "SensitiveInput",
       "type": "component",
-      "description": "Svelte port of Kumo SensitiveInput.",
+      "description": "A masked input for sensitive values like API keys and passwords. Click to reveal.",
       "importPath": "kumo-svelte/components/sensitive-input",
       "category": "input",
       "props": {
@@ -4240,7 +4240,7 @@
     "Table": {
       "name": "Table",
       "type": "component",
-      "description": "Svelte port of Kumo Table.",
+      "description": "A table component for displaying tabular data with support for selection, row variants, and column sizing.",
       "importPath": "kumo-svelte/components/table",
       "category": "data",
       "props": {
@@ -4375,7 +4375,7 @@
     "Text": {
       "name": "Text",
       "type": "component",
-      "description": "Svelte port of Kumo Text.",
+      "description": "A typography component for various heading and copy styles.",
       "importPath": "kumo-svelte/components/text",
       "category": "typography",
       "props": {
@@ -4557,7 +4557,7 @@
     "Toast": {
       "name": "Toast",
       "type": "component",
-      "description": "Svelte port of Kumo Toast.",
+      "description": "A notification system for displaying brief, non-intrusive messages to users.",
       "importPath": "kumo-svelte/components/toast",
       "category": "feedback",
       "props": {
@@ -4662,7 +4662,7 @@
     "Tooltip": {
       "name": "Tooltip",
       "type": "component",
-      "description": "Svelte port of Kumo Tooltip.",
+      "description": "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
       "importPath": "kumo-svelte/components/tooltip",
       "category": "overlay",
       "props": {
@@ -4768,7 +4768,7 @@
     "DeleteResource": {
       "name": "DeleteResource",
       "type": "block",
-      "description": "Svelte port of Kumo DeleteResource block.",
+      "description": "A confirmation dialog for safely deleting resources, requiring users to type the resource name to confirm.",
       "importPath": "kumo-svelte/blocks/delete-resource",
       "category": "block",
       "props": {
