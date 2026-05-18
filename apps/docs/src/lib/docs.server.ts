@@ -640,6 +640,7 @@ function primitiveUrl(baseUIComponent: string | undefined, sourceFile: string | 
     "loader",
     "pagination",
     "sensitive-input",
+    "sidebar",
     "surface",
     "table",
     "table-of-contents",
