@@ -62,6 +62,7 @@
 </script>
 
 <RadioGroupPrimitive.Root
+  data-slot="radio-group"
   value={groupValue}
   onValueChange={handleValueChange}
   {disabled}

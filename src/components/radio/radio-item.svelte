@@ -42,6 +42,7 @@
 
 {#snippet control()}
   <RadioGroupPrimitive.Item
+    data-slot="radio-group-item"
     {id}
     {value}
     {disabled}
@@ -60,7 +61,10 @@
     )}
   >
     {#snippet children({ checked })}
-      <span class={cn("h-2 w-2 rounded-full bg-kumo-base", !checked && "invisible")}></span>
+      <span
+        data-slot="radio-group-indicator"
+        class={cn("h-2 w-2 rounded-full bg-kumo-base", !checked && "invisible")}
+      ></span>
     {/snippet}
   </RadioGroupPrimitive.Item>
 {/snippet}

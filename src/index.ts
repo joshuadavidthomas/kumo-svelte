@@ -633,6 +633,7 @@ export {
 export { default as Radio } from "./components/radio/radio-group.svelte";
 export { default as RadioGroup } from "./components/radio/radio-group.svelte";
 export { default as RadioItem } from "./components/radio/radio-item.svelte";
+export { default as RadioGroupItem } from "./components/radio/radio-item.svelte";
 export { default as RadioLegend } from "./components/radio/radio-legend.svelte";
 export {
   radioVariants,
@@ -642,6 +643,7 @@ export {
   type KumoRadioVariant,
   type KumoRadioVariantsProps,
   type RadioControlPosition,
+  type RadioGroupItemProps,
   type RadioGroupProps,
   type RadioItemProps,
   type RadioLegendProps,

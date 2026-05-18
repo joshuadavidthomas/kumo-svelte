@@ -6,10 +6,12 @@ import RadioLegendComponent from "./radio-legend.svelte";
 export { default as Radio } from "./radio-group.svelte";
 export { default as RadioGroup } from "./radio-group.svelte";
 export { default as RadioItem } from "./radio-item.svelte";
+export { default as RadioGroupItem } from "./radio-item.svelte";
 export { default as RadioLegend } from "./radio-legend.svelte";
 
 export type RadioGroupProps = ComponentProps<typeof RadioGroupComponent>;
 export type RadioItemProps = ComponentProps<typeof RadioItemComponent>;
+export type RadioGroupItemProps = RadioItemProps;
 export type RadioLegendProps = ComponentProps<typeof RadioLegendComponent>;
 
 export {
