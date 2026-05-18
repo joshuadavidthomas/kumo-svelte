@@ -498,6 +498,10 @@ export {
 } from "./components/input-group";
 
 export { default as Tooltip } from "./components/tooltip/tooltip.svelte";
+export { default as TooltipRoot } from "./components/tooltip/tooltip-root.svelte";
+export { default as TooltipTrigger } from "./components/tooltip/tooltip-trigger.svelte";
+export { default as TooltipPortal } from "./components/tooltip/tooltip-portal.svelte";
+export { default as TooltipContent } from "./components/tooltip/tooltip-content.svelte";
 export { default as TooltipProvider } from "./components/tooltip/tooltip-provider.svelte";
 export {
   tooltipVariants,
@@ -506,8 +510,12 @@ export {
   type KumoTooltipAlign,
   type KumoTooltipSide,
   type KumoTooltipVariantsProps,
+  type TooltipContentProps,
+  type TooltipPortalProps,
   type TooltipProps,
   type TooltipProviderProps,
+  type TooltipRootProps,
+  type TooltipTriggerProps,
 } from "./components/tooltip";
 
 export { default as Link } from "./components/link/link.svelte";

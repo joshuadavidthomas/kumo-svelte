@@ -54,7 +54,7 @@ The current port includes all top-level component groups from upstream Kumo:
 - `Table` and table section/cell helpers
 - `Text`
 - `Toast` backed by `svelte-sonner`
-- `Tooltip` and `TooltipProvider` backed by Bits UI `Tooltip`
+- `Tooltip` convenience and primitive wrapper components backed by Bits UI `Tooltip`
 - `KumoPortalProvider`, `LinkProvider`, `cn()`, and `resolveVariant()`
 - Registry metadata from `kumo-svelte/registry`, including component props,
   upstream component descriptions, common prop descriptions, generated examples,
