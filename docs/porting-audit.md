@@ -55,6 +55,9 @@ Port Cloudflare's Kumo package from React/Base UI to Svelte 5, using:
 - Registry generation extracts component-level descriptions from upstream Kumo
   docs frontmatter when the checked-in reference docs are available, with
   fallback descriptions for components that do not have a dedicated docs page.
+- Registry generation includes the raw upstream MDX documentation under
+  `upstreamDocs` when a checked-in upstream docs page declares the matching
+  `sourceFile`.
 - Catalog validation checks known component names, element/tree shape, props
   object shape, and literal variant prop values. Dynamic `{ path }` values pass
   through for runtime binding.
@@ -88,14 +91,15 @@ interfaces, source variant metadata, and upstream docs frontmatter where
 available. They validate tree shape and known component names. They include prop
 names, type strings, required flags, component descriptions, variant
 values, variant defaults, variant classes, variant descriptions, base styles,
-common prop descriptions, simple generated examples, upstream TSX demo snippets
-under `upstreamExamples`, and explicit styling metadata where present. Runtime
-catalog validation uses the generated prop metadata for literal variant checks
-and simple primitive type checks.
+common prop descriptions, simple generated examples, upstream MDX docs under
+`upstreamDocs`, upstream TSX demo snippets under `upstreamExamples`, and
+explicit styling metadata where present. Runtime catalog validation uses the
+generated prop metadata for literal variant checks and simple primitive type
+checks.
 
 They do not yet include upstream-equivalent natural-language prop descriptions
-for every prop, full component documentation sections, or full
-TypeScript-derived runtime validation for complex prop types.
+for every prop or full TypeScript-derived runtime validation for complex prop
+types.
 
 ## Intentional Differences
 

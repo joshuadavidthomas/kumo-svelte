@@ -55,6 +55,7 @@ const DEMO_SOURCE_COMPONENT_NAMES = {
 };
 
 const docsDescriptions = readDocsDescriptions();
+const docsContents = readDocsContents();
 const demoExamples = readDemoExamples();
 
 function pascal(slug) {
@@ -97,6 +98,30 @@ function readDocsDescriptions() {
   }
 
   return descriptions;
+}
+
+function readDocsContents() {
+  const docsRoot = "reference/cloudflare-kumo/packages/kumo-docs-astro/src/pages";
+  const contents = {};
+
+  if (!fs.existsSync(docsRoot)) return contents;
+
+  for (const filePath of walkFiles(docsRoot)) {
+    if (!filePath.endsWith(".mdx") && !filePath.endsWith(".astro")) continue;
+
+    const source = fs.readFileSync(filePath, "utf8");
+    const sourceFile =
+      frontmatterValue(source, "sourceFile") ?? componentAttributeValue(source, "sourceFile");
+
+    if (sourceFile && !contents[sourceFile]) {
+      contents[sourceFile] = source.trim();
+      if (!sourceFile.includes("/") && !contents[`components/${sourceFile}`]) {
+        contents[`components/${sourceFile}`] = source.trim();
+      }
+    }
+  }
+
+  return contents;
 }
 
 function readDemoExamples() {
@@ -422,6 +447,10 @@ function applyDocsDescription(schema, sourceFile) {
   if (docsDescriptions[sourceFile]) schema.description = docsDescriptions[sourceFile];
 }
 
+function applyDocsContent(schema, sourceFile) {
+  if (docsContents[sourceFile]) schema.upstreamDocs = docsContents[sourceFile];
+}
+
 function runtimePropSchemas(registry) {
   const schemas = {};
 
@@ -502,8 +531,10 @@ for (const key of Object.keys(pkg.exports).filter((entry) =>
     registry.components[name].props = collectProps(dir);
     delete registry.components[name].baseStyles;
     delete registry.components[name].styling;
+    delete registry.components[name].upstreamDocs;
     delete registry.components[name].upstreamExamples;
     applyDocsDescription(registry.components[name], `components/${slug}`);
+    applyDocsContent(registry.components[name], `components/${slug}`);
     applyVariantMetadata(registry.components[name], readVariantMetadata(dir));
     applyCommonPropDescriptions(registry.components[name]);
     registry.components[name].examples = [];
@@ -522,8 +553,10 @@ for (const key of Object.keys(pkg.exports).filter((entry) =>
     registry.blocks[name].props = collectProps(dir);
     delete registry.blocks[name].baseStyles;
     delete registry.blocks[name].styling;
+    delete registry.blocks[name].upstreamDocs;
     delete registry.blocks[name].upstreamExamples;
     applyDocsDescription(registry.blocks[name], `blocks/${slug}`);
+    applyDocsContent(registry.blocks[name], `blocks/${slug}`);
     applyVariantMetadata(registry.blocks[name], readVariantMetadata(dir));
     applyCommonPropDescriptions(registry.blocks[name]);
     registry.blocks[name].examples = [];
