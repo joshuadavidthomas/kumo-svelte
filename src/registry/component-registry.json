@@ -1344,7 +1344,7 @@
     "Code": {
       "name": "Code",
       "type": "component",
-      "description": "Svelte port of Kumo Code.",
+      "description": "Shiki-powered syntax highlighting with VS Code-quality highlighting, theming, and lazy loading.",
       "importPath": "kumo-svelte/components/code",
       "category": "display",
       "props": {
@@ -1429,7 +1429,7 @@
     "Chart": {
       "name": "Chart",
       "type": "component",
-      "description": "Svelte port of Kumo Chart.",
+      "description": "Charts built on ECharts.",
       "importPath": "kumo-svelte/components/chart",
       "category": "display",
       "props": {
@@ -1773,7 +1773,7 @@
     "DateRangePicker": {
       "name": "DateRangePicker",
       "type": "component",
-      "description": "Svelte port of Kumo DateRangePicker.",
+      "description": "Calendar date range picker for selecting start and end dates.",
       "importPath": "kumo-svelte/components/date-range-picker",
       "category": "input",
       "props": {
@@ -2227,7 +2227,7 @@
     "Field": {
       "name": "Field",
       "type": "component",
-      "description": "Svelte port of Kumo Field.",
+      "description": "Form field wrapper for labels, descriptions, errors, and required state.",
       "importPath": "kumo-svelte/components/field",
       "category": "form",
       "props": {
@@ -2499,7 +2499,7 @@
     "Input": {
       "name": "Input",
       "type": "component",
-      "description": "A text input field for user input with built-in label, description, and error support.",
+      "description": "A multi-line text input for longer content with built-in label, description, and error support.",
       "importPath": "kumo-svelte/components/input",
       "category": "input",
       "props": {
@@ -3970,7 +3970,7 @@
     "Sidebar": {
       "name": "Sidebar",
       "type": "component",
-      "description": "Svelte port of Kumo Sidebar.",
+      "description": "A composable sidebar navigation component with collapsible groups, icon-only mode, and responsive mobile support.",
       "importPath": "kumo-svelte/components/sidebar",
       "category": "navigation",
       "props": {
@@ -4180,7 +4180,7 @@
     "Surface": {
       "name": "Surface",
       "type": "component",
-      "description": "Svelte port of Kumo Surface.",
+      "description": "LayerCard-backed surface wrapper for section backgrounds.",
       "importPath": "kumo-svelte/components/surface",
       "category": "layout",
       "props": {

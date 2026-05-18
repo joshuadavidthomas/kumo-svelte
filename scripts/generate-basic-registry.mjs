@@ -42,6 +42,13 @@ const COMMON_PROP_DESCRIPTIONS = {
   value: "Controlled value.",
 };
 
+const FALLBACK_COMPONENT_DESCRIPTIONS = {
+  "components/chart": "Charts built on ECharts.",
+  "components/date-range-picker": "Calendar date range picker for selecting start and end dates.",
+  "components/field": "Form field wrapper for labels, descriptions, errors, and required state.",
+  "components/surface": "LayerCard-backed surface wrapper for section backgrounds.",
+};
+
 const docsDescriptions = readDocsDescriptions();
 
 function pascal(slug) {
@@ -62,28 +69,52 @@ function readFiles(dir) {
 
 function readDocsDescriptions() {
   const docsRoot = "reference/cloudflare-kumo/packages/kumo-docs-astro/src/pages";
-  const descriptions = {};
+  const descriptions = { ...FALLBACK_COMPONENT_DESCRIPTIONS };
 
-  for (const section of ["components", "blocks"]) {
-    const dir = path.join(docsRoot, section);
-    if (!fs.existsSync(dir)) continue;
+  if (!fs.existsSync(docsRoot)) return descriptions;
 
-    for (const file of fs.readdirSync(dir)) {
-      if (!file.endsWith(".mdx") && !file.endsWith(".astro")) continue;
+  for (const filePath of walkFiles(docsRoot)) {
+    if (!filePath.endsWith(".mdx") && !filePath.endsWith(".astro")) continue;
 
-      const source = fs.readFileSync(path.join(dir, file), "utf8");
-      const sourceFile = frontmatterValue(source, "sourceFile");
-      const description = frontmatterValue(source, "description");
+    const source = fs.readFileSync(filePath, "utf8");
+    const sourceFile =
+      frontmatterValue(source, "sourceFile") ?? componentAttributeValue(source, "sourceFile");
+    const description =
+      frontmatterValue(source, "description") ?? componentAttributeValue(source, "description");
 
-      if (sourceFile && description) descriptions[sourceFile] = description;
+    if (sourceFile && description && !descriptions[sourceFile]) {
+      descriptions[sourceFile] = description;
+      if (!sourceFile.includes("/") && !descriptions[`components/${sourceFile}`]) {
+        descriptions[`components/${sourceFile}`] = description;
+      }
     }
   }
 
   return descriptions;
 }
 
+function walkFiles(dir) {
+  const files = [];
+
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const entryPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      files.push(...walkFiles(entryPath));
+    } else {
+      files.push(entryPath);
+    }
+  }
+
+  return files;
+}
+
 function frontmatterValue(source, key) {
   const match = source.match(new RegExp(`^${key}:\\s*"([^"]+)"`, "m"));
+  return match?.[1];
+}
+
+function componentAttributeValue(source, key) {
+  const match = source.match(new RegExp(`\\b${key}="([^"]+)"`));
   return match?.[1];
 }
 

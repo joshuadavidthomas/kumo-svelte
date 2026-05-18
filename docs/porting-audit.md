@@ -42,7 +42,8 @@ Port Cloudflare's Kumo package from React/Base UI to Svelte 5, using:
   props such as `class`, `children`, `disabled`, `value`, labels, placeholders,
   portal containers, and common callbacks.
 - Registry generation extracts component-level descriptions from upstream Kumo
-  docs frontmatter when the checked-in reference docs are available.
+  docs frontmatter when the checked-in reference docs are available, with
+  fallback descriptions for components that do not have a dedicated docs page.
 - Catalog validation checks known component names, element/tree shape, props
   object shape, and literal variant prop values. Dynamic `{ path }` values pass
   through for runtime binding.
@@ -71,7 +72,7 @@ The generated metadata surfaces are currently basic:
 They are generated from the Svelte package export list, source `*Props`
 interfaces, source variant metadata, and upstream docs frontmatter where
 available. They validate tree shape and known component names. They include prop
-names, type strings, required flags, upstream component descriptions, variant
+names, type strings, required flags, component descriptions, variant
 values, variant defaults, variant classes, variant descriptions, base styles,
 common prop descriptions, simple generated examples, and explicit styling
 metadata where present. Runtime catalog validation uses the generated prop
