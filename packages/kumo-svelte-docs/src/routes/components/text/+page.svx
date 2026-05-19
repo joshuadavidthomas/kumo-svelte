@@ -1,0 +1,97 @@
+---
+title: Text
+description: A typography component for various heading and copy styles.
+sourceFile: components/text
+---
+
+<script lang="ts">
+  import Example from "$lib/components/example.svelte";
+  import { Text } from "kumo-svelte";
+  import TextTruncateDemo from "./text-truncate-demo.svelte";
+  import TextVariantsDemo from "./text-variants-demo.svelte";
+</script>
+
+<Example demo="text-variants-demo">
+  <TextVariantsDemo />
+</Example>
+
+## Installation
+
+### Barrel
+
+```ts
+import { Text } from "kumo-svelte";
+```
+
+### Granular
+
+```ts
+import { Text } from "kumo-svelte/components/text";
+```
+
+## Usage
+
+```svelte
+<script lang="ts">
+  import { Text } from "kumo-svelte";
+</script>
+
+<Text>Your content here</Text>
+```
+
+<section class="mt-8 space-y-4">
+  <Text variant="heading3" as="h3">Semantic HTML</Text>
+  <Text>
+    The `variant` prop controls visual styling only; it does not determine the HTML element rendered. Use `as` to choose the semantic element when text should contribute to the document outline.
+  </Text>
+</section>
+
+```svelte
+<Text variant="heading1" as="h1">Page Title</Text>
+<Text variant="heading2" as="h2">Section Title</Text>
+<Text variant="heading1" as="span">Big bold card label</Text>
+<Text variant="heading1" as="h3">Visually large, semantically h3</Text>
+```
+
+<section class="mt-8 space-y-4">
+  <Text variant="heading3" as="h3">Restrictions</Text>
+  <Text>
+    The `bold` and `size` props are intended for body-style variants. Monospace variants can use `size="lg"`; headings should use their variant and semantic `as` element.
+  </Text>
+</section>
+
+```svelte
+<Text size="sm" bold>Body</Text>
+<Text variant="secondary" bold>Body secondary</Text>
+<Text variant="success" size="lg">Success</Text>
+<Text variant="mono" size="lg">Monospace</Text>
+```
+
+## Truncate
+
+<Text>
+  Use the `truncate` prop to clip overflowing text with an ellipsis. This adds `truncate min-w-0` classes, which is useful when `Text` is inside a flex or grid container.
+</Text>
+
+<Example demo="text-truncate-demo">
+  <TextTruncateDemo />
+</Example>
+
+```svelte
+<Text truncate>This is a long piece of text that will be truncated...</Text>
+```
+
+## API Reference
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `variant` | `KumoTextVariant` | `"body"` | Visual style variant. |
+| `size` | `"xs" \| "sm" \| "base" \| "lg"` | `"base"` | Text size for supported variants. |
+| `bold` | `boolean` | `false` | Medium font weight for supported variants. |
+| `truncate` | `boolean` | `false` | Adds truncation classes. |
+| `as` | `"h1" \| "h2" \| "h3" \| "h4" \| "h5" \| "h6" \| "p" \| "span"` | inferred | Rendered element. |
+| `DANGEROUS_className` | `string` | — | Escape hatch for additional classes. |
+| `DANGEROUS_style` | `string` | — | Escape hatch for inline styles. |
+| `children` | `Snippet` | — | Text content. |
+
+Text also accepts standard HTML attributes for the rendered element.
