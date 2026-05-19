@@ -28,7 +28,7 @@ For each page:
 - [x] Date Picker — `/components/date-picker`
 - [x] Dialog — `/components/dialog`
 - [x] Dropdown — `/components/dropdown`
-- [ ] Empty — `/components/empty`
+- [x] Empty — `/components/empty`
 - [ ] Flow — `/components/flow`
 - [ ] Grid — `/components/grid`
 - [ ] Input — `/components/input`
