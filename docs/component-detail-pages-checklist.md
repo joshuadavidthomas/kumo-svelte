@@ -22,7 +22,7 @@ For each page:
 - [x] Clipboard Text — `/components/clipboard-text`
 - [x] Cloudflare Logo — `/components/cloudflare-logo`
 - [x] CodeHighlighted — `/components/code-highlighted`
-- [ ] Collapsible — `/components/collapsible`
+- [x] Collapsible — `/components/collapsible`
 - [ ] Combobox — `/components/combobox`
 - [ ] Command Palette — `/components/command-palette`
 - [ ] Date Picker — `/components/date-picker`
