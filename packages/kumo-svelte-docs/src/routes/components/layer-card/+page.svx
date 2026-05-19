@@ -1,0 +1,127 @@
+---
+title: Layer Card
+description: A card component with a layered visual effect, perfect for navigation or feature highlights.
+sourceFile: components/layer-card
+---
+
+<script lang="ts">
+  import Example from "$lib/components/example.svelte";
+  import LayerCardBasicDemo from "./layer-card-basic-demo.svelte";
+  import LayerCardDemo from "./layer-card-demo.svelte";
+  import LayerCardFilterDemo from "./layer-card-filter-demo.svelte";
+  import LayerCardMultipleDemo from "./layer-card-multiple-demo.svelte";
+  import LayerCardSurfaceDemo from "./layer-card-surface-demo.svelte";
+  import LayerCardTestIdDemo from "./layer-card-test-id-demo.svelte";
+</script>
+
+<Example demo="layer-card-demo">
+  <LayerCardDemo />
+</Example>
+
+## Installation
+
+### Barrel
+
+```ts
+import { LayerCard, LayerCardPrimary, LayerCardSecondary } from "kumo-svelte";
+```
+
+### Granular
+
+```ts
+import { LayerCard, LayerCardPrimary, LayerCardSecondary } from "kumo-svelte/components/layer-card";
+```
+
+## Usage
+
+```svelte
+<script lang="ts">
+  import { LayerCard, LayerCardPrimary, LayerCardSecondary } from "kumo-svelte";
+</script>
+
+<LayerCard layered class="w-[250px]">
+  <LayerCardSecondary>Documentation</LayerCardSecondary>
+  <LayerCardPrimary>Learn how to use Kumo components</LayerCardPrimary>
+</LayerCard>
+```
+
+LayerCard also supports a simple surface-style mode for cases where you do not need a secondary header row. In those cases, render content directly inside `LayerCard` and omit the `layered` prop.
+
+```svelte
+<LayerCard class="w-[250px] p-4">
+  Learn how to use Kumo components
+</LayerCard>
+```
+
+## Examples
+
+### Basic Card
+
+<Example demo="layer-card-basic-demo">
+  <LayerCardBasicDemo />
+</Example>
+
+### Surface-style Card
+
+For simple card containers, render content directly inside `LayerCard` without `LayerCardPrimary`.
+
+<Example demo="layer-card-surface-demo">
+  <LayerCardSurfaceDemo />
+</Example>
+
+### Multiple Cards
+
+<Example demo="layer-card-multiple-demo">
+  <LayerCardMultipleDemo />
+</Example>
+
+### Filter Toolbar with Small Tabs
+
+Combine `Tabs size="sm"` with `Input size="sm"` inside a LayerCard for compact filter toolbars. Both share the same 26px height.
+
+<Example demo="layer-card-filter-demo">
+  <LayerCardFilterDemo />
+</Example>
+
+### Test IDs
+
+`LayerCardPrimary` and `LayerCardSecondary` accept all standard HTML attributes, including `data-testid` for testing.
+
+<Example demo="layer-card-test-id-demo">
+  <LayerCardTestIdDemo />
+</Example>
+
+## API Reference
+
+### `LayerCard`
+
+| Prop | Type | Required | Description |
+| --- | --- | --- | --- |
+| `as` | `keyof HTMLElementTagNameMap` | No | Element to render. Defaults to `"div"`. |
+| `children` | `Snippet` | No | Card contents. |
+| `class` | `string` | No | Additional classes. |
+| `layered` | `boolean` | No | Uses the layered root styles for `LayerCardSecondary` + `LayerCardPrimary` composition. Defaults to `false`. |
+
+LayerCard also accepts standard HTML attributes for the rendered element.
+
+### `LayerCardPrimary`
+
+| Prop | Type | Required | Description |
+| --- | --- | --- | --- |
+| `children` | `Snippet` | No | Primary card content. |
+| `class` | `string` | No | Additional classes. |
+
+LayerCardPrimary also accepts standard `HTMLDivElement` attributes.
+
+### `LayerCardSecondary`
+
+| Prop | Type | Required | Description |
+| --- | --- | --- | --- |
+| `children` | `Snippet` | No | Secondary header content. |
+| `class` | `string` | No | Additional classes. |
+
+LayerCardSecondary also accepts standard `HTMLDivElement` attributes.
+
+## Svelte Notes
+
+The Svelte package exports named components (`LayerCardPrimary`, `LayerCardSecondary`) instead of React compound properties (`LayerCard.Primary`, `LayerCard.Secondary`). Use `layered` on the root when composing the primary and secondary regions.
