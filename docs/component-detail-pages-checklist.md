@@ -50,7 +50,7 @@ For each page:
 - [x] Switch — `/components/switch`
 - [x] Table — `/components/table`
 - [x] Table of Contents — `/components/table-of-contents`
-- [ ] Tabs — `/components/tabs`
+- [x] Tabs — `/components/tabs`
 - [ ] Text — `/components/text`
 - [ ] Toast — `/components/toast`
 - [ ] Tooltip — `/components/tooltip`

@@ -1,0 +1,120 @@
+---
+title: Tabs
+description: A set of layered sections of content, known as tab panels, displayed one at a time.
+sourceFile: components/tabs
+---
+
+<script lang="ts">
+  import Example from "$lib/components/example.svelte";
+  import TabsControlledDemo from "./tabs-controlled-demo.svelte";
+  import TabsDefaultDemo from "./tabs-default-demo.svelte";
+  import TabsManyDemo from "./tabs-many-demo.svelte";
+  import TabsSegmentedDemo from "./tabs-segmented-demo.svelte";
+  import TabsSmDemo from "./tabs-sm-demo.svelte";
+  import TabsUnderlineDemo from "./tabs-underline-demo.svelte";
+</script>
+
+<Example demo="tabs-default-demo">
+  <TabsDefaultDemo />
+</Example>
+
+## Installation
+
+### Barrel
+
+```ts
+import { Tabs } from "kumo-svelte";
+```
+
+### Granular
+
+```ts
+import { Tabs } from "kumo-svelte/components/tabs";
+```
+
+## Usage
+
+```svelte
+<script lang="ts">
+  import { Tabs } from "kumo-svelte";
+</script>
+
+<Tabs
+  tabs={[
+    { value: "overview", label: "Overview" },
+    { value: "settings", label: "Settings" },
+  ]}
+  selectedValue="overview"
+/>
+```
+
+## Examples
+
+### Variants
+
+#### Segmented (Default)
+
+A pill-shaped indicator slides between tabs on a subtle background.
+
+<Example demo="tabs-segmented-demo">
+  <TabsSegmentedDemo />
+</Example>
+
+#### Underline
+
+A bottom border with a primary-colored indicator. The active tab has bolder text for emphasis.
+
+<Example demo="tabs-underline-demo">
+  <TabsUnderlineDemo />
+</Example>
+
+### Small Size
+
+Use `size="sm"` for a compact tab bar that matches `Input size="sm"` height.
+
+<Example demo="tabs-sm-demo">
+  <TabsSmDemo />
+</Example>
+
+### Controlled
+
+Use the `value` and `onValueChange` props for controlled state.
+
+<Example demo="tabs-controlled-demo">
+  <TabsControlledDemo />
+</Example>
+
+### Many Tabs
+
+Tabs automatically scroll horizontally when there are many items.
+
+<Example demo="tabs-many-demo">
+  <TabsManyDemo />
+</Example>
+
+## API Reference
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `tabs` | `TabsItem[]` | `[]` | Tab trigger definitions. |
+| `value` | `string` | — | Controlled active value. |
+| `selectedValue` | `string` | first tab | Initial active value for uncontrolled use. |
+| `onValueChange` | `(value: string) => void` | — | Called when active tab changes. |
+| `variant` | `"segmented" \| "underline"` | `"segmented"` | Visual style. |
+| `size` | `"sm" \| "base"` | `"base"` | Tab size. |
+| `activateOnFocus` | `boolean` | `false` | Enables automatic activation on focus. |
+| `class` | `string` | — | Additional root classes. |
+| `listClassName` | `string` | — | Additional classes for the tab list. |
+
+### TabsItem
+
+| Property | Type | Required | Description |
+| --- | --- | --- | --- |
+| `value` | `string` | Yes | Tab value. |
+| `label` | `Snippet \| string` | Yes | Tab label. |
+| `disabled` | `boolean` | No | Disables the tab. |
+| `class` | `string` | No | Additional trigger classes. |
+
+## Svelte Notes
+
+The Svelte Tabs component accepts string or snippet labels. The upstream React render-prop tab customization API is not part of the Svelte component API; use snippets for label content or the lower-level `TabsRoot`, `TabsList`, `TabsTrigger`, and `TabsContent` exports for custom layouts.
