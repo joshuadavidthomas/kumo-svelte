@@ -1,0 +1,109 @@
+---
+title: Grid
+description: A responsive grid layout component for organizing content into columns.
+sourceFile: components/grid
+---
+
+<script lang="ts">
+  import Example from "$lib/components/example.svelte";
+  import GridAsymmetricDemo from "./grid-asymmetric-demo.svelte";
+  import GridDemo from "./grid-demo.svelte";
+  import GridGapDemo from "./grid-gap-demo.svelte";
+  import GridMobileDividerDemo from "./grid-mobile-divider-demo.svelte";
+  import GridVariantsDemo from "./grid-variants-demo.svelte";
+</script>
+
+<Example demo="grid-demo">
+  <GridDemo />
+</Example>
+
+## Installation
+
+### Barrel
+
+```ts
+import { Grid, GridItem } from "kumo-svelte";
+```
+
+### Granular
+
+```ts
+import { Grid, GridItem } from "kumo-svelte/components/grid";
+```
+
+## Usage
+
+```svelte
+<script lang="ts">
+  import { Grid, GridItem } from "kumo-svelte";
+</script>
+
+<Grid variant="2up" gap="base">
+  <GridItem>Item 1</GridItem>
+  <GridItem>Item 2</GridItem>
+</Grid>
+```
+
+## Grid Variants
+
+The Grid component supports multiple column layouts that adapt responsively across breakpoints.
+
+<Example demo="grid-variants-demo">
+  <GridVariantsDemo />
+</Example>
+
+## Asymmetric Layouts
+
+Use asymmetric variants for sidebar/main content layouts.
+
+<Example demo="grid-asymmetric-demo">
+  <GridAsymmetricDemo />
+</Example>
+
+## Gap Sizes
+
+Control the spacing between grid items with the `gap` prop.
+
+<Example demo="grid-gap-demo">
+  <GridGapDemo />
+</Example>
+
+## Mobile Dividers
+
+Add dividers between items on mobile with the `mobileDivider` prop. Mobile dividers only apply to the `4up` variant.
+
+<Example demo="grid-mobile-divider-demo">
+  <GridMobileDividerDemo />
+</Example>
+
+## All Variants
+
+Reference for all available grid variants:
+
+| Variant | Description |
+| --- | --- |
+| `2up` | 1 column mobile, 2 columns medium+. |
+| `side-by-side` | Always 2 columns. |
+| `2-1` | 66%/33% split on medium+. |
+| `1-2` | 33%/66% split on medium+. |
+| `1-3up` | 1 column mobile, 3 columns large+. |
+| `3up` | 1 mobile, 2 medium, 3 large. |
+| `4up` | Progressive: 1 → 2 → 3 → 4 columns. |
+| `6up` | 2 mobile, up to 6 on XL. |
+| `1-2-4up` | 1 mobile, 2 medium, 4 large. |
+
+## API Reference
+
+### Grid
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `variant` | `"2up" \| "side-by-side" \| "2-1" \| "1-2" \| "1-3up" \| "3up" \| "4up" \| "6up" \| "1-2-4up"` | — | Responsive column layout. |
+| `gap` | `"none" \| "sm" \| "base" \| "lg"` | `"base"` | Gap between grid items. |
+| `mobileDivider` | `boolean` | `false` | Add mobile dividers between `4up` grid items. |
+| `class` | `string` | — | Additional classes. |
+| `children` | `Snippet` | — | Grid items. |
+
+### GridItem
+
+GridItem is a wrapper component for grid children. It accepts standard `HTMLDivElement` attributes, `class`, and `children`.

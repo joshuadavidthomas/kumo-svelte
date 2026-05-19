@@ -30,7 +30,7 @@ For each page:
 - [x] Dropdown — `/components/dropdown`
 - [x] Empty — `/components/empty`
 - [x] Flow — `/components/flow`
-- [ ] Grid — `/components/grid`
+- [x] Grid — `/components/grid`
 - [ ] Input — `/components/input`
 - [ ] InputArea — `/components/input-area`
 - [ ] InputGroup — `/components/input-group`
