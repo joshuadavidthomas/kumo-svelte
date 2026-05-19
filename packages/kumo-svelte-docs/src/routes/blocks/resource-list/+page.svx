@@ -1,0 +1,92 @@
+---
+title: Resource List
+description: A layout block for resource list pages with optional sidebar content.
+sourceFile: blocks/resource-list
+---
+
+<script lang="ts">
+  import Example from "$lib/components/example.svelte";
+  import ResourceListBasicDemo from "./resource-list-basic-demo.svelte";
+  import ResourceListCompleteDemo from "./resource-list-complete-demo.svelte";
+  import ResourceListWithUsageDemo from "./resource-list-with-usage-demo.svelte";
+</script>
+
+<Example demo="resource-list-complete-demo">
+  <ResourceListCompleteDemo />
+</Example>
+
+## Installation
+
+ResourceListPage is an upstream **block**: a CLI-installed component that you own and can customize. Unlike regular components, blocks are copied into your project so you have full control over the code.
+
+The Svelte package does not currently export a `ResourceListPage` block. Compose the same pattern from `Surface` and page-level layout markup, or copy the demo shell below into your application and adapt it.
+
+```bash
+# Upstream React package
+npx @cloudflare/kumo init
+npx @cloudflare/kumo add ResourceListPage
+```
+
+## Usage
+
+```svelte
+<script lang="ts">
+  import DatabaseIcon from "phosphor-svelte/lib/DatabaseIcon";
+  import { Surface } from "kumo-svelte";
+</script>
+
+<div class="min-h-[400px] bg-kumo-overlay p-6">
+  <header class="mb-6">
+    <div class="flex items-center gap-1.5">
+      <DatabaseIcon class="size-8 text-kumo-subtle" />
+      <h1 class="m-0 text-3xl font-semibold">Databases</h1>
+    </div>
+    <p class="text-kumo-subtle">Manage your database instances and configurations.</p>
+  </header>
+
+  <Surface class="p-6">Your resource list content</Surface>
+</div>
+```
+
+## Examples
+
+### Basic
+
+A minimal resource list page with title, description, and icon.
+
+<Example demo="resource-list-basic-demo">
+  <ResourceListBasicDemo />
+</Example>
+
+### With Usage Sidebar
+
+Include a sidebar with usage examples or quick-start guides.
+
+<Example demo="resource-list-with-usage-demo">
+  <ResourceListWithUsageDemo />
+</Example>
+
+### Complete Example
+
+<Example demo="resource-list-complete-demo">
+  <ResourceListCompleteDemo />
+</Example>
+
+## API Reference
+
+Because the Svelte library does not yet ship this block as an exported component, there is no package API to document. Use the demo shell as a starting point.
+
+### Suggested props
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| `title` | `string` | Page title displayed at the top. |
+| `description` | `string` | Page description below the title. |
+| `icon` | `Snippet` | Icon displayed next to the title. |
+| `usage` | `Snippet` | Sidebar content for usage examples or quick-start guides. |
+| `additionalContent` | `Snippet` | Additional sidebar content, such as resources or links. |
+| `children` | `Snippet` | Main content area for the resource list. |
+
+## Svelte Notes
+
+The upstream React block receives React nodes for `icon`, `usage`, `additionalContent`, and `children`. The Svelte equivalent uses snippets and ordinary children.

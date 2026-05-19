@@ -1,0 +1,95 @@
+---
+title: Page Header
+description: A page-level block that combines breadcrumbs, titles, actions, and tabs for dashboard navigation.
+sourceFile: blocks/page-header
+---
+
+<script lang="ts">
+  import Example from "$lib/components/example.svelte";
+  import PageHeaderBasicDemo from "./page-header-basic-demo.svelte";
+  import PageHeaderCompleteDemo from "./page-header-complete-demo.svelte";
+  import PageHeaderWithTabsDemo from "./page-header-with-tabs-demo.svelte";
+</script>
+
+<Example demo="page-header-complete-demo">
+  <PageHeaderCompleteDemo />
+</Example>
+
+## Installation
+
+PageHeader is an upstream **block**: a CLI-installed component that you own and can customize. Unlike regular components, blocks are copied into your project so you have full control over the code.
+
+The Svelte package does not currently export a `PageHeader` block. Compose the same pattern from `Breadcrumbs`, `Tabs`, and `Button`, or copy the demo shell below into your application and adapt it.
+
+```bash
+# Upstream React package
+npx @cloudflare/kumo init
+npx @cloudflare/kumo add PageHeader
+```
+
+## Usage
+
+```svelte
+<script lang="ts">
+  import { Breadcrumbs, BreadcrumbsCurrent, BreadcrumbsLink, BreadcrumbsSeparator, Button, Tabs } from "kumo-svelte";
+
+  const tabs = [
+    { label: "Overview", value: "overview" },
+    { label: "Settings", value: "settings" },
+  ];
+</script>
+
+<header class="rounded-lg border border-kumo-hairline bg-kumo-base">
+  <div class="flex items-start justify-between gap-4 p-4">
+    <Breadcrumbs>
+      <BreadcrumbsLink href="#">Home</BreadcrumbsLink>
+      <BreadcrumbsSeparator />
+      <BreadcrumbsCurrent>My Project</BreadcrumbsCurrent>
+    </Breadcrumbs>
+    <Button variant="primary" size="sm">Deploy</Button>
+  </div>
+  <div class="border-t border-kumo-hairline px-4 py-3">
+    <Tabs {tabs} selectedValue="overview" />
+  </div>
+</header>
+```
+
+## Examples
+
+### Basic
+
+<Example demo="page-header-basic-demo">
+  <PageHeaderBasicDemo />
+</Example>
+
+### With Tabs
+
+<Example demo="page-header-with-tabs-demo">
+  <PageHeaderWithTabsDemo />
+</Example>
+
+### Complete Example
+
+Combining breadcrumbs, title, description, tabs, and actions.
+
+<Example demo="page-header-complete-demo">
+  <PageHeaderCompleteDemo />
+</Example>
+
+## API Reference
+
+Because the Svelte library does not yet ship this block as an exported component, there is no package API to document. Use the demo shell as a starting point.
+
+### Suggested props
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| `breadcrumbs` | `Snippet` | Breadcrumb navigation shown at the top left. |
+| `title` | `string` | Optional page title. |
+| `description` | `string` | Optional page description. |
+| `tabs` | `TabsItem[]` | Optional tab definitions passed to `Tabs`. |
+| `actions` | `Snippet` | Optional action buttons shown on the right. |
+
+## Svelte Notes
+
+The upstream React block receives React nodes for `breadcrumbs` and `children`. The Svelte equivalent uses snippets or direct composition, and the tabs are passed to the Svelte `Tabs` component.

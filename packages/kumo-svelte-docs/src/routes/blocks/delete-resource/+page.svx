@@ -1,0 +1,100 @@
+---
+title: Delete Resource
+description: A confirmation dialog for safely deleting resources, requiring users to type the resource name to confirm.
+sourceFile: blocks/delete-resource
+---
+
+<script lang="ts">
+  import Example from "$lib/components/example.svelte";
+  import DeleteResourceBasicDemo from "./delete-resource-basic-demo.svelte";
+  import DeleteResourceErrorDemo from "./delete-resource-error-demo.svelte";
+  import DeleteResourceWorkerDemo from "./delete-resource-worker-demo.svelte";
+</script>
+
+<Example demo="delete-resource-basic-demo">
+  <DeleteResourceBasicDemo />
+</Example>
+
+## Installation
+
+DeleteResource is a **block**: a component you own and can customize. The Svelte package currently exports the block directly.
+
+### Barrel
+
+```ts
+import { DeleteResource } from "kumo-svelte";
+```
+
+### Granular
+
+```ts
+import { DeleteResource } from "kumo-svelte/blocks/delete-resource";
+```
+
+## Usage
+
+```svelte
+<script lang="ts">
+  import { Button, DeleteResource } from "kumo-svelte";
+
+  let open = $state(false);
+  let isDeleting = $state(false);
+
+  async function handleDelete() {
+    isDeleting = true;
+    try {
+      await deleteZone("example.com");
+      open = false;
+    } finally {
+      isDeleting = false;
+    }
+  }
+</script>
+
+<Button variant="destructive" onclick={() => (open = true)}>Delete Zone</Button>
+<DeleteResource
+  bind:open
+  resourceType="Zone"
+  resourceName="example.com"
+  onDelete={handleDelete}
+  {isDeleting}
+/>
+```
+
+## Examples
+
+### Worker Deletion
+
+Works with any resource type — just change `resourceType` and `resourceName`.
+
+<Example demo="delete-resource-worker-demo">
+  <DeleteResourceWorkerDemo />
+</Example>
+
+### Error State
+
+Use the `errorMessage` prop to show an error message.
+
+<Example demo="delete-resource-error-demo">
+  <DeleteResourceErrorDemo />
+</Example>
+
+## API Reference
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `open` | `boolean` | `false` | Controlled open state; supports `bind:open`. |
+| `onOpenChange` | `(open: boolean) => void` | — | Called when the dialog opens or closes. |
+| `resourceType` | `string` | required | Human-readable resource type, such as `Zone` or `Worker`. |
+| `resourceName` | `string` | required | Exact resource name the user must type. |
+| `onDelete` | `() => void \| Promise<void>` | required | Called after the user confirms deletion. |
+| `isDeleting` | `boolean` | `false` | Disables controls and shows loading while deletion is running. |
+| `errorMessage` | `string` | — | Error banner content. |
+| `deleteButtonText` | `string` | `Delete ${resourceType}` | Custom destructive button label. |
+| `caseSensitive` | `boolean` | `true` | Whether confirmation text comparison is case-sensitive. |
+| `size` | `KumoDeleteResourceSize` | default | Dialog size variant. |
+| `class` | `string` | — | Additional dialog classes. |
+
+## Svelte Notes
+
+Use `bind:open` for idiomatic Svelte state ownership. Clipboard copy inside the dialog uses the browser Clipboard API, so headless or restricted browsers may deny copy permission.

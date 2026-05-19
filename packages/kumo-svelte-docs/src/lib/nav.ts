@@ -23,5 +23,7 @@ export const blockItems: DocsNavItem[] = [
 
 export const docsNavigation: DocsNavGroup[] = [
   { title: "Get Started", items: staticPages },
+  { title: "Charts", items: chartItems },
+  { title: "Blocks", items: blockItems },
   { title: "Components", items: componentItems },
 ];
