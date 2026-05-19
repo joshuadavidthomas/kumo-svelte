@@ -41,7 +41,7 @@ For each page:
 - [x] MenuBar — `/components/menu-bar`
 - [x] Meter — `/components/meter`
 - [x] Pagination — `/components/pagination`
-- [ ] Popover — `/components/popover`
+- [x] Popover — `/components/popover`
 - [ ] Radio — `/components/radio`
 - [ ] Select — `/components/select`
 - [ ] Sensitive Input — `/components/sensitive-input`

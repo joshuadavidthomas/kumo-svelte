@@ -1,0 +1,156 @@
+---
+title: Popover
+description: An accessible popup anchored to a trigger element, used for displaying rich content like menus, forms, or additional information.
+sourceFile: components/popover
+baseUIComponent: popover
+---
+
+<script lang="ts">
+  import Example from "$lib/components/example.svelte";
+  import PopoverBasicDemo from "./popover-basic-demo.svelte";
+  import PopoverCustomContentDemo from "./popover-custom-content-demo.svelte";
+  import PopoverHeroDemo from "./popover-hero-demo.svelte";
+  import PopoverOpenOnHoverDemo from "./popover-open-on-hover-demo.svelte";
+  import PopoverPositionDemo from "./popover-position-demo.svelte";
+  import PopoverVirtualAnchorDemo from "./popover-virtual-anchor-demo.svelte";
+  import PopoverWithCloseDemo from "./popover-with-close-demo.svelte";
+</script>
+
+<Example demo="popover-hero-demo">
+  <PopoverHeroDemo />
+</Example>
+
+## Installation
+
+### Barrel
+
+```ts
+import { Popover, PopoverContent, PopoverTrigger } from "kumo-svelte";
+```
+
+### Granular
+
+```ts
+import { Popover, PopoverContent, PopoverTrigger } from "kumo-svelte/components/popover";
+```
+
+## Usage
+
+```svelte
+<script lang="ts">
+  import { Button, Popover, PopoverContent, PopoverDescription, PopoverTitle, PopoverTrigger } from "kumo-svelte";
+</script>
+
+<Popover>
+  <PopoverTrigger>
+    {#snippet child({ props })}
+      <Button {...props}>Open</Button>
+    {/snippet}
+  </PopoverTrigger>
+  <PopoverContent>
+    <PopoverTitle>Popover Title</PopoverTitle>
+    <PopoverDescription>Popover content goes here.</PopoverDescription>
+  </PopoverContent>
+</Popover>
+```
+
+## Popover vs Tooltip
+
+While popovers can be triggered on hover with controlled state, they serve a different purpose than tooltips.
+
+| | Tooltip | Popover |
+| --- | --- | --- |
+| Purpose | Short, non-interactive text labels for identification. | Rich, interactive content containers. |
+| Content | Plain text only. | Any content: links, buttons, forms, images. |
+| Trigger | Hover or focus. | Click by default, or custom controlled triggers. |
+| Keyboard | Not focusable. | Focus moves inside when open. |
+
+Use a Tooltip when you need to label an icon button or provide a brief explanation. Use a Popover when users need to interact with the content inside.
+
+## Examples
+
+### Basic Popover
+
+<Example demo="popover-basic-demo">
+  <PopoverBasicDemo />
+</Example>
+
+### With Close Button
+
+<Example demo="popover-with-close-demo">
+  <PopoverWithCloseDemo />
+</Example>
+
+### Positioning
+
+Use the `side` prop to control where the popover appears relative to the trigger.
+
+<Example demo="popover-position-demo">
+  <PopoverPositionDemo />
+</Example>
+
+### Custom Content
+
+Popovers can contain any content, including custom layouts with avatars, buttons, and more.
+
+<Example demo="popover-custom-content-demo">
+  <PopoverCustomContentDemo />
+</Example>
+
+### Open on Hover
+
+Use controlled state to open the popover on hover. This keeps hover behavior explicit in Svelte.
+
+<Example demo="popover-open-on-hover-demo">
+  <PopoverOpenOnHoverDemo />
+</Example>
+
+### Virtual Anchor
+
+Use the `anchor` prop on `PopoverContent` to position the popover against an element other than the trigger, or against a virtual element with `getBoundingClientRect()`.
+
+<Example demo="popover-virtual-anchor-demo">
+  <PopoverVirtualAnchorDemo />
+</Example>
+
+## API Reference
+
+### `Popover`
+
+The root component that manages the popover's open state.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `open` | `boolean` | `false` | Open state. Bind with `bind:open`. |
+| `onOpenChange` | `(open: boolean) => void` | — | Called when open state changes. |
+| `onOpenChangeComplete` | `(open: boolean) => void` | — | Called after open state transition completes. |
+| `children` | `Snippet` | — | Popover contents. |
+
+### `PopoverTrigger`
+
+A trigger that opens the popover when clicked. Use the `child` snippet pattern to render your own component.
+
+PopoverTrigger accepts Bits UI Popover trigger props.
+
+### `PopoverContent`
+
+The container for popover content. Controls positioning via `side`, `align`, `sideOffset`, and `alignOffset` props.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `side` | `"top" \| "right" \| "bottom" \| "left"` | `"bottom"` | Preferred side. |
+| `align` | `"start" \| "center" \| "end"` | `"center"` | Alignment relative to anchor. |
+| `sideOffset` | `number` | `8` | Distance from anchor. |
+| `alignOffset` | `number` | `0` | Alignment offset. |
+| `anchor` | `customAnchor` | — | Custom or virtual anchor for positioning. |
+| `container` | `Portal target` | — | Portal target. |
+| `positionMethod` | `"absolute" \| "fixed"` | `"absolute"` | Positioning strategy. |
+| `class` | `string` | — | Additional classes. |
+
+### `PopoverTitle`, `PopoverDescription`, and `PopoverHeader`
+
+Semantic content helpers for labeling and structuring popover content. Each accepts `children`, `class`, and standard HTML attributes for its element.
+
+### `PopoverClose`
+
+A button that closes the popover when clicked. Use the `child` snippet pattern to render your own Button.
