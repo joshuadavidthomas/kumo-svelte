@@ -16,7 +16,7 @@ For each page:
 - [x] Autocomplete — `/components/autocomplete`
 - [x] Badge — `/components/badge`
 - [x] Banner — `/components/banner`
-- [ ] Breadcrumbs — `/components/breadcrumbs`
+- [x] Breadcrumbs — `/components/breadcrumbs`
 - [x] Button — `/components/button`
 - [ ] Checkbox — `/components/checkbox`
 - [ ] Clipboard Text — `/components/clipboard-text`
