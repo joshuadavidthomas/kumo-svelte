@@ -27,7 +27,7 @@ For each page:
 - [x] Command Palette — `/components/command-palette`
 - [x] Date Picker — `/components/date-picker`
 - [x] Dialog — `/components/dialog`
-- [ ] Dropdown — `/components/dropdown`
+- [x] Dropdown — `/components/dropdown`
 - [ ] Empty — `/components/empty`
 - [ ] Flow — `/components/flow`
 - [ ] Grid — `/components/grid`
