@@ -1,0 +1,158 @@
+---
+title: Label
+description: A label component for form fields with support for required/optional indicators and tooltips.
+sourceFile: components/label
+primitive: label
+---
+
+<script lang="ts">
+  import Example from "$lib/components/example.svelte";
+  import LabelBasicDemo from "./label-basic-demo.svelte";
+  import LabelFormMixedDemo from "./label-form-mixed-demo.svelte";
+  import LabelOptionalFieldDemo from "./label-optional-field-demo.svelte";
+  import LabelSnippetDemo from "./label-snippet-demo.svelte";
+  import LabelStandaloneDemo from "./label-standalone-demo.svelte";
+  import LabelWithTooltipDemo from "./label-with-tooltip-demo.svelte";
+</script>
+
+<Example demo="label-basic-demo">
+  <LabelBasicDemo />
+</Example>
+
+## Installation
+
+### Barrel
+
+```ts
+import { Label } from "kumo-svelte";
+```
+
+### Granular
+
+```ts
+import { Label } from "kumo-svelte/components/label";
+```
+
+## Usage
+
+### With Form Components (Recommended)
+
+Label features are automatically available through form components like `Input`, `Select`, `Checkbox`, and `Switch` via the `required` and `labelTooltip` props.
+
+```svelte
+<script lang="ts">
+  import { Input } from "kumo-svelte";
+</script>
+
+{#snippet labelTooltip()}
+  Find this in your dashboard settings
+{/snippet}
+
+<Input label="Phone" required={false} placeholder="+1 555-0000" />
+<Input label="API Key" {labelTooltip} />
+```
+
+### Standalone Label
+
+For custom form layouts, use the `Label` component directly.
+
+```svelte
+<script lang="ts">
+  import { Label } from "kumo-svelte";
+</script>
+
+{#snippet tooltip()}
+  This field is mandatory
+{/snippet}
+
+<Label {tooltip}>Username</Label>
+```
+
+## Examples
+
+### Optional Field
+
+Shows gray optional text when `required={false}` on form components.
+
+<Example demo="label-optional-field-demo">
+  <LabelOptionalFieldDemo />
+</Example>
+
+### With Tooltip
+
+Shows an info icon with a tooltip for additional context. In Svelte, pass tooltip content as a snippet.
+
+<Example demo="label-with-tooltip-demo">
+  <LabelWithTooltipDemo />
+</Example>
+
+### Snippet Label Content
+
+Labels support snippet content for rich formatting.
+
+<Example demo="label-snippet-demo">
+  <LabelSnippetDemo />
+</Example>
+
+### Form with Mixed Fields
+
+Real-world example showing required and optional fields together.
+
+<Example demo="label-form-mixed-demo">
+  <LabelFormMixedDemo />
+</Example>
+
+### Standalone Label
+
+Use Label directly for custom layouts or non-form contexts.
+
+<Example demo="label-standalone-demo">
+  <LabelStandaloneDemo />
+</Example>
+
+## API Reference
+
+### Label Props
+
+Props for the standalone Label component:
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `children` | `Snippet` | — | Label content. |
+| `showOptional` | `boolean` | `false` | Shows gray optional text. |
+| `tooltip` | `Snippet` | — | Tooltip content shown via info icon. |
+| `class` | `string` | — | Additional CSS classes. |
+| `for` | `string` | — | Associated control id. |
+| `id` | `string` | — | Label element id. |
+| `asContent` | `boolean` | `false` | Renders label content as a span instead of a label element. |
+
+### Form Component Label Props
+
+These props are available on form components such as Input, InputArea, Select, Checkbox, Switch, SensitiveInput, and Combobox:
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `label` | `Snippet \| string` | — | Label content; often enables the Field wrapper. |
+| `required` | `boolean` | — | When false, shows optional text. Some controls also use this for the HTML required attribute. |
+| `labelTooltip` | `Snippet` | — | Tooltip content shown via info icon next to the label. |
+
+## Design Guidelines
+
+### When to Use Optional Indicators
+
+- Use optional indicators for optional fields when most fields are required.
+- Be consistent within a form.
+- Default fields with no indicator are assumed required by users.
+
+### When to Use Tooltips
+
+- Provide additional context that does not fit in the label.
+- Explain format requirements or validation rules.
+- Link to help documentation for complex fields.
+- Keep tooltip content concise: one or two sentences.
+
+### Accessibility
+
+- Optional indicators are visual. Use `required` for validation when the field is required.
+- Tooltips are accessible from the info icon.
+- Associate standalone labels with controls using the `for` prop.

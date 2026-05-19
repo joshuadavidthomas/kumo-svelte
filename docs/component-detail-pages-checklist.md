@@ -34,7 +34,7 @@ For each page:
 - [x] Input — `/components/input`
 - [x] InputArea — `/components/input-area`
 - [x] InputGroup — `/components/input-group`
-- [ ] Label — `/components/label`
+- [x] Label — `/components/label`
 - [ ] Layer Card — `/components/layer-card`
 - [ ] Link — `/components/link`
 - [ ] Loader — `/components/loader`
