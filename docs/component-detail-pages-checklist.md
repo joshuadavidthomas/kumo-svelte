@@ -49,7 +49,7 @@ For each page:
 - [x] Skeleton Line — `/components/skeleton-line`
 - [x] Switch — `/components/switch`
 - [x] Table — `/components/table`
-- [ ] Table of Contents — `/components/table-of-contents`
+- [x] Table of Contents — `/components/table-of-contents`
 - [ ] Tabs — `/components/tabs`
 - [ ] Text — `/components/text`
 - [ ] Toast — `/components/toast`

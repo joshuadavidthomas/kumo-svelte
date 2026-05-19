@@ -1,0 +1,130 @@
+---
+title: Table of Contents
+description: Presentational compound component for section navigation with an active indicator bar.
+sourceFile: components/table-of-contents
+---
+
+<script lang="ts">
+  import Example from "$lib/components/example.svelte";
+  import TableOfContentsBasicDemo from "./table-of-contents-basic-demo.svelte";
+  import TableOfContentsCustomElementDemo from "./table-of-contents-custom-element-demo.svelte";
+  import TableOfContentsGroupDemo from "./table-of-contents-group-demo.svelte";
+  import TableOfContentsInteractiveDemo from "./table-of-contents-interactive-demo.svelte";
+  import TableOfContentsNoActiveDemo from "./table-of-contents-no-active-demo.svelte";
+  import TableOfContentsWithoutTitleDemo from "./table-of-contents-without-title-demo.svelte";
+</script>
+
+<Example demo="table-of-contents-basic-demo">
+  <TableOfContentsBasicDemo />
+</Example>
+
+## Installation
+
+### Barrel
+
+```ts
+import { TableOfContents, TableOfContentsItem } from "kumo-svelte";
+```
+
+### Granular
+
+```ts
+import { TableOfContents, TableOfContentsItem } from "kumo-svelte/components/table-of-contents";
+```
+
+## Usage
+
+```svelte
+<script lang="ts">
+  import { TableOfContents, TableOfContentsItem, TableOfContentsList, TableOfContentsTitle } from "kumo-svelte";
+</script>
+
+<TableOfContents>
+  <TableOfContentsTitle>On this page</TableOfContentsTitle>
+  <TableOfContentsList>
+    <TableOfContentsItem href="#intro" active>Introduction</TableOfContentsItem>
+    <TableOfContentsItem href="#api">API Reference</TableOfContentsItem>
+  </TableOfContentsList>
+</TableOfContents>
+```
+
+This component is purely presentational. All interaction logic — scroll tracking, IntersectionObserver, active state management — is left to the consumer.
+
+## Examples
+
+### Interactive
+
+Click an item to set it as active. The consumer controls state via `active` and `onclick`.
+
+<Example demo="table-of-contents-interactive-demo">
+  <TableOfContentsInteractiveDemo />
+</Example>
+
+### No active item
+
+When no item has `active` set, all items show the default subtle text style with a hover indicator.
+
+<Example demo="table-of-contents-no-active-demo">
+  <TableOfContentsNoActiveDemo />
+</Example>
+
+### Groups
+
+Use `TableOfContentsGroup` to organize items into labeled sections with indented children. Pass an `href` to make the group label a clickable link, or omit it for a plain non-interactive title.
+
+<Example demo="table-of-contents-group-demo">
+  <TableOfContentsGroupDemo />
+</Example>
+
+### Without title
+
+The title sub-component is optional — use `TableOfContentsList` directly if you don't need a heading.
+
+<Example demo="table-of-contents-without-title-demo">
+  <TableOfContentsWithoutTitleDemo />
+</Example>
+
+### Custom element
+
+Use the `child` snippet to swap the default anchor for a button, router link, or any element.
+
+<Example demo="table-of-contents-custom-element-demo">
+  <TableOfContentsCustomElementDemo />
+</Example>
+
+## API Reference
+
+### `TableOfContents`
+
+Root nav container with a default `aria-label` of `"Table of contents"`.
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| `children` | `Snippet` | Table of contents structure. |
+| `aria-label` | `string` | Accessible nav label. |
+
+### `TableOfContentsTitle`
+
+Optional uppercase heading displayed above the list. Renders a `p`.
+
+### `TableOfContentsList`
+
+List container with a left border rail.
+
+### `TableOfContentsItem`
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| `active` | `boolean` | Marks the current section. |
+| `href` | `string` | Link target when rendering the default anchor. |
+| `child` | `Snippet` | Custom element snippet receiving merged props. |
+| `children` | `Snippet` | Item content. |
+| `class` | `string` | Additional classes. |
+
+### `TableOfContentsGroup`
+
+Groups items under a labeled section with indented children. Pass `href` to make the label a clickable link, or omit for a plain title.
+
+## Svelte Notes
+
+The Svelte package exports named components instead of React compound properties. Use `child` snippets rather than React `render` props for custom elements.
