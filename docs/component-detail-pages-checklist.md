@@ -21,7 +21,7 @@ For each page:
 - [x] Checkbox — `/components/checkbox`
 - [x] Clipboard Text — `/components/clipboard-text`
 - [x] Cloudflare Logo — `/components/cloudflare-logo`
-- [ ] CodeHighlighted — `/components/code-highlighted`
+- [x] CodeHighlighted — `/components/code-highlighted`
 - [ ] Collapsible — `/components/collapsible`
 - [ ] Combobox — `/components/combobox`
 - [ ] Command Palette — `/components/command-palette`
