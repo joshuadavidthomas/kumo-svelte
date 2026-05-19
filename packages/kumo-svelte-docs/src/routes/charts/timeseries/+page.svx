@@ -1,0 +1,90 @@
+---
+title: Timeseries Chart
+description: A specialized chart for displaying time-based data.
+sourceFile: components/chart
+---
+
+<script lang="ts">
+  import Example from "$lib/components/example.svelte";
+  import BarChartDemo from "./bar-chart-demo.svelte";
+  import BasicLineChartDemo from "./basic-line-chart-demo.svelte";
+  import CustomAxisLabelFormatDemo from "./custom-axis-label-format-demo.svelte";
+  import GradientLineChartDemo from "./gradient-line-chart-demo.svelte";
+  import IncompleteDataChartDemo from "./incomplete-data-chart-demo.svelte";
+  import LoadingChartDemo from "./loading-chart-demo.svelte";
+  import TimeRangeSelectionChartDemo from "./time-range-selection-chart-demo.svelte";
+</script>
+
+The timeseries chart is a specialized chart for displaying time-based data. Each data point is a tuple of `[timestamp_in_ms, value]`.
+
+## Basic Line Chart
+
+A simple line chart displaying multiple data series over time.
+
+<Example demo="basic-line-chart-demo">
+  <BasicLineChartDemo />
+</Example>
+
+## Custom X-Axis Label Format
+
+Use the `xAxisTickFormat` prop to control how x-axis tick labels are rendered. The formatter receives the raw timestamp in milliseconds and returns a display string.
+
+<Example demo="custom-axis-label-format-demo">
+  <CustomAxisLabelFormatDemo />
+</Example>
+
+## Gradient Fill
+
+Set `gradient` to `true` to render a vertical gradient fill beneath each line series.
+
+<Example demo="gradient-line-chart-demo">
+  <GradientLineChartDemo />
+</Example>
+
+## Incomplete Data
+
+Use the `incomplete` prop to indicate regions where data may be incomplete or still being collected.
+
+<Example demo="incomplete-data-chart-demo">
+  <IncompleteDataChartDemo />
+</Example>
+
+## Time Range Selection
+
+Enable time range selection by providing the `onTimeRangeChange` callback. Users can click and drag on the chart to select a time range.
+
+<Example demo="time-range-selection-chart-demo">
+  <TimeRangeSelectionChartDemo />
+</Example>
+
+## Bar Chart
+
+Set `type="bar"` to render series as stacked bars instead of lines.
+
+<Example demo="bar-chart-demo">
+  <BarChartDemo />
+</Example>
+
+## Loading State
+
+Set `loading` to `true` to display the loading treatment while data is being fetched.
+
+<Example demo="loading-chart-demo">
+  <LoadingChartDemo />
+</Example>
+
+## API Reference
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| `echarts` | `typeof echarts` | Registered ECharts module instance. |
+| `data` | `TimeseriesData[]` | Series data. |
+| `type` | `"line" \| "bar"` | Series rendering mode. |
+| `height` | `number` | Chart height in pixels. |
+| `gradient` | `boolean` | Adds area fill for line charts. |
+| `incomplete` | `{ before?: number; after?: number }` | Marks incomplete line regions. |
+| `loading` | `boolean` | Shows loading state. |
+| `onTimeRangeChange` | `(from: number, to: number) => void` | Called when the user brushes a time range. |
+| `xAxisTickFormat` | `(value: number) => string` | Formats x-axis ticks. |
+| `yAxisTickFormat` | `(value: number) => string` | Formats y-axis ticks. |
+| `tooltipValueFormat` | `(value: number) => string` | Formats tooltip values. |

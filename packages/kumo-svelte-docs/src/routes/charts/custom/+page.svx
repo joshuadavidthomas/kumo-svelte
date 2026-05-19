@@ -1,0 +1,41 @@
+---
+title: Custom Chart
+description: Example charts using the Chart component.
+sourceFile: components/chart
+---
+
+<script lang="ts">
+  import Example from "$lib/components/example.svelte";
+  import CustomTooltipChartDemo from "./custom-tooltip-chart-demo.svelte";
+  import PieChartDemo from "./pie-chart-demo.svelte";
+</script>
+
+## Custom Chart
+
+Use `Chart` when you need direct ECharts option control.
+
+<Example demo="pie-chart-demo">
+  <PieChartDemo />
+</Example>
+
+## Custom Tooltip with HTML
+
+For tooltips that require custom HTML formatting, use the `dangerousHtmlFormatter` property instead of the standard ECharts `formatter`. This makes the security implications more explicit.
+
+When using `dangerousHtmlFormatter`, sanitize any user-provided content using `echarts.format.encodeHTML` to prevent XSS vulnerabilities.
+
+<Example demo="custom-tooltip-chart-demo">
+  <CustomTooltipChartDemo />
+</Example>
+
+## API Reference
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| `echarts` | `typeof echarts` | Registered ECharts module instance. |
+| `options` | `KumoChartOption` | ECharts options. |
+| `height` | `number` | Chart height in pixels. |
+| `isDarkMode` | `boolean` | Uses the dark chart palette. |
+| `onEvents` | `Partial<ChartEvents>` | ECharts event handlers. |
+| `optionUpdateBehavior` | `SetOptionOpts` | ECharts setOption behavior. |
+| `ref` | `ECharts \| null` | Bindable chart instance. |

@@ -1,0 +1,60 @@
+---
+title: Chart Colors
+description: Semantic and categorical color tokens for Cloudflare dashboard charts.
+sourceFile: components/chart/color.ts
+---
+
+<script lang="ts">
+  import Example from "$lib/components/example.svelte";
+  import CategoricalColorsDemo from "./categorical-colors-demo.svelte";
+  import ChartColorSystemsDemo from "./chart-color-systems-demo.svelte";
+  import SemanticColorsDemo from "./semantic-colors-demo.svelte";
+  import SequentialColorsDemo from "./sequential-colors-demo.svelte";
+</script>
+
+Chart colors in Kumo are split into three systems — **semantic** tokens for data with inherent polarity, a **categorical** palette for nominal series, and a **sequential** scale for density encoding. Using the right system for the data type is the most important color decision in a chart.
+
+## Color systems
+
+Charts in the dashboard serve different jobs, so color is not “one-size-fits-all.” To avoid misreading data, we use different color systems based on the data task.
+
+<ChartColorSystemsDemo />
+
+## Semantic tokens
+
+Semantic chart colors should be used when the data has inherent polarity: status, severity, and health data. Semantic colors communicate to the user that this data needs their attention and an action might be required.
+
+<Example demo="semantic-colors-demo">
+  <SemanticColorsDemo />
+</Example>
+
+## Categorical palette
+
+Use the categorical palette when the data has no inherent polarity. The palette is ordered for perceptual distance between adjacent slots so the data is distinguishable.
+
+<Example demo="categorical-colors-demo">
+  <CategoricalColorsDemo />
+</Example>
+
+<div class="rounded-lg bg-kumo-info-tint/50 px-4 py-3 text-kumo-info ring ring-kumo-info">
+  We use a small categorical set because most charts intentionally surface only top categories at once. When a chart needs more series, cycle these tokens with modulo: <code>color = tokens[i % tokens.length]</code>.
+</div>
+
+## Sequential scale
+
+A 5-step single-hue scale encodes **density**. Use it when a single metric varies in magnitude across a set of values and color intensity should reinforce that magnitude.
+
+<Example demo="sequential-colors-demo">
+  <SequentialColorsDemo />
+</Example>
+
+## API Reference
+
+```ts
+import { ChartPalette } from "kumo-svelte";
+
+ChartPalette.semantic("Success");
+ChartPalette.categorical(0);
+ChartPalette.sequential("blues");
+ChartPalette.text("primary");
+```

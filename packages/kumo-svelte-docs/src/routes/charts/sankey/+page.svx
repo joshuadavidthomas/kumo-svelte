@@ -1,0 +1,114 @@
+---
+title: Sankey Chart
+description: A Sankey diagram component for visualizing flow data between nodes using ECharts.
+sourceFile: components/chart
+---
+
+<script lang="ts">
+  import Example from "$lib/components/example.svelte";
+  import SankeyChartBasicDemo from "./sankey-chart-basic-demo.svelte";
+  import SankeyChartDrillDownDemo from "./sankey-chart-drill-down-demo.svelte";
+  import SankeyChartFullWidthDemo from "./sankey-chart-full-width-demo.svelte";
+  import SankeyChartInteractiveDemo from "./sankey-chart-interactive-demo.svelte";
+  import SankeyChartRichTooltipDemo from "./sankey-chart-rich-tooltip-demo.svelte";
+</script>
+
+<Example demo="sankey-chart-basic-demo">
+  <SankeyChartBasicDemo />
+</Example>
+
+## Installation
+
+SankeyChart requires `echarts` as a peer dependency.
+
+```bash
+npm install echarts
+```
+
+### Barrel
+
+```ts
+import { SankeyChart } from "kumo-svelte";
+```
+
+### Granular
+
+```ts
+import { SankeyChart } from "kumo-svelte/components/chart";
+```
+
+## Usage
+
+```svelte
+<script lang="ts">
+  import { SankeyChart, ChartPalette } from "kumo-svelte";
+  import { echarts } from "./chart-echarts";
+
+  const nodes = [
+    { name: "Users", value: 103600, color: ChartPalette.categorical(0) },
+    { name: "Apps", value: 122600, color: ChartPalette.categorical(2) },
+  ];
+
+  const links = [{ source: 0, target: 1, value: 80000 }];
+</script>
+
+<SankeyChart {echarts} {nodes} {links} height={300} />
+```
+
+## Examples
+
+### Basic Sankey
+
+A simple Sankey diagram showing flow between source and target nodes.
+
+<Example demo="sankey-chart-basic-demo">
+  <SankeyChartBasicDemo />
+</Example>
+
+### Full-Width Layout
+
+Use `left` and `right` to control horizontal padding of the Sankey layout within its container.
+
+<Example demo="sankey-chart-full-width-demo">
+  <SankeyChartFullWidthDemo />
+</Example>
+
+### Rich Tooltips
+
+Use `tooltipFormatter` for full control over tooltip content.
+
+<Example demo="sankey-chart-rich-tooltip-demo">
+  <SankeyChartRichTooltipDemo />
+</Example>
+
+### Interactive
+
+Use `onNodeClick` and `onLinkClick` to handle interactions.
+
+<Example demo="sankey-chart-interactive-demo">
+  <SankeyChartInteractiveDemo />
+</Example>
+
+### Drill-Down Filtering
+
+Click a source node to filter the chart and show only its connections. Click again or use the reset button to restore the full view.
+
+<Example demo="sankey-chart-drill-down-demo">
+  <SankeyChartDrillDownDemo />
+</Example>
+
+## API Reference
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| `echarts` | `typeof echarts` | Registered ECharts module instance. |
+| `nodes` | `SankeyNodeData[]` | Node data. |
+| `links` | `SankeyLinkData[]` | Link data using node indexes. |
+| `height` | `number` | Chart height in pixels. |
+| `left` / `right` | `number \| string` | Horizontal layout padding. |
+| `nodeWidth` | `number` | Node width. |
+| `nodePadding` | `number` | Gap between nodes. |
+| `linkColor` | `"gradient" \| "gray"` | Link color mode. |
+| `tooltipFormatter` | `(params: SankeyTooltipParams) => string` | Custom tooltip HTML. |
+| `onNodeClick` | `(node: SankeyNodeData) => void` | Node click handler. |
+| `onLinkClick` | `(link: SankeyLinkData) => void` | Link click handler. |

@@ -90,6 +90,9 @@ importers:
       '@internationalized/date':
         specifier: ^3.12.1
         version: 3.12.1
+      echarts:
+        specifier: ^6.0.0
+        version: 6.0.0
       kumo-svelte:
         specifier: workspace:*
         version: link:../kumo-svelte

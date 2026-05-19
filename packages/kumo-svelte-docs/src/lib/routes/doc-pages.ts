@@ -27,6 +27,7 @@ interface DocLoadOptions {
   demoSources: Record<string, string>;
   pageSources: Record<string, string>;
   pages: Record<string, MdsvexPageModule>;
+  indexSlug?: string;
   routeId: string | null;
   sourceRoot?: string;
 }
@@ -36,10 +37,12 @@ export async function loadDocPage({
   demoSources,
   pageSources,
   pages,
+  indexSlug,
   routeId,
   sourceRoot = basePath,
 }: DocLoadOptions) {
-  const slug = slugFromRoute(routeId, basePath);
+  const slug =
+    routeId === `/${basePath}` && indexSlug ? indexSlug : slugFromRoute(routeId, basePath);
   if (!slug) {
     error(404, "Documentation page not found");
   }
@@ -73,7 +76,10 @@ function slugFromRoute(routeId: string | null, basePath: string) {
 
 function entryForSlug<T>(entries: Record<string, T>, basePath: string, slug: string) {
   const entry = Object.entries(entries).find(([path]) =>
-    path.includes(`/routes/${basePath}/${slug}/+page.svx`),
+    slug === "index"
+      ? path.includes(`/routes/${basePath}/+page.svx`) ||
+        path.includes(`/routes/${basePath}/${slug}/+page.svx`)
+      : path.includes(`/routes/${basePath}/${slug}/+page.svx`),
   );
   return entry ? { path: entry[0], value: entry[1] } : undefined;
 }
@@ -84,7 +90,9 @@ async function highlightedDemosForSlug(
   slug: string,
 ) {
   const demos = Object.entries(demoSources).filter(([path]) =>
-    path.includes(`/${basePath}/${slug}/`),
+    slug === "index"
+      ? path.includes(`/${basePath}/index/`)
+      : path.includes(`/${basePath}/${slug}/`),
   );
   return Object.fromEntries(
     await Promise.all(
