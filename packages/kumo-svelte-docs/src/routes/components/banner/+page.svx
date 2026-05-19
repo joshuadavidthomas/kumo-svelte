@@ -1,0 +1,121 @@
+---
+title: Banner
+description: Displays contextual inline messages for informational, alert, or error states.
+sourceFile: components/banner
+---
+
+<script lang="ts">
+  import Example from "$lib/components/example.svelte";
+  import BannerAlertDemo from "./banner-alert-demo.svelte";
+  import BannerCustomContentDemo from "./banner-custom-content-demo.svelte";
+  import BannerDefaultDemo from "./banner-default-demo.svelte";
+  import BannerErrorDemo from "./banner-error-demo.svelte";
+  import BannerVariantsDemo from "./banner-variants-demo.svelte";
+  import BannerWithActionDemo from "./banner-with-action-demo.svelte";
+  import BannerWithActionsDemo from "./banner-with-actions-demo.svelte";
+  import BannerWithIconDemo from "./banner-with-icon-demo.svelte";
+</script>
+
+<Example demo="banner-variants-demo">
+  <BannerVariantsDemo />
+</Example>
+
+## Installation
+
+### Barrel
+
+```ts
+import { Banner } from "kumo-svelte";
+```
+
+### Granular
+
+```ts
+import { Banner } from "kumo-svelte/components/banner";
+```
+
+## Usage
+
+```svelte
+<script lang="ts">
+  import { Banner } from "kumo-svelte";
+  import InfoIcon from "phosphor-svelte/lib/InfoIcon";
+</script>
+
+{#snippet icon()}
+  <InfoIcon weight="fill" />
+{/snippet}
+
+<Banner
+  {icon}
+  title="Update available"
+  description="A new version is ready to install."
+/>
+```
+
+## Examples
+
+### Variants
+
+#### Default
+
+<Example demo="banner-default-demo">
+  <BannerDefaultDemo />
+</Example>
+
+#### Alert
+
+<Example demo="banner-alert-demo">
+  <BannerAlertDemo />
+</Example>
+
+#### Error
+
+<Example demo="banner-error-demo">
+  <BannerErrorDemo />
+</Example>
+
+### With icon
+
+<Example demo="banner-with-icon-demo">
+  <BannerWithIconDemo />
+</Example>
+
+### With action
+
+<Example demo="banner-with-action-demo">
+  <BannerWithActionDemo />
+</Example>
+
+### With multiple actions
+
+<Example demo="banner-with-actions-demo">
+  <BannerWithActionsDemo />
+</Example>
+
+### Custom content
+
+Use a snippet for custom description content.
+
+<Example demo="banner-custom-content-demo">
+  <BannerCustomContentDemo />
+</Example>
+
+## API Reference
+
+### Banner
+
+Displays contextual inline messages for informational, alert, or error states.
+
+| Prop | Type | Required | Description |
+| --- | --- | --- | --- |
+| `variant` | `"default" \| "alert" \| "error"` | No | Visual style. Defaults to `"default"`. |
+| `icon` | `Snippet` | No | Icon snippet rendered before the banner content. |
+| `title` | `string` | No | Structured banner title. |
+| `description` | `Snippet \| string` | No | Structured banner description. |
+| `action` | `Snippet` | No | Action area rendered at the end of structured banners. |
+| `children` | `Snippet` | No | Legacy simple banner content when `title` and `description` are not provided. |
+| `text` | `string` | No | Fallback simple text content when no children are provided. |
+| `class` | `string` | No | Additional classes merged with the banner styles. |
+
+All other props are passed to the underlying `<div>` element.
