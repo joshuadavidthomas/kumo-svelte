@@ -1,0 +1,236 @@
+---
+title: InputGroup
+description: Compose inputs with addons, icons, buttons, and text for rich form fields.
+sourceFile: components/input-group
+---
+
+<script lang="ts">
+  import Example from "$lib/components/example.svelte";
+  import InputGroupButtonsDemo from "./input-group-buttons-demo.svelte";
+  import InputGroupDemo from "./input-group-demo.svelte";
+  import InputGroupIconsDemo from "./input-group-icons-demo.svelte";
+  import InputGroupKbdDemo from "./input-group-kbd-demo.svelte";
+  import InputGroupLoadingDemo from "./input-group-loading-demo.svelte";
+  import InputGroupSizesDemo from "./input-group-sizes-demo.svelte";
+  import InputGroupStatesDemo from "./input-group-states-demo.svelte";
+  import InputGroupSuffixDemo from "./input-group-suffix-demo.svelte";
+  import InputGroupTextDemo from "./input-group-text-demo.svelte";
+  import InputGroupTooltipButtonDemo from "./input-group-tooltip-button-demo.svelte";
+</script>
+
+<Example demo="input-group-demo">
+  <InputGroupDemo />
+</Example>
+
+## Installation
+
+### Barrel
+
+```ts
+import { InputGroup, InputGroupAddon, InputGroupInput } from "kumo-svelte";
+```
+
+### Granular
+
+```ts
+import { InputGroup, InputGroupAddon, InputGroupInput } from "kumo-svelte/components/input-group";
+```
+
+## Usage
+
+### With Built-in Field (Recommended)
+
+Pass the `label` prop to InputGroup to enable the built-in Field wrapper with label, description, and error support.
+
+```svelte
+<script lang="ts">
+  import MagnifyingGlassIcon from "phosphor-svelte/lib/MagnifyingGlassIcon";
+  import { InputGroup, InputGroupAddon, InputGroupInput } from "kumo-svelte";
+</script>
+
+<InputGroup label="Search" description="Find pages, components, and more">
+  <InputGroupAddon>
+    <MagnifyingGlassIcon />
+  </InputGroupAddon>
+  <InputGroupInput placeholder="Search..." />
+</InputGroup>
+```
+
+### Bare InputGroup (Custom Layouts)
+
+For custom form layouts, use InputGroup without `label`. Provide `aria-label` on `InputGroupInput` for accessibility.
+
+```svelte
+<InputGroup>
+  <InputGroupAddon>
+    <MagnifyingGlassIcon />
+  </InputGroupAddon>
+  <InputGroupInput placeholder="Search..." aria-label="Search" />
+</InputGroup>
+```
+
+## Examples
+
+### Icon
+
+Use Addon to place an icon at the start of the input as a visual identifier.
+
+<Example demo="input-group-icons-demo">
+  <InputGroupIconsDemo />
+</Example>
+
+### Text
+
+Use Addon to place text prefixes or suffixes alongside the input.
+
+<Example demo="input-group-text-demo">
+  <InputGroupTextDemo />
+</Example>
+
+### Button
+
+Place `InputGroupButton` inside an Addon for actions that operate directly on the input value, such as reveal/hide or clear.
+
+<Example demo="input-group-buttons-demo">
+  <InputGroupButtonsDemo />
+</Example>
+
+### Button with Tooltip
+
+Pass a `tooltip` prop to `InputGroupButton` to show a tooltip on hover. When no explicit `aria-label` is provided, the button derives it from a string tooltip value.
+
+<Example demo="input-group-tooltip-button-demo">
+  <InputGroupTooltipButtonDemo />
+</Example>
+
+### Kbd
+
+Place a keyboard shortcut hint inside an end Addon.
+
+<Example demo="input-group-kbd-demo">
+  <InputGroupKbdDemo />
+</Example>
+
+### Loading
+
+Place a Loader inside an end Addon as a status indicator while validating the input value.
+
+<Example demo="input-group-loading-demo">
+  <InputGroupLoadingDemo />
+</Example>
+
+### Inline Suffix
+
+Suffix renders text that flows seamlessly next to the typed value — useful for domain inputs like `.workers.dev`. Pair with a status icon Addon to show validation state.
+
+<Example demo="input-group-suffix-demo">
+  <InputGroupSuffixDemo />
+</Example>
+
+### Sizes
+
+Four sizes: `xs`, `sm`, `base` (default), and `lg`. The size applies to the entire group.
+
+<Example demo="input-group-sizes-demo">
+  <InputGroupSizesDemo />
+</Example>
+
+### States
+
+Various input states including error, disabled, and with description. Pass `label`, `error`, and `description` props directly to `InputGroup`.
+
+<Example demo="input-group-states-demo">
+  <InputGroupStatesDemo />
+</Example>
+
+## API Reference
+
+### `InputGroup`
+
+The root container that provides context to all child components. Accepts Field props (`label`, `description`, `error`) and wraps content in a Field when `label` is provided.
+
+| Prop | Type | Required | Description |
+| --- | --- | --- | --- |
+| `children` | `Snippet` | Yes | Input group contents. |
+| `label` | `Snippet \| string` | No | Enables the built-in Field wrapper and renders a label. |
+| `description` | `Snippet \| string` | No | Supporting field description. |
+| `error` | `string \| { message: Snippet \| string; match: FieldErrorMatch }` | No | Error message or validity-matched error. |
+| `disabled` | `boolean` | No | Disables the group and descendants that read group context. |
+| `focusMode` | `"container" \| "individual"` | No | Focus styling strategy. Defaults to `"container"`. |
+| `labelTooltip` | `Snippet` | No | Additional tooltip content for the label. |
+| `required` | `boolean` | No | Shows required or optional label treatment. |
+| `size` | `"xs" \| "sm" \| "base" \| "lg"` | No | Size applied to the group. Defaults to `"base"`. |
+| `class` | `string` | No | Additional classes. |
+
+### `InputGroupInput`
+
+The text input element. Inherits `size`, `disabled`, and error state from InputGroup context.
+
+| Prop | Type | Required | Description |
+| --- | --- | --- | --- |
+| `value` | `string \| number \| string[]` | No | Input value. Bind with `bind:value`. |
+| `onValueChange` | `(value: string) => void` | No | Convenience handler called with the input value. |
+| `class` | `string` | No | Additional classes. |
+
+InputGroupInput also accepts standard input attributes such as `type`, `placeholder`, `maxlength`, `aria-label`, and `disabled`.
+
+### `InputGroupAddon`
+
+Container for icons, text, or compact buttons positioned at the start or end of the input.
+
+| Prop | Type | Required | Description |
+| --- | --- | --- | --- |
+| `align` | `"start" \| "end"` | No | Addon position. Defaults to `"start"`. |
+| `children` | `Snippet` | No | Addon contents. |
+| `containsButton` | `boolean` | No | Adjusts padding for a nested `InputGroupButton`. |
+| `class` | `string` | No | Additional classes. |
+
+### `InputGroupButton`
+
+Button for secondary actions like toggle, copy, or help. Renders inside an Addon. Pass a `tooltip` prop to show a tooltip on hover.
+
+| Prop | Type | Required | Description |
+| --- | --- | --- | --- |
+| `children` | `Snippet` | No | Button contents. |
+| `tooltip` | `Snippet \| string` | No | Tooltip content. String tooltips also become the fallback `aria-label`. |
+| `tooltipSide` | `"top" \| "right" \| "bottom" \| "left"` | No | Tooltip placement. Defaults to `"bottom"`. |
+
+InputGroupButton also accepts Button props such as `variant`, `size`, `shape`, `disabled`, and `aria-label`.
+
+### `InputGroupSuffix`
+
+Inline text that flows seamlessly next to the typed value, such as `.workers.dev`. The input width adjusts automatically as the user types.
+
+| Prop | Type | Required | Description |
+| --- | --- | --- | --- |
+| `children` | `Snippet` | No | Suffix content. |
+| `class` | `string` | No | Additional classes. |
+
+### Validation Error Types
+
+When using `error` as an object, the `match` property corresponds to HTML5 ValidityState values:
+
+| Match | Description |
+| --- | --- |
+| `valueMissing` | Required field is empty. |
+| `typeMismatch` | Value doesn't match type, such as invalid email. |
+| `patternMismatch` | Value doesn't match the pattern attribute. |
+| `tooShort` | Value shorter than minlength. |
+| `tooLong` | Value longer than maxlength. |
+| `rangeUnderflow` | Value less than min. |
+| `rangeOverflow` | Value greater than max. |
+| `true` | Always show error, useful for server-side validation. |
+
+## Accessibility
+
+### Label Requirement
+
+InputGroup requires an accessible name via one of:
+
+- `label` prop on InputGroup, which renders a visible label with built-in Field support
+- `aria-label` on InputGroupInput for inputs without a visible label
+- `aria-labelledby` on InputGroupInput for custom label association
+
+### Group Semantics
+
+InputGroup groups the input with its addons visually. Keep addon text short and ensure action buttons have a label.
