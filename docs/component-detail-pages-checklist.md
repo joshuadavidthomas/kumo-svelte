@@ -19,7 +19,7 @@ For each page:
 - [x] Breadcrumbs — `/components/breadcrumbs`
 - [x] Button — `/components/button`
 - [x] Checkbox — `/components/checkbox`
-- [ ] Clipboard Text — `/components/clipboard-text`
+- [x] Clipboard Text — `/components/clipboard-text`
 - [ ] Cloudflare Logo — `/components/cloudflare-logo`
 - [ ] CodeHighlighted — `/components/code-highlighted`
 - [ ] Collapsible — `/components/collapsible`

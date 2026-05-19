@@ -1,0 +1,95 @@
+---
+title: Clipboard Text
+description: A text component with a copy-to-clipboard button.
+sourceFile: components/clipboard-text
+---
+
+<script lang="ts">
+  import Example from "$lib/components/example.svelte";
+  import ClipboardTextAlternateTextToCopyDemo from "./clipboard-text-alternate-text-to-copy-demo.svelte";
+  import ClipboardTextApiKeyDemo from "./clipboard-text-api-key-demo.svelte";
+  import ClipboardTextBasicDemo from "./clipboard-text-basic-demo.svelte";
+  import ClipboardTextLongDemo from "./clipboard-text-long-demo.svelte";
+  import ClipboardTextShortDemo from "./clipboard-text-short-demo.svelte";
+  import ClipboardTextWithTooltipDemo from "./clipboard-text-with-tooltip-demo.svelte";
+</script>
+
+<Example demo="clipboard-text-basic-demo">
+  <ClipboardTextBasicDemo />
+</Example>
+
+## Installation
+
+### Barrel
+
+```ts
+import { ClipboardText } from "kumo-svelte";
+```
+
+### Granular
+
+```ts
+import { ClipboardText } from "kumo-svelte/components/clipboard-text";
+```
+
+## Usage
+
+```svelte
+<script lang="ts">
+  import { ClipboardText } from "kumo-svelte";
+</script>
+
+<ClipboardText text="Copy this text" />
+```
+
+## Examples
+
+### Short Text
+
+<Example demo="clipboard-text-short-demo">
+  <ClipboardTextShortDemo />
+</Example>
+
+### API Key
+
+<Example demo="clipboard-text-api-key-demo">
+  <ClipboardTextApiKeyDemo />
+</Example>
+
+### Copy Alternate Text
+
+<Example demo="clipboard-text-alternate-text-to-copy-demo">
+  <ClipboardTextAlternateTextToCopyDemo />
+</Example>
+
+### Long Text
+
+<Example demo="clipboard-text-long-demo">
+  <ClipboardTextLongDemo />
+</Example>
+
+### With Tooltip
+
+Shows a “Copy” tooltip on hover and “Copied!” after a successful copy.
+
+<Example demo="clipboard-text-with-tooltip-demo">
+  <ClipboardTextWithTooltipDemo />
+</Example>
+
+## API Reference
+
+### ClipboardText
+
+A text component with a copy-to-clipboard button.
+
+| Prop | Type | Required | Description |
+| --- | --- | --- | --- |
+| `text` | `string` | Yes | Visible text. |
+| `textToCopy` | `string` | No | Alternate text copied to the clipboard. Defaults to `text`. |
+| `size` | `"sm" \| "base" \| "lg"` | No | Clipboard text size. Defaults to `"lg"`. |
+| `tooltip` | `{ text?: string; copiedText?: string; side?: "top" \| "bottom" \| "left" \| "right" }` | No | Tooltip text and placement. |
+| `labels` | `{ copyAction?: string }` | No | Accessible labels for the copy action. |
+| `onCopy` | `() => void` | No | Called after a successful copy. |
+| `class` | `string` | No | Additional classes merged with the container styles. |
+
+All other props are passed to the underlying `<div>` element.
