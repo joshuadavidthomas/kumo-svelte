@@ -1,0 +1,166 @@
+---
+title: InputArea
+description: A multi-line text input for longer content with built-in label, description, and error support.
+sourceFile: components/input
+primitive: textarea
+---
+
+<script lang="ts">
+  import Example from "$lib/components/example.svelte";
+  import InputAreaBareDemo from "./input-area-bare-demo.svelte";
+  import InputAreaBasicDemo from "./input-area-basic-demo.svelte";
+  import InputAreaDisabledDemo from "./input-area-disabled-demo.svelte";
+  import InputAreaErrorObjectDemo from "./input-area-error-object-demo.svelte";
+  import InputAreaErrorStringDemo from "./input-area-error-string-demo.svelte";
+  import InputAreaOptionalFieldDemo from "./input-area-optional-field-demo.svelte";
+  import InputAreaRichLabelDemo from "./input-area-rich-label-demo.svelte";
+  import InputAreaRowsDemo from "./input-area-rows-demo.svelte";
+  import InputAreaSizesDemo from "./input-area-sizes-demo.svelte";
+  import InputAreaWithLabelDemo from "./input-area-with-label-demo.svelte";
+</script>
+
+<Example demo="input-area-basic-demo">
+  <InputAreaBasicDemo />
+</Example>
+
+## Installation
+
+### Barrel
+
+```ts
+import { InputArea, Textarea } from "kumo-svelte";
+```
+
+### Granular
+
+```ts
+import { InputArea, Textarea } from "kumo-svelte/components/input";
+```
+
+`Textarea` is also exported as an alias for `InputArea` for discoverability when migrating from other libraries.
+
+## Usage
+
+### With Built-in Field (Recommended)
+
+Use the `label` prop to enable the built-in Field wrapper with label, description, and error support.
+
+```svelte
+<script lang="ts">
+  import { InputArea } from "kumo-svelte";
+</script>
+
+<InputArea
+  label="Description"
+  placeholder="Enter a description..."
+  description="Provide details about your project"
+/>
+```
+
+### Bare InputArea (Custom Layouts)
+
+For custom form layouts, use InputArea without `label`. Provide `aria-label` or `aria-labelledby` for accessibility.
+
+```svelte
+<InputArea placeholder="Add notes..." aria-label="Notes" rows={3} />
+```
+
+## Examples
+
+### With Label
+
+<Example demo="input-area-with-label-demo">
+  <InputAreaWithLabelDemo />
+</Example>
+
+### Custom Row Count
+
+Use the `rows` prop to control the initial height.
+
+<Example demo="input-area-rows-demo">
+  <InputAreaRowsDemo />
+</Example>
+
+### Error State (String)
+
+Error styling is automatically applied when the `error` prop is truthy.
+
+<Example demo="input-area-error-string-demo">
+  <InputAreaErrorStringDemo />
+</Example>
+
+### Error State (Object)
+
+InputArea supports the same error API as Input, including validity-matched error objects. This demo uses a simple string error for clarity.
+
+<Example demo="input-area-error-object-demo">
+  <InputAreaErrorObjectDemo />
+</Example>
+
+### Sizes
+
+Four sizes available: `xs`, `sm`, `base` (default), and `lg`.
+
+<Example demo="input-area-sizes-demo">
+  <InputAreaSizesDemo />
+</Example>
+
+### Disabled
+
+<Example demo="input-area-disabled-demo">
+  <InputAreaDisabledDemo />
+</Example>
+
+### Bare InputArea
+
+InputArea without `label` renders as a bare textarea. Provide `aria-label` for accessibility.
+
+<Example demo="input-area-bare-demo">
+  <InputAreaBareDemo />
+</Example>
+
+### Optional Field
+
+Set `required={false}` to show optional text after the label.
+
+<Example demo="input-area-optional-field-demo">
+  <InputAreaOptionalFieldDemo />
+</Example>
+
+### Snippet Label
+
+The `label` prop accepts a string or snippet for rich formatting.
+
+<Example demo="input-area-rich-label-demo">
+  <InputAreaRichLabelDemo />
+</Example>
+
+## API Reference
+
+InputArea accepts all standard HTML textarea attributes plus the following:
+
+| Prop | Type | Required | Description |
+| --- | --- | --- | --- |
+| `label` | `Snippet \| string` | No | Enables the built-in Field wrapper and renders a label. |
+| `description` | `Snippet \| string` | No | Supporting field description. |
+| `error` | `string \| { message: Snippet \| string; match: FieldErrorMatch }` | No | Error message or validity-matched error. |
+| `labelTooltip` | `Snippet` | No | Additional tooltip content for the label. |
+| `onValueChange` | `(value: string) => void` | No | Convenience handler called with the textarea value. |
+| `size` | `"xs" \| "sm" \| "base" \| "lg"` | No | Size variant. Defaults to `"base"`. |
+| `variant` | `"default" \| "error"` | No | Visual variant. Defaults to `"error"` when `error` is present. |
+| `value` | `string` | No | Textarea value. Bind with `bind:value`. |
+| `class` | `string` | No | Additional classes. |
+
+## Accessibility
+
+### Label Requirement
+
+InputArea requires an accessible name via one of:
+
+- `label` prop (recommended)
+- `placeholder` plus `aria-label` for bare textareas
+- `aria-labelledby` for custom label association
+
+### Error Association
+
+Error messages are rendered alongside the textarea through the built-in Field wrapper.

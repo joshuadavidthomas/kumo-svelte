@@ -32,7 +32,7 @@ For each page:
 - [x] Flow — `/components/flow`
 - [x] Grid — `/components/grid`
 - [x] Input — `/components/input`
-- [ ] InputArea — `/components/input-area`
+- [x] InputArea — `/components/input-area`
 - [ ] InputGroup — `/components/input-group`
 - [ ] Label — `/components/label`
 - [ ] Layer Card — `/components/layer-card`
