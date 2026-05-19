@@ -1,0 +1,170 @@
+---
+title: Table
+description: A table component for displaying tabular data with support for selection, row variants, and column sizing.
+sourceFile: components/table
+---
+
+<script lang="ts">
+  import Example from "$lib/components/example.svelte";
+  import TableBasicDemo from "./table-basic-demo.svelte";
+  import TableCompactStickyDemo from "./table-compact-sticky-demo.svelte";
+  import TableFixedLayoutDemo from "./table-fixed-layout-demo.svelte";
+  import TableFullDemo from "./table-full-demo.svelte";
+  import TableSelectedRowDemo from "./table-selected-row-demo.svelte";
+  import TableStickyColumnDemo from "./table-sticky-column-demo.svelte";
+  import TableWithCheckboxDemo from "./table-with-checkbox-demo.svelte";
+  import TableWithCompactHeaderDemo from "./table-compact-header-demo.svelte";
+</script>
+
+<Example demo="table-basic-demo">
+  <TableBasicDemo />
+</Example>
+
+## Installation
+
+### Barrel
+
+```ts
+import { Table, TableBody, TableCell } from "kumo-svelte";
+```
+
+### Granular
+
+```ts
+import { Table, TableBody, TableCell } from "kumo-svelte/components/table";
+```
+
+## Usage
+
+```svelte
+<script lang="ts">
+  import { LayerCard, Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "kumo-svelte";
+</script>
+
+<LayerCard class="p-0">
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHead>Name</TableHead>
+        <TableHead>Email</TableHead>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>John Doe</TableCell>
+        <TableCell>john@example.com</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</LayerCard>
+```
+
+## Examples
+
+### With Checkboxes
+
+Add row selection with `TableCheckHead` and `TableCheckCell`. Both accept `onCheckedChange`, which matches the Checkbox component's callback shape.
+
+<Example demo="table-with-checkbox-demo">
+  <TableWithCheckboxDemo />
+</Example>
+
+### Compact Header
+
+Use `variant="compact"` on `TableHeader` for a more condensed header style.
+
+<Example demo="table-compact-header-demo">
+  <TableWithCompactHeaderDemo />
+</Example>
+
+### Selected Row
+
+Use `variant="selected"` on `TableRow` to highlight selected rows.
+
+<Example demo="table-selected-row-demo">
+  <TableSelectedRowDemo />
+</Example>
+
+### Fixed Layout with Column Sizes
+
+For precise control over column widths, set `layout="fixed"` and use `colgroup` with `col` elements.
+
+<Example demo="table-fixed-layout-demo">
+  <TableFixedLayoutDemo />
+</Example>
+
+### Sticky Column
+
+Pin a column to the left or right edge of the scroll container with `sticky="left"` or `sticky="right"` on `TableHead` and `TableCell`.
+
+<Example demo="table-sticky-column-demo">
+  <TableStickyColumnDemo />
+</Example>
+
+### Compact Header with Sticky Column
+
+Combining `variant="compact"` on `TableHeader` with sticky columns.
+
+<Example demo="table-compact-sticky-demo">
+  <TableCompactStickyDemo />
+</Example>
+
+### Full Example
+
+Complete table with checkboxes, badges, action buttons, and fixed column widths.
+
+<Example demo="table-full-demo">
+  <TableFullDemo />
+</Example>
+
+## API Reference
+
+### `Table`
+
+Root table component. Renders a semantic `table` element.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `layout` | `"auto" \| "fixed"` | `"auto"` | CSS table layout. |
+| `children` | `Snippet` | — | Table contents. |
+| `class` | `string` | — | Additional classes. |
+
+### `TableHeader`, `TableBody`, and `TableFooter`
+
+Semantic table sections. `TableHeader` supports `variant="compact"` and `sticky`.
+
+### `TableRow`
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `variant` | `"default" \| "selected"` | `"default"` | Row visual state. |
+| `children` | `Snippet` | — | Row cells. |
+| `class` | `string` | — | Additional classes. |
+
+### `TableHead` and `TableCell`
+
+Header and body cells. Both accept `sticky="left"` or `sticky="right"` to pin a column.
+
+### `TableCheckHead` and `TableCheckCell`
+
+Checkbox cells for selection.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `checked` | `boolean` | `false` | Checked state. |
+| `indeterminate` | `boolean` | `false` | Indeterminate state. |
+| `disabled` | `boolean` | `false` | Disabled state. |
+| `label` | `string` | default label | Accessible checkbox label. |
+| `onCheckedChange` | `(checked: boolean, eventDetails?: CheckboxChangeEventDetails) => void` | — | Called when checked state changes. |
+
+### `TableResizeHandle`
+
+Draggable handle for column resizing. Use with TanStack Table or custom resize logic.
+
+## TanStack Table Integration
+
+For advanced features like sorting, filtering, and resizable columns, integrate with TanStack Table. The Table components are semantic wrappers that work with headless table APIs.
+
+## Svelte Notes
+
+The Svelte package exports named components (`TableHeader`, `TableRow`, `TableHead`, and so on) instead of React compound properties (`Table.Header`, `Table.Row`, `Table.Head`).

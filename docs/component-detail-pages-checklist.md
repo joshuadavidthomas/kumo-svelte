@@ -48,7 +48,7 @@ For each page:
 - [x] Sidebar — `/components/sidebar`
 - [x] Skeleton Line — `/components/skeleton-line`
 - [x] Switch — `/components/switch`
-- [ ] Table — `/components/table`
+- [x] Table — `/components/table`
 - [ ] Table of Contents — `/components/table-of-contents`
 - [ ] Tabs — `/components/tabs`
 - [ ] Text — `/components/text`
