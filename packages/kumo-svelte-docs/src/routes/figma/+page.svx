@@ -1,44 +1,20 @@
 ---
 title: Figma Resources
-description: Generate Figma components from Kumo definitions using the Figma plugin.
+description: Figma status for Kumo Svelte.
 ---
 
-## Kumo Figma Plugin
+## Status
 
-The upstream Kumo Figma plugin generates Figma components from Kumo component definitions. It reads component registry data and creates ComponentSets with auto-layout, semantic color variable bindings, and variant combinations.
+`kumo-svelte` does not currently ship a Figma plugin or token sync workflow in this package.
 
-## Local Development Setup
+## What Exists Today
 
-### 1. Build the Plugin
+The source package exposes component code, style tokens, and registry metadata that a future Figma workflow could consume:
 
-```bash
-pnpm --filter @cloudflare/kumo-figma build
-```
+- `packages/kumo-svelte/src/registry/component-registry.json`
+- `packages/kumo-svelte/src/ai/component-registry.json`
+- the generated component CSS and theme tokens
 
-### 2. Import the Plugin in Figma
+## Future Direction
 
-Use Figma Desktop, then choose **Plugins → Development → Import plugin from manifest...** and select the plugin manifest from the upstream repository.
-
-### 3. Run the Plugin
-
-Open a file, then choose **Plugins → Development → Kumo UI Kit Generator**.
-
-## Environment Variables
-
-The token sync script requires a Figma token and file key.
-
-```bash
-cp packages/kumo-figma/scripts/.env.example packages/kumo-figma/scripts/.env
-```
-
-| Variable | Required | Description |
-| --- | --- | --- |
-| `FIGMA_TOKEN` | Yes | Personal access token. |
-| `FIGMA_FILE_KEY` | Yes | File key from the Figma URL. |
-| `FIGMA_COLLECTION_NAME` | No | Variable collection name. |
-
-Never commit Figma tokens.
-
-## Svelte Notes
-
-Generated Figma components should be checked against the Svelte implementation before treating them as source-of-truth for Svelte APIs. The upstream plugin targets the React package today.
+A Svelte-specific Figma workflow should read the Svelte registry and Svelte component APIs. Do not use a React-oriented generator as the source of truth for Svelte component props, slots/snippets, or composition patterns.

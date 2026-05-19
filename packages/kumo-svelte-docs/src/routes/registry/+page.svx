@@ -5,15 +5,14 @@ description: AI-readable component metadata for LLMs and code generation tools.
 
 ## Overview
 
-The component registry is a machine-readable JSON file that describes Kumo components, props, variants, examples, and semantic tokens. It is designed for AI agents, code generators, and other tooling.
+The component registry is a machine-readable JSON file that describes Kumo Svelte components, props, variants, examples, and semantic tokens. It is designed for AI agents, code generators, and other tooling.
 
 ## Accessing the Registry
 
-### Via CLI
+### Via HTTP API
 
 ```bash
-npx @cloudflare/kumo ls
-npx @cloudflare/kumo doc Button
+curl http://localhost:5173/api/component-registry
 ```
 
 ### Via Local JSON

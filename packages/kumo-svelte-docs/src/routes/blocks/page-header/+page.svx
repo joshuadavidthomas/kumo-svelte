@@ -17,15 +17,7 @@ sourceFile: blocks/page-header
 
 ## Installation
 
-PageHeader is an upstream **block**: a CLI-installed component that you own and can customize. Unlike regular components, blocks are copied into your project so you have full control over the code.
-
-The Svelte package does not currently export a `PageHeader` block. Compose the same pattern from `Breadcrumbs`, `Tabs`, and `Button`, or copy the demo shell below into your application and adapt it.
-
-```bash
-# Upstream React package
-npx @cloudflare/kumo init
-npx @cloudflare/kumo add PageHeader
-```
+The Svelte package does not currently export a `PageHeader` block or a block-install CLI. Compose the pattern from `Breadcrumbs`, `Tabs`, and `Button`, or copy the demo shell below into your application and adapt it.
 
 ## Usage
 

@@ -17,15 +17,7 @@ sourceFile: blocks/resource-list
 
 ## Installation
 
-ResourceListPage is an upstream **block**: a CLI-installed component that you own and can customize. Unlike regular components, blocks are copied into your project so you have full control over the code.
-
-The Svelte package does not currently export a `ResourceListPage` block. Compose the same pattern from `Surface` and page-level layout markup, or copy the demo shell below into your application and adapt it.
-
-```bash
-# Upstream React package
-npx @cloudflare/kumo init
-npx @cloudflare/kumo add ResourceListPage
-```
+The Svelte package does not currently export a `ResourceListPage` block or a block-install CLI. Compose the pattern from `Surface` and page-level layout markup, or copy the demo shell below into your application and adapt it.
 
 ## Usage
 
