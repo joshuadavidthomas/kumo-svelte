@@ -20,7 +20,7 @@ For each page:
 - [x] Button — `/components/button`
 - [x] Checkbox — `/components/checkbox`
 - [x] Clipboard Text — `/components/clipboard-text`
-- [ ] Cloudflare Logo — `/components/cloudflare-logo`
+- [x] Cloudflare Logo — `/components/cloudflare-logo`
 - [ ] CodeHighlighted — `/components/code-highlighted`
 - [ ] Collapsible — `/components/collapsible`
 - [ ] Combobox — `/components/combobox`

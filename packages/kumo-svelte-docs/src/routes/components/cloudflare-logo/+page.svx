@@ -1,0 +1,165 @@
+---
+title: CloudflareLogo
+description: Official Cloudflare logo component with glyph and full logo variants.
+sourceFile: components/cloudflare-logo
+---
+
+<script lang="ts">
+  import Example from "$lib/components/example.svelte";
+  import CloudflareLogoBasicDemo from "./cloudflare-logo-basic-demo.svelte";
+  import CloudflareLogoColorVariantsDemo from "./cloudflare-logo-color-variants-demo.svelte";
+  import CloudflareLogoCopyDemo from "./cloudflare-logo-copy-demo.svelte";
+  import CloudflareLogoGlyphDemo from "./cloudflare-logo-glyph-demo.svelte";
+  import CloudflareLogoGlyphVariantsDemo from "./cloudflare-logo-glyph-variants-demo.svelte";
+  import CloudflareLogoSizesDemo from "./cloudflare-logo-sizes-demo.svelte";
+  import PoweredByCloudflareBasicDemo from "./powered-by-cloudflare-basic-demo.svelte";
+  import PoweredByCloudflareFooterDemo from "./powered-by-cloudflare-footer-demo.svelte";
+  import PoweredByCloudflareVariantsDemo from "./powered-by-cloudflare-variants-demo.svelte";
+</script>
+
+<Example demo="cloudflare-logo-basic-demo">
+  <CloudflareLogoBasicDemo />
+</Example>
+
+## Installation
+
+### Barrel
+
+```ts
+import {
+  CloudflareLogo,
+  PoweredByCloudflare,
+  generateCloudflareLogoSvg,
+} from "kumo-svelte";
+```
+
+### Granular
+
+```ts
+import {
+  CloudflareLogo,
+  PoweredByCloudflare,
+  generateCloudflareLogoSvg,
+} from "kumo-svelte/components/cloudflare-logo";
+```
+
+## Usage
+
+```svelte
+<script lang="ts">
+  import { CloudflareLogo } from "kumo-svelte";
+</script>
+
+<CloudflareLogo class="w-36" />
+```
+
+## Examples
+
+### Glyph Only
+
+Use `variant="glyph"` to display just the cloud icon without the wordmark.
+
+<Example demo="cloudflare-logo-glyph-demo">
+  <CloudflareLogoGlyphDemo />
+</Example>
+
+### Color Variants
+
+The logo supports three color schemes: brand colors, black, and white.
+
+<Example demo="cloudflare-logo-color-variants-demo">
+  <CloudflareLogoColorVariantsDemo />
+</Example>
+
+### Glyph Color Variants
+
+<Example demo="cloudflare-logo-glyph-variants-demo">
+  <CloudflareLogoGlyphVariantsDemo />
+</Example>
+
+### Sizing
+
+Size the logo using CSS width classes. The height adjusts automatically to maintain aspect ratio.
+
+<Example demo="cloudflare-logo-sizes-demo">
+  <CloudflareLogoSizesDemo />
+</Example>
+
+### Brand Assets Menu
+
+Combine with dropdown components to create a brand assets menu. Use `generateCloudflareLogoSvg()` to get copy-paste ready SVG markup.
+
+<Example demo="cloudflare-logo-copy-demo">
+  <CloudflareLogoCopyDemo />
+</Example>
+
+## PoweredByCloudflare
+
+A pre-built “Powered by Cloudflare” badge component for footers and attribution.
+
+### Basic Usage
+
+<Example demo="powered-by-cloudflare-basic-demo">
+  <PoweredByCloudflareBasicDemo />
+</Example>
+
+### Color Variants
+
+<Example demo="powered-by-cloudflare-variants-demo">
+  <PoweredByCloudflareVariantsDemo />
+</Example>
+
+### Footer Example
+
+<Example demo="powered-by-cloudflare-footer-demo">
+  <PoweredByCloudflareFooterDemo />
+</Example>
+
+## SVG Generation
+
+Use `generateCloudflareLogoSvg()` to get copy-paste ready SVG markup for non-Svelte contexts.
+
+```ts
+import { generateCloudflareLogoSvg } from "kumo-svelte";
+
+const glyphSvg = generateCloudflareLogoSvg({ variant: "glyph" });
+const fullSvg = generateCloudflareLogoSvg({ variant: "full" });
+const blackSvg = generateCloudflareLogoSvg({ color: "black" });
+
+await navigator.clipboard.writeText(
+  generateCloudflareLogoSvg({ variant: "glyph", color: "color" }),
+);
+```
+
+## API Reference
+
+### CloudflareLogo
+
+Extends `SVGSVGElement` and accepts all standard SVG attributes.
+
+| Prop | Type | Required | Description |
+| --- | --- | --- | --- |
+| `variant` | `"glyph" \| "full"` | No | Logo variant. Defaults to `"full"`. |
+| `color` | `"color" \| "black" \| "white"` | No | Color scheme. Defaults to `"color"`. |
+| `class` | `string` | No | CSS classes for sizing, such as `w-36`. Height adjusts automatically. |
+
+### PoweredByCloudflare
+
+Extends `HTMLAnchorElement` and accepts all standard anchor attributes.
+
+| Prop | Type | Required | Description |
+| --- | --- | --- | --- |
+| `color` | `"color" \| "black" \| "white"` | No | Color scheme for the logo and text. Defaults to `"color"`. |
+| `href` | `string` | No | Link destination. Defaults to `"https://www.cloudflare.com"`. |
+| `target` | `string` | No | Link target. Defaults to `"_blank"`. |
+| `rel` | `string` | No | Link relationship. Defaults to `"noopener noreferrer"`. |
+| `class` | `string` | No | Additional classes merged with the badge styles. |
+
+### generateCloudflareLogoSvg
+
+Generates SVG markup as a string.
+
+| Option | Type | Required | Description |
+| --- | --- | --- | --- |
+| `variant` | `"glyph" \| "full"` | No | SVG variant. Defaults to `"full"`. |
+| `color` | `"color" \| "black" \| "white"` | No | SVG color scheme. Defaults to `"color"`. |
