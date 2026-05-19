@@ -45,7 +45,7 @@ For each page:
 - [x] Radio — `/components/radio`
 - [x] Select — `/components/select`
 - [x] Sensitive Input — `/components/sensitive-input`
-- [ ] Sidebar — `/components/sidebar`
+- [x] Sidebar — `/components/sidebar`
 - [ ] Skeleton Line — `/components/skeleton-line`
 - [ ] Switch — `/components/switch`
 - [ ] Table — `/components/table`
