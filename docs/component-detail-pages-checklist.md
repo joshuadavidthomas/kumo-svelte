@@ -18,7 +18,7 @@ For each page:
 - [x] Banner — `/components/banner`
 - [x] Breadcrumbs — `/components/breadcrumbs`
 - [x] Button — `/components/button`
-- [ ] Checkbox — `/components/checkbox`
+- [x] Checkbox — `/components/checkbox`
 - [ ] Clipboard Text — `/components/clipboard-text`
 - [ ] Cloudflare Logo — `/components/cloudflare-logo`
 - [ ] CodeHighlighted — `/components/code-highlighted`
