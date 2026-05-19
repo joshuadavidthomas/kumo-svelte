@@ -1,0 +1,32 @@
+---
+title: Component Registry
+description: AI-readable component metadata for LLMs and code generation tools.
+---
+
+## Overview
+
+The component registry is a machine-readable JSON file that describes Kumo components, props, variants, examples, and semantic tokens. It is designed for AI agents, code generators, and other tooling.
+
+## Accessing the Registry
+
+### Via CLI
+
+```bash
+npx @cloudflare/kumo ls
+npx @cloudflare/kumo doc Button
+```
+
+### Via Local JSON
+
+```bash
+jq '.components.Button.props' packages/kumo-svelte/src/registry/component-registry.json
+jq '.components.Button.props' packages/kumo-svelte/src/ai/component-registry.json
+```
+
+## Registry Contents
+
+The registry includes component props with types and defaults, variant options, real examples, semantic color tokens, and sub-components for compound patterns.
+
+## Svelte Notes
+
+Use the Svelte registry files in `packages/kumo-svelte/src/registry/` and `packages/kumo-svelte/src/ai/` for this package. Do not rely on the upstream React registry when generating Svelte code because component APIs differ.

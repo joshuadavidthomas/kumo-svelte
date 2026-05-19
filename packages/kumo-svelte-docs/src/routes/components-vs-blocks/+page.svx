@@ -1,0 +1,57 @@
+---
+title: Components vs Blocks
+description: Understanding how Kumo delivers versioned components you import and copy-paste blocks you own.
+---
+
+## The Building Block Spectrum
+
+Not everything belongs in a design system library. Kumo distinguishes between **components** — shared, versioned primitives — and **blocks** — patterns you copy and own.
+
+## Components
+
+Components are atomic, reusable UI elements such as Button, Input, Dialog, and Badge.
+
+### Characteristics
+
+- **Versioned and maintained** — the package owns the API and ships updates.
+- **Tree-shakeable** — import only what you use.
+- **Accessible by default** — built on Svelte/Bits UI patterns where applicable.
+- **Design-system compliant** — semantic tokens, variants, and predictable APIs.
+- **Agnostic** — no business logic or product-specific assumptions.
+
+```ts
+import { Button, Input, Dialog, Badge } from "kumo-svelte";
+import { Button as GranularButton } from "kumo-svelte/components/button";
+```
+
+## Blocks
+
+Blocks are compositions of components that solve common product patterns, such as page headers, resource lists, or delete confirmations.
+
+### Characteristics
+
+- **You own it** — code lives in your project.
+- **Fully customizable** — modify anything beyond what props allow.
+- **Composition-first** — built from Kumo components.
+- **Starting points** — patterns to extend, not constraints.
+
+## Decision Framework
+
+Use a component when the primitive is content-agnostic, context-agnostic, and should receive package updates.
+
+Use a block when the pattern includes product assumptions, page layout, business logic, or needs full source ownership.
+
+## Summary
+
+| | Components | Blocks |
+| --- | --- | --- |
+| Delivery | Package import | Copy into your project |
+| Ownership | Kumo maintains | You own and customize |
+| Updates | Version bump | Manual merge/re-copy |
+| Examples | Button, Input, Dialog | PageHeader, ResourceList |
+
+## Related
+
+- [Installation](/installation)
+- [Blocks](/blocks/page-header)
+- [Contributing](/contributing)

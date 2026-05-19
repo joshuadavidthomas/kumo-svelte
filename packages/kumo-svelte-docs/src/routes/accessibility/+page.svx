@@ -1,0 +1,26 @@
+---
+title: Accessibility
+description: Learn how to make the most of Kumo Svelte accessibility features and guidelines.
+---
+
+Accessibility is a top priority for Kumo. Components handle many complex details such as ARIA attributes, roles, keyboard navigation, pointer interactions, and focus management. Your application still owns labels, copy, validation, and testing in context.
+
+## Keyboard Navigation
+
+Kumo components follow WAI-ARIA Authoring Practices where applicable. Many components support arrow keys, alphanumeric search, Home, End, Enter, Escape, and roving focus behavior.
+
+## Focus Management
+
+Overlays and composite widgets manage focus after interaction. You are responsible for preserving visible focus indicators with `:focus-visible` styles and for avoiding custom CSS that removes focus outlines without replacement.
+
+## Color Contrast
+
+Use semantic Kumo color tokens instead of raw colors. Semantic tokens are designed to adapt across modes and themes while preserving contrast intent.
+
+## Accessible Labels
+
+Use form components and `Label` to associate controls with text. Icon-only controls still need accessible names via visible text, `aria-label`, or `aria-labelledby`.
+
+## Testing
+
+Test keyboard flows, screen-reader labels, focus order, and color contrast in the final product context. Component-level defaults help, but page-level composition decides whether the result is accessible.

@@ -5,7 +5,18 @@ export interface DocsNavGroup {
   title: string;
 }
 
-export const staticPages: DocsNavItem[] = [{ label: "Home", href: "/" }];
+export const staticPages: DocsNavItem[] = [
+  { label: "Home", href: "/" },
+  { label: "Installation", href: "/installation" },
+  { label: "Colors", href: "/colors" },
+  { label: "Components vs Blocks", href: "/components-vs-blocks" },
+  { label: "CLI", href: "/cli" },
+  { label: "Registry", href: "/registry" },
+  { label: "Streaming UI", href: "/streaming" },
+  { label: "Accessibility", href: "/accessibility" },
+  { label: "Figma", href: "/figma" },
+  { label: "Contributing", href: "/contributing" },
+];
 
 export const chartItems: DocsNavItem[] = [
   { label: "Charts", href: "/charts" },

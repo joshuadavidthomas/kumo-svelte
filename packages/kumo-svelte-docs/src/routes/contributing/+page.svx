@@ -1,0 +1,66 @@
+---
+title: Contributing
+description: Learn how to contribute to Kumo Svelte, from setup to validation and PR hygiene.
+---
+
+## Before You Start
+
+For non-trivial changes, align on scope before coding. For small docs fixes, a direct PR is fine.
+
+## Get Set Up Once
+
+```bash
+pnpm install
+pnpm build
+```
+
+Recommended local setup:
+
+- Use the repo Node version.
+- Use pnpm from the workspace.
+- Re-run install after dependency changes or rebases.
+
+## Pick the Right Contribution Type
+
+- **Component**: reusable UI primitive in `packages/kumo-svelte/src/components/`.
+- **Block**: installable composition pattern in `packages/kumo-svelte/src/blocks/`.
+- **Docs only**: docs/demo/navigation updates in `packages/kumo-svelte-docs/`.
+
+## Start the Dev Loop
+
+```bash
+pnpm docs:dev -- --host 127.0.0.1
+```
+
+## Implement the Change
+
+Typical flow:
+
+1. Build the feature in `packages/kumo-svelte/src/...`.
+2. Add demos under `packages/kumo-svelte-docs/src/routes/...`.
+3. Add/update tests when behavior changes.
+4. Validate the docs page in a browser.
+
+## Run Validation Before PR
+
+```bash
+pnpm format
+pnpm check
+```
+
+Use the package-specific checks for tighter feedback while working:
+
+```bash
+pnpm --filter kumo-svelte check
+pnpm --filter @kumo-svelte/docs check
+```
+
+## Git Hygiene
+
+Use a feature branch, keep commits focused, and prefer follow-up commits after review rather than rewriting reviewed history.
+
+## Related
+
+- [Components vs Blocks](/components-vs-blocks)
+- [Installation](/installation)
+- [Registry](/registry)

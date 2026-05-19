@@ -1,0 +1,38 @@
+---
+title: CLI
+description: Access component documentation and install blocks from your terminal.
+---
+
+## Installation
+
+The upstream Kumo CLI is available via `npx`:
+
+```bash
+npx @cloudflare/kumo help
+```
+
+The Svelte package does not yet ship a separate CLI. Use these docs and the package exports directly for Svelte projects.
+
+## Blocks
+
+Install copy-paste blocks into your project for full customization in the upstream package:
+
+```bash
+npx @cloudflare/kumo init
+npx @cloudflare/kumo blocks
+npx @cloudflare/kumo add PageHeader
+```
+
+For Svelte, copy the block demo shells from the docs or compose the pattern from exported components.
+
+## Component Registry
+
+The upstream CLI can access component documentation directly:
+
+```bash
+npx @cloudflare/kumo ls
+npx @cloudflare/kumo doc Button
+npx @cloudflare/kumo docs
+```
+
+For Svelte-specific APIs, prefer this Svelte docs app because several APIs differ from the React package.

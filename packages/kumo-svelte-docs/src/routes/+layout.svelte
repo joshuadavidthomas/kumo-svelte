@@ -1,4 +1,5 @@
 <script lang="ts">
+  import DocLayout from "$lib/components/doc-layout.svelte";
   import Sidebar from "$lib/components/sidebar.svelte";
   import { TooltipProvider } from "kumo-svelte";
   import "../styles.css";
@@ -35,7 +36,13 @@
 
   <div data-slot="main" class="min-w-0">
     <TooltipProvider>
-      {@render children()}
+      {#if data.docPage}
+        <DocLayout data={{ page: data.docPage }}>
+          {@render children()}
+        </DocLayout>
+      {:else}
+        {@render children()}
+      {/if}
     </TooltipProvider>
   </div>
 </div>

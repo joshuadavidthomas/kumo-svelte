@@ -1,0 +1,65 @@
+---
+title: Installation
+description: Get started with Kumo Svelte by installing the package and importing components.
+---
+
+## NPM Registry
+
+The `kumo-svelte` package is used from this workspace/package registry like any other npm package. No special runtime configuration is required beyond Svelte and the package peer dependencies used by the components you render.
+
+## Install Package
+
+```bash
+pnpm add kumo-svelte
+```
+
+If you use chart components, install ECharts too:
+
+```bash
+pnpm add echarts
+```
+
+## Import Components
+
+Import components from the main package or use granular imports for better tree-shaking.
+
+### Main Package Import
+
+```ts
+import { Button, Input, LayerCard } from "kumo-svelte";
+```
+
+### Granular Import
+
+```ts
+import { Button } from "kumo-svelte/components/button";
+import { Input } from "kumo-svelte/components/input";
+```
+
+## Import Styles
+
+Import the Kumo Svelte stylesheet in your app entry point or root layout:
+
+```ts
+import "kumo-svelte/styles.css";
+```
+
+This docs app imports its project stylesheet from `src/routes/+layout.svelte`; your application can do the same from its root `+layout.svelte`.
+
+## Usage Example
+
+```svelte
+<script lang="ts">
+  import { Button, Input, LayerCard } from "kumo-svelte";
+</script>
+
+<LayerCard class="rounded-lg p-6">
+  <h1 class="mb-4 text-2xl font-bold">Welcome to Kumo</h1>
+  <Input placeholder="Enter your name..." class="mb-4" />
+  <Button variant="primary">Submit</Button>
+</LayerCard>
+```
+
+## Blocks vs Components
+
+Components are versioned package exports. Blocks are higher-level compositions that you copy, own, and customize. See [Components vs Blocks](/components-vs-blocks) for the ownership model.

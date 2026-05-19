@@ -1,0 +1,74 @@
+---
+title: Colors
+description: Kumo uses semantic color tokens that adapt to mode and theme.
+---
+
+## Usage
+
+Always use semantic tokens instead of raw Tailwind colors. This keeps UI consistent across light mode, dark mode, and themes.
+
+### Correct
+
+```svelte
+<div class="border-kumo-hairline bg-kumo-base text-kumo-default">
+  <button class="bg-kumo-brand text-white">Primary</button>
+  <button class="bg-kumo-control text-kumo-default">Secondary</button>
+</div>
+```
+
+### Incorrect
+
+```svelte
+<div class="bg-white text-black dark:bg-gray-900 dark:text-white">
+  <button class="bg-blue-500">Primary</button>
+</div>
+```
+
+## Mode
+
+Set `data-mode` on a parent element to control light/dark mode. Avoid `dark:` variants for Kumo surfaces; semantic tokens handle mode changes.
+
+```svelte
+<html data-mode="light">
+<html data-mode="dark">
+```
+
+## Themes
+
+Themes override semantic token values while preserving token names. Set `data-theme` on a parent element to apply a theme.
+
+```svelte
+<div data-theme="fedramp">
+  <Button>FedRAMP Styled</Button>
+</div>
+```
+
+## Semantic Tokens
+
+Tokens are named by role, not hue. Use the token that matches the role of the element.
+
+### Surface hierarchy
+
+| Token | Purpose |
+| --- | --- |
+| `bg-kumo-canvas` | Outermost page background. |
+| `bg-kumo-base` | Default component background. |
+| `bg-kumo-elevated` | Slightly elevated surface. |
+| `bg-kumo-recessed` | Recessed fill, such as segmented tabs. |
+| `bg-kumo-tint` | Subtle tinted background. |
+| `bg-kumo-contrast` | High-contrast inverted background. |
+
+### Status colors
+
+| Token | Purpose |
+| --- | --- |
+| `bg-kumo-info` | Info indicator. |
+| `bg-kumo-success` | Success indicator. |
+| `bg-kumo-warning` | Warning indicator. |
+| `bg-kumo-danger` | Error/destructive indicator. |
+
+Use solid tokens for icons, dots, borders, and rings. Use `-tint` variants for background fills.
+
+## Chart Colors
+
+Dashboard chart colors have their own palette. See [Chart Colors](/charts/colors).
