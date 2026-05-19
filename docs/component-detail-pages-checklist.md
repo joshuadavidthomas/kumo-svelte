@@ -52,5 +52,5 @@ For each page:
 - [x] Table of Contents — `/components/table-of-contents`
 - [x] Tabs — `/components/tabs`
 - [x] Text — `/components/text`
-- [ ] Toast — `/components/toast`
+- [x] Toast — `/components/toast`
 - [ ] Tooltip — `/components/tooltip`

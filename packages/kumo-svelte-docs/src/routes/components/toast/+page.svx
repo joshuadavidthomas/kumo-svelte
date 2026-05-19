@@ -1,0 +1,216 @@
+---
+title: Toast
+description: A notification system for displaying brief, non-intrusive messages to users.
+sourceFile: components/toast
+---
+
+<script lang="ts">
+  import Example from "$lib/components/example.svelte";
+  import ToastActionsDemo from "./toast-actions-demo.svelte";
+  import ToastBasicDemo from "./toast-basic-demo.svelte";
+  import ToastCustomContentDemo from "./toast-custom-content-demo.svelte";
+  import ToastDescriptionOnlyDemo from "./toast-description-only-demo.svelte";
+  import ToastErrorDemo from "./toast-error-demo.svelte";
+  import ToastInfoDemo from "./toast-info-demo.svelte";
+  import ToastMultipleDemo from "./toast-multiple-demo.svelte";
+  import ToastPromiseDemo from "./toast-promise-demo.svelte";
+  import ToastSuccessDemo from "./toast-success-demo.svelte";
+  import ToastTitleOnlyDemo from "./toast-title-only-demo.svelte";
+  import ToastWarningDemo from "./toast-warning-demo.svelte";
+</script>
+
+<Example demo="toast-basic-demo">
+  <ToastBasicDemo />
+</Example>
+
+## Installation
+
+### Barrel
+
+```ts
+import { Toasty, createKumoToastManager, useKumoToastManager } from "kumo-svelte";
+```
+
+### Granular
+
+```ts
+import { Toasty, createKumoToastManager, useKumoToastManager } from "kumo-svelte/components/toast";
+```
+
+## Usage
+
+The toast system consists of two parts: the `Toasty` provider component and a toast manager for triggering toasts. Use `createKumoToastManager()` when triggering toasts from ordinary app code, or `useKumoToastManager()` when you need the active Sonner context.
+
+```svelte
+<script lang="ts">
+  import { Button, createKumoToastManager, Toasty } from "kumo-svelte";
+
+  const toastManager = createKumoToastManager();
+</script>
+
+<Toasty>
+  <Button
+    onclick={() =>
+      toastManager.add({
+        title: "Success!",
+        description: "Your changes have been saved.",
+      })}
+  >
+    Save changes
+  </Button>
+</Toasty>
+```
+
+## Setup
+
+Wrap your application or a section of it with the `Toasty` provider. This sets up the toast viewport.
+
+```svelte
+<script lang="ts">
+  import { Toasty } from "kumo-svelte";
+</script>
+
+<Toasty>
+  {@render children()}
+</Toasty>
+```
+
+## Examples
+
+### Title and Description
+
+A complete toast with both title and description.
+
+<Example demo="toast-basic-demo">
+  <ToastBasicDemo />
+</Example>
+
+### Title Only
+
+A simple toast with just a title for brief messages.
+
+<Example demo="toast-title-only-demo">
+  <ToastTitleOnlyDemo />
+</Example>
+
+### Description Only
+
+A toast with only a description for more detailed messages.
+
+<Example demo="toast-description-only-demo">
+  <ToastDescriptionOnlyDemo />
+</Example>
+
+### Success Variant
+
+Use the success variant for confirmations and positive outcomes.
+
+<Example demo="toast-success-demo">
+  <ToastSuccessDemo />
+</Example>
+
+### Multiple Toasts
+
+Multiple toasts stack and animate smoothly. Hover over the stack to expand them.
+
+<Example demo="toast-multiple-demo">
+  <ToastMultipleDemo />
+</Example>
+
+### Error Variant
+
+Use the error variant for critical issues that need attention.
+
+<Example demo="toast-error-demo">
+  <ToastErrorDemo />
+</Example>
+
+### Warning Variant
+
+Use the warning variant for cautionary messages.
+
+<Example demo="toast-warning-demo">
+  <ToastWarningDemo />
+</Example>
+
+### Info Variant
+
+Use the info variant for neutral informational messages.
+
+<Example demo="toast-info-demo">
+  <ToastInfoDemo />
+</Example>
+
+### Custom Content
+
+Svelte Sonner uses a `component` option for custom toast content.
+
+<Example demo="toast-custom-content-demo">
+  <ToastCustomContentDemo />
+</Example>
+
+### Action Buttons
+
+Use Svelte Sonner's `action` and `cancel` options to add buttons to toasts.
+
+<Example demo="toast-actions-demo">
+  <ToastActionsDemo />
+</Example>
+
+### Promise
+
+Use the promise method to show loading, success, and error states automatically.
+
+<Example demo="toast-promise-demo">
+  <ToastPromiseDemo />
+</Example>
+
+## API Reference
+
+### Toasty
+
+The provider component that wraps your app and manages the toast system. It extends Svelte Sonner's `Toaster` props.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `children` | `Snippet` | — | App or demo content rendered before the toast viewport. |
+| `position` | `Position` | `"bottom-right"` | Toast viewport position. |
+| `closeButton` | `boolean` | `true` | Shows close buttons on toasts. |
+| `expand` | `boolean` | `true` | Expands stacked toasts. |
+| `visibleToasts` | `number` | `3` | Number of visible toasts. |
+| `toastOptions` | `ToastOptions` | — | Default options/classes passed to Svelte Sonner. |
+
+### createKumoToastManager() and useKumoToastManager()
+
+Return a toast manager for creating toasts. `createKumoToastManager()` does not require context and works well for button handlers and demos. `useKumoToastManager()` also exposes contextual `toasts` from Svelte Sonner.
+
+```ts
+const toastManager = createKumoToastManager();
+
+toastManager.add(options);
+toastManager.dismiss(id);
+toastManager.promise(promise, {
+  loading: "Loading...",
+  success: "Done",
+  error: "Failed",
+});
+```
+
+### Toast Options
+
+Options passed to `toastManager.add()`.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `title` | `string` | — | The toast title displayed prominently. |
+| `description` | `string \| Component` | — | Secondary text or component displayed below the title. |
+| `variant` | `"default" \| "success" \| "error" \| "warning" \| "info"` | `"default"` | Visual style of the toast. |
+| `component` | `Component` | — | Custom Svelte component to render inside the toast. |
+| `componentProps` | `object` | — | Props for the custom component. |
+| `action` | `ToastAction \| Component` | — | Primary action button or component. |
+| `cancel` | `ToastAction \| Component` | — | Secondary action button or component. |
+| `duration` | `number` | `4000` | Time in milliseconds before the toast auto-dismisses. |
+
+## Svelte Notes
+
+The Svelte toast implementation wraps `svelte-sonner`. Upstream React examples use `content` and `actions`; the Svelte API uses Sonner's `component`, `action`, and `cancel` options instead.
