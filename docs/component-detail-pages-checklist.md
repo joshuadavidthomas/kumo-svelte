@@ -43,7 +43,7 @@ For each page:
 - [x] Pagination — `/components/pagination`
 - [x] Popover — `/components/popover`
 - [x] Radio — `/components/radio`
-- [ ] Select — `/components/select`
+- [x] Select — `/components/select`
 - [ ] Sensitive Input — `/components/sensitive-input`
 - [ ] Sidebar — `/components/sidebar`
 - [ ] Skeleton Line — `/components/skeleton-line`

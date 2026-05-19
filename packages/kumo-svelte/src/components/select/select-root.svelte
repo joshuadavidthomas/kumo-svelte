@@ -11,6 +11,6 @@
   }: SelectRootProps = $props();
 </script>
 
-<SelectPrimitive.Root bind:open bind:value={value as never} {...restProps}>
+<SelectPrimitive.Root bind:open value={value as never} {...restProps}>
   {@render children?.()}
 </SelectPrimitive.Root>
