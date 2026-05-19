@@ -1,0 +1,7 @@
+<script lang="ts">
+  import { Switch } from "kumo-svelte";
+
+  let checked = $state(false);
+</script>
+
+<Switch id="my-custom-switch" label="Custom ID" bind:checked />

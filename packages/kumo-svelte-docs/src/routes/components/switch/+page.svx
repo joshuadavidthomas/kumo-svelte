@@ -1,0 +1,179 @@
+---
+title: Switch
+description: A two-state button that can be either on or off.
+sourceFile: components/switch
+baseUIComponent: switch
+---
+
+<script lang="ts">
+  import Example from "$lib/components/example.svelte";
+  import SwitchBasicDemo from "./switch-basic-demo.svelte";
+  import SwitchCustomIdDemo from "./switch-custom-id-demo.svelte";
+  import SwitchDisabledDemo from "./switch-disabled-demo.svelte";
+  import SwitchGroupDemo from "./switch-group-demo.svelte";
+  import SwitchLegendCustomDemo from "./switch-legend-custom-demo.svelte";
+  import SwitchLegendSrOnlyDemo from "./switch-legend-sr-only-demo.svelte";
+  import SwitchNeutralDemo from "./switch-neutral-demo.svelte";
+  import SwitchNeutralStatesDemo from "./switch-neutral-states-demo.svelte";
+  import SwitchOffDemo from "./switch-off-demo.svelte";
+  import SwitchOnDemo from "./switch-on-demo.svelte";
+  import SwitchSizesDemo from "./switch-sizes-demo.svelte";
+  import SwitchVariantsDemo from "./switch-variants-demo.svelte";
+</script>
+
+<Example demo="switch-basic-demo">
+  <SwitchBasicDemo />
+</Example>
+
+## Installation
+
+### Barrel
+
+```ts
+import { Switch } from "kumo-svelte";
+```
+
+### Granular
+
+```ts
+import { Switch } from "kumo-svelte/components/switch";
+```
+
+## Usage
+
+```svelte
+<script lang="ts">
+  import { Switch } from "kumo-svelte";
+
+  let checked = $state(false);
+</script>
+
+<Switch label="Switch" bind:checked />
+```
+
+## Examples
+
+### Off State
+
+<Example demo="switch-off-demo">
+  <SwitchOffDemo />
+</Example>
+
+### On State
+
+<Example demo="switch-on-demo">
+  <SwitchOnDemo />
+</Example>
+
+### Disabled
+
+<Example demo="switch-disabled-demo">
+  <SwitchDisabledDemo />
+</Example>
+
+### Variants
+
+The Switch supports two variants: `default` (blue when on) and `neutral` (monochrome). Both use a squircle shape.
+
+<Example demo="switch-variants-demo">
+  <SwitchVariantsDemo />
+</Example>
+
+### Neutral Variant
+
+The neutral variant uses monochrome colors and a squircle shape, ideal for subtle, less prominent toggles.
+
+<Example demo="switch-neutral-demo">
+  <SwitchNeutralDemo />
+</Example>
+
+### Neutral States
+
+<Example demo="switch-neutral-states-demo">
+  <SwitchNeutralStatesDemo />
+</Example>
+
+### Sizes
+
+Three sizes available: `sm`, `base` (default), and `lg`.
+
+<Example demo="switch-sizes-demo">
+  <SwitchSizesDemo />
+</Example>
+
+### Custom ID
+
+When a custom `id` is provided, clicking the label still toggles the switch.
+
+<Example demo="switch-custom-id-demo">
+  <SwitchCustomIdDemo />
+</Example>
+
+### Switch Group
+
+Group related switches with `SwitchGroup`. Provides a shared legend, description, and error message for the group.
+
+<Example demo="switch-group-demo">
+  <SwitchGroupDemo />
+</Example>
+
+### Visually Hidden Legend
+
+Use `SwitchLegend` with `class="sr-only"` to keep the legend accessible to screen readers while hiding it visually.
+
+<Example demo="switch-legend-sr-only-demo">
+  <SwitchLegendSrOnlyDemo />
+</Example>
+
+### Custom Legend Styling
+
+`SwitchLegend` accepts `class` for full control over legend presentation.
+
+<Example demo="switch-legend-custom-demo">
+  <SwitchLegendCustomDemo />
+</Example>
+
+## API Reference
+
+### `Switch`
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `checked` | `boolean` | `false` | Checked state. Bind with `bind:checked`. |
+| `onCheckedChange` | `(checked: boolean) => void` | — | Called when checked state changes. |
+| `label` | `Snippet \| string` | — | Optional label. |
+| `labelTooltip` | `Snippet` | — | Tooltip content next to the label. |
+| `controlFirst` | `boolean` | `true` | Whether the control appears before the label. |
+| `disabled` | `boolean` | `false` | Disables the switch. |
+| `id` | `string` | — | Switch id. |
+| `name` | `string` | — | Form name. |
+| `required` | `boolean` | — | Required state. |
+| `size` | `"sm" \| "base" \| "lg"` | `"base"` | Switch size. |
+| `variant` | `"default" \| "neutral"` | `"default"` | Visual variant. |
+| `class` | `string` | — | Additional classes for the control. |
+
+### `SwitchGroup`
+
+Container for multiple switches with legend, description, and error support.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `children` | `Snippet` | — | Switch items and optional legend. |
+| `legend` | `string` | — | Legend text. |
+| `description` | `Snippet \| string` | — | Helper text. |
+| `error` | `string` | — | Group error. |
+| `disabled` | `boolean` | `false` | Disables the group. |
+| `controlFirst` | `boolean` | `true` | Control position for child items. |
+| `class` | `string` | — | Additional classes. |
+
+### `SwitchLegend`
+
+Composable legend sub-component for SwitchGroup. Accepts `class` for custom styling, such as `class="sr-only"`.
+
+### `SwitchItem`
+
+Individual switch within SwitchGroup. Supports `checked`, `onCheckedChange`, `disabled`, `id`, `label`, `size`, `transitioning`, `variant`, and `class`.
+
+## Svelte Notes
+
+The Svelte package exports named components (`Switch`, `SwitchGroup`, `SwitchItem`, `SwitchLegend`) instead of React compound properties (`Switch.Group`, `Switch.Item`, `Switch.Legend`).
