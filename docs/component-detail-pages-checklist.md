@@ -46,7 +46,7 @@ For each page:
 - [x] Select — `/components/select`
 - [x] Sensitive Input — `/components/sensitive-input`
 - [x] Sidebar — `/components/sidebar`
-- [ ] Skeleton Line — `/components/skeleton-line`
+- [x] Skeleton Line — `/components/skeleton-line`
 - [ ] Switch — `/components/switch`
 - [ ] Table — `/components/table`
 - [ ] Table of Contents — `/components/table-of-contents`

@@ -1,0 +1,77 @@
+---
+title: Skeleton Line
+description: A skeleton loading placeholder for text content.
+sourceFile: components/loader
+---
+
+<script lang="ts">
+  import Example from "$lib/components/example.svelte";
+  import SkeletonLineBlockHeightDemo from "./skeleton-line-block-height-demo.svelte";
+  import SkeletonLineCardDemo from "./skeleton-line-card-demo.svelte";
+  import SkeletonLineDemo from "./skeleton-line-demo.svelte";
+  import SkeletonLineHeightDemo from "./skeleton-line-height-demo.svelte";
+  import SkeletonLineWidthDemo from "./skeleton-line-width-demo.svelte";
+</script>
+
+<Example demo="skeleton-line-demo">
+  <SkeletonLineDemo />
+</Example>
+
+## Installation
+
+### Barrel
+
+```ts
+import { SkeletonLine } from "kumo-svelte";
+```
+
+### Granular
+
+```ts
+import { SkeletonLine } from "kumo-svelte/components/loader";
+```
+
+## Custom Widths
+
+Control the randomized width range for more natural-looking skeletons.
+
+<Example demo="skeleton-line-width-demo">
+  <SkeletonLineWidthDemo />
+</Example>
+
+## Custom Height
+
+Override the default height using Tailwind utility classes via `class`. The default height is `0.5rem`.
+
+<Example demo="skeleton-line-height-demo">
+  <SkeletonLineHeightDemo />
+</Example>
+
+## Block Height
+
+Use `blockHeight` to set the height of a container that vertically centers the skeleton line. Useful when replacing text of a known line height. Accepts a number, treated as pixels, or any CSS string value.
+
+<Example demo="skeleton-line-block-height-demo">
+  <SkeletonLineBlockHeightDemo />
+</Example>
+
+## Card Loading State
+
+Use skeleton lines to create loading states for cards and content areas.
+
+<Example demo="skeleton-line-card-demo">
+  <SkeletonLineCardDemo />
+</Example>
+
+## API Reference
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `minWidth` | `number` | `30` | Minimum randomized width percentage. |
+| `maxWidth` | `number` | `100` | Maximum randomized width percentage. |
+| `minDuration` | `number` | `1.3` | Minimum shimmer duration in seconds. |
+| `maxDuration` | `number` | `1.7` | Maximum shimmer duration in seconds. |
+| `minDelay` | `number` | `0` | Minimum shimmer delay in seconds. |
+| `maxDelay` | `number` | `0.5` | Maximum shimmer delay in seconds. |
+| `blockHeight` | `string \| number` | — | Optional wrapper height. Numbers are treated as pixels. |
+| `class` | `string` | — | Additional classes for the line. |
