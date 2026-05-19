@@ -1,0 +1,99 @@
+---
+title: MenuBar
+description: A horizontal menu bar with icon buttons, commonly used for text editors or toolbars.
+sourceFile: components/menubar
+primitive: toolbar
+---
+
+<script lang="ts">
+  import Example from "$lib/components/example.svelte";
+  import MenuBarBasicDemo from "./menu-bar-basic-demo.svelte";
+  import MenuBarNoActiveDemo from "./menu-bar-no-active-demo.svelte";
+  import MenuBarTextFormattingDemo from "./menu-bar-text-formatting-demo.svelte";
+</script>
+
+<Example demo="menu-bar-basic-demo">
+  <MenuBarBasicDemo />
+</Example>
+
+## Installation
+
+### Barrel
+
+```ts
+import { MenuBar } from "kumo-svelte";
+```
+
+### Granular
+
+```ts
+import { MenuBar } from "kumo-svelte/components/menubar";
+```
+
+## Usage
+
+```svelte
+<script lang="ts">
+  import TextBIcon from "phosphor-svelte/lib/TextBIcon";
+  import { MenuBar } from "kumo-svelte";
+
+  let active = $state<string | undefined>("bold");
+</script>
+
+{#snippet boldIcon()}
+  <TextBIcon />
+{/snippet}
+
+<MenuBar
+  isActive={active}
+  optionIds
+  options={[
+    {
+      icon: boldIcon,
+      id: "bold",
+      tooltip: "Bold",
+      onClick: () => {
+        active = active === "bold" ? undefined : "bold";
+      },
+    },
+  ]}
+/>
+```
+
+## Examples
+
+### Text Formatting
+
+<Example demo="menu-bar-text-formatting-demo">
+  <MenuBarTextFormattingDemo />
+</Example>
+
+### Without Active State
+
+<Example demo="menu-bar-no-active-demo">
+  <MenuBarNoActiveDemo />
+</Example>
+
+## API Reference
+
+| Prop | Type | Required | Description |
+| --- | --- | --- | --- |
+| `options` | `MenuBarOption[]` | Yes | Buttons rendered in the toolbar. |
+| `isActive` | `number \| boolean \| string \| undefined` | Yes | Active option value. Compared against an option id or index. |
+| `optionIds` | `boolean` | No | When true, compares `isActive` to each option's `id`; otherwise compares to the option index. |
+| `class` | `string` | No | Additional classes. |
+
+MenuBar also accepts Bits UI Toolbar root props.
+
+### `MenuBarOption`
+
+| Property | Type | Required | Description |
+| --- | --- | --- | --- |
+| `icon` | `Snippet` | Yes | Icon snippet rendered inside the button. |
+| `id` | `number \| string` | No | Stable option id, used for keyed rendering and active matching when `optionIds` is true. |
+| `onClick` | `() => void` | Yes | Called when the option button is clicked. |
+| `tooltip` | `string` | Yes | Tooltip text and accessible label for the button. |
+
+## Accessibility
+
+MenuBar uses Bits UI's Toolbar primitive. Each option button receives an `aria-label` from `tooltip` and an `aria-pressed` state based on `isActive`.
