@@ -1,0 +1,217 @@
+---
+title: Radio
+description: A control that allows the user to select one option from a set. Always used within a RadioGroup.
+sourceFile: components/radio
+baseUIComponent: radio-group
+---
+
+<script lang="ts">
+  import Example from "$lib/components/example.svelte";
+  import RadioBasicDemo from "./radio-basic-demo.svelte";
+  import RadioCardControlStartDemo from "./radio-card-control-start-demo.svelte";
+  import RadioCardDemo from "./radio-card-demo.svelte";
+  import RadioCardHorizontalDemo from "./radio-card-horizontal-demo.svelte";
+  import RadioControlPositionDemo from "./radio-control-position-demo.svelte";
+  import RadioDefaultDemo from "./radio-default-demo.svelte";
+  import RadioDescriptionDemo from "./radio-description-demo.svelte";
+  import RadioDisabledDemo from "./radio-disabled-demo.svelte";
+  import RadioErrorDemo from "./radio-error-demo.svelte";
+  import RadioHorizontalDemo from "./radio-horizontal-demo.svelte";
+  import RadioLegendCustomDemo from "./radio-legend-custom-demo.svelte";
+  import RadioLegendSrOnlyDemo from "./radio-legend-sr-only-demo.svelte";
+  import RadioRichLabelDemo from "./radio-rich-label-demo.svelte";
+</script>
+
+<Example demo="radio-basic-demo">
+  <RadioBasicDemo />
+</Example>
+
+## Installation
+
+### Barrel
+
+```ts
+import { RadioGroup, RadioItem } from "kumo-svelte";
+```
+
+### Granular
+
+```ts
+import { RadioGroup, RadioItem } from "kumo-svelte/components/radio";
+```
+
+## Usage
+
+```svelte
+<script lang="ts">
+  import { RadioGroup, RadioItem } from "kumo-svelte";
+</script>
+
+<RadioGroup legend="Choose an option" defaultValue="a">
+  <RadioItem label="Option A" value="a" />
+  <RadioItem label="Option B" value="b" />
+</RadioGroup>
+```
+
+## Examples
+
+### Default (Vertical)
+
+Radio groups display vertically by default. Each radio has a label displayed to its right.
+
+<Example demo="radio-default-demo">
+  <RadioDefaultDemo />
+</Example>
+
+### Horizontal
+
+Use `orientation="horizontal"` for inline layouts. Items wrap when there isn't enough space.
+
+<Example demo="radio-horizontal-demo">
+  <RadioHorizontalDemo />
+</Example>
+
+### With Description
+
+Add helper text below the radio items using the `description` prop.
+
+<Example demo="radio-description-demo">
+  <RadioDescriptionDemo />
+</Example>
+
+### Control Position
+
+Use `controlPosition="end"` to place labels before radio buttons.
+
+<Example demo="radio-control-position-demo">
+  <RadioControlPositionDemo />
+</Example>
+
+### Radio Card
+
+Use `appearance="card"` on the group to display each option as a selectable card. Combine with the `description` prop on each item for richer content.
+
+<Example demo="radio-card-demo">
+  <RadioCardDemo />
+</Example>
+
+### Radio Card (Control on the Left)
+
+Use `controlPosition="start"` on a card radio group to place the radio control on the left of the label and description.
+
+<Example demo="radio-card-control-start-demo">
+  <RadioCardControlStartDemo />
+</Example>
+
+### Rich Label Content
+
+The `label` prop on `RadioItem` accepts a string or snippet, so you can embed badges or other markup alongside the text.
+
+<Example demo="radio-rich-label-demo">
+  <RadioRichLabelDemo />
+</Example>
+
+### Radio Card (Horizontal)
+
+Combine `appearance="card"` with `orientation="horizontal"` for a side-by-side card layout.
+
+<Example demo="radio-card-horizontal-demo">
+  <RadioCardHorizontalDemo />
+</Example>
+
+### With Error
+
+Show validation errors at the group level using the `error` prop.
+
+<Example demo="radio-error-demo">
+  <RadioErrorDemo />
+</Example>
+
+### Disabled
+
+Disable the entire group or individual items.
+
+<Example demo="radio-disabled-demo">
+  <RadioDisabledDemo />
+</Example>
+
+### Visually Hidden Legend
+
+Use `RadioLegend` with `class="sr-only"` to keep the legend accessible to screen readers while hiding it visually.
+
+<Example demo="radio-legend-sr-only-demo">
+  <RadioLegendSrOnlyDemo />
+</Example>
+
+### Custom Legend Styling
+
+`RadioLegend` accepts `class` for full control over legend presentation. Use it instead of the `legend` string prop when you need custom typography, colors, or layout.
+
+<Example demo="radio-legend-custom-demo">
+  <RadioLegendCustomDemo />
+</Example>
+
+## API Reference
+
+### `RadioGroup`
+
+Container for radio buttons with legend, description, and error support.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `children` | `Snippet` | — | Radio items and optional `RadioLegend`. |
+| `value` | `string` | — | Controlled value. Use with `onValueChange`. |
+| `defaultValue` | `string` | `""` | Initial uncontrolled value. |
+| `onValueChange` | `(value: string) => void` | — | Called when selection changes. |
+| `legend` | `string` | — | Legend text rendered before items. |
+| `description` | `Snippet \| string` | — | Helper text rendered below the group. |
+| `error` | `string` | — | Group-level validation error. |
+| `appearance` | `"default" \| "card"` | `"default"` | Radio item appearance. |
+| `controlPosition` | `"start" \| "end"` | depends on appearance | Position of the control relative to text. |
+| `orientation` | `"vertical" \| "horizontal"` | `"vertical"` | Group layout. |
+| `disabled` | `boolean` | `false` | Disables the group. |
+| `name` | `string` | — | Radio group name. |
+| `required` | `boolean` | — | Marks the group as required. |
+| `class` | `string` | — | Additional classes for the fieldset. |
+
+### `RadioLegend`
+
+Composable legend sub-component for RadioGroup. Accepts `class` for custom styling, such as `class="sr-only"`.
+
+| Prop | Type | Required | Description |
+| --- | --- | --- | --- |
+| `children` | `Snippet` | Yes | Legend content. |
+| `class` | `string` | No | Additional classes. |
+
+### `RadioItem`
+
+Individual radio button within RadioGroup.
+
+| Prop | Type | Required | Description |
+| --- | --- | --- | --- |
+| `label` | `Snippet \| string` | Yes | Item label. |
+| `value` | `string` | Yes | Item value. |
+| `description` | `Snippet \| string` | No | Item description, most useful with card appearance. |
+| `disabled` | `boolean` | No | Disables the item. |
+| `id` | `string` | No | Radio item id. |
+| `appearance` | `"default" \| "card"` | No | Overrides group appearance for this item. |
+| `variant` | `"default" \| "error"` | No | Visual state. |
+| `class` | `string` | No | Additional classes. |
+
+## Svelte Notes
+
+The Svelte package exports named components (`RadioGroup`, `RadioItem`, `RadioLegend`) instead of React compound properties (`Radio.Group`, `Radio.Item`, `Radio.Legend`). `value` is controlled with `onValueChange`; use `defaultValue` for simple uncontrolled demos.
+
+## Accessibility
+
+### Semantic HTML
+
+RadioGroup uses semantic `fieldset` and `legend` elements for proper grouping and screen reader announcement.
+
+### Keyboard Navigation
+
+Arrow keys move between options. Space selects the focused option. Tab moves focus to and from the radio group.
+
+### Screen Readers
+
+Each radio is announced with its label and selection state. The group legend provides context for all options.
