@@ -1,0 +1,179 @@
+---
+title: DatePicker
+description: A date selection calendar supporting single, multiple, and range selection modes.
+sourceFile: components/date-picker
+---
+
+<script lang="ts">
+  import Example from "$lib/components/example.svelte";
+  import DatePickerDisabledWithFooterDemo from "./date-picker-disabled-with-footer-demo.svelte";
+  import DatePickerMultipleDemo from "./date-picker-multiple-demo.svelte";
+  import DatePickerPopoverDemo from "./date-picker-popover-demo.svelte";
+  import DatePickerRangeDemo from "./date-picker-range-demo.svelte";
+  import DatePickerRangeMinMaxDemo from "./date-picker-range-min-max-demo.svelte";
+  import DatePickerRangePopoverDemo from "./date-picker-range-popover-demo.svelte";
+  import DatePickerRangeWithPresetsDemo from "./date-picker-range-with-presets-demo.svelte";
+  import DatePickerSingleDemo from "./date-picker-single-demo.svelte";
+</script>
+
+<Example demo="date-picker-single-demo">
+  <DatePickerSingleDemo />
+</Example>
+
+## Installation
+
+### Barrel
+
+```ts
+import { DatePicker, type DatePickerValue } from "kumo-svelte";
+```
+
+### Granular
+
+```ts
+import {
+  DatePicker,
+  type DatePickerValue,
+} from "kumo-svelte/components/date-picker";
+```
+
+## Usage
+
+DatePicker supports three selection modes: `single`, `multiple`, and `range`. The Svelte component uses `DateValue` from `@internationalized/date`; range values use Bits UI's `{ start, end }` shape.
+
+```svelte
+<script lang="ts">
+  import type { DateValue } from "@internationalized/date";
+  import { DatePicker } from "kumo-svelte";
+
+  let date = $state<DateValue | undefined>();
+</script>
+
+<DatePicker mode="single" bind:value={date} />
+```
+
+## Examples
+
+### Single Date Selection
+
+Select a single date. The most common use case for date pickers.
+
+<Example demo="date-picker-single-demo">
+  <DatePickerSingleDemo />
+</Example>
+
+### Multiple Date Selection
+
+Select multiple individual dates.
+
+<Example demo="date-picker-multiple-demo">
+  <DatePickerMultipleDemo />
+</Example>
+
+### Date Range Selection
+
+Select a continuous range of dates. Use `numberOfMonths={2}` for a side-by-side view.
+
+<Example demo="date-picker-range-demo">
+  <DatePickerRangeDemo />
+</Example>
+
+### Range with Min/Max Constraints
+
+Constrain the range length using `minDays` and `maxDays`.
+
+<Example demo="date-picker-range-min-max-demo">
+  <DatePickerRangeMinMaxDemo />
+</Example>
+
+### With Popover
+
+Compose with the [Popover](/components/popover) component to create a dropdown date picker.
+
+<Example demo="date-picker-popover-demo">
+  <DatePickerPopoverDemo />
+</Example>
+
+### Date Range with Popover
+
+A date range picker in a popover with two months displayed.
+
+<Example demo="date-picker-range-popover-demo">
+  <DatePickerRangePopoverDemo />
+</Example>
+
+### Date Range with Presets
+
+Combine the date picker with preset options for quick selection.
+
+<Example demo="date-picker-range-with-presets-demo">
+  <DatePickerRangeWithPresetsDemo />
+</Example>
+
+### Disabled Dates with Usage Limits
+
+Use `isDateDisabled` or `isDateUnavailable` to make certain dates unselectable, and render supporting usage information beside the picker.
+
+<Example demo="date-picker-disabled-with-footer-demo">
+  <DatePickerDisabledWithFooterDemo />
+</Example>
+
+## Full Popover Example
+
+Here's a complete example showing how to compose DatePicker with Popover:
+
+```svelte
+<script lang="ts">
+  import type { DateValue } from "@internationalized/date";
+  import { getLocalTimeZone } from "@internationalized/date";
+  import { Button, DatePicker, Popover, PopoverContent, PopoverTrigger } from "kumo-svelte";
+  import CalendarDotsIcon from "phosphor-svelte/lib/CalendarDotsIcon";
+
+  let date = $state<DateValue | undefined>();
+  let open = $state(false);
+
+  function label(value: DateValue | undefined) {
+    return value ? value.toDate(getLocalTimeZone()).toLocaleDateString() : "Pick a date";
+  }
+</script>
+
+<Popover bind:open>
+  <PopoverTrigger>
+    {#snippet child({ props })}
+      <Button {...props} variant="secondary" icon={CalendarDotsIcon}>{label(date)}</Button>
+    {/snippet}
+  </PopoverTrigger>
+  <PopoverContent class="p-3">
+    <DatePicker mode="single" bind:value={date} onChange={() => (open = false)} />
+  </PopoverContent>
+</Popover>
+```
+
+## API Reference
+
+DatePicker forwards most props to Bits UI's `Calendar` and `RangeCalendar` primitives. Key props include:
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| `mode` | `"single" \| "multiple" \| "range"` | Selection mode. Defaults to `"single"`. |
+| `value` | `DateValue \| DateValue[] \| DateRange \| undefined` | Selected date, dates, or range. Bind with `bind:value`. |
+| `onChange` / `onValueChange` | `(value: DatePickerValue) => void` | Callback when selection changes. |
+| `numberOfMonths` | `number` | Number of months to display. Defaults to `2` for range, otherwise `1`. |
+| `isDateDisabled` | `DateMatcher` | Dates that cannot be selected. |
+| `isDateUnavailable` | `DateMatcher` | Dates shown as unavailable. |
+| `minValue` / `maxValue` | `DateValue` | Minimum and maximum selectable dates. |
+| `minDays` / `maxDays` | `number` | Minimum and maximum range length in range mode. |
+| `placeholder` | `DateValue` | Visible calendar month. Bind with `bind:placeholder` to control navigation. |
+| `onPlaceholderChange` | `(value: DateValue) => void` | Called when the visible month changes. |
+| `onStartValueChange` / `onEndValueChange` | `(value: DateValue \| undefined) => void` | Range endpoint callbacks. |
+| `weekStartsOn` | `0 \| 1 \| 2 \| 3 \| 4 \| 5 \| 6` | First day of the week. |
+| `locale` | `string` | Locale identifier. |
+| `disabled` | `boolean` | Disable the calendar. |
+| `readonly` | `boolean` | Make the calendar read-only. |
+| `fixedWeeks` | `boolean` | Render a fixed number of weeks. Defaults to `true`. |
+| `class` | `string` | Additional CSS classes. |
+| `children` | `Snippet<[DatePickerSnippetProps]>` | Custom calendar rendering snippet. |
+
+### Differences from react-day-picker
+
+The Svelte DatePicker uses Bits UI and `@internationalized/date`, not `react-day-picker` and JavaScript `Date` objects. Use `bind:value` for Svelte state, `onChange` or `onValueChange` for callbacks, and `{ start, end }` ranges instead of React's `{ from, to }` range shape.

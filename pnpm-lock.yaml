@@ -87,6 +87,9 @@ importers:
 
   packages/kumo-svelte-docs:
     dependencies:
+      '@internationalized/date':
+        specifier: ^3.12.1
+        version: 3.12.1
       kumo-svelte:
         specifier: workspace:*
         version: link:../kumo-svelte

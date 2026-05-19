@@ -25,7 +25,7 @@ For each page:
 - [x] Collapsible — `/components/collapsible`
 - [x] Combobox — `/components/combobox`
 - [x] Command Palette — `/components/command-palette`
-- [ ] Date Picker — `/components/date-picker`
+- [x] Date Picker — `/components/date-picker`
 - [ ] Dialog — `/components/dialog`
 - [ ] Dropdown — `/components/dropdown`
 - [ ] Empty — `/components/empty`
