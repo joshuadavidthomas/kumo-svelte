@@ -5,7 +5,6 @@
   import Loader from "../loader/loader.svelte";
   import { cn } from "../../utils/cn";
   import TooltipContent from "../tooltip/tooltip-content.svelte";
-  import TooltipProvider from "../tooltip/tooltip-provider.svelte";
   import TooltipRoot from "../tooltip/tooltip-root.svelte";
   import TooltipTrigger from "../tooltip/tooltip-trigger.svelte";
   import {
@@ -96,11 +95,9 @@
 {/snippet}
 
 {#if title}
-  <TooltipProvider>
-    <TooltipRoot>
-      {@render titledButton()}
-    </TooltipRoot>
-  </TooltipProvider>
+  <TooltipRoot>
+    {@render titledButton()}
+  </TooltipRoot>
 {:else}
   {@render button()}
 {/if}

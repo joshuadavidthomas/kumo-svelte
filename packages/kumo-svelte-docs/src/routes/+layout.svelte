@@ -1,5 +1,6 @@
 <script lang="ts">
   import Sidebar from "$lib/components/sidebar.svelte";
+  import { TooltipProvider } from "kumo-svelte";
   import "../styles.css";
 
   let { children, data } = $props();
@@ -33,7 +34,9 @@
   </header>
 
   <div data-slot="main" class="min-w-0">
-    {@render children()}
+    <TooltipProvider>
+      {@render children()}
+    </TooltipProvider>
   </div>
 </div>
 

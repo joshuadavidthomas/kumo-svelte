@@ -19,10 +19,13 @@ export const componentMetadataSchema = v.object({
 
 export type ComponentPageMetadata = v.InferOutput<typeof componentMetadataSchema>;
 
-const metadataModules = import.meta.glob<ComponentPageMetadata>("/src/routes/components/*/+page.svx", {
-  eager: true,
-  import: "metadata",
-});
+const metadataModules = import.meta.glob<ComponentPageMetadata>(
+  "/src/routes/components/*/+page.svx",
+  {
+    eager: true,
+    import: "metadata",
+  },
+);
 
 export const componentItems: ComponentDocsNavItem[] = Object.entries(metadataModules)
   .map(([path, metadata]) => {
@@ -51,5 +54,7 @@ export function parseComponentMetadata(slug: string, metadata: unknown) {
     return result.output;
   }
 
-  throw new Error(`Invalid frontmatter for component docs page "${slug}": ${v.summarize(result.issues)}`);
+  throw new Error(
+    `Invalid frontmatter for component docs page "${slug}": ${v.summarize(result.issues)}`,
+  );
 }

@@ -1,4 +1,4 @@
-import pkg from "../../package.json";
+import pkg from "../../../kumo-svelte/package.json";
 
 export function load() {
   return {

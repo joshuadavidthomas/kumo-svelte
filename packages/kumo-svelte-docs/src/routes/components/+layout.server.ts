@@ -7,7 +7,9 @@ interface MdsvexPageModule {
   metadata: ComponentPageMetadata;
 }
 
-const pages = import.meta.glob<MdsvexPageModule>("/src/routes/components/*/+page.svx", { eager: true });
+const pages = import.meta.glob<MdsvexPageModule>("/src/routes/components/*/+page.svx", {
+  eager: true,
+});
 const pageSources = import.meta.glob<string>("/src/routes/components/*/+page.svx", {
   eager: true,
   query: "?raw",
@@ -47,11 +49,17 @@ function entryForSlug<T>(entries: Record<string, T>, slug: string) {
 }
 
 async function highlightedDemosForSlug(slug: string) {
-  const demos = Object.entries(demoSources).filter(([path]) => path.includes(`/components/${slug}/`));
+  const demos = Object.entries(demoSources).filter(([path]) =>
+    path.includes(`/components/${slug}/`),
+  );
   return Object.fromEntries(
     await Promise.all(
       demos.map(async ([path, code]) => {
-        const name = path.split("/").at(-1)?.replace(/\.svelte$/, "") ?? path;
+        const name =
+          path
+            .split("/")
+            .at(-1)
+            ?.replace(/\.svelte$/, "") ?? path;
         return [name, await highlightCode(code, "svelte")];
       }),
     ),
@@ -64,7 +72,10 @@ function tocFromMarkdown(source: string) {
   const seen = new Map<string, number>();
 
   return headings.map((heading) => {
-    const text = heading[2].replace(/`([^`]+)`/g, "$1").replace(/<[^>]+>/g, "").trim();
+    const text = heading[2]
+      .replace(/`([^`]+)`/g, "$1")
+      .replace(/<[^>]+>/g, "")
+      .trim();
     const baseId = slugify(text);
     const count = seen.get(baseId) ?? 0;
     seen.set(baseId, count + 1);

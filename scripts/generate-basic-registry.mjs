@@ -4,9 +4,7 @@ import { spawnSync } from "node:child_process";
 import ts from "typescript";
 
 const pkg = JSON.parse(fs.readFileSync("package.json", "utf8"));
-const registry = JSON.parse(
-  fs.readFileSync("src/registry/component-registry.json", "utf8"),
-);
+const registry = JSON.parse(fs.readFileSync("src/registry/component-registry.json", "utf8"));
 
 const COMMON_PROP_DESCRIPTIONS = {
   "aria-label": "Accessible label for controls without visible text.",
@@ -54,7 +52,8 @@ const PROP_DESCRIPTION_OVERRIDES = {
   dir: "Text direction used by the underlying primitive.",
   external: "Whether the link points to an external destination.",
   forceMount: "Whether to keep the element mounted when it would otherwise be hidden.",
-  hideLabel: "Whether to visually hide the label while keeping it available to assistive technology.",
+  hideLabel:
+    "Whether to visually hide the label while keeping it available to assistive technology.",
   icon: "Icon content rendered with the component.",
   inset: "Whether to inset content to align with items that include an icon.",
   level: "Heading level used for the rendered title.",
@@ -331,7 +330,10 @@ function jsDocDescription(node) {
   if (!jsDoc?.comment) return undefined;
 
   return Array.isArray(jsDoc.comment)
-    ? jsDoc.comment.map((part) => part.text).join("").trim()
+    ? jsDoc.comment
+        .map((part) => part.text)
+        .join("")
+        .trim()
     : jsDoc.comment.trim();
 }
 
@@ -352,7 +354,8 @@ function literalUnionValues(typeNode) {
 }
 
 function runtimeValidation(typeNode, declarations = new Map(), seen = new Set()) {
-  if (ts.isParenthesizedTypeNode(typeNode)) return runtimeValidation(typeNode.type, declarations, seen);
+  if (ts.isParenthesizedTypeNode(typeNode))
+    return runtimeValidation(typeNode.type, declarations, seen);
 
   if (typeNode.kind === ts.SyntaxKind.StringKeyword) return { kind: "string" };
   if (typeNode.kind === ts.SyntaxKind.NumberKeyword) return { kind: "number" };
@@ -588,7 +591,8 @@ function readVariantMetadata(dir) {
 }
 
 function literalValue(node) {
-  if (ts.isAsExpression(node) || ts.isSatisfiesExpression(node)) return literalValue(node.expression);
+  if (ts.isAsExpression(node) || ts.isSatisfiesExpression(node))
+    return literalValue(node.expression);
   if (ts.isStringLiteral(node) || ts.isNoSubstitutionTemplateLiteral(node)) return node.text;
   if (ts.isNumericLiteral(node)) return Number(node.text);
   if (node.kind === ts.SyntaxKind.TrueKeyword) return true;
@@ -829,9 +833,7 @@ function formatExampleValue(value) {
   return typeof value === "number" ? `{${value}}` : `"${value}"`;
 }
 
-for (const key of Object.keys(pkg.exports).filter((entry) =>
-  entry.startsWith("./components/"),
-)) {
+for (const key of Object.keys(pkg.exports).filter((entry) => entry.startsWith("./components/"))) {
   const slug = key.replace("./components/", "");
   const name = pascal(slug);
   if (registry.components[name]) {
@@ -852,9 +854,7 @@ for (const key of Object.keys(pkg.exports).filter((entry) =>
   }
 }
 
-for (const key of Object.keys(pkg.exports).filter((entry) =>
-  entry.startsWith("./blocks/"),
-)) {
+for (const key of Object.keys(pkg.exports).filter((entry) => entry.startsWith("./blocks/"))) {
   const slug = key.replace("./blocks/", "");
   const name = pascal(slug);
   if (registry.blocks[name]) {
@@ -875,14 +875,8 @@ for (const key of Object.keys(pkg.exports).filter((entry) =>
   }
 }
 
-fs.writeFileSync(
-  "src/registry/component-registry.json",
-  `${JSON.stringify(registry, null, 2)}\n`,
-);
-fs.copyFileSync(
-  "src/registry/component-registry.json",
-  "src/ai/component-registry.json",
-);
+fs.writeFileSync("src/registry/component-registry.json", `${JSON.stringify(registry, null, 2)}\n`);
+fs.copyFileSync("src/registry/component-registry.json", "src/ai/component-registry.json");
 
 fs.writeFileSync(
   "src/ai/component-props.ts",
@@ -896,12 +890,7 @@ formatGeneratedFiles([
 ]);
 
 function formatGeneratedFiles(files) {
-  const oxfmtBin =
-    process.platform === "win32" ? "node_modules/.bin/oxfmt.cmd" : "node_modules/.bin/oxfmt";
-
-  if (!fs.existsSync(oxfmtBin)) return;
-
-  const result = spawnSync(oxfmtBin, ["--write", ...files], {
+  const result = spawnSync("pnpm", ["exec", "oxfmt", "--write", ...files], {
     stdio: "inherit",
   });
 

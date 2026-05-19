@@ -35,13 +35,17 @@ const primitivePages = new Set([
   "tooltip",
 ]);
 
-export function pageFromMetadata(slug: string, metadata: ComponentPageMetadata, toc: DocTocItem[] = []): ComponentDocPage {
+export function pageFromMetadata(
+  slug: string,
+  metadata: ComponentPageMetadata,
+  toc: DocTocItem[] = [],
+): ComponentDocPage {
   const sourceFile = metadata.sourceFile ?? `components/${slug}`;
   const primitive = metadata.primitive ?? (primitivePages.has(slug) ? slug : undefined);
 
   return {
     description: metadata.description,
-    editUrl: `https://github.com/joshuadavidthomas/kumo-svelte/tree/main/src/${sourceFile}`,
+    editUrl: `https://github.com/joshuadavidthomas/kumo-svelte/tree/main/packages/kumo-svelte/src/${sourceFile}`,
     href: `/components/${slug}`,
     primitiveUrl: primitive ? primitiveUrl(primitive) : undefined,
     sourceFile,
@@ -51,7 +55,10 @@ export function pageFromMetadata(slug: string, metadata: ComponentPageMetadata, 
 }
 
 export function componentLabel(slug: string) {
-  return componentItems.find((component) => component.href === `/components/${slug}`)?.label ?? titleize(slug);
+  return (
+    componentItems.find((component) => component.href === `/components/${slug}`)?.label ??
+    titleize(slug)
+  );
 }
 
 function primitiveUrl(primitive: string) {

@@ -17,7 +17,7 @@ For each page:
 - [ ] Badge — `/components/badge`
 - [ ] Banner — `/components/banner`
 - [ ] Breadcrumbs — `/components/breadcrumbs`
-- [ ] Button — `/components/button`
+- [x] Button — `/components/button`
 - [ ] Checkbox — `/components/checkbox`
 - [ ] Clipboard Text — `/components/clipboard-text`
 - [ ] Cloudflare Logo — `/components/cloudflare-logo`

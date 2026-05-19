@@ -4,7 +4,9 @@ agents.lock
 
 node_modules
 .svelte-kit
+**/.svelte-kit
 dist
 build
+**/build
 coverage
 .DS_Store
