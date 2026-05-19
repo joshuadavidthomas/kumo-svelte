@@ -37,7 +37,7 @@ For each page:
 - [x] Label — `/components/label`
 - [x] Layer Card — `/components/layer-card`
 - [x] Link — `/components/link`
-- [ ] Loader — `/components/loader`
+- [x] Loader — `/components/loader`
 - [ ] MenuBar — `/components/menu-bar`
 - [ ] Meter — `/components/meter`
 - [ ] Pagination — `/components/pagination`
