@@ -29,7 +29,7 @@ For each page:
 - [x] Dialog — `/components/dialog`
 - [x] Dropdown — `/components/dropdown`
 - [x] Empty — `/components/empty`
-- [ ] Flow — `/components/flow`
+- [x] Flow — `/components/flow`
 - [ ] Grid — `/components/grid`
 - [ ] Input — `/components/input`
 - [ ] InputArea — `/components/input-area`
