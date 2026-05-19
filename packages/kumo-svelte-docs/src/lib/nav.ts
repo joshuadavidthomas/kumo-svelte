@@ -16,6 +16,7 @@ export const staticPages: DocsNavItem[] = [
   { label: "Accessibility", href: "/accessibility" },
   { label: "Figma", href: "/figma" },
   { label: "Contributing", href: "/contributing" },
+  { label: "Changelog", href: "/changelog" },
 ];
 
 export const chartItems: DocsNavItem[] = [
