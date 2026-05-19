@@ -1,0 +1,113 @@
+---
+title: Meter
+description: A progress/percentage meter component for displaying numeric values within a known range.
+sourceFile: components/meter
+primitive: meter
+---
+
+<script lang="ts">
+  import Example from "$lib/components/example.svelte";
+  import MeterBasicDemo from "./meter-basic-demo.svelte";
+  import MeterCustomStyleDemo from "./meter-custom-style-demo.svelte";
+  import MeterCustomValueDemo from "./meter-custom-value-demo.svelte";
+  import MeterFullDemo from "./meter-full-demo.svelte";
+  import MeterHiddenValueDemo from "./meter-hidden-value-demo.svelte";
+  import MeterLowDemo from "./meter-low-demo.svelte";
+</script>
+
+<Example demo="meter-basic-demo">
+  <MeterBasicDemo />
+</Example>
+
+## Installation
+
+### Barrel
+
+```ts
+import { Meter } from "kumo-svelte";
+```
+
+### Granular
+
+```ts
+import { Meter } from "kumo-svelte/components/meter";
+```
+
+## Usage
+
+```svelte
+<script lang="ts">
+  import { Meter } from "kumo-svelte";
+</script>
+
+<Meter label="Storage used" value={65} />
+```
+
+## Examples
+
+### Basic Meter
+
+The default meter displays a label and percentage value.
+
+<Example demo="meter-basic-demo">
+  <MeterBasicDemo />
+</Example>
+
+### Custom Value Display
+
+Use `customValue` to show a custom string instead of the percentage.
+
+<Example demo="meter-custom-value-demo">
+  <MeterCustomValueDemo />
+</Example>
+
+### Hidden Value
+
+Set `showValue={false}` to hide the value display.
+
+<Example demo="meter-hidden-value-demo">
+  <MeterHiddenValueDemo />
+</Example>
+
+### Full Meter
+
+A meter at 100% capacity.
+
+<Example demo="meter-full-demo">
+  <MeterFullDemo />
+</Example>
+
+### Low Value
+
+A meter with a low value.
+
+<Example demo="meter-low-demo">
+  <MeterLowDemo />
+</Example>
+
+### Custom Style
+
+Use `indicatorClass` to change the meter indicator styling.
+
+<Example demo="meter-custom-style-demo">
+  <MeterCustomStyleDemo />
+</Example>
+
+## API Reference
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `label` | `string` | — | Meter label. |
+| `value` | `number` | `0` | Current value. Clamped between `min` and `max`. |
+| `min` | `number` | `0` | Minimum value. |
+| `max` | `number` | `100` | Maximum value. |
+| `customValue` | `string` | — | Custom value text shown instead of the computed percentage. |
+| `showValue` | `boolean` | `true` | Whether to display the computed value. |
+| `class` | `string` | — | Additional classes for the root. |
+| `trackClass` | `string` | — | Additional classes for the track. |
+| `indicatorClass` | `string` | — | Additional classes for the indicator. |
+| `id` | `string` | — | Root meter id. |
+
+## Accessibility
+
+Meter uses Bits UI's Meter primitive and exposes the provided `label` alongside the visual track. Use Meter for scalar measurements within a known range; use a progress indicator for indeterminate loading.

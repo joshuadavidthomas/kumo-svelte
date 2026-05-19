@@ -39,7 +39,7 @@ For each page:
 - [x] Link — `/components/link`
 - [x] Loader — `/components/loader`
 - [x] MenuBar — `/components/menu-bar`
-- [ ] Meter — `/components/meter`
+- [x] Meter — `/components/meter`
 - [ ] Pagination — `/components/pagination`
 - [ ] Popover — `/components/popover`
 - [ ] Radio — `/components/radio`
