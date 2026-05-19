@@ -31,7 +31,7 @@ For each page:
 - [x] Empty — `/components/empty`
 - [x] Flow — `/components/flow`
 - [x] Grid — `/components/grid`
-- [ ] Input — `/components/input`
+- [x] Input — `/components/input`
 - [ ] InputArea — `/components/input-area`
 - [ ] InputGroup — `/components/input-group`
 - [ ] Label — `/components/label`
