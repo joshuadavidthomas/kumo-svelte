@@ -24,7 +24,7 @@ For each page:
 - [x] CodeHighlighted — `/components/code-highlighted`
 - [x] Collapsible — `/components/collapsible`
 - [x] Combobox — `/components/combobox`
-- [ ] Command Palette — `/components/command-palette`
+- [x] Command Palette — `/components/command-palette`
 - [ ] Date Picker — `/components/date-picker`
 - [ ] Dialog — `/components/dialog`
 - [ ] Dropdown — `/components/dropdown`
