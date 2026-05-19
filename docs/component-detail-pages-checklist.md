@@ -23,7 +23,7 @@ For each page:
 - [x] Cloudflare Logo — `/components/cloudflare-logo`
 - [x] CodeHighlighted — `/components/code-highlighted`
 - [x] Collapsible — `/components/collapsible`
-- [ ] Combobox — `/components/combobox`
+- [x] Combobox — `/components/combobox`
 - [ ] Command Palette — `/components/command-palette`
 - [ ] Date Picker — `/components/date-picker`
 - [ ] Dialog — `/components/dialog`
