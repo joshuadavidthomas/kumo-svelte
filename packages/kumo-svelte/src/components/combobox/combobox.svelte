@@ -52,7 +52,8 @@
     value = $bindable(defaultValue ?? (multiple ? [] : "")),
   }: ComboboxProps = $props();
 
-  let inputValue = $state("");
+  let inputValue = $state(typeof value === "string" ? value : "");
+  let clearEpoch = $state(0);
   let fieldRequired = $derived(required === true ? true : required === false ? false : undefined);
   let normalizedError = $derived(normalizeFieldError(error));
   let singleValue = $derived(typeof value === "string" ? value : "");
@@ -70,11 +71,41 @@
     onValueChange?.(nextValue);
   }
 
+  function clearValue() {
+    let nextValue = multiple ? [] : "";
+
+    inputValue = "";
+    value = nextValue;
+    clearEpoch += 1;
+    onValueChange?.(nextValue);
+  }
+
+  function shouldShowItem(value: string, label?: string) {
+    if (!items.length) return true;
+
+    let query = inputValue.trim().toLocaleLowerCase();
+    if (!query) return true;
+
+    let text = (label ?? items.find((item) => item.value === value)?.label ?? value).toLocaleLowerCase();
+    return text.includes(query);
+  }
+
   setComboboxContext({
+    get canClear() {
+      return multiple ? inputValue.length > 0 || multipleValue.length > 0 : inputValue.length > 0 || singleValue.length > 0;
+    },
+    get clearEpoch() {
+      return clearEpoch;
+    },
+    get inputValue() {
+      return inputValue;
+    },
     get size() {
       return size;
     },
+    clearValue,
     setInputValue,
+    shouldShowItem,
   });
 </script>
 
@@ -99,7 +130,7 @@
       type="single"
       {allowDeselect}
       {disabled}
-      inputValue={inputValue || singleValue}
+      inputValue={inputValue}
       {items}
       {name}
       bind:open

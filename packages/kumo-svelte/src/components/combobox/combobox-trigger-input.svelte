@@ -62,25 +62,29 @@
     className,
   )}
 >
-  <ComboboxPrimitive.Input
-    data-slot="combobox-trigger-input-control"
-    aria-label={ariaLabel}
-    {autocomplete}
-    {defaultValue}
-    {disabled}
-    oninput={handleInput}
-    {placeholder}
-    class={cn(inputVariants({ size: context.size }), "w-full disabled:cursor-not-allowed", iconStyles.padding)}
-  />
+  {#key context.clearEpoch}
+    <ComboboxPrimitive.Input
+      data-slot="combobox-trigger-input-control"
+      aria-label={ariaLabel}
+      {autocomplete}
+      {defaultValue}
+      {disabled}
+      oninput={handleInput}
+      {placeholder}
+      class={cn(inputVariants({ size: context.size }), "w-full disabled:cursor-not-allowed", iconStyles.padding)}
+    />
+  {/key}
   <button
     data-slot="combobox-trigger-input-clear"
     type="button"
     aria-label={clearLabel}
     class={cn(
       "absolute top-1/2 flex -translate-y-1/2 cursor-pointer bg-transparent p-0",
+      "disabled:pointer-events-none disabled:opacity-0",
       iconStyles.clearRight,
     )}
-    onclick={() => context.setInputValue("")}
+    disabled={!context.canClear}
+    onclick={() => context.clearValue()}
   >
     <XIcon aria-hidden="true" size={iconStyles.iconSize} />
   </button>

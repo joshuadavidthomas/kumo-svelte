@@ -2,8 +2,13 @@ import { getContext, setContext } from "svelte";
 import type { KumoComboboxSize } from "./variants";
 
 export interface ComboboxContextValue {
+  readonly canClear: boolean;
+  readonly clearEpoch: number;
+  readonly inputValue: string;
   readonly size: KumoComboboxSize;
+  clearValue(): void;
   setInputValue(value: string): void;
+  shouldShowItem(value: string, label?: string): boolean;
 }
 
 const comboboxContextKey = Symbol("kumo-combobox");
