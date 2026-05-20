@@ -52,6 +52,18 @@
     oninput?.(event);
     onValueChange?.(event.currentTarget.value);
   }
+
+  function handleKeydownCapture(event: KeyboardEvent) {
+    if (event.key !== "ArrowDown") return;
+    if (document.querySelector("[data-slot='autocomplete-item'][data-highlighted]")) return;
+
+    let firstItem = document.querySelector<HTMLElement>("[data-slot='autocomplete-item']");
+    if (!firstItem) return;
+
+    firstItem.setAttribute("data-highlighted", "");
+    event.preventDefault();
+    event.stopPropagation();
+  }
 </script>
 
 <ComboboxPrimitive.Input
@@ -65,6 +77,7 @@
   {id}
   {name}
   oninput={handleInput}
+  onkeydowncapture={handleKeydownCapture}
   {onblur}
   {onfocus}
   {onkeydown}

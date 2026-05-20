@@ -69,11 +69,25 @@
     onValueChange?.(nextValue);
   }
 
+  function shouldShowItem(value: string, label?: string) {
+    if (!items.length) return true;
+
+    let query = inputValue.trim().toLocaleLowerCase();
+    if (!query) return true;
+
+    let text = (label ?? items.find((item) => item.value === value)?.label ?? value).toLocaleLowerCase();
+    return text.includes(query);
+  }
+
   setAutocompleteContext({
+    get inputValue() {
+      return inputValue;
+    },
     get size() {
       return size;
     },
     setInputValue,
+    shouldShowItem,
   });
 </script>
 
