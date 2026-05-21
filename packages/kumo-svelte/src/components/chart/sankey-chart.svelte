@@ -12,7 +12,6 @@
 
   export interface SankeyChartProps {
     class?: string;
-    className?: string;
     defaultNodeColor?: string;
     echarts: typeof echarts;
     formatValue?: (value: number) => string;
@@ -35,7 +34,6 @@
 
   let {
     class: className,
-    className: legacyClassName,
     defaultNodeColor,
     echarts: echartsModule,
     formatValue = defaultFormatValue,
@@ -307,7 +305,7 @@
 <Chart
   echarts={echartsModule}
   options={options}
-  className={className ?? legacyClassName}
+  class={className}
   isDarkMode={isDarkMode}
   {height}
   onEvents={onEvents}

@@ -3,9 +3,9 @@
 
   export type TooltipTriggerProps = TooltipPrimitive.TriggerProps;
 
-  let { children, ...restProps }: TooltipTriggerProps = $props();
+  let { children, ref = $bindable(null), ...restProps }: TooltipTriggerProps = $props();
 </script>
 
-<TooltipPrimitive.Trigger data-slot="tooltip-trigger" {...restProps}>
+<TooltipPrimitive.Trigger data-slot="tooltip-trigger" bind:ref {...restProps}>
   {@render children?.()}
 </TooltipPrimitive.Trigger>

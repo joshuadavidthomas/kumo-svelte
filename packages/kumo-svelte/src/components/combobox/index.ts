@@ -1,5 +1,6 @@
 import type { ComponentProps } from "svelte";
 import ComboboxComponent from "./combobox.svelte";
+import ComboboxChipComponent from "./combobox-chip.svelte";
 import ComboboxContentComponent from "./combobox-content.svelte";
 import ComboboxEmptyComponent from "./combobox-empty.svelte";
 import ComboboxGroupComponent from "./combobox-group.svelte";
@@ -10,9 +11,11 @@ import ComboboxListComponent from "./combobox-list.svelte";
 import ComboboxSeparatorComponent from "./combobox-separator.svelte";
 import ComboboxTriggerComponent from "./combobox-trigger.svelte";
 import ComboboxTriggerInputComponent from "./combobox-trigger-input.svelte";
+import ComboboxTriggerMultipleWithInputComponent from "./combobox-trigger-multiple-with-input.svelte";
 
 export { default as Combobox } from "./combobox.svelte";
 export { default as ComboboxRoot } from "./combobox.svelte";
+export { default as ComboboxChip } from "./combobox-chip.svelte";
 export { default as ComboboxContent } from "./combobox-content.svelte";
 export { default as ComboboxEmpty } from "./combobox-empty.svelte";
 export { default as ComboboxGroup } from "./combobox-group.svelte";
@@ -23,10 +26,12 @@ export { default as ComboboxList } from "./combobox-list.svelte";
 export { default as ComboboxSeparator } from "./combobox-separator.svelte";
 export { default as ComboboxTrigger } from "./combobox-trigger.svelte";
 export { default as ComboboxTriggerInput } from "./combobox-trigger-input.svelte";
+export { default as ComboboxTriggerMultipleWithInput } from "./combobox-trigger-multiple-with-input.svelte";
 export { default as ComboboxTriggerValue } from "./combobox-trigger.svelte";
 
 export type ComboboxProps = ComponentProps<typeof ComboboxComponent>;
 export type ComboboxRootProps = ComboboxProps;
+export type ComboboxChipProps = ComponentProps<typeof ComboboxChipComponent>;
 export type ComboboxContentProps = ComponentProps<typeof ComboboxContentComponent>;
 export type ComboboxEmptyProps = ComponentProps<typeof ComboboxEmptyComponent>;
 export type ComboboxGroupProps = ComponentProps<typeof ComboboxGroupComponent>;
@@ -37,6 +42,9 @@ export type ComboboxListProps = ComponentProps<typeof ComboboxListComponent>;
 export type ComboboxSeparatorProps = ComponentProps<typeof ComboboxSeparatorComponent>;
 export type ComboboxTriggerProps = ComponentProps<typeof ComboboxTriggerComponent>;
 export type ComboboxTriggerInputProps = ComponentProps<typeof ComboboxTriggerInputComponent>;
+export type ComboboxTriggerMultipleWithInputProps = ComponentProps<
+  typeof ComboboxTriggerMultipleWithInputComponent
+>;
 export type ComboboxTriggerValueProps = ComboboxTriggerProps;
 
 export {

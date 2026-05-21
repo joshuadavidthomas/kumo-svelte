@@ -1,15 +1,14 @@
 <script lang="ts">
-  import DocLayout from "$lib/components/doc-layout.svelte";
   import Sidebar from "$lib/components/sidebar.svelte";
   import { TooltipProvider } from "kumo-svelte";
   import "../styles.css";
 
-  let { children, data } = $props();
+  let { children } = $props();
 </script>
 
 <div class="site-shell">
   <div data-slot="mark" aria-hidden="true">
-    <a class="flex h-full w-full items-center justify-center text-2xl" href="/" tabindex="-1">雲</a>
+    <a class="flex h-full w-full items-center justify-center text-2xl" href="/" tabindex="-1">薄</a>
   </div>
 
   <div data-slot="left-rail"></div>
@@ -36,13 +35,7 @@
 
   <div data-slot="main" class="min-w-0">
     <TooltipProvider>
-      {#if data.docPage}
-        <DocLayout data={{ page: data.docPage }}>
-          {@render children()}
-        </DocLayout>
-      {:else}
-        {@render children()}
-      {/if}
+      {@render children()}
     </TooltipProvider>
   </div>
 </div>

@@ -22,7 +22,7 @@
   data-slot="command-palette-group"
   {forceMount}
   {value}
-  class={cn("space-y-0.5", className)}
+  class={cn("space-y-0.5 [&>[data-item-wrapper]:not(:last-child)>[data-slot=command-palette-item]]:mb-0.5", className)}
 >
   {@render children?.()}
 </CommandPrimitive.Group>

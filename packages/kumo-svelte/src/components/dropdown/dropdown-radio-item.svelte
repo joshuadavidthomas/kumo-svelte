@@ -13,14 +13,30 @@
   let {
     children: childrenProp,
     class: className,
+    closeOnSelect = false,
     icon,
     inset = false,
+    onSelect,
     ...restProps
   }: DropdownMenuRadioItemProps = $props();
+
+  function handleSelect(event: Event) {
+    onSelect?.(event);
+    if (event.defaultPrevented || closeOnSelect) return;
+
+    const item = event.currentTarget;
+    if (!(item instanceof HTMLElement)) return;
+
+    setTimeout(() => {
+      if (item.isConnected) item.focus();
+    }, 50);
+  }
 </script>
 
 <DropdownMenuPrimitive.RadioItem
   data-slot="dropdown-menu-radio-item"
+  {closeOnSelect}
+  onSelect={handleSelect}
   class={cn(
     "relative flex cursor-default items-center rounded-md px-2 py-1.5 text-base outline-none select-none",
     "data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[highlighted]:bg-kumo-tint",

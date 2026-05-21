@@ -5,14 +5,34 @@ import type { CodeHighlightedLabels, SupportedLanguage } from "./types";
 
 const SHIKI_CONTEXT = Symbol("kumo-shiki-context");
 
+interface ShikiContextOptions {
+  getLabels: () => CodeHighlightedLabels | undefined;
+  getLanguages: () => SupportedLanguage[];
+}
+
 export class ShikiContextState {
+  readonly #getLabels: () => CodeHighlightedLabels | undefined;
+  readonly #getLanguages: () => SupportedLanguage[];
+
   highlighter = $state<HighlighterCore | null>(null);
   isLoading = $state(true);
   error = $state<Error | null>(null);
-  languages = $state<SupportedLanguage[]>([]);
-  labels = $state<Required<CodeHighlightedLabels>>({
-    ...DEFAULT_CODE_HIGHLIGHTED_LABELS,
-  });
+
+  constructor(options: ShikiContextOptions) {
+    this.#getLabels = options.getLabels;
+    this.#getLanguages = options.getLanguages;
+  }
+
+  get labels(): Required<CodeHighlightedLabels> {
+    return {
+      ...DEFAULT_CODE_HIGHLIGHTED_LABELS,
+      ...this.#getLabels(),
+    };
+  }
+
+  get languages() {
+    return this.#getLanguages();
+  }
 
   highlight(code: string, lang: SupportedLanguage): string | null {
     if (!this.highlighter) return null;

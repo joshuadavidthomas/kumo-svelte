@@ -14,6 +14,7 @@
     class: className,
     container,
     sideOffset = 8,
+    ref = $bindable(null),
     ...restProps
   }: DropdownMenuContentProps = $props();
 </script>
@@ -21,6 +22,7 @@
 <DropdownMenuPortal to={container}>
   <DropdownMenuPrimitive.Content
     data-slot="dropdown-menu-content"
+    bind:ref
     {sideOffset}
     class={cn(KUMO_DROPDOWN_CONTENT_CLASS, className)}
     {...restProps}

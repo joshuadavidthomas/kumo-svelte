@@ -14,12 +14,14 @@
   } as const;
 
   export interface ComboboxTriggerProps {
+    child?: Snippet<[{ props: Record<string, unknown> }]>;
     children?: Snippet;
     class?: string;
     placeholder?: string;
   }
 
   let {
+    child,
     children,
     class: className,
     placeholder,
@@ -31,27 +33,31 @@
 
 <ComboboxPrimitive.Trigger
   data-slot="combobox-trigger"
+  {child}
   class={cn(
-    inputVariants({ size: context.size }),
-    "relative flex items-center data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 data-[placeholder]:text-kumo-placeholder",
-    iconStyles.padding,
+    !child && inputVariants({ size: context.size }),
+    !child &&
+      "relative flex items-center data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50 data-[placeholder]:text-kumo-placeholder",
+    !child && iconStyles.padding,
     className,
   )}
 >
-  <span data-slot="combobox-trigger-value" class="min-w-0 truncate">
-    {#if children}
-      {@render children()}
-    {:else}
-      {placeholder}
-    {/if}
-  </span>
-  <span
-    data-slot="combobox-trigger-icon"
-    class={cn(
-      "absolute top-1/2 flex -translate-y-1/2 items-center text-kumo-subtle",
-      iconStyles.iconRight,
-    )}
-  >
-    <CaretDownIcon aria-hidden="true" size={iconStyles.iconSize} />
-  </span>
+  {#if !child}
+    <span data-slot="combobox-trigger-value" class="min-w-0 truncate">
+      {#if children}
+        {@render children()}
+      {:else}
+        {placeholder}
+      {/if}
+    </span>
+    <span
+      data-slot="combobox-trigger-icon"
+      class={cn(
+        "absolute top-1/2 flex -translate-y-1/2 items-center text-kumo-subtle",
+        iconStyles.iconRight,
+      )}
+    >
+      <CaretDownIcon aria-hidden="true" size={iconStyles.iconSize} />
+    </span>
+  {/if}
 </ComboboxPrimitive.Trigger>

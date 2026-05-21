@@ -1,0 +1,86 @@
+---
+title: Badge
+description: Displays a small label for status, categorization, or metadata.
+sourceFile: components/badge
+---
+
+<script lang="ts">
+  import Example from "$lib/components/example.svelte";
+  import BadgeColorVariantsDemo from "./badge-color-variants-demo.svelte";
+  import BadgeDotDemo from "./badge-dot-demo.svelte";
+  import BadgeInSentenceDemo from "./badge-in-sentence-demo.svelte";
+  import BadgeSemanticVariantsDemo from "./badge-semantic-variants-demo.svelte";
+</script>
+
+<Example demo="badge-semantic-variants-demo">
+  <BadgeSemanticVariantsDemo />
+</Example>
+
+## Installation
+
+### Barrel
+
+```ts
+import { Badge } from "kumo-svelte";
+```
+
+### Granular
+
+```ts
+import { Badge } from "kumo-svelte/components/badge";
+```
+
+## Usage
+
+```svelte
+<script lang="ts">
+  import { Badge } from "kumo-svelte";
+</script>
+
+<Badge variant="secondary">New</Badge>
+```
+
+## Examples
+
+### Primary Badges
+
+<Example demo="badge-semantic-variants-demo">
+  <BadgeSemanticVariantsDemo />
+</Example>
+
+### Other color variants
+
+Other color variants are available for specific products and use cases where the semantic badges are not enough to convey the intended meaning or status.
+
+<Example demo="badge-color-variants-demo">
+  <BadgeColorVariantsDemo />
+</Example>
+
+### Dot badges
+
+Use `appearance="dot"` for a subtle status indicator with a colored dot. Supported with `success`, `warning`, `error`, and `neutral` variants.
+
+<Example demo="badge-dot-demo">
+  <BadgeDotDemo />
+</Example>
+
+### In a sentence
+
+<Example demo="badge-in-sentence-demo">
+  <BadgeInSentenceDemo />
+</Example>
+
+## API Reference
+
+### Badge
+
+Displays a small label for status, categorization, or metadata.
+
+| Prop | Type | Required | Description |
+| --- | --- | --- | --- |
+| `variant` | `"primary" \| "secondary" \| "error" \| "warning" \| "success" \| "info" \| "beta" \| "outline" \| "neutral" \| "red" \| "orange" \| "green" \| "teal" \| "teal-subtle" \| "blue" \| "purple" \| "destructive"` | No | Color variant. Defaults to `"primary"`. |
+| `appearance` | `"filled" \| "dot"` | No | Visual appearance. Defaults to `"filled"`. |
+| `children` | `Snippet` | Yes | Badge label content. |
+| `class` | `string` | No | Additional classes merged with the badge styles. |
+
+All other props are passed to the underlying `<span>` element.

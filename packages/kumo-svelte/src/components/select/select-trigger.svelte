@@ -34,6 +34,7 @@
 <SelectPrimitive.Trigger
   data-slot="select-trigger"
   data-size={size}
+  role="combobox"
   class={cn(
     selectVariants({ size }),
     (disabled || loading) && "cursor-not-allowed opacity-50",

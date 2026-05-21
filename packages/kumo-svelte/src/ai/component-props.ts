@@ -234,27 +234,14 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
   },
   Badge: {
+    appearance: {
+      type: "KumoBadgeAppearance",
+      runtime: {
+        kind: "string",
+      },
+    },
     variant: {
       type: "KumoBadgeVariant",
-      values: [
-        "primary",
-        "secondary",
-        "error",
-        "warning",
-        "success",
-        "destructive",
-        "info",
-        "beta",
-        "outline",
-        "red",
-        "green",
-        "neutral",
-        "orange",
-        "purple",
-        "teal",
-        "teal-subtle",
-        "blue",
-      ],
       runtime: {
         kind: "string",
       },
@@ -426,10 +413,7 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
       },
     },
     icon: {
-      type: "Snippet",
-      runtime: {
-        kind: "snippet",
-      },
+      type: "Component",
     },
     loading: {
       type: "boolean",
@@ -438,18 +422,20 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
       },
     },
     title: {
-      type: "string",
+      type: "Snippet | string | null",
       runtime: {
-        kind: "string",
+        kind: "union",
+        options: [
+          {
+            kind: "snippet",
+          },
+          {
+            kind: "string",
+          },
+        ],
       },
     },
     external: {
-      type: "boolean",
-      runtime: {
-        kind: "boolean",
-      },
-    },
-    linksExternal: {
       type: "boolean",
       runtime: {
         kind: "boolean",
@@ -781,6 +767,29 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
         kind: "string",
       },
     },
+    removeLabel: {
+      type: "string",
+      runtime: {
+        kind: "string",
+      },
+    },
+    value: {
+      type: "string | string[]",
+      runtime: {
+        kind: "union",
+        options: [
+          {
+            kind: "string",
+          },
+          {
+            kind: "array",
+            item: {
+              kind: "string",
+            },
+          },
+        ],
+      },
+    },
     container: {
       type: 'PortalProps["to"]',
       runtime: {
@@ -854,6 +863,12 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
         kind: "string",
       },
     },
+    onblur: {
+      type: "(event: FocusEvent & { currentTarget: HTMLInputElement }) => void",
+      runtime: {
+        kind: "function",
+      },
+    },
     oninput: {
       type: "(event: Event & { currentTarget: HTMLInputElement }) => void",
       runtime: {
@@ -898,23 +913,6 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
         ],
       },
     },
-    value: {
-      type: "string | string[]",
-      runtime: {
-        kind: "union",
-        options: [
-          {
-            kind: "string",
-          },
-          {
-            kind: "array",
-            item: {
-              kind: "string",
-            },
-          },
-        ],
-      },
-    },
     clearLabel: {
       type: "string",
       runtime: {
@@ -925,6 +923,25 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
       type: "string",
       runtime: {
         kind: "string",
+      },
+    },
+    inputSide: {
+      type: "KumoComboboxInputSide",
+      values: ["right", "top"],
+      runtime: {
+        kind: "string",
+      },
+    },
+    renderItem: {
+      type: "Snippet<[value: string]>",
+      runtime: {
+        kind: "snippet",
+      },
+    },
+    child: {
+      type: "Snippet<[{ props: Record<string, unknown> }]>",
+      runtime: {
+        kind: "snippet",
       },
     },
     allowDeselect: {
@@ -1016,17 +1033,16 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
         kind: "function",
       },
     },
+    onOpenChangeComplete: {
+      type: "(open: boolean) => void",
+      runtime: {
+        kind: "function",
+      },
+    },
     open: {
       type: "boolean",
       runtime: {
         kind: "boolean",
-      },
-    },
-    inputSide: {
-      type: "KumoComboboxInputSide",
-      values: ["right", "top"],
-      runtime: {
-        kind: "string",
       },
     },
   },
@@ -1065,48 +1081,6 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
       type: "string",
       runtime: {
         kind: "string",
-      },
-    },
-    "aria-label": {
-      type: "string",
-      runtime: {
-        kind: "string",
-      },
-    },
-    autocomplete: {
-      type: 'HTMLInputAttributes["autocomplete"]',
-      runtime: {
-        kind: "string",
-      },
-    },
-    autofocus: {
-      type: "boolean",
-      runtime: {
-        kind: "boolean",
-      },
-    },
-    leading: {
-      type: "Snippet",
-      runtime: {
-        kind: "snippet",
-      },
-    },
-    onkeydown: {
-      type: "(event: KeyboardEvent & { currentTarget: HTMLInputElement }) => void",
-      runtime: {
-        kind: "function",
-      },
-    },
-    placeholder: {
-      type: "string",
-      runtime: {
-        kind: "string",
-      },
-    },
-    trailing: {
-      type: "Snippet",
-      runtime: {
-        kind: "snippet",
       },
     },
     disabled: {
@@ -1341,12 +1315,6 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
       },
     },
     value: {
-      type: "string",
-      runtime: {
-        kind: "string",
-      },
-    },
-    className: {
       type: "string",
       runtime: {
         kind: "string",
@@ -1798,6 +1766,12 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
         kind: "boolean",
       },
     },
+    footer: {
+      type: "Snippet",
+      runtime: {
+        kind: "snippet",
+      },
+    },
     initialFocus: {
       type: "boolean",
       runtime: {
@@ -1884,12 +1858,6 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
       type: "number",
       runtime: {
         kind: "number",
-      },
-    },
-    onChange: {
-      type: "(value: DatePickerValue) => void",
-      runtime: {
-        kind: "function",
       },
     },
     onEndValueChange: {
@@ -2008,12 +1976,6 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
         kind: "string",
       },
     },
-    className: {
-      type: "string",
-      runtime: {
-        kind: "string",
-      },
-    },
     onEndDateChange: {
       type: "(date: Date | null) => void",
       runtime: {
@@ -2072,18 +2034,6 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
         kind: "string",
       },
     },
-    disabled: {
-      type: "boolean",
-      runtime: {
-        kind: "boolean",
-      },
-    },
-    id: {
-      type: "string",
-      runtime: {
-        kind: "string",
-      },
-    },
     container: {
       type: 'PortalProps["to"]',
       runtime: {
@@ -2111,6 +2061,12 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
         kind: "string",
       },
     },
+    id: {
+      type: "string",
+      runtime: {
+        kind: "string",
+      },
+    },
     to: {
       type: 'PortalProps["to"]',
       runtime: {
@@ -2130,6 +2086,12 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
       values: ["dialog", "alertdialog"],
       runtime: {
         kind: "string",
+      },
+    },
+    disablePointerDismissal: {
+      type: "boolean",
+      runtime: {
+        kind: "boolean",
       },
     },
     open: {
@@ -3145,9 +3107,15 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
       },
     },
     child: {
-      type: "Snippet<[{ props: ItemProps & { class: string } }]>",
+      type: "Snippet<[{ props: Record<string, unknown> & { class: string } }]>",
       runtime: {
         kind: "snippet",
+      },
+    },
+    onclick: {
+      type: "(event: MouseEvent) => void",
+      runtime: {
+        kind: "function",
       },
     },
   },
@@ -3395,7 +3363,7 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
               ],
               required: false,
             },
-            onClick: {
+            onSelect: {
               kind: "function",
               required: true,
             },
@@ -3518,7 +3486,7 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
         ],
       },
     },
-    onChange: {
+    onValueChange: {
       type: "(size: number) => void",
       runtime: {
         kind: "function",
@@ -4137,12 +4105,6 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
         kind: "function",
       },
     },
-    readOnly: {
-      type: "boolean",
-      runtime: {
-        kind: "boolean",
-      },
-    },
     readonly: {
       type: "boolean | null",
       runtime: {
@@ -4584,13 +4546,7 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
         ],
       },
     },
-    DANGEROUS_className: {
-      type: "string",
-      runtime: {
-        kind: "string",
-      },
-    },
-    DANGEROUS_style: {
+    class: {
       type: "string",
       runtime: {
         kind: "string",
@@ -4677,6 +4633,12 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
         ],
       },
     },
+    render: {
+      type: "Snippet<[{ props: Record<string, unknown> }]>",
+      runtime: {
+        kind: "snippet",
+      },
+    },
     side: {
       type: "KumoTooltipSide",
       values: ["top", "bottom", "left", "right"],
@@ -4736,6 +4698,12 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
         kind: "number",
       },
     },
+    open: {
+      type: "boolean",
+      runtime: {
+        kind: "boolean",
+      },
+    },
   },
   DeleteResource: {
     caseSensitive: {
@@ -4745,12 +4713,6 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
       },
     },
     class: {
-      type: "string",
-      runtime: {
-        kind: "string",
-      },
-    },
-    className: {
       type: "string",
       runtime: {
         kind: "string",

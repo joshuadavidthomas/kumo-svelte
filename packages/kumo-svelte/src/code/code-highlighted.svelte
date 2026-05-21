@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { onDestroy } from "svelte";
   import Button from "../components/button/button.svelte";
   import { cn } from "../utils/cn";
   import { processHighlightedHtml } from "./shared";
@@ -7,7 +8,6 @@
 
   let {
     class: className,
-    className: legacyClassName,
     code,
     highlightLines,
     labels: labelOverrides,
@@ -19,6 +19,7 @@
   const shiki = useShikiHighlighter();
 
   let copied = $state(false);
+  let copyResetTimeout: number | undefined;
   let labels = $derived({
     ...shiki.labels,
     ...labelOverrides,
@@ -33,19 +34,32 @@
     cn(
       "group relative m-0 w-full min-w-0 rounded-md border border-kumo-fill bg-kumo-base p-0",
       showCopyButton && isSingleLine && "flex items-center",
-      className ?? legacyClassName,
+      className,
     ),
   );
   let processedHtml = $derived(
     html === null ? null : processHighlightedHtml(html, highlightLines),
   );
 
+  onDestroy(() => {
+    clearCopyReset();
+  });
+
+  function clearCopyReset() {
+    if (!copyResetTimeout) return;
+
+    clearTimeout(copyResetTimeout);
+    copyResetTimeout = undefined;
+  }
+
   async function handleCopy() {
     try {
       await navigator.clipboard.writeText(code);
       copied = true;
-      window.setTimeout(() => {
+      clearCopyReset();
+      copyResetTimeout = window.setTimeout(() => {
         copied = false;
+        copyResetTimeout = undefined;
       }, 2000);
     } catch (error) {
       console.error("[Kumo CodeHighlighted] Failed to copy to clipboard:", error);

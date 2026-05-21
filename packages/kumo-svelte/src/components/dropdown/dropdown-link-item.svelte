@@ -40,7 +40,7 @@
       {...props}
       {href}
       {target}
-      rel={rel ?? (target === "_blank" ? "noreferrer" : undefined)}
+      {rel}
       class={cn(
         KUMO_DROPDOWN_ITEM_CLASS,
         "text-inherit no-underline",

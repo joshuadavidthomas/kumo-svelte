@@ -365,36 +365,53 @@
 /* DAY MODIFIERS */
 
 /* Today (only when not selected) */
-.rdp-today:not(.rdp-outside):not(.rdp-selected) .rdp-day_button {
+.rdp-today:not(.rdp-outside):not(.rdp-selected) .rdp-day_button,
+.rdp-day[data-today]:not([data-outside-month]):not([data-selected]) .rdp-day_button,
+.rdp-day_button[data-today]:not([data-outside-month]):not([data-selected]) {
   color: var(--rdp-today-color);
   font-weight: 600;
 }
 
 /* Selected (single/multiple selection mode) */
-.rdp-selected .rdp-day_button {
+.rdp-selected .rdp-day_button,
+.rdp-day[data-selected] .rdp-day_button,
+.rdp-day_button[data-selected] {
   background-color: var(--rdp-accent-color);
   color: var(--rdp-range_start-color);
   border-radius: var(--rdp-day_button-border-radius);
 }
 
-.rdp-selected .rdp-day_button:hover {
+.rdp-selected .rdp-day_button:hover,
+.rdp-day[data-selected] .rdp-day_button:hover,
+.rdp-day_button[data-selected]:hover {
   background-color: var(--rdp-accent-color);
 }
 
 /* Outside (days from adjacent months) */
-.rdp-outside .rdp-day_button {
+.rdp-outside .rdp-day_button,
+.rdp-day[data-outside-month] .rdp-day_button,
+.rdp-day_button[data-outside-month] {
   opacity: var(--rdp-outside-opacity);
   color: var(--rdp-day-color-subtle);
 }
 
 /* Disabled */
-.rdp-disabled:not(.rdp-selected) .rdp-day_button {
+.rdp-disabled:not(.rdp-selected) .rdp-day_button,
+.rdp-day[data-disabled]:not([data-selected]) .rdp-day_button,
+.rdp-day_button[data-disabled]:not([data-selected]) {
   opacity: var(--rdp-disabled-opacity);
   cursor: not-allowed;
 }
 
-.rdp-disabled .rdp-day_button:hover {
+.rdp-disabled .rdp-day_button:hover,
+.rdp-day[data-disabled] .rdp-day_button:hover,
+.rdp-day_button[data-disabled]:hover {
   background-color: transparent;
+}
+
+.rdp-day[data-unavailable] .rdp-day_button,
+.rdp-day_button[data-unavailable] {
+  text-decoration-line: line-through;
 }
 
 /* Hidden */
@@ -406,60 +423,80 @@
 /* All styling goes on the CELL (<td>), buttons are transparent */
 
 /* Range start CELL - dark bg, rounded left, flat right for continuity */
-.rdp-day.rdp-range_start:not(.rdp-range_end) {
+.rdp-day.rdp-range_start:not(.rdp-range_end),
+.rdp-day[data-range-start]:not([data-range-end]) {
   background-color: var(--rdp-range_start-date-background-color);
   border-radius: var(--rdp-day_button-border-radius) 0 0 var(--rdp-day_button-border-radius);
 }
 
 /* Range start BUTTON - transparent, inherits cell appearance */
-.rdp-day.rdp-range_start .rdp-day_button {
+.rdp-day.rdp-range_start .rdp-day_button,
+.rdp-day[data-range-start] .rdp-day_button,
+.rdp-day_button[data-range-start] {
   background-color: transparent;
   color: var(--rdp-range_start-color);
 }
 
-.rdp-day.rdp-range_start .rdp-day_button:hover {
+.rdp-day.rdp-range_start .rdp-day_button:hover,
+.rdp-day[data-range-start] .rdp-day_button:hover,
+.rdp-day_button[data-range-start]:hover {
   background-color: transparent;
 }
 
 /* Range middle CELL - solid background fills the entire cell */
-.rdp-day.rdp-range_middle {
+.rdp-day.rdp-range_middle,
+.rdp-day[data-range-middle],
+.rdp-day[data-highlighted]:not([data-range-start]):not([data-range-end]) {
   background-color: var(--rdp-range_middle-background-color);
 }
 
 /* Range middle BUTTON - transparent, shows cell background through */
-.rdp-day.rdp-range_middle .rdp-day_button {
+.rdp-day.rdp-range_middle .rdp-day_button,
+.rdp-day[data-range-middle] .rdp-day_button,
+.rdp-day[data-highlighted]:not([data-range-start]):not([data-range-end]) .rdp-day_button,
+.rdp-day_button[data-range-middle],
+.rdp-day_button[data-highlighted]:not([data-range-start]):not([data-range-end]) {
   background-color: transparent;
   color: var(--rdp-range_middle-color);
 }
 
-.rdp-day.rdp-range_middle .rdp-day_button:hover {
+.rdp-day.rdp-range_middle .rdp-day_button:hover,
+.rdp-day[data-range-middle] .rdp-day_button:hover,
+.rdp-day_button[data-range-middle]:hover {
   background-color: var(--rdp-fill-hover-bg);
   border-radius: var(--rdp-day_button-border-radius);
 }
 
 /* Range end CELL - dark bg, flat left, rounded right */
-.rdp-day.rdp-range_end:not(.rdp-range_start) {
+.rdp-day.rdp-range_end:not(.rdp-range_start),
+.rdp-day[data-range-end]:not([data-range-start]) {
   background-color: var(--rdp-range_end-date-background-color);
   border-radius: 0 var(--rdp-day_button-border-radius) var(--rdp-day_button-border-radius) 0;
 }
 
 /* Range end BUTTON - transparent, inherits cell appearance */
-.rdp-day.rdp-range_end .rdp-day_button {
+.rdp-day.rdp-range_end .rdp-day_button,
+.rdp-day[data-range-end] .rdp-day_button,
+.rdp-day_button[data-range-end] {
   background-color: transparent;
   color: var(--rdp-range_end-color);
 }
 
-.rdp-day.rdp-range_end .rdp-day_button:hover {
+.rdp-day.rdp-range_end .rdp-day_button:hover,
+.rdp-day[data-range-end] .rdp-day_button:hover,
+.rdp-day_button[data-range-end]:hover {
   background-color: transparent;
 }
 
 /* When start and end are the same day - fully rounded cell */
-.rdp-day.rdp-range_start.rdp-range_end {
+.rdp-day.rdp-range_start.rdp-range_end,
+.rdp-day[data-range-start][data-range-end] {
   background-color: var(--rdp-range_start-date-background-color);
   border-radius: var(--rdp-day_button-border-radius);
 }
 
-.rdp-day.rdp-range_start.rdp-range_end .rdp-day_button {
+.rdp-day.rdp-range_start.rdp-range_end .rdp-day_button,
+.rdp-day[data-range-start][data-range-end] .rdp-day_button {
   background-color: transparent;
   color: var(--rdp-range_start-color);
 }

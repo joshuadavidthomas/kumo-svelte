@@ -1,0 +1,84 @@
+---
+title: Sensitive Input
+description: A masked input for sensitive values like API keys and passwords. Click to reveal.
+sourceFile: components/sensitive-input
+---
+
+<script lang="ts">
+  import Example from "$lib/components/example.svelte";
+  import SensitiveInputControlledDemo from "./sensitive-input-controlled-demo.svelte";
+  import SensitiveInputDemo from "./sensitive-input-demo.svelte";
+  import SensitiveInputSizesDemo from "./sensitive-input-sizes-demo.svelte";
+  import SensitiveInputStatesDemo from "./sensitive-input-states-demo.svelte";
+</script>
+
+<Example demo="sensitive-input-demo">
+  <SensitiveInputDemo />
+</Example>
+
+## Installation
+
+### Barrel
+
+```ts
+import { SensitiveInput } from "kumo-svelte";
+```
+
+### Granular
+
+```ts
+import { SensitiveInput } from "kumo-svelte/components/sensitive-input";
+```
+
+## Usage
+
+```svelte
+<script lang="ts">
+  import { SensitiveInput } from "kumo-svelte";
+</script>
+
+<SensitiveInput label="Secret" defaultValue="my-secret-key" />
+```
+
+## Sizes
+
+SensitiveInput supports multiple sizes to fit different contexts.
+
+<Example demo="sensitive-input-sizes-demo">
+  <SensitiveInputSizesDemo />
+</Example>
+
+## Controlled
+
+Use controlled mode for full control over the input value.
+
+<Example demo="sensitive-input-controlled-demo">
+  <SensitiveInputControlledDemo />
+</Example>
+
+## States
+
+Various input states including error, disabled, read-only, and with description.
+
+<Example demo="sensitive-input-states-demo">
+  <SensitiveInputStatesDemo />
+</Example>
+
+## API Reference
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `label` | `Snippet \| string` | — | Field label. |
+| `value` | `string` | `defaultValue` | Controlled value. |
+| `defaultValue` | `string` | `""` | Initial value. |
+| `onValueChange` | `(value: string) => void` | — | Called when the value changes. |
+| `description` | `Snippet \| string` | — | Helper text. |
+| `error` | `string \| { message: Snippet \| string; match: FieldErrorMatch }` | — | Error message or validity-matched error. |
+| `labelTooltip` | `Snippet` | — | Tooltip content next to the label. |
+| `onCopy` | `() => void` | — | Called after a successful copy. |
+| `readonly` | `boolean \| null` | `false` | Makes the input read-only. |
+| `size` | `"xs" \| "sm" \| "base" \| "lg"` | `"base"` | Input size. |
+| `variant` | `"default" \| "error"` | based on `error` | Visual variant. |
+| `class` | `string` | — | Additional classes for the input container. |
+
+SensitiveInput also accepts standard input attributes except `type`, `value`, `defaultValue`, `size`, and class-related props that are controlled by the component.

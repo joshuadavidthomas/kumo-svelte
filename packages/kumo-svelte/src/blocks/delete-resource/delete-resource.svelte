@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { onDestroy } from "svelte";
   import CheckIcon from "phosphor-svelte/lib/CheckIcon";
   import CopyIcon from "phosphor-svelte/lib/CopyIcon";
   import WarningCircleIcon from "phosphor-svelte/lib/WarningCircleIcon";
@@ -19,7 +20,6 @@
     extends KumoDeleteResourceVariantsProps {
     caseSensitive?: boolean;
     class?: string;
-    className?: string;
     deleteButtonText?: string;
     errorMessage?: string;
     isDeleting?: boolean;
@@ -33,7 +33,6 @@
   let {
     caseSensitive = true,
     class: className,
-    className: legacyClassName,
     deleteButtonText,
     errorMessage,
     isDeleting = false,
@@ -47,24 +46,36 @@
 
   let confirmationInput = $state("");
   let copied = $state(false);
+  let copyResetTimeout: ReturnType<typeof setTimeout> | undefined;
 
   let normalizedInput = $derived(normalizeForComparison(confirmationInput));
   let normalizedResourceName = $derived(normalizeForComparison(resourceName));
   let isConfirmed = $derived(normalizedInput === normalizedResourceName);
 
-  $effect(() => {
-    if (!open) {
-      confirmationInput = "";
-      copied = false;
-    }
+  onDestroy(() => {
+    clearCopyReset();
   });
 
   function normalizeForComparison(value: string) {
     return caseSensitive ? value : value.toLowerCase();
   }
 
+  function clearCopyReset() {
+    if (!copyResetTimeout) return;
+
+    clearTimeout(copyResetTimeout);
+    copyResetTimeout = undefined;
+  }
+
+  function resetDraft() {
+    confirmationInput = "";
+    copied = false;
+    clearCopyReset();
+  }
+
   function handleOpenChange(nextOpen: boolean) {
     open = nextOpen;
+    if (!nextOpen) resetDraft();
     onOpenChange?.(nextOpen);
   }
 
@@ -74,11 +85,17 @@
   }
 
   async function handleCopy() {
-    await navigator.clipboard.writeText(resourceName);
-    copied = true;
-    window.setTimeout(() => {
-      copied = false;
-    }, 1500);
+    try {
+      await navigator.clipboard.writeText(resourceName);
+      copied = true;
+      clearCopyReset();
+      copyResetTimeout = setTimeout(() => {
+        copied = false;
+        copyResetTimeout = undefined;
+      }, 1500);
+    } catch (error) {
+      console.warn("Failed to copy resource name", error);
+    }
   }
 </script>
 
@@ -87,7 +104,7 @@
 {/snippet}
 
 <DialogRoot role="alertdialog" {open} onOpenChange={handleOpenChange}>
-  <Dialog size={size} class={cn("p-0", className ?? legacyClassName)}>
+  <Dialog size={size} class={cn("p-0", className)}>
     <div class="flex items-center justify-between border-b border-kumo-line px-6 py-4">
       <DialogTitle class="text-lg font-semibold">
         Delete {resourceName}

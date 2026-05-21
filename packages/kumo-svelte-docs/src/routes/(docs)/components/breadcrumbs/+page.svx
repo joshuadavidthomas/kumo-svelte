@@ -1,0 +1,155 @@
+---
+title: Breadcrumbs
+description: A navigation component that shows the current page's location within a navigational hierarchy.
+sourceFile: components/breadcrumbs
+---
+
+<script lang="ts">
+  import Example from "$lib/components/example.svelte";
+  import BreadcrumbsDemo from "./breadcrumbs-demo.svelte";
+  import BreadcrumbsLoadingDemo from "./breadcrumbs-loading-demo.svelte";
+  import BreadcrumbsRootDemo from "./breadcrumbs-root-demo.svelte";
+  import BreadcrumbsWithClipboardDemo from "./breadcrumbs-with-clipboard-demo.svelte";
+  import BreadcrumbsWithIconsDemo from "./breadcrumbs-with-icons-demo.svelte";
+</script>
+
+<Example demo="breadcrumbs-with-icons-demo">
+  <BreadcrumbsWithIconsDemo />
+</Example>
+
+## Installation
+
+### Barrel
+
+```ts
+import {
+  Breadcrumbs,
+  BreadcrumbsClipboard,
+  BreadcrumbsCurrent,
+  BreadcrumbsEllipsis,
+  BreadcrumbsLink,
+  BreadcrumbsSeparator,
+} from "kumo-svelte";
+```
+
+### Granular
+
+```ts
+import {
+  Breadcrumbs,
+  BreadcrumbsClipboard,
+  BreadcrumbsCurrent,
+  BreadcrumbsEllipsis,
+  BreadcrumbsLink,
+  BreadcrumbsSeparator,
+} from "kumo-svelte/components/breadcrumbs";
+```
+
+## Usage
+
+<Example demo="breadcrumbs-demo">
+  <BreadcrumbsDemo />
+</Example>
+
+## Examples
+
+### Basic
+
+<Example demo="breadcrumbs-demo">
+  <BreadcrumbsDemo />
+</Example>
+
+### Loading
+
+<Example demo="breadcrumbs-loading-demo">
+  <BreadcrumbsLoadingDemo />
+</Example>
+
+### Root
+
+<Example demo="breadcrumbs-root-demo">
+  <BreadcrumbsRootDemo />
+</Example>
+
+### Clipboard
+
+<Example demo="breadcrumbs-with-clipboard-demo">
+  <BreadcrumbsWithClipboardDemo />
+</Example>
+
+## API Reference
+
+The Svelte port exports named sub-components instead of React-style `Breadcrumbs.Link` properties.
+
+### Breadcrumbs
+
+Root navigation container.
+
+| Prop | Type | Required | Description |
+| --- | --- | --- | --- |
+| `size` | `"sm" \| "base"` | No | Breadcrumb size. Defaults to `"base"`. |
+| `children` | `Snippet` | No | Desktop breadcrumb items. |
+| `mobileChildren` | `Snippet` | No | Alternate breadcrumb items shown below the `sm` breakpoint. |
+| `class` | `string` | No | Additional classes merged with the root styles. |
+
+All other props are passed to the underlying `<nav>` element.
+
+### BreadcrumbsLink
+
+Clickable breadcrumb item.
+
+| Prop | Type | Required | Description |
+| --- | --- | --- | --- |
+| `href` | `string` | No | Link destination. |
+| `icon` | `Snippet` | No | Icon snippet rendered before the label. |
+| `children` | `Snippet` | No | Link label. |
+| `class` | `string` | No | Additional classes merged with the link styles. |
+
+All other props are passed to the underlying `<a>` element.
+
+### BreadcrumbsCurrent
+
+Current page breadcrumb item.
+
+| Prop | Type | Required | Description |
+| --- | --- | --- | --- |
+| `loading` | `boolean` | No | Shows a skeleton placeholder instead of the label. |
+| `icon` | `Snippet` | No | Icon snippet rendered before the label or skeleton. |
+| `children` | `Snippet` | No | Current page label. |
+| `class` | `string` | No | Additional classes merged with the current item styles. |
+
+All other props are passed to the underlying `<div>` element.
+
+### BreadcrumbsSeparator
+
+Visual separator between breadcrumb items.
+
+| Prop | Type | Required | Description |
+| --- | --- | --- | --- |
+| `class` | `string` | No | Additional classes merged with the separator styles. |
+
+All other props are passed to the underlying `<span>` element.
+
+### BreadcrumbsEllipsis
+
+Mobile breadcrumb ellipsis.
+
+| Prop | Type | Required | Description |
+| --- | --- | --- | --- |
+| `class` | `string` | No | Additional classes merged with the ellipsis styles. |
+
+All other props are passed to the underlying `<span>` element.
+
+### BreadcrumbsClipboard
+
+Copy button for a breadcrumb deeplink.
+
+| Prop | Type | Required | Description |
+| --- | --- | --- | --- |
+| `text` | `string` | Yes | Text copied to the clipboard. |
+| `label` | `string` | No | Accessible label for the button. Defaults to `"Copy"`. |
+| `copiedLabel` | `string` | No | Screen-reader announcement after copying. Defaults to `"Copied"`. |
+| `onCopy` | `() => void` | No | Called after a successful copy. |
+| `class` | `string` | No | Additional classes merged with the button styles. |
+
+All other props are passed to the underlying `<button>` element.

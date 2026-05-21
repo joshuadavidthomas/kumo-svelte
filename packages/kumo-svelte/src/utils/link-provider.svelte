@@ -13,11 +13,7 @@
 
   let { children, component }: LinkProviderProps = $props();
 
-  const context = setKumoLinkContext(new KumoLinkContextState());
-
-  $effect(() => {
-    context.component = component;
-  });
+  setKumoLinkContext(new KumoLinkContextState(() => component));
 </script>
 
 {@render children?.()}

@@ -2,6 +2,7 @@
   import type { Snippet } from "svelte";
   import CheckIcon from "phosphor-svelte/lib/CheckIcon";
   import { Combobox as ComboboxPrimitive } from "bits-ui";
+  import { cn } from "../../utils/cn";
   import { getAutocompleteContext } from "./context";
 
   export interface AutocompleteItemProps {
@@ -28,10 +29,12 @@
     {value}
     label={label ?? value}
     {disabled}
-    class="group mx-1.5 grid cursor-pointer grid-cols-[1fr_16px] gap-2 rounded px-2 py-1.5 text-base outline-none data-[highlighted]:bg-kumo-overlay data-[selected]:font-medium"
+    class={cn(
+      "group mx-1.5 grid cursor-pointer grid-cols-[1fr_16px] gap-2 rounded px-2 py-1.5 text-base data-[highlighted]:bg-kumo-overlay data-[selected]:font-medium",
+    )}
   >
     {#snippet children({ selected })}
-      <div class="col-start-1 min-w-0 truncate">
+      <div class="col-start-1">
         {#if childrenProp}
           {@render childrenProp()}
         {:else}

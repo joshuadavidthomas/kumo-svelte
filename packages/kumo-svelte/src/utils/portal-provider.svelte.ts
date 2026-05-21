@@ -10,7 +10,15 @@ export interface KumoPortalContextValue {
 }
 
 export class KumoPortalContextState implements KumoPortalContextValue {
-  container = $state<PortalContainer>();
+  readonly #getContainer: () => PortalContainer;
+
+  constructor(getContainer: () => PortalContainer) {
+    this.#getContainer = getContainer;
+  }
+
+  get container() {
+    return this.#getContainer();
+  }
 }
 
 export function setKumoPortalContext(context: KumoPortalContextState) {

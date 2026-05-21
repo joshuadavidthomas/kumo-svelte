@@ -70,7 +70,7 @@ export function tabsTriggerVariants({
     "relative z-2 flex items-center rounded bg-transparent whitespace-nowrap focus:outline-none focus:ring-kumo-focus/50 focus-visible:ring-2 focus-visible:ring-kumo-brand",
     size === "sm" ? "text-xs" : "text-base",
     segmented &&
-      "my-0.5 rounded-md text-kumo-subtle hover:text-kumo-default data-[state=active]:bg-kumo-base data-[state=active]:text-kumo-default data-[state=active]:shadow-sm data-[state=active]:ring data-[state=active]:ring-kumo-line focus-visible:ring-inset",
+      "my-0.5 rounded-md text-kumo-subtle hover:text-kumo-default data-[state=active]:text-kumo-default focus-visible:ring-inset",
     segmented && (size === "sm" ? "px-2" : "px-2.5"),
     underline &&
       "text-kumo-subtle hover:bg-kumo-tint hover:text-kumo-default data-[state=active]:font-medium data-[state=active]:text-kumo-default",

@@ -44,7 +44,7 @@
     totalCount,
   }: PaginationProps = $props();
 
-  let editingPage = $derived(page);
+  let editingPage = $state(page);
   let labels = $derived({ ...DEFAULT_PAGINATION_LABELS, ...labelsProp });
   let pageShowingRange = $derived(getPageShowingRange(page, perPage, totalCount));
   let maxPage = $derived(Math.max(1, Math.ceil((totalCount ?? 1) / (perPage ?? 1))));
@@ -61,6 +61,7 @@
 
   function updatePage(nextPage: number) {
     page = nextPage;
+    editingPage = nextPage;
     setPageProp?.(nextPage);
   }
 

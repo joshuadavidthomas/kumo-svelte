@@ -9,7 +9,7 @@
   export interface PaginationPageSizeProps {
     class?: string;
     label?: Snippet | string;
-    onChange: (size: number) => void;
+    onValueChange: (size: number) => void;
     options?: number[];
     value: number;
   }
@@ -17,7 +17,7 @@
   let {
     class: className,
     label = "Per page:",
-    onChange,
+    onValueChange,
     options = [...DEFAULT_PAGE_SIZE_OPTIONS],
     value,
   }: PaginationPageSizeProps = $props();
@@ -40,7 +40,7 @@
     aria-label={context.labels.pageSize}
     value={String(value)}
     {items}
-    onValueChange={(nextValue) => onChange(Number(nextValue))}
+    onValueChange={(nextValue) => onValueChange(Number(nextValue))}
   />
 </div>
 

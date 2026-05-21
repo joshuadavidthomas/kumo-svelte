@@ -12,7 +12,7 @@
 </script>
 
 <figure class="border border-[var(--kumo-line)] rounded-md">
-  <div class="flex items-center justify-center min-h-30 p-6 not-prose">
+  <div class="not-prose flex min-h-30 items-center justify-center p-6 text-kumo-default leading-[normal]">
     {@render children()}
   </div>
   {#if highlightedCode}

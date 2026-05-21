@@ -26,6 +26,7 @@
     children,
     class: className,
     disabled,
+    onclick,
     size,
     tooltip,
     tooltipSide = "bottom",
@@ -66,6 +67,7 @@
     type="button"
     disabled={buttonDisabled}
     aria-label={tooltipAriaLabel}
+    {onclick}
     {variant}
     size={buttonSize}
     class={buttonClass}

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { onDestroy } from "svelte";
   import type { HTMLAttributes } from "svelte/elements";
   import { cn } from "../../utils";
   import { useSidebar } from "./context.svelte";
@@ -11,6 +12,8 @@
   let { class: className, onpointerdown, ...restProps }: SidebarResizeHandleProps = $props();
   const sidebar = useSidebar("SidebarResizeHandle");
 
+  let stopResizing: (() => void) | undefined;
+
   function handlePointerDown(
     event: PointerEvent & { currentTarget: EventTarget & HTMLDivElement },
   ) {
@@ -18,6 +21,7 @@
     if (event.defaultPrevented || !sidebar.resizable) return;
 
     event.preventDefault();
+    stopResizing?.();
     sidebar.setIsResizing(true);
 
     const startX = event.clientX;
@@ -51,11 +55,17 @@
       sidebar.setIsResizing(false);
       document.removeEventListener("pointermove", handlePointerMove);
       document.removeEventListener("pointerup", cleanup);
+      stopResizing = undefined;
     }
 
+    stopResizing = cleanup;
     document.addEventListener("pointermove", handlePointerMove);
     document.addEventListener("pointerup", cleanup);
   }
+
+  onDestroy(() => {
+    stopResizing?.();
+  });
 </script>
 
 {#if sidebar.resizable}

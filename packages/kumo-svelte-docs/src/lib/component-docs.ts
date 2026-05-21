@@ -20,7 +20,7 @@ export const componentMetadataSchema = v.object({
 export type ComponentPageMetadata = v.InferOutput<typeof componentMetadataSchema>;
 
 const metadataModules = import.meta.glob<ComponentPageMetadata>(
-  "/src/routes/components/*/+page.svx",
+  "/src/routes/(docs)/components/*/+page.svx",
   {
     eager: true,
     import: "metadata",

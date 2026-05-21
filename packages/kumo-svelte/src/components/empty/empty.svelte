@@ -41,11 +41,10 @@
   });
 
   async function copyCommand() {
-    if (!commandLine || typeof navigator === "undefined" || !navigator.clipboard) {
+    if (!commandLine) {
       return;
     }
 
-    await navigator.clipboard.writeText(commandLine);
     copied = true;
 
     if (copyTimeout) {
@@ -55,6 +54,12 @@
     copyTimeout = setTimeout(() => {
       copied = false;
     }, 1000);
+
+    if (typeof navigator === "undefined" || !navigator.clipboard) {
+      return;
+    }
+
+    await navigator.clipboard.writeText(commandLine);
   }
 </script>
 

@@ -7,7 +7,6 @@
 
   let {
     class: className,
-    className: legacyClassName,
     echarts: echartsModule,
     height = 350,
     isDarkMode = false,
@@ -119,7 +118,7 @@
 <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 <div
   bind:this={element}
-  class={cn("w-full", legacyClassName, className)}
+  class={cn("w-full", className)}
   style:height={`${height}px`}
   tabindex={options.aria?.enabled ? 0 : undefined}
   role={options.aria?.enabled ? "img" : undefined}

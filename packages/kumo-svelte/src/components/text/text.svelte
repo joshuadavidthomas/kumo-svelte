@@ -17,8 +17,7 @@
     bold?: boolean;
     truncate?: boolean;
     as?: TextElement;
-    DANGEROUS_className?: string;
-    DANGEROUS_style?: string;
+    class?: string;
     children?: Snippet;
   }
 
@@ -28,8 +27,7 @@
     size = KUMO_TEXT_DEFAULT_VARIANTS.size,
     truncate = false,
     children,
-    DANGEROUS_className,
-    DANGEROUS_style,
+    class: className,
     as,
     ...restProps
   }: TextProps = $props();
@@ -56,9 +54,8 @@
         ? KUMO_TEXT_VARIANTS.size.base.classes
         : KUMO_TEXT_VARIANTS.size.sm.classes),
     truncate && "truncate min-w-0",
-    DANGEROUS_className,
+    className,
   )}
-  style={DANGEROUS_style}
   {...restProps}
 >
   {#if children}

@@ -16,7 +16,15 @@ export interface KumoLinkContextValue {
 }
 
 export class KumoLinkContextState implements KumoLinkContextValue {
-  component = $state<LinkComponent>();
+  readonly #getComponent: () => LinkComponent | undefined;
+
+  constructor(getComponent: () => LinkComponent | undefined) {
+    this.#getComponent = getComponent;
+  }
+
+  get component() {
+    return this.#getComponent();
+  }
 }
 
 export function setKumoLinkContext(context: KumoLinkContextState) {

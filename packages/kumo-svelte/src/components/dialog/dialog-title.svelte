@@ -19,7 +19,7 @@
   }: DialogTitleProps = $props();
 
   const role = getDialogRoleContext();
-  const titleClass = $derived(cn("text-xl font-semibold text-kumo-default", className));
+  const titleClass = $derived(cn(className));
 </script>
 
 {#if role === "alertdialog"}

@@ -1,10 +1,9 @@
 <script lang="ts">
-  import { tick, type Snippet } from "svelte";
+  import type { Snippet } from "svelte";
   import { Combobox as ComboboxPrimitive } from "bits-ui";
   import type { PortalProps } from "bits-ui";
   import { cn } from "../../utils/cn";
   import { getKumoPortalContext } from "../../utils/portal-provider.svelte";
-  import { getAutocompleteContext } from "./context";
 
   export interface AutocompleteContentProps {
     children?: Snippet;
@@ -21,30 +20,11 @@
   }: AutocompleteContentProps = $props();
 
   const portalContext = getKumoPortalContext();
-  const autocompleteContext = getAutocompleteContext("Content");
-
-  let contentRef: HTMLElement | null = $state(null);
   let portalContainer = $derived(container ?? portalContext.container);
-
-  $effect(() => {
-    let inputValue = autocompleteContext.inputValue;
-    if (!contentRef) return;
-
-    clearHighlightedItem(inputValue);
-  });
-
-  async function clearHighlightedItem(_inputValue?: string) {
-    await tick();
-
-    contentRef
-      ?.querySelectorAll<HTMLElement>("[data-slot='autocomplete-item'][data-highlighted]")
-      .forEach((item) => item.removeAttribute("data-highlighted"));
-  }
 </script>
 
 <ComboboxPrimitive.Portal to={portalContainer}>
   <ComboboxPrimitive.Content
-    bind:ref={contentRef}
     data-slot="autocomplete-content"
     {sideOffset}
     class={cn(
@@ -54,7 +34,6 @@
       "data-[state=closed]:hidden",
       className,
     )}
-    onpointerleave={() => clearHighlightedItem()}
   >
     {@render children?.()}
   </ComboboxPrimitive.Content>

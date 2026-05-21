@@ -1,0 +1,31 @@
+---
+title: CLI
+description: Command-line status for kumo-svelte.
+---
+
+## Status
+
+`kumo-svelte` does not currently ship a CLI.
+
+Use the package exports and these docs directly in Svelte projects:
+
+```bash
+pnpm add kumo-svelte
+```
+
+## Blocks
+
+There is no `kumo-svelte` block-install command today. Blocks in this package are either exported directly, such as `DeleteResource`, or documented as local composition patterns that you can copy into your app.
+
+```ts
+import { DeleteResource } from "kumo-svelte";
+```
+
+## Component Registry
+
+The Svelte registry is available in the source tree:
+
+```bash
+packages/kumo-svelte/src/registry/component-registry.json
+packages/kumo-svelte/src/ai/component-registry.json
+```

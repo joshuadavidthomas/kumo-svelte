@@ -17,7 +17,7 @@
   }: DialogDescriptionProps = $props();
 
   const role = getDialogRoleContext();
-  const descriptionClass = $derived(cn("text-base text-kumo-subtle", className));
+  const descriptionClass = $derived(cn(className));
 </script>
 
 {#if role === "alertdialog"}

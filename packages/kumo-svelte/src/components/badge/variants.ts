@@ -77,23 +77,38 @@ export const KUMO_BADGE_VARIANTS = {
   },
 } as const;
 
-export const KUMO_BADGE_DEFAULT_VARIANTS = {
-  variant: "primary",
-} as const;
+export const KUMO_BADGE_APPEARANCES = ["filled", "dot"] as const;
 
+export type KumoBadgeAppearance = (typeof KUMO_BADGE_APPEARANCES)[number];
 export type KumoBadgeVariant = keyof typeof KUMO_BADGE_VARIANTS.variant;
 export type BadgeVariant = KumoBadgeVariant;
 
+export const KUMO_BADGE_DEFAULT_VARIANTS = {
+  appearance: "filled",
+  variant: "primary",
+} as const;
+
+export const KUMO_BADGE_DOT_VARIANTS = {
+  error: "bg-kumo-badge-red",
+  neutral: "bg-kumo-badge-neutral",
+  success: "bg-kumo-badge-green",
+  warning: "bg-kumo-badge-orange",
+} as const satisfies Partial<Record<KumoBadgeVariant, string>>;
+
 export interface KumoBadgeVariantsProps {
+  appearance?: KumoBadgeAppearance;
   variant?: KumoBadgeVariant;
 }
 
 export function badgeVariants({
+  appearance = KUMO_BADGE_DEFAULT_VARIANTS.appearance,
   variant = KUMO_BADGE_DEFAULT_VARIANTS.variant,
 }: KumoBadgeVariantsProps = {}) {
   return cn(
     KUMO_BADGE_BASE_STYLES,
-    resolveVariant(KUMO_BADGE_VARIANTS.variant, variant, KUMO_BADGE_DEFAULT_VARIANTS.variant)
-      .classes,
+    appearance === "dot"
+      ? "gap-1.5 bg-transparent text-kumo-default ring ring-kumo-hairline"
+      : resolveVariant(KUMO_BADGE_VARIANTS.variant, variant, KUMO_BADGE_DEFAULT_VARIANTS.variant)
+          .classes,
   );
 }

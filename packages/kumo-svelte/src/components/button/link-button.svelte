@@ -19,7 +19,6 @@
     children?: Snippet;
     icon?: Component;
     external?: boolean;
-    linksExternal?: boolean;
   }
 
   let {
@@ -28,11 +27,16 @@
     class: className,
     external = false,
     href,
+    rel,
     shape = KUMO_BUTTON_DEFAULT_VARIANTS.shape,
     size = KUMO_BUTTON_DEFAULT_VARIANTS.size,
+    target,
     variant = "ghost",
     ...restProps
   }: LinkButtonProps = $props();
+
+  let linkTarget = $derived(external ? "_blank" : target);
+  let linkRel = $derived(external ? "noopener noreferrer" : rel);
 </script>
 
 <a
@@ -46,9 +50,9 @@
     className,
   )}
   {href}
-  target={external ? "_blank" : restProps.target}
-  rel={external ? "noopener noreferrer" : restProps.rel}
   {...restProps}
+  target={linkTarget}
+  rel={linkRel}
 >
   {#if Icon}
     <Icon aria-hidden="true" />

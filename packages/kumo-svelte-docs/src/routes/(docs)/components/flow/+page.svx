@@ -1,0 +1,204 @@
+---
+title: Flow
+description: A group of components for building directed flow diagrams with nodes and connectors.
+sourceFile: components/flow
+---
+
+<script lang="ts">
+  import Example from "$lib/components/example.svelte";
+  import FlowAnchorDemo from "./flow-anchor-demo.svelte";
+  import FlowBasicDemo from "./flow-basic-demo.svelte";
+  import FlowCenteredDemo from "./flow-centered-demo.svelte";
+  import FlowComplexDemo from "./flow-complex-demo.svelte";
+  import FlowCustomContentDemo from "./flow-custom-content-demo.svelte";
+  import FlowDisabledDemo from "./flow-disabled-demo.svelte";
+  import FlowPanningDemo from "./flow-panning-demo.svelte";
+  import FlowParallelAlignEndDemo from "./flow-parallel-align-end-demo.svelte";
+  import FlowParallelDemo from "./flow-parallel-demo.svelte";
+  import FlowParallelNestedListDemo from "./flow-parallel-nested-list-demo.svelte";
+  import FlowSidebarBugDemo from "./flow-sidebar-bug-demo.svelte";
+</script>
+
+<Example demo="flow-parallel-demo">
+  <FlowParallelDemo />
+</Example>
+
+## Installation
+
+### Barrel
+
+```ts
+import { Flow, FlowNode, FlowParallel } from "kumo-svelte";
+```
+
+### Granular
+
+```ts
+import { Flow, FlowNode, FlowParallel } from "kumo-svelte/components/flow";
+```
+
+## Usage
+
+The Flow components work together to create directed flow diagrams. Use `Flow` as the container, `FlowNode` for individual steps, and `FlowParallel` to create branching paths.
+
+```svelte
+<script lang="ts">
+  import { Flow, FlowNode } from "kumo-svelte";
+</script>
+
+<Flow>
+  <FlowNode>Step 1</FlowNode>
+  <FlowNode>Step 2</FlowNode>
+  <FlowNode>Step 3</FlowNode>
+</Flow>
+```
+
+## Examples
+
+### Sequential Flow
+
+A simple linear flow with nodes connected in sequence.
+
+<Example demo="flow-basic-demo">
+  <FlowBasicDemo />
+</Example>
+
+### Parallel Branches
+
+Use `FlowParallel` to create branching paths that run in parallel.
+
+<Example demo="flow-parallel-demo">
+  <FlowParallelDemo />
+</Example>
+
+### Custom Node Styling
+
+Use the `render` snippet prop to completely customize node appearance. Render a node element and apply the provided Svelte action and attributes.
+
+<Example demo="flow-custom-content-demo">
+  <FlowCustomContentDemo />
+</Example>
+
+### Centered Alignment
+
+Use the `align` prop to vertically center nodes. This is useful when nodes have different heights.
+
+<Example demo="flow-centered-demo">
+  <FlowCenteredDemo />
+</Example>
+
+### Complex Flow
+
+Combine sequential and parallel nodes to build complex workflows.
+
+<Example demo="flow-complex-demo">
+  <FlowComplexDemo />
+</Example>
+
+### Custom Anchor Points
+
+By default, connectors attach to the center of each node. Use `FlowAnchor` to specify custom attachment points. The `type` prop controls whether the anchor serves as a `"start"` point or an `"end"` point.
+
+<Example demo="flow-anchor-demo">
+  <FlowAnchorDemo />
+</Example>
+
+### Panning Large Diagrams
+
+When a diagram exceeds its container, Flow enables panning. Drag to pan the viewport, or use the scroll wheel.
+
+<Example demo="flow-panning-demo">
+  <FlowPanningDemo />
+</Example>
+
+### Disabled Nodes
+
+Use the `disabled` prop on a node to visually indicate it's inactive. Connectors linking to disabled nodes are rendered with reduced opacity.
+
+<Example demo="flow-disabled-demo">
+  <FlowDisabledDemo />
+</Example>
+
+### Parallel Node Alignment
+
+Use the `align` prop on `FlowParallel` to control how nodes with different widths are aligned. Use `"start"` (default) to align left, or `"end"` to align right.
+
+<Example demo="flow-parallel-align-end-demo">
+  <FlowParallelAlignEndDemo />
+</Example>
+
+## Known Issue: Sidebar / Layout Shift
+
+Toggling the sidebar shifts the Flow container's viewport position. Connector coordinates should stay aligned through the layout shift and through scrolling while the sidebar is open.
+
+<Example demo="flow-sidebar-bug-demo">
+  <FlowSidebarBugDemo />
+</Example>
+
+## Other Examples
+
+### Nested Node Lists in Parallel
+
+Use `FlowList` inside `FlowParallel` to create parallel branches where each branch contains a sequence of connected nodes.
+
+<Example demo="flow-parallel-nested-list-demo">
+  <FlowParallelNestedListDemo />
+</Example>
+
+## Components
+
+### Flow / FlowRoot
+
+The root container for flow diagrams. Provides panning and scrolling for large diagrams.
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| `align` | `"start" \| "center"` | Vertical alignment for nodes. Defaults to `"start"`. |
+| `orientation` | `"horizontal" \| "vertical"` | Flow direction. Defaults to `"horizontal"`. |
+| `canvas` | `boolean` | Enable panning behavior. Defaults to `true`. |
+| `padding` | `{ x?: number; y?: number }` | Canvas padding around the content. |
+| `onOverflowChange` | `(overflow: { x: boolean; y: boolean }) => void` | Called when overflow changes. |
+| `class` | `string` | Additional classes. |
+| `children` | `Snippet` | Flow nodes, parallel groups, and lists. |
+
+### FlowNode
+
+Individual node in the flow.
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| `children` | `Snippet` | Default node content. |
+| `class` | `string` | Additional classes for the default node. |
+| `disabled` | `boolean` | Render node and connectors as inactive. |
+| `id` | `string` | Stable node ID. |
+| `render` | `Snippet<[FlowNodeRenderProps]>` | Custom node renderer. Apply the provided `action` and `attrs`. |
+
+### FlowParallel
+
+Container for parallel branches.
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| `align` | `"start" \| "end"` | Horizontal alignment of branches. Defaults to `"start"`. |
+| `id` | `string` | Stable group ID. |
+| `children` | `Snippet` | Branch nodes or lists. |
+
+### FlowList
+
+Nested sequential list. Use inside parallel branches when a branch contains multiple connected nodes.
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| `id` | `string` | Stable list ID. |
+| `class` | `string` | Additional classes. |
+| `children` | `Snippet` | Nested flow nodes. |
+
+### FlowAnchor
+
+Custom connector attachment point inside a custom node.
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| `type` | `"start" \| "end"` | Which connector endpoint this anchor controls. If omitted, controls both. |
+| `children` | `Snippet` | Default anchor content. |
+| `render` | `Snippet<[FlowAnchorRenderProps]>` | Custom anchor renderer. Apply the provided `action`. |

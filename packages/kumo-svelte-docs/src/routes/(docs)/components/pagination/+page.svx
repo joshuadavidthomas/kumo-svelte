@@ -1,0 +1,194 @@
+---
+title: Pagination
+description: A page navigation component for navigating through paginated content.
+sourceFile: components/pagination
+---
+
+<script lang="ts">
+  import Example from "$lib/components/example.svelte";
+  import PaginationBasicDemo from "./pagination-basic-demo.svelte";
+  import PaginationCompoundCustomInfoDemo from "./pagination-compound-custom-info-demo.svelte";
+  import PaginationCustomPageSizeOptionsDemo from "./pagination-custom-page-size-options-demo.svelte";
+  import PaginationCustomTextDemo from "./pagination-custom-text-demo.svelte";
+  import PaginationDropdownSelectorDemo from "./pagination-dropdown-selector-demo.svelte";
+  import PaginationFullDemo from "./pagination-full-demo.svelte";
+  import PaginationI18nDemo from "./pagination-i18n-demo.svelte";
+  import PaginationLargeDatasetDemo from "./pagination-large-dataset-demo.svelte";
+  import PaginationMidPageDemo from "./pagination-mid-page-demo.svelte";
+  import PaginationPageSizeRightDemo from "./pagination-page-size-right-demo.svelte";
+  import PaginationPageSizeSelectorDemo from "./pagination-page-size-selector-demo.svelte";
+  import PaginationSimpleDemo from "./pagination-simple-demo.svelte";
+</script>
+
+<Example demo="pagination-basic-demo">
+  <PaginationBasicDemo />
+</Example>
+
+## Installation
+
+### Barrel
+
+```ts
+import { Pagination, PaginationControls, PaginationInfo } from "kumo-svelte";
+```
+
+### Granular
+
+```ts
+import { Pagination, PaginationControls, PaginationInfo } from "kumo-svelte/components/pagination";
+```
+
+## Usage
+
+```svelte
+<script lang="ts">
+  import { Pagination } from "kumo-svelte";
+
+  let page = $state(1);
+</script>
+
+<Pagination bind:page perPage={10} totalCount={100} />
+```
+
+## Examples
+
+### Full Controls (Default)
+
+The default pagination includes first, previous, page input, next, and last buttons.
+
+<Example demo="pagination-full-demo">
+  <PaginationFullDemo />
+</Example>
+
+### Simple Controls
+
+Use `controls="simple"` for a minimal pagination with only previous and next buttons.
+
+<Example demo="pagination-simple-demo">
+  <PaginationSimpleDemo />
+</Example>
+
+### Mid-Page State
+
+Pagination in the middle of a dataset with all navigation enabled.
+
+<Example demo="pagination-mid-page-demo">
+  <PaginationMidPageDemo />
+</Example>
+
+### Large Dataset
+
+Pagination handles large datasets with many pages.
+
+<Example demo="pagination-large-dataset-demo">
+  <PaginationLargeDatasetDemo />
+</Example>
+
+### Custom Text
+
+You can set custom pagination text with a snippet.
+
+<Example demo="pagination-custom-text-demo">
+  <PaginationCustomTextDemo />
+</Example>
+
+## Compound Components
+
+For more control over layout and features, use the compound component API. The Svelte package exports named components such as `PaginationInfo`, `PaginationPageSize`, `PaginationControls`, and `PaginationSeparator`.
+
+### Page Size Selector
+
+Add a dropdown to let users select the number of items per page.
+
+<Example demo="pagination-page-size-selector-demo">
+  <PaginationPageSizeSelectorDemo />
+</Example>
+
+### Custom Page Size Options
+
+Customize the available page size options with the `options` prop. Defaults to `[25, 50, 100, 250]`.
+
+<Example demo="pagination-custom-page-size-options-demo">
+  <PaginationCustomPageSizeOptionsDemo />
+</Example>
+
+### Custom Info Text
+
+Use a snippet to customize the info text.
+
+<Example demo="pagination-compound-custom-info-demo">
+  <PaginationCompoundCustomInfoDemo />
+</Example>
+
+### Custom Layout
+
+Arrange components in any order. Here the page size selector is on the right.
+
+<Example demo="pagination-page-size-right-demo">
+  <PaginationPageSizeRightDemo />
+</Example>
+
+### Dropdown Page Selector
+
+Use `pageSelector="dropdown"` on `PaginationControls` to render a dropdown select instead of a text input for page navigation.
+
+<Example demo="pagination-dropdown-selector-demo">
+  <PaginationDropdownSelectorDemo />
+</Example>
+
+## Internationalization
+
+Use the `labels` prop to customize all UI strings for different locales. All labels default to English.
+
+<Example demo="pagination-i18n-demo">
+  <PaginationI18nDemo />
+</Example>
+
+## API Reference
+
+### `Pagination`
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `page` | `number` | `1` | Current page. Bind with `bind:page`. |
+| `setPage` | `(page: number) => void` | — | Optional callback called when the page changes. |
+| `perPage` | `number` | — | Items per page. |
+| `totalCount` | `number` | — | Total item count. |
+| `controls` | `"full" \| "simple"` | `"full"` | Controls shown when using the default layout. |
+| `text` | `Snippet<[PaginationInfoSnippetProps]>` | — | Custom info text snippet. |
+| `labels` | `PaginationLabels` | English labels | UI labels for accessibility and localization. |
+| `children` | `Snippet` | — | Compound component layout. |
+| `class` | `string` | — | Additional classes. |
+
+### `PaginationInfo`
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `text` | `Snippet<[PaginationInfoSnippetProps]>` | — | Custom info content. |
+| `class` | `string` | — | Additional classes. |
+
+### `PaginationControls`
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `controls` | `"full" \| "simple"` | `"full"` | Controls to render. |
+| `pageSelector` | `"input" \| "dropdown"` | `"input"` | Page selector control for full pagination. |
+| `class` | `string` | — | Additional classes. |
+
+### `PaginationPageSize`
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `value` | `number` | — | Current page size. |
+| `onValueChange` | `(size: number) => void` | — | Called with the selected page size. |
+| `options` | `number[]` | `[25, 50, 100, 250]` | Available page sizes. |
+| `label` | `Snippet \| string` | `"Per page:"` | Label text. |
+| `class` | `string` | — | Additional classes. |
+
+### `PaginationSeparator`
+
+Accepts standard `HTMLDivElement` attributes plus `class`.
+
+## Accessibility
+
+PaginationControls renders a navigation region with accessible labels for first, previous, next, last, page number, and page size controls. Use the `labels` prop to localize those labels.

@@ -27,7 +27,6 @@
 
   let copied = $state(false);
   let resetTimeout: ReturnType<typeof setTimeout> | undefined;
-  let buttonTitle = $derived(title ?? undefined);
 
   onDestroy(() => {
     if (resetTimeout) {
@@ -67,7 +66,7 @@
   class={cn("opacity-0 transition-[opacity] group-hover:opacity-100", className)}
   onclick={copyText}
   aria-label={label}
-  title={buttonTitle}
+  {title}
   {...restProps}
 >
   {#if copied}

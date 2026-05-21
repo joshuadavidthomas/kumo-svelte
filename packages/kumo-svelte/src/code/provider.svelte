@@ -1,30 +1,33 @@
 <script lang="ts">
   import { onDestroy } from "svelte";
+  import type { HighlighterCore } from "shiki/core";
   import { ShikiContextState, setShikiContext } from "./context.svelte";
-  import {
-    createKumoHighlighter,
-    DEFAULT_CODE_HIGHLIGHTED_LABELS,
-  } from "./shared";
+  import { createKumoHighlighter } from "./shared";
   import type { ShikiProviderProps } from "./types";
 
   let { children, engine, labels, languages }: ShikiProviderProps = $props();
 
-  const context = setShikiContext(new ShikiContextState());
+  const context = setShikiContext(
+    new ShikiContextState({
+      getLabels: () => labels,
+      getLanguages: () => languages,
+    }),
+  );
 
-  $effect(() => {
-    context.languages = languages;
-    context.labels = {
-      ...DEFAULT_CODE_HIGHLIGHTED_LABELS,
-      ...labels,
-    };
-  });
+  let activeHighlighter: HighlighterCore | null = null;
+
+  function disposeActiveHighlighter() {
+    activeHighlighter?.dispose();
+    activeHighlighter = null;
+    context.highlighter = null;
+  }
 
   $effect(() => {
     let cancelled = false;
     const selectedEngine = engine;
     const selectedLanguages = [...languages];
 
-    context.dispose();
+    disposeActiveHighlighter();
     context.isLoading = true;
     context.error = null;
 
@@ -38,6 +41,7 @@
           return;
         }
 
+        activeHighlighter = highlighter;
         context.highlighter = highlighter;
         context.isLoading = false;
       })
@@ -55,7 +59,7 @@
   });
 
   onDestroy(() => {
-    context.dispose();
+    disposeActiveHighlighter();
   });
 </script>
 

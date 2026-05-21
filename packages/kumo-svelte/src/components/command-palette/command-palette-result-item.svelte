@@ -68,7 +68,7 @@
         <ArrowSquareOutIcon aria-hidden="true" class="h-3.5 w-3.5 shrink-0 text-kumo-subtle" />
       {/if}
       {#if description}
-        <span class="text-kumo-subtle">-</span>
+        <span class="text-kumo-subtle">—</span>
         <span class="truncate text-sm text-kumo-subtle">{description}</span>
       {/if}
     </div>

@@ -23,19 +23,20 @@
     minWidth = 30,
   }: SkeletonLineProps = $props();
 
-  let width = $derived(Math.floor((minWidth + maxWidth) / 2));
-  let duration = $derived(((minDuration + maxDuration) / 2).toFixed(2));
-  let delay = $derived(((minDelay + maxDelay) / 2).toFixed(2));
-  let lineStyle = $derived(
-    `--skeleton-width: ${width}%; --shimmer-duration: ${duration}s; --shimmer-delay: ${delay}s;`,
-  );
+  let randomStyle = $derived.by(() => {
+    const width = Math.floor(Math.random() * (maxWidth - minWidth + 1) + minWidth);
+    const duration = (Math.random() * (maxDuration - minDuration) + minDuration).toFixed(2);
+    const delay = (Math.random() * (maxDelay - minDelay) + minDelay).toFixed(2);
+
+    return `--skeleton-width: ${width}%; --shimmer-duration: ${duration}s; --shimmer-delay: ${delay}s;`;
+  });
   let blockHeightStyle = $derived(
     typeof blockHeight === "number" ? `${blockHeight}px` : blockHeight,
   );
 </script>
 
 {#snippet line()}
-  <div class={cn("skeleton-line", className)} style={lineStyle}></div>
+  <div class={cn("skeleton-line", className)} style={randomStyle}></div>
 {/snippet}
 
 {#if blockHeight !== undefined}

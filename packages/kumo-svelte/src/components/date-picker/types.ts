@@ -20,6 +20,7 @@ export interface DatePickerProps {
   disabled?: boolean;
   excludeDisabled?: boolean;
   fixedWeeks?: boolean;
+  footer?: Snippet;
   initialFocus?: boolean;
   isDateDisabled?: DateMatcher;
   isDateUnavailable?: DateMatcher;
@@ -31,7 +32,6 @@ export interface DatePickerProps {
   mode?: DatePickerMode;
   monthFormat?: Intl.DateTimeFormatOptions["month"] | ((month: number) => string);
   numberOfMonths?: number;
-  onChange?: (value: DatePickerValue) => void;
   onEndValueChange?: (value: DateValue | undefined) => void;
   onPlaceholderChange?: (value: DateValue) => void;
   onStartValueChange?: (value: DateValue | undefined) => void;

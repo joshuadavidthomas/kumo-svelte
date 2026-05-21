@@ -1,33 +1,25 @@
 <script lang="ts">
+  import type { Snippet } from "svelte";
   import MagnifyingGlassIcon from "phosphor-svelte/lib/MagnifyingGlassIcon";
   import { Command as CommandPrimitive } from "bits-ui";
-  import type { HTMLInputAttributes } from "svelte/elements";
   import { cn } from "../../utils/cn";
 
-  export interface CommandPaletteInputProps {
-    "aria-label"?: string;
-    autocomplete?: HTMLInputAttributes["autocomplete"];
-    autofocus?: boolean;
+  export type CommandPaletteInputProps = Omit<
+    CommandPrimitive.InputProps,
+    "class" | "children"
+  > & {
     class?: string;
     leading?: Snippet;
-    onkeydown?: (event: KeyboardEvent & { currentTarget: HTMLInputElement }) => void;
-    placeholder?: string;
     trailing?: Snippet;
-    value?: string;
-  }
-
-  import type { Snippet } from "svelte";
+  };
 
   let {
-    "aria-label": ariaLabel,
-    autocomplete,
     autofocus = true,
     class: className,
     leading,
-    onkeydown,
-    placeholder,
     trailing,
     value = $bindable(""),
+    ...restProps
   }: CommandPaletteInputProps = $props();
 </script>
 
@@ -43,11 +35,8 @@
   <CommandPrimitive.Input
     data-slot="command-palette-input"
     bind:value
-    aria-label={ariaLabel}
-    {autocomplete}
     {autofocus}
-    {onkeydown}
-    {placeholder}
+    {...restProps}
     class={cn(
       "flex-1 border-none bg-transparent text-base outline-none kumo-input-placeholder disabled:cursor-not-allowed disabled:opacity-50",
       className,

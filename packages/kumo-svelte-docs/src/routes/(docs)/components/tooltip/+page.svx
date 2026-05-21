@@ -1,0 +1,119 @@
+---
+title: Tooltip
+description: A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.
+sourceFile: components/tooltip
+baseUIComponent: tooltip
+---
+
+<script lang="ts">
+  import Example from "$lib/components/example.svelte";
+  import TooltipBasicDemo from "./tooltip-basic-demo.svelte";
+  import TooltipDelayDemo from "./tooltip-delay-demo.svelte";
+  import TooltipHeroDemo from "./tooltip-hero-demo.svelte";
+  import TooltipMultipleDemo from "./tooltip-multiple-demo.svelte";
+</script>
+
+<Example demo="tooltip-hero-demo">
+  <TooltipHeroDemo />
+</Example>
+
+## Installation
+
+### Barrel
+
+```ts
+import { Tooltip, TooltipProvider } from "kumo-svelte";
+```
+
+### Granular
+
+```ts
+import { Tooltip, TooltipProvider } from "kumo-svelte/components/tooltip";
+```
+
+## Usage
+
+```svelte
+<script lang="ts">
+  import { Button, Tooltip, TooltipProvider } from "kumo-svelte";
+</script>
+
+<TooltipProvider>
+  <Tooltip content="Tooltip text">
+    {#snippet render({ props })}
+      <Button {...props}>Hover me</Button>
+    {/snippet}
+  </Tooltip>
+</TooltipProvider>
+```
+
+For delay grouping across multiple tooltips, see [TooltipProvider](#tooltipprovider).
+
+## Examples
+
+### Basic Tooltip
+
+<Example demo="tooltip-basic-demo">
+  <TooltipBasicDemo />
+</Example>
+
+### Multiple Tooltips
+
+<Example demo="tooltip-multiple-demo">
+  <TooltipMultipleDemo />
+</Example>
+
+### Delay Control
+
+Use `delay` to control how long to wait before opening (default: 600ms) and `closeDelay` to control how long to wait before closing (default: 0ms).
+
+<Example demo="tooltip-delay-demo">
+  <TooltipDelayDemo />
+</Example>
+
+## TooltipProvider
+
+`TooltipProvider` groups multiple tooltips so that after the first tooltip has been shown, switching to another skips the open delay. Place it once at your app root or layout — not around each individual `Tooltip`.
+
+```svelte
+<TooltipProvider>
+  <App />
+</TooltipProvider>
+
+<Tooltip content="Add">
+  {#snippet render({ props })}
+    <Button {...props} shape="square" aria-label="Add">+</Button>
+  {/snippet}
+</Tooltip>
+```
+
+## API Reference
+
+### Tooltip
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `children` | `Snippet` | — | Inline trigger content. Use this for non-interactive text or icons. |
+| `content` | `Snippet \| string` | required | Tooltip content. |
+| `render` | `Snippet<{ props }>` | — | Custom trigger render function. Spread `props` onto the real interactive element. |
+| `side` | `"top" \| "right" \| "bottom" \| "left"` | `"top"` | Preferred side. |
+| `align` | `"start" \| "center" \| "end"` | `"center"` | Alignment along the side. |
+| `class` | `string` | — | Additional content classes. |
+| `container` | `PortalProps["to"]` | — | Portal target. |
+| `delay` | `number` | `600` | Open delay in milliseconds. |
+| `closeDelay` | `number` | `0` | Close delay in milliseconds. |
+| `disabled` | `boolean` | `false` | Disables the tooltip. |
+
+### TooltipProvider
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| `children` | `Snippet` | Tooltip subtree. |
+| `delayDuration` | `number` | Provider-level open delay. |
+| `skipDelayDuration` | `number` | Delay skipped after another tooltip opens. |
+| `disableHoverableContent` | `boolean` | Disables hoverable content. |
+| `disabled` | `boolean` | Disables tooltips in the provider. |
+
+## Svelte Notes
+
+Use the `render` snippet for interactive controls so the tooltip trigger props land on the real button or link. Plain children are still convenient for non-interactive inline text or icons. For lower-level composition, use `TooltipRoot`, `TooltipTrigger`, `TooltipPortal`, and `TooltipContent`.

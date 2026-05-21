@@ -1,0 +1,198 @@
+---
+title: Dropdown Menu
+description: Displays a menu to the user—such as a set of actions or functions—triggered by a button.
+sourceFile: components/dropdown
+primitive: dropdown-menu
+---
+
+<script lang="ts">
+  import Example from "$lib/components/example.svelte";
+  import DropdownAvatarTriggerDemo from "./dropdown-avatar-trigger-demo.svelte";
+  import DropdownBasicDemo from "./dropdown-basic-demo.svelte";
+  import DropdownCheckboxDemo from "./dropdown-checkbox-demo.svelte";
+  import DropdownInsetDemo from "./dropdown-inset-demo.svelte";
+  import DropdownLinkItemDemo from "./dropdown-link-item-demo.svelte";
+  import DropdownNestedDemo from "./dropdown-nested-demo.svelte";
+  import DropdownOnClickDemo from "./dropdown-onclick-demo.svelte";
+</script>
+
+<Example demo="dropdown-basic-demo">
+  <DropdownBasicDemo />
+</Example>
+
+## Installation
+
+### Barrel
+
+```ts
+import { DropdownMenu } from "kumo-svelte";
+```
+
+### Granular
+
+```ts
+import { DropdownMenu } from "kumo-svelte/components/dropdown";
+```
+
+## Usage
+
+```svelte
+<script lang="ts">
+  import {
+    Button,
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+  } from "kumo-svelte";
+</script>
+
+<DropdownMenu>
+  <DropdownMenuTrigger>
+    {#snippet child({ props })}
+      <Button {...props}>Menu</Button>
+    {/snippet}
+  </DropdownMenuTrigger>
+  <DropdownMenuContent>
+    <DropdownMenuItem onclick={() => console.log("edit")}>Edit</DropdownMenuItem>
+    <DropdownMenuItem onclick={() => console.log("duplicate")}>Duplicate</DropdownMenuItem>
+    <DropdownMenuSeparator />
+    <DropdownMenuItem variant="danger" onclick={() => console.log("delete")}>Delete</DropdownMenuItem>
+  </DropdownMenuContent>
+</DropdownMenu>
+```
+
+## Examples
+
+### Basic Dropdown
+
+<Example demo="dropdown-basic-demo">
+  <DropdownBasicDemo />
+</Example>
+
+### Inset Items
+
+Use `inset` on items without an icon to align their text with items that have one.
+
+<Example demo="dropdown-inset-demo">
+  <DropdownInsetDemo />
+</Example>
+
+### Handling Item Clicks
+
+Use `onclick` on `DropdownMenuItem` to handle actions. Each item receives a standard Svelte DOM event handler.
+
+<Example demo="dropdown-onclick-demo">
+  <DropdownOnClickDemo />
+</Example>
+
+### Checkbox Items
+
+Use `DropdownMenuCheckboxItem` for toggleable options that can be independently checked or unchecked.
+
+<Example demo="dropdown-checkbox-demo">
+  <DropdownCheckboxDemo />
+</Example>
+
+### Nested Menu with Radio Selection
+
+Use `DropdownMenuSub`, `DropdownMenuSubTrigger`, and `DropdownMenuSubContent` to create nested submenus. For single-selection lists like language or timezone, use `DropdownMenuRadioGroup` and `DropdownMenuRadioItem`.
+
+<Example demo="dropdown-nested-demo">
+  <DropdownNestedDemo />
+</Example>
+
+### Custom Trigger with Avatar
+
+Use the trigger child snippet to customize the trigger element while preserving accessible trigger props.
+
+<Example demo="dropdown-avatar-trigger-demo">
+  <DropdownAvatarTriggerDemo />
+</Example>
+
+### Navigation Links
+
+Use `DropdownMenuLinkItem` for menu items that navigate to a URL. This renders a semantic `<a>` element with full control over link attributes like `target` and `rel`.
+
+<Example demo="dropdown-link-item-demo">
+  <DropdownLinkItemDemo />
+</Example>
+
+## API Reference
+
+### DropdownMenu / DropdownMenuRoot
+
+Root component that manages dropdown state.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `open` | `boolean` | `false` | Open state. Bind with `bind:open`. |
+| `onOpenChange` | `(open: boolean) => void` | — | Called when open state changes. |
+| `onOpenChangeComplete` | `(open: boolean) => void` | — | Called after the open change completes. |
+| `dir` | `"ltr" \| "rtl"` | — | Text direction. |
+| `children` | `Snippet` | — | Trigger and menu content. |
+
+### DropdownMenuTrigger
+
+Button that opens the dropdown when clicked. Use a `child` snippet to render a custom trigger such as `Button`.
+
+### DropdownMenuContent
+
+Dropdown container for menu items.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `sideOffset` | `number` | `8` | Offset between trigger and content. |
+| `container` | `HTMLElement \| string` | — | Portal target. |
+| `class` | `string` | — | Additional classes. |
+| `children` | `Snippet` | — | Menu items and groups. |
+
+### DropdownMenuItem
+
+Individual menu item for actions.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `children` | `Snippet` | — | Item content. |
+| `icon` | `Snippet` | — | Leading icon. |
+| `inset` | `boolean` | `false` | Align text with items that have icons. |
+| `selected` | `boolean` | `false` | Show a trailing check icon. |
+| `variant` | `"default" \| "danger"` | `"default"` | Visual variant. |
+| `class` | `string` | — | Additional classes. |
+
+### DropdownMenuLinkItem
+
+A menu item that navigates to a URL. Renders a semantic `<a>` element.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `href` | `string` | — | Link destination. |
+| `target` | `string` | — | Link target. |
+| `rel` | `string` | — | Link relationship. |
+| `icon` | `Snippet` | — | Leading icon. |
+| `inset` | `boolean` | `false` | Align text with items that have icons. |
+| `variant` | `"default" \| "danger"` | `"default"` | Visual variant. |
+
+### DropdownMenuCheckboxItem
+
+A menu item that can be toggled on or off. Use for independent boolean options.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `checked` | `boolean` | `false` | Checked state. Bind with `bind:checked`. |
+| `indeterminate` | `boolean` | `false` | Indeterminate state. Bind with `bind:indeterminate`. |
+| `children` | `Snippet` | — | Item content. |
+| `class` | `string` | — | Additional classes. |
+
+### DropdownMenuSub, DropdownMenuSubTrigger, DropdownMenuSubContent
+
+Use these parts to create nested submenus. `DropdownMenuSub` supports `bind:open`; trigger and content accept the same primitive positioning and event props exposed by Bits UI.
+
+### DropdownMenuRadioGroup and DropdownMenuRadioItem
+
+Use radio group and item components for single-selection menu sections. `DropdownMenuRadioGroup` supports `bind:value`; `DropdownMenuRadioItem` accepts `value`, optional `icon`, and optional `inset`.
+
+### DropdownMenuLabel, DropdownMenuSeparator, and DropdownMenuShortcut
+
+Use labels, separators, and shortcuts to structure dropdown content. Labels support `inset`; shortcuts render trailing keyboard hints.

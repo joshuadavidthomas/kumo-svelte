@@ -6,6 +6,10 @@
   import { getAutocompleteContext } from "./context";
   import type { KumoAutocompleteSize } from "./variants";
 
+  type PrimitiveFocusHandler = (event: FocusEvent & { currentTarget: HTMLInputElement }) => void;
+  type PrimitiveInputHandler = (event: Event & { currentTarget: HTMLInputElement }) => void;
+  type PrimitiveKeyboardHandler = (event: KeyboardEvent & { currentTarget: HTMLInputElement }) => void;
+
   export interface AutocompleteInputProps {
     "aria-label"?: string;
     autocomplete?: HTMLInputAttributes["autocomplete"];
@@ -47,22 +51,56 @@
   const context = getAutocompleteContext("Input");
   let size = $derived(sizeProp ?? context.size);
 
-  function handleInput(event: Event & { currentTarget: HTMLInputElement }) {
-    context.setInputValue(event.currentTarget.value);
-    oninput?.(event);
-    onValueChange?.(event.currentTarget.value);
+  function getPrimitiveOnBlur(props: Record<string, unknown>) {
+    return props.onblur as PrimitiveFocusHandler | undefined;
   }
 
-  function handleKeydownCapture(event: KeyboardEvent) {
-    if (event.key !== "ArrowDown") return;
-    if (document.querySelector("[data-slot='autocomplete-item'][data-highlighted]")) return;
+  function getPrimitiveOnFocus(props: Record<string, unknown>) {
+    return props.onfocus as PrimitiveFocusHandler | undefined;
+  }
 
-    let firstItem = document.querySelector<HTMLElement>("[data-slot='autocomplete-item']");
-    if (!firstItem) return;
+  function getPrimitiveOnInput(props: Record<string, unknown>) {
+    return props.oninput as PrimitiveInputHandler | undefined;
+  }
 
-    firstItem.setAttribute("data-highlighted", "");
-    event.preventDefault();
-    event.stopPropagation();
+  function getPrimitiveOnKeydown(props: Record<string, unknown>) {
+    return props.onkeydown as PrimitiveKeyboardHandler | undefined;
+  }
+
+  function handleBlur(
+    event: FocusEvent & { currentTarget: HTMLInputElement },
+    primitiveOnBlur?: PrimitiveFocusHandler,
+  ) {
+    primitiveOnBlur?.(event);
+    onblur?.(event);
+  }
+
+  function handleFocus(
+    event: FocusEvent & { currentTarget: HTMLInputElement },
+    primitiveOnFocus?: PrimitiveFocusHandler,
+  ) {
+    primitiveOnFocus?.(event);
+    onfocus?.(event);
+  }
+
+  function handleInput(
+    event: Event & { currentTarget: HTMLInputElement },
+    primitiveOnInput?: PrimitiveInputHandler,
+  ) {
+    const nextValue = event.currentTarget.value;
+
+    primitiveOnInput?.(event);
+    context.setInputValue(nextValue);
+    oninput?.(event);
+    onValueChange?.(nextValue);
+  }
+
+  function handleKeydown(
+    event: KeyboardEvent & { currentTarget: HTMLInputElement },
+    primitiveOnKeydown?: PrimitiveKeyboardHandler,
+  ) {
+    primitiveOnKeydown?.(event);
+    onkeydown?.(event);
   }
 </script>
 
@@ -76,11 +114,17 @@
   {disabled}
   {id}
   {name}
-  oninput={handleInput}
-  onkeydowncapture={handleKeydownCapture}
-  {onblur}
-  {onfocus}
-  {onkeydown}
   {placeholder}
   {required}
-/>
+>
+  {#snippet child({ props })}
+    <input
+      {...props}
+      data-slot="autocomplete-input"
+      onblur={(event) => handleBlur(event, getPrimitiveOnBlur(props))}
+      onfocus={(event) => handleFocus(event, getPrimitiveOnFocus(props))}
+      oninput={(event) => handleInput(event, getPrimitiveOnInput(props))}
+      onkeydown={(event) => handleKeydown(event, getPrimitiveOnKeydown(props))}
+    />
+  {/snippet}
+</ComboboxPrimitive.Input>

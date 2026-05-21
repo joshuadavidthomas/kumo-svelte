@@ -25,7 +25,7 @@
     container,
     side = KUMO_TOOLTIP_DEFAULT_VARIANTS.side,
     align = "center",
-    sideOffset = 0,
+    sideOffset = -1,
     ...restProps
   }: TooltipContentProps = $props();
 </script>

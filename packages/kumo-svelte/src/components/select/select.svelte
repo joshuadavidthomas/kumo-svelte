@@ -92,7 +92,7 @@
   let normalizedItems = $derived(normalizeSelectItems(items));
   let showField = $derived(!!label && !hideLabel);
   let fallbackAriaLabel = $derived(typeof label === "string" ? label : placeholder);
-  let triggerAriaLabel = $derived(ariaLabel ?? (!ariaLabelledby && !labelId ? fallbackAriaLabel : undefined));
+  let triggerAriaLabel = $derived(ariaLabel ?? (!ariaLabelledby ? fallbackAriaLabel : undefined));
   let triggerAriaLabelledby = $derived(ariaLabelledby ?? (!showField ? labelId : undefined));
   let triggerDisabled = $derived(disabled || loading);
 

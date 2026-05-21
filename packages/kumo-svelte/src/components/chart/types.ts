@@ -69,7 +69,6 @@ export interface ChartEvents {
 
 export interface ChartProps {
   class?: string;
-  className?: string;
   echarts: typeof echarts;
   height?: number;
   isDarkMode?: boolean;

@@ -32,7 +32,7 @@
     label={label ?? value}
     {disabled}
     class={cn(
-      "group mx-1.5 grid cursor-pointer grid-cols-[1fr_16px] gap-2 rounded px-2 py-1.5 text-base outline-none data-[highlighted]:bg-kumo-tint",
+      "group mx-1.5 grid cursor-pointer grid-cols-[1fr_16px] gap-2 rounded px-2 py-1.5 text-base outline-none hover:bg-kumo-tint data-[highlighted]:bg-kumo-tint",
       "data-[disabled]:cursor-not-allowed data-[disabled]:text-kumo-subtle data-[disabled]:opacity-60 data-[disabled]:data-[highlighted]:bg-transparent",
       className,
     )}

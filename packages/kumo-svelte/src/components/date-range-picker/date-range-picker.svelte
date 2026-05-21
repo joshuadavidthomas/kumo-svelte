@@ -13,9 +13,8 @@
   } from "./variants";
 
   export interface DateRangePickerProps
-    extends Omit<DatePickerProps, "class" | "mode" | "onChange" | "onValueChange" | "value"> {
+    extends Omit<DatePickerProps, "class" | "mode" | "onValueChange" | "value"> {
     class?: string;
-    className?: string;
     onEndDateChange?: (date: Date | null) => void;
     onStartDateChange?: (date: Date | null) => void;
     onValueChange?: (value: DateRange) => void;
@@ -27,7 +26,6 @@
 
   let {
     class: className,
-    className: legacyClassName,
     onEndDateChange,
     onStartDateChange,
     onValueChange,
@@ -52,7 +50,7 @@
 
 <div
   data-slot="date-range-picker"
-  class={cn(dateRangePickerVariants({ size, variant }), legacyClassName, className)}
+  class={cn(dateRangePickerVariants({ size, variant }), className)}
 >
   <DatePicker
     {...datePickerProps}

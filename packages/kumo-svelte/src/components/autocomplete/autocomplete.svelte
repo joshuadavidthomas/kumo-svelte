@@ -53,19 +53,17 @@
     value = $bindable(defaultValue),
   }: AutocompleteProps = $props();
 
-  let inputValue = $state(value);
+  let inputValue = $derived(value ?? "");
   let fieldRequired = $derived(required === true ? true : required === false ? false : undefined);
   let normalizedError = $derived(normalizeFieldError(error));
 
   function setInputValue(nextValue: string) {
-    inputValue = nextValue;
     value = nextValue;
     onValueChange?.(nextValue);
   }
 
   function handleValueChange(nextValue: string) {
     value = nextValue;
-    inputValue = nextValue;
     onValueChange?.(nextValue);
   }
 

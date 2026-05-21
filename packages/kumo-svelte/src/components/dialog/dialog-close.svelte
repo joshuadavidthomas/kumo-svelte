@@ -1,31 +1,20 @@
 <script lang="ts">
-  import type { Snippet } from "svelte";
   import { AlertDialog, Dialog as DialogPrimitive } from "bits-ui";
   import { getDialogRoleContext } from "./context";
 
-  export interface DialogCloseProps {
-    children?: Snippet;
-    class?: string;
-    disabled?: boolean;
-    id?: string;
-  }
+  export type DialogCloseProps = DialogPrimitive.CloseProps;
 
-  let {
-    children,
-    class: className,
-    disabled = false,
-    id,
-  }: DialogCloseProps = $props();
+  let { children, ...restProps }: DialogCloseProps = $props();
 
   const role = getDialogRoleContext();
 </script>
 
 {#if role === "alertdialog"}
-  <AlertDialog.Cancel data-slot="dialog-close" {id} {disabled} class={className}>
+  <AlertDialog.Cancel data-slot="dialog-close" {...restProps}>
     {@render children?.()}
   </AlertDialog.Cancel>
 {:else}
-  <DialogPrimitive.Close data-slot="dialog-close" {id} {disabled} class={className}>
+  <DialogPrimitive.Close data-slot="dialog-close" {...restProps}>
     {@render children?.()}
   </DialogPrimitive.Close>
 {/if}

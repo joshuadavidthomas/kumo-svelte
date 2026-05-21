@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Snippet } from "svelte";
+  import { onDestroy, untrack, type Snippet } from "svelte";
   import type { HTMLAttributes } from "svelte/elements";
   import { cn } from "../../utils";
   import { setFlowDiagramContext } from "./context.svelte";
@@ -47,6 +47,7 @@
   } | null>(null);
   let isPanning = $state(false);
   let canPan = $state(false);
+  let stopPanning: (() => void) | undefined;
 
   let padding = $derived({
     x: requestedPadding?.x ?? DEFAULT_PADDING.x,
@@ -152,10 +153,15 @@
     }
   }
 
+  function finishPanning() {
+    stopPanning?.();
+  }
+
   function handlePointerDown(event: PointerEvent) {
     if (!canvas || !canPan || isEventFromNode(event.target)) return;
 
     event.preventDefault();
+    finishPanning();
     isPanning = true;
     document.body.style.cursor = "grabbing";
     document.body.style.userSelect = "none";
@@ -171,22 +177,28 @@
       y = Math.max(bounds.y, Math.min(0, initialY + moveEvent.clientY - startY));
     }
 
-    function handlePointerUp() {
+    function cleanup() {
       isPanning = false;
       document.body.style.cursor = "";
       document.body.style.userSelect = "";
       document.removeEventListener("pointermove", handlePointerMove);
-      document.removeEventListener("pointerup", handlePointerUp);
+      document.removeEventListener("pointerup", cleanup);
+      stopPanning = undefined;
     }
 
+    stopPanning = cleanup;
     document.addEventListener("pointermove", handlePointerMove);
-    document.addEventListener("pointerup", handlePointerUp);
+    document.addEventListener("pointerup", cleanup);
   }
+
+  onDestroy(() => {
+    finishPanning();
+  });
 
   $effect(() => {
     if (!canvas || !wrapperElement || !contentElement) return;
 
-    measureBounds();
+    untrack(measureBounds);
     const observer = new ResizeObserver(measureBounds);
     observer.observe(wrapperElement);
     observer.observe(contentElement);
@@ -210,6 +222,7 @@
     if (!canvas) return;
 
     return () => {
+      finishPanning();
       document.body.style.cursor = "";
       document.body.style.userSelect = "";
     };

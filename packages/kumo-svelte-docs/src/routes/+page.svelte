@@ -1,44 +1,44 @@
 <script lang="ts">
-  import AutocompleteHomeDemo from "./components/autocomplete/autocomplete-home-demo.svelte";
-  import BadgeHomeDemo from "./components/badge/badge-home-demo.svelte";
-  import BannerHomeDemo from "./components/banner/banner-home-demo.svelte";
-  import BreadcrumbsHomeDemo from "./components/breadcrumbs/breadcrumbs-home-demo.svelte";
-  import ButtonHomeDemo from "./components/button/button-home-demo.svelte";
-  import CheckboxHomeDemo from "./components/checkbox/checkbox-home-demo.svelte";
-  import ClipboardTextHomeDemo from "./components/clipboard-text/clipboard-text-home-demo.svelte";
-  import CodeHighlightedHomeDemo from "./components/code-highlighted/code-highlighted-home-demo.svelte";
-  import CollapsibleHomeDemo from "./components/collapsible/collapsible-home-demo.svelte";
-  import ComboboxHomeDemo from "./components/combobox/combobox-home-demo.svelte";
-  import CommandPaletteHomeDemo from "./components/command-palette/command-palette-home-demo.svelte";
-  import DatePickerHomeDemo from "./components/date-picker/date-picker-home-demo.svelte";
-  import DialogHomeDemo from "./components/dialog/dialog-home-demo.svelte";
-  import DropdownHomeDemo from "./components/dropdown/dropdown-home-demo.svelte";
-  import EmptyHomeDemo from "./components/empty/empty-home-demo.svelte";
-  import FlowHomeDemo from "./components/flow/flow-home-demo.svelte";
-  import GridHomeDemo from "./components/grid/grid-home-demo.svelte";
-  import InputAreaHomeDemo from "./components/input-area/input-area-home-demo.svelte";
-  import InputGroupHomeDemo from "./components/input-group/input-group-home-demo.svelte";
-  import InputHomeDemo from "./components/input/input-home-demo.svelte";
-  import InputValidationHomeDemo from "./components/input/input-validation-home-demo.svelte";
-  import LabelHomeDemo from "./components/label/label-home-demo.svelte";
-  import LayerCardHomeDemo from "./components/layer-card/layer-card-home-demo.svelte";
-  import LinkHomeDemo from "./components/link/link-home-demo.svelte";
-  import LoaderHomeDemo from "./components/loader/loader-home-demo.svelte";
-  import MenuBarHomeDemo from "./components/menu-bar/menu-bar-home-demo.svelte";
-  import MeterHomeDemo from "./components/meter/meter-home-demo.svelte";
-  import PaginationHomeDemo from "./components/pagination/pagination-home-demo.svelte";
-  import PopoverHomeDemo from "./components/popover/popover-home-demo.svelte";
-  import RadioHomeDemo from "./components/radio/radio-home-demo.svelte";
-  import SelectHomeDemo from "./components/select/select-home-demo.svelte";
-  import SensitiveInputHomeDemo from "./components/sensitive-input/sensitive-input-home-demo.svelte";
-  import SkeletonLineHomeDemo from "./components/skeleton-line/skeleton-line-home-demo.svelte";
-  import SwitchHomeDemo from "./components/switch/switch-home-demo.svelte";
-  import TableOfContentsHomeDemo from "./components/table-of-contents/table-of-contents-home-demo.svelte";
-  import TableHomeDemo from "./components/table/table-home-demo.svelte";
-  import TabsHomeDemo from "./components/tabs/tabs-home-demo.svelte";
-  import TextHomeDemo from "./components/text/text-home-demo.svelte";
-  import ToastHomeDemo from "./components/toast/toast-home-demo.svelte";
-  import TooltipHomeDemo from "./components/tooltip/tooltip-home-demo.svelte";
+  import AutocompleteHomeDemo from "./(docs)/components/autocomplete/autocomplete-home-demo.svelte";
+  import BadgeHomeDemo from "./(docs)/components/badge/badge-home-demo.svelte";
+  import BannerHomeDemo from "./(docs)/components/banner/banner-home-demo.svelte";
+  import BreadcrumbsHomeDemo from "./(docs)/components/breadcrumbs/breadcrumbs-home-demo.svelte";
+  import ButtonHomeDemo from "./(docs)/components/button/button-home-demo.svelte";
+  import CheckboxHomeDemo from "./(docs)/components/checkbox/checkbox-home-demo.svelte";
+  import ClipboardTextHomeDemo from "./(docs)/components/clipboard-text/clipboard-text-home-demo.svelte";
+  import CodeHighlightedHomeDemo from "./(docs)/components/code-highlighted/code-highlighted-home-demo.svelte";
+  import CollapsibleHomeDemo from "./(docs)/components/collapsible/collapsible-home-demo.svelte";
+  import ComboboxHomeDemo from "./(docs)/components/combobox/combobox-home-demo.svelte";
+  import CommandPaletteHomeDemo from "./(docs)/components/command-palette/command-palette-home-demo.svelte";
+  import DatePickerHomeDemo from "./(docs)/components/date-picker/date-picker-home-demo.svelte";
+  import DialogHomeDemo from "./(docs)/components/dialog/dialog-home-demo.svelte";
+  import DropdownHomeDemo from "./(docs)/components/dropdown/dropdown-home-demo.svelte";
+  import EmptyHomeDemo from "./(docs)/components/empty/empty-home-demo.svelte";
+  import FlowHomeDemo from "./(docs)/components/flow/flow-home-demo.svelte";
+  import GridHomeDemo from "./(docs)/components/grid/grid-home-demo.svelte";
+  import InputAreaHomeDemo from "./(docs)/components/input-area/input-area-home-demo.svelte";
+  import InputGroupHomeDemo from "./(docs)/components/input-group/input-group-home-demo.svelte";
+  import InputHomeDemo from "./(docs)/components/input/input-home-demo.svelte";
+  import InputValidationHomeDemo from "./(docs)/components/input/input-validation-home-demo.svelte";
+  import LabelHomeDemo from "./(docs)/components/label/label-home-demo.svelte";
+  import LayerCardHomeDemo from "./(docs)/components/layer-card/layer-card-home-demo.svelte";
+  import LinkHomeDemo from "./(docs)/components/link/link-home-demo.svelte";
+  import LoaderHomeDemo from "./(docs)/components/loader/loader-home-demo.svelte";
+  import MenuBarHomeDemo from "./(docs)/components/menu-bar/menu-bar-home-demo.svelte";
+  import MeterHomeDemo from "./(docs)/components/meter/meter-home-demo.svelte";
+  import PaginationHomeDemo from "./(docs)/components/pagination/pagination-home-demo.svelte";
+  import PopoverHomeDemo from "./(docs)/components/popover/popover-home-demo.svelte";
+  import RadioHomeDemo from "./(docs)/components/radio/radio-home-demo.svelte";
+  import SelectHomeDemo from "./(docs)/components/select/select-home-demo.svelte";
+  import SensitiveInputHomeDemo from "./(docs)/components/sensitive-input/sensitive-input-home-demo.svelte";
+  import SkeletonLineHomeDemo from "./(docs)/components/skeleton-line/skeleton-line-home-demo.svelte";
+  import SwitchHomeDemo from "./(docs)/components/switch/switch-home-demo.svelte";
+  import TableOfContentsHomeDemo from "./(docs)/components/table-of-contents/table-of-contents-home-demo.svelte";
+  import TableHomeDemo from "./(docs)/components/table/table-home-demo.svelte";
+  import TabsHomeDemo from "./(docs)/components/tabs/tabs-home-demo.svelte";
+  import TextHomeDemo from "./(docs)/components/text/text-home-demo.svelte";
+  import ToastHomeDemo from "./(docs)/components/toast/toast-home-demo.svelte";
+  import TooltipHomeDemo from "./(docs)/components/tooltip/tooltip-home-demo.svelte";
 
   const componentRoutes: Record<string, string> = {
     autocomplete: "/components/autocomplete",
@@ -124,6 +124,10 @@
     { name: "TableOfContents", id: "table-of-contents", Component: TableOfContentsHomeDemo },
     { name: "Text", id: "text", Component: TextHomeDemo },
   ];
+
+  function isCardVisible(_name: string, _index: number) {
+    return true;
+  }
 </script>
 
 <svelte:head>
@@ -132,10 +136,12 @@
 </svelte:head>
 
 <ul class="grid auto-rows-min grid-cols-1 gap-px bg-kumo-hairline md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
-  {#each components as component (component.name)}
+  {#each components as component, index (component.name)}
     {@const route = componentRoutes[component.id]}
     {@const Preview = component.Component}
-    <li class="relative flex aspect-square items-center justify-center bg-kumo-canvas">
+    <li
+      class="relative flex aspect-square items-center justify-center bg-kumo-canvas"
+    >
       {#if route}
         <a href={route} class="absolute top-4 left-4 text-base font-medium text-kumo-subtle hover:text-kumo-default">
           {component.name}
@@ -144,7 +150,9 @@
         <span class="absolute top-4 left-4 text-base font-medium text-kumo-subtle italic">{component.name}</span>
       {/if}
       <div class="flex w-full items-center justify-center p-8 tracking-normal leading-normal">
-        <Preview />
+        {#if isCardVisible(component.name, index)}
+          <Preview />
+        {/if}
       </div>
     </li>
   {/each}

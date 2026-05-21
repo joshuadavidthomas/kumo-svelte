@@ -3,6 +3,7 @@
   import InfoIcon from "phosphor-svelte/lib/InfoIcon";
   import { Label as BitsLabel } from "bits-ui";
   import { cn } from "../../utils/cn";
+  import Button from "../button/button.svelte";
   import Tooltip from "../tooltip/tooltip.svelte";
   import { labelContentVariants, labelVariants } from "./variants";
 
@@ -33,14 +34,19 @@
     <span class="font-normal text-kumo-subtle">(optional)</span>
   {/if}
   {#if tooltip}
-    <Tooltip content={tooltip}>
-      <span
+    {#snippet tooltipTrigger({ props }: { props: Record<string, unknown> })}
+      <Button
+        {...props}
+        variant="ghost"
+        size="xs"
+        shape="square"
         aria-label="More information"
-        class="inline-flex size-4 items-center justify-center rounded-full text-kumo-subtle"
+        class="cursor-default"
       >
-        <InfoIcon aria-hidden="true" size={16} weight="fill" />
-      </span>
-    </Tooltip>
+        <InfoIcon class="size-4" aria-hidden="true" size={16} weight="fill" />
+      </Button>
+    {/snippet}
+    <Tooltip content={tooltip} render={tooltipTrigger} />
   {/if}
 {/snippet}
 

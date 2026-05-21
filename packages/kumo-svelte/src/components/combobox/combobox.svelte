@@ -25,6 +25,7 @@
     multiple?: boolean;
     name?: string;
     onOpenChange?: (open: boolean) => void;
+    onOpenChangeComplete?: (open: boolean) => void;
     onValueChange?: (value: string | string[]) => void;
     open?: boolean;
     required?: boolean;
@@ -45,6 +46,7 @@
     multiple = false,
     name,
     onOpenChange,
+    onOpenChangeComplete,
     onValueChange,
     open = $bindable(),
     required,
@@ -52,38 +54,72 @@
     value = $bindable(defaultValue ?? (multiple ? [] : "")),
   }: ComboboxProps = $props();
 
-  let inputValue = $state(typeof value === "string" ? value : "");
-  let clearEpoch = $state(0);
+  let searchValue = $state<string | undefined>();
+  let filterValue = $state("");
   let fieldRequired = $derived(required === true ? true : required === false ? false : undefined);
   let normalizedError = $derived(normalizeFieldError(error));
   let singleValue = $derived(typeof value === "string" ? value : "");
   let multipleValue = $derived(Array.isArray(value) ? value : []);
+  let inputValue = $derived(searchValue ?? (multiple ? "" : singleValue));
 
   function setInputValue(nextValue: string) {
-    inputValue = nextValue;
+    searchValue = nextValue;
+    filterValue = nextValue;
+  }
+
+  function resetInputValue() {
+    searchValue = undefined;
+  }
+
+  function handleOpenChange(nextOpen: boolean) {
+    open = nextOpen;
+    onOpenChange?.(nextOpen);
+  }
+
+  function handleOpenChangeComplete(nextOpen: boolean) {
+    if (!nextOpen) {
+      resetInputValue();
+      filterValue = "";
+    }
+    onOpenChangeComplete?.(nextOpen);
   }
 
   function handleValueChange(nextValue: string | string[]) {
     value = nextValue;
-    if (typeof nextValue === "string") {
-      inputValue = nextValue;
+    searchValue = typeof nextValue === "string" ? undefined : "";
+    filterValue = "";
+
+    if (open !== false) {
+      open = false;
+      onOpenChange?.(false);
     }
+
     onValueChange?.(nextValue);
   }
 
   function clearValue() {
     let nextValue = multiple ? [] : "";
 
-    inputValue = "";
+    searchValue = "";
+    filterValue = "";
     value = nextValue;
-    clearEpoch += 1;
+    open = false;
+    onOpenChange?.(false);
+    onValueChange?.(nextValue);
+  }
+
+  function removeValue(valueToRemove: string) {
+    if (!multiple) return;
+
+    let nextValue = multipleValue.filter((selectedValue) => selectedValue !== valueToRemove);
+    value = nextValue;
     onValueChange?.(nextValue);
   }
 
   function shouldShowItem(value: string, label?: string) {
     if (!items.length) return true;
 
-    let query = inputValue.trim().toLocaleLowerCase();
+    let query = filterValue.trim().toLocaleLowerCase();
     if (!query) return true;
 
     let text = (label ?? items.find((item) => item.value === value)?.label ?? value).toLocaleLowerCase();
@@ -92,18 +128,20 @@
 
   setComboboxContext({
     get canClear() {
-      return multiple ? inputValue.length > 0 || multipleValue.length > 0 : inputValue.length > 0 || singleValue.length > 0;
-    },
-    get clearEpoch() {
-      return clearEpoch;
+      return multiple ? multipleValue.length > 0 : singleValue.length > 0;
     },
     get inputValue() {
       return inputValue;
+    },
+    get selectedValues() {
+      return multipleValue;
     },
     get size() {
       return size;
     },
     clearValue,
+    removeValue,
+    resetInputValue,
     setInputValue,
     shouldShowItem,
   });
@@ -117,10 +155,11 @@
       inputValue={inputValue}
       {items}
       {name}
-      bind:open
+      open={open ?? false}
       {required}
       value={multipleValue}
-      onOpenChange={onOpenChange}
+      onOpenChange={handleOpenChange}
+      onOpenChangeComplete={handleOpenChangeComplete}
       onValueChange={handleValueChange}
     >
       {@render children?.()}
@@ -133,10 +172,11 @@
       inputValue={inputValue}
       {items}
       {name}
-      bind:open
+      open={open ?? false}
       {required}
       value={singleValue}
-      onOpenChange={onOpenChange}
+      onOpenChange={handleOpenChange}
+      onOpenChangeComplete={handleOpenChangeComplete}
       onValueChange={handleValueChange}
     >
       {@render children?.()}

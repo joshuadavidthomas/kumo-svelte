@@ -13,11 +13,7 @@
 
   let { children, container }: KumoPortalProviderProps = $props();
 
-  const context = setKumoPortalContext(new KumoPortalContextState());
-
-  $effect(() => {
-    context.container = container;
-  });
+  setKumoPortalContext(new KumoPortalContextState(() => container));
 </script>
 
 {@render children?.()}

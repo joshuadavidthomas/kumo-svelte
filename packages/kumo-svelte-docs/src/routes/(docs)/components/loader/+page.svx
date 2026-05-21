@@ -1,0 +1,71 @@
+---
+title: Loader
+description: A loading spinner to indicate loading state.
+sourceFile: components/loader
+primitive: svg
+---
+
+<script lang="ts">
+  import Example from "$lib/components/example.svelte";
+  import LoaderBasicDemo from "./loader-basic-demo.svelte";
+  import LoaderCustomSizeDemo from "./loader-custom-size-demo.svelte";
+</script>
+
+<Example demo="loader-basic-demo">
+  <LoaderBasicDemo />
+</Example>
+
+## Installation
+
+### Barrel
+
+```ts
+import { Loader } from "kumo-svelte";
+```
+
+### Granular
+
+```ts
+import { Loader } from "kumo-svelte/components/loader";
+```
+
+## Usage
+
+```svelte
+<script lang="ts">
+  import { Loader } from "kumo-svelte";
+</script>
+
+<Loader />
+```
+
+## Examples
+
+### Default Size
+
+<Example demo="loader-basic-demo">
+  <LoaderBasicDemo />
+</Example>
+
+### Custom Size
+
+Pass a number to set a custom pixel size.
+
+<Example demo="loader-custom-size-demo">
+  <LoaderCustomSizeDemo />
+</Example>
+
+## API Reference
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `aria-label` | `string` | `"Loading"` | Accessible label for the status indicator. |
+| `size` | `"sm" \| "base" \| "lg" \| number` | `"base"` | Loader size. Numeric values are treated as pixels. |
+| `class` | `string` | — | Additional CSS classes. |
+| `style` | `string` | — | Additional inline styles. |
+
+Loader also accepts standard SVG attributes except `width` and `height`, which are controlled by the `size` prop.
+
+## Accessibility
+
+The loader renders with `role="status"` and an accessible label. Override `aria-label` when the loading context needs a more specific announcement.

@@ -44,7 +44,6 @@ export interface UseShikiHighlighterResult {
 
 export interface CodeHighlightedProps {
   class?: string;
-  className?: string;
   code: string;
   highlightLines?: number[];
   labels?: CodeHighlightedLabels;

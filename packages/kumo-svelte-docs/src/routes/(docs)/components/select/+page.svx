@@ -1,0 +1,236 @@
+---
+title: Select
+description: Displays a list of options for the user to pick from—triggered by a button.
+sourceFile: components/select
+baseUIComponent: select
+---
+
+<script lang="ts">
+  import Example from "$lib/components/example.svelte";
+  import SelectBasicDemo from "./select-basic-demo.svelte";
+  import SelectComplexDemo from "./select-complex-demo.svelte";
+  import SelectCustomRenderingDemo from "./select-custom-rendering-demo.svelte";
+  import SelectDisabledItemsDemo from "./select-disabled-items-demo.svelte";
+  import SelectDisabledOptionsDemo from "./select-disabled-options-demo.svelte";
+  import SelectGroupedDemo from "./select-grouped-demo.svelte";
+  import SelectGroupedWithDisabledDemo from "./select-grouped-with-disabled-demo.svelte";
+  import SelectLoadingDataDemo from "./select-loading-data-demo.svelte";
+  import SelectLoadingDemo from "./select-loading-demo.svelte";
+  import SelectLongListDemo from "./select-long-list-demo.svelte";
+  import SelectMultipleDemo from "./select-multiple-demo.svelte";
+  import SelectPlaceholderDemo from "./select-placeholder-demo.svelte";
+  import SelectSizesDemo from "./select-sizes-demo.svelte";
+  import SelectWithErrorDemo from "./select-with-error-demo.svelte";
+  import SelectWithFieldDemo from "./select-with-field-demo.svelte";
+  import SelectWithoutLabelDemo from "./select-without-label-demo.svelte";
+  import SelectWithTooltipDemo from "./select-with-tooltip-demo.svelte";
+</script>
+
+<Example demo="select-basic-demo">
+  <SelectBasicDemo />
+</Example>
+
+## Installation
+
+### Barrel
+
+```ts
+import { Select, SelectOption } from "kumo-svelte";
+```
+
+### Granular
+
+```ts
+import { Select, SelectOption } from "kumo-svelte/components/select";
+```
+
+## Usage
+
+```svelte
+<script lang="ts">
+  import { Select } from "kumo-svelte";
+
+  let value = $state("apple");
+</script>
+
+<Select
+  label="Favorite Fruit"
+  {value}
+  onValueChange={(next) => (value = next as string)}
+  items={{ apple: "Apple", banana: "Banana", cherry: "Cherry" }}
+/>
+```
+
+## Examples
+
+### Basic
+
+A select with a visible label. When you provide the `label` prop, the select renders with field labeling.
+
+<Example demo="select-basic-demo">
+  <SelectBasicDemo />
+</Example>
+
+### Sizes
+
+Use the `size` prop to match Input sizing (`xs`, `sm`, `base`, `lg`).
+
+<Example demo="select-sizes-demo">
+  <SelectSizesDemo />
+</Example>
+
+### Without Visible Label
+
+When a visible label isn't needed, use `aria-label` for accessibility.
+
+<Example demo="select-without-label-demo">
+  <SelectWithoutLabelDemo />
+</Example>
+
+### With Description
+
+Select integrates with Field-style description text below the input.
+
+<Example demo="select-with-field-demo">
+  <SelectWithFieldDemo />
+</Example>
+
+### With Error
+
+Pass the `error` prop to display a validation error. When an error is present, it replaces the description in the UI.
+
+<Example demo="select-with-error-demo">
+  <SelectWithErrorDemo />
+</Example>
+
+### Placeholder
+
+Use the `placeholder` prop to show text when no value is selected.
+
+<Example demo="select-placeholder-demo">
+  <SelectPlaceholderDemo />
+</Example>
+
+### Label with Tooltip
+
+Add a tooltip icon next to the label for additional context using `labelTooltip`.
+
+<Example demo="select-with-tooltip-demo">
+  <SelectWithTooltipDemo />
+</Example>
+
+### Custom Rendering
+
+Use `SelectOption` children and labels to customize how options appear in the list.
+
+<Example demo="select-custom-rendering-demo">
+  <SelectCustomRenderingDemo />
+</Example>
+
+### Loading
+
+A select component with loading state. The loading state is passed via the `loading` prop.
+
+<Example demo="select-loading-demo">
+  <div class="flex flex-col gap-4">
+    <p class="text-kumo-default">Loading State</p>
+    <SelectLoadingDemo />
+    <p class="text-kumo-default">Loading From Server (simulated delay)</p>
+    <SelectLoadingDataDemo />
+  </div>
+</Example>
+
+### Multiple Selection
+
+Enable multiple selection with the `multiple` prop. The value becomes an array of selected strings.
+
+<Example demo="select-multiple-demo">
+  <SelectMultipleDemo />
+</Example>
+
+### More Example
+
+<Example demo="select-complex-demo">
+  <SelectComplexDemo />
+</Example>
+
+### Disabled Options
+
+Options can be disabled with the `disabled` prop. Disabled options are greyed out and cannot be selected.
+
+<Example demo="select-disabled-options-demo">
+  <SelectDisabledOptionsDemo />
+</Example>
+
+### Disabled Items (via items prop)
+
+The `items` object-map prop accepts descriptor objects with `disabled` alongside plain string values.
+
+<Example demo="select-disabled-items-demo">
+  <SelectDisabledItemsDemo />
+</Example>
+
+### Grouped Options
+
+Use `SelectGroup`, `SelectGroupLabel`, and `SelectSeparator` to organize options under labeled headers with visual dividers.
+
+<Example demo="select-grouped-demo">
+  <SelectGroupedDemo />
+</Example>
+
+### Groups with Disabled Options
+
+Combine groups, separators, and disabled options to separate available and unavailable choices.
+
+<Example demo="select-grouped-with-disabled-demo">
+  <SelectGroupedWithDisabledDemo />
+</Example>
+
+### Long List (Scrolling Test)
+
+A select component with many options to test popup scrolling behavior.
+
+<Example demo="select-long-list-demo">
+  <SelectLongListDemo />
+</Example>
+
+## API Reference
+
+### `Select`
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `value` | `string \| string[]` | — | Controlled value. Use with `onValueChange`. |
+| `defaultValue` | `string \| string[]` | — | Initial uncontrolled value. |
+| `onValueChange` | `(value: string \| string[]) => void` | — | Called when the selection changes. |
+| `items` | `Record<string, string \| { label: string; disabled?: boolean }> \| NormalizedSelectItem[]` | — | Option list for simple selects. |
+| `multiple` | `boolean` | `false` | Enables multiple selection. |
+| `label` | `Snippet \| string` | — | Visible or accessible label. |
+| `description` | `Snippet \| string` | — | Helper text. |
+| `error` | `string \| { message: Snippet \| string; match: FieldErrorMatch }` | — | Error message or validity-matched error. |
+| `placeholder` | `string` | — | Placeholder text when no value is selected. |
+| `labelTooltip` | `Snippet` | — | Tooltip content next to the label. |
+| `loading` | `boolean` | `false` | Shows loading skeleton and disables the trigger. |
+| `disabled` | `boolean` | `false` | Disables the select. |
+| `allowDeselect` | `boolean` | `false` | Allows clearing a selected value in single mode. |
+| `size` | `"xs" \| "sm" \| "base" \| "lg"` | `"base"` | Trigger size. |
+| `container` | `Portal target` | — | Portal target. |
+| `class` | `string` | — | Additional classes for the trigger. |
+
+### `SelectOption`
+
+| Prop | Type | Required | Description |
+| --- | --- | --- | --- |
+| `value` | `string` | Yes | Option value. |
+| `label` | `string` | No | Label used by the trigger value. Defaults to `value`. |
+| `disabled` | `boolean` | No | Disables the option. |
+| `children` | `Snippet` | No | Custom option content. |
+| `class` | `string` | No | Additional classes. |
+
+### `SelectGroup`, `SelectGroupLabel`, and `SelectSeparator`
+
+Use `SelectGroup` to group related options, `SelectGroupLabel` to provide a visible heading, and `SelectSeparator` to render a visual divider between groups.
+
+## Svelte Notes
+
+The Svelte Select currently works with string values. For rich option rows, pass custom `SelectOption` children and a string `label` for the trigger display. Use named components (`SelectOption`, `SelectGroup`, `SelectGroupLabel`, `SelectSeparator`) instead of React compound properties.

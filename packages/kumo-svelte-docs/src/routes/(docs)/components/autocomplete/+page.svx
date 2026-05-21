@@ -1,0 +1,170 @@
+---
+title: Autocomplete
+description: A free-form text input with an optional filtered suggestion list. Unlike Combobox, the value is not constrained to the items list.
+sourceFile: components/autocomplete
+primitive: autocomplete
+---
+
+<script lang="ts">
+  import Example from "$lib/components/example.svelte";
+  import AutocompleteDemo from "./autocomplete-demo.svelte";
+  import AutocompleteControlledDemo from "./autocomplete-controlled-demo.svelte";
+  import AutocompleteErrorDemo from "./autocomplete-error-demo.svelte";
+  import AutocompleteFieldDemo from "./autocomplete-field-demo.svelte";
+  import AutocompleteGroupedDemo from "./autocomplete-grouped-demo.svelte";
+  import AutocompleteSizesDemo from "./autocomplete-sizes-demo.svelte";
+</script>
+
+<Example title="Autocomplete" demo="autocomplete-demo">
+  <AutocompleteDemo />
+</Example>
+
+## Installation
+
+### Barrel
+
+```ts
+import { Autocomplete } from "kumo-svelte";
+```
+
+### Granular
+
+```ts
+import { Autocomplete } from "kumo-svelte/components/autocomplete";
+```
+
+## When to use
+
+Use `Autocomplete` when the input value can be free-form text and suggestions are optional hints. Use `Combobox` instead when the selected value must come from the predefined list.
+
+## Usage
+
+```svelte
+<script lang="ts">
+  import {
+    Autocomplete,
+    AutocompleteContent,
+    AutocompleteInputGroup,
+    AutocompleteItem,
+    AutocompleteList,
+  } from "kumo-svelte";
+
+  const fruits = ["Apple", "Banana", "Cherry"];
+  const fruitItems = fruits.map((fruit) => ({ label: fruit, value: fruit }));
+</script>
+
+<Autocomplete items={fruitItems}>
+  <AutocompleteInputGroup placeholder="Search fruits…" />
+  <AutocompleteContent>
+    <AutocompleteList>
+      {#each fruits as fruit}
+        <AutocompleteItem value={fruit}>{fruit}</AutocompleteItem>
+      {/each}
+    </AutocompleteList>
+  </AutocompleteContent>
+</Autocomplete>
+```
+
+## Controlled
+
+Bind `value` or pass `onValueChange` for controlled usage.
+
+<Example title="Controlled" demo="autocomplete-controlled-demo">
+  <AutocompleteControlledDemo />
+</Example>
+
+## With Field
+
+Add `label`, `description`, and `required` to enable the built-in Field wrapper.
+
+<Example title="With Field" demo="autocomplete-field-demo">
+  <AutocompleteFieldDemo />
+</Example>
+
+## Error State
+
+Display validation errors with the `error` prop.
+
+<Example title="Error State" demo="autocomplete-error-demo">
+  <AutocompleteErrorDemo />
+</Example>
+
+## Grouped
+
+Group items into categories using `AutocompleteGroup` and `AutocompleteGroupLabel`.
+
+<Example title="Grouped" demo="autocomplete-grouped-demo">
+  <AutocompleteGroupedDemo />
+</Example>
+
+## Sizes
+
+The `size` prop on `AutocompleteInputGroup` supports `xs`, `sm`, `base`, and `lg`.
+
+<Example title="Sizes" demo="autocomplete-sizes-demo">
+  <AutocompleteSizesDemo />
+</Example>
+
+## Custom Filtering
+
+For advanced matching or async search, keep filtered items in application state and render that list.
+
+```svelte
+<Autocomplete>
+  <AutocompleteInputGroup placeholder="Search countries…" />
+  <AutocompleteContent>
+    <AutocompleteList>
+      {#each filteredCountries as country}
+        <AutocompleteItem value={country.value}>{country.label}</AutocompleteItem>
+      {/each}
+    </AutocompleteList>
+  </AutocompleteContent>
+</Autocomplete>
+```
+
+## API Reference
+
+### Autocomplete
+
+Root component. Wraps all sub-components and manages state.
+
+| Prop | Type | Required | Description |
+| --- | --- | --- | --- |
+| `value` | `string` | No | Current input value. Bind for controlled usage. |
+| `defaultValue` | `string` | No | Initial input value. |
+| `open` | `boolean` | No | Current popup open state. Bind for controlled open state. |
+| `onValueChange` | `(value: string) => void` | No | Called when the input value changes. |
+| `onOpenChange` | `(open: boolean) => void` | No | Called when the popup opens or closes. |
+| `label` | `Snippet \| string` | No | Field label. Enables the built-in Field wrapper. |
+| `description` | `Snippet \| string` | No | Field description text. |
+| `error` | `string \| { message: Snippet \| string; match: FieldErrorMatch }` | No | Field error message. |
+| `required` | `boolean` | No | Marks the field as required. |
+| `disabled` | `boolean` | No | Disables the autocomplete. |
+
+### AutocompleteInputGroup
+
+Self-contained input wrapper that renders the text input.
+
+| Prop | Type | Required | Description |
+| --- | --- | --- | --- |
+| `placeholder` | `string` | No | Placeholder text. |
+| `size` | `"xs" \| "sm" \| "base" \| "lg"` | No | Input size. |
+| `onValueChange` | `(value: string) => void` | No | Called when the input value changes. |
+
+### AutocompleteContent
+
+Dropdown popup container.
+
+### AutocompleteList
+
+Scrollable list container.
+
+### AutocompleteItem
+
+Individual suggestion item.
+
+| Prop | Type | Required | Description |
+| --- | --- | --- | --- |
+| `value` | `string` | Yes | Item value. |
+| `label` | `string` | No | Accessible item label. |
+| `disabled` | `boolean` | No | Disables the item. |

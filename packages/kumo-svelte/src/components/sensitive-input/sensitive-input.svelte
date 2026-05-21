@@ -30,7 +30,6 @@
     labelTooltip?: Snippet;
     onCopy?: () => void;
     onValueChange?: (value: string) => void;
-    readOnly?: boolean;
     readonly?: boolean | null;
     size?: KumoSensitiveInputSize;
     value?: string;
@@ -50,7 +49,6 @@
     onCopy,
     onValueChange,
     oninput,
-    readOnly = false,
     readonly: readonlyProp = false,
     required,
     size = KUMO_SENSITIVE_INPUT_DEFAULT_VARIANTS.size,
@@ -73,8 +71,8 @@
   let hasValue = $derived(normalizedValue.length > 0);
   let displayMode: DisplayMode = $derived(hasValue ? visibilityMode : "empty");
   let isMaskedWithValue = $derived(displayMode === "masked" && hasValue);
-  let showEyeButton = $derived(!disabled && (displayMode === "revealed" || hasValue));
-  let effectiveReadonly = $derived(readOnly || Boolean(readonlyProp));
+  let showEyeButton = $derived(!disabled && (displayMode === "revealed" || (displayMode === "empty" && hasValue)));
+  let effectiveReadonly = $derived(Boolean(readonlyProp));
   let ariaLabelFallback = $derived(typeof label === "string" ? label : "Sensitive value");
   let fieldRequired = $derived(required === true ? true : required === false ? false : undefined);
   let variant = $derived(variantProp ?? (error ? "error" : "default"));
@@ -276,7 +274,7 @@
             "group-focus-within/container:invisible group-hover/mask:invisible",
         )}
       >
-        ********
+        ••••••••
       </span>
       {#if isMaskedWithValue && !disabled}
         <span class="invisible absolute top-0 left-0 whitespace-nowrap text-kumo-subtle group-focus-within/container:visible group-hover/mask:visible">

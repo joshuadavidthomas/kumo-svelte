@@ -1,32 +1,20 @@
 <script lang="ts">
-  import type { Snippet } from "svelte";
   import { AlertDialog, Dialog as DialogPrimitive } from "bits-ui";
-  import { cn } from "../../utils/cn";
   import { getDialogRoleContext } from "./context";
 
-  export interface DialogTriggerProps {
-    children?: Snippet;
-    class?: string;
-    disabled?: boolean;
-    id?: string;
-  }
+  export type DialogTriggerProps = DialogPrimitive.TriggerProps;
 
-  let {
-    children,
-    class: className,
-    disabled = false,
-    id,
-  }: DialogTriggerProps = $props();
+  let { children, ...restProps }: DialogTriggerProps = $props();
 
   const role = getDialogRoleContext();
 </script>
 
 {#if role === "alertdialog"}
-  <AlertDialog.Trigger data-slot="dialog-trigger" {id} {disabled} class={className}>
+  <AlertDialog.Trigger data-slot="dialog-trigger" {...restProps}>
     {@render children?.()}
   </AlertDialog.Trigger>
 {:else}
-  <DialogPrimitive.Trigger data-slot="dialog-trigger" {id} {disabled} class={className}>
+  <DialogPrimitive.Trigger data-slot="dialog-trigger" {...restProps}>
     {@render children?.()}
   </DialogPrimitive.Trigger>
 {/if}

@@ -53,15 +53,7 @@
         ? "bg-blue-500 dark:bg-blue-600 ring-blue-600 dark:ring-blue-500"
         : "bg-neutral-200 dark:bg-neutral-700 ring-neutral-300 dark:ring-neutral-600",
   );
-  let thumbColors = $derived(
-    variant === "neutral"
-      ? checked
-        ? "bg-kumo-base dark:bg-neutral-400"
-        : "bg-kumo-base dark:bg-neutral-850"
-      : checked
-        ? "bg-kumo-base dark:bg-blue-300"
-        : "bg-kumo-base dark:bg-neutral-850",
-  );
+  const thumbColors = "bg-white";
 </script>
 
 <SwitchPrimitive.Root

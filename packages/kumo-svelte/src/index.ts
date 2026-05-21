@@ -169,6 +169,7 @@ export {
 
 export { default as Combobox } from "./components/combobox/combobox.svelte";
 export { default as ComboboxRoot } from "./components/combobox/combobox.svelte";
+export { default as ComboboxChip } from "./components/combobox/combobox-chip.svelte";
 export { default as ComboboxContent } from "./components/combobox/combobox-content.svelte";
 export { default as ComboboxEmpty } from "./components/combobox/combobox-empty.svelte";
 export { default as ComboboxGroup } from "./components/combobox/combobox-group.svelte";
@@ -179,11 +180,13 @@ export { default as ComboboxList } from "./components/combobox/combobox-list.sve
 export { default as ComboboxSeparator } from "./components/combobox/combobox-separator.svelte";
 export { default as ComboboxTrigger } from "./components/combobox/combobox-trigger.svelte";
 export { default as ComboboxTriggerInput } from "./components/combobox/combobox-trigger-input.svelte";
+export { default as ComboboxTriggerMultipleWithInput } from "./components/combobox/combobox-trigger-multiple-with-input.svelte";
 export { default as ComboboxTriggerValue } from "./components/combobox/combobox-trigger.svelte";
 export {
   comboboxVariants,
   KUMO_COMBOBOX_DEFAULT_VARIANTS,
   KUMO_COMBOBOX_VARIANTS,
+  type ComboboxChipProps,
   type ComboboxContentProps,
   type ComboboxEmptyProps,
   type ComboboxGroupLabelProps,
@@ -197,6 +200,7 @@ export {
   type ComboboxSeparatorProps,
   type ComboboxSize,
   type ComboboxTriggerInputProps,
+  type ComboboxTriggerMultipleWithInputProps,
   type ComboboxTriggerProps,
   type ComboboxTriggerValueProps,
   type KumoComboboxInputSide,

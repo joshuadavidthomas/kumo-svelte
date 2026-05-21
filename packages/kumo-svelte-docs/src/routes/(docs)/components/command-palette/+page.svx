@@ -1,0 +1,251 @@
+---
+title: CommandPalette
+description: A composable command palette component for search and command dialogs.
+sourceFile: components/command-palette
+---
+
+<script lang="ts">
+  import Example from "$lib/components/example.svelte";
+  import CommandPaletteBasicDemo from "./command-palette-basic-demo.svelte";
+  import CommandPaletteLoadingDemo from "./command-palette-loading-demo.svelte";
+  import CommandPaletteNoAutocompleteDemo from "./command-palette-no-autocomplete-demo.svelte";
+  import CommandPaletteResultItemDemo from "./command-palette-result-item-demo.svelte";
+  import CommandPaletteSimpleDemo from "./command-palette-simple-demo.svelte";
+</script>
+
+<Example demo="command-palette-basic-demo">
+  <CommandPaletteBasicDemo />
+</Example>
+
+## Installation
+
+### Barrel
+
+```ts
+import { CommandPalette } from "kumo-svelte";
+```
+
+### Granular
+
+```ts
+import { CommandPalette } from "kumo-svelte/components/command-palette";
+```
+
+## Usage
+
+CommandPalette is built on Bits UI's Command primitive. Use `CommandPaletteDialog` when the palette should open in a modal dialog, or use `CommandPalette` directly for an inline command surface.
+
+```svelte
+<script lang="ts">
+  import {
+    Button,
+    CommandPalette,
+    CommandPaletteDialog,
+    CommandPaletteEmpty,
+    CommandPaletteInput,
+    CommandPaletteItem,
+    CommandPaletteList,
+  } from "kumo-svelte";
+
+  const items = ["Create Project", "Open Settings"];
+  let open = $state(false);
+  let search = $state("");
+</script>
+
+<Button onclick={() => (open = true)}>Open</Button>
+
+<CommandPaletteDialog bind:open>
+  <CommandPalette bind:value={search}>
+    <CommandPaletteInput placeholder="Search..." />
+    <CommandPaletteList>
+      {#each items as item}
+        <CommandPaletteItem value={item} onSelect={() => (open = false)}>
+          {item}
+        </CommandPaletteItem>
+      {/each}
+      <CommandPaletteEmpty>No results</CommandPaletteEmpty>
+    </CommandPaletteList>
+  </CommandPalette>
+</CommandPaletteDialog>
+```
+
+## Keyboard Navigation
+
+Built-in keyboard navigation is provided automatically by the Command primitive:
+
+| Keys | Description |
+| --- | --- |
+| `↑` / `↓` | Move highlight between items. |
+| `Enter` | Select highlighted item. |
+| `Escape` | Close the dialog when used inside `CommandPaletteDialog`. |
+
+## Examples
+
+### With Grouped Items
+
+Group related commands together with labels.
+
+<Example demo="command-palette-basic-demo">
+  <CommandPaletteBasicDemo />
+</Example>
+
+### Simple Flat List
+
+For simpler use cases, use a flat array of items without grouping.
+
+<Example demo="command-palette-simple-demo">
+  <CommandPaletteSimpleDemo />
+</Example>
+
+### Loading State
+
+Show a loading spinner while fetching results.
+
+<Example demo="command-palette-loading-demo">
+  <CommandPaletteLoadingDemo />
+</Example>
+
+### Disabling Browser Autocomplete
+
+Pass standard HTML input attributes like `autocomplete` to suppress browser autocomplete overlays.
+
+<Example demo="command-palette-no-autocomplete-demo">
+  <CommandPaletteNoAutocompleteDemo />
+</Example>
+
+### ResultItem with Breadcrumbs
+
+Use `CommandPaletteResultItem` for rich items with breadcrumbs, icons, and optional text highlighting.
+
+<Example demo="command-palette-result-item-demo">
+  <CommandPaletteResultItemDemo />
+</Example>
+
+## Component Parts
+
+### CommandPalette / CommandPaletteRoot
+
+The root command surface. It manages search value and item filtering.
+
+### CommandPaletteDialog
+
+Modal dialog wrapper. Put a `CommandPalette` inside it when the command palette should open over the page.
+
+### CommandPaletteInput
+
+Search input field with auto-focus and keyboard handling.
+
+### CommandPaletteList
+
+Scrollable container for results.
+
+### CommandPaletteGroup
+
+Category grouping container.
+
+### CommandPaletteGroupLabel
+
+Section header text within a group.
+
+### CommandPaletteItem
+
+Basic selectable item.
+
+### CommandPaletteResultItem
+
+Rich item with breadcrumbs, icons, descriptions, external indicators, and text highlighting.
+
+### HighlightedText
+
+Renders text with highlighted portions based on match indices.
+
+### CommandPaletteEmpty
+
+Empty state when no results match.
+
+### CommandPaletteLoading
+
+Loading spinner state.
+
+### CommandPaletteFooter
+
+Footer for keyboard hints or other content.
+
+## API Reference
+
+### CommandPalette / CommandPaletteRoot Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `value` | `string` | `""` | Search value. Bind with `bind:value` for two-way state. |
+| `onValueChange` | `(value: string) => void` | — | Called when the search value changes. |
+| `filter` | `(value: string, search: string, keywords?: string[]) => number` | — | Custom command item filtering function. |
+| `label` | `string` | `"Command palette"` | Accessible label for the command root. |
+| `loop` | `boolean` | — | Whether keyboard navigation loops at the ends. |
+| `shouldFilter` | `boolean` | — | Whether the primitive should filter items. |
+| `class` | `string` | — | Additional classes. |
+| `children` | `Snippet` | — | Input, list, groups, items, footer, and other content. |
+
+### CommandPaletteDialog Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `open` | `boolean` | `false` | Dialog open state. Bind with `bind:open`. |
+| `onOpenChange` | `(open: boolean) => void` | — | Called when the dialog opens or closes. |
+| `class` | `string` | — | Additional classes for dialog content. |
+| `children` | `Snippet` | — | Dialog content, usually `CommandPalette`. |
+
+### CommandPaletteInput Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `value` | `string` | `""` | Input value. Normally inherited from the root command state. |
+| `placeholder` | `string` | — | Input placeholder. |
+| `autofocus` | `boolean` | `true` | Focus the input when mounted. |
+| `autocomplete` | `HTMLInputAttributes["autocomplete"]` | — | Browser autocomplete setting. |
+| `leading` | `Snippet` | Magnifying glass icon | Custom leading content. |
+| `trailing` | `Snippet` | — | Custom trailing content. |
+| `onkeydown` | `(event) => void` | — | Keydown handler. |
+| `aria-label` | `string` | — | Accessible input label. |
+| `class` | `string` | — | Additional classes. |
+
+### CommandPaletteItem Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `value` | `string` | — | Value used by the command primitive for filtering and selection. |
+| `onSelect` | `() => void` | — | Called when the item is selected. |
+| `disabled` | `boolean` | `false` | Disable the item. |
+| `forceMount` | `boolean` | — | Keep the item mounted. |
+| `keywords` | `string[]` | — | Additional search keywords. |
+| `class` | `string` | — | Additional classes. |
+| `children` | `Snippet` | — | Item content. |
+
+### CommandPaletteResultItem Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `title` | `string` | — | Primary item title. |
+| `value` | `string` | — | Value used by the command primitive. |
+| `breadcrumbs` | `string[]` | `[]` | Breadcrumbs shown before the title. |
+| `description` | `string` | — | Optional trailing description. |
+| `icon` | `Snippet` | — | Leading icon snippet. |
+| `titleHighlights` | `[number, number][]` | — | Highlight ranges for title text. |
+| `breadcrumbHighlights` | `[number, number][][]` | — | Highlight ranges for breadcrumbs. |
+| `external` | `boolean` | `false` | Show external-link icon. |
+| `nonInteractive` | `boolean` | `false` | Render as non-interactive. |
+| `showArrow` | `boolean` | `true` | Show arrow on highlighted item. |
+| `onSelect` | `() => void` | — | Called when the result is selected. |
+
+### Other Parts
+
+| Component | Description |
+| --- | --- |
+| `CommandPaletteList` | Scrollable results container. Accepts `children` and `class`. |
+| `CommandPaletteGroup` | Group wrapper. Accepts `children`, `class`, `forceMount`, and `value`. |
+| `CommandPaletteGroupLabel` | Group heading. Accepts `children` and `class`. |
+| `CommandPaletteEmpty` | Empty state. Accepts `children` and `forceMount`. |
+| `CommandPaletteLoading` | Loading state. Accepts `children` and `progress`. |
+| `CommandPaletteFooter` | Footer area. Accepts `children` and `class`. |
+| `CommandPaletteSeparator` | Separator for grouping sections. |
+| `HighlightedText` | Highlighted text helper with `text`, `highlights`, and `class`. |

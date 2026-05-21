@@ -1,14 +1,14 @@
 <script lang="ts">
-  import { Popover as PopoverPrimitive } from "bits-ui";
   import type { PortalProps } from "bits-ui";
+  import { Popover as PopoverPrimitive } from "bits-ui";
   import { cn } from "../../utils/cn";
   import ArrowSvg from "../tooltip/arrow-svg.svelte";
   import PopoverPortal from "./popover-portal.svelte";
   import {
-    KUMO_POPOVER_DEFAULT_VARIANTS,
-    popoverVariants,
-    type KumoPopoverAlign,
-    type KumoPopoverSide,
+      KUMO_POPOVER_DEFAULT_VARIANTS,
+      popoverVariants,
+      type KumoPopoverAlign,
+      type KumoPopoverSide,
   } from "./variants";
 
   export type PopoverContentProps = Omit<
@@ -27,7 +27,7 @@
     class: className,
     side = KUMO_POPOVER_DEFAULT_VARIANTS.side,
     align = "center",
-    sideOffset = 8,
+    sideOffset = -1,
     alignOffset = 0,
     positionMethod = "absolute",
     anchor,

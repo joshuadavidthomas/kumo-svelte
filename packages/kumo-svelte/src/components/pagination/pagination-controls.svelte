@@ -81,10 +81,6 @@
           />
         {:else}
           <InputGroupInput
-            type="number"
-            inputmode="numeric"
-            min={1}
-            max={context.maxPage}
             style="width: 50px"
             class="text-center"
             aria-label={context.labels.pageNumber}

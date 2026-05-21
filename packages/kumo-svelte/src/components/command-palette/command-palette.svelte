@@ -34,7 +34,7 @@
   {loop}
   {onValueChange}
   {shouldFilter}
-  class={cn("flex size-full flex-col overflow-hidden", className)}
+  class={cn("flex max-h-[60vh] size-full flex-col overflow-hidden rounded-lg bg-kumo-elevated", className)}
 >
   {@render children?.()}
 </CommandPrimitive.Root>

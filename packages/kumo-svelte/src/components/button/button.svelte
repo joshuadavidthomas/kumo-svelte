@@ -24,7 +24,7 @@
     children?: Snippet;
     icon?: Component;
     loading?: boolean;
-    title?: Snippet | string;
+    title?: Snippet | string | null;
   }
 
   let {
@@ -33,11 +33,12 @@
     class: className,
     disabled = false,
     loading = false,
+    onclick,
     shape = KUMO_BUTTON_DEFAULT_VARIANTS.shape,
     size = KUMO_BUTTON_DEFAULT_VARIANTS.size,
     variant = KUMO_BUTTON_DEFAULT_VARIANTS.variant,
-    type = "button",
     title,
+    type = "button",
     ...restProps
   }: ButtonProps = $props();
 
@@ -62,8 +63,9 @@
     )}
     disabled={loading || disabled}
     {type}
-    {...props}
+    {onclick}
     {...restProps}
+    {...props}
   >
     {#if loading}
       <Loader size={spinnerSizes[size]} aria-hidden="true" />
