@@ -20,12 +20,19 @@ export const componentMetadataSchema = v.object({
 export type ComponentPageMetadata = v.InferOutput<typeof componentMetadataSchema>;
 
 const metadataModules = import.meta.glob<ComponentPageMetadata>(
-  "/src/routes/(docs)/components/*/+page.svx",
+  "../routes/**/components/*/+page.svx",
   {
     eager: true,
     import: "metadata",
   },
 );
+
+const navLabelOverrides: Record<string, string> = {
+  "cloudflare-logo": "Cloudflare Logo",
+  "command-palette": "Command Palette",
+  "date-picker": "Date Picker",
+  dropdown: "Dropdown",
+};
 
 export const componentItems: ComponentDocsNavItem[] = Object.entries(metadataModules)
   .map(([path, metadata]) => {
@@ -34,7 +41,7 @@ export const componentItems: ComponentDocsNavItem[] = Object.entries(metadataMod
     return {
       description: page.description,
       href: `/components/${slug}`,
-      label: page.title,
+      label: navLabelOverrides[slug] ?? page.title,
       slug,
     };
   })

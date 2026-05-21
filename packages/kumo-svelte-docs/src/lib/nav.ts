@@ -8,14 +8,12 @@ export interface DocsNavGroup {
 export const staticPages: DocsNavItem[] = [
   { label: "Home", href: "/" },
   { label: "Installation", href: "/installation" },
+  { label: "Contributing", href: "/contributing" },
   { label: "Colors", href: "/colors" },
-  { label: "Components vs Blocks", href: "/components-vs-blocks" },
+  { label: "Accessibility", href: "/accessibility" },
+  { label: "Figma Resources", href: "/figma" },
   { label: "CLI", href: "/cli" },
   { label: "Registry", href: "/registry" },
-  { label: "Streaming UI", href: "/streaming" },
-  { label: "Accessibility", href: "/accessibility" },
-  { label: "Figma", href: "/figma" },
-  { label: "Contributing", href: "/contributing" },
   { label: "Changelog", href: "/changelog" },
 ];
 
