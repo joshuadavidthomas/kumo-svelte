@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Label } from "kumo-svelte";
+  import { Label } from "kumo-svelte/components/label";
 </script>
 
 {#snippet tooltip()}

@@ -51,8 +51,7 @@ A 5-step single-hue scale encodes **density**. Use it when a single metric varie
 ## API Reference
 
 ```ts
-import { ChartPalette } from "kumo-svelte";
-
+import { ChartPalette } from "kumo-svelte/components/chart";
 ChartPalette.semantic("Success");
 ChartPalette.categorical(0);
 ChartPalette.sequential("blues");

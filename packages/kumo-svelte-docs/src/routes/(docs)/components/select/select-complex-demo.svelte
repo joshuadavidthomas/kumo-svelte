@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Text } from "kumo-svelte";
+  import { Text } from "kumo-svelte/components/text";
   import * as Select from "kumo-svelte/components/select";
   const authors = [
     { id: "1", name: "John Doe", title: "Programmer" },

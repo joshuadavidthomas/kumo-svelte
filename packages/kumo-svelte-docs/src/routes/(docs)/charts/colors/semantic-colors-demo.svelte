@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { ChartPalette } from "kumo-svelte";
-
+  import { ChartPalette } from "kumo-svelte/components/chart";
   const colors = ["Attention", "Warning", "Success", "Neutral", "Disabled", "Skeleton"] as const;
 </script>
 

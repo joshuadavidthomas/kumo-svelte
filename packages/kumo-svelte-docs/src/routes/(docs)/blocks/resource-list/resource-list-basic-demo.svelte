@@ -1,6 +1,6 @@
 <script lang="ts">
   import DatabaseIcon from "phosphor-svelte/lib/DatabaseIcon";
-  import { Surface } from "kumo-svelte";
+  import { Surface } from "kumo-svelte/components/surface";
   import ResourceListDemoShell from "./resource-list-demo-shell.svelte";
 </script>
 

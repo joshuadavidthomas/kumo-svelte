@@ -22,7 +22,7 @@ DeleteResource is a **block**: a component you own and can customize. The Svelte
 ### Barrel
 
 ```ts
-import { DeleteResource } from "kumo-svelte";
+import { DeleteResource } from "kumo-svelte/blocks/delete-resource";
 ```
 
 ### Granular
@@ -35,8 +35,8 @@ import { DeleteResource } from "kumo-svelte/blocks/delete-resource";
 
 ```svelte
 <script lang="ts">
-  import { Button, DeleteResource } from "kumo-svelte";
-
+  import { Button } from "kumo-svelte/components/button";
+  import { DeleteResource } from "kumo-svelte/blocks/delete-resource";
   let open = $state(false);
   let isDeleting = $state(false);
 

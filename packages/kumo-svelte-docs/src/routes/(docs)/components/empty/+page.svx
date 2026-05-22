@@ -23,7 +23,7 @@ sourceFile: components/empty
 ### Barrel
 
 ```ts
-import { Empty } from "kumo-svelte";
+import { Empty } from "kumo-svelte/components/empty";
 ```
 
 ### Granular
@@ -36,7 +36,7 @@ import { Empty } from "kumo-svelte/components/empty";
 
 ```svelte
 <script lang="ts">
-  import { Empty } from "kumo-svelte";
+  import { Empty } from "kumo-svelte/components/empty";
   import PackageIcon from "phosphor-svelte/lib/PackageIcon";
 </script>
 

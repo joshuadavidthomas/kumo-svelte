@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { Button, Text } from "kumo-svelte";
+  import { Button } from "kumo-svelte/components/button";
+  import { Text } from "kumo-svelte/components/text";
   import * as Combobox from "kumo-svelte/components/combobox";
   import { bots } from "./combobox-data";
 

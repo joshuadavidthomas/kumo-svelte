@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { type TabsItem } from "kumo-svelte";
+  import { type TabsItem } from "kumo-svelte/components/tabs";
   import * as Tabs from "kumo-svelte/components/tabs";
   import type { Snippet } from "svelte";
 

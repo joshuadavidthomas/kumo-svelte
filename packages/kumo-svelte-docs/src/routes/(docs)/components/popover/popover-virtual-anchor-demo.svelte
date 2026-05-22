@@ -1,6 +1,6 @@
 <script lang="ts">
   import DotsThreeIcon from "phosphor-svelte/lib/DotsThreeIcon";
-  import { Button } from "kumo-svelte";
+  import { Button } from "kumo-svelte/components/button";
   import * as Popover from "kumo-svelte/components/popover";
   const rows = [
     { id: "1", name: "api-gateway", status: "Active" },

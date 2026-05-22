@@ -24,7 +24,7 @@ The Svelte package does not currently export a `ResourceListPage` block or a blo
 ```svelte
 <script lang="ts">
   import DatabaseIcon from "phosphor-svelte/lib/DatabaseIcon";
-  import { Surface } from "kumo-svelte";
+  import { Surface } from "kumo-svelte/components/surface";
 </script>
 
 <div class="min-h-[400px] bg-kumo-overlay p-6">

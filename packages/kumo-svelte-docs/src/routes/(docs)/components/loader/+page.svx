@@ -20,7 +20,7 @@ primitive: svg
 ### Barrel
 
 ```ts
-import { Loader } from "kumo-svelte";
+import { Loader } from "kumo-svelte/components/loader";
 ```
 
 ### Granular
@@ -33,7 +33,7 @@ import { Loader } from "kumo-svelte/components/loader";
 
 ```svelte
 <script lang="ts">
-  import { Loader } from "kumo-svelte";
+  import { Loader } from "kumo-svelte/components/loader";
 </script>
 
 <Loader />

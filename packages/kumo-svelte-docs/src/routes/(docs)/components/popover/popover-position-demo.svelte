@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Button } from "kumo-svelte";
+  import { Button } from "kumo-svelte/components/button";
   import * as Popover from "kumo-svelte/components/popover";
   const sides = ["bottom", "top", "left", "right"] as const;
 </script>

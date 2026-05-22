@@ -21,7 +21,7 @@ sourceFile: components/sensitive-input
 ### Barrel
 
 ```ts
-import { SensitiveInput } from "kumo-svelte";
+import { SensitiveInput } from "kumo-svelte/components/sensitive-input";
 ```
 
 ### Granular
@@ -34,7 +34,7 @@ import { SensitiveInput } from "kumo-svelte/components/sensitive-input";
 
 ```svelte
 <script lang="ts">
-  import { SensitiveInput } from "kumo-svelte";
+  import { SensitiveInput } from "kumo-svelte/components/sensitive-input";
 </script>
 
 <SensitiveInput label="Secret" defaultValue="my-secret-key" />

@@ -21,7 +21,7 @@ sourceFile: components/badge
 ### Barrel
 
 ```ts
-import { Badge } from "kumo-svelte";
+import { Badge } from "kumo-svelte/components/badge";
 ```
 
 ### Granular
@@ -34,7 +34,7 @@ import { Badge } from "kumo-svelte/components/badge";
 
 ```svelte
 <script lang="ts">
-  import { Badge } from "kumo-svelte";
+  import { Badge } from "kumo-svelte/components/badge";
 </script>
 
 <Badge variant="secondary">New</Badge>

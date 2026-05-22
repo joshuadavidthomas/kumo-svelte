@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { Banner, Button } from "kumo-svelte";
+  import { Banner } from "kumo-svelte/components/banner";
+  import { Button } from "kumo-svelte/components/button";
   import InfoIcon from "phosphor-svelte/lib/InfoIcon";
   import XIcon from "phosphor-svelte/lib/XIcon";
 </script>

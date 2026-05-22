@@ -1,7 +1,8 @@
 <script lang="ts">
   import type { CalendarDate, DateValue } from "@internationalized/date";
   import { getLocalTimeZone, today } from "@internationalized/date";
-  import { Button, DatePicker } from "kumo-svelte";
+  import { Button } from "kumo-svelte/components/button";
+  import { DatePicker } from "kumo-svelte/components/date-picker";
   import * as Popover from "kumo-svelte/components/popover";
   import CalendarDotsIcon from "phosphor-svelte/lib/CalendarDotsIcon";
 

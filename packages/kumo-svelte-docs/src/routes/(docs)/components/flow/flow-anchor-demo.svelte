@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { type FlowNodeRenderProps } from "kumo-svelte";
+  import { type FlowNodeRenderProps } from "kumo-svelte/components/flow";
   import * as Flow from "kumo-svelte/components/flow";
 </script>
 

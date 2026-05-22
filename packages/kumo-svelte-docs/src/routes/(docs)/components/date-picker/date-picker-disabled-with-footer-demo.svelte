@@ -1,8 +1,7 @@
 <script lang="ts">
   import type { DateValue } from "@internationalized/date";
   import { getLocalTimeZone, today } from "@internationalized/date";
-  import { DatePicker } from "kumo-svelte";
-
+  import { DatePicker } from "kumo-svelte/components/date-picker";
   const timeZone = getLocalTimeZone();
   const now = today(timeZone);
   const maxDays = 5;

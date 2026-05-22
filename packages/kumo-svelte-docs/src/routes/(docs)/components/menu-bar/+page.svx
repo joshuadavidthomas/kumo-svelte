@@ -21,7 +21,7 @@ primitive: toolbar
 ### Barrel
 
 ```ts
-import { MenuBar } from "kumo-svelte";
+import { MenuBar } from "kumo-svelte/components/menubar";
 ```
 
 ### Granular
@@ -35,8 +35,7 @@ import { MenuBar } from "kumo-svelte/components/menubar";
 ```svelte
 <script lang="ts">
   import TextBIcon from "phosphor-svelte/lib/TextBIcon";
-  import { MenuBar } from "kumo-svelte";
-
+  import { MenuBar } from "kumo-svelte/components/menubar";
   let active = $state<string | undefined>("bold");
 </script>
 

@@ -22,7 +22,7 @@ sourceFile: components/grid
 ### Barrel
 
 ```ts
-import { Grid, GridItem } from "kumo-svelte";
+import { Grid, GridItem } from "kumo-svelte/components/grid";
 ```
 
 ### Granular
@@ -35,7 +35,7 @@ import { Grid, GridItem } from "kumo-svelte/components/grid";
 
 ```svelte
 <script lang="ts">
-  import { Grid, GridItem } from "kumo-svelte";
+  import { Grid, GridItem } from "kumo-svelte/components/grid";
 </script>
 
 <Grid variant="2up" gap="base">

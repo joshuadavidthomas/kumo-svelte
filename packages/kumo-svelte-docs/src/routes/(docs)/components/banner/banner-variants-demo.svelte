@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Banner } from "kumo-svelte";
+  import { Banner } from "kumo-svelte/components/banner";
   import InfoIcon from "phosphor-svelte/lib/InfoIcon";
   import WarningIcon from "phosphor-svelte/lib/WarningIcon";
   import WarningCircleIcon from "phosphor-svelte/lib/WarningCircleIcon";

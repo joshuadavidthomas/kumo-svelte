@@ -1,5 +1,7 @@
 <script lang="ts">
-  import { Grid, GridItem, Surface, Text } from "kumo-svelte";
+  import { Grid, GridItem } from "kumo-svelte/components/grid";
+  import { Surface } from "kumo-svelte/components/surface";
+  import { Text } from "kumo-svelte/components/text";
 </script>
 
 <Grid variant="2up" gap="base">

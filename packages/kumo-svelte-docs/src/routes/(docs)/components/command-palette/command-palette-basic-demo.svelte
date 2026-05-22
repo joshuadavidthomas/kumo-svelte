@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Button } from "kumo-svelte";
+  import { Button } from "kumo-svelte/components/button";
   import * as CommandPalette from "kumo-svelte/components/command-palette";
   import ChartLineIcon from "phosphor-svelte/lib/ChartLineIcon";
   import FolderIcon from "phosphor-svelte/lib/FolderIcon";

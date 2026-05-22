@@ -96,7 +96,9 @@ Then use components from the root package or component subpaths:
 
 ```svelte
 <script lang="ts">
-  import { Badge, Button, Text } from "kumo-svelte";
+  import { Badge } from "kumo-svelte/components/badge";
+  import { Button } from "kumo-svelte/components/button";
+  import { Text } from "kumo-svelte/components/text";
 </script>
 
 <Text variant="heading1" as="h1">Workers</Text>

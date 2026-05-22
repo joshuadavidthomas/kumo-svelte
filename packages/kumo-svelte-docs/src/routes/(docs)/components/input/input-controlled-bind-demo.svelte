@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { Input } from "kumo-svelte";
-
+  import { Input } from "kumo-svelte/components/input";
   let value = $state("");
 </script>
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { LinkButton } from "kumo-svelte";
+  import { LinkButton } from "kumo-svelte/components/button";
   import ArrowSquareOutIcon from "phosphor-svelte/lib/ArrowSquareOutIcon";
 </script>
 

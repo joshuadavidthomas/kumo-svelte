@@ -1,8 +1,7 @@
 <script lang="ts">
   import type { DateValue } from "@internationalized/date";
   import { getLocalTimeZone } from "@internationalized/date";
-  import { DatePicker } from "kumo-svelte";
-
+  import { DatePicker } from "kumo-svelte/components/date-picker";
   let date = $state<DateValue | undefined>();
 
   function formatDate(value: DateValue | undefined) {

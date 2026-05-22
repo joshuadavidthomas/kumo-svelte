@@ -29,7 +29,7 @@ primitive: textarea
 ### Barrel
 
 ```ts
-import { InputArea, Textarea } from "kumo-svelte";
+import { InputArea, Textarea } from "kumo-svelte/components/input";
 ```
 
 ### Granular
@@ -48,7 +48,7 @@ Use the `label` prop to enable the built-in Field wrapper with label, descriptio
 
 ```svelte
 <script lang="ts">
-  import { InputArea } from "kumo-svelte";
+  import { InputArea } from "kumo-svelte/components/input";
 </script>
 
 <InputArea

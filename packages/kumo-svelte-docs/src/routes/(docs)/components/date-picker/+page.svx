@@ -25,7 +25,7 @@ sourceFile: components/date-picker
 ### Barrel
 
 ```ts
-import { DatePicker, type DatePickerValue } from "kumo-svelte";
+import { DatePicker, type DatePickerValue } from "kumo-svelte/components/date-picker";
 ```
 
 ### Granular
@@ -41,8 +41,7 @@ DatePicker supports three selection modes: `single`, `multiple`, and `range`. Th
 ```svelte
 <script lang="ts">
   import type { DateValue } from "@internationalized/date";
-  import { DatePicker } from "kumo-svelte";
-
+  import { DatePicker } from "kumo-svelte/components/date-picker";
   let date = $state<DateValue | undefined>();
 </script>
 
@@ -123,7 +122,8 @@ Here's a complete example showing how to compose DatePicker with Popover:
 <script lang="ts">
   import type { DateValue } from "@internationalized/date";
   import { getLocalTimeZone } from "@internationalized/date";
-  import { Button, DatePicker } from "kumo-svelte";
+  import { Button } from "kumo-svelte/components/button";
+  import { DatePicker } from "kumo-svelte/components/date-picker";
   import * as Popover from "kumo-svelte/components/popover";
   import CalendarDotsIcon from "phosphor-svelte/lib/CalendarDotsIcon";
 

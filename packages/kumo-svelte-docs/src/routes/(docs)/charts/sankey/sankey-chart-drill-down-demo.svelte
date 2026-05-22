@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { Button, SankeyChart } from "kumo-svelte";
+  import { Button } from "kumo-svelte/components/button";
+  import { SankeyChart } from "kumo-svelte/components/chart";
   import { echarts } from "../chart-echarts";
   import { sankeyLinks, sankeyNodes } from "../chart-data";
 

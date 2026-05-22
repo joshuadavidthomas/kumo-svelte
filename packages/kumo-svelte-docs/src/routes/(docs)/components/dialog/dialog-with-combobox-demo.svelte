@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Button } from "kumo-svelte";
+  import { Button } from "kumo-svelte/components/button";
   import * as Combobox from "kumo-svelte/components/combobox";
   import * as Dialog from "kumo-svelte/components/dialog";
   import XIcon from "phosphor-svelte/lib/XIcon";

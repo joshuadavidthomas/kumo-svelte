@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { SankeyChart, type SankeyTooltipParams } from "kumo-svelte";
+  import { SankeyChart, type SankeyTooltipParams } from "kumo-svelte/components/chart";
   import { echarts } from "../chart-echarts";
   import { sankeyLinks, sankeyNodes } from "../chart-data";
 

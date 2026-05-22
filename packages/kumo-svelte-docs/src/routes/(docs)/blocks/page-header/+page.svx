@@ -23,7 +23,7 @@ The Svelte package does not currently export a `PageHeader` block or a block-ins
 
 ```svelte
 <script lang="ts">
-  import { Button } from "kumo-svelte";
+  import { Button } from "kumo-svelte/components/button";
   import * as Breadcrumbs from "kumo-svelte/components/breadcrumbs";
   import * as Tabs from "kumo-svelte/components/tabs";
   const tabs = [

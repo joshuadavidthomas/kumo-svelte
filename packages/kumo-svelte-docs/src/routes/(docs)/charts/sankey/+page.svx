@@ -28,7 +28,7 @@ npm install echarts
 ### Barrel
 
 ```ts
-import { SankeyChart } from "kumo-svelte";
+import { SankeyChart } from "kumo-svelte/components/chart";
 ```
 
 ### Granular
@@ -41,7 +41,7 @@ import { SankeyChart } from "kumo-svelte/components/chart";
 
 ```svelte
 <script lang="ts">
-  import { SankeyChart, ChartPalette } from "kumo-svelte";
+  import { SankeyChart, ChartPalette } from "kumo-svelte/components/chart";
   import { echarts } from "./chart-echarts";
 
   const nodes = [

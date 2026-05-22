@@ -1,7 +1,7 @@
 <script lang="ts">
   import WarningIcon from "phosphor-svelte/lib/WarningIcon";
   import WarningOctagonIcon from "phosphor-svelte/lib/WarningOctagonIcon";
-  import { Banner } from "kumo-svelte";
+  import { Banner } from "kumo-svelte/components/banner";
 </script>
 
 {#snippet warningIcon()}

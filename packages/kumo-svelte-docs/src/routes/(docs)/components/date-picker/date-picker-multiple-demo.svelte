@@ -1,7 +1,6 @@
 <script lang="ts">
   import type { DateValue } from "@internationalized/date";
-  import { DatePicker } from "kumo-svelte";
-
+  import { DatePicker } from "kumo-svelte/components/date-picker";
   let dates = $state<DateValue[] | undefined>();
 </script>
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Text } from "kumo-svelte";
+  import { Text } from "kumo-svelte/components/text";
   import * as Collapsible from "kumo-svelte/components/collapsible";
   let open = $state(false);
 </script>

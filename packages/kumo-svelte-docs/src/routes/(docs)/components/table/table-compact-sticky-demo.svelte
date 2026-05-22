@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { Badge, Button } from "kumo-svelte";
+  import { Badge } from "kumo-svelte/components/badge";
+  import { Button } from "kumo-svelte/components/button";
   import * as DropdownMenu from "kumo-svelte/components/dropdown";
   import * as LayerCard from "kumo-svelte/components/layer-card";
   import * as Table from "kumo-svelte/components/table";

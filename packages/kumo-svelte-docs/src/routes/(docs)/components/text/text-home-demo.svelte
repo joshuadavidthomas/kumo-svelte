@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Text } from "kumo-svelte";
+  import { Text } from "kumo-svelte/components/text";
 </script>
 
 <div class="flex flex-col gap-1">

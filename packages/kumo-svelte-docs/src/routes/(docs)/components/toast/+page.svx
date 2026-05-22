@@ -28,7 +28,7 @@ sourceFile: components/toast
 ### Barrel
 
 ```ts
-import { Toasty, createKumoToastManager, useKumoToastManager } from "kumo-svelte";
+import { Toasty, createKumoToastManager, useKumoToastManager } from "kumo-svelte/components/toast";
 ```
 
 ### Granular
@@ -43,8 +43,8 @@ The toast system consists of two parts: the `Toasty` provider component and a to
 
 ```svelte
 <script lang="ts">
-  import { Button, createKumoToastManager, Toasty } from "kumo-svelte";
-
+  import { Button } from "kumo-svelte/components/button";
+  import { createKumoToastManager, Toasty } from "kumo-svelte/components/toast";
   const toastManager = createKumoToastManager();
 </script>
 
@@ -67,7 +67,7 @@ Wrap your application or a section of it with the `Toasty` provider. This sets u
 
 ```svelte
 <script lang="ts">
-  import { Toasty } from "kumo-svelte";
+  import { Toasty } from "kumo-svelte/components/toast";
 </script>
 
 <Toasty>

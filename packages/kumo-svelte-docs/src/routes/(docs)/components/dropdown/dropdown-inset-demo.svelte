@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Button } from "kumo-svelte";
+  import { Button } from "kumo-svelte/components/button";
   import * as DropdownMenu from "kumo-svelte/components/dropdown";
   import CopyIcon from "phosphor-svelte/lib/CopyIcon";
   import PencilSimpleIcon from "phosphor-svelte/lib/PencilSimpleIcon";

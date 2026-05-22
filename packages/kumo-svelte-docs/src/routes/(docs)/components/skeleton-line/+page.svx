@@ -22,7 +22,7 @@ sourceFile: components/loader
 ### Barrel
 
 ```ts
-import { SkeletonLine } from "kumo-svelte";
+import { SkeletonLine } from "kumo-svelte/components/loader";
 ```
 
 ### Granular

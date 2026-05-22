@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Input } from "kumo-svelte";
+  import { Input } from "kumo-svelte/components/input";
   import * as Select from "kumo-svelte/components/select";
   const countries = {
     us: "United States",

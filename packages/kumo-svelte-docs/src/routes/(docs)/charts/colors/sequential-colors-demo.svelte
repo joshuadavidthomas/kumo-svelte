@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { ChartPalette } from "kumo-svelte";
-
+  import { ChartPalette } from "kumo-svelte/components/chart";
   const steps = ChartPalette.sequential("blues");
 </script>
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Text } from "kumo-svelte";
+  import { Text } from "kumo-svelte/components/text";
   import * as Combobox from "kumo-svelte/components/combobox";
   import { disabledDatabases } from "./combobox-data";
 

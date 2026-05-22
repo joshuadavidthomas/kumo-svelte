@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { ChartPalette } from "kumo-svelte";
+  import { ChartPalette } from "kumo-svelte/components/chart";
 </script>
 
 <div class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">

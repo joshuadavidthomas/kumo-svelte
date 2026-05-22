@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { Button, SensitiveInput } from "kumo-svelte";
-
+  import { Button } from "kumo-svelte/components/button";
+  import { SensitiveInput } from "kumo-svelte/components/sensitive-input";
   let value = $state("my-secret-value");
 </script>
 

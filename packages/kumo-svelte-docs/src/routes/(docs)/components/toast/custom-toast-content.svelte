@@ -1,6 +1,6 @@
 <script lang="ts">
   import CheckCircleIcon from "phosphor-svelte/lib/CheckCircleIcon";
-  import { Link } from "kumo-svelte";
+  import { Link } from "kumo-svelte/components/link";
 </script>
 
 <div class="flex items-center gap-2">

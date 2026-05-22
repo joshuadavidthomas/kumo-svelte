@@ -1,6 +1,6 @@
 <script lang="ts">
   import PlusIcon from "phosphor-svelte/lib/PlusIcon";
-  import { Button } from "kumo-svelte";
+  import { Button } from "kumo-svelte/components/button";
   import * as Tooltip from "kumo-svelte/components/tooltip";
 </script>
 

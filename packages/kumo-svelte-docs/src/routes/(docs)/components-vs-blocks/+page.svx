@@ -20,7 +20,9 @@ Components are atomic, reusable UI elements such as Button, Input, Dialog, and B
 - **Agnostic** — no business logic or product-specific assumptions.
 
 ```ts
-import { Button, Input, Badge } from "kumo-svelte";
+import { Button } from "kumo-svelte/components/button";
+import { Input } from "kumo-svelte/components/input";
+import { Badge } from "kumo-svelte/components/badge";
 import * as Dialog from "kumo-svelte/components/dialog";
 import { Button as GranularButton } from "kumo-svelte/components/button";
 ```

@@ -1,6 +1,7 @@
 <script lang="ts">
   import DatabaseIcon from "phosphor-svelte/lib/DatabaseIcon";
-  import { CodeBlock, Surface } from "kumo-svelte";
+  import { CodeBlock } from "kumo-svelte/components/code";
+  import { Surface } from "kumo-svelte/components/surface";
   import ResourceListDemoShell from "./resource-list-demo-shell.svelte";
 
   const code = `// Read from KV

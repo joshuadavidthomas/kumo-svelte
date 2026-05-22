@@ -34,7 +34,7 @@ primitive: button
 ### Barrel
 
 ```ts
-import { Button } from "kumo-svelte";
+import { Button } from "kumo-svelte/components/button";
 ```
 
 ### Granular
@@ -47,7 +47,7 @@ import { Button } from "kumo-svelte/components/button";
 
 ```svelte
 <script lang="ts">
-  import { Button } from "kumo-svelte";
+  import { Button } from "kumo-svelte/components/button";
 </script>
 
 <Button variant="secondary">Click me</Button>

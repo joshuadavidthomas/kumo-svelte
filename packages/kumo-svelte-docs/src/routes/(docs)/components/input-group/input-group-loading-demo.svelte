@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Loader } from "kumo-svelte";
+  import { Loader } from "kumo-svelte/components/loader";
   import * as InputGroup from "kumo-svelte/components/input-group";
 </script>
 

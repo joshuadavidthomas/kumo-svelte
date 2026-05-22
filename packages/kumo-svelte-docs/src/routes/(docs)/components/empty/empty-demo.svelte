@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { Button, Empty } from "kumo-svelte";
+  import { Button } from "kumo-svelte/components/button";
+  import { Empty } from "kumo-svelte/components/empty";
   import CodeIcon from "phosphor-svelte/lib/CodeIcon";
   import GlobeIcon from "phosphor-svelte/lib/GlobeIcon";
   import PackageIcon from "phosphor-svelte/lib/PackageIcon";

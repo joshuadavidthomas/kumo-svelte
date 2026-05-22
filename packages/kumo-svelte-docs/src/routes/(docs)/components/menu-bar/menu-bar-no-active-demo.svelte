@@ -1,8 +1,7 @@
 <script lang="ts">
   import TextBIcon from "phosphor-svelte/lib/TextBIcon";
   import TextItalicIcon from "phosphor-svelte/lib/TextItalicIcon";
-  import { MenuBar } from "kumo-svelte";
-
+  import { MenuBar } from "kumo-svelte/components/menubar";
   let active = $state<string | undefined>();
 
 </script>

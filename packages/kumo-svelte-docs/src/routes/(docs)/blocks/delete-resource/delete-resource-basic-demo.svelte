@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { Button, DeleteResource } from "kumo-svelte";
-
+  import { Button } from "kumo-svelte/components/button";
+  import { DeleteResource } from "kumo-svelte/blocks/delete-resource";
   let open = $state(false);
   let isDeleting = $state(false);
 

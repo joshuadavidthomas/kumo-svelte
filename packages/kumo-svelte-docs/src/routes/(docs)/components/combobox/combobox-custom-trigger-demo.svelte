@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Button } from "kumo-svelte";
+  import { Button } from "kumo-svelte/components/button";
   import * as Combobox from "kumo-svelte/components/combobox";
   import CaretUpDownIcon from "phosphor-svelte/lib/CaretUpDownIcon";
   import { languageItems, languages } from "./combobox-data";

@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { ExternalIcon, Link, LinkProvider } from "kumo-svelte";
+  import { ExternalIcon, Link } from "kumo-svelte/components/link";
+  import { LinkProvider } from "kumo-svelte/utils";
   import CustomRouterLink from "./custom-router-link.svelte";
 </script>
 

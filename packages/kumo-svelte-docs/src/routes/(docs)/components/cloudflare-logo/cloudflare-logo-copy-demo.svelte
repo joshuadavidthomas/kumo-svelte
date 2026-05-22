@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { CloudflareLogo, generateCloudflareLogoSvg } from "kumo-svelte";
+  import { CloudflareLogo, generateCloudflareLogoSvg } from "kumo-svelte/components/cloudflare-logo";
   import * as DropdownMenu from "kumo-svelte/components/dropdown";
   import ArrowSquareOutIcon from "phosphor-svelte/lib/ArrowSquareOutIcon";
   import CloudIcon from "phosphor-svelte/lib/CloudIcon";

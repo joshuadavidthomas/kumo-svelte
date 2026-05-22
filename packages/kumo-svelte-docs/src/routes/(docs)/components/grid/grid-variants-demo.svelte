@@ -1,6 +1,7 @@
 <script lang="ts">
-  import { Grid, GridItem, Surface, Text } from "kumo-svelte";
-
+  import { Grid, GridItem } from "kumo-svelte/components/grid";
+  import { Surface } from "kumo-svelte/components/surface";
+  import { Text } from "kumo-svelte/components/text";
   const variants = [
     { name: "2up", count: 2 },
     { name: "3up", count: 3 },

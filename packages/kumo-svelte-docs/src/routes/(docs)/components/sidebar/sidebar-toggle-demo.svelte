@@ -3,7 +3,7 @@
   import CodeIcon from "phosphor-svelte/lib/CodeIcon";
   import DatabaseIcon from "phosphor-svelte/lib/DatabaseIcon";
   import HouseIcon from "phosphor-svelte/lib/HouseIcon";
-  import { useSidebar } from "kumo-svelte";
+  import { useSidebar } from "kumo-svelte/components/sidebar";
   import * as Sidebar from "kumo-svelte/components/sidebar";
   import DemoShell from "./sidebar-demo-shell.svelte";
   import DemoMain from "./sidebar-main.svelte";

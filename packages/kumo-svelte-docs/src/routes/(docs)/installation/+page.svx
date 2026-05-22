@@ -26,7 +26,8 @@ Import components from the main package or use granular imports for better tree-
 ### Main Package Import
 
 ```ts
-import { Button, Input } from "kumo-svelte";
+import { Button } from "kumo-svelte/components/button";
+import { Input } from "kumo-svelte/components/input";
 import * as LayerCard from "kumo-svelte/components/layer-card";
 ```
 
@@ -51,7 +52,8 @@ This docs app imports its project stylesheet from `src/routes/+layout.svelte`; y
 
 ```svelte
 <script lang="ts">
-  import { Button, Input } from "kumo-svelte";
+  import { Button } from "kumo-svelte/components/button";
+  import { Input } from "kumo-svelte/components/input";
   import * as LayerCard from "kumo-svelte/components/layer-card";
 </script>
 

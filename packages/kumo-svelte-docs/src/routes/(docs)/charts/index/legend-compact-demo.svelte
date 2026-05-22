@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { ChartLegendSmallItem, ChartPalette } from "kumo-svelte";
+  import { ChartLegendSmallItem, ChartPalette } from "kumo-svelte/components/chart";
 </script>
 
 <div class="flex flex-wrap gap-4">

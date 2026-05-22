@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Button } from "kumo-svelte";
+  import { Button } from "kumo-svelte/components/button";
   import * as DropdownMenu from "kumo-svelte/components/dropdown";
   import CreditCardIcon from "phosphor-svelte/lib/CreditCardIcon";
   import MoonIcon from "phosphor-svelte/lib/MoonIcon";

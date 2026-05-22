@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { CodeBlock, Surface } from "kumo-svelte";
+  import { CodeBlock } from "kumo-svelte/components/code";
+  import { Surface } from "kumo-svelte/components/surface";
   import ResourceListDemoShell from "./resource-list-demo-shell.svelte";
 
   const command = 'curl -H "Authorization: Bearer YOUR_API_KEY" https://api.example.com';

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Button } from "kumo-svelte";
+  import { Button } from "kumo-svelte/components/button";
   import * as CommandPalette from "kumo-svelte/components/command-palette";
   const groups = [
     { label: "Commands", items: ["Create New Project", "Open Settings", "Search Files"] },

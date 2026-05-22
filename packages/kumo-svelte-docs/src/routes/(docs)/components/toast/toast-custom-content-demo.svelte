@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { Button, createKumoToastManager, Toasty } from "kumo-svelte";
+  import { Button } from "kumo-svelte/components/button";
+  import { createKumoToastManager, Toasty } from "kumo-svelte/components/toast";
   import CustomToastContent from "./custom-toast-content.svelte";
 
   const toastManager = createKumoToastManager();

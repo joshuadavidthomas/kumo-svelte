@@ -18,7 +18,7 @@ pnpm add kumo-svelte
 There is no `kumo-svelte` block-install command today. Blocks in this package are either exported directly, such as `DeleteResource`, or documented as local composition patterns that you can copy into your app.
 
 ```ts
-import { DeleteResource } from "kumo-svelte";
+import { DeleteResource } from "kumo-svelte/blocks/delete-resource";
 ```
 
 ## Component Registry

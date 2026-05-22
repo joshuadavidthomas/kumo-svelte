@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Chart, ChartPalette, type KumoChartOption } from "kumo-svelte";
+  import { Chart, ChartPalette, type KumoChartOption } from "kumo-svelte/components/chart";
   import { echarts } from "../chart-echarts";
 
   const options = {

@@ -35,7 +35,7 @@ The default Link component renders an underlined anchor with primary color styli
 
 ```svelte
 <script lang="ts">
-  import { Link } from "kumo-svelte";
+  import { Link } from "kumo-svelte/components/link";
 </script>
 
 <p>
@@ -49,7 +49,7 @@ Use the `ExternalIcon` component to indicate links that open in a new tab.
 
 ```svelte
 <script lang="ts">
-  import { ExternalIcon, Link } from "kumo-svelte";
+  import { ExternalIcon, Link } from "kumo-svelte/components/link";
 </script>
 
 <Link href="https://cloudflare.com" target="_blank" rel="noopener noreferrer">
@@ -63,7 +63,7 @@ For app-wide router integration, configure a `LinkProvider` at your app root. Yo
 
 ```svelte
 <script lang="ts">
-  import { LinkProvider } from "kumo-svelte";
+  import { LinkProvider } from "kumo-svelte/utils";
   import AppLink from "./app-link.svelte";
 </script>
 

@@ -26,11 +26,7 @@ sourceFile: components/cloudflare-logo
 ### Barrel
 
 ```ts
-import {
-  CloudflareLogo,
-  PoweredByCloudflare,
-  generateCloudflareLogoSvg,
-} from "kumo-svelte";
+import { CloudflareLogo, PoweredByCloudflare, generateCloudflareLogoSvg } from "kumo-svelte/components/cloudflare-logo";
 ```
 
 ### Granular
@@ -47,7 +43,7 @@ import {
 
 ```svelte
 <script lang="ts">
-  import { CloudflareLogo } from "kumo-svelte";
+  import { CloudflareLogo } from "kumo-svelte/components/cloudflare-logo";
 </script>
 
 <CloudflareLogo class="w-36" />
@@ -120,8 +116,7 @@ A pre-built “Powered by Cloudflare” badge component for footers and attribut
 Use `generateCloudflareLogoSvg()` to get copy-paste ready SVG markup for non-Svelte contexts.
 
 ```ts
-import { generateCloudflareLogoSvg } from "kumo-svelte";
-
+import { generateCloudflareLogoSvg } from "kumo-svelte/components/cloudflare-logo";
 const glyphSvg = generateCloudflareLogoSvg({ variant: "glyph" });
 const fullSvg = generateCloudflareLogoSvg({ variant: "full" });
 const blackSvg = generateCloudflareLogoSvg({ color: "black" });

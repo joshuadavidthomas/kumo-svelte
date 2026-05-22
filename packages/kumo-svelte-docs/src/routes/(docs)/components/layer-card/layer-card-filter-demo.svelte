@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { Badge, Input } from "kumo-svelte";
+  import { Badge } from "kumo-svelte/components/badge";
+  import { Input } from "kumo-svelte/components/input";
   import * as LayerCard from "kumo-svelte/components/layer-card";
   import * as Tabs from "kumo-svelte/components/tabs";
   const origins = [

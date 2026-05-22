@@ -23,7 +23,7 @@ primitive: meter
 ### Barrel
 
 ```ts
-import { Meter } from "kumo-svelte";
+import { Meter } from "kumo-svelte/components/meter";
 ```
 
 ### Granular
@@ -36,7 +36,7 @@ import { Meter } from "kumo-svelte/components/meter";
 
 ```svelte
 <script lang="ts">
-  import { Meter } from "kumo-svelte";
+  import { Meter } from "kumo-svelte/components/meter";
 </script>
 
 <Meter label="Storage used" value={65} />

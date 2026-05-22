@@ -1,6 +1,6 @@
 <script lang="ts">
   import PlusIcon from "phosphor-svelte/lib/PlusIcon";
-  import { Button } from "kumo-svelte";
+  import { Button } from "kumo-svelte/components/button";
   import * as Breadcrumbs from "kumo-svelte/components/breadcrumbs";
   import PageHeaderDemoShell from "./page-header-demo-shell.svelte";
 

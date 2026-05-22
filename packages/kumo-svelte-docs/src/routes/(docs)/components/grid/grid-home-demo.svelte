@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Grid, GridItem } from "kumo-svelte";
+  import { Grid, GridItem } from "kumo-svelte/components/grid";
 </script>
 
 <Grid variant="side-by-side" gap="sm" class="w-[140px]">

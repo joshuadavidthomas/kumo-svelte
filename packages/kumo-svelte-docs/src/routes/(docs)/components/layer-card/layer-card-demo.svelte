@@ -1,6 +1,6 @@
 <script lang="ts">
   import ArrowRightIcon from "phosphor-svelte/lib/ArrowRightIcon";
-  import { Button } from "kumo-svelte";
+  import { Button } from "kumo-svelte/components/button";
   import * as LayerCard from "kumo-svelte/components/layer-card";
 </script>
 

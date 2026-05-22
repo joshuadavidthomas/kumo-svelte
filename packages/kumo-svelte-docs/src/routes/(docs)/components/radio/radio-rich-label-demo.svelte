@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Badge } from "kumo-svelte";
+  import { Badge } from "kumo-svelte/components/badge";
   import * as Radio from "kumo-svelte/components/radio";
   let value = $state("pro");
 </script>

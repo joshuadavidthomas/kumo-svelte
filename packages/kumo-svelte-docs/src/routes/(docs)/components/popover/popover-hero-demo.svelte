@@ -1,6 +1,6 @@
 <script lang="ts">
   import BellIcon from "phosphor-svelte/lib/BellIcon";
-  import { Button } from "kumo-svelte";
+  import { Button } from "kumo-svelte/components/button";
   import * as Popover from "kumo-svelte/components/popover";
 </script>
 
