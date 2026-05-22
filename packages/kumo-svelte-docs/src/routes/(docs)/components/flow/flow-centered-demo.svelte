@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { Flow, type FlowNodeRenderProps } from "kumo-svelte";
+  import { type FlowNodeRenderProps } from "kumo-svelte";
+  import * as Flow from "kumo-svelte/components/flow";
 </script>
 
 {#snippet dotNode({ action, attrs }: FlowNodeRenderProps)}
@@ -12,8 +13,8 @@
   </li>
 {/snippet}
 
-<Flow align="center">
+<Flow.Root align="center">
   <Flow.Node render={dotNode} />
   <Flow.Node>my-worker</Flow.Node>
   <Flow.Node render={tallNode} />
-</Flow>
+</Flow.Root>

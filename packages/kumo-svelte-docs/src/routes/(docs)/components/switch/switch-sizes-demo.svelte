@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { Switch } from "kumo-svelte";
+  import * as Switch from "kumo-svelte/components/switch";
 </script>
 
 <div class="flex flex-col gap-4">
-  <Switch label="Small" size="sm" checked />
-  <Switch label="Base (default)" size="base" checked />
-  <Switch label="Large" size="lg" checked />
+  <Switch.Root label="Small" size="sm" checked />
+  <Switch.Root label="Base (default)" size="base" checked />
+  <Switch.Root label="Large" size="lg" checked />
 </div>

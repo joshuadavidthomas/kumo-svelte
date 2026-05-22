@@ -26,13 +26,7 @@ primitive: checkbox
 
 ## Installation
 
-### Barrel
-
-```ts
-import { Checkbox } from "kumo-svelte";
-```
-
-### Granular
+### Namespace
 
 ```ts
 import * as Checkbox from "kumo-svelte/components/checkbox";
@@ -42,10 +36,10 @@ import * as Checkbox from "kumo-svelte/components/checkbox";
 
 ```svelte
 <script lang="ts">
-  import { Checkbox } from "kumo-svelte";
+  import * as Checkbox from "kumo-svelte/components/checkbox";
 </script>
 
-<Checkbox label="Accept terms" />
+<Checkbox.Root label="Accept terms" />
 ```
 
 ## Examples

@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { DocTocItem } from "$lib/routes/component-pages";
-  import { TableOfContents } from "kumo-svelte";
+  import * as TableOfContents from "kumo-svelte/components/table-of-contents";
   import CaretDownIcon from "phosphor-svelte/lib/CaretDownIcon";
   import { onDestroy } from "svelte";
 
@@ -125,7 +125,7 @@
       </span>
     </nav>
   {:else}
-    <TableOfContents>
+    <TableOfContents.Root>
       <TableOfContents.Title>On this page</TableOfContents.Title>
       <TableOfContents.List>
         {#each groups as group (group.h2.id)}
@@ -156,7 +156,7 @@
           {/if}
         {/each}
       </TableOfContents.List>
-    </TableOfContents>
+    </TableOfContents.Root>
   {/if}
 {/if}
 

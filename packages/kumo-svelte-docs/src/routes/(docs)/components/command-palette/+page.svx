@@ -19,13 +19,7 @@ sourceFile: components/command-palette
 
 ## Installation
 
-### Barrel
-
-```ts
-import { CommandPalette } from "kumo-svelte";
-```
-
-### Granular
+### Namespace
 
 ```ts
 import * as CommandPalette from "kumo-svelte/components/command-palette";
@@ -37,8 +31,8 @@ CommandPalette is built on Bits UI's Command primitive. Use `CommandPalette.Dial
 
 ```svelte
 <script lang="ts">
-  import { Button, CommandPalette } from "kumo-svelte";
-
+  import { Button } from "kumo-svelte";
+  import * as CommandPalette from "kumo-svelte/components/command-palette";
   const items = ["Create Project", "Open Settings"];
   let open = $state(false);
   let search = $state("");
@@ -47,7 +41,7 @@ CommandPalette is built on Bits UI's Command primitive. Use `CommandPalette.Dial
 <Button onclick={() => (open = true)}>Open</Button>
 
 <CommandPalette.Dialog bind:open>
-  <CommandPalette bind:value={search}>
+  <CommandPalette.Root bind:value={search}>
     <CommandPalette.Input placeholder="Search..." />
     <CommandPalette.List>
       {#each items as item}
@@ -57,7 +51,7 @@ CommandPalette is built on Bits UI's Command primitive. Use `CommandPalette.Dial
       {/each}
       <CommandPalette.Empty>No results</CommandPalette.Empty>
     </CommandPalette.List>
-  </CommandPalette>
+  </CommandPalette.Root>
 </CommandPalette.Dialog>
 ```
 

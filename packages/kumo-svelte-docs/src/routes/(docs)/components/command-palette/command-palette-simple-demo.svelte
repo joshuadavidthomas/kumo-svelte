@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { Button, CommandPalette } from "kumo-svelte";
-
+  import { Button } from "kumo-svelte";
+  import * as CommandPalette from "kumo-svelte/components/command-palette";
   const items = ["Copy", "Paste", "Cut", "Delete", "Select All"];
   let open = $state(false);
   let search = $state("");
@@ -10,7 +10,7 @@
   <Button onclick={() => (open = true)}>Open Simple Palette</Button>
 
   <CommandPalette.Dialog bind:open>
-    <CommandPalette bind:value={search}>
+    <CommandPalette.Root bind:value={search}>
       <CommandPalette.Input placeholder="Search actions..." />
       <CommandPalette.List>
         {#each items as item}
@@ -20,6 +20,6 @@
         {/each}
         <CommandPalette.Empty>No actions found</CommandPalette.Empty>
       </CommandPalette.List>
-    </CommandPalette>
+    </CommandPalette.Root>
   </CommandPalette.Dialog>
 </div>

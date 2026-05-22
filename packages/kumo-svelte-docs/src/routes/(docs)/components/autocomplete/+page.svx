@@ -21,13 +21,7 @@ primitive: autocomplete
 
 ## Installation
 
-### Barrel
-
-```ts
-import { Autocomplete } from "kumo-svelte";
-```
-
-### Granular
+### Namespace
 
 ```ts
 import * as Autocomplete from "kumo-svelte/components/autocomplete";
@@ -41,13 +35,12 @@ Use `Autocomplete` when the input value can be free-form text and suggestions ar
 
 ```svelte
 <script lang="ts">
-  import { Autocomplete } from "kumo-svelte";
-
+  import * as Autocomplete from "kumo-svelte/components/autocomplete";
   const fruits = ["Apple", "Banana", "Cherry"];
   const fruitItems = fruits.map((fruit) => ({ label: fruit, value: fruit }));
 </script>
 
-<Autocomplete items={fruitItems}>
+<Autocomplete.Root items={fruitItems}>
   <Autocomplete.InputGroup placeholder="Search fruits…" />
   <Autocomplete.Content>
     <Autocomplete.List>
@@ -56,7 +49,7 @@ Use `Autocomplete` when the input value can be free-form text and suggestions ar
       {/each}
     </Autocomplete.List>
   </Autocomplete.Content>
-</Autocomplete>
+</Autocomplete.Root>
 ```
 
 ## Controlled
@@ -104,7 +97,7 @@ The `size` prop on `Autocomplete.InputGroup` supports `xs`, `sm`, `base`, and `l
 For advanced matching or async search, keep filtered items in application state and render that list.
 
 ```svelte
-<Autocomplete>
+<Autocomplete.Root>
   <Autocomplete.InputGroup placeholder="Search countries…" />
   <Autocomplete.Content>
     <Autocomplete.List>
@@ -113,7 +106,7 @@ For advanced matching or async search, keep filtered items in application state 
       {/each}
     </Autocomplete.List>
   </Autocomplete.Content>
-</Autocomplete>
+</Autocomplete.Root>
 ```
 
 ## API Reference

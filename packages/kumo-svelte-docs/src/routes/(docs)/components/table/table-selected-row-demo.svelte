@@ -1,10 +1,11 @@
 <script lang="ts">
-  import { LayerCard, Table } from "kumo-svelte";
+  import * as LayerCard from "kumo-svelte/components/layer-card";
+  import * as Table from "kumo-svelte/components/table";
   import { emailData } from "./table-data";
 </script>
 
-<LayerCard class="p-0">
-  <Table>
+<LayerCard.Root class="p-0">
+  <Table.Root>
     <Table.Header>
       <Table.Row>
         <Table.Head>Subject</Table.Head>
@@ -21,5 +22,5 @@
         </Table.Row>
       {/each}
     </Table.Body>
-  </Table>
-</LayerCard>
+  </Table.Root>
+</LayerCard.Root>

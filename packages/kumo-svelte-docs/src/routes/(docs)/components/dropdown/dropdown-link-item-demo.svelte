@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { Button, DropdownMenu } from "kumo-svelte";
+  import { Button } from "kumo-svelte";
+  import * as DropdownMenu from "kumo-svelte/components/dropdown";
   import ArrowSquareOutIcon from "phosphor-svelte/lib/ArrowSquareOutIcon";
   import BookOpenIcon from "phosphor-svelte/lib/BookOpenIcon";
   import GearIcon from "phosphor-svelte/lib/GearIcon";
@@ -17,7 +18,7 @@
   <ArrowSquareOutIcon size={16} />
 {/snippet}
 
-<DropdownMenu>
+<DropdownMenu.Root>
   <DropdownMenu.Trigger>
     {#snippet child({ props })}
       <Button {...props}>Resources</Button>
@@ -31,4 +32,4 @@
       Developer Docs
     </DropdownMenu.LinkItem>
   </DropdownMenu.Content>
-</DropdownMenu>
+</DropdownMenu.Root>

@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { Tabs } from "kumo-svelte";
-
+  import * as Tabs from "kumo-svelte/components/tabs";
   const tabs = [
     { value: "tab1", label: "Tab 1" },
     { value: "tab2", label: "Tab 2" },
@@ -11,10 +10,10 @@
 <div class="flex flex-col gap-6">
   <div>
     <p class="mb-2 text-sm text-kumo-subtle">Segmented (default)</p>
-    <Tabs variant="segmented" {tabs} selectedValue="tab1" />
+    <Tabs.Root variant="segmented" {tabs} selectedValue="tab1" />
   </div>
   <div>
     <p class="mb-2 text-sm text-kumo-subtle">Underline</p>
-    <Tabs variant="underline" {tabs} selectedValue="tab1" />
+    <Tabs.Root variant="underline" {tabs} selectedValue="tab1" />
   </div>
 </div>

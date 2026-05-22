@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { Select, Text } from "kumo-svelte";
-
+  import { Text } from "kumo-svelte";
+  import * as Select from "kumo-svelte/components/select";
   const authors = [
     { id: "1", name: "John Doe", title: "Programmer" },
     { id: "2", name: "Alice Smith", title: "Software Engineer" },
@@ -11,7 +11,7 @@
   let value = $state("");
 </script>
 
-<Select
+<Select.Root
   label="Author"
   description="Select the primary author for this document"
   placeholder="Select an author"
@@ -27,4 +27,4 @@
       </div>
     </Select.Option>
   {/each}
-</Select>
+</Select.Root>

@@ -1,5 +1,7 @@
 <script lang="ts">
-  import { Button, Dialog, Select } from "kumo-svelte";
+  import { Button } from "kumo-svelte";
+  import * as Dialog from "kumo-svelte/components/dialog";
+  import * as Select from "kumo-svelte/components/select";
   import XIcon from "phosphor-svelte/lib/XIcon";
 
   const regions = [
@@ -18,7 +20,7 @@
       <Button {...props}>Open Form</Button>
     {/snippet}
   </Dialog.Trigger>
-  <Dialog class="p-8">
+  <Dialog.Content class="p-8">
     <div class="mb-4 flex items-start justify-between gap-4">
       <Dialog.Title class="text-2xl font-semibold">Create Resource</Dialog.Title>
       <Dialog.Close aria-label="Close">
@@ -28,7 +30,7 @@
       </Dialog.Close>
     </div>
     <Dialog.Description class="mb-4 text-kumo-subtle">Select a region for your new resource.</Dialog.Description>
-    <Select
+    <Select.Root
       items={regions}
       value={region}
       onValueChange={(value) => {
@@ -45,5 +47,5 @@
       </Dialog.Close>
       <Button variant="primary">Create</Button>
     </div>
-  </Dialog>
+  </Dialog.Content>
 </Dialog.Root>

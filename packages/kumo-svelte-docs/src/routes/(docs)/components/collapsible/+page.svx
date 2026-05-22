@@ -21,13 +21,7 @@ primitive: collapsible
 
 ## Installation
 
-### Barrel
-
-```ts
-import { Collapsible } from "kumo-svelte";
-```
-
-### Granular
+### Namespace
 
 ```ts
 import * as Collapsible from "kumo-svelte/components/collapsible";
@@ -43,17 +37,16 @@ Use `Collapsible.DefaultTrigger` and `Collapsible.DefaultPanel` for the classic 
 
 ```svelte
 <script lang="ts">
-  import { Collapsible } from "kumo-svelte";
-
+  import * as Collapsible from "kumo-svelte/components/collapsible";
   let open = $state(false);
 </script>
 
-<Collapsible bind:open>
+<Collapsible.Root bind:open>
   <Collapsible.DefaultTrigger>Show details</Collapsible.DefaultTrigger>
   <Collapsible.DefaultPanel>
     Content with border-left accent styling.
   </Collapsible.DefaultPanel>
-</Collapsible>
+</Collapsible.Root>
 ```
 
 ### Custom Trigger
@@ -61,14 +54,14 @@ Use `Collapsible.DefaultTrigger` and `Collapsible.DefaultPanel` for the classic 
 Use `Collapsible.Trigger` and `Collapsible.Panel` for full control over trigger and panel styling:
 
 ```svelte
-<Collapsible bind:open>
+<Collapsible.Root bind:open>
   <Collapsible.Trigger class="rounded-md border px-3 py-1.5">
     {open ? "Hide" : "Show"} details
   </Collapsible.Trigger>
   <Collapsible.Panel class="mt-2 rounded-lg bg-kumo-tint p-4">
     Custom styled panel content.
   </Collapsible.Panel>
-</Collapsible>
+</Collapsible.Root>
 ```
 
 ## Examples

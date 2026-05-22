@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Breadcrumbs } from "kumo-svelte";
+  import * as Breadcrumbs from "kumo-svelte/components/breadcrumbs";
   import PageHeaderDemoShell from "./page-header-demo-shell.svelte";
 
   const tabs = [
@@ -11,10 +11,10 @@
 
 <PageHeaderDemoShell {tabs} selectedValue="general">
   {#snippet breadcrumbs()}
-    <Breadcrumbs>
+    <Breadcrumbs.Root>
       <Breadcrumbs.Link href="#">Home</Breadcrumbs.Link>
       <Breadcrumbs.Separator />
       <Breadcrumbs.Current>Settings</Breadcrumbs.Current>
-    </Breadcrumbs>
+    </Breadcrumbs.Root>
   {/snippet}
 </PageHeaderDemoShell>

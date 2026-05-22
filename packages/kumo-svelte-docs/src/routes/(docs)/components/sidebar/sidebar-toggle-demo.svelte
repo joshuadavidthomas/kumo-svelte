@@ -3,7 +3,8 @@
   import CodeIcon from "phosphor-svelte/lib/CodeIcon";
   import DatabaseIcon from "phosphor-svelte/lib/DatabaseIcon";
   import HouseIcon from "phosphor-svelte/lib/HouseIcon";
-  import { Sidebar, useSidebar } from "kumo-svelte";
+  import { useSidebar } from "kumo-svelte";
+  import * as Sidebar from "kumo-svelte/components/sidebar";
   import DemoShell from "./sidebar-demo-shell.svelte";
   import DemoMain from "./sidebar-main.svelte";
 </script>
@@ -26,7 +27,7 @@
 
 <DemoShell>
   <Sidebar.Provider defaultOpen class="h-full min-h-0!">
-    <Sidebar>
+    <Sidebar.Root>
       <Sidebar.Header>
         <div class="flex w-full min-w-0 items-center gap-2 px-3 group-data-[state=collapsed]/sidebar:px-2">
           <div class="size-4 shrink-0 rounded bg-kumo-brand"></div>
@@ -46,7 +47,7 @@
       <Sidebar.Footer>
         <Sidebar.Trigger />
       </Sidebar.Footer>
-    </Sidebar>
+    </Sidebar.Root>
     <DemoMain>
       {@render toggleButton()}
       <p class="text-sm">Click the button or the sidebar trigger to toggle</p>

@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { Button, DropdownMenu } from "kumo-svelte";
+  import { Button } from "kumo-svelte";
+  import * as DropdownMenu from "kumo-svelte/components/dropdown";
   import CopyIcon from "phosphor-svelte/lib/CopyIcon";
   import PencilSimpleIcon from "phosphor-svelte/lib/PencilSimpleIcon";
   import TrashIcon from "phosphor-svelte/lib/TrashIcon";
@@ -17,7 +18,7 @@
   <TrashIcon size={16} />
 {/snippet}
 
-<DropdownMenu>
+<DropdownMenu.Root>
   <DropdownMenu.Trigger>
     {#snippet child({ props })}
       <Button {...props}>Edit</Button>
@@ -32,4 +33,4 @@
     <DropdownMenu.Separator />
     <DropdownMenu.Item icon={trashIcon} variant="danger">Delete</DropdownMenu.Item>
   </DropdownMenu.Content>
-</DropdownMenu>
+</DropdownMenu.Root>

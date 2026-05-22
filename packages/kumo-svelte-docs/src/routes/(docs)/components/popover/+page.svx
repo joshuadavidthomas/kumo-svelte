@@ -22,13 +22,7 @@ baseUIComponent: popover
 
 ## Installation
 
-### Barrel
-
-```ts
-import { Popover } from "kumo-svelte";
-```
-
-### Granular
+### Namespace
 
 ```ts
 import * as Popover from "kumo-svelte/components/popover";
@@ -38,10 +32,11 @@ import * as Popover from "kumo-svelte/components/popover";
 
 ```svelte
 <script lang="ts">
-  import { Button, Popover } from "kumo-svelte";
+  import { Button } from "kumo-svelte";
+  import * as Popover from "kumo-svelte/components/popover";
 </script>
 
-<Popover>
+<Popover.Root>
   <Popover.Trigger>
     {#snippet child({ props })}
       <Button {...props}>Open</Button>
@@ -51,7 +46,7 @@ import * as Popover from "kumo-svelte/components/popover";
     <Popover.Title>Popover Title</Popover.Title>
     <Popover.Description>Popover content goes here.</Popover.Description>
   </Popover.Content>
-</Popover>
+</Popover.Root>
 ```
 
 ## Popover vs Tooltip

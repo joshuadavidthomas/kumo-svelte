@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { Autocomplete } from "kumo-svelte";
+  import * as Autocomplete from "kumo-svelte/components/autocomplete";
   import { servers, serverItems } from "./autocomplete-data";
 </script>
 
-<Autocomplete items={serverItems}>
+<Autocomplete.Root items={serverItems}>
   <Autocomplete.InputGroup placeholder="Select region…" />
   <Autocomplete.Content>
     <Autocomplete.List>
@@ -17,4 +17,4 @@
       {/each}
     </Autocomplete.List>
   </Autocomplete.Content>
-</Autocomplete>
+</Autocomplete.Root>

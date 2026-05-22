@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { Collapsible, Text } from "kumo-svelte";
-
+  import { Text } from "kumo-svelte";
+  import * as Collapsible from "kumo-svelte/components/collapsible";
   const items = [
     {
       title: "What is Kumo?",
@@ -21,7 +21,7 @@
 
 <div class="w-full space-y-2">
   {#each items as item, index}
-    <Collapsible
+    <Collapsible.Root
       open={activeIndex === index}
       onOpenChange={(open) => {
         activeIndex = open ? index : null;
@@ -31,6 +31,6 @@
       <Collapsible.DefaultPanel>
         <Text>{item.content}</Text>
       </Collapsible.DefaultPanel>
-    </Collapsible>
+    </Collapsible.Root>
   {/each}
 </div>

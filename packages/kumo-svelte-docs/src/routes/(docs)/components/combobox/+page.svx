@@ -27,13 +27,7 @@ primitive: combobox
 
 ## Installation
 
-### Barrel
-
-```ts
-import { Combobox } from "kumo-svelte";
-```
-
-### Granular
+### Namespace
 
 ```ts
 import * as Combobox from "kumo-svelte/components/combobox";
@@ -43,15 +37,14 @@ import * as Combobox from "kumo-svelte/components/combobox";
 
 ```svelte
 <script lang="ts">
-  import { Combobox } from "kumo-svelte";
-
+  import * as Combobox from "kumo-svelte/components/combobox";
   const fruits = ["Apple", "Banana", "Cherry", "Date", "Elderberry"];
   const items = fruits.map((fruit) => ({ label: fruit, value: fruit }));
   let value = $state("Apple");
   let open = $state(false);
 </script>
 
-<Combobox bind:value bind:open {items}>
+<Combobox.Root bind:value bind:open {items}>
   <Combobox.TriggerInput placeholder="Select a fruit" />
   <Combobox.Content>
     <Combobox.List>
@@ -60,7 +53,7 @@ import * as Combobox from "kumo-svelte/components/combobox";
       {/each}
     </Combobox.List>
   </Combobox.Content>
-</Combobox>
+</Combobox.Root>
 ```
 
 ## Examples

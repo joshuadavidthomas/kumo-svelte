@@ -10,21 +10,8 @@ import TableResizeHandleComponent from "./table-resize-handle.svelte";
 import TableRowComponent from "./table-row.svelte";
 import TableComponent from "./table.svelte";
 
-const Table = Object.assign(TableComponent, {
-  Root: TableComponent,
-  Header: TableHeaderComponent,
-  Head: TableHeadComponent,
-  Row: TableRowComponent,
-  Body: TableBodyComponent,
-  Cell: TableCellComponent,
-  CheckCell: TableCheckCellComponent,
-  CheckHead: TableCheckHeadComponent,
-  Footer: TableFooterComponent,
-  ResizeHandle: TableResizeHandleComponent,
-});
-
 export {
-  Table,
+  TableComponent as Table,
   TableComponent as TableRoot,
   TableComponent as Root,
   TableBodyComponent as TableBody,

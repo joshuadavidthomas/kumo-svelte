@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { Button, CommandPalette } from "kumo-svelte";
-
+  import { Button } from "kumo-svelte";
+  import * as CommandPalette from "kumo-svelte/components/command-palette";
   const groups = [
     { label: "Commands", items: ["Create New Project", "Open Settings", "Search Files"] },
     { label: "Pages", items: ["Home", "Dashboard", "Users"] },
@@ -23,7 +23,7 @@
   <Button onclick={handleOpen}>Open with Loading</Button>
 
   <CommandPalette.Dialog bind:open>
-    <CommandPalette bind:value={search}>
+    <CommandPalette.Root bind:value={search}>
       <CommandPalette.Input placeholder="Search..." />
       <CommandPalette.List>
         {#if loading}
@@ -42,6 +42,6 @@
           <CommandPalette.Empty>No results found</CommandPalette.Empty>
         {/if}
       </CommandPalette.List>
-    </CommandPalette>
+    </CommandPalette.Root>
   </CommandPalette.Dialog>
 </div>

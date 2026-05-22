@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { Pagination } from "kumo-svelte";
-
+  import * as Pagination from "kumo-svelte/components/pagination";
   let page = $state(1);
 </script>
 
@@ -8,7 +7,7 @@
   Page {props.page} of {Math.ceil((props.totalCount ?? 1) / 25)}
 {/snippet}
 
-<Pagination bind:page perPage={25} totalCount={100}>
+<Pagination.Root bind:page perPage={25} totalCount={100}>
   <Pagination.Info text={info} />
   <Pagination.Controls />
-</Pagination>
+</Pagination.Root>

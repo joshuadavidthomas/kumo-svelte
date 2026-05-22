@@ -4,7 +4,7 @@
   import DatabaseIcon from "phosphor-svelte/lib/DatabaseIcon";
   import GlobeIcon from "phosphor-svelte/lib/GlobeIcon";
   import HouseIcon from "phosphor-svelte/lib/HouseIcon";
-  import { Sidebar } from "kumo-svelte";
+  import * as Sidebar from "kumo-svelte/components/sidebar";
   import DemoShell from "./sidebar-demo-shell.svelte";
   import DemoMain from "./sidebar-main.svelte";
 </script>
@@ -17,7 +17,7 @@
 
 <DemoShell>
   <Sidebar.Provider defaultOpen class="h-full min-h-0!">
-    <Sidebar>
+    <Sidebar.Root>
       <Sidebar.Content>
         <Sidebar.Group>
           <Sidebar.GroupLabel>Overview</Sidebar.GroupLabel>
@@ -50,7 +50,7 @@
           </Sidebar.Menu>
         </Sidebar.Group>
       </Sidebar.Content>
-    </Sidebar>
+    </Sidebar.Root>
     <DemoMain />
   </Sidebar.Provider>
 </DemoShell>

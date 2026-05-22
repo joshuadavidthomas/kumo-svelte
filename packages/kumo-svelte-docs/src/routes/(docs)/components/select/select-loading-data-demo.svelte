@@ -1,7 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { Select } from "kumo-svelte";
-
+  import * as Select from "kumo-svelte/components/select";
   let loading = $state(true);
   let value = $state("");
   let items = $state<Record<string, string> | undefined>();
@@ -16,7 +15,7 @@
   });
 </script>
 
-<Select
+<Select.Root
   label="Assignee"
   class="w-[200px]"
   {loading}

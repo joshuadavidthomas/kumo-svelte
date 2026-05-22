@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { Tabs, type TabsItem } from "kumo-svelte";
+  import { type TabsItem } from "kumo-svelte";
+  import * as Tabs from "kumo-svelte/components/tabs";
   import type { Snippet } from "svelte";
 
   interface Props {
@@ -44,7 +45,7 @@
   </div>
   {#if tabs.length > 0}
     <div class="border-t border-kumo-hairline px-4 py-3">
-      <Tabs {tabs} selectedValue={selectedValue ?? tabs[0]?.value} {onValueChange} />
+      <Tabs.Root {tabs} selectedValue={selectedValue ?? tabs[0]?.value} {onValueChange} />
     </div>
   {/if}
 </div>

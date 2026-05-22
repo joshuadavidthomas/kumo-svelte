@@ -1,10 +1,9 @@
 <script lang="ts">
-  import { Select } from "kumo-svelte";
-
+  import * as Select from "kumo-svelte/components/select";
   let value = $state("");
 </script>
 
-<Select
+<Select.Root
   label="Category"
   placeholder="Choose a category..."
   class="w-[200px]"

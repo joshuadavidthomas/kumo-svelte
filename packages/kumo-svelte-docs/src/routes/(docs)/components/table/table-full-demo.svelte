@@ -1,11 +1,8 @@
 <script lang="ts">
-  import {
-    Badge,
-    Button,
-    DropdownMenu,
-    LayerCard,
-    Table,
-  } from "kumo-svelte";
+  import { Badge, Button } from "kumo-svelte";
+  import * as DropdownMenu from "kumo-svelte/components/dropdown";
+  import * as LayerCard from "kumo-svelte/components/layer-card";
+  import * as Table from "kumo-svelte/components/table";
   import DotsThreeIcon from "phosphor-svelte/lib/DotsThreeIcon";
   import EnvelopeSimpleIcon from "phosphor-svelte/lib/EnvelopeSimpleIcon";
   import EyeIcon from "phosphor-svelte/lib/EyeIcon";
@@ -23,8 +20,8 @@
   }
 </script>
 
-<LayerCard class="w-full overflow-x-auto p-0">
-  <Table layout="fixed">
+<LayerCard.Root class="w-full overflow-x-auto p-0">
+  <Table.Root layout="fixed">
     <colgroup>
       <col />
       <col />
@@ -59,7 +56,7 @@
           <Table.Cell><span class="truncate">{row.from}</span></Table.Cell>
           <Table.Cell><span class="truncate">{row.date}</span></Table.Cell>
           <Table.Cell class="text-right">
-            <DropdownMenu>
+            <DropdownMenu.Root>
               <DropdownMenu.Trigger>
                 {#snippet child({ props })}
                   <Button {...props} variant="ghost" size="sm" shape="square" aria-label="More options" icon={DotsThreeIcon} />
@@ -80,10 +77,10 @@
                   Delete
                 </DropdownMenu.Item>
               </DropdownMenu.Content>
-            </DropdownMenu>
+            </DropdownMenu.Root>
           </Table.Cell>
         </Table.Row>
       {/each}
     </Table.Body>
-  </Table>
-</LayerCard>
+  </Table.Root>
+</LayerCard.Root>

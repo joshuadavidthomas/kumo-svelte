@@ -1,10 +1,10 @@
 <script lang="ts">
   import MagnifyingGlassIcon from "phosphor-svelte/lib/MagnifyingGlassIcon";
   import QuestionIcon from "phosphor-svelte/lib/QuestionIcon";
-  import { InputGroup } from "kumo-svelte";
+  import * as InputGroup from "kumo-svelte/components/input-group";
 </script>
 
-<InputGroup class="w-full max-w-2xs">
+<InputGroup.Root class="w-full max-w-2xs">
   <InputGroup.Addon>
     <MagnifyingGlassIcon />
   </InputGroup.Addon>
@@ -14,4 +14,4 @@
       <QuestionIcon />
     </InputGroup.Button>
   </InputGroup.Addon>
-</InputGroup>
+</InputGroup.Root>

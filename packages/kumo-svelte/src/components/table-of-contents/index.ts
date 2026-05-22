@@ -5,16 +5,8 @@ import TableOfContentsItemComponent from "./table-of-contents-item.svelte";
 import TableOfContentsListComponent from "./table-of-contents-list.svelte";
 import TableOfContentsTitleComponent from "./table-of-contents-title.svelte";
 
-const TableOfContents = Object.assign(TableOfContentsComponent, {
-  Root: TableOfContentsComponent,
-  Group: TableOfContentsGroupComponent,
-  Item: TableOfContentsItemComponent,
-  List: TableOfContentsListComponent,
-  Title: TableOfContentsTitleComponent,
-});
-
 export {
-  TableOfContents,
+  TableOfContentsComponent as TableOfContents,
   TableOfContentsComponent as TableOfContentsRoot,
   TableOfContentsComponent as Root,
   TableOfContentsGroupComponent as TableOfContentsGroup,

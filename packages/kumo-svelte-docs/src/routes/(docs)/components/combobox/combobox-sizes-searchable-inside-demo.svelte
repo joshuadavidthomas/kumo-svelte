@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Combobox } from "kumo-svelte";
+  import * as Combobox from "kumo-svelte/components/combobox";
   import { languageItems, languages } from "./combobox-data";
 
   let smValue = $state("en");
@@ -9,7 +9,7 @@
 </script>
 
 <div class="flex flex-wrap items-center gap-4">
-  <Combobox bind:value={smValue} items={languageItems} size="sm">
+  <Combobox.Root bind:value={smValue} items={languageItems} size="sm">
     <Combobox.TriggerValue class="w-[160px]">{smLabel}</Combobox.TriggerValue>
     <Combobox.Content>
       <Combobox.Input placeholder="Search" />
@@ -22,9 +22,9 @@
         {/each}
       </Combobox.List>
     </Combobox.Content>
-  </Combobox>
+  </Combobox.Root>
 
-  <Combobox bind:value={baseValue} items={languageItems} size="base">
+  <Combobox.Root bind:value={baseValue} items={languageItems} size="base">
     <Combobox.TriggerValue class="w-[180px]">{baseLabel}</Combobox.TriggerValue>
     <Combobox.Content>
       <Combobox.Input placeholder="Search" />
@@ -37,5 +37,5 @@
         {/each}
       </Combobox.List>
     </Combobox.Content>
-  </Combobox>
+  </Combobox.Root>
 </div>

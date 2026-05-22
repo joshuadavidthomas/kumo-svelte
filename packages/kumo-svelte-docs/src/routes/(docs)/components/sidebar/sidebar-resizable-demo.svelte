@@ -2,7 +2,7 @@
   import ChartBarIcon from "phosphor-svelte/lib/ChartBarIcon";
   import DatabaseIcon from "phosphor-svelte/lib/DatabaseIcon";
   import HouseIcon from "phosphor-svelte/lib/HouseIcon";
-  import { Sidebar } from "kumo-svelte";
+  import * as Sidebar from "kumo-svelte/components/sidebar";
   import DemoShell from "./sidebar-demo-shell.svelte";
   import DemoMain from "./sidebar-main.svelte";
 </script>
@@ -13,7 +13,7 @@
 
 <DemoShell>
   <Sidebar.Provider defaultOpen resizable defaultWidth={240} minWidth={180} maxWidth={400} class="h-full min-h-0!">
-    <Sidebar>
+    <Sidebar.Root>
       <Sidebar.Header><div class="px-3 text-sm font-semibold text-kumo-strong">Acme Inc</div></Sidebar.Header>
       <Sidebar.Content>
         <Sidebar.Group>
@@ -27,7 +27,7 @@
       </Sidebar.Content>
       <Sidebar.Footer><Sidebar.Trigger /></Sidebar.Footer>
       <Sidebar.ResizeHandle />
-    </Sidebar>
+    </Sidebar.Root>
     <DemoMain><p class="text-sm">Drag the sidebar edge to resize</p></DemoMain>
   </Sidebar.Provider>
 </DemoShell>

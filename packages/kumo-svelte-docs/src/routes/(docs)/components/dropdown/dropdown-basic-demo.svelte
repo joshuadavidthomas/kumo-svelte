@@ -1,9 +1,10 @@
 <script lang="ts">
-  import { Button, DropdownMenu } from "kumo-svelte";
+  import { Button } from "kumo-svelte";
+  import * as DropdownMenu from "kumo-svelte/components/dropdown";
   import PlusIcon from "phosphor-svelte/lib/PlusIcon";
 </script>
 
-<DropdownMenu>
+<DropdownMenu.Root>
   <DropdownMenu.Trigger>
     {#snippet child({ props })}
       <Button {...props} icon={PlusIcon}>Add</Button>
@@ -14,4 +15,4 @@
     <DropdownMenu.Item>Pages</DropdownMenu.Item>
     <DropdownMenu.Item>KV Namespace</DropdownMenu.Item>
   </DropdownMenu.Content>
-</DropdownMenu>
+</DropdownMenu.Root>

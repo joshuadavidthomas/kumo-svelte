@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Breadcrumbs } from "kumo-svelte";
+  import * as Breadcrumbs from "kumo-svelte/components/breadcrumbs";
   import HouseIcon from "phosphor-svelte/lib/HouseIcon";
 </script>
 
@@ -7,6 +7,6 @@
   <HouseIcon size={16} />
 {/snippet}
 
-<Breadcrumbs>
+<Breadcrumbs.Root>
   <Breadcrumbs.Current icon={homeIcon}>Worker Analytics</Breadcrumbs.Current>
-</Breadcrumbs>
+</Breadcrumbs.Root>

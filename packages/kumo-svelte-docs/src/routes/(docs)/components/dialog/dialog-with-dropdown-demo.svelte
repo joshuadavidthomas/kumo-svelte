@@ -1,5 +1,7 @@
 <script lang="ts">
-  import { Button, Dialog, DropdownMenu } from "kumo-svelte";
+  import { Button } from "kumo-svelte";
+  import * as Dialog from "kumo-svelte/components/dialog";
+  import * as DropdownMenu from "kumo-svelte/components/dropdown";
   import XIcon from "phosphor-svelte/lib/XIcon";
 </script>
 
@@ -9,7 +11,7 @@
       <Button {...props}>Open Form</Button>
     {/snippet}
   </Dialog.Trigger>
-  <Dialog class="p-8">
+  <Dialog.Content class="p-8">
     <div class="mb-4 flex items-start justify-between gap-4">
       <Dialog.Title class="text-2xl font-semibold">Resource Actions</Dialog.Title>
       <Dialog.Close aria-label="Close">
@@ -19,7 +21,7 @@
       </Dialog.Close>
     </div>
     <Dialog.Description class="mb-4 text-kumo-subtle">Choose an action for the selected resource.</Dialog.Description>
-    <DropdownMenu>
+    <DropdownMenu.Root>
       <DropdownMenu.Trigger>
         {#snippet child({ props })}
           <Button {...props}>Actions</Button>
@@ -31,7 +33,7 @@
         <DropdownMenu.Separator />
         <DropdownMenu.Item variant="danger">Delete</DropdownMenu.Item>
       </DropdownMenu.Content>
-    </DropdownMenu>
+    </DropdownMenu.Root>
     <div class="mt-8 flex justify-end">
       <Dialog.Close>
         {#snippet child({ props })}
@@ -39,5 +41,5 @@
         {/snippet}
       </Dialog.Close>
     </div>
-  </Dialog>
+  </Dialog.Content>
 </Dialog.Root>

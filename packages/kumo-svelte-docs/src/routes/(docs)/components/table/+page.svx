@@ -22,13 +22,7 @@ sourceFile: components/table
 
 ## Installation
 
-### Barrel
-
-```ts
-import { Table } from "kumo-svelte";
-```
-
-### Granular
+### Namespace
 
 ```ts
 import * as Table from "kumo-svelte/components/table";
@@ -38,11 +32,12 @@ import * as Table from "kumo-svelte/components/table";
 
 ```svelte
 <script lang="ts">
-  import { LayerCard, Table } from "kumo-svelte";
+  import * as LayerCard from "kumo-svelte/components/layer-card";
+  import * as Table from "kumo-svelte/components/table";
 </script>
 
-<LayerCard class="p-0">
-  <Table>
+<LayerCard.Root class="p-0">
+  <Table.Root>
     <Table.Header>
       <Table.Row>
         <Table.Head>Name</Table.Head>
@@ -55,8 +50,8 @@ import * as Table from "kumo-svelte/components/table";
         <Table.Cell>john@example.com</Table.Cell>
       </Table.Row>
     </Table.Body>
-  </Table>
-</LayerCard>
+  </Table.Root>
+</LayerCard.Root>
 ```
 
 ## Examples

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { DropdownMenu } from "kumo-svelte";
+  import * as DropdownMenu from "kumo-svelte/components/dropdown";
   import GearIcon from "phosphor-svelte/lib/GearIcon";
   import SignOutIcon from "phosphor-svelte/lib/SignOutIcon";
   import UserIcon from "phosphor-svelte/lib/UserIcon";
@@ -17,7 +17,7 @@
   <SignOutIcon size={16} />
 {/snippet}
 
-<DropdownMenu>
+<DropdownMenu.Root>
   <DropdownMenu.Trigger>
     {#snippet child({ props })}
       <button {...props} type="button" class="rounded-full">
@@ -33,4 +33,4 @@
     <DropdownMenu.Separator />
     <DropdownMenu.Item icon={signOutIcon} variant="danger">Log out</DropdownMenu.Item>
   </DropdownMenu.Content>
-</DropdownMenu>
+</DropdownMenu.Root>

@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { Select } from "kumo-svelte";
+  import * as Select from "kumo-svelte/components/select";
 </script>
 
-<Select
+<Select.Root
   label="Issue Type"
   error="Please select an issue type"
   class="w-[280px]"

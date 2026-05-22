@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { Tabs } from "kumo-svelte";
-
+  import * as Tabs from "kumo-svelte/components/tabs";
   let activeTab = $state("tab1");
   const tabs = [
     { value: "tab1", label: "Tab 1" },
@@ -10,6 +9,6 @@
 </script>
 
 <div class="space-y-4">
-  <Tabs {tabs} value={activeTab} onValueChange={(value) => (activeTab = value)} />
+  <Tabs.Root {tabs} value={activeTab} onValueChange={(value) => (activeTab = value)} />
   <p class="text-sm text-kumo-subtle">Active tab: <code class="text-sm">{activeTab}</code></p>
 </div>

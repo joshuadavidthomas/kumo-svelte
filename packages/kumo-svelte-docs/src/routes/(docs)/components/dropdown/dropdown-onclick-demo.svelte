@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { Button, DropdownMenu } from "kumo-svelte";
+  import { Button } from "kumo-svelte";
+  import * as DropdownMenu from "kumo-svelte/components/dropdown";
   import CopyIcon from "phosphor-svelte/lib/CopyIcon";
   import PencilSimpleIcon from "phosphor-svelte/lib/PencilSimpleIcon";
   import TrashIcon from "phosphor-svelte/lib/TrashIcon";
@@ -20,7 +21,7 @@
 {/snippet}
 
 <div class="flex flex-col items-start gap-2">
-  <DropdownMenu>
+  <DropdownMenu.Root>
     <DropdownMenu.Trigger>
       {#snippet child({ props })}
         <Button {...props}>Actions</Button>
@@ -32,7 +33,7 @@
       <DropdownMenu.Separator />
       <DropdownMenu.Item icon={trashIcon} variant="danger" onclick={() => (lastAction = "Deleted")}>Delete</DropdownMenu.Item>
     </DropdownMenu.Content>
-  </DropdownMenu>
+  </DropdownMenu.Root>
   {#if lastAction}
     <p class="text-sm text-kumo-subtle">Last action: <span class="text-kumo-default">{lastAction}</span></p>
   {/if}

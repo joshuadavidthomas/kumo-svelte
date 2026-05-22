@@ -7,19 +7,9 @@ components and TypeScript helpers are exported directly from `src`.
 Where upstream Kumo uses Base UI primitives, this port uses Bits UI primitives
 and keeps Kumo's styling and variant metadata on top.
 
-## Compound component APIs
+## Component namespace APIs
 
-Compound groups support the upstream Kumo style from the barrel export and the shadcn-svelte namespace style from granular exports:
-
-```svelte
-<script lang="ts">
-  import { Autocomplete } from "kumo-svelte";
-</script>
-
-<Autocomplete>
-  <Autocomplete.InputGroup />
-</Autocomplete>
-```
+This port uses `reference/cloudflare-kumo/` as the upstream design-system source and follows the Svelte API shape used by `reference/shadcn-svelte/docs/src/lib/registry/ui/`: keep Kumo's styling and behavior, but use namespace imports from component subpaths for compound groups.
 
 ```svelte
 <script lang="ts">

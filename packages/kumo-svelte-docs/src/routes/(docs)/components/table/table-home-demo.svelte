@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { Table } from "kumo-svelte";
+  import * as Table from "kumo-svelte/components/table";
 </script>
 
-<Table class="w-[200px] text-sm">
+<Table.Root class="w-[200px] text-sm">
   <Table.Header>
     <Table.Row>
       <Table.Head>Name</Table.Head>
@@ -23,4 +23,4 @@
       <Table.Cell>Active</Table.Cell>
     </Table.Row>
   </Table.Body>
-</Table>
+</Table.Root>

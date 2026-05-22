@@ -1,12 +1,11 @@
 <script lang="ts">
-  import { TableOfContents } from "kumo-svelte";
-
+  import * as TableOfContents from "kumo-svelte/components/table-of-contents";
   const headings = ["Introduction", "Installation", "Usage"];
   let clicked = $state("");
 </script>
 
 <div class="min-w-48 space-y-3">
-  <TableOfContents>
+  <TableOfContents.Root>
     <TableOfContents.List>
       {#each headings as heading}
         <TableOfContents.Item active={heading === "Introduction"} onclick={() => (clicked = heading)}>
@@ -16,6 +15,6 @@
         </TableOfContents.Item>
       {/each}
     </TableOfContents.List>
-  </TableOfContents>
+  </TableOfContents.Root>
   {#if clicked}<p class="text-xs text-kumo-subtle">Clicked: {clicked}</p>{/if}
 </div>

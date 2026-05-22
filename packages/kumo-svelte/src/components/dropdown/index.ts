@@ -17,28 +17,8 @@ import DropdownMenuSubContentComponent from "./dropdown-sub-content.svelte";
 import DropdownMenuSubTriggerComponent from "./dropdown-sub-trigger.svelte";
 import DropdownMenuTriggerComponent from "./dropdown-trigger.svelte";
 
-const DropdownMenu = Object.assign(DropdownMenuRootComponent, {
-  Root: DropdownMenuRootComponent,
-  Trigger: DropdownMenuTriggerComponent,
-  Portal: DropdownMenuPortalComponent,
-  Content: DropdownMenuContentComponent,
-  Item: DropdownMenuItemComponent,
-  LinkItem: DropdownMenuLinkItemComponent,
-  CheckboxItem: DropdownMenuCheckboxItemComponent,
-  RadioItem: DropdownMenuRadioItemComponent,
-  Label: DropdownMenuLabelComponent,
-  Separator: DropdownMenuSeparatorComponent,
-  Shortcut: DropdownMenuShortcutComponent,
-  Group: DropdownMenuGroupComponent,
-  RadioGroup: DropdownMenuRadioGroupComponent,
-  CheckboxGroup: DropdownMenuCheckboxGroupComponent,
-  Sub: DropdownMenuSubComponent,
-  SubTrigger: DropdownMenuSubTriggerComponent,
-  SubContent: DropdownMenuSubContentComponent,
-});
-
 export {
-  DropdownMenu,
+  DropdownMenuRootComponent as DropdownMenu,
   DropdownMenuRootComponent as DropdownMenuRoot,
   DropdownMenuRootComponent as Root,
   DropdownMenuTriggerComponent as DropdownMenuTrigger,

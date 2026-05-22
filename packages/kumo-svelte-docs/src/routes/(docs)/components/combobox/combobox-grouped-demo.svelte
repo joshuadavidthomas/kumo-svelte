@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Combobox } from "kumo-svelte";
+  import * as Combobox from "kumo-svelte/components/combobox";
   import { servers } from "./combobox-data";
 
   const items = servers.flatMap((group) => group.items);
@@ -7,7 +7,7 @@
   let open = $state(false);
 </script>
 
-<Combobox bind:value bind:open {items}>
+<Combobox.Root bind:value bind:open {items}>
   <Combobox.TriggerInput class="w-[200px]" placeholder="Select server" />
   <Combobox.Content>
     <Combobox.Empty />
@@ -22,4 +22,4 @@
       {/each}
     </Combobox.List>
   </Combobox.Content>
-</Combobox>
+</Combobox.Root>

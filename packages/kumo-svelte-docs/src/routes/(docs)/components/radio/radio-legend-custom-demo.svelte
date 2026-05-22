@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { Radio } from "kumo-svelte";
-
+  import * as Radio from "kumo-svelte/components/radio";
   let value = $state("email");
 </script>
 

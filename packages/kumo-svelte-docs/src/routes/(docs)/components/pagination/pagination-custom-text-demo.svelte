@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { Pagination } from "kumo-svelte";
-
+  import * as Pagination from "kumo-svelte/components/pagination";
   let page = $state(1);
 </script>
 
@@ -8,4 +7,4 @@
   Page {page} - showing {props.perPage} per page
 {/snippet}
 
-<Pagination bind:page perPage={25} totalCount={100} text={customText} />
+<Pagination.Root bind:page perPage={25} totalCount={100} text={customText} />

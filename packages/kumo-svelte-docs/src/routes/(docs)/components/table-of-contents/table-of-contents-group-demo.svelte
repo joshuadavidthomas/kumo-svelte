@@ -1,11 +1,11 @@
 <script lang="ts">
-  import { TableOfContents } from "kumo-svelte";
+  import * as TableOfContents from "kumo-svelte/components/table-of-contents";
 </script>
 
 <div class="min-w-48">
   <span id="examples-demo" class="sr-only">Examples</span>
   <span id="api-demo" class="sr-only">API</span>
-  <TableOfContents>
+  <TableOfContents.Root>
     <TableOfContents.Title>On this page</TableOfContents.Title>
     <TableOfContents.List>
       <TableOfContents.Item active class="cursor-pointer">Overview</TableOfContents.Item>
@@ -22,5 +22,5 @@
         <TableOfContents.Item class="cursor-pointer">Events</TableOfContents.Item>
       </TableOfContents.Group>
     </TableOfContents.List>
-  </TableOfContents>
+  </TableOfContents.Root>
 </div>

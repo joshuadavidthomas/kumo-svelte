@@ -1,7 +1,8 @@
 <script lang="ts">
   import type { CalendarDate, DateValue } from "@internationalized/date";
   import { getLocalTimeZone, today } from "@internationalized/date";
-  import { Button, DatePicker, Popover } from "kumo-svelte";
+  import { Button, DatePicker } from "kumo-svelte";
+  import * as Popover from "kumo-svelte/components/popover";
   import CalendarDotsIcon from "phosphor-svelte/lib/CalendarDotsIcon";
 
   type DateRangeValue = { start: DateValue | undefined; end: DateValue | undefined };
@@ -44,7 +45,7 @@
   }
 </script>
 
-<Popover>
+<Popover.Root>
   <Popover.Trigger>
     {#snippet child({ props })}
       <Button {...props} variant="outline" icon={CalendarDotsIcon}>{formatRange(range)}</Button>
@@ -73,4 +74,4 @@
       </div>
     </div>
   </Popover.Content>
-</Popover>
+</Popover.Root>

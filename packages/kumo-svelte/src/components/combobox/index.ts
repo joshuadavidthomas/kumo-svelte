@@ -13,26 +13,8 @@ import ComboboxTriggerComponent from "./combobox-trigger.svelte";
 import ComboboxTriggerInputComponent from "./combobox-trigger-input.svelte";
 import ComboboxTriggerMultipleWithInputComponent from "./combobox-trigger-multiple-with-input.svelte";
 
-const Combobox = Object.assign(ComboboxComponent, {
-  Root: ComboboxComponent,
-  Chip: ComboboxChipComponent,
-  Content: ComboboxContentComponent,
-  Empty: ComboboxEmptyComponent,
-  Group: ComboboxGroupComponent,
-  GroupLabel: ComboboxGroupLabelComponent,
-  Input: ComboboxInputComponent,
-  Item: ComboboxItemComponent,
-  List: ComboboxListComponent,
-  Separator: ComboboxSeparatorComponent,
-  Trigger: ComboboxTriggerComponent,
-  TriggerInput: ComboboxTriggerInputComponent,
-  TriggerMultipleWithInput: ComboboxTriggerMultipleWithInputComponent,
-  TriggerValue: ComboboxTriggerComponent,
-  Value: ComboboxTriggerComponent,
-});
-
 export {
-  Combobox,
+  ComboboxComponent as Combobox,
   ComboboxComponent as ComboboxRoot,
   ComboboxComponent as Root,
   ComboboxChipComponent as ComboboxChip,

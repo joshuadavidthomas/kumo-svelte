@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Combobox } from "kumo-svelte";
+  import * as Combobox from "kumo-svelte/components/combobox";
   import { fruits } from "./combobox-data";
 
   const items = fruits.map((fruit) => ({ label: fruit, value: fruit }));
@@ -7,7 +7,7 @@
   let open = $state(false);
 </script>
 
-<Combobox bind:value bind:open {items}>
+<Combobox.Root bind:value bind:open {items}>
   <Combobox.TriggerInput placeholder="Please select" />
   <Combobox.Content>
     <Combobox.Empty />
@@ -17,4 +17,4 @@
       {/each}
     </Combobox.List>
   </Combobox.Content>
-</Combobox>
+</Combobox.Root>

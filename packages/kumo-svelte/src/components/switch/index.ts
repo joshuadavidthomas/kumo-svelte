@@ -5,16 +5,8 @@ import SwitchGroupComponent from "./switch-group.svelte";
 import SwitchItemComponent from "./switch-item.svelte";
 import SwitchLegendComponent from "./switch-legend.svelte";
 
-const Switch = Object.assign(SwitchComponent, {
-  Root: SwitchComponent,
-  Control: SwitchControlComponent,
-  Group: SwitchGroupComponent,
-  Item: SwitchItemComponent,
-  Legend: SwitchLegendComponent,
-});
-
 export {
-  Switch,
+  SwitchComponent as Switch,
   SwitchComponent as SwitchRoot,
   SwitchComponent as Root,
   SwitchControlComponent as SwitchControl,

@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { Select } from "kumo-svelte";
-
+  import * as Select from "kumo-svelte/components/select";
   const regions = [
     { value: "us-east", label: "US East" },
     { value: "us-west", label: "US West" },
@@ -11,7 +10,7 @@
   let value = $state("");
 </script>
 
-<Select
+<Select.Root
   label="Deployment Region"
   placeholder="Choose a region..."
   class="w-[250px]"
@@ -21,4 +20,4 @@
   {#each regions as region (region.value)}
     <Select.Option value={region.value} disabled={region.disabled}>{region.label}</Select.Option>
   {/each}
-</Select>
+</Select.Root>

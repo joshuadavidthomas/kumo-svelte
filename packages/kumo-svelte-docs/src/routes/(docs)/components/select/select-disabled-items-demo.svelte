@@ -1,10 +1,9 @@
 <script lang="ts">
-  import { Select } from "kumo-svelte";
-
+  import * as Select from "kumo-svelte/components/select";
   let value = $state("free");
 </script>
 
-<Select
+<Select.Root
   label="Plan"
   class="w-[200px]"
   {value}

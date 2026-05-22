@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { Flow } from "kumo-svelte";
+  import * as Flow from "kumo-svelte/components/flow";
 </script>
 
-<Flow>
+<Flow.Root>
   <Flow.Node>Step 1</Flow.Node>
   <Flow.Node>Step 2</Flow.Node>
   <Flow.Node>Step 3</Flow.Node>
-</Flow>
+</Flow.Root>

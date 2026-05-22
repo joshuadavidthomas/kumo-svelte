@@ -1,8 +1,7 @@
 <script lang="ts">
   import MagnifyingGlassIcon from "phosphor-svelte/lib/MagnifyingGlassIcon";
   import QuestionIcon from "phosphor-svelte/lib/QuestionIcon";
-  import { InputGroup } from "kumo-svelte";
-
+  import * as InputGroup from "kumo-svelte/components/input-group";
   const sizes = [
     ["xs", "Extra Small", "Extra small input"],
     ["sm", "Small", "Small input"],
@@ -13,7 +12,7 @@
 
 <div class="flex w-full max-w-3xs flex-col gap-4">
   {#each sizes as [size, label, placeholder]}
-    <InputGroup {size} {label}>
+    <InputGroup.Root {size} {label}>
       <InputGroup.Addon>
         <MagnifyingGlassIcon />
       </InputGroup.Addon>
@@ -23,6 +22,6 @@
           <QuestionIcon />
         </InputGroup.Button>
       </InputGroup.Addon>
-    </InputGroup>
+    </InputGroup.Root>
   {/each}
 </div>

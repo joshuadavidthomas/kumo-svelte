@@ -24,13 +24,7 @@ sourceFile: components/input-group
 
 ## Installation
 
-### Barrel
-
-```ts
-import { InputGroup } from "kumo-svelte";
-```
-
-### Granular
+### Namespace
 
 ```ts
 import * as InputGroup from "kumo-svelte/components/input-group";
@@ -47,15 +41,15 @@ Pass the `label` prop to InputGroup to enable the built-in Field wrapper with la
 ```svelte
 <script lang="ts">
   import MagnifyingGlassIcon from "phosphor-svelte/lib/MagnifyingGlassIcon";
-  import { InputGroup } from "kumo-svelte";
+  import * as InputGroup from "kumo-svelte/components/input-group";
 </script>
 
-<InputGroup label="Search" description="Find pages, components, and more">
+<InputGroup.Root label="Search" description="Find pages, components, and more">
   <InputGroup.Addon>
     <MagnifyingGlassIcon />
   </InputGroup.Addon>
   <InputGroup.Input placeholder="Search..." />
-</InputGroup>
+</InputGroup.Root>
 ```
 
 ### Bare InputGroup (Custom Layouts)
@@ -63,12 +57,12 @@ Pass the `label` prop to InputGroup to enable the built-in Field wrapper with la
 For custom form layouts, use InputGroup without `label`. Provide `aria-label` on `InputGroup.Input` for accessibility.
 
 ```svelte
-<InputGroup>
+<InputGroup.Root>
   <InputGroup.Addon>
     <MagnifyingGlassIcon />
   </InputGroup.Addon>
   <InputGroup.Input placeholder="Search..." aria-label="Search" />
-</InputGroup>
+</InputGroup.Root>
 ```
 
 ## Examples

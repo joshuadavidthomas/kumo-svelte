@@ -8,19 +8,8 @@ import PopoverRootComponent from "./popover-root.svelte";
 import PopoverTitleComponent from "./popover-title.svelte";
 import PopoverTriggerComponent from "./popover-trigger.svelte";
 
-const Popover = Object.assign(PopoverRootComponent, {
-  Root: PopoverRootComponent,
-  Portal: PopoverPortalComponent,
-  Trigger: PopoverTriggerComponent,
-  Content: PopoverContentComponent,
-  Header: PopoverHeaderComponent,
-  Title: PopoverTitleComponent,
-  Description: PopoverDescriptionComponent,
-  Close: PopoverCloseComponent,
-});
-
 export {
-  Popover,
+  PopoverRootComponent as Popover,
   PopoverRootComponent as PopoverRoot,
   PopoverRootComponent as Root,
   PopoverPortalComponent as PopoverPortal,

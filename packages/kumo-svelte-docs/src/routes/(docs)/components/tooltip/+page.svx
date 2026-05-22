@@ -19,13 +19,7 @@ baseUIComponent: tooltip
 
 ## Installation
 
-### Barrel
-
-```ts
-import { Tooltip } from "kumo-svelte";
-```
-
-### Granular
+### Namespace
 
 ```ts
 import * as Tooltip from "kumo-svelte/components/tooltip";
@@ -35,15 +29,16 @@ import * as Tooltip from "kumo-svelte/components/tooltip";
 
 ```svelte
 <script lang="ts">
-  import { Button, Tooltip } from "kumo-svelte";
+  import { Button } from "kumo-svelte";
+  import * as Tooltip from "kumo-svelte/components/tooltip";
 </script>
 
 <Tooltip.Provider>
-  <Tooltip content="Tooltip text">
+  <Tooltip.Root content="Tooltip text">
     {#snippet render({ props })}
       <Button {...props}>Hover me</Button>
     {/snippet}
-  </Tooltip>
+  </Tooltip.Root>
 </Tooltip.Provider>
 ```
 
@@ -80,11 +75,11 @@ Use `delay` to control how long to wait before opening (default: 600ms) and `clo
   <App />
 </Tooltip.Provider>
 
-<Tooltip content="Add">
+<Tooltip.Root content="Add">
   {#snippet render({ props })}
     <Button {...props} shape="square" aria-label="Add">+</Button>
   {/snippet}
-</Tooltip>
+</Tooltip.Root>
 ```
 
 ## API Reference

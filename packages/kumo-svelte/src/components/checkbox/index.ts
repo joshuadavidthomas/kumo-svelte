@@ -4,15 +4,8 @@ import CheckboxGroupComponent from "./checkbox-group.svelte";
 import CheckboxItemComponent from "./checkbox-item.svelte";
 import CheckboxLegendComponent from "./checkbox-legend.svelte";
 
-const Checkbox = Object.assign(CheckboxComponent, {
-  Root: CheckboxComponent,
-  Group: CheckboxGroupComponent,
-  Item: CheckboxItemComponent,
-  Legend: CheckboxLegendComponent,
-});
-
 export {
-  Checkbox,
+  CheckboxComponent as Checkbox,
   CheckboxComponent as CheckboxRoot,
   CheckboxComponent as Root,
   CheckboxGroupComponent as CheckboxGroup,

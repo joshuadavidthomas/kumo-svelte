@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { Button, CommandPalette } from "kumo-svelte";
+  import { Button } from "kumo-svelte";
+  import * as CommandPalette from "kumo-svelte/components/command-palette";
   import ChartLineIcon from "phosphor-svelte/lib/ChartLineIcon";
   import FolderIcon from "phosphor-svelte/lib/FolderIcon";
   import GearIcon from "phosphor-svelte/lib/GearIcon";
@@ -46,7 +47,7 @@
   {/if}
 
   <CommandPalette.Dialog bind:open>
-    <CommandPalette bind:value={search}>
+    <CommandPalette.Root bind:value={search}>
       <CommandPalette.Input placeholder="Type a command or search..." />
       <CommandPalette.List>
         {#each groups as group}
@@ -75,6 +76,6 @@
           <span>Select</span>
         </span>
       </CommandPalette.Footer>
-    </CommandPalette>
+    </CommandPalette.Root>
   </CommandPalette.Dialog>
 </div>

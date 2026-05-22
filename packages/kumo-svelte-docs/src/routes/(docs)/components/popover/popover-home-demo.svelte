@@ -1,8 +1,9 @@
 <script lang="ts">
-  import { Button, Popover } from "kumo-svelte";
+  import { Button } from "kumo-svelte";
+  import * as Popover from "kumo-svelte/components/popover";
 </script>
 
-<Popover>
+<Popover.Root>
   <Popover.Trigger>
     {#snippet child({ props })}
       <Button {...props}>Open Popover</Button>
@@ -12,4 +13,4 @@
     <Popover.Title>Popover Title</Popover.Title>
     <Popover.Description>This is a popover.</Popover.Description>
   </Popover.Content>
-</Popover>
+</Popover.Root>

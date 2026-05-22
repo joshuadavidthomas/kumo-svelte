@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { Tabs } from "kumo-svelte";
-
+  import * as Tabs from "kumo-svelte/components/tabs";
   const tabs = [
     { value: "overview", label: "Overview" },
     { value: "analytics", label: "Analytics" },
@@ -14,5 +13,5 @@
 </script>
 
 <div class="w-full max-w-md">
-  <Tabs {tabs} selectedValue="overview" />
+  <Tabs.Root {tabs} selectedValue="overview" />
 </div>

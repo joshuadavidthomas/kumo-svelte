@@ -5,17 +5,10 @@ import TabsListComponent from "./tabs-list.svelte";
 import TabsRootComponent from "./tabs-root.svelte";
 import TabsTriggerComponent from "./tabs-trigger.svelte";
 
-const Tabs = Object.assign(TabsComponent, {
-  Root: TabsRootComponent,
-  List: TabsListComponent,
-  Trigger: TabsTriggerComponent,
-  Content: TabsContentComponent,
-});
-
 export {
-  Tabs,
+  TabsComponent as Tabs,
+  TabsComponent as Root,
   TabsRootComponent as TabsRoot,
-  TabsRootComponent as Root,
   TabsListComponent as TabsList,
   TabsListComponent as List,
   TabsTriggerComponent as TabsTrigger,

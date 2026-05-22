@@ -5,17 +5,8 @@ import CollapsiblePanelComponent from "./collapsible-panel.svelte";
 import CollapsibleRootComponent from "./collapsible-root.svelte";
 import CollapsibleTriggerComponent from "./collapsible-trigger.svelte";
 
-const Collapsible = Object.assign(CollapsibleRootComponent, {
-  Root: CollapsibleRootComponent,
-  Trigger: CollapsibleTriggerComponent,
-  Panel: CollapsiblePanelComponent,
-  Content: CollapsiblePanelComponent,
-  DefaultTrigger: CollapsibleDefaultTriggerComponent,
-  DefaultPanel: CollapsibleDefaultPanelComponent,
-});
-
 export {
-  Collapsible,
+  CollapsibleRootComponent as Collapsible,
   CollapsibleRootComponent as CollapsibleRoot,
   CollapsibleRootComponent as Root,
   CollapsibleTriggerComponent as CollapsibleTrigger,

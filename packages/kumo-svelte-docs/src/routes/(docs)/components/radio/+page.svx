@@ -28,13 +28,7 @@ baseUIComponent: radio-group
 
 ## Installation
 
-### Barrel
-
-```ts
-import { Radio } from "kumo-svelte";
-```
-
-### Granular
+### Namespace
 
 ```ts
 import * as Radio from "kumo-svelte/components/radio";
@@ -44,7 +38,7 @@ import * as Radio from "kumo-svelte/components/radio";
 
 ```svelte
 <script lang="ts">
-  import { Radio } from "kumo-svelte";
+  import * as Radio from "kumo-svelte/components/radio";
 </script>
 
 <Radio.Group legend="Choose an option" defaultValue="a">

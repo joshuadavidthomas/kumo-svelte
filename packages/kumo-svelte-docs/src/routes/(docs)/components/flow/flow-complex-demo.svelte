@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { Flow } from "kumo-svelte";
+  import * as Flow from "kumo-svelte/components/flow";
 </script>
 
-<Flow>
+<Flow.Root>
   <Flow.Parallel>
     <Flow.Node>HTTP Trigger</Flow.Node>
     <Flow.Node>Cron Trigger</Flow.Node>
@@ -14,4 +14,4 @@
     <Flow.Node>Send Notification</Flow.Node>
   </Flow.Parallel>
   <Flow.Node>Complete</Flow.Node>
-</Flow>
+</Flow.Root>

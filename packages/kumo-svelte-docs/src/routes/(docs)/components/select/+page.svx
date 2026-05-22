@@ -32,13 +32,7 @@ baseUIComponent: select
 
 ## Installation
 
-### Barrel
-
-```ts
-import { Select } from "kumo-svelte";
-```
-
-### Granular
+### Namespace
 
 ```ts
 import * as Select from "kumo-svelte/components/select";
@@ -48,12 +42,11 @@ import * as Select from "kumo-svelte/components/select";
 
 ```svelte
 <script lang="ts">
-  import { Select } from "kumo-svelte";
-
+  import * as Select from "kumo-svelte/components/select";
   let value = $state("apple");
 </script>
 
-<Select
+<Select.Root
   label="Favorite Fruit"
   {value}
   onValueChange={(next) => (value = next as string)}

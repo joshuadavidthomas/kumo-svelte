@@ -3,14 +3,8 @@ import LayerCardPrimaryComponent from "./layer-card-primary.svelte";
 import LayerCardSecondaryComponent from "./layer-card-secondary.svelte";
 import LayerCardComponent from "./layer-card.svelte";
 
-const LayerCard = Object.assign(LayerCardComponent, {
-  Root: LayerCardComponent,
-  Primary: LayerCardPrimaryComponent,
-  Secondary: LayerCardSecondaryComponent,
-});
-
 export {
-  LayerCard,
+  LayerCardComponent as LayerCard,
   LayerCardComponent as LayerCardRoot,
   LayerCardComponent as Root,
   LayerCardPrimaryComponent as LayerCardPrimary,

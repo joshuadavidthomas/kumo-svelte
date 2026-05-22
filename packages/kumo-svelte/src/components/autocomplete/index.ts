@@ -9,21 +9,8 @@ import AutocompleteItemComponent from "./autocomplete-item.svelte";
 import AutocompleteListComponent from "./autocomplete-list.svelte";
 import AutocompleteSeparatorComponent from "./autocomplete-separator.svelte";
 
-const Autocomplete = Object.assign(AutocompleteComponent, {
-  Root: AutocompleteComponent,
-  Content: AutocompleteContentComponent,
-  Empty: AutocompleteEmptyComponent,
-  Group: AutocompleteGroupComponent,
-  GroupLabel: AutocompleteGroupLabelComponent,
-  Input: AutocompleteInputComponent,
-  InputGroup: AutocompleteInputComponent,
-  Item: AutocompleteItemComponent,
-  List: AutocompleteListComponent,
-  Separator: AutocompleteSeparatorComponent,
-});
-
 export {
-  Autocomplete,
+  AutocompleteComponent as Autocomplete,
   AutocompleteComponent as AutocompleteRoot,
   AutocompleteComponent as Root,
   AutocompleteContentComponent as AutocompleteContent,

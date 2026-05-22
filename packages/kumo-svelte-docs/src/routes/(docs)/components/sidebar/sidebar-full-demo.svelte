@@ -7,7 +7,7 @@
   import HouseIcon from "phosphor-svelte/lib/HouseIcon";
   import LockIcon from "phosphor-svelte/lib/LockIcon";
   import ShieldCheckIcon from "phosphor-svelte/lib/ShieldCheckIcon";
-  import { Sidebar } from "kumo-svelte";
+  import * as Sidebar from "kumo-svelte/components/sidebar";
   import DemoShell from "./sidebar-demo-shell.svelte";
   import DemoMain from "./sidebar-main.svelte";
 </script>
@@ -23,7 +23,7 @@
 
 <DemoShell>
   <Sidebar.Provider defaultOpen class="h-full min-h-0!">
-    <Sidebar>
+    <Sidebar.Root>
       <Sidebar.Header>
         <div class="flex w-full min-w-0 items-center gap-2 px-3 py-2">
           <div class="size-4 shrink-0 rounded bg-kumo-brand"></div>
@@ -74,7 +74,7 @@
       <Sidebar.Footer>
         <Sidebar.MenuButton icon={gearIcon}>Manage account</Sidebar.MenuButton>
       </Sidebar.Footer>
-    </Sidebar>
+    </Sidebar.Root>
     <DemoMain />
   </Sidebar.Provider>
 </DemoShell>

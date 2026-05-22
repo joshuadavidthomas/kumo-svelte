@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { Tabs } from "kumo-svelte";
-
+  import * as Tabs from "kumo-svelte/components/tabs";
   const tabs = [
     { value: "home", label: "Home" },
     { value: "about", label: "About" },
@@ -8,4 +7,4 @@
   ];
 </script>
 
-<Tabs {tabs} selectedValue="home" />
+<Tabs.Root {tabs} selectedValue="home" />

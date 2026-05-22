@@ -23,8 +23,9 @@ The Svelte package does not currently export a `PageHeader` block or a block-ins
 
 ```svelte
 <script lang="ts">
-  import { Breadcrumbs, Button, Tabs } from "kumo-svelte";
-
+  import { Button } from "kumo-svelte";
+  import * as Breadcrumbs from "kumo-svelte/components/breadcrumbs";
+  import * as Tabs from "kumo-svelte/components/tabs";
   const tabs = [
     { label: "Overview", value: "overview" },
     { label: "Settings", value: "settings" },
@@ -33,15 +34,15 @@ The Svelte package does not currently export a `PageHeader` block or a block-ins
 
 <header class="rounded-lg border border-kumo-hairline bg-kumo-base">
   <div class="flex items-start justify-between gap-4 p-4">
-    <Breadcrumbs>
+    <Breadcrumbs.Root>
       <Breadcrumbs.Link href="#">Home</Breadcrumbs.Link>
       <Breadcrumbs.Separator />
       <Breadcrumbs.Current>My Project</Breadcrumbs.Current>
-    </Breadcrumbs>
+    </Breadcrumbs.Root>
     <Button variant="primary" size="sm">Deploy</Button>
   </div>
   <div class="border-t border-kumo-hairline px-4 py-3">
-    <Tabs {tabs} selectedValue="overview" />
+    <Tabs.Root {tabs} selectedValue="overview" />
   </div>
 </header>
 ```

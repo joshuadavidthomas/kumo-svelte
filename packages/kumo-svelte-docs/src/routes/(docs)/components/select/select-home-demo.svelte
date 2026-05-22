@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { Select } from "kumo-svelte";
-
+  import * as Select from "kumo-svelte/components/select";
   const items = {
     all: "All deployed versions",
     active: "Active versions",
@@ -8,4 +7,4 @@
   };
 </script>
 
-<Select aria-label="Select version" class="w-[200px]" placeholder="Select version" {items} />
+<Select.Root aria-label="Select version" class="w-[200px]" placeholder="Select version" {items} />

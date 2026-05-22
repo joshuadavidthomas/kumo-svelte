@@ -1,7 +1,7 @@
 <script lang="ts">
   import DotsThreeIcon from "phosphor-svelte/lib/DotsThreeIcon";
-  import { Button, Popover } from "kumo-svelte";
-
+  import { Button } from "kumo-svelte";
+  import * as Popover from "kumo-svelte/components/popover";
   const rows = [
     { id: "1", name: "api-gateway", status: "Active" },
     { id: "2", name: "auth-service", status: "Active" },
@@ -52,7 +52,7 @@
     </table>
   </div>
 
-  <Popover {open} onOpenChange={(nextOpen) => !nextOpen && (selectedRow = undefined)}>
+  <Popover.Root {open} onOpenChange={(nextOpen) => !nextOpen && (selectedRow = undefined)}>
     <Popover.Content side="left" {anchor}>
       <Popover.Title>Edit {rows.find((row) => row.id === selectedRow)?.name}</Popover.Title>
       <Popover.Description>The popover anchors to the selected row, not the icon button.</Popover.Description>
@@ -64,5 +64,5 @@
         </Popover.Close>
       </div>
     </Popover.Content>
-  </Popover>
+  </Popover.Root>
 </div>

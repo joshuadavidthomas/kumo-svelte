@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { CloudflareLogo, DropdownMenu, generateCloudflareLogoSvg } from "kumo-svelte";
+  import { CloudflareLogo, generateCloudflareLogoSvg } from "kumo-svelte";
+  import * as DropdownMenu from "kumo-svelte/components/dropdown";
   import ArrowSquareOutIcon from "phosphor-svelte/lib/ArrowSquareOutIcon";
   import CloudIcon from "phosphor-svelte/lib/CloudIcon";
   import CodeIcon from "phosphor-svelte/lib/CodeIcon";
@@ -41,7 +42,7 @@
 {/snippet}
 
 <div class="flex items-center gap-4">
-  <DropdownMenu>
+  <DropdownMenu.Root>
     <DropdownMenu.Trigger>
       {#snippet child({ props })}
         <button
@@ -82,7 +83,7 @@
         Visit brand guidelines
       </DropdownMenu.Item>
     </DropdownMenu.Content>
-  </DropdownMenu>
+  </DropdownMenu.Root>
 
   <span class="text-sm text-kumo-subtle">Click to open the brand assets menu</span>
 </div>

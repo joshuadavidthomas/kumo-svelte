@@ -25,36 +25,8 @@ import SidebarResizeHandleComponent from "./sidebar-resize-handle.svelte";
 import SidebarSeparatorComponent from "./sidebar-separator.svelte";
 import SidebarTriggerComponent from "./sidebar-trigger.svelte";
 
-const Sidebar = Object.assign(SidebarComponent, {
-  Root: SidebarComponent,
-  Provider: SidebarProviderComponent,
-  Header: SidebarHeaderComponent,
-  Content: SidebarContentComponent,
-  Footer: SidebarFooterComponent,
-  Group: SidebarGroupComponent,
-  GroupLabel: SidebarGroupLabelComponent,
-  GroupContent: SidebarGroupContentComponent,
-  Menu: SidebarMenuComponent,
-  MenuItem: SidebarMenuItemComponent,
-  MenuButton: SidebarMenuButtonComponent,
-  MenuAction: SidebarMenuActionComponent,
-  MenuBadge: SidebarMenuBadgeComponent,
-  MenuChevron: SidebarMenuChevronComponent,
-  MenuSub: SidebarMenuSubComponent,
-  MenuSubItem: SidebarMenuSubItemComponent,
-  MenuSubButton: SidebarMenuSubButtonComponent,
-  Separator: SidebarSeparatorComponent,
-  Input: SidebarInputComponent,
-  Trigger: SidebarTriggerComponent,
-  Rail: SidebarRailComponent,
-  ResizeHandle: SidebarResizeHandleComponent,
-  Collapsible: SidebarCollapsibleComponent,
-  CollapsibleTrigger: SidebarCollapsibleTriggerComponent,
-  CollapsibleContent: SidebarCollapsibleContentComponent,
-});
-
 export {
-  Sidebar,
+  SidebarComponent as Sidebar,
   SidebarComponent as SidebarRoot,
   SidebarComponent as Root,
   SidebarContentComponent as SidebarContent,

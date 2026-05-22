@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { Button, Popover } from "kumo-svelte";
-
+  import { Button } from "kumo-svelte";
+  import * as Popover from "kumo-svelte/components/popover";
   let open = $state(false);
   let timer: ReturnType<typeof setTimeout> | undefined;
 
@@ -17,7 +17,7 @@
   }
 </script>
 
-<Popover bind:open>
+<Popover.Root bind:open>
   <Popover.Trigger onmouseenter={show} onmouseleave={hide}>
     {#snippet child({ props })}
       <Button {...props} variant="secondary">Hover Me</Button>
@@ -36,4 +36,4 @@
       </Popover.Close>
     </div>
   </Popover.Content>
-</Popover>
+</Popover.Root>

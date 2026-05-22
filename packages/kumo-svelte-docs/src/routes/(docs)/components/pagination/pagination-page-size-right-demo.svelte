@@ -1,11 +1,10 @@
 <script lang="ts">
-  import { Pagination } from "kumo-svelte";
-
+  import * as Pagination from "kumo-svelte/components/pagination";
   let page = $state(1);
   let perPage = $state(25);
 </script>
 
-<Pagination bind:page {perPage} totalCount={500}>
+<Pagination.Root bind:page {perPage} totalCount={500}>
   <Pagination.Info />
   <div class="flex items-center gap-2">
     <Pagination.Controls />
@@ -18,4 +17,4 @@
       }}
     />
   </div>
-</Pagination>
+</Pagination.Root>

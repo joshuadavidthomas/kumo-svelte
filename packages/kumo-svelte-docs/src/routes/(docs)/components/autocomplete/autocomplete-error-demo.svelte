@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { Autocomplete } from "kumo-svelte";
+  import * as Autocomplete from "kumo-svelte/components/autocomplete";
   import { countries, countryItems } from "./autocomplete-data";
 </script>
 
 <div class="w-80">
-  <Autocomplete items={countryItems} label="Country" error="Please enter a valid country">
+  <Autocomplete.Root items={countryItems} label="Country" error="Please enter a valid country">
     <Autocomplete.InputGroup placeholder="Search countries…" />
     <Autocomplete.Content>
       <Autocomplete.List>
@@ -13,5 +13,5 @@
         {/each}
       </Autocomplete.List>
     </Autocomplete.Content>
-  </Autocomplete>
+  </Autocomplete.Root>
 </div>

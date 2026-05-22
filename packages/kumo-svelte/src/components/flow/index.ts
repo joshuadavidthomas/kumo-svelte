@@ -6,17 +6,8 @@ import FlowListComponent from "./flow-list.svelte";
 import FlowNodeComponent from "./flow-node.svelte";
 import FlowParallelComponent from "./flow-parallel.svelte";
 
-const Flow = Object.assign(FlowComponent, {
-  Root: FlowComponent,
-  Anchor: FlowAnchorComponent,
-  Connectors: ConnectorsComponent,
-  List: FlowListComponent,
-  Node: FlowNodeComponent,
-  Parallel: FlowParallelComponent,
-});
-
 export {
-  Flow,
+  FlowComponent as Flow,
   FlowComponent as FlowRoot,
   FlowComponent as Root,
   FlowAnchorComponent as FlowAnchor,

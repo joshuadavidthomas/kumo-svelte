@@ -1,12 +1,12 @@
 <script lang="ts">
-  import { Button, DropdownMenu } from "kumo-svelte";
-
+  import { Button } from "kumo-svelte";
+  import * as DropdownMenu from "kumo-svelte/components/dropdown";
   let showSidebar = $state(true);
   let showLineNumbers = $state(false);
   let wordWrap = $state(true);
 </script>
 
-<DropdownMenu>
+<DropdownMenu.Root>
   <DropdownMenu.Trigger>
     {#snippet child({ props })}
       <Button {...props}>View Options</Button>
@@ -20,4 +20,4 @@
       <DropdownMenu.CheckboxItem bind:checked={wordWrap}>Word wrap</DropdownMenu.CheckboxItem>
     </DropdownMenu.Group>
   </DropdownMenu.Content>
-</DropdownMenu>
+</DropdownMenu.Root>

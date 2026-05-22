@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { Pagination } from "kumo-svelte";
-
+  import * as Pagination from "kumo-svelte/components/pagination";
   let page = $state(1);
 </script>
 
@@ -9,7 +8,7 @@
   <span class="tabular-nums">{props.totalCount}</span>
 {/snippet}
 
-<Pagination
+<Pagination.Root
   bind:page
   perPage={10}
   totalCount={100}
@@ -24,4 +23,4 @@
 >
   <Pagination.Info text={frenchInfo} />
   <Pagination.Controls />
-</Pagination>
+</Pagination.Root>

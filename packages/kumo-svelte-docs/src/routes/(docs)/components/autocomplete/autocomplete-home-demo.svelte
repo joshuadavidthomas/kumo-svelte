@@ -1,11 +1,10 @@
 <script lang="ts">
-  import { Autocomplete } from "kumo-svelte";
-
+  import * as Autocomplete from "kumo-svelte/components/autocomplete";
   const fruits = ["Apple", "Banana", "Cherry", "Grape", "Mango", "Orange"];
   const items = fruits.map((fruit) => ({ label: fruit, value: fruit }));
 </script>
 
-<Autocomplete {items}>
+<Autocomplete.Root {items}>
   <Autocomplete.InputGroup placeholder="Search fruits…" />
   <Autocomplete.Content>
     <Autocomplete.List>
@@ -14,4 +13,4 @@
       {/each}
     </Autocomplete.List>
   </Autocomplete.Content>
-</Autocomplete>
+</Autocomplete.Root>

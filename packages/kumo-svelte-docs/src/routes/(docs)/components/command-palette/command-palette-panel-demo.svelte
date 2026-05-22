@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { CommandPalette } from "kumo-svelte";
-
+  import * as CommandPalette from "kumo-svelte/components/command-palette";
   const groups = [
     { label: "Commands", items: ["Create New Project", "Open Settings", "Search Files"] },
     { label: "Pages", items: ["Home", "Dashboard", "Users"] },
@@ -10,7 +9,7 @@
 </script>
 
 <div class="w-full max-w-xl rounded-lg border border-kumo-hairline shadow-sm">
-  <CommandPalette bind:value={search}>
+  <CommandPalette.Root bind:value={search}>
     <CommandPalette.Input placeholder="Search inline commands..." />
     <CommandPalette.List>
       {#each groups as group}
@@ -23,5 +22,5 @@
       {/each}
       <CommandPalette.Empty>No commands found</CommandPalette.Empty>
     </CommandPalette.List>
-  </CommandPalette>
+  </CommandPalette.Root>
 </div>

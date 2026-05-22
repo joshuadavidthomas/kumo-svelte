@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Radio } from "kumo-svelte";
+  import * as Radio from "kumo-svelte/components/radio";
 </script>
 
 <div class="grid gap-6 md:grid-cols-2">

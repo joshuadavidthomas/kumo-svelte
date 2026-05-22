@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { Button, CommandPalette } from "kumo-svelte";
-
+  import { Button } from "kumo-svelte";
+  import * as CommandPalette from "kumo-svelte/components/command-palette";
   const groups = [
     { label: "Commands", items: ["Create New Project", "Open Settings", "Search Files"] },
     { label: "Pages", items: ["Home", "Dashboard", "Users"] },
@@ -14,7 +14,7 @@
   <Button onclick={() => (open = true)}>Open Palette (No Autocomplete)</Button>
 
   <CommandPalette.Dialog bind:open>
-    <CommandPalette bind:value={search}>
+    <CommandPalette.Root bind:value={search}>
       <CommandPalette.Input placeholder="Search commands..." autocomplete="off" />
       <CommandPalette.List>
         {#each groups as group}
@@ -35,6 +35,6 @@
         {/each}
         <CommandPalette.Empty>No commands found</CommandPalette.Empty>
       </CommandPalette.List>
-    </CommandPalette>
+    </CommandPalette.Root>
   </CommandPalette.Dialog>
 </div>

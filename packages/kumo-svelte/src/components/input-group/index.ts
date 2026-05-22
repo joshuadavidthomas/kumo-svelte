@@ -5,18 +5,8 @@ import InputGroupButtonComponent from "./input-group-button.svelte";
 import InputGroupInputComponent from "./input-group-input.svelte";
 import InputGroupSuffixComponent from "./input-group-suffix.svelte";
 
-const InputGroup = Object.assign(InputGroupComponent, {
-  Root: InputGroupComponent,
-  Addon: InputGroupAddonComponent,
-  Button: InputGroupButtonComponent,
-  Input: InputGroupInputComponent,
-  Suffix: InputGroupSuffixComponent,
-  Label: InputGroupAddonComponent,
-  Description: InputGroupSuffixComponent,
-});
-
 export {
-  InputGroup,
+  InputGroupComponent as InputGroup,
   InputGroupComponent as InputGroupRoot,
   InputGroupComponent as Root,
   InputGroupAddonComponent as InputGroupAddon,

@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { Button, Dialog } from "kumo-svelte";
+  import { Button } from "kumo-svelte";
+  import * as Dialog from "kumo-svelte/components/dialog";
   import XIcon from "phosphor-svelte/lib/XIcon";
 </script>
 
@@ -9,7 +10,7 @@
       <Button {...props}>Delete</Button>
     {/snippet}
   </Dialog.Trigger>
-  <Dialog class="p-8">
+  <Dialog.Content class="p-8">
     <div class="mb-4 flex items-start justify-between gap-4">
       <Dialog.Title class="text-2xl font-semibold">Modal Title</Dialog.Title>
       <Dialog.Close aria-label="Close">
@@ -34,5 +35,5 @@
         {/snippet}
       </Dialog.Close>
     </div>
-  </Dialog>
+  </Dialog.Content>
 </Dialog.Root>

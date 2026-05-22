@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { Button, Dialog } from "kumo-svelte";
+  import { Button } from "kumo-svelte";
+  import * as Dialog from "kumo-svelte/components/dialog";
   import WarningIcon from "phosphor-svelte/lib/WarningIcon";
 </script>
 
@@ -9,7 +10,7 @@
       <Button {...props} variant="destructive">Delete Account</Button>
     {/snippet}
   </Dialog.Trigger>
-  <Dialog class="p-8">
+  <Dialog.Content class="p-8">
     <div class="mb-4 flex items-center gap-3">
       <div class="flex h-10 w-10 items-center justify-center rounded-full bg-kumo-danger/20">
         <WarningIcon size={20} weight="fill" class="text-kumo-danger" />
@@ -32,5 +33,5 @@
         {/snippet}
       </Dialog.Close>
     </div>
-  </Dialog>
+  </Dialog.Content>
 </Dialog.Root>

@@ -6,19 +6,9 @@ import BreadcrumbsEllipsisComponent from "./breadcrumbs-ellipsis.svelte";
 import BreadcrumbsLinkComponent from "./breadcrumbs-link.svelte";
 import BreadcrumbsSeparatorComponent from "./breadcrumbs-separator.svelte";
 
-const Breadcrumbs = Object.assign(BreadcrumbsComponent, {
-  Root: BreadcrumbsComponent,
-  Clipboard: BreadcrumbsClipboardComponent,
-  Current: BreadcrumbsCurrentComponent,
-  Ellipsis: BreadcrumbsEllipsisComponent,
-  Link: BreadcrumbsLinkComponent,
-  Separator: BreadcrumbsSeparatorComponent,
-});
-const Breadcrumb = Breadcrumbs;
-
 export {
-  Breadcrumb,
-  Breadcrumbs,
+  BreadcrumbsComponent as Breadcrumb,
+  BreadcrumbsComponent as Breadcrumbs,
   BreadcrumbsComponent as BreadcrumbsRoot,
   BreadcrumbsComponent as Root,
   BreadcrumbsClipboardComponent as BreadcrumbsClipboard,

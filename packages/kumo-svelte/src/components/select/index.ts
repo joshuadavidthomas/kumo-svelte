@@ -11,25 +11,10 @@ import SelectTriggerComponent from "./select-trigger.svelte";
 import SelectValueComponent from "./select-value.svelte";
 import SelectViewportComponent from "./select-viewport.svelte";
 
-const Select = Object.assign(SelectComponent, {
-  Root: SelectRootComponent,
-  Trigger: SelectTriggerComponent,
-  Value: SelectValueComponent,
-  Portal: SelectPortalComponent,
-  Content: SelectContentComponent,
-  Viewport: SelectViewportComponent,
-  Option: SelectOptionComponent,
-  Item: SelectOptionComponent,
-  Group: SelectGroupComponent,
-  GroupHeading: SelectGroupHeadingComponent,
-  GroupLabel: SelectGroupHeadingComponent,
-  Separator: SelectSeparatorComponent,
-});
-
 export {
-  Select,
+  SelectComponent as Select,
+  SelectComponent as Root,
   SelectRootComponent as SelectRoot,
-  SelectRootComponent as Root,
   SelectTriggerComponent as SelectTrigger,
   SelectTriggerComponent as Trigger,
   SelectValueComponent as SelectValue,

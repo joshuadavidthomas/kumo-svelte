@@ -20,13 +20,7 @@ sourceFile: components/layer-card
 
 ## Installation
 
-### Barrel
-
-```ts
-import { LayerCard } from "kumo-svelte";
-```
-
-### Granular
+### Namespace
 
 ```ts
 import * as LayerCard from "kumo-svelte/components/layer-card";
@@ -36,21 +30,21 @@ import * as LayerCard from "kumo-svelte/components/layer-card";
 
 ```svelte
 <script lang="ts">
-  import { LayerCard } from "kumo-svelte";
+  import * as LayerCard from "kumo-svelte/components/layer-card";
 </script>
 
-<LayerCard layered class="w-[250px]">
+<LayerCard.Root layered class="w-[250px]">
   <LayerCard.Secondary>Documentation</LayerCard.Secondary>
   <LayerCard.Primary>Learn how to use Kumo components</LayerCard.Primary>
-</LayerCard>
+</LayerCard.Root>
 ```
 
 LayerCard also supports a simple surface-style mode for cases where you do not need a secondary header row. In those cases, render content directly inside `LayerCard` and omit the `layered` prop.
 
 ```svelte
-<LayerCard class="w-[250px] p-4">
+<LayerCard.Root class="w-[250px] p-4">
   Learn how to use Kumo components
-</LayerCard>
+</LayerCard.Root>
 ```
 
 ## Examples

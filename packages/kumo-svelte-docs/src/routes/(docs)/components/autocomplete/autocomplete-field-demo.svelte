@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Autocomplete } from "kumo-svelte";
+  import * as Autocomplete from "kumo-svelte/components/autocomplete";
   import { countries, countryItems } from "./autocomplete-data";
 
   interface Props {
@@ -10,7 +10,7 @@
 </script>
 
 <div class="w-80">
-  <Autocomplete
+  <Autocomplete.Root
     items={countryItems}
     label="Country"
     description={error ? undefined : "Start typing to filter countries"}
@@ -25,5 +25,5 @@
         {/each}
       </Autocomplete.List>
     </Autocomplete.Content>
-  </Autocomplete>
+  </Autocomplete.Root>
 </div>

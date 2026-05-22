@@ -1,10 +1,9 @@
 <script lang="ts">
-  import { Select } from "kumo-svelte";
-
+  import * as Select from "kumo-svelte/components/select";
   let value = $state("");
 </script>
 
-<Select
+<Select.Root
   label="Issue Type"
   description="Choose the category that best describes your issue"
   class="w-[280px]"

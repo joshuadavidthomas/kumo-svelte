@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { Select } from "kumo-svelte";
-
+  import * as Select from "kumo-svelte/components/select";
   const foods = {
     fruits: [
       { value: "apple", label: "Apple" },
@@ -17,7 +16,7 @@
   let value = $state("");
 </script>
 
-<Select
+<Select.Root
   label="Food"
   placeholder="Pick a food..."
   class="w-[220px]"
@@ -37,4 +36,4 @@
       <Select.Option value={food.value}>{food.label}</Select.Option>
     {/each}
   </Select.Group>
-</Select>
+</Select.Root>

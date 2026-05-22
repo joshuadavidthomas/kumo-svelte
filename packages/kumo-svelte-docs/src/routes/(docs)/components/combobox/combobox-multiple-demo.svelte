@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { Button, Combobox, Text } from "kumo-svelte";
+  import { Button, Text } from "kumo-svelte";
+  import * as Combobox from "kumo-svelte/components/combobox";
   import { bots } from "./combobox-data";
 
   let value = $state<string[]>([]);
@@ -12,7 +13,7 @@
 {/snippet}
 
 <div class="flex gap-2">
-  <Combobox multiple bind:value bind:open items={bots}>
+  <Combobox.Root multiple bind:value bind:open items={bots}>
     <Combobox.TriggerMultipleWithInput class="w-[400px]" placeholder="Select bots" renderItem={selectedBot} />
     <Combobox.Content class="max-h-[200px] min-w-auto overflow-y-auto">
       <Combobox.Empty />
@@ -27,6 +28,6 @@
         {/each}
       </Combobox.List>
     </Combobox.Content>
-  </Combobox>
+  </Combobox.Root>
   <Button variant="primary">Submit</Button>
 </div>

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Radio } from "kumo-svelte";
+  import * as Radio from "kumo-svelte/components/radio";
 </script>
 
 <Radio.Group legend="Preferences" controlPosition="end" defaultValue="a">

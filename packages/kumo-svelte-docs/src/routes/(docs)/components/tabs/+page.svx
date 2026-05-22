@@ -20,13 +20,7 @@ sourceFile: components/tabs
 
 ## Installation
 
-### Barrel
-
-```ts
-import { Tabs } from "kumo-svelte";
-```
-
-### Granular
+### Namespace
 
 ```ts
 import * as Tabs from "kumo-svelte/components/tabs";
@@ -36,10 +30,10 @@ import * as Tabs from "kumo-svelte/components/tabs";
 
 ```svelte
 <script lang="ts">
-  import { Tabs } from "kumo-svelte";
+  import * as Tabs from "kumo-svelte/components/tabs";
 </script>
 
-<Tabs
+<Tabs.Root
   tabs={[
     { value: "overview", label: "Overview" },
     { value: "settings", label: "Settings" },

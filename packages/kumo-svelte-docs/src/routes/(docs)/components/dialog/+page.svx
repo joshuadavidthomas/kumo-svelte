@@ -22,13 +22,7 @@ primitive: dialog
 
 ## Installation
 
-### Barrel
-
-```ts
-import { Dialog } from "kumo-svelte";
-```
-
-### Granular
+### Namespace
 
 ```ts
 import * as Dialog from "kumo-svelte/components/dialog";
@@ -38,7 +32,8 @@ import * as Dialog from "kumo-svelte/components/dialog";
 
 ```svelte
 <script lang="ts">
-  import { Button, Dialog } from "kumo-svelte";
+  import { Button } from "kumo-svelte";
+  import * as Dialog from "kumo-svelte/components/dialog";
 </script>
 
 <Dialog.Root>
@@ -47,7 +42,7 @@ import * as Dialog from "kumo-svelte/components/dialog";
       <Button {...props}>Open</Button>
     {/snippet}
   </Dialog.Trigger>
-  <Dialog class="p-8">
+  <Dialog.Content class="p-8">
     <Dialog.Title>Dialog Title</Dialog.Title>
     <Dialog.Description>Dialog content goes here.</Dialog.Description>
     <div class="mt-4 flex justify-end gap-2">
@@ -57,7 +52,7 @@ import * as Dialog from "kumo-svelte/components/dialog";
         {/snippet}
       </Dialog.Close>
     </div>
-  </Dialog>
+  </Dialog.Content>
 </Dialog.Root>
 ```
 

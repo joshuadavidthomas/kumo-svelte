@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Select } from "kumo-svelte";
+  import * as Select from "kumo-svelte/components/select";
 </script>
 
-<Select aria-label="Loading select" class="w-[200px]" loading />
+<Select.Root aria-label="Loading select" class="w-[200px]" loading />

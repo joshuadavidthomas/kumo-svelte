@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { Button, CommandPalette } from "kumo-svelte";
+  import { Button } from "kumo-svelte";
+  import * as CommandPalette from "kumo-svelte/components/command-palette";
   import FileIcon from "phosphor-svelte/lib/FileIcon";
 
   const results = [
@@ -20,7 +21,7 @@
   <Button onclick={() => (open = true)}>Open with ResultItem</Button>
 
   <CommandPalette.Dialog bind:open>
-    <CommandPalette bind:value={search}>
+    <CommandPalette.Root bind:value={search}>
       <CommandPalette.Input placeholder="Search documentation..." />
       <CommandPalette.List>
         {#each results as result}
@@ -44,6 +45,6 @@
           <span>Open in new tab</span>
         </span>
       </CommandPalette.Footer>
-    </CommandPalette>
+    </CommandPalette.Root>
   </CommandPalette.Dialog>
 </div>

@@ -2,13 +2,8 @@ import type { ComponentProps } from "svelte";
 import CodeBlockComponent from "./code-block.svelte";
 import CodeComponent from "./code.svelte";
 
-const Code = Object.assign(CodeComponent, {
-  Root: CodeComponent,
-  Block: CodeBlockComponent,
-});
-
 export {
-  Code,
+  CodeComponent as Code,
   CodeComponent as CodeRoot,
   CodeComponent as Root,
   CodeBlockComponent as CodeBlock,

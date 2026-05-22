@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { Select } from "kumo-svelte";
-
+  import * as Select from "kumo-svelte/components/select";
   let value = $state("");
 </script>
 
@@ -8,7 +7,7 @@
   Higher priority issues are addressed first
 {/snippet}
 
-<Select
+<Select.Root
   label="Priority"
   {labelTooltip}
   placeholder="Select priority"

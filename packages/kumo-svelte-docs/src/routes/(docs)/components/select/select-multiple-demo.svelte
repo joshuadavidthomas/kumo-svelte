@@ -1,10 +1,9 @@
 <script lang="ts">
-  import { Select } from "kumo-svelte";
-
+  import * as Select from "kumo-svelte/components/select";
   let value = $state<string[]>(["Name", "Location", "Size"]);
 </script>
 
-<Select
+<Select.Root
   label="Visible Columns"
   class="w-[250px]"
   multiple
@@ -17,4 +16,4 @@
   <Select.Option value="Read">Read</Select.Option>
   <Select.Option value="Write">Write</Select.Option>
   <Select.Option value="CreatedAt">Created At</Select.Option>
-</Select>
+</Select.Root>

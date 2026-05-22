@@ -25,13 +25,7 @@ sourceFile: components/flow
 
 ## Installation
 
-### Barrel
-
-```ts
-import { Flow } from "kumo-svelte";
-```
-
-### Granular
+### Namespace
 
 ```ts
 import * as Flow from "kumo-svelte/components/flow";
@@ -45,14 +39,14 @@ The Flow components work together to create directed flow diagrams. Use `Flow` a
 
 ```svelte
 <script lang="ts">
-  import { Flow } from "kumo-svelte";
+  import * as Flow from "kumo-svelte/components/flow";
 </script>
 
-<Flow>
+<Flow.Root>
   <Flow.Node>Step 1</Flow.Node>
   <Flow.Node>Step 2</Flow.Node>
   <Flow.Node>Step 3</Flow.Node>
-</Flow>
+</Flow.Root>
 ```
 
 ## Examples

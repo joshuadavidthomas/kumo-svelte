@@ -1,11 +1,11 @@
 <script lang="ts">
-  import { Collapsible, Input, Text } from "kumo-svelte";
-
+  import { Input, Text } from "kumo-svelte";
+  import * as Collapsible from "kumo-svelte/components/collapsible";
   let open = $state(true);
 </script>
 
 <div class="w-full space-y-4">
-  <Collapsible bind:open>
+  <Collapsible.Root bind:open>
     <Collapsible.DefaultTrigger>Edit details</Collapsible.DefaultTrigger>
     <Collapsible.DefaultPanel forceMount>
       <Text>
@@ -14,5 +14,5 @@
       </Text>
       <Input label="Name" placeholder="Type here…" />
     </Collapsible.DefaultPanel>
-  </Collapsible>
+  </Collapsible.Root>
 </div>

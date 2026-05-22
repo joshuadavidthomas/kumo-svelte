@@ -22,13 +22,7 @@ primitive: dropdown-menu
 
 ## Installation
 
-### Barrel
-
-```ts
-import { DropdownMenu } from "kumo-svelte";
-```
-
-### Granular
+### Namespace
 
 ```ts
 import * as DropdownMenu from "kumo-svelte/components/dropdown";
@@ -38,10 +32,11 @@ import * as DropdownMenu from "kumo-svelte/components/dropdown";
 
 ```svelte
 <script lang="ts">
-  import { Button, DropdownMenu } from "kumo-svelte";
+  import { Button } from "kumo-svelte";
+  import * as DropdownMenu from "kumo-svelte/components/dropdown";
 </script>
 
-<DropdownMenu>
+<DropdownMenu.Root>
   <DropdownMenu.Trigger>
     {#snippet child({ props })}
       <Button {...props}>Menu</Button>
@@ -53,7 +48,7 @@ import * as DropdownMenu from "kumo-svelte/components/dropdown";
     <DropdownMenu.Separator />
     <DropdownMenu.Item variant="danger" onclick={() => console.log("delete")}>Delete</DropdownMenu.Item>
   </DropdownMenu.Content>
-</DropdownMenu>
+</DropdownMenu.Root>
 ```
 
 ## Examples

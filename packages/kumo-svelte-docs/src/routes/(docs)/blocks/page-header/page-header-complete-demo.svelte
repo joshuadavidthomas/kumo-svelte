@@ -1,6 +1,7 @@
 <script lang="ts">
   import PlusIcon from "phosphor-svelte/lib/PlusIcon";
-  import { Breadcrumbs, Button } from "kumo-svelte";
+  import { Button } from "kumo-svelte";
+  import * as Breadcrumbs from "kumo-svelte/components/breadcrumbs";
   import PageHeaderDemoShell from "./page-header-demo-shell.svelte";
 
   const tabs = [
@@ -17,13 +18,13 @@
   selectedValue="overview"
 >
   {#snippet breadcrumbs()}
-    <Breadcrumbs>
+    <Breadcrumbs.Root>
       <Breadcrumbs.Link href="#">Home</Breadcrumbs.Link>
       <Breadcrumbs.Separator />
       <Breadcrumbs.Link href="#">Products</Breadcrumbs.Link>
       <Breadcrumbs.Separator />
       <Breadcrumbs.Current>Page title</Breadcrumbs.Current>
-    </Breadcrumbs>
+    </Breadcrumbs.Root>
   {/snippet}
   {#snippet actions()}
     <Button variant="outline" size="sm">Export</Button>

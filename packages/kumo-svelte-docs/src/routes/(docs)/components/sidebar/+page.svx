@@ -20,13 +20,7 @@ sourceFile: components/sidebar
 
 ## Installation
 
-### Barrel
-
-```ts
-import { Sidebar } from "kumo-svelte";
-```
-
-### Granular
+### Namespace
 
 ```ts
 import * as Sidebar from "kumo-svelte/components/sidebar";
@@ -43,13 +37,13 @@ At minimum you need `Sidebar.Provider`,
 ```svelte
 <script lang="ts">
   import HouseIcon from "phosphor-svelte/lib/HouseIcon";
-  import { Sidebar } from "kumo-svelte";
+  import * as Sidebar from "kumo-svelte/components/sidebar";
 </script>
 
 {#snippet homeIcon()}<HouseIcon />{/snippet}
 
 <Sidebar.Provider defaultOpen>
-  <Sidebar>
+  <Sidebar.Root>
     <Sidebar.Content>
       <Sidebar.Group>
         <Sidebar.GroupLabel>Navigation</Sidebar.GroupLabel>
@@ -58,7 +52,7 @@ At minimum you need `Sidebar.Provider`,
         </Sidebar.Menu>
       </Sidebar.Group>
     </Sidebar.Content>
-  </Sidebar>
+  </Sidebar.Root>
   <main class="flex-1"><slot /></main>
 </Sidebar.Provider>
 ```

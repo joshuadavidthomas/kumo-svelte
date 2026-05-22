@@ -5,16 +5,8 @@ import PaginationInfoComponent from "./pagination-info.svelte";
 import PaginationPageSizeComponent from "./pagination-page-size.svelte";
 import PaginationSeparatorComponent from "./pagination-separator.svelte";
 
-const Pagination = Object.assign(PaginationComponent, {
-  Root: PaginationComponent,
-  Controls: PaginationControlsComponent,
-  Info: PaginationInfoComponent,
-  PageSize: PaginationPageSizeComponent,
-  Separator: PaginationSeparatorComponent,
-});
-
 export {
-  Pagination,
+  PaginationComponent as Pagination,
   PaginationComponent as PaginationRoot,
   PaginationComponent as Root,
   PaginationControlsComponent as PaginationControls,

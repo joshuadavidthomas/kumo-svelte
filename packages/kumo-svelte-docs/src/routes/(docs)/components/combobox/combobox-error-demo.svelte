@@ -1,11 +1,11 @@
 <script lang="ts">
-  import { Combobox } from "kumo-svelte";
+  import * as Combobox from "kumo-svelte/components/combobox";
   import { databases } from "./combobox-data";
   let value = $state("");
   let open = $state(false);
 </script>
 
-<Combobox
+<Combobox.Root
   bind:value
   bind:open
   items={databases}
@@ -22,4 +22,4 @@
       {/each}
     </Combobox.List>
   </Combobox.Content>
-</Combobox>
+</Combobox.Root>

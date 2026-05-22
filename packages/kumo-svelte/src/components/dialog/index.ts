@@ -10,21 +10,8 @@ import DialogRootComponent from "./dialog-root.svelte";
 import DialogTitleComponent from "./dialog-title.svelte";
 import DialogTriggerComponent from "./dialog-trigger.svelte";
 
-const Dialog = Object.assign(DialogContentComponent, {
-  Root: DialogRootComponent,
-  Portal: DialogPortalComponent,
-  Overlay: DialogOverlayComponent,
-  Content: DialogContentComponent,
-  Header: DialogHeaderComponent,
-  Footer: DialogFooterComponent,
-  Trigger: DialogTriggerComponent,
-  Title: DialogTitleComponent,
-  Description: DialogDescriptionComponent,
-  Close: DialogCloseComponent,
-});
-
 export {
-  Dialog,
+  DialogContentComponent as Dialog,
   DialogRootComponent as DialogRoot,
   DialogRootComponent as Root,
   DialogPortalComponent as DialogPortal,

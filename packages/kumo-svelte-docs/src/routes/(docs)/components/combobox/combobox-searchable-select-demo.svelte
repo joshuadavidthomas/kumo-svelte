@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Combobox } from "kumo-svelte";
+  import * as Combobox from "kumo-svelte/components/combobox";
   import { languageItems, languages } from "./combobox-data";
 
   let value = $state("");
@@ -7,7 +7,7 @@
   let selectedLabel = $derived(languageItems.find((language) => language.value === value)?.label);
 </script>
 
-<Combobox bind:value bind:open items={languageItems}>
+<Combobox.Root bind:value bind:open items={languageItems}>
   <Combobox.TriggerValue class="w-[200px]" placeholder="Select a language">
     {selectedLabel}
   </Combobox.TriggerValue>
@@ -22,4 +22,4 @@
       {/each}
     </Combobox.List>
   </Combobox.Content>
-</Combobox>
+</Combobox.Root>

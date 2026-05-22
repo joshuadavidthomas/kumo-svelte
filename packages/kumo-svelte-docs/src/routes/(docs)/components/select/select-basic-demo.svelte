@@ -1,10 +1,9 @@
 <script lang="ts">
-  import { Select } from "kumo-svelte";
-
+  import * as Select from "kumo-svelte/components/select";
   let value = $state("apple");
 </script>
 
-<Select
+<Select.Root
   label="Favorite Fruit"
   class="w-[200px]"
   {value}

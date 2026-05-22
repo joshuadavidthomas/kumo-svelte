@@ -19,13 +19,7 @@ sourceFile: components/breadcrumbs
 
 ## Installation
 
-### Barrel
-
-```ts
-import { Breadcrumbs } from "kumo-svelte";
-```
-
-### Granular
+### Namespace
 
 ```ts
 import * as Breadcrumbs from "kumo-svelte/components/breadcrumbs";

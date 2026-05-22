@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { Button, Combobox } from "kumo-svelte";
+  import { Button } from "kumo-svelte";
+  import * as Combobox from "kumo-svelte/components/combobox";
   import CaretUpDownIcon from "phosphor-svelte/lib/CaretUpDownIcon";
   import { languageItems, languages } from "./combobox-data";
 
@@ -15,7 +16,7 @@
   </Button>
 {/snippet}
 
-<Combobox bind:value bind:open items={languageItems}>
+<Combobox.Root bind:value bind:open items={languageItems}>
   <Combobox.Trigger child={triggerChild} />
   <Combobox.Content>
     <Combobox.Input placeholder="Search languages" />
@@ -28,4 +29,4 @@
       {/each}
     </Combobox.List>
   </Combobox.Content>
-</Combobox>
+</Combobox.Root>

@@ -13,25 +13,8 @@ import CommandPaletteResultItemComponent from "./command-palette-result-item.sve
 import CommandPaletteSeparatorComponent from "./command-palette-separator.svelte";
 import HighlightedTextComponent from "./highlighted-text.svelte";
 
-const CommandPalette = Object.assign(CommandPaletteComponent, {
-  Root: CommandPaletteComponent,
-  Dialog: CommandPaletteDialogComponent,
-  Panel: CommandPaletteComponent,
-  Empty: CommandPaletteEmptyComponent,
-  Footer: CommandPaletteFooterComponent,
-  Group: CommandPaletteGroupComponent,
-  GroupLabel: CommandPaletteGroupLabelComponent,
-  Input: CommandPaletteInputComponent,
-  Item: CommandPaletteItemComponent,
-  List: CommandPaletteListComponent,
-  Loading: CommandPaletteLoadingComponent,
-  ResultItem: CommandPaletteResultItemComponent,
-  Separator: CommandPaletteSeparatorComponent,
-  HighlightedText: HighlightedTextComponent,
-});
-
 export {
-  CommandPalette,
+  CommandPaletteComponent as CommandPalette,
   CommandPaletteComponent as CommandPaletteRoot,
   CommandPaletteComponent as CommandPalettePanel,
   CommandPaletteComponent as Root,

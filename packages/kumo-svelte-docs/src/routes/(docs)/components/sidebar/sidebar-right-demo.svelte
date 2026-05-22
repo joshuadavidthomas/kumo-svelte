@@ -2,7 +2,7 @@
   import BellIcon from "phosphor-svelte/lib/BellIcon";
   import ChartBarIcon from "phosphor-svelte/lib/ChartBarIcon";
   import GearIcon from "phosphor-svelte/lib/GearIcon";
-  import { Sidebar } from "kumo-svelte";
+  import * as Sidebar from "kumo-svelte/components/sidebar";
   import DemoShell from "./sidebar-demo-shell.svelte";
   import DemoMain from "./sidebar-main.svelte";
 </script>
@@ -14,7 +14,7 @@
 <DemoShell>
   <Sidebar.Provider defaultOpen side="right" class="h-full min-h-0!">
     <DemoMain />
-    <Sidebar>
+    <Sidebar.Root>
       <Sidebar.Content>
         <Sidebar.Group>
           <Sidebar.GroupLabel>Details</Sidebar.GroupLabel>
@@ -25,6 +25,6 @@
           </Sidebar.Menu>
         </Sidebar.Group>
       </Sidebar.Content>
-    </Sidebar>
+    </Sidebar.Root>
   </Sidebar.Provider>
 </DemoShell>

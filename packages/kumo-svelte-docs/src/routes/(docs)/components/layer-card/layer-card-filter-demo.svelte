@@ -1,11 +1,7 @@
 <script lang="ts">
-  import {
-    Badge,
-    Input,
-    LayerCard,
-    Tabs,
-  } from "kumo-svelte";
-
+  import { Badge, Input } from "kumo-svelte";
+  import * as LayerCard from "kumo-svelte/components/layer-card";
+  import * as Tabs from "kumo-svelte/components/tabs";
   const origins = [
     { origin: "challenges.cloudflare.com", s2xx: 1, s4xx: 0, duration: "95.4ms" },
     { origin: "Unknown", s2xx: 19, s4xx: 7, duration: "463.7ms" },
@@ -27,7 +23,7 @@
   );
 </script>
 
-<LayerCard layered class="w-full max-w-[540px]">
+<LayerCard.Root layered class="w-full max-w-[540px]">
   <LayerCard.Secondary>Subrequests</LayerCard.Secondary>
 
   <LayerCard.Primary>
@@ -39,7 +35,7 @@
         bind:value={search}
         class="min-w-0 flex-1"
       />
-      <Tabs
+      <Tabs.Root
         variant="segmented"
         size="sm"
         class="shrink-0"
@@ -84,4 +80,4 @@
       Showing {filtered.length} of {origins.length}
     </div>
   </LayerCard.Primary>
-</LayerCard>
+</LayerCard.Root>

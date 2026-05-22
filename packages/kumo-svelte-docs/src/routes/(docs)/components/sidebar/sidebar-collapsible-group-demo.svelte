@@ -6,7 +6,7 @@
   import HouseIcon from "phosphor-svelte/lib/HouseIcon";
   import LockIcon from "phosphor-svelte/lib/LockIcon";
   import ShieldCheckIcon from "phosphor-svelte/lib/ShieldCheckIcon";
-  import { Sidebar } from "kumo-svelte";
+  import * as Sidebar from "kumo-svelte/components/sidebar";
   import DemoShell from "./sidebar-demo-shell.svelte";
   import DemoMain from "./sidebar-main.svelte";
 </script>
@@ -21,7 +21,7 @@
 
 <DemoShell>
   <Sidebar.Provider defaultOpen class="h-full min-h-0!">
-    <Sidebar>
+    <Sidebar.Root>
       <Sidebar.Content>
         <Sidebar.Group collapsible defaultOpen>
           <Sidebar.GroupLabel>Overview</Sidebar.GroupLabel>
@@ -54,7 +54,7 @@
           </Sidebar.GroupContent>
         </Sidebar.Group>
       </Sidebar.Content>
-    </Sidebar>
+    </Sidebar.Root>
     <DemoMain />
   </Sidebar.Provider>
 </DemoShell>

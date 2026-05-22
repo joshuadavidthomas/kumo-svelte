@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { Flow } from "kumo-svelte";
+  import * as Flow from "kumo-svelte/components/flow";
 </script>
 
-<Flow>
+<Flow.Root>
   <Flow.Parallel>
     <Flow.List>
       <Flow.Node>Client Users</Flow.Node>
@@ -18,4 +18,4 @@
     </Flow.List>
   </Flow.Parallel>
   <Flow.Node>Destinations</Flow.Node>
-</Flow>
+</Flow.Root>

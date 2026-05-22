@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { Button, Dialog } from "kumo-svelte";
+  import { Button } from "kumo-svelte";
+  import * as Dialog from "kumo-svelte/components/dialog";
 </script>
 
 <Dialog.Root>
@@ -8,8 +9,8 @@
       <Button {...props}>Click me!</Button>
     {/snippet}
   </Dialog.Trigger>
-  <Dialog>
+  <Dialog.Content>
     <Dialog.Title>Hello!</Dialog.Title>
     <Dialog.Description>I'm a dialog.</Dialog.Description>
-  </Dialog>
+  </Dialog.Content>
 </Dialog.Root>

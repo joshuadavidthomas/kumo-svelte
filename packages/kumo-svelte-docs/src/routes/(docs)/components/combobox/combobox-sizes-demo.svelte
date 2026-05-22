@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Combobox } from "kumo-svelte";
+  import * as Combobox from "kumo-svelte/components/combobox";
   import { fruits } from "./combobox-data";
 
   const sizeFruits = fruits.slice(0, 8);
@@ -9,7 +9,7 @@
 </script>
 
 <div class="flex flex-wrap items-center gap-4">
-  <Combobox bind:value={smValue} {items} size="sm">
+  <Combobox.Root bind:value={smValue} {items} size="sm">
     <Combobox.TriggerInput placeholder="Small (sm)" />
     <Combobox.Content>
       <Combobox.Empty />
@@ -19,9 +19,9 @@
         {/each}
       </Combobox.List>
     </Combobox.Content>
-  </Combobox>
+  </Combobox.Root>
 
-  <Combobox bind:value={baseValue} {items} size="base">
+  <Combobox.Root bind:value={baseValue} {items} size="base">
     <Combobox.TriggerInput placeholder="Base (default)" />
     <Combobox.Content>
       <Combobox.Empty />
@@ -31,5 +31,5 @@
         {/each}
       </Combobox.List>
     </Combobox.Content>
-  </Combobox>
+  </Combobox.Root>
 </div>

@@ -3,16 +3,8 @@ import RadioGroupComponent from "./radio-group.svelte";
 import RadioItemComponent from "./radio-item.svelte";
 import RadioLegendComponent from "./radio-legend.svelte";
 
-const Radio = Object.assign(RadioGroupComponent, {
-  Root: RadioGroupComponent,
-  Group: RadioGroupComponent,
-  Item: RadioItemComponent,
-  GroupItem: RadioItemComponent,
-  Legend: RadioLegendComponent,
-});
-
 export {
-  Radio,
+  RadioGroupComponent as Radio,
   RadioGroupComponent as RadioRoot,
   RadioGroupComponent as RadioGroup,
   RadioGroupComponent as Root,
