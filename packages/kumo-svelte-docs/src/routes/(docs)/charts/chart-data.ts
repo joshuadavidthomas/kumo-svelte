@@ -3,7 +3,7 @@ import {
   type SankeyLinkData,
   type SankeyNodeData,
   type TimeseriesData,
-} from "kumo-svelte";
+} from "kumo-svelte/components/chart";
 
 const start = Date.UTC(2026, 0, 1, 0, 0, 0);
 

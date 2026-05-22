@@ -14,10 +14,6 @@ interface DocPageMetadata {
   title: string;
 }
 
-interface MdsvexPageModule<TMetadata> {
-  metadata: TMetadata;
-}
-
 interface DocPageData {
   description: string;
   editUrl?: string;
@@ -35,8 +31,9 @@ interface DocsLoadData {
 
 const routeRoot = "/src/routes/(docs)";
 
-const staticPages = import.meta.glob<MdsvexPageModule<DocPageMetadata>>("./*/+page.svx", {
+const staticPages = import.meta.glob<DocPageMetadata>("./*/+page.svx", {
   eager: true,
+  import: "metadata",
 });
 const staticPageSources = import.meta.glob<string>("./*/+page.svx", {
   eager: true,
@@ -44,12 +41,10 @@ const staticPageSources = import.meta.glob<string>("./*/+page.svx", {
   import: "default",
 });
 
-const componentPages = import.meta.glob<MdsvexPageModule<ComponentPageMetadata>>(
-  "./components/*/+page.svx",
-  {
-    eager: true,
-  },
-);
+const componentPages = import.meta.glob<ComponentPageMetadata>("./components/*/+page.svx", {
+  eager: true,
+  import: "metadata",
+});
 const componentPageSources = import.meta.glob<string>("./components/*/+page.svx", {
   eager: true,
   query: "?raw",
@@ -61,10 +56,11 @@ const componentDemoSources = import.meta.glob<string>("./components/*/*-demo.sve
   import: "default",
 });
 
-const chartPages = import.meta.glob<MdsvexPageModule<DocPageMetadata>>(
+const chartPages = import.meta.glob<DocPageMetadata>(
   ["./charts/+page.svx", "./charts/*/+page.svx"],
   {
     eager: true,
+    import: "metadata",
   },
 );
 const chartPageSources = import.meta.glob<string>(
@@ -84,8 +80,9 @@ const chartDemoSources = import.meta.glob<string>(
   },
 );
 
-const blockPages = import.meta.glob<MdsvexPageModule<DocPageMetadata>>("./blocks/*/+page.svx", {
+const blockPages = import.meta.glob<DocPageMetadata>("./blocks/*/+page.svx", {
   eager: true,
+  import: "metadata",
 });
 const blockPageSources = import.meta.glob<string>("./blocks/*/+page.svx", {
   eager: true,
@@ -156,9 +153,9 @@ function loadStaticPage(slug: string): DocsLoadData {
   return {
     highlightedDemos: {},
     page: {
-      description: pageEntry.metadata.description,
+      description: pageEntry.description,
       href: `/${slug}`,
-      title: pageEntry.metadata.title,
+      title: pageEntry.title,
       toc: tocFromMarkdown(sourceEntry),
     },
   };
@@ -172,7 +169,7 @@ async function loadComponentPage(slug: string): Promise<DocsLoadData> {
     error(404, "Component page not found");
   }
 
-  const metadata = parseComponentMetadata(slug, pageEntry.metadata);
+  const metadata = parseComponentMetadata(slug, pageEntry);
 
   return {
     highlightedDemos: await highlightedDemosForSlug(componentDemoSources, "components", slug),
@@ -186,7 +183,7 @@ interface SectionLoadOptions {
   docPath: string;
   href: string;
   pageSources: Record<string, string>;
-  pages: Record<string, MdsvexPageModule<DocPageMetadata>>;
+  pages: Record<string, DocPageMetadata>;
   section: string;
   sourceRoot?: string;
 }
@@ -208,16 +205,16 @@ async function loadSectionPage({
     error(404, "Documentation page not found");
   }
 
-  const sourceFile = pageEntry.metadata.sourceFile ?? `${sourceRoot}/${demoSlug}`;
+  const sourceFile = pageEntry.sourceFile ?? `${sourceRoot}/${demoSlug}`;
 
   return {
     highlightedDemos: await highlightedDemosForSlug(demoSources, section, demoSlug),
     page: {
-      description: pageEntry.metadata.description,
+      description: pageEntry.description,
       editUrl: `https://github.com/joshuadavidthomas/kumo-svelte/tree/main/packages/kumo-svelte/src/${sourceFile}`,
       href,
       sourceFile,
-      title: pageEntry.metadata.title,
+      title: pageEntry.title,
       toc: tocFromMarkdown(sourceEntry),
     },
   };
