@@ -192,9 +192,9 @@ Individual radio button within `Radio.Group`.
 | `variant` | `"default" \| "error"` | No | Visual state. |
 | `class` | `string` | No | Additional classes. |
 
-## Svelte Notes
+## Usage Notes
 
-The Svelte package supports Kumo-style compound properties (`Radio.Group`, `Radio.Item`, `Radio.Legend`) and shadcn-svelte-style namespace imports. `value` is controlled with `onValueChange`; use `defaultValue` for simple uncontrolled demos.
+Use `value` with `onValueChange` for controlled state. Use `defaultValue` for simple uncontrolled demos.
 
 ## Accessibility
 

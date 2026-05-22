@@ -3,13 +3,16 @@ import type { KumoComboboxSize } from "./variants";
 
 export interface ComboboxContextValue {
   readonly canClear: boolean;
+  readonly hasVisibleItems: boolean;
   readonly inputValue: string;
   readonly selectedValues: string[];
   readonly size: KumoComboboxSize;
+  readonly triggerNode: HTMLElement | null;
   clearValue(): void;
   removeValue(value: string): void;
   resetInputValue(): void;
   setInputValue(value: string): void;
+  setTriggerNode(node: HTMLElement | null): void;
   shouldShowItem(value: string, label?: string): boolean;
 }
 

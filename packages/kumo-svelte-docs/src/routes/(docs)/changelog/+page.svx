@@ -5,7 +5,7 @@ description: Latest package updates and release notes.
 
 ## Release Notes
 
-The upstream Kumo docs render a paginated changelog from the package `CHANGELOG.md`. The Svelte docs app does not yet have release automation wired to a published changelog feed, so this page documents where to find release history for this port.
+This package does not yet have release automation wired to a published changelog feed, so this page documents where to find release history.
 
 ## Kumo Svelte
 
@@ -14,6 +14,6 @@ Use the repository history and package changelog artifacts for now:
 - [GitHub commits](https://github.com/joshuadavidthomas/kumo-svelte/commits/main)
 - [GitHub releases](https://github.com/joshuadavidthomas/kumo-svelte/releases)
 
-## Svelte Notes
+## Planned Changelog
 
-When the Svelte package has a generated changelog, this route should follow the upstream pattern: parse the package changelog, group entries by version and bump type, and expose paginated pages plus an all-entries view.
+When this package has a generated changelog, this route should parse it, group entries by version and bump type, and expose paginated pages plus an all-entries view.

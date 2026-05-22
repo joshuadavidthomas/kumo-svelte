@@ -160,6 +160,3 @@ Draggable handle for column resizing. Use with TanStack Table or custom resize l
 
 For advanced features like sorting, filtering, and resizable columns, integrate with TanStack Table. The Table components are semantic wrappers that work with headless table APIs.
 
-## Svelte Notes
-
-The Svelte package supports Kumo-style compound properties (`Table.Header`, `Table.Row`, `Table.Head`, and so on) and shadcn-svelte-style namespace imports.

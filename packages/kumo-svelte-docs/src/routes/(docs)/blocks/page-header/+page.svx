@@ -83,6 +83,6 @@ Because the Svelte library does not yet ship this block as an exported component
 | `tabs` | `TabsItem[]` | Optional tab definitions passed to `Tabs`. |
 | `actions` | `Snippet` | Optional action buttons shown on the right. |
 
-## Svelte Notes
+## Content Slots
 
-The upstream React block receives React nodes for `breadcrumbs` and `children`. The Svelte equivalent uses snippets or direct composition, and the tabs are passed to the Svelte `Tabs` component.
+Use snippets for `breadcrumbs` and `actions`. Tabs are passed to the `Tabs` component.

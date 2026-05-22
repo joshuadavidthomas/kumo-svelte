@@ -56,6 +56,7 @@
 
   let searchValue = $state<string | undefined>();
   let filterValue = $state("");
+  let triggerNode = $state<HTMLElement | null>(null);
   let fieldRequired = $derived(required === true ? true : required === false ? false : undefined);
   let normalizedError = $derived(normalizeFieldError(error));
   let singleValue = $derived(typeof value === "string" ? value : "");
@@ -116,6 +117,10 @@
     onValueChange?.(nextValue);
   }
 
+  function setTriggerNode(node: HTMLElement | null) {
+    triggerNode = node;
+  }
+
   function shouldShowItem(value: string, label?: string) {
     if (!items.length) return true;
 
@@ -130,6 +135,9 @@
     get canClear() {
       return multiple ? multipleValue.length > 0 : singleValue.length > 0;
     },
+    get hasVisibleItems() {
+      return items.length === 0 || items.some((item) => shouldShowItem(item.value, item.label));
+    },
     get inputValue() {
       return inputValue;
     },
@@ -139,10 +147,14 @@
     get size() {
       return size;
     },
+    get triggerNode() {
+      return triggerNode;
+    },
     clearValue,
     removeValue,
     resetInputValue,
     setInputValue,
+    setTriggerNode,
     shouldShowItem,
   });
 </script>

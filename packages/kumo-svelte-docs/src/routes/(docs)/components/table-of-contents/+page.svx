@@ -119,6 +119,6 @@ List container with a left border rail.
 
 Groups items under a labeled section with indented children. Pass `href` to make the label a clickable link, or omit for a plain title.
 
-## Svelte Notes
+## Custom Elements
 
-The Svelte package supports Kumo-style compound properties and shadcn-svelte-style namespace imports. Use `child` snippets rather than React `render` props for custom elements.
+Use `child` snippets for custom elements.

@@ -59,8 +59,6 @@ import * as Breadcrumbs from "kumo-svelte/components/breadcrumbs";
 
 ## API Reference
 
-The Svelte port exports named sub-components instead of React-style `Breadcrumbs.Link` properties.
-
 ### Breadcrumbs
 
 Root navigation container.

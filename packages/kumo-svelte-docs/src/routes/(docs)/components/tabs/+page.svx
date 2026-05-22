@@ -109,6 +109,6 @@ Tabs automatically scroll horizontally when there are many items.
 | `disabled` | `boolean` | No | Disables the tab. |
 | `class` | `string` | No | Additional trigger classes. |
 
-## Svelte Notes
+## Custom Labels
 
-The Svelte Tabs component accepts string or snippet labels. The upstream React render-prop tab customization API is not part of the Svelte component API; use snippets for label content or the lower-level `TabsRoot`, `TabsList`, `TabsTrigger`, and `TabsContent` exports for custom layouts.
+Tab labels accept strings or snippets. Use snippets for label content, or use the lower-level `TabsRoot`, `TabsList`, `TabsTrigger`, and `TabsContent` exports for custom layouts.

@@ -167,6 +167,3 @@ Composable legend sub-component for `Switch.Group`. Accepts `class` for custom s
 
 Individual switch within `Switch.Group`. Supports `checked`, `onCheckedChange`, `disabled`, `id`, `label`, `size`, `transitioning`, `variant`, and `class`.
 
-## Svelte Notes
-
-The Svelte package supports Kumo-style compound properties (`Switch.Group`, `Switch.Item`, `Switch.Legend`) and shadcn-svelte-style namespace imports.

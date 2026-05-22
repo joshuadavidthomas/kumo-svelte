@@ -5,7 +5,7 @@ description: Render AI-generated UI from JSON using Kumo schemas and registry me
 
 ## Overview
 
-The upstream Kumo catalog renders UI from JSON structures for AI-generated interfaces. It provides runtime validation, data binding, conditional rendering, and action handling for JSON UI trees.
+The UI catalog renders components from JSON structures for AI-generated interfaces. It provides runtime validation, data binding, conditional rendering, and action handling for JSON UI trees.
 
 The Svelte package includes AI-readable registry metadata, but a full Svelte streaming catalog should be treated as an integration layer on top of those schemas.
 
@@ -39,6 +39,6 @@ A flat structure works well for streaming because elements can be rendered as so
 }
 ```
 
-## Svelte Notes
+## Rendering Adapter
 
-Svelte rendering needs an explicit component catalog that maps registry names to Svelte components and converts JSON props into Svelte props/snippets. Keep that adapter at the integration seam rather than baking AI-specific behavior into components.
+Use an explicit component catalog that maps registry names to components and converts JSON props into props/snippets. Keep that adapter at the integration seam rather than baking AI-specific behavior into components.

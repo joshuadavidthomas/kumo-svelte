@@ -79,6 +79,6 @@ Because the Svelte library does not yet ship this block as an exported component
 | `additionalContent` | `Snippet` | Additional sidebar content, such as resources or links. |
 | `children` | `Snippet` | Main content area for the resource list. |
 
-## Svelte Notes
+## Content Slots
 
-The upstream React block receives React nodes for `icon`, `usage`, `additionalContent`, and `children`. The Svelte equivalent uses snippets and ordinary children.
+Use snippets for `icon`, `usage`, and `additionalContent`. Pass the resource rows as ordinary children.

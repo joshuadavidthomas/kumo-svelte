@@ -224,6 +224,6 @@ A select component with many options to test popup scrolling behavior.
 
 Use `Select.Group` to group related options, `Select.GroupLabel` to provide a visible heading, and `Select.Separator` to render a visual divider between groups.
 
-## Svelte Notes
+## Option Values
 
-The Svelte Select currently works with string values. For rich option rows, pass custom `Select.Option` children and a string `label` for the trigger display. The barrel export supports Kumo-style compound properties, and granular imports support the shadcn-svelte namespace style.
+Select values are strings. For rich option rows, pass custom `Select.Option` children and a string `label` for the trigger display.

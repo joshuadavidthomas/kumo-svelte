@@ -17,4 +17,4 @@ The source package exposes component code, style tokens, and registry metadata t
 
 ## Future Direction
 
-A Svelte-specific Figma workflow should read the Svelte registry and Svelte component APIs. Do not use a React-oriented generator as the source of truth for Svelte component props, slots/snippets, or composition patterns.
+A future Figma workflow should read this package's registry and component APIs as the source of truth for props, snippets, and composition patterns.

@@ -122,8 +122,6 @@ Use `Checkbox.Legend` with `class="sr-only"` to keep the legend accessible to sc
 
 ## API Reference
 
-The Svelte port exports named sub-components instead of React-style `Checkbox.Group` properties.
-
 ### Checkbox
 
 Single checkbox component with built-in label and horizontal layout.

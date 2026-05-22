@@ -171,6 +171,6 @@ DatePicker forwards most props to Bits UI's `Calendar` and `RangeCalendar` primi
 | `class` | `string` | Additional CSS classes. |
 | `children` | `Snippet<[DatePickerSnippetProps]>` | Custom calendar rendering snippet. |
 
-### Differences from react-day-picker
+### Value Model
 
-The Svelte DatePicker uses Bits UI and `@internationalized/date`, not `react-day-picker` and JavaScript `Date` objects. Use `bind:value` for Svelte state, `onValueChange` for callbacks, and `{ start, end }` ranges instead of React's `{ from, to }` range shape.
+Use `bind:value` for state, `onValueChange` for callbacks, and `{ start, end }` ranges for range selection.

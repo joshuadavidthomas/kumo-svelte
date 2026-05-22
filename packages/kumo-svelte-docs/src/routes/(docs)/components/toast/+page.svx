@@ -211,6 +211,3 @@ Options passed to `toastManager.add()`.
 | `cancel` | `ToastAction \| Component` | — | Secondary action button or component. |
 | `duration` | `number` | `4000` | Time in milliseconds before the toast auto-dismisses. |
 
-## Svelte Notes
-
-The Svelte toast implementation wraps `svelte-sonner`. Upstream React examples use `content` and `actions`; the Svelte API uses Sonner's `component`, `action`, and `cancel` options instead.

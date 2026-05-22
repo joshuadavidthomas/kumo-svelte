@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { onDestroy } from "svelte";
   import CheckIcon from "phosphor-svelte/lib/CheckIcon";
   import CopyIcon from "phosphor-svelte/lib/CopyIcon";
+  import { onDestroy } from "svelte";
   import type { HTMLButtonAttributes } from "svelte/elements";
   import { cn } from "../../utils/cn";
   import Button from "../button/button.svelte";
@@ -70,9 +70,9 @@
   {...restProps}
 >
   {#if copied}
-    <CheckIcon aria-hidden="true" size={16} weight="bold" class="text-kumo-success" />
+    <CheckIcon aria-hidden="true" weight="bold" class="text-kumo-success" />
   {:else}
-    <CopyIcon aria-hidden="true" size={16} />
+    <CopyIcon aria-hidden="true" />
   {/if}
   <span class="sr-only" aria-live="polite">{copied ? copiedLabel : ""}</span>
 </Button>

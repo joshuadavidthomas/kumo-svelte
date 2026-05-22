@@ -95,6 +95,6 @@ Use the `errorMessage` prop to show an error message.
 | `size` | `KumoDeleteResourceSize` | default | Dialog size variant. |
 | `class` | `string` | — | Additional dialog classes. |
 
-## Svelte Notes
+## Usage Notes
 
-Use `bind:open` for idiomatic Svelte state ownership. Clipboard copy inside the dialog uses the browser Clipboard API, so headless or restricted browsers may deny copy permission.
+Use `bind:open` to control the dialog. Clipboard copy inside the dialog uses the browser Clipboard API, so headless or restricted browsers may deny copy permission.

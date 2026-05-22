@@ -18,8 +18,8 @@ jq '.components.Button.props' packages/kumo-svelte/src/ai/component-registry.jso
 
 ## Registry Contents
 
-The registry includes component props with types and defaults, variant options, real examples, semantic color tokens, and sub-components for compound patterns.
+The registry includes component props with types and defaults, variant options, real examples, semantic color tokens, and component parts for compound patterns.
 
-## Svelte Notes
+## Registry Files
 
-Use the Svelte registry files in `packages/kumo-svelte/src/registry/` and `packages/kumo-svelte/src/ai/` for this package. Do not rely on the upstream React registry when generating Svelte code because component APIs differ.
+Use the registry files in `packages/kumo-svelte/src/registry/` and `packages/kumo-svelte/src/ai/` when generating code for this package.

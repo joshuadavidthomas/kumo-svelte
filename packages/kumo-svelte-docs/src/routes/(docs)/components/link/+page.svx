@@ -100,7 +100,7 @@ The `current` variant inherits color from its parent, useful for links within co
 
 ### Framework Integration with LinkProvider
 
-Svelte does not use the upstream React `render` prop pattern. Use `LinkProvider` when you need all Link components to render through a framework-specific component.
+Use `LinkProvider` when you need all Link components to render through a framework-specific component.
 
 <Example demo="link-provider-demo">
   <LinkProviderDemo />

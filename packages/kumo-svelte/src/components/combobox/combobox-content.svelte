@@ -4,6 +4,7 @@
   import type { PortalProps } from "bits-ui";
   import { cn } from "../../utils/cn";
   import { getKumoPortalContext } from "../../utils/portal-provider.svelte";
+  import { getComboboxContext } from "./context";
 
   export interface ComboboxContentProps {
     children?: Snippet;
@@ -20,12 +21,15 @@
   }: ComboboxContentProps = $props();
 
   const portalContext = getKumoPortalContext();
+  const comboboxContext = getComboboxContext("Content");
   let portalContainer = $derived(container ?? portalContext.container);
+  let customAnchor = $derived(comboboxContext.triggerNode);
 </script>
 
 <ComboboxPrimitive.Portal to={portalContainer}>
   <ComboboxPrimitive.Content
     data-slot="combobox-content"
+    {customAnchor}
     {sideOffset}
     class={cn(
       "flex flex-col",

@@ -116,6 +116,6 @@ LayerCard also accepts standard HTML attributes for the rendered element.
 
 `LayerCard.Secondary` also accepts standard `HTMLDivElement` attributes.
 
-## Svelte Notes
+## Layered Cards
 
-The Svelte package supports Kumo-style compound properties (`LayerCard.Primary`, `LayerCard.Secondary`) and shadcn-svelte-style namespace imports. Use `layered` on the root when composing the primary and secondary regions.
+Use `layered` on the root when composing the primary and secondary regions.

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { onDestroy } from "svelte";
   import type { Snippet } from "svelte";
   import CaretDownIcon from "phosphor-svelte/lib/CaretDownIcon";
   import { Combobox as ComboboxPrimitive } from "bits-ui";
@@ -29,9 +30,19 @@
 
   const context = getComboboxContext("Trigger");
   let iconStyles = $derived(triggerValueIconStyles[context.size]);
+  let triggerRef = $state<HTMLElement | null>(null);
+
+  $effect(() => {
+    context.setTriggerNode(triggerRef);
+  });
+
+  onDestroy(() => {
+    context.setTriggerNode(null);
+  });
 </script>
 
 <ComboboxPrimitive.Trigger
+  bind:ref={triggerRef}
   data-slot="combobox-trigger"
   {child}
   class={cn(

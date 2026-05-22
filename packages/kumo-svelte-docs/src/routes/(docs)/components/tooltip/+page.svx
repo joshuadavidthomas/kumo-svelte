@@ -109,6 +109,6 @@ Use `delay` to control how long to wait before opening (default: 600ms) and `clo
 | `disableHoverableContent` | `boolean` | Disables hoverable content. |
 | `disabled` | `boolean` | Disables tooltips in the provider. |
 
-## Svelte Notes
+## Trigger Composition
 
-Use the `render` snippet for interactive controls so the tooltip trigger props land on the real button or link. Plain children are still convenient for non-interactive inline text or icons. For lower-level composition, use `TooltipRoot`, `TooltipTrigger`, `TooltipPortal`, and `TooltipContent`.
+Use the `render` snippet for interactive controls so the tooltip trigger props land on the real button or link. Plain children are convenient for non-interactive inline text or icons. For lower-level composition, use `TooltipRoot`, `TooltipTrigger`, `TooltipPortal`, and `TooltipContent`.

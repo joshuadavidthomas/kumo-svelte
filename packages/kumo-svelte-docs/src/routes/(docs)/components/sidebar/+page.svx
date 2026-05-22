@@ -151,6 +151,6 @@ Context provider managing expand/collapse state and mobile detection.
 
 Search-style input for sidebar content. Supports `placeholder` and `shortcut` props.
 
-## Svelte Notes
+## Icon Props
 
-The Svelte package supports Kumo-style compound properties and shadcn-svelte-style namespace imports. For icon props, pass a snippet such as `{#snippet homeIcon()}<HouseIcon />{/snippet}` and then `icon={homeIcon}`.
+For icon props, pass a snippet such as `{#snippet homeIcon()}<HouseIcon />{/snippet}` and then `icon={homeIcon}`.
