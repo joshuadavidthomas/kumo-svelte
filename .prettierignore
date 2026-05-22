@@ -1,0 +1,8 @@
+node_modules
+.svelte-kit
+**/.svelte-kit
+dist
+build
+**/build
+coverage
+packages/kumo-svelte/src/styles/theme-*.css

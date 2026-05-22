@@ -6,6 +6,7 @@
  * Then run: pnpm codegen:themes
  */
 
+
 @theme {
   --text-color-kumo-default: light-dark(
     var(--color-neutral-900, oklch(21% 0.006 285.885)),
@@ -37,7 +38,10 @@
     var(--color-neutral-500, oklch(55.6% 0 0))
   );
 
-  --text-color-kumo-brand: light-dark(#f6821f, #f6821f);
+  --text-color-kumo-brand: light-dark(
+    #f6821f,
+    #f6821f
+  );
 
   --text-color-kumo-link: light-dark(
     var(--color-blue-800, oklch(42.4% 0.199 265.638)),
@@ -79,7 +83,11 @@
     var(--color-neutral-200, oklch(92.2% 0 0))
   );
 
-  --text-color-kumo-badge-inverted: light-dark(var(--color-white, #fff), var(--color-black, #000));
+  --text-color-kumo-badge-inverted: light-dark(
+    var(--color-white, #fff),
+    var(--color-black, #000)
+  );
+
 }
 
 @theme {
@@ -138,7 +146,10 @@
     var(--color-neutral-800, oklch(37.1% 0 0))
   );
 
-  --color-kumo-brand: light-dark(oklch(0.5772 0.2324 260), oklch(0.5772 0.2324 260));
+  --color-kumo-brand: light-dark(
+    oklch(0.5772 0.2324 260),
+    oklch(0.5772 0.2324 260)
+  );
 
   --color-kumo-brand-hover: light-dark(
     var(--color-blue-700, oklch(48.8% 0.243 264.376)),
@@ -160,16 +171,25 @@
     var(--color-kumo-neutral-150, oklch(93.5% 0 0))
   );
 
-  --color-kumo-shadow-edge: light-dark(oklch(0% 0 0 / 0.12), oklch(100% 0 0 / 0.1));
+  --color-kumo-shadow-edge: light-dark(
+    oklch(0% 0 0 / 0.12),
+    oklch(100% 0 0 / 0.1)
+  );
 
-  --color-kumo-shadow-drop: light-dark(oklch(0% 0 0 / 0.08), oklch(0% 0 0 / 0.3));
+  --color-kumo-shadow-drop: light-dark(
+    oklch(0% 0 0 / 0.08),
+    oklch(0% 0 0 / 0.3)
+  );
 
   --color-kumo-tip-shadow: light-dark(
     var(--color-gray-200, oklch(92.8% 0.006 264.531)),
     transparent
   );
 
-  --color-kumo-tip-stroke: light-dark(transparent, var(--color-neutral-800, oklch(26.9% 0 0)));
+  --color-kumo-tip-stroke: light-dark(
+    transparent,
+    var(--color-neutral-800, oklch(26.9% 0 0))
+  );
 
   --color-kumo-info-tint: light-dark(
     var(--color-blue-100, oklch(93.2% 0.032 255.585)),
@@ -260,6 +280,7 @@
     var(--color-neutral-950, oklch(14.5% 0 0)),
     var(--color-white, #fff)
   );
+
 }
 
 @theme {
@@ -275,8 +296,7 @@
 }
 
 @layer base {
-  :root,
-  [data-theme="kumo"] {
+  :root, [data-theme="kumo"] {
     --text-color-kumo-default: var(--color-neutral-900, oklch(21% 0.006 285.885));
     --text-color-kumo-inverse: var(--color-neutral-100, oklch(97% 0 0));
     --text-color-kumo-strong: var(--color-neutral-950, oklch(14.5% 0 0));
@@ -332,12 +352,8 @@
     --color-kumo-badge-neutral: var(--color-neutral-600, oklch(43.9% 0 0));
     --color-kumo-badge-inverted: var(--color-neutral-950, oklch(14.5% 0 0));
   }
-
-  :root[data-mode="dark"],
-  [data-mode="dark"]:not([data-theme]),
-  [data-mode="dark"] [data-theme="kumo"],
-  [data-theme="kumo"][data-mode="dark"],
-  [data-theme="kumo"] [data-mode="dark"] {
+  
+  :root[data-mode="dark"], [data-mode="dark"]:not([data-theme]), [data-mode="dark"] [data-theme="kumo"], [data-theme="kumo"][data-mode="dark"], [data-theme="kumo"] [data-mode="dark"] {
     --text-color-kumo-default: var(--color-neutral-100, oklch(97% 0 0));
     --text-color-kumo-inverse: var(--color-neutral-900, oklch(20.5% 0 0));
     --text-color-kumo-strong: var(--color-neutral-50, oklch(98.5% 0 0));

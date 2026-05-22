@@ -33,11 +33,11 @@
 
   <header
     data-slot="topbar"
-    class="flex items-center justify-end gap-3.5 px-3.5 bg-[var(--kumo-black)]"
+    class="flex items-center justify-end gap-3.5 bg-kumo-canvas px-3.5"
   >
     <a
       href="https://github.com/joshuadavidthomas/kumo-svelte"
-      class="text-[0.8125rem] text-[var(--kumo-muted)] no-underline font-mono"
+      class="font-mono text-[0.8125rem] text-kumo-subtle no-underline"
     >
       kumo-svelte
     </a>
@@ -71,8 +71,8 @@
     display: grid;
     grid-area: mark;
     place-items: center;
-    border-bottom: 1px solid var(--kumo-line);
-    background: var(--kumo-black);
+    border-bottom: 1px solid var(--color-kumo-line);
+    background: var(--color-kumo-canvas);
   }
 
   .sidebar-toggle {
@@ -85,19 +85,19 @@
     border: 0;
     border-radius: 0.5rem;
     background: transparent;
-    color: var(--kumo-muted);
+    color: var(--text-color-kumo-subtle);
     transition:
       background-color 150ms ease,
       color 150ms ease;
   }
 
   .sidebar-toggle:hover {
-    background: var(--kumo-control-hover);
-    color: var(--kumo-text);
+    background: var(--color-kumo-fill-hover);
+    color: var(--text-color-kumo-default);
   }
 
   .sidebar-toggle:focus-visible {
-    outline: 2px solid var(--kumo-blue);
+    outline: 2px solid var(--color-kumo-focus);
     outline-offset: -2px;
   }
 
@@ -107,7 +107,7 @@
     grid-area: left-rail;
     height: calc(100dvh - 3rem - 1px);
     min-height: 0;
-    background: var(--kumo-black);
+    background: var(--color-kumo-canvas);
   }
 
   [data-slot="brand"] {
@@ -116,10 +116,10 @@
     min-width: 0;
     overflow: hidden;
     grid-area: brand;
-    border-right: 1px solid var(--kumo-line);
-    border-bottom: 1px solid var(--kumo-line);
-    border-left: 1px solid var(--kumo-line);
-    background: var(--kumo-black);
+    border-right: 1px solid var(--color-kumo-line);
+    border-bottom: 1px solid var(--color-kumo-line);
+    border-left: 1px solid var(--color-kumo-line);
+    background: var(--color-kumo-canvas);
     white-space: nowrap;
     transition: opacity 200ms ease;
   }
@@ -136,8 +136,8 @@
     grid-area: sidebar;
     height: calc(100dvh - 3rem - 1px);
     min-height: 0;
-    border-right: 1px solid var(--kumo-line);
-    border-left: 1px solid var(--kumo-line);
+    border-right: 1px solid var(--color-kumo-line);
+    border-left: 1px solid var(--color-kumo-line);
     transition: opacity 200ms ease;
   }
 
@@ -150,7 +150,7 @@
     position: sticky;
     top: 0;
     grid-area: topbar;
-    border-bottom: 1px solid var(--kumo-line);
+    border-bottom: 1px solid var(--color-kumo-line);
   }
 
   [data-slot="main"] {

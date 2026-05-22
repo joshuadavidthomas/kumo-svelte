@@ -18,7 +18,7 @@
 </script>
 
 <li>
-  <a class="text-[var(--kumo-muted)] hover:bg-[var(--kumo-control-hover)] aria-[current=page]:bg-[var(--kumo-control-hover)] hover:text-[var(--kumo-text)] aria-[current=page]:text-[var(--kumo-text)] relative transition-colors rounded-lg z-10 block my-[.05rem] pl-4 p-2 text-sm no-underline aria-[current=page]:font-semibold" aria-current={isActive ? "page" : undefined} {href}>
+  <a class="relative z-10 my-[.05rem] block rounded-lg p-2 pl-4 text-sm text-kumo-subtle no-underline transition-colors hover:bg-kumo-fill-hover hover:text-kumo-default aria-[current=page]:bg-kumo-fill-hover aria-[current=page]:font-semibold aria-[current=page]:text-kumo-default" aria-current={isActive ? "page" : undefined} {href}>
     {@render children()}
   </a>
 </li>

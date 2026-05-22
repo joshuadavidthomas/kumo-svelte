@@ -168,11 +168,11 @@
   .toc-select select {
     width: 100%;
     appearance: none;
-    border: 1px solid var(--kumo-line-strong);
+    border: 1px solid var(--color-kumo-line);
     border-radius: 0.5rem;
-    background: var(--kumo-control);
+    background: var(--color-kumo-control);
     padding: 0.65rem 2.25rem 0.65rem 0.85rem;
-    color: var(--kumo-text);
+    color: var(--text-color-kumo-default);
     font: inherit;
     font-size: 0.875rem;
   }
@@ -183,6 +183,6 @@
     right: 0.85rem;
     pointer-events: none;
     transform: translateY(-50%);
-    color: var(--kumo-muted);
+    color: var(--text-color-kumo-subtle);
   }
 </style>

@@ -64,7 +64,7 @@
   .sidebar {
     height: 100%;
     overflow: auto;
-    background: var(--kumo-black);
+    background: var(--color-kumo-canvas);
     padding: 0.875rem 0.75rem 1rem;
   }
 
@@ -74,11 +74,11 @@
     align-items: center;
     gap: 0.5rem;
     margin-bottom: 0.75rem;
-    border: 1px solid var(--kumo-line-strong);
+    border: 1px solid var(--color-kumo-line);
     border-radius: 0.5rem;
-    background: var(--kumo-control);
+    background: var(--color-kumo-control);
     padding: 0 0.75rem;
-    color: var(--kumo-faint);
+    color: var(--text-color-kumo-placeholder);
   }
 
   .search-icon {
@@ -91,13 +91,13 @@
     border: 0;
     outline: 0;
     background: transparent;
-    color: var(--kumo-text);
+    color: var(--text-color-kumo-default);
     font: inherit;
     font-size: 0.875rem;
   }
 
   .search-field input::placeholder {
-    color: var(--kumo-faint);
+    color: var(--text-color-kumo-placeholder);
   }
 
   .nav-list {
@@ -112,7 +112,7 @@
 
   .nav-divider {
     margin: 1rem 0;
-    border-bottom: 1px solid var(--kumo-line);
+    border-bottom: 1px solid var(--color-kumo-line);
   }
 
 </style>

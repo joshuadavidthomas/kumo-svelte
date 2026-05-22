@@ -4,18 +4,21 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "check": "pnpm --filter kumo-svelte check && pnpm --filter @kumo-svelte/docs check",
+    "check": "pnpm check:upstream-theme && pnpm --filter kumo-svelte check && pnpm --filter @kumo-svelte/docs check",
     "docs:build": "pnpm --filter @kumo-svelte/docs build",
     "docs:check": "pnpm --filter @kumo-svelte/docs check",
     "docs:dev": "pnpm --filter @kumo-svelte/docs dev",
     "format": "oxfmt --write package.json pnpm-workspace.yaml tsconfig.json README.md scripts packages docs",
     "format:check": "oxfmt --check package.json pnpm-workspace.yaml tsconfig.json README.md scripts packages docs",
     "generate:registry": "pnpm --filter kumo-svelte generate:registry",
+    "sync:upstream-theme": "node scripts/sync-upstream-theme.mjs",
+    "check:upstream-theme": "node scripts/sync-upstream-theme.mjs --check",
     "lint": "pnpm --filter kumo-svelte lint",
     "test": "pnpm --filter kumo-svelte test",
     "typecheck": "pnpm --filter kumo-svelte typecheck"
   },
   "devDependencies": {
+    "@cloudflare/kumo": "^2.2.2",
     "oxfmt": "^0.48.0",
     "oxlint": "^1.60.0",
     "typescript": "^6.0.3"

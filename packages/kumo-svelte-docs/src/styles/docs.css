@@ -1,5 +1,5 @@
 .muted {
-  color: var(--kumo-faint);
+  color: var(--text-color-kumo-placeholder);
 }
 
 .stack {
@@ -14,8 +14,8 @@
 
 .unported-page,
 .placeholder-card {
-  border: 1px solid var(--kumo-line);
+  border: 1px solid var(--color-kumo-line);
   border-radius: 0.5rem;
-  background: var(--kumo-panel);
+  background: var(--color-kumo-elevated);
   padding: 1rem;
 }

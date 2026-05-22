@@ -40,16 +40,16 @@
 
 <style>
   .section-toggle:hover {
-    background: var(--kumo-control-hover);
+    background: var(--color-kumo-fill-hover);
   }
 
   .section-toggle:focus-visible {
-    outline: 2px solid var(--kumo-blue);
+    outline: 2px solid var(--color-kumo-focus);
     outline-offset: -2px;
   }
 
   .section-caret {
-    color: var(--kumo-muted);
+    color: var(--text-color-kumo-subtle);
     transition: transform 200ms ease;
   }
 

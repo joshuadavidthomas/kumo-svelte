@@ -43,7 +43,13 @@ import { Input } from "kumo-svelte/components/input";
 Import the Kumo Svelte stylesheet in your app entry point or root layout:
 
 ```ts
-import "kumo-svelte/styles.css";
+import "kumo-svelte/styles";
+```
+
+If your app does not use Tailwind CSS, import the standalone build instead:
+
+```ts
+import "kumo-svelte/styles/standalone";
 ```
 
 This docs app imports its project stylesheet from `src/routes/+layout.svelte`; your application can do the same from its root `+layout.svelte`.
