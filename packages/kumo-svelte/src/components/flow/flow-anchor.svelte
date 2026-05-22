@@ -16,40 +16,42 @@
   let { children, class: className, type, ...restProps }: FlowAnchorProps = $props();
 
   const context = useFlowNodeAnchorContext();
-  let anchorElement = $state<HTMLElement | null>(null);
 
-  const anchorAction: Action<HTMLElement> = (element) => {
-    anchorElement = element;
+  const anchorAction: Action<HTMLElement, FlowAnchorType | undefined> = (element, anchorType) => {
+    function register(nextType: FlowAnchorType | undefined) {
+      if (nextType === "start" || nextType === undefined) {
+        context.registerStartAnchor(element);
+      }
+      if (nextType === "end" || nextType === undefined) {
+        context.registerEndAnchor(element);
+      }
+    }
+
+    function unregister(nextType: FlowAnchorType | undefined) {
+      if (nextType === "start" || nextType === undefined) {
+        context.registerStartAnchor(null);
+      }
+      if (nextType === "end" || nextType === undefined) {
+        context.registerEndAnchor(null);
+      }
+    }
+
+    register(anchorType);
+
     return {
+      update(nextType) {
+        unregister(anchorType);
+        anchorType = nextType;
+        register(anchorType);
+      },
       destroy() {
-        if (anchorElement === element) anchorElement = null;
+        unregister(anchorType);
       },
     };
   };
-
-  $effect(() => {
-    const element = anchorElement;
-    if (!element) return;
-
-    if (type === "start" || type === undefined) {
-      context.registerStartAnchor(element);
-    }
-    if (type === "end" || type === undefined) {
-      context.registerEndAnchor(element);
-    }
-
-    return () => {
-      if (type === "start" || type === undefined) {
-        context.registerStartAnchor(null);
-      }
-      if (type === "end" || type === undefined) {
-        context.registerEndAnchor(null);
-      }
-    };
-  });
 </script>
 
-<div use:anchorAction {...restProps} class={cn(className)}>
+<div use:anchorAction={type} {...restProps} class={cn(className)}>
   {@render children?.()}
 </div>
 

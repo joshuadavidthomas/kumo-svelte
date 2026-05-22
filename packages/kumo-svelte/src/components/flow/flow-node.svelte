@@ -28,11 +28,17 @@
   const group = useFlowNodeGroup();
   const generatedId = $props.id();
 
+  interface NodeActionData {
+    id: string;
+    nodeData: FlowNodeData;
+  }
+
   let id = $derived(idProp ?? generatedId);
   let index = $derived(group.indexOf(id));
-  let nodeElement = $state<HTMLElement | null>(null);
-  let startAnchorElement = $state<HTMLElement | null>(null);
-  let endAnchorElement = $state<HTMLElement | null>(null);
+  let startAnchorElement: HTMLElement | null = null;
+  let endAnchorElement: HTMLElement | null = null;
+  let nodeElement: HTMLElement | null = null;
+  let cleanupLayoutObserver: (() => void) | undefined;
   let startRect = $state<RectLike | null>(null);
   let endRect = $state<RectLike | null>(null);
 
@@ -42,15 +48,7 @@
     parallel: false,
     start: startRect,
   });
-
-  const nodeAction: Action<HTMLElement> = (element) => {
-    nodeElement = element;
-    return {
-      destroy() {
-        if (nodeElement === element) nodeElement = null;
-      },
-    };
-  };
+  let nodeActionData = $derived<NodeActionData>({ id, nodeData });
 
   function measure() {
     if (!nodeElement) return;
@@ -72,37 +70,13 @@
     }
   }
 
-  setFlowNodeAnchorContext({
-    registerEndAnchor(element) {
-      endAnchorElement = element;
-      measure();
-    },
-    registerStartAnchor(element) {
-      startAnchorElement = element;
-      measure();
-    },
-  });
+  function observeLayout() {
+    cleanupLayoutObserver?.();
+    if (!nodeElement) return;
 
-  $effect(() => {
-    const element = nodeElement;
-    const currentId = id;
-    if (!element) return;
-
-    return group.register(currentId, element, { parallel: false });
-  });
-
-  $effect(() => {
-    const element = nodeElement;
-    if (!element) return;
-    group.update(id, nodeData, element);
-  });
-
-  $effect(() => {
     const element = nodeElement;
     const startElement = startAnchorElement;
     const endElement = endAnchorElement;
-    if (!element) return;
-
     const onLayoutChange = () => {
       measure();
       group.notifySizeChange();
@@ -122,16 +96,56 @@
     });
     window.addEventListener("resize", onLayoutChange, { passive: true });
 
-    return () => {
+    cleanupLayoutObserver = () => {
       observer.disconnect();
       window.removeEventListener("scroll", onLayoutChange, { capture: true });
       window.removeEventListener("resize", onLayoutChange);
+      cleanupLayoutObserver = undefined;
     };
+  }
+
+  const nodeAction: Action<HTMLElement, NodeActionData> = (element, data) => {
+    nodeElement = element;
+    let current = data;
+    let unregister = group.register(current.id, element, current.nodeData);
+    observeLayout();
+
+    return {
+      update(next) {
+        if (next.id !== current.id) {
+          unregister();
+          unregister = group.register(next.id, element, next.nodeData);
+        } else {
+          group.update(next.id, next.nodeData, element);
+        }
+        current = next;
+      },
+      destroy() {
+        cleanupLayoutObserver?.();
+        unregister();
+        if (nodeElement === element) nodeElement = null;
+      },
+    };
+  };
+
+  setFlowNodeAnchorContext({
+    registerEndAnchor(element) {
+      if (endAnchorElement === element) return;
+      endAnchorElement = element;
+      observeLayout();
+      group.notifySizeChange();
+    },
+    registerStartAnchor(element) {
+      if (startAnchorElement === element) return;
+      startAnchorElement = element;
+      observeLayout();
+      group.notifySizeChange();
+    },
   });
 </script>
 
 <li
-  use:nodeAction
+  use:nodeAction={nodeActionData}
   {...restProps}
   class={cn("rounded-md bg-kumo-base px-3 py-2 shadow ring ring-kumo-line", className)}
   style:cursor="default"

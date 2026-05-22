@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { tick, type Snippet } from "svelte";
+  import type { Snippet } from "svelte";
   import type { Action } from "svelte/action";
   import { cn } from "../../utils";
   import Connectors from "./connectors.svelte";
@@ -9,8 +9,8 @@
     useFlowDiagramContext,
     useOptionalFlowNodeGroup,
   } from "./context.svelte";
-  import { getNodeRect } from "./geometry";
-  import type { FlowConnector, FlowNodeData } from "./types";
+  import { getNodeRect, sameRect, toRectLike } from "./geometry";
+  import type { FlowConnector, FlowNodeData, RectLike } from "./types";
 
   export interface FlowListProps {
     children?: Snippet;
@@ -27,9 +27,13 @@
 
   setFlowNodeGroupContext(group);
 
+  interface ListActionData {
+    id: string;
+    nodeData: FlowNodeData;
+  }
+
   let id = $derived(idProp ?? generatedId);
-  let containerElement = $state<HTMLDivElement | null>(null);
-  let connectors = $state<FlowConnector[]>([]);
+  let containerRect = $state<RectLike | null>(null);
   let firstNode = $derived(group.descendants[0]);
   let lastNode = $derived(group.descendants[group.descendants.length - 1]);
   let nodeData = $derived<FlowNodeData>({
@@ -38,20 +42,19 @@
     parallel: false,
     start: lastNode?.props.start ?? null,
   });
+  let connectors = $derived.by(computeConnectors);
+  let listActionData = $derived<ListActionData>({ id, nodeData });
 
-  const containerAction: Action<HTMLDivElement> = (element) => {
-    containerElement = element;
-    return {
-      destroy() {
-        if (containerElement === element) containerElement = null;
-      },
-    };
-  };
+  function measureContainer(element: HTMLDivElement) {
+    const nextRect = toRectLike(element.getBoundingClientRect());
+    containerRect = sameRect(containerRect, nextRect) ? containerRect : nextRect;
+  }
 
   function computeConnectors() {
-    const containerRect = containerElement?.getBoundingClientRect();
-    const offsetX = containerRect?.left ?? 0;
-    const offsetY = containerRect?.top ?? 0;
+    if (!containerRect) return [];
+
+    const offsetX = containerRect.left;
+    const offsetY = containerRect.top;
     const edges: FlowConnector[] = [];
     const nodes = group.descendants;
 
@@ -78,47 +81,46 @@
       }
     }
 
-    connectors = edges;
+    return edges;
   }
 
-  async function computeConnectorsAfterTick(..._deps: unknown[]) {
-    await tick();
-    computeConnectors();
-  }
+  const containerAction: Action<HTMLDivElement, ListActionData> = (element, data) => {
+    let current = data;
+    let unregister = parentGroup?.register(current.id, element, current.nodeData);
+    const onLayoutChange = () => measureContainer(element);
 
-  $effect(() => {
-    const element = containerElement;
-    const currentId = id;
-    if (!parentGroup || !element) return;
+    measureContainer(element);
+    const observer = new ResizeObserver(onLayoutChange);
+    observer.observe(element);
 
-    return parentGroup.register(currentId, element, { parallel: false });
-  });
-
-  $effect(() => {
-    const element = containerElement;
-    if (!parentGroup || !element) return;
-    parentGroup.update(id, nodeData, element);
-  });
-
-  $effect(() => {
-    void computeConnectorsAfterTick(group.measurementEpoch, group.descendants);
-  });
-
-  $effect(() => {
-    window.addEventListener("scroll", computeConnectors, {
+    window.addEventListener("scroll", onLayoutChange, {
       capture: true,
       passive: true,
     });
-    window.addEventListener("resize", computeConnectors, { passive: true });
+    window.addEventListener("resize", onLayoutChange, { passive: true });
 
-    return () => {
-      window.removeEventListener("scroll", computeConnectors, { capture: true });
-      window.removeEventListener("resize", computeConnectors);
+    return {
+      update(next) {
+        if (!parentGroup) return;
+        if (next.id !== current.id) {
+          unregister?.();
+          unregister = parentGroup.register(next.id, element, next.nodeData);
+        } else {
+          parentGroup.update(next.id, next.nodeData, element);
+        }
+        current = next;
+      },
+      destroy() {
+        unregister?.();
+        observer.disconnect();
+        window.removeEventListener("scroll", onLayoutChange, { capture: true });
+        window.removeEventListener("resize", onLayoutChange);
+      },
     };
-  });
+  };
 </script>
 
-<div class="relative" use:containerAction>
+<div class="relative" use:containerAction={listActionData}>
   <ul
     class={cn(
       "ml-0 list-none",

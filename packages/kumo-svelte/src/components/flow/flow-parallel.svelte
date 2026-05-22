@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { tick, type Snippet } from "svelte";
+  import type { Snippet } from "svelte";
   import type { Action } from "svelte/action";
   import { cn } from "../../utils";
   import Connectors from "./connectors.svelte";
@@ -40,12 +40,18 @@
 
   setFlowNodeGroupContext(childGroup);
 
+  interface ParallelActionData {
+    id: string;
+    nodeData: FlowNodeData;
+  }
+
   let id = $derived(idProp ?? generatedId);
   let index = $derived(parentGroup.indexOf(id));
-  let containerElement = $state<HTMLDivElement | null>(null);
-  let contentElement = $state<HTMLUListElement | null>(null);
+  let containerElement: HTMLDivElement | null = null;
+  let contentElement: HTMLUListElement | null = null;
+  let cleanupLayoutObserver: (() => void) | undefined;
+  let containerRect = $state<RectLike | null>(null);
   let measurements = $state<RectLike | null>(null);
-  let links = $state<LinksResult | null>(null);
   let firstBranch = $derived(childGroup.descendants[0]);
   let endAnchor = $derived(firstBranch?.props.end ?? measurements);
   let startAnchor = $derived(firstBranch?.props.start ?? measurements);
@@ -54,30 +60,22 @@
     parallel: true,
     start: startAnchor,
   });
+  let links = $derived.by(computeLinks);
   let previousIsParallel = $derived(parentGroup.previous(id)?.props.parallel === true);
-
-  const containerAction: Action<HTMLDivElement> = (element) => {
-    containerElement = element;
-    return {
-      destroy() {
-        if (containerElement === element) containerElement = null;
-      },
-    };
-  };
-
-  const contentAction: Action<HTMLUListElement> = (element) => {
-    contentElement = element;
-    return {
-      destroy() {
-        if (contentElement === element) contentElement = null;
-      },
-    };
-  };
+  let parallelActionData = $derived<ParallelActionData>({ id, nodeData });
 
   function measure() {
-    if (!contentElement) return;
-    const rect = toRectLike(contentElement.getBoundingClientRect());
-    measurements = sameRect(measurements, rect) ? measurements : rect;
+    if (containerElement) {
+      const nextContainerRect = toRectLike(containerElement.getBoundingClientRect());
+      containerRect = sameRect(containerRect, nextContainerRect)
+        ? containerRect
+        : nextContainerRect;
+    }
+
+    if (contentElement) {
+      const rect = toRectLike(contentElement.getBoundingClientRect());
+      measurements = sameRect(measurements, rect) ? measurements : rect;
+    }
   }
 
   function getStartAndEndPoints({
@@ -116,15 +114,15 @@
   }
 
   function computeLinks() {
-    if (!containerElement) return;
+    const currentContainerRect = containerRect;
+    if (!currentContainerRect) return null;
 
-    const containerRect = toRectLike(containerElement.getBoundingClientRect());
     const previousNode = parentGroup.previous(id);
     const nextNode = parentGroup.next(id);
     const previousNodeRect = getNodeRect(previousNode, { type: "start" });
     const nextNodeRect = getNodeRect(nextNode, { type: "end" });
     const { end, start } = getStartAndEndPoints({
-      container: containerRect,
+      container: currentContainerRect,
       next: nextNodeRect,
       previous: previousNodeRect,
     });
@@ -139,8 +137,8 @@
         incomingBranchPoints.push({
           y:
             diagram.orientation === "horizontal"
-              ? endAnchorRect.top - containerRect.top + endAnchorRect.height / 2
-              : endAnchorRect.left - containerRect.left + endAnchorRect.width / 2,
+              ? endAnchorRect.top - currentContainerRect.top + endAnchorRect.height / 2
+              : endAnchorRect.left - currentContainerRect.left + endAnchorRect.width / 2,
         });
       }
 
@@ -148,9 +146,9 @@
         outgoingBranchPoints.push({
           y:
             diagram.orientation === "horizontal"
-              ? startAnchorRect.top - containerRect.top + startAnchorRect.height / 2
+              ? startAnchorRect.top - currentContainerRect.top + startAnchorRect.height / 2
               : startAnchorRect.left -
-                containerRect.left +
+                currentContainerRect.left +
                 startAnchorRect.width / 2,
         });
       }
@@ -188,15 +186,15 @@
             ? {
                 x:
                   endAnchorRect.left -
-                  containerRect.left +
+                  currentContainerRect.left +
                   endAnchorRect.width / 2,
-                y: endAnchorRect.top - containerRect.top,
+                y: endAnchorRect.top - currentContainerRect.top,
               }
             : {
-                x: endAnchorRect.left - containerRect.left,
+                x: endAnchorRect.left - currentContainerRect.left,
                 y:
                   endAnchorRect.top -
-                  containerRect.top +
+                  currentContainerRect.top +
                   endAnchorRect.height / 2,
               };
 
@@ -219,15 +217,15 @@
             ? {
                 x:
                   startAnchorRect.left -
-                  containerRect.left +
+                  currentContainerRect.left +
                   startAnchorRect.width / 2,
-                y: startAnchorRect.bottom - containerRect.top,
+                y: startAnchorRect.bottom - currentContainerRect.top,
               }
             : {
-                x: startAnchorRect.right - containerRect.left,
+                x: startAnchorRect.right - currentContainerRect.left,
                 y:
                   startAnchorRect.top -
-                  containerRect.top +
+                  currentContainerRect.top +
                   startAnchorRect.height / 2,
               };
 
@@ -247,7 +245,7 @@
       return nextConnectors;
     });
 
-    links = {
+    return {
       connectors,
       junctions: {
         end:
@@ -265,31 +263,12 @@
               }
             : undefined,
       },
-    };
+    } satisfies LinksResult;
   }
 
-  async function computeLinksAfterTick(..._deps: unknown[]) {
-    await tick();
-    computeLinks();
-  }
-
-  $effect(() => {
-    const element = containerElement;
-    const currentId = id;
-    if (!element) return;
-
-    return parentGroup.register(currentId, element, { parallel: true });
-  });
-
-  $effect(() => {
-    const element = containerElement;
-    if (!element) return;
-    parentGroup.update(id, nodeData, element);
-  });
-
-  $effect(() => {
-    const element = contentElement;
-    if (!element) return;
+  function observeLayout() {
+    cleanupLayoutObserver?.();
+    if (!containerElement || !contentElement) return;
 
     const onLayoutChange = () => {
       measure();
@@ -298,7 +277,8 @@
 
     measure();
     const observer = new ResizeObserver(onLayoutChange);
-    observer.observe(element);
+    observer.observe(containerElement);
+    observer.observe(contentElement);
 
     window.addEventListener("scroll", onLayoutChange, {
       capture: true,
@@ -306,25 +286,53 @@
     });
     window.addEventListener("resize", onLayoutChange, { passive: true });
 
-    return () => {
+    cleanupLayoutObserver = () => {
       observer.disconnect();
       window.removeEventListener("scroll", onLayoutChange, { capture: true });
       window.removeEventListener("resize", onLayoutChange);
+      cleanupLayoutObserver = undefined;
     };
-  });
+  }
 
-  $effect(() => {
-    void computeLinksAfterTick(
-      childGroup.measurementEpoch,
-      parentGroup.measurementEpoch,
-      childGroup.descendants,
-      parentGroup.descendants,
-    );
-  });
+  const containerAction: Action<HTMLDivElement, ParallelActionData> = (element, data) => {
+    containerElement = element;
+    let current = data;
+    let unregister = parentGroup.register(current.id, element, current.nodeData);
+    observeLayout();
+
+    return {
+      update(next) {
+        if (next.id !== current.id) {
+          unregister();
+          unregister = parentGroup.register(next.id, element, next.nodeData);
+        } else {
+          parentGroup.update(next.id, next.nodeData, element);
+        }
+        current = next;
+      },
+      destroy() {
+        cleanupLayoutObserver?.();
+        unregister();
+        if (containerElement === element) containerElement = null;
+      },
+    };
+  };
+
+  const contentAction: Action<HTMLUListElement> = (element) => {
+    contentElement = element;
+    observeLayout();
+
+    return {
+      destroy() {
+        cleanupLayoutObserver?.();
+        if (contentElement === element) contentElement = null;
+      },
+    };
+  };
 </script>
 
 <div
-  use:containerAction
+  use:containerAction={parallelActionData}
   class={cn(
     "relative isolate",
     diagram.orientation === "horizontal" ? "-mr-16 px-16" : "-mb-16 py-16",

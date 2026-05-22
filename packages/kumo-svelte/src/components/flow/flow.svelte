@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { onDestroy, untrack, type Snippet } from "svelte";
+  import type { Snippet } from "svelte";
+  import type { Action } from "svelte/action";
   import type { HTMLAttributes } from "svelte/elements";
   import { cn } from "../../utils";
   import { setFlowDiagramContext } from "./context.svelte";
@@ -34,8 +35,9 @@
     ...restProps
   }: FlowProps = $props();
 
-  let wrapperElement = $state<HTMLDivElement | null>(null);
-  let contentElement = $state<HTMLDivElement | null>(null);
+  let wrapperElement: HTMLDivElement | null = null;
+  let contentElement: HTMLDivElement | null = null;
+  let cleanupCanvasObserver: (() => void) | undefined;
   let x = $state(0);
   let y = $state(0);
   let bounds = $state<{ x: number; y: number } | null>(null);
@@ -82,6 +84,7 @@
       : "0%",
   );
   let contentStyle = $derived(`transform: translate3d(${x}px, ${y}px, 0);`);
+  let canvasActionData = $derived({ padding });
 
   setFlowDiagramContext({
     get align() {
@@ -191,47 +194,60 @@
     document.addEventListener("pointerup", cleanup);
   }
 
-  onDestroy(() => {
-    finishPanning();
-  });
+  function observeCanvas() {
+    cleanupCanvasObserver?.();
+    if (!wrapperElement || !contentElement) return;
 
-  $effect(() => {
-    if (!canvas || !wrapperElement || !contentElement) return;
-
-    untrack(measureBounds);
+    measureBounds();
+    const wrapper = wrapperElement;
+    const content = contentElement;
     const observer = new ResizeObserver(measureBounds);
-    observer.observe(wrapperElement);
-    observer.observe(contentElement);
+    observer.observe(wrapper);
+    observer.observe(content);
+    wrapper.addEventListener("wheel", handleWheel, { passive: false });
 
-    return () => observer.disconnect();
-  });
-
-  $effect(() => {
-    if (!canvas) return;
-    clampPan();
-  });
-
-  $effect(() => {
-    if (!canvas || !wrapperElement) return;
-
-    wrapperElement.addEventListener("wheel", handleWheel, { passive: false });
-    return () => wrapperElement?.removeEventListener("wheel", handleWheel);
-  });
-
-  $effect(() => {
-    if (!canvas) return;
-
-    return () => {
-      finishPanning();
-      document.body.style.cursor = "";
-      document.body.style.userSelect = "";
+    cleanupCanvasObserver = () => {
+      observer.disconnect();
+      wrapper.removeEventListener("wheel", handleWheel);
+      cleanupCanvasObserver = undefined;
     };
-  });
+  }
+
+  const wrapperAction: Action<HTMLDivElement, typeof canvasActionData> = (element) => {
+    wrapperElement = element;
+    observeCanvas();
+
+    return {
+      update() {
+        measureBounds();
+        clampPan();
+      },
+      destroy() {
+        cleanupCanvasObserver?.();
+        finishPanning();
+        document.body.style.cursor = "";
+        document.body.style.userSelect = "";
+        if (wrapperElement === element) wrapperElement = null;
+      },
+    };
+  };
+
+  const contentAction: Action<HTMLDivElement> = (element) => {
+    contentElement = element;
+    observeCanvas();
+
+    return {
+      destroy() {
+        cleanupCanvasObserver?.();
+        if (contentElement === element) contentElement = null;
+      },
+    };
+  };
 </script>
 
 {#if canvas}
   <div
-    bind:this={wrapperElement}
+    use:wrapperAction={canvasActionData}
     class={cn("group relative isolate grow overflow-hidden", className)}
     style:padding-top={`${padding.y}px`}
     style:padding-bottom={`${padding.y}px`}
@@ -242,7 +258,7 @@
     {...restProps}
   >
     <div
-      bind:this={contentElement}
+      use:contentAction
       data-testid="flow-contents"
       class="mx-auto w-max"
       style={contentStyle}
