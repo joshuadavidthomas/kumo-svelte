@@ -114,6 +114,7 @@ export {
   type CheckboxItemProps,
   type CheckboxLegendProps,
   type CheckboxProps,
+  type CheckboxRootProps,
   type CheckboxVariant,
   type KumoCheckboxVariant,
   type KumoCheckboxVariantsProps,
@@ -234,6 +235,7 @@ export {
   type CommandPaletteItemProps,
   type CommandPaletteListProps,
   type CommandPaletteLoadingProps,
+  type CommandPalettePanelProps,
   type CommandPaletteProps,
   type CommandPaletteResultItemProps,
   type CommandPaletteRootProps,
@@ -254,6 +256,7 @@ export {
   type CodeBlockProps,
   type CodeLang,
   type CodeProps,
+  type CodeRootProps,
   type KumoCodeLang,
   type KumoCodeVariantsProps,
 } from "./components/code";
@@ -378,6 +381,7 @@ export {
   type DropdownMenuContentProps,
   type DropdownMenuGroupProps,
   type DropdownMenuItemProps,
+  type DropdownMenuProps,
   type DropdownMenuLabelProps,
   type DropdownMenuLinkItemProps,
   type DropdownMenuPortalProps,
@@ -536,6 +540,7 @@ export {
   type KumoLinkVariant,
   type KumoLinkVariantsProps,
   type LinkProps,
+  type LinkRootProps,
 } from "./components/link";
 
 export { LayerCard } from "./components/layer-card";
@@ -552,6 +557,7 @@ export {
   type KumoLayerCardVariantsProps,
   type LayerCardPrimaryProps,
   type LayerCardProps,
+  type LayerCardRootProps,
   type LayerCardSecondaryProps,
 } from "./components/layer-card";
 
@@ -651,6 +657,8 @@ export {
   type RadioGroupProps,
   type RadioItemProps,
   type RadioLegendProps,
+  type RadioProps,
+  type RadioRootProps,
   type RadioVariant,
 } from "./components/radio";
 
@@ -756,6 +764,7 @@ export {
   type SidebarMenuSubProps,
   type SidebarProps,
   type SidebarProviderProps,
+  type SidebarRootProps,
   type SidebarRailProps,
   type SidebarResizeHandleProps,
   type SidebarSeparatorProps,
@@ -792,6 +801,7 @@ export {
   type SwitchItemProps,
   type SwitchLegendProps,
   type SwitchProps,
+  type SwitchRootProps,
   type SwitchSize,
   type SwitchVariant,
 } from "./components/switch";
@@ -868,6 +878,7 @@ export {
   type TableHeadProps,
   type TableHeaderProps,
   type TableProps,
+  type TableRootProps,
   type TableResizeHandleProps,
   type TableRowProps,
 } from "./components/table";
