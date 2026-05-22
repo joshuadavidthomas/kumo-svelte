@@ -50,6 +50,7 @@
   let containerElement: HTMLDivElement | null = null;
   let contentElement: HTMLUListElement | null = null;
   let cleanupLayoutObserver: (() => void) | undefined;
+  let measureFrame: number | undefined;
   let containerRect = $state<RectLike | null>(null);
   let measurements = $state<RectLike | null>(null);
   let firstBranch = $derived(childGroup.descendants[0]);
@@ -64,7 +65,18 @@
   let previousIsParallel = $derived(parentGroup.previous(id)?.props.parallel === true);
   let parallelActionData = $derived<ParallelActionData>({ id, nodeData });
 
+  function getNodeData(measuredContent: RectLike | null) {
+    const branch = childGroup.descendants[0];
+    return {
+      end: branch?.props.end ?? measuredContent,
+      parallel: true,
+      start: branch?.props.start ?? measuredContent,
+    } satisfies FlowNodeData;
+  }
+
   function measure() {
+    let measuredContent = measurements;
+
     if (containerElement) {
       const nextContainerRect = toRectLike(containerElement.getBoundingClientRect());
       containerRect = sameRect(containerRect, nextContainerRect)
@@ -75,7 +87,10 @@
     if (contentElement) {
       const rect = toRectLike(contentElement.getBoundingClientRect());
       measurements = sameRect(measurements, rect) ? measurements : rect;
+      measuredContent = rect;
     }
+
+    return getNodeData(measuredContent);
   }
 
   function getStartAndEndPoints({
@@ -266,16 +281,31 @@
     } satisfies LinksResult;
   }
 
+  function cancelScheduledMeasure() {
+    if (measureFrame === undefined) return;
+    cancelAnimationFrame(measureFrame);
+    measureFrame = undefined;
+  }
+
+  function scheduleMeasure() {
+    cancelScheduledMeasure();
+    measureFrame = requestAnimationFrame(() => {
+      measureFrame = undefined;
+      const measuredNodeData = measure();
+      if (containerElement) {
+        parentGroup.update(id, measuredNodeData, containerElement);
+      }
+      parentGroup.notifySizeChange();
+    });
+  }
+
   function observeLayout() {
     cleanupLayoutObserver?.();
     if (!containerElement || !contentElement) return;
 
-    const onLayoutChange = () => {
-      measure();
-      parentGroup.notifySizeChange();
-    };
+    const onLayoutChange = scheduleMeasure;
 
-    measure();
+    scheduleMeasure();
     const observer = new ResizeObserver(onLayoutChange);
     observer.observe(containerElement);
     observer.observe(contentElement);
@@ -287,6 +317,7 @@
     window.addEventListener("resize", onLayoutChange, { passive: true });
 
     cleanupLayoutObserver = () => {
+      cancelScheduledMeasure();
       observer.disconnect();
       window.removeEventListener("scroll", onLayoutChange, { capture: true });
       window.removeEventListener("resize", onLayoutChange);

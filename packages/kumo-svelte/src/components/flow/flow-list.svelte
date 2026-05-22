@@ -50,6 +50,26 @@
     containerRect = sameRect(containerRect, nextRect) ? containerRect : nextRect;
   }
 
+  function scheduleContainerMeasure(element: HTMLDivElement) {
+    let frame: number | undefined;
+
+    const cancel = () => {
+      if (frame === undefined) return;
+      cancelAnimationFrame(frame);
+      frame = undefined;
+    };
+
+    const schedule = () => {
+      cancel();
+      frame = requestAnimationFrame(() => {
+        frame = undefined;
+        measureContainer(element);
+      });
+    };
+
+    return { cancel, schedule };
+  }
+
   function computeConnectors() {
     if (!containerRect) return [];
 
@@ -87,9 +107,10 @@
   const containerAction: Action<HTMLDivElement, ListActionData> = (element, data) => {
     let current = data;
     let unregister = parentGroup?.register(current.id, element, current.nodeData);
-    const onLayoutChange = () => measureContainer(element);
+    const { cancel, schedule } = scheduleContainerMeasure(element);
+    const onLayoutChange = schedule;
 
-    measureContainer(element);
+    schedule();
     const observer = new ResizeObserver(onLayoutChange);
     observer.observe(element);
 
@@ -112,6 +133,7 @@
       },
       destroy() {
         unregister?.();
+        cancel();
         observer.disconnect();
         window.removeEventListener("scroll", onLayoutChange, { capture: true });
         window.removeEventListener("resize", onLayoutChange);

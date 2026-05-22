@@ -39,6 +39,7 @@
   let endAnchorElement: HTMLElement | null = null;
   let nodeElement: HTMLElement | null = null;
   let cleanupLayoutObserver: (() => void) | undefined;
+  let measureFrame: number | undefined;
   let startRect = $state<RectLike | null>(null);
   let endRect = $state<RectLike | null>(null);
 
@@ -51,23 +52,43 @@
   let nodeActionData = $derived<NodeActionData>({ id, nodeData });
 
   function measure() {
-    if (!nodeElement) return;
+    if (!nodeElement) return null;
 
     const nodeRect = toRectLike(nodeElement.getBoundingClientRect());
-    const nextStartRect = toRectLike(
-      (startAnchorElement ?? nodeElement).getBoundingClientRect(),
-    );
-    const nextEndRect = toRectLike(
-      (endAnchorElement ?? nodeElement).getBoundingClientRect(),
-    );
+    const nextStartRect = startAnchorElement
+      ? toRectLike(startAnchorElement.getBoundingClientRect())
+      : nodeRect;
+    const nextEndRect = endAnchorElement
+      ? toRectLike(endAnchorElement.getBoundingClientRect())
+      : nodeRect;
 
     startRect = sameRect(startRect, nextStartRect) ? startRect : nextStartRect;
     endRect = sameRect(endRect, nextEndRect) ? endRect : nextEndRect;
 
-    if (!startAnchorElement && !endAnchorElement) {
-      startRect = sameRect(startRect, nodeRect) ? startRect : nodeRect;
-      endRect = sameRect(endRect, nodeRect) ? endRect : nodeRect;
-    }
+    return {
+      disabled,
+      end: nextEndRect,
+      parallel: false,
+      start: nextStartRect,
+    } satisfies FlowNodeData;
+  }
+
+  function cancelScheduledMeasure() {
+    if (measureFrame === undefined) return;
+    cancelAnimationFrame(measureFrame);
+    measureFrame = undefined;
+  }
+
+  function scheduleMeasure() {
+    cancelScheduledMeasure();
+    measureFrame = requestAnimationFrame(() => {
+      measureFrame = undefined;
+      const measuredNodeData = measure();
+      if (nodeElement && measuredNodeData) {
+        group.update(id, measuredNodeData, nodeElement);
+      }
+      group.notifySizeChange();
+    });
   }
 
   function observeLayout() {
@@ -77,12 +98,9 @@
     const element = nodeElement;
     const startElement = startAnchorElement;
     const endElement = endAnchorElement;
-    const onLayoutChange = () => {
-      measure();
-      group.notifySizeChange();
-    };
+    const onLayoutChange = scheduleMeasure;
 
-    measure();
+    scheduleMeasure();
     const observer = new ResizeObserver(onLayoutChange);
     observer.observe(element);
     if (startElement && startElement !== element) observer.observe(startElement);
@@ -97,6 +115,7 @@
     window.addEventListener("resize", onLayoutChange, { passive: true });
 
     cleanupLayoutObserver = () => {
+      cancelScheduledMeasure();
       observer.disconnect();
       window.removeEventListener("scroll", onLayoutChange, { capture: true });
       window.removeEventListener("resize", onLayoutChange);
@@ -121,7 +140,7 @@
         current = next;
       },
       destroy() {
-        cleanupLayoutObserver?.();
+          cleanupLayoutObserver?.();
         unregister();
         if (nodeElement === element) nodeElement = null;
       },
@@ -133,13 +152,11 @@
       if (endAnchorElement === element) return;
       endAnchorElement = element;
       observeLayout();
-      group.notifySizeChange();
     },
     registerStartAnchor(element) {
       if (startAnchorElement === element) return;
       startAnchorElement = element;
       observeLayout();
-      group.notifySizeChange();
     },
   });
 </script>
@@ -147,7 +164,10 @@
 <li
   use:nodeAction={nodeActionData}
   {...restProps}
-  class={cn("rounded-md bg-kumo-base px-3 py-2 shadow ring ring-kumo-line", className)}
+  class={cn(
+    "rounded-md bg-kumo-base px-3 py-2 shadow ring ring-kumo-line data-[disabled]:bg-kumo-control data-[disabled]:text-kumo-placeholder",
+    className,
+  )}
   style:cursor="default"
   data-disabled={disabled ? "" : undefined}
   data-node-index={index}
