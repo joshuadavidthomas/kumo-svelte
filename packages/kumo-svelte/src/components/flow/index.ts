@@ -33,13 +33,9 @@ export type FlowParallelProps = ComponentProps<typeof FlowParallelComponent>;
 
 export type {
   FlowAlign,
-  FlowAnchorRenderProps,
-  FlowAnchorRenderSnippet,
   FlowAnchorType,
   FlowConnector,
   FlowNodeData,
-  FlowNodeRenderProps,
-  FlowNodeRenderSnippet,
   FlowOrientation,
   FlowParallelAlign,
   RectLike,

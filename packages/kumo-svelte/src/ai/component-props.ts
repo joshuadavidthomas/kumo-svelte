@@ -2392,10 +2392,10 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
         kind: "string",
       },
     },
-    render: {
-      type: "FlowNodeRenderSnippet",
+    class: {
+      type: "string",
       runtime: {
-        kind: "snippet",
+        kind: "string",
       },
     },
     type: {
@@ -2412,12 +2412,6 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
             value: "end",
           },
         ],
-      },
-    },
-    class: {
-      type: "string",
-      runtime: {
-        kind: "string",
       },
     },
     id: {
@@ -2490,42 +2484,6 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
             required: false,
           },
         },
-      },
-    },
-    action: {
-      type: "Action<HTMLElement>",
-      runtime: {
-        kind: "function",
-      },
-    },
-    attrs: {
-      type: '{ "data-node-id": string; "data-node-index": number; "data-testid": string; style: string; }',
-      runtime: {
-        kind: "object",
-        props: {
-          "data-node-id": {
-            kind: "string",
-            required: true,
-          },
-          "data-node-index": {
-            kind: "number",
-            required: true,
-          },
-          "data-testid": {
-            kind: "string",
-            required: true,
-          },
-          style: {
-            kind: "string",
-            required: true,
-          },
-        },
-      },
-    },
-    index: {
-      type: "number",
-      runtime: {
-        kind: "number",
       },
     },
   },

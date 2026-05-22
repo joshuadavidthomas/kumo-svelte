@@ -1,6 +1,3 @@
-import type { Snippet } from "svelte";
-import type { Action } from "svelte/action";
-
 export type FlowOrientation = "horizontal" | "vertical";
 export type FlowAlign = "start" | "center";
 export type FlowParallelAlign = "start" | "end";
@@ -35,23 +32,3 @@ export interface FlowConnector {
   y1: number;
   y2: number;
 }
-
-export interface FlowNodeRenderProps {
-  action: Action<HTMLElement>;
-  attrs: {
-    "data-node-id": string;
-    "data-node-index": number;
-    "data-testid": string;
-    style: string;
-  };
-  disabled: boolean;
-  id: string;
-  index: number;
-}
-
-export interface FlowAnchorRenderProps {
-  action: Action<HTMLElement>;
-}
-
-export type FlowNodeRenderSnippet = Snippet<[FlowNodeRenderProps]>;
-export type FlowAnchorRenderSnippet = Snippet<[FlowAnchorRenderProps]>;

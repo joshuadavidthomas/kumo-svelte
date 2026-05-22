@@ -3796,13 +3796,13 @@
           },
           "description": "Marker id value."
         },
-        "render": {
-          "type": "FlowNodeRenderSnippet",
+        "class": {
+          "type": "string",
           "required": false,
           "runtime": {
-            "kind": "snippet"
+            "kind": "string"
           },
-          "description": "Custom content or renderer for render."
+          "description": "Additional CSS classes."
         },
         "type": {
           "type": "FlowAnchorType",
@@ -3822,17 +3822,9 @@
           },
           "description": "Type option used by the component."
         },
-        "class": {
-          "type": "string",
-          "required": false,
-          "runtime": {
-            "kind": "string"
-          },
-          "description": "Additional CSS classes."
-        },
         "id": {
           "type": "string",
-          "required": true,
+          "required": false,
           "runtime": {
             "kind": "string"
           },
@@ -3840,7 +3832,7 @@
         },
         "disabled": {
           "type": "boolean",
-          "required": true,
+          "required": false,
           "runtime": {
             "kind": "boolean"
           },
@@ -3915,48 +3907,6 @@
             }
           },
           "description": "Padding value."
-        },
-        "action": {
-          "type": "Action<HTMLElement>",
-          "required": true,
-          "runtime": {
-            "kind": "function"
-          },
-          "description": "Action content rendered with the component."
-        },
-        "attrs": {
-          "type": "{ \"data-node-id\": string; \"data-node-index\": number; \"data-testid\": string; style: string; }",
-          "required": true,
-          "runtime": {
-            "kind": "object",
-            "props": {
-              "data-node-id": {
-                "kind": "string",
-                "required": true
-              },
-              "data-node-index": {
-                "kind": "number",
-                "required": true
-              },
-              "data-testid": {
-                "kind": "string",
-                "required": true
-              },
-              "style": {
-                "kind": "string",
-                "required": true
-              }
-            }
-          },
-          "description": "Attrs value."
-        },
-        "index": {
-          "type": "number",
-          "required": true,
-          "runtime": {
-            "kind": "number"
-          },
-          "description": "Numeric index value."
         }
       },
       "examples": [],

@@ -1,24 +1,20 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
   import type { Action } from "svelte/action";
+  import type { HTMLLiAttributes } from "svelte/elements";
   import { cn } from "../../utils";
   import {
     setFlowNodeAnchorContext,
     useFlowNodeGroup,
   } from "./context.svelte";
   import { sameRect, toRectLike } from "./geometry";
-  import type {
-    FlowNodeData,
-    FlowNodeRenderSnippet,
-    RectLike,
-  } from "./types";
+  import type { FlowNodeData, RectLike } from "./types";
 
-  export interface FlowNodeProps {
+  export interface FlowNodeProps extends Omit<HTMLLiAttributes, "children" | "class"> {
     children?: Snippet;
     class?: string;
     disabled?: boolean;
     id?: string;
-    render?: FlowNodeRenderSnippet;
   }
 
   let {
@@ -26,7 +22,7 @@
     class: className,
     disabled = false,
     id: idProp,
-    render,
+    ...restProps
   }: FlowNodeProps = $props();
 
   const group = useFlowNodeGroup();
@@ -134,28 +130,15 @@
   });
 </script>
 
-{#if render}
-  {@render render({
-    action: nodeAction,
-    attrs: {
-      "data-node-id": id,
-      "data-node-index": index,
-      "data-testid": id,
-      style: "cursor: default;",
-    },
-    disabled,
-    id,
-    index,
-  })}
-{:else}
-  <li
-    use:nodeAction
-    class={cn("rounded-md bg-kumo-base px-3 py-2 shadow ring ring-kumo-line", className)}
-    style:cursor="default"
-    data-node-index={index}
-    data-node-id={id}
-    data-testid={id}
-  >
-    {@render children?.()}
-  </li>
-{/if}
+<li
+  use:nodeAction
+  {...restProps}
+  class={cn("rounded-md bg-kumo-base px-3 py-2 shadow ring ring-kumo-line", className)}
+  style:cursor="default"
+  data-disabled={disabled ? "" : undefined}
+  data-node-index={index}
+  data-node-id={id}
+  data-testid={id}
+>
+  {@render children?.()}
+</li>

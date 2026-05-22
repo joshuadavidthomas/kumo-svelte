@@ -1,16 +1,19 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
   import type { Action } from "svelte/action";
+  import type { HTMLAttributes } from "svelte/elements";
+  import { cn } from "../../utils";
   import { useFlowNodeAnchorContext } from "./context.svelte";
-  import type { FlowAnchorRenderSnippet, FlowAnchorType } from "./types";
+  import type { FlowAnchorType } from "./types";
 
-  export interface FlowAnchorProps {
+  export interface FlowAnchorProps
+    extends Omit<HTMLAttributes<HTMLDivElement>, "children" | "class"> {
     children?: Snippet;
-    render?: FlowAnchorRenderSnippet;
+    class?: string;
     type?: FlowAnchorType;
   }
 
-  let { children, render, type }: FlowAnchorProps = $props();
+  let { children, class: className, type, ...restProps }: FlowAnchorProps = $props();
 
   const context = useFlowNodeAnchorContext();
   let anchorElement = $state<HTMLElement | null>(null);
@@ -46,11 +49,7 @@
   });
 </script>
 
-{#if render}
-  {@render render({ action: anchorAction })}
-{:else}
-  <div use:anchorAction>
-    {@render children?.()}
-  </div>
-{/if}
+<div use:anchorAction {...restProps} class={cn(className)}>
+  {@render children?.()}
+</div>
 

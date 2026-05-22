@@ -69,7 +69,7 @@ Use `Flow.Parallel` to create branching paths that run in parallel.
 
 ### Custom Node Styling
 
-Use the `render` snippet prop to completely customize node appearance. Render a node element and apply the provided Svelte action and attributes.
+Use `class` and child content to customize node appearance. `Flow.Node` owns the list item and connector registration, so custom nodes stay ordinary Svelte markup.
 
 <Example demo="flow-custom-content-demo">
   <FlowCustomContentDemo />
@@ -163,11 +163,11 @@ Individual node in the flow.
 
 | Prop | Type | Description |
 | --- | --- | --- |
-| `children` | `Snippet` | Default node content. |
-| `class` | `string` | Additional classes for the default node. |
+| `children` | `Snippet` | Node content. |
+| `class` | `string` | Additional classes for the node. |
 | `disabled` | `boolean` | Render node and connectors as inactive. |
 | `id` | `string` | Stable node ID. |
-| `render` | `Snippet<[FlowNodeRenderProps]>` | Custom node renderer. Apply the provided `action` and `attrs`. |
+| rest props | `HTMLLiAttributes` | Forwarded to the underlying `<li>`. |
 
 ### Flow.Parallel
 
@@ -196,5 +196,6 @@ Custom connector attachment point inside a custom node.
 | Prop | Type | Description |
 | --- | --- | --- |
 | `type` | `"start" \| "end"` | Which connector endpoint this anchor controls. If omitted, controls both. |
-| `children` | `Snippet` | Default anchor content. |
-| `render` | `Snippet<[FlowAnchorRenderProps]>` | Custom anchor renderer. Apply the provided `action`. |
+| `children` | `Snippet` | Anchor content. |
+| `class` | `string` | Additional classes for the anchor element. |
+| rest props | `HTMLAttributes<HTMLDivElement>` | Forwarded to the underlying `<div>`. |
