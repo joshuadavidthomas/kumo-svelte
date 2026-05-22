@@ -5,11 +5,24 @@ import TabsListComponent from "./tabs-list.svelte";
 import TabsRootComponent from "./tabs-root.svelte";
 import TabsTriggerComponent from "./tabs-trigger.svelte";
 
-export { default as Tabs } from "./tabs.svelte";
-export { default as TabsRoot } from "./tabs-root.svelte";
-export { default as TabsList } from "./tabs-list.svelte";
-export { default as TabsTrigger } from "./tabs-trigger.svelte";
-export { default as TabsContent } from "./tabs-content.svelte";
+const Tabs = Object.assign(TabsComponent, {
+  Root: TabsRootComponent,
+  List: TabsListComponent,
+  Trigger: TabsTriggerComponent,
+  Content: TabsContentComponent,
+});
+
+export {
+  Tabs,
+  TabsRootComponent as TabsRoot,
+  TabsRootComponent as Root,
+  TabsListComponent as TabsList,
+  TabsListComponent as List,
+  TabsTriggerComponent as TabsTrigger,
+  TabsTriggerComponent as Trigger,
+  TabsContentComponent as TabsContent,
+  TabsContentComponent as Content,
+};
 
 export type TabsProps = ComponentProps<typeof TabsComponent>;
 export type TabsItem = NonNullable<TabsProps["tabs"]>[number];

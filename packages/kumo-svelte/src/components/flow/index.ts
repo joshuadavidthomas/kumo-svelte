@@ -6,13 +6,30 @@ import FlowListComponent from "./flow-list.svelte";
 import FlowNodeComponent from "./flow-node.svelte";
 import FlowParallelComponent from "./flow-parallel.svelte";
 
-export { default as Flow } from "./flow.svelte";
-export { default as FlowRoot } from "./flow.svelte";
-export { default as FlowAnchor } from "./flow-anchor.svelte";
-export { default as FlowConnectors } from "./connectors.svelte";
-export { default as FlowList } from "./flow-list.svelte";
-export { default as FlowNode } from "./flow-node.svelte";
-export { default as FlowParallel } from "./flow-parallel.svelte";
+const Flow = Object.assign(FlowComponent, {
+  Root: FlowComponent,
+  Anchor: FlowAnchorComponent,
+  Connectors: ConnectorsComponent,
+  List: FlowListComponent,
+  Node: FlowNodeComponent,
+  Parallel: FlowParallelComponent,
+});
+
+export {
+  Flow,
+  FlowComponent as FlowRoot,
+  FlowComponent as Root,
+  FlowAnchorComponent as FlowAnchor,
+  FlowAnchorComponent as Anchor,
+  ConnectorsComponent as FlowConnectors,
+  ConnectorsComponent as Connectors,
+  FlowListComponent as FlowList,
+  FlowListComponent as List,
+  FlowNodeComponent as FlowNode,
+  FlowNodeComponent as Node,
+  FlowParallelComponent as FlowParallel,
+  FlowParallelComponent as Parallel,
+};
 export { createRoundedPath, type FlowPathOptions } from "./paths";
 
 export type FlowProps = ComponentProps<typeof FlowComponent>;

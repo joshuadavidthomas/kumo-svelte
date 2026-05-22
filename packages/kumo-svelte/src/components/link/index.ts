@@ -2,9 +2,19 @@ import type { ComponentProps } from "svelte";
 import ExternalIconComponent from "./external-icon.svelte";
 import LinkComponent from "./link.svelte";
 
-export { default as Link } from "./link.svelte";
-export { default as ExternalIcon } from "./external-icon.svelte";
+const Link = Object.assign(LinkComponent, {
+  Root: LinkComponent,
+  ExternalIcon: ExternalIconComponent,
+});
+
+export {
+  Link,
+  LinkComponent as LinkRoot,
+  LinkComponent as Root,
+  ExternalIconComponent as ExternalIcon,
+};
 export type LinkProps = ComponentProps<typeof LinkComponent>;
+export type LinkRootProps = LinkProps;
 export type ExternalIconProps = ComponentProps<typeof ExternalIconComponent>;
 export {
   linkVariants,

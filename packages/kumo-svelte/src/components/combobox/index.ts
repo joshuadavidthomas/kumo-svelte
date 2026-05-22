@@ -13,21 +13,56 @@ import ComboboxTriggerComponent from "./combobox-trigger.svelte";
 import ComboboxTriggerInputComponent from "./combobox-trigger-input.svelte";
 import ComboboxTriggerMultipleWithInputComponent from "./combobox-trigger-multiple-with-input.svelte";
 
-export { default as Combobox } from "./combobox.svelte";
-export { default as ComboboxRoot } from "./combobox.svelte";
-export { default as ComboboxChip } from "./combobox-chip.svelte";
-export { default as ComboboxContent } from "./combobox-content.svelte";
-export { default as ComboboxEmpty } from "./combobox-empty.svelte";
-export { default as ComboboxGroup } from "./combobox-group.svelte";
-export { default as ComboboxGroupLabel } from "./combobox-group-label.svelte";
-export { default as ComboboxInput } from "./combobox-input.svelte";
-export { default as ComboboxItem } from "./combobox-item.svelte";
-export { default as ComboboxList } from "./combobox-list.svelte";
-export { default as ComboboxSeparator } from "./combobox-separator.svelte";
-export { default as ComboboxTrigger } from "./combobox-trigger.svelte";
-export { default as ComboboxTriggerInput } from "./combobox-trigger-input.svelte";
-export { default as ComboboxTriggerMultipleWithInput } from "./combobox-trigger-multiple-with-input.svelte";
-export { default as ComboboxTriggerValue } from "./combobox-trigger.svelte";
+const Combobox = Object.assign(ComboboxComponent, {
+  Root: ComboboxComponent,
+  Chip: ComboboxChipComponent,
+  Content: ComboboxContentComponent,
+  Empty: ComboboxEmptyComponent,
+  Group: ComboboxGroupComponent,
+  GroupLabel: ComboboxGroupLabelComponent,
+  Input: ComboboxInputComponent,
+  Item: ComboboxItemComponent,
+  List: ComboboxListComponent,
+  Separator: ComboboxSeparatorComponent,
+  Trigger: ComboboxTriggerComponent,
+  TriggerInput: ComboboxTriggerInputComponent,
+  TriggerMultipleWithInput: ComboboxTriggerMultipleWithInputComponent,
+  TriggerValue: ComboboxTriggerComponent,
+  Value: ComboboxTriggerComponent,
+});
+
+export {
+  Combobox,
+  ComboboxComponent as ComboboxRoot,
+  ComboboxComponent as Root,
+  ComboboxChipComponent as ComboboxChip,
+  ComboboxChipComponent as Chip,
+  ComboboxContentComponent as ComboboxContent,
+  ComboboxContentComponent as Content,
+  ComboboxEmptyComponent as ComboboxEmpty,
+  ComboboxEmptyComponent as Empty,
+  ComboboxGroupComponent as ComboboxGroup,
+  ComboboxGroupComponent as Group,
+  ComboboxGroupLabelComponent as ComboboxGroupLabel,
+  ComboboxGroupLabelComponent as GroupLabel,
+  ComboboxInputComponent as ComboboxInput,
+  ComboboxInputComponent as Input,
+  ComboboxItemComponent as ComboboxItem,
+  ComboboxItemComponent as Item,
+  ComboboxListComponent as ComboboxList,
+  ComboboxListComponent as List,
+  ComboboxSeparatorComponent as ComboboxSeparator,
+  ComboboxSeparatorComponent as Separator,
+  ComboboxTriggerComponent as ComboboxTrigger,
+  ComboboxTriggerComponent as ComboboxTriggerValue,
+  ComboboxTriggerComponent as Trigger,
+  ComboboxTriggerComponent as TriggerValue,
+  ComboboxTriggerComponent as Value,
+  ComboboxTriggerInputComponent as ComboboxTriggerInput,
+  ComboboxTriggerInputComponent as TriggerInput,
+  ComboboxTriggerMultipleWithInputComponent as ComboboxTriggerMultipleWithInput,
+  ComboboxTriggerMultipleWithInputComponent as TriggerMultipleWithInput,
+};
 
 export type ComboboxProps = ComponentProps<typeof ComboboxComponent>;
 export type ComboboxRootProps = ComboboxProps;

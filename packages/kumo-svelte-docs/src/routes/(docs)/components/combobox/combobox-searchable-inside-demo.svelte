@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Combobox, ComboboxContent, ComboboxEmpty, ComboboxInput, ComboboxItem, ComboboxList, ComboboxTriggerValue } from "kumo-svelte";
+  import { Combobox } from "kumo-svelte";
   import { languageItems, languages } from "./combobox-data";
 
   let value = $state("en");
@@ -8,16 +8,16 @@
 </script>
 
 <Combobox bind:value bind:open items={languageItems}>
-  <ComboboxTriggerValue class="w-[200px]">{selectedLabel}</ComboboxTriggerValue>
-  <ComboboxContent>
-    <ComboboxInput placeholder="Search languages" />
-    <ComboboxEmpty />
-    <ComboboxList>
+  <Combobox.TriggerValue class="w-[200px]">{selectedLabel}</Combobox.TriggerValue>
+  <Combobox.Content>
+    <Combobox.Input placeholder="Search languages" />
+    <Combobox.Empty />
+    <Combobox.List>
       {#each languages as language}
-        <ComboboxItem value={language.value} label={`${language.emoji} ${language.label}`}>
+        <Combobox.Item value={language.value} label={`${language.emoji} ${language.label}`}>
           {language.emoji} {language.label}
-        </ComboboxItem>
+        </Combobox.Item>
       {/each}
-    </ComboboxList>
-  </ComboboxContent>
+    </Combobox.List>
+  </Combobox.Content>
 </Combobox>

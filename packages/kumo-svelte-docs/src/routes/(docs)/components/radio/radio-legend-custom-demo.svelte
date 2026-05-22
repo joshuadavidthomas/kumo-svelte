@@ -1,12 +1,12 @@
 <script lang="ts">
-  import { RadioGroup, RadioItem, RadioLegend } from "kumo-svelte";
+  import { Radio } from "kumo-svelte";
 
   let value = $state("email");
 </script>
 
-<RadioGroup {value} onValueChange={(next) => (value = next)}>
-  <RadioLegend class="text-sm font-normal text-kumo-subtle">Notification preference</RadioLegend>
-  <RadioItem label="Email" value="email" />
-  <RadioItem label="SMS" value="sms" />
-  <RadioItem label="Push notification" value="push" />
-</RadioGroup>
+<Radio.Group {value} onValueChange={(next) => (value = next)}>
+  <Radio.Legend class="text-sm font-normal text-kumo-subtle">Notification preference</Radio.Legend>
+  <Radio.Item label="Email" value="email" />
+  <Radio.Item label="SMS" value="sms" />
+  <Radio.Item label="Push notification" value="push" />
+</Radio.Group>

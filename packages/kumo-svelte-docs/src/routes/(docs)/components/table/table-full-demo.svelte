@@ -3,19 +3,8 @@
     Badge,
     Button,
     DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
     LayerCard,
     Table,
-    TableBody,
-    TableCell,
-    TableCheckCell,
-    TableCheckHead,
-    TableHead,
-    TableHeader,
-    TableRow,
   } from "kumo-svelte";
   import DotsThreeIcon from "phosphor-svelte/lib/DotsThreeIcon";
   import EnvelopeSimpleIcon from "phosphor-svelte/lib/EnvelopeSimpleIcon";
@@ -43,20 +32,20 @@
       <col style="width: 120px;" />
       <col style="width: 50px;" />
     </colgroup>
-    <TableHeader>
-      <TableRow>
-        <TableCheckHead checked={selectedIds.size === emailData.length} indeterminate={selectedIds.size > 0 && selectedIds.size < emailData.length} />
-        <TableHead>Subject</TableHead>
-        <TableHead>From</TableHead>
-        <TableHead>Date</TableHead>
-        <TableHead></TableHead>
-      </TableRow>
-    </TableHeader>
-    <TableBody>
+    <Table.Header>
+      <Table.Row>
+        <Table.CheckHead checked={selectedIds.size === emailData.length} indeterminate={selectedIds.size > 0 && selectedIds.size < emailData.length} />
+        <Table.Head>Subject</Table.Head>
+        <Table.Head>From</Table.Head>
+        <Table.Head>Date</Table.Head>
+        <Table.Head></Table.Head>
+      </Table.Row>
+    </Table.Header>
+    <Table.Body>
       {#each emailData as row (row.id)}
-        <TableRow variant={selectedIds.has(row.id) ? "selected" : "default"}>
-          <TableCheckCell checked={selectedIds.has(row.id)} onCheckedChange={() => toggleRow(row.id)} />
-          <TableCell>
+        <Table.Row variant={selectedIds.has(row.id) ? "selected" : "default"}>
+          <Table.CheckCell checked={selectedIds.has(row.id)} onCheckedChange={() => toggleRow(row.id)} />
+          <Table.Cell>
             <div class="flex items-center gap-2">
               <EnvelopeSimpleIcon size={16} />
               <span class="truncate">{row.subject}</span>
@@ -66,35 +55,35 @@
                 </div>
               {/if}
             </div>
-          </TableCell>
-          <TableCell><span class="truncate">{row.from}</span></TableCell>
-          <TableCell><span class="truncate">{row.date}</span></TableCell>
-          <TableCell class="text-right">
+          </Table.Cell>
+          <Table.Cell><span class="truncate">{row.from}</span></Table.Cell>
+          <Table.Cell><span class="truncate">{row.date}</span></Table.Cell>
+          <Table.Cell class="text-right">
             <DropdownMenu>
-              <DropdownMenuTrigger>
+              <DropdownMenu.Trigger>
                 {#snippet child({ props })}
                   <Button {...props} variant="ghost" size="sm" shape="square" aria-label="More options" icon={DotsThreeIcon} />
                 {/snippet}
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuItem>
+              </DropdownMenu.Trigger>
+              <DropdownMenu.Content>
+                <DropdownMenu.Item>
                   {#snippet icon()}<EyeIcon size={16} />{/snippet}
                   View
-                </DropdownMenuItem>
-                <DropdownMenuItem>
+                </DropdownMenu.Item>
+                <DropdownMenu.Item>
                   {#snippet icon()}<PencilSimpleIcon size={16} />{/snippet}
                   Edit
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem variant="danger">
+                </DropdownMenu.Item>
+                <DropdownMenu.Separator />
+                <DropdownMenu.Item variant="danger">
                   {#snippet icon()}<TrashIcon size={16} />{/snippet}
                   Delete
-                </DropdownMenuItem>
-              </DropdownMenuContent>
+                </DropdownMenu.Item>
+              </DropdownMenu.Content>
             </DropdownMenu>
-          </TableCell>
-        </TableRow>
+          </Table.Cell>
+        </Table.Row>
       {/each}
-    </TableBody>
+    </Table.Body>
   </Table>
 </LayerCard>

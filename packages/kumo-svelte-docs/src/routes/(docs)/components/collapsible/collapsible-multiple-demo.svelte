@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Collapsible, CollapsibleDefaultPanel, CollapsibleDefaultTrigger, Text } from "kumo-svelte";
+  import { Collapsible, Text } from "kumo-svelte";
 
   let open1 = $state(false);
   let open2 = $state(false);
@@ -8,23 +8,23 @@
 
 <div class="w-full space-y-2">
   <Collapsible bind:open={open1}>
-    <CollapsibleDefaultTrigger>What is Kumo?</CollapsibleDefaultTrigger>
-    <CollapsibleDefaultPanel>
+    <Collapsible.DefaultTrigger>What is Kumo?</Collapsible.DefaultTrigger>
+    <Collapsible.DefaultPanel>
       <Text>Kumo is Cloudflare's new design system.</Text>
-    </CollapsibleDefaultPanel>
+    </Collapsible.DefaultPanel>
   </Collapsible>
 
   <Collapsible bind:open={open2}>
-    <CollapsibleDefaultTrigger>How do I use it?</CollapsibleDefaultTrigger>
-    <CollapsibleDefaultPanel>
+    <Collapsible.DefaultTrigger>How do I use it?</Collapsible.DefaultTrigger>
+    <Collapsible.DefaultPanel>
       <Text>Install the components and import them into your project.</Text>
-    </CollapsibleDefaultPanel>
+    </Collapsible.DefaultPanel>
   </Collapsible>
 
   <Collapsible bind:open={open3}>
-    <CollapsibleDefaultTrigger>Is it open source?</CollapsibleDefaultTrigger>
-    <CollapsibleDefaultPanel>
+    <Collapsible.DefaultTrigger>Is it open source?</Collapsible.DefaultTrigger>
+    <Collapsible.DefaultPanel>
       <Text>Check the repository for license information.</Text>
-    </CollapsibleDefaultPanel>
+    </Collapsible.DefaultPanel>
   </Collapsible>
 </div>

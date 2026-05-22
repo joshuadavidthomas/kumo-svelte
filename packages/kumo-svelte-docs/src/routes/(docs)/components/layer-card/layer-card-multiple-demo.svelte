@@ -1,19 +1,19 @@
 <script lang="ts">
-  import { LayerCard, LayerCardPrimary, LayerCardSecondary } from "kumo-svelte";
+  import { LayerCard } from "kumo-svelte";
 </script>
 
 <div class="flex flex-wrap gap-4">
   <LayerCard layered class="w-[200px]">
-    <LayerCardSecondary>Components</LayerCardSecondary>
-    <LayerCardPrimary>
+    <LayerCard.Secondary>Components</LayerCard.Secondary>
+    <LayerCard.Primary>
       <p class="text-sm">Browse all components</p>
-    </LayerCardPrimary>
+    </LayerCard.Primary>
   </LayerCard>
 
   <LayerCard layered class="w-[200px]">
-    <LayerCardSecondary>Examples</LayerCardSecondary>
-    <LayerCardPrimary>
+    <LayerCard.Secondary>Examples</LayerCard.Secondary>
+    <LayerCard.Primary>
       <p class="text-sm">View code examples</p>
-    </LayerCardPrimary>
+    </LayerCard.Primary>
   </LayerCard>
 </div>

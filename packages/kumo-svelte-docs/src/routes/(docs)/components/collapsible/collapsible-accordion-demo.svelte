@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Collapsible, CollapsibleDefaultPanel, CollapsibleDefaultTrigger, Text } from "kumo-svelte";
+  import { Collapsible, Text } from "kumo-svelte";
 
   const items = [
     {
@@ -27,10 +27,10 @@
         activeIndex = open ? index : null;
       }}
     >
-      <CollapsibleDefaultTrigger>{item.title}</CollapsibleDefaultTrigger>
-      <CollapsibleDefaultPanel>
+      <Collapsible.DefaultTrigger>{item.title}</Collapsible.DefaultTrigger>
+      <Collapsible.DefaultPanel>
         <Text>{item.content}</Text>
-      </CollapsibleDefaultPanel>
+      </Collapsible.DefaultPanel>
     </Collapsible>
   {/each}
 </div>

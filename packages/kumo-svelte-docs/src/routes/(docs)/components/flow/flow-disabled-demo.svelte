@@ -1,12 +1,12 @@
 <script lang="ts">
-  import { Flow, FlowNode, FlowParallel } from "kumo-svelte";
+  import { Flow } from "kumo-svelte";
 </script>
 
 <Flow>
-  <FlowNode>Request</FlowNode>
-  <FlowParallel>
-    <FlowNode>Primary Handler</FlowNode>
-    <FlowNode disabled>Backup Handler (disabled)</FlowNode>
-  </FlowParallel>
-  <FlowNode>Response</FlowNode>
+  <Flow.Node>Request</Flow.Node>
+  <Flow.Parallel>
+    <Flow.Node>Primary Handler</Flow.Node>
+    <Flow.Node disabled>Backup Handler (disabled)</Flow.Node>
+  </Flow.Parallel>
+  <Flow.Node>Response</Flow.Node>
 </Flow>

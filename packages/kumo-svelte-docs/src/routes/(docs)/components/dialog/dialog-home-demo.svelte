@@ -1,15 +1,15 @@
 <script lang="ts">
-  import { Button, Dialog, DialogDescription, DialogRoot, DialogTitle, DialogTrigger } from "kumo-svelte";
+  import { Button, Dialog } from "kumo-svelte";
 </script>
 
-<DialogRoot>
-  <DialogTrigger>
+<Dialog.Root>
+  <Dialog.Trigger>
     {#snippet child({ props })}
       <Button {...props}>Click me!</Button>
     {/snippet}
-  </DialogTrigger>
+  </Dialog.Trigger>
   <Dialog>
-    <DialogTitle>Hello!</DialogTitle>
-    <DialogDescription>I'm a dialog.</DialogDescription>
+    <Dialog.Title>Hello!</Dialog.Title>
+    <Dialog.Description>I'm a dialog.</Dialog.Description>
   </Dialog>
-</DialogRoot>
+</Dialog.Root>

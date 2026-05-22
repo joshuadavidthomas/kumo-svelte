@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Combobox, ComboboxContent, ComboboxEmpty, ComboboxItem, ComboboxList, ComboboxTriggerInput } from "kumo-svelte";
+  import { Combobox } from "kumo-svelte";
   import { databases } from "./combobox-data";
 
   let value = $state("");
@@ -13,13 +13,13 @@
   label="Database"
   description="Select your preferred database"
 >
-  <ComboboxTriggerInput placeholder="Select database" />
-  <ComboboxContent>
-    <ComboboxEmpty />
-    <ComboboxList>
+  <Combobox.TriggerInput placeholder="Select database" />
+  <Combobox.Content>
+    <Combobox.Empty />
+    <Combobox.List>
       {#each databases as database}
-        <ComboboxItem value={database.value}>{database.label}</ComboboxItem>
+        <Combobox.Item value={database.value}>{database.label}</Combobox.Item>
       {/each}
-    </ComboboxList>
-  </ComboboxContent>
+    </Combobox.List>
+  </Combobox.Content>
 </Combobox>

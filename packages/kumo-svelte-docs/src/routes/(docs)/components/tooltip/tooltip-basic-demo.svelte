@@ -1,9 +1,9 @@
 <script lang="ts">
   import PlusIcon from "phosphor-svelte/lib/PlusIcon";
-  import { Button, Tooltip, TooltipProvider } from "kumo-svelte";
+  import { Button, Tooltip } from "kumo-svelte";
 </script>
 
-<TooltipProvider>
+<Tooltip.Provider>
   <Tooltip content="Add">
     {#snippet render({ props })}
       <Button {...props} shape="square" aria-label="Add">
@@ -11,4 +11,4 @@
       </Button>
     {/snippet}
   </Tooltip>
-</TooltipProvider>
+</Tooltip.Provider>

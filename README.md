@@ -7,6 +7,30 @@ components and TypeScript helpers are exported directly from `src`.
 Where upstream Kumo uses Base UI primitives, this port uses Bits UI primitives
 and keeps Kumo's styling and variant metadata on top.
 
+## Compound component APIs
+
+Compound groups support the upstream Kumo style from the barrel export and the shadcn-svelte namespace style from granular exports:
+
+```svelte
+<script lang="ts">
+  import { Autocomplete } from "kumo-svelte";
+</script>
+
+<Autocomplete>
+  <Autocomplete.InputGroup />
+</Autocomplete>
+```
+
+```svelte
+<script lang="ts">
+  import * as Autocomplete from "kumo-svelte/components/autocomplete";
+</script>
+
+<Autocomplete.Root>
+  <Autocomplete.InputGroup />
+</Autocomplete.Root>
+```
+
 ## Current Scope
 
 The current port includes all top-level component groups from upstream Kumo:
@@ -14,10 +38,10 @@ The current port includes all top-level component groups from upstream Kumo:
 - `Autocomplete` components backed by Bits UI `Combobox`
 - `Badge`
 - `Banner`
-- `Breadcrumbs` root/link/current/separator/ellipsis/clipboard components
+- `Breadcrumbs` with `Breadcrumbs.Link`, `Breadcrumbs.Current`, `Breadcrumbs.Separator`, `Breadcrumbs.Ellipsis`, and `Breadcrumbs.Clipboard`
 - `Button`, `RefreshButton`, and `LinkButton` backed by Bits UI `Button`
 - `Chart`, `TimeseriesChart`, `SankeyChart`, and chart legend helpers backed by ECharts
-- `Checkbox`, `CheckboxGroup`, `CheckboxItem`, and `CheckboxLegend` backed by Bits UI `Checkbox`
+- `Checkbox` with `Checkbox.Group`, `Checkbox.Item`, and `Checkbox.Legend` backed by Bits UI `Checkbox`
 - `ClipboardText`
 - `CloudflareLogo` and `PoweredByCloudflare`
 - `Code`, `CodeBlock`, and the Shiki-backed `CodeHighlighted` entrypoint
@@ -31,25 +55,25 @@ The current port includes all top-level component groups from upstream Kumo:
 - `DropdownMenu` primitive wrapper components backed by Bits UI `DropdownMenu`
 - `Empty`
 - `Field`
-- `Flow`, `FlowNode`, `FlowList`, `FlowParallel`, and `FlowAnchor`
+- `Flow` with `Flow.Node`, `Flow.List`, `Flow.Parallel`, and `Flow.Anchor`
 - `Grid` and `GridItem`
 - `Input`, `InputArea`, and `Textarea`
-- `InputGroup`, `InputGroupInput`, `InputGroupButton`, `InputGroupAddon`, and `InputGroupSuffix`
+- `InputGroup` with `InputGroup.Input`, `InputGroup.Button`, `InputGroup.Addon`, and `InputGroup.Suffix`
 - `Label` backed by Bits UI `Label`
-- `LayerCard`, `LayerCardPrimary`, and `LayerCardSecondary`
+- `LayerCard` with `LayerCard.Primary` and `LayerCard.Secondary`
 - `Link` and `ExternalIcon`
 - `Loader` and `SkeletonLine`
 - `MenuBar`
 - `Meter` backed by Bits UI `Meter`
 - `Pagination` root/info/page-size/controls/separator components
 - `Popover` primitive wrapper components backed by Bits UI `Popover`
-- `Radio`, `RadioGroup`, `RadioItem`, and `RadioLegend` backed by Bits UI `RadioGroup`
+- `Radio` with `Radio.Group`, `Radio.Item`, and `Radio.Legend` backed by Bits UI `RadioGroup`
 - `Select` convenience and primitive wrapper components backed by Bits UI `Select`
 - `SensitiveInput`
 - `Sidebar`
 - `Surface`
-- `Switch`, `SwitchGroup`, `SwitchItem`, and `SwitchLegend` backed by Bits UI `Switch`
-- `TableOfContents` root/title/list/item/group components
+- `Switch` with `Switch.Group`, `Switch.Item`, and `Switch.Legend` backed by Bits UI `Switch`
+- `TableOfContents` with `TableOfContents.Title`, `TableOfContents.List`, `TableOfContents.Item`, and `TableOfContents.Group`
 - `Tabs` convenience and primitive wrapper components backed by Bits UI `Tabs`
 - `Table` and table section/cell helpers
 - `Text`

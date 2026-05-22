@@ -5,14 +5,33 @@ import InputGroupButtonComponent from "./input-group-button.svelte";
 import InputGroupInputComponent from "./input-group-input.svelte";
 import InputGroupSuffixComponent from "./input-group-suffix.svelte";
 
-export { default as InputGroup } from "./input-group.svelte";
-export { default as InputGroupRoot } from "./input-group.svelte";
-export { default as InputGroupAddon } from "./input-group-addon.svelte";
-export { default as InputGroupButton } from "./input-group-button.svelte";
-export { default as InputGroupInput } from "./input-group-input.svelte";
-export { default as InputGroupSuffix } from "./input-group-suffix.svelte";
-export { default as InputGroupLabel } from "./input-group-addon.svelte";
-export { default as InputGroupDescription } from "./input-group-suffix.svelte";
+const InputGroup = Object.assign(InputGroupComponent, {
+  Root: InputGroupComponent,
+  Addon: InputGroupAddonComponent,
+  Button: InputGroupButtonComponent,
+  Input: InputGroupInputComponent,
+  Suffix: InputGroupSuffixComponent,
+  Label: InputGroupAddonComponent,
+  Description: InputGroupSuffixComponent,
+});
+
+export {
+  InputGroup,
+  InputGroupComponent as InputGroupRoot,
+  InputGroupComponent as Root,
+  InputGroupAddonComponent as InputGroupAddon,
+  InputGroupAddonComponent as InputGroupLabel,
+  InputGroupAddonComponent as Addon,
+  InputGroupAddonComponent as Label,
+  InputGroupButtonComponent as InputGroupButton,
+  InputGroupButtonComponent as Button,
+  InputGroupInputComponent as InputGroupInput,
+  InputGroupInputComponent as Input,
+  InputGroupSuffixComponent as InputGroupSuffix,
+  InputGroupSuffixComponent as InputGroupDescription,
+  InputGroupSuffixComponent as Suffix,
+  InputGroupSuffixComponent as Description,
+};
 
 export type InputGroupRootProps = ComponentProps<typeof InputGroupComponent>;
 export type InputGroupProps = InputGroupRootProps;

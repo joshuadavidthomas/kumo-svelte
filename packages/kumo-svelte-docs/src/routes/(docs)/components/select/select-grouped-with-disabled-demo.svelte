@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Select, SelectGroup, SelectGroupLabel, SelectOption, SelectSeparator } from "kumo-svelte";
+  import { Select } from "kumo-svelte";
 
   const regions = {
     available: [
@@ -23,17 +23,17 @@
   {value}
   onValueChange={(next) => (value = next as string)}
 >
-  <SelectGroup>
-    <SelectGroupLabel>Available</SelectGroupLabel>
+  <Select.Group>
+    <Select.GroupLabel>Available</Select.GroupLabel>
     {#each regions.available as region (region.value)}
-      <SelectOption value={region.value}>{region.label}</SelectOption>
+      <Select.Option value={region.value}>{region.label}</Select.Option>
     {/each}
-  </SelectGroup>
-  <SelectSeparator />
-  <SelectGroup>
-    <SelectGroupLabel>Unavailable</SelectGroupLabel>
+  </Select.Group>
+  <Select.Separator />
+  <Select.Group>
+    <Select.GroupLabel>Unavailable</Select.GroupLabel>
     {#each regions.unavailable as region (region.value)}
-      <SelectOption value={region.value} disabled>{region.label}</SelectOption>
+      <Select.Option value={region.value} disabled>{region.label}</Select.Option>
     {/each}
-  </SelectGroup>
+  </Select.Group>
 </Select>

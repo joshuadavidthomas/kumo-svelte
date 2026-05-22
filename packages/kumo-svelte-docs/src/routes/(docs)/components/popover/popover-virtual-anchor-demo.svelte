@@ -1,6 +1,6 @@
 <script lang="ts">
   import DotsThreeIcon from "phosphor-svelte/lib/DotsThreeIcon";
-  import { Button, Popover, PopoverClose, PopoverContent, PopoverDescription, PopoverTitle } from "kumo-svelte";
+  import { Button, Popover } from "kumo-svelte";
 
   const rows = [
     { id: "1", name: "api-gateway", status: "Active" },
@@ -53,16 +53,16 @@
   </div>
 
   <Popover {open} onOpenChange={(nextOpen) => !nextOpen && (selectedRow = undefined)}>
-    <PopoverContent side="left" {anchor}>
-      <PopoverTitle>Edit {rows.find((row) => row.id === selectedRow)?.name}</PopoverTitle>
-      <PopoverDescription>The popover anchors to the selected row, not the icon button.</PopoverDescription>
+    <Popover.Content side="left" {anchor}>
+      <Popover.Title>Edit {rows.find((row) => row.id === selectedRow)?.name}</Popover.Title>
+      <Popover.Description>The popover anchors to the selected row, not the icon button.</Popover.Description>
       <div class="mt-3">
-        <PopoverClose>
+        <Popover.Close>
           {#snippet child({ props })}
             <Button {...props} size="sm" variant="secondary">Close</Button>
           {/snippet}
-        </PopoverClose>
+        </Popover.Close>
       </div>
-    </PopoverContent>
+    </Popover.Content>
   </Popover>
 </div>

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Button, DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger } from "kumo-svelte";
+  import { Button, DropdownMenu } from "kumo-svelte";
   import CreditCardIcon from "phosphor-svelte/lib/CreditCardIcon";
   import MoonIcon from "phosphor-svelte/lib/MoonIcon";
   import SignOutIcon from "phosphor-svelte/lib/SignOutIcon";
@@ -47,40 +47,40 @@
 {/snippet}
 
 <DropdownMenu>
-  <DropdownMenuTrigger>
+  <DropdownMenu.Trigger>
     {#snippet child({ props })}
       <Button {...props} icon={UserIcon}>Account</Button>
     {/snippet}
-  </DropdownMenuTrigger>
-  <DropdownMenuContent>
-    <DropdownMenuItem icon={userIcon}>Profile</DropdownMenuItem>
-    <DropdownMenuItem icon={cardIcon}>Billing</DropdownMenuItem>
-    <DropdownMenuItem icon={moonIcon}>Dark mode</DropdownMenuItem>
-    <DropdownMenuSub>
-      <DropdownMenuSubTrigger>Language</DropdownMenuSubTrigger>
-      <DropdownMenuSubContent>
-        <DropdownMenuGroup>
-          <DropdownMenuRadioGroup bind:value={language}>
+  </DropdownMenu.Trigger>
+  <DropdownMenu.Content>
+    <DropdownMenu.Item icon={userIcon}>Profile</DropdownMenu.Item>
+    <DropdownMenu.Item icon={cardIcon}>Billing</DropdownMenu.Item>
+    <DropdownMenu.Item icon={moonIcon}>Dark mode</DropdownMenu.Item>
+    <DropdownMenu.Sub>
+      <DropdownMenu.SubTrigger>Language</DropdownMenu.SubTrigger>
+      <DropdownMenu.SubContent>
+        <DropdownMenu.Group>
+          <DropdownMenu.RadioGroup bind:value={language}>
             {#each languages as item}
-              <DropdownMenuRadioItem value={item.code}>{item.label}</DropdownMenuRadioItem>
+              <DropdownMenu.RadioItem value={item.code}>{item.label}</DropdownMenu.RadioItem>
             {/each}
-          </DropdownMenuRadioGroup>
-        </DropdownMenuGroup>
-      </DropdownMenuSubContent>
-    </DropdownMenuSub>
-    <DropdownMenuSub>
-      <DropdownMenuSubTrigger>Set Timezone</DropdownMenuSubTrigger>
-      <DropdownMenuSubContent>
-        <DropdownMenuGroup>
-          <DropdownMenuRadioGroup bind:value={timezone}>
+          </DropdownMenu.RadioGroup>
+        </DropdownMenu.Group>
+      </DropdownMenu.SubContent>
+    </DropdownMenu.Sub>
+    <DropdownMenu.Sub>
+      <DropdownMenu.SubTrigger>Set Timezone</DropdownMenu.SubTrigger>
+      <DropdownMenu.SubContent>
+        <DropdownMenu.Group>
+          <DropdownMenu.RadioGroup bind:value={timezone}>
             {#each timezones as item}
-              <DropdownMenuRadioItem value={item.value}>{item.label}</DropdownMenuRadioItem>
+              <DropdownMenu.RadioItem value={item.value}>{item.label}</DropdownMenu.RadioItem>
             {/each}
-          </DropdownMenuRadioGroup>
-        </DropdownMenuGroup>
-      </DropdownMenuSubContent>
-    </DropdownMenuSub>
-    <DropdownMenuSeparator />
-    <DropdownMenuItem icon={signOutIcon} variant="danger">Log out</DropdownMenuItem>
-  </DropdownMenuContent>
+          </DropdownMenu.RadioGroup>
+        </DropdownMenu.Group>
+      </DropdownMenu.SubContent>
+    </DropdownMenu.Sub>
+    <DropdownMenu.Separator />
+    <DropdownMenu.Item icon={signOutIcon} variant="danger">Log out</DropdownMenu.Item>
+  </DropdownMenu.Content>
 </DropdownMenu>

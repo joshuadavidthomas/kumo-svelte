@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Combobox, ComboboxContent, ComboboxEmpty, ComboboxItem, ComboboxList, ComboboxTriggerInput } from "kumo-svelte";
+  import { Combobox } from "kumo-svelte";
   import { fruits } from "./combobox-data";
 
   const sizeFruits = fruits.slice(0, 8);
@@ -10,26 +10,26 @@
 
 <div class="flex flex-wrap items-center gap-4">
   <Combobox bind:value={smValue} {items} size="sm">
-    <ComboboxTriggerInput placeholder="Small (sm)" />
-    <ComboboxContent>
-      <ComboboxEmpty />
-      <ComboboxList>
+    <Combobox.TriggerInput placeholder="Small (sm)" />
+    <Combobox.Content>
+      <Combobox.Empty />
+      <Combobox.List>
         {#each sizeFruits as fruit}
-          <ComboboxItem value={fruit}>{fruit}</ComboboxItem>
+          <Combobox.Item value={fruit}>{fruit}</Combobox.Item>
         {/each}
-      </ComboboxList>
-    </ComboboxContent>
+      </Combobox.List>
+    </Combobox.Content>
   </Combobox>
 
   <Combobox bind:value={baseValue} {items} size="base">
-    <ComboboxTriggerInput placeholder="Base (default)" />
-    <ComboboxContent>
-      <ComboboxEmpty />
-      <ComboboxList>
+    <Combobox.TriggerInput placeholder="Base (default)" />
+    <Combobox.Content>
+      <Combobox.Empty />
+      <Combobox.List>
         {#each sizeFruits as fruit}
-          <ComboboxItem value={fruit}>{fruit}</ComboboxItem>
+          <Combobox.Item value={fruit}>{fruit}</Combobox.Item>
         {/each}
-      </ComboboxList>
-    </ComboboxContent>
+      </Combobox.List>
+    </Combobox.Content>
   </Combobox>
 </div>

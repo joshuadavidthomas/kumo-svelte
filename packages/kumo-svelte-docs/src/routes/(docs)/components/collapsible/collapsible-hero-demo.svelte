@@ -1,14 +1,14 @@
 <script lang="ts">
-  import { Collapsible, CollapsibleDefaultPanel, CollapsibleDefaultTrigger, Text } from "kumo-svelte";
+  import { Collapsible, Text } from "kumo-svelte";
 
   let open = $state(true);
 </script>
 
 <div class="w-full">
   <Collapsible bind:open>
-    <CollapsibleDefaultTrigger>What is Kumo?</CollapsibleDefaultTrigger>
-    <CollapsibleDefaultPanel>
+    <Collapsible.DefaultTrigger>What is Kumo?</Collapsible.DefaultTrigger>
+    <Collapsible.DefaultPanel>
       <Text>Kumo is Cloudflare's new design system.</Text>
-    </CollapsibleDefaultPanel>
+    </Collapsible.DefaultPanel>
   </Collapsible>
 </div>

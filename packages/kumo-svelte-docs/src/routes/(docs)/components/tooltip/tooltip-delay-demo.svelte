@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { Button, Tooltip, TooltipProvider } from "kumo-svelte";
+  import { Button, Tooltip } from "kumo-svelte";
 </script>
 
-<TooltipProvider>
+<Tooltip.Provider>
   <div class="flex gap-4">
     <Tooltip content="Opens after 1 second" delay={1000}>
       {#snippet render({ props })}
@@ -20,4 +20,4 @@
       {/snippet}
     </Tooltip>
   </div>
-</TooltipProvider>
+</Tooltip.Provider>

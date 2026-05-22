@@ -1,12 +1,12 @@
 <script lang="ts">
-  import { TableOfContents, TableOfContentsItem, TableOfContentsList, TableOfContentsTitle } from "kumo-svelte";
+  import { TableOfContents } from "kumo-svelte";
 </script>
 
 <TableOfContents>
-  <TableOfContentsTitle>On this page</TableOfContentsTitle>
-  <TableOfContentsList>
-    <TableOfContentsItem active>Introduction</TableOfContentsItem>
-    <TableOfContentsItem>Installation</TableOfContentsItem>
-    <TableOfContentsItem>Usage</TableOfContentsItem>
-  </TableOfContentsList>
+  <TableOfContents.Title>On this page</TableOfContents.Title>
+  <TableOfContents.List>
+    <TableOfContents.Item active>Introduction</TableOfContents.Item>
+    <TableOfContents.Item>Installation</TableOfContents.Item>
+    <TableOfContents.Item>Usage</TableOfContents.Item>
+  </TableOfContents.List>
 </TableOfContents>

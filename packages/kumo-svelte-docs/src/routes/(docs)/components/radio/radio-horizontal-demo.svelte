@@ -1,11 +1,11 @@
 <script lang="ts">
-  import { RadioGroup, RadioItem } from "kumo-svelte";
+  import { Radio } from "kumo-svelte";
 
   let value = $state("md");
 </script>
 
-<RadioGroup legend="Size" orientation="horizontal" {value} onValueChange={(next) => (value = next)}>
-  <RadioItem label="Small" value="sm" />
-  <RadioItem label="Medium" value="md" />
-  <RadioItem label="Large" value="lg" />
-</RadioGroup>
+<Radio.Group legend="Size" orientation="horizontal" {value} onValueChange={(next) => (value = next)}>
+  <Radio.Item label="Small" value="sm" />
+  <Radio.Item label="Medium" value="md" />
+  <Radio.Item label="Large" value="lg" />
+</Radio.Group>

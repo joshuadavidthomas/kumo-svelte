@@ -10,17 +10,42 @@ import DialogRootComponent from "./dialog-root.svelte";
 import DialogTitleComponent from "./dialog-title.svelte";
 import DialogTriggerComponent from "./dialog-trigger.svelte";
 
-export { default as Dialog } from "./dialog-content.svelte";
-export { default as DialogRoot } from "./dialog-root.svelte";
-export { default as DialogPortal } from "./dialog-portal.svelte";
-export { default as DialogOverlay } from "./dialog-overlay.svelte";
-export { default as DialogContent } from "./dialog-content.svelte";
-export { default as DialogHeader } from "./dialog-header.svelte";
-export { default as DialogFooter } from "./dialog-footer.svelte";
-export { default as DialogTrigger } from "./dialog-trigger.svelte";
-export { default as DialogTitle } from "./dialog-title.svelte";
-export { default as DialogDescription } from "./dialog-description.svelte";
-export { default as DialogClose } from "./dialog-close.svelte";
+const Dialog = Object.assign(DialogContentComponent, {
+  Root: DialogRootComponent,
+  Portal: DialogPortalComponent,
+  Overlay: DialogOverlayComponent,
+  Content: DialogContentComponent,
+  Header: DialogHeaderComponent,
+  Footer: DialogFooterComponent,
+  Trigger: DialogTriggerComponent,
+  Title: DialogTitleComponent,
+  Description: DialogDescriptionComponent,
+  Close: DialogCloseComponent,
+});
+
+export {
+  Dialog,
+  DialogRootComponent as DialogRoot,
+  DialogRootComponent as Root,
+  DialogPortalComponent as DialogPortal,
+  DialogPortalComponent as Portal,
+  DialogOverlayComponent as DialogOverlay,
+  DialogOverlayComponent as Overlay,
+  DialogContentComponent as DialogContent,
+  DialogContentComponent as Content,
+  DialogHeaderComponent as DialogHeader,
+  DialogHeaderComponent as Header,
+  DialogFooterComponent as DialogFooter,
+  DialogFooterComponent as Footer,
+  DialogTriggerComponent as DialogTrigger,
+  DialogTriggerComponent as Trigger,
+  DialogTitleComponent as DialogTitle,
+  DialogTitleComponent as Title,
+  DialogDescriptionComponent as DialogDescription,
+  DialogDescriptionComponent as Description,
+  DialogCloseComponent as DialogClose,
+  DialogCloseComponent as Close,
+};
 
 export type DialogProps = ComponentProps<typeof DialogContentComponent>;
 export type DialogRootProps = ComponentProps<typeof DialogRootComponent>;

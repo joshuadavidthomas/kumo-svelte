@@ -5,12 +5,27 @@ import TableOfContentsItemComponent from "./table-of-contents-item.svelte";
 import TableOfContentsListComponent from "./table-of-contents-list.svelte";
 import TableOfContentsTitleComponent from "./table-of-contents-title.svelte";
 
-export { default as TableOfContents } from "./table-of-contents.svelte";
-export { default as TableOfContentsRoot } from "./table-of-contents.svelte";
-export { default as TableOfContentsGroup } from "./table-of-contents-group.svelte";
-export { default as TableOfContentsItem } from "./table-of-contents-item.svelte";
-export { default as TableOfContentsList } from "./table-of-contents-list.svelte";
-export { default as TableOfContentsTitle } from "./table-of-contents-title.svelte";
+const TableOfContents = Object.assign(TableOfContentsComponent, {
+  Root: TableOfContentsComponent,
+  Group: TableOfContentsGroupComponent,
+  Item: TableOfContentsItemComponent,
+  List: TableOfContentsListComponent,
+  Title: TableOfContentsTitleComponent,
+});
+
+export {
+  TableOfContents,
+  TableOfContentsComponent as TableOfContentsRoot,
+  TableOfContentsComponent as Root,
+  TableOfContentsGroupComponent as TableOfContentsGroup,
+  TableOfContentsGroupComponent as Group,
+  TableOfContentsItemComponent as TableOfContentsItem,
+  TableOfContentsItemComponent as Item,
+  TableOfContentsListComponent as TableOfContentsList,
+  TableOfContentsListComponent as List,
+  TableOfContentsTitleComponent as TableOfContentsTitle,
+  TableOfContentsTitleComponent as Title,
+};
 
 export type TableOfContentsProps = ComponentProps<typeof TableOfContentsComponent>;
 export type TableOfContentsRootProps = TableOfContentsProps;

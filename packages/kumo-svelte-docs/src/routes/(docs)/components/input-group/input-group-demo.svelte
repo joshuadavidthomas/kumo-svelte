@@ -1,6 +1,6 @@
 <script lang="ts">
   import CheckCircleIcon from "phosphor-svelte/lib/CheckCircleIcon";
-  import { InputGroup, InputGroupAddon, InputGroupInput, InputGroupSuffix, Loader } from "kumo-svelte";
+  import { InputGroup, Loader } from "kumo-svelte";
 
   let value = $state("kumo");
   let status = $state<"idle" | "loading" | "success">("success");
@@ -22,16 +22,16 @@
 
 <div class="w-full max-w-2xs">
   <InputGroup>
-    <InputGroupInput maxlength={20} {value} onValueChange={handleValueChange} aria-label="Worker subdomain" />
-    <InputGroupSuffix>.workers.dev</InputGroupSuffix>
+    <InputGroup.Input maxlength={20} {value} onValueChange={handleValueChange} aria-label="Worker subdomain" />
+    <InputGroup.Suffix>.workers.dev</InputGroup.Suffix>
     {#if status !== "idle"}
-      <InputGroupAddon align="end">
+      <InputGroup.Addon align="end">
         {#if status === "loading"}
           <Loader />
         {:else}
           <CheckCircleIcon weight="duotone" class="text-kumo-success" />
         {/if}
-      </InputGroupAddon>
+      </InputGroup.Addon>
     {/if}
   </InputGroup>
 </div>

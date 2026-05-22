@@ -1,56 +1,43 @@
 <script lang="ts">
-  import {
-    Button,
-    Dialog,
-    DialogClose,
-    DialogDescription,
-    DialogRoot,
-    DialogTitle,
-    DialogTrigger,
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-  } from "kumo-svelte";
+  import { Button, Dialog, DropdownMenu } from "kumo-svelte";
   import XIcon from "phosphor-svelte/lib/XIcon";
 </script>
 
-<DialogRoot>
-  <DialogTrigger>
+<Dialog.Root>
+  <Dialog.Trigger>
     {#snippet child({ props })}
       <Button {...props}>Open Form</Button>
     {/snippet}
-  </DialogTrigger>
+  </Dialog.Trigger>
   <Dialog class="p-8">
     <div class="mb-4 flex items-start justify-between gap-4">
-      <DialogTitle class="text-2xl font-semibold">Resource Actions</DialogTitle>
-      <DialogClose aria-label="Close">
+      <Dialog.Title class="text-2xl font-semibold">Resource Actions</Dialog.Title>
+      <Dialog.Close aria-label="Close">
         {#snippet child({ props })}
           <Button {...props} variant="secondary" shape="square" icon={XIcon} aria-label="Close" />
         {/snippet}
-      </DialogClose>
+      </Dialog.Close>
     </div>
-    <DialogDescription class="mb-4 text-kumo-subtle">Choose an action for the selected resource.</DialogDescription>
+    <Dialog.Description class="mb-4 text-kumo-subtle">Choose an action for the selected resource.</Dialog.Description>
     <DropdownMenu>
-      <DropdownMenuTrigger>
+      <DropdownMenu.Trigger>
         {#snippet child({ props })}
           <Button {...props}>Actions</Button>
         {/snippet}
-      </DropdownMenuTrigger>
-      <DropdownMenuContent>
-        <DropdownMenuItem>Edit</DropdownMenuItem>
-        <DropdownMenuItem>Duplicate</DropdownMenuItem>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem variant="danger">Delete</DropdownMenuItem>
-      </DropdownMenuContent>
+      </DropdownMenu.Trigger>
+      <DropdownMenu.Content>
+        <DropdownMenu.Item>Edit</DropdownMenu.Item>
+        <DropdownMenu.Item>Duplicate</DropdownMenu.Item>
+        <DropdownMenu.Separator />
+        <DropdownMenu.Item variant="danger">Delete</DropdownMenu.Item>
+      </DropdownMenu.Content>
     </DropdownMenu>
     <div class="mt-8 flex justify-end">
-      <DialogClose>
+      <Dialog.Close>
         {#snippet child({ props })}
           <Button {...props} variant="secondary">Close</Button>
         {/snippet}
-      </DialogClose>
+      </Dialog.Close>
     </div>
   </Dialog>
-</DialogRoot>
+</Dialog.Root>

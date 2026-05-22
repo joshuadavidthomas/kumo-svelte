@@ -1,16 +1,5 @@
 <script lang="ts">
-  import {
-    Button,
-    CommandPalette,
-    CommandPaletteDialog,
-    CommandPaletteEmpty,
-    CommandPaletteFooter,
-    CommandPaletteGroup,
-    CommandPaletteGroupLabel,
-    CommandPaletteInput,
-    CommandPaletteItem,
-    CommandPaletteList,
-  } from "kumo-svelte";
+  import { Button, CommandPalette } from "kumo-svelte";
   import ChartLineIcon from "phosphor-svelte/lib/ChartLineIcon";
   import FolderIcon from "phosphor-svelte/lib/FolderIcon";
   import GearIcon from "phosphor-svelte/lib/GearIcon";
@@ -56,27 +45,27 @@
     </p>
   {/if}
 
-  <CommandPaletteDialog bind:open>
+  <CommandPalette.Dialog bind:open>
     <CommandPalette bind:value={search}>
-      <CommandPaletteInput placeholder="Type a command or search..." />
-      <CommandPaletteList>
+      <CommandPalette.Input placeholder="Type a command or search..." />
+      <CommandPalette.List>
         {#each groups as group}
-          <CommandPaletteGroup value={group.label}>
-            <CommandPaletteGroupLabel>{group.label}</CommandPaletteGroupLabel>
+          <CommandPalette.Group value={group.label}>
+            <CommandPalette.GroupLabel>{group.label}</CommandPalette.GroupLabel>
             {#each group.items as item}
               {@const Icon = item.icon}
-              <CommandPaletteItem value={item.title} onSelect={() => handleSelect(item.title)}>
+              <CommandPalette.Item value={item.title} onSelect={() => handleSelect(item.title)}>
                 <span class="flex items-center gap-3">
                   <span class="text-kumo-subtle"><Icon size={16} /></span>
                   <span>{item.title}</span>
                 </span>
-              </CommandPaletteItem>
+              </CommandPalette.Item>
             {/each}
-          </CommandPaletteGroup>
+          </CommandPalette.Group>
         {/each}
-        <CommandPaletteEmpty>No commands found</CommandPaletteEmpty>
-      </CommandPaletteList>
-      <CommandPaletteFooter>
+        <CommandPalette.Empty>No commands found</CommandPalette.Empty>
+      </CommandPalette.List>
+      <CommandPalette.Footer>
         <span class="flex items-center gap-2">
           <kbd class="rounded border border-kumo-hairline bg-kumo-base px-1.5 py-0.5 text-[10px]">↑↓</kbd>
           <span>Navigate</span>
@@ -85,7 +74,7 @@
           <kbd class="rounded border border-kumo-hairline bg-kumo-base px-1.5 py-0.5 text-[10px]">↵</kbd>
           <span>Select</span>
         </span>
-      </CommandPaletteFooter>
+      </CommandPalette.Footer>
     </CommandPalette>
-  </CommandPaletteDialog>
+  </CommandPalette.Dialog>
 </div>

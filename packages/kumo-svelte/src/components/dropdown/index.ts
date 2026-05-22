@@ -17,26 +17,66 @@ import DropdownMenuSubContentComponent from "./dropdown-sub-content.svelte";
 import DropdownMenuSubTriggerComponent from "./dropdown-sub-trigger.svelte";
 import DropdownMenuTriggerComponent from "./dropdown-trigger.svelte";
 
-export { default as DropdownMenu } from "./dropdown-root.svelte";
-export { default as DropdownMenuRoot } from "./dropdown-root.svelte";
-export { default as DropdownMenuTrigger } from "./dropdown-trigger.svelte";
-export { default as DropdownMenuPortal } from "./dropdown-portal.svelte";
-export { default as DropdownMenuContent } from "./dropdown-content.svelte";
-export { default as DropdownMenuItem } from "./dropdown-item.svelte";
-export { default as DropdownMenuLinkItem } from "./dropdown-link-item.svelte";
-export { default as DropdownMenuCheckboxItem } from "./dropdown-checkbox-item.svelte";
-export { default as DropdownMenuRadioItem } from "./dropdown-radio-item.svelte";
-export { default as DropdownMenuLabel } from "./dropdown-label.svelte";
-export { default as DropdownMenuSeparator } from "./dropdown-separator.svelte";
-export { default as DropdownMenuShortcut } from "./dropdown-shortcut.svelte";
-export { default as DropdownMenuGroup } from "./dropdown-group.svelte";
-export { default as DropdownMenuRadioGroup } from "./dropdown-radio-group.svelte";
-export { default as DropdownMenuCheckboxGroup } from "./dropdown-checkbox-group.svelte";
-export { default as DropdownMenuSub } from "./dropdown-sub.svelte";
-export { default as DropdownMenuSubTrigger } from "./dropdown-sub-trigger.svelte";
-export { default as DropdownMenuSubContent } from "./dropdown-sub-content.svelte";
+const DropdownMenu = Object.assign(DropdownMenuRootComponent, {
+  Root: DropdownMenuRootComponent,
+  Trigger: DropdownMenuTriggerComponent,
+  Portal: DropdownMenuPortalComponent,
+  Content: DropdownMenuContentComponent,
+  Item: DropdownMenuItemComponent,
+  LinkItem: DropdownMenuLinkItemComponent,
+  CheckboxItem: DropdownMenuCheckboxItemComponent,
+  RadioItem: DropdownMenuRadioItemComponent,
+  Label: DropdownMenuLabelComponent,
+  Separator: DropdownMenuSeparatorComponent,
+  Shortcut: DropdownMenuShortcutComponent,
+  Group: DropdownMenuGroupComponent,
+  RadioGroup: DropdownMenuRadioGroupComponent,
+  CheckboxGroup: DropdownMenuCheckboxGroupComponent,
+  Sub: DropdownMenuSubComponent,
+  SubTrigger: DropdownMenuSubTriggerComponent,
+  SubContent: DropdownMenuSubContentComponent,
+});
 
-export type DropdownMenuRootProps = ComponentProps<typeof DropdownMenuRootComponent>;
+export {
+  DropdownMenu,
+  DropdownMenuRootComponent as DropdownMenuRoot,
+  DropdownMenuRootComponent as Root,
+  DropdownMenuTriggerComponent as DropdownMenuTrigger,
+  DropdownMenuTriggerComponent as Trigger,
+  DropdownMenuPortalComponent as DropdownMenuPortal,
+  DropdownMenuPortalComponent as Portal,
+  DropdownMenuContentComponent as DropdownMenuContent,
+  DropdownMenuContentComponent as Content,
+  DropdownMenuItemComponent as DropdownMenuItem,
+  DropdownMenuItemComponent as Item,
+  DropdownMenuLinkItemComponent as DropdownMenuLinkItem,
+  DropdownMenuLinkItemComponent as LinkItem,
+  DropdownMenuCheckboxItemComponent as DropdownMenuCheckboxItem,
+  DropdownMenuCheckboxItemComponent as CheckboxItem,
+  DropdownMenuRadioItemComponent as DropdownMenuRadioItem,
+  DropdownMenuRadioItemComponent as RadioItem,
+  DropdownMenuLabelComponent as DropdownMenuLabel,
+  DropdownMenuLabelComponent as Label,
+  DropdownMenuSeparatorComponent as DropdownMenuSeparator,
+  DropdownMenuSeparatorComponent as Separator,
+  DropdownMenuShortcutComponent as DropdownMenuShortcut,
+  DropdownMenuShortcutComponent as Shortcut,
+  DropdownMenuGroupComponent as DropdownMenuGroup,
+  DropdownMenuGroupComponent as Group,
+  DropdownMenuRadioGroupComponent as DropdownMenuRadioGroup,
+  DropdownMenuRadioGroupComponent as RadioGroup,
+  DropdownMenuCheckboxGroupComponent as DropdownMenuCheckboxGroup,
+  DropdownMenuCheckboxGroupComponent as CheckboxGroup,
+  DropdownMenuSubComponent as DropdownMenuSub,
+  DropdownMenuSubComponent as Sub,
+  DropdownMenuSubTriggerComponent as DropdownMenuSubTrigger,
+  DropdownMenuSubTriggerComponent as SubTrigger,
+  DropdownMenuSubContentComponent as DropdownMenuSubContent,
+  DropdownMenuSubContentComponent as SubContent,
+};
+
+export type DropdownMenuProps = ComponentProps<typeof DropdownMenuRootComponent>;
+export type DropdownMenuRootProps = DropdownMenuProps;
 export type DropdownMenuTriggerProps = ComponentProps<typeof DropdownMenuTriggerComponent>;
 export type DropdownMenuPortalProps = ComponentProps<typeof DropdownMenuPortalComponent>;
 export type DropdownMenuContentProps = ComponentProps<typeof DropdownMenuContentComponent>;

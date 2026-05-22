@@ -1,13 +1,5 @@
 <script lang="ts">
-  import {
-    CommandPalette,
-    CommandPaletteEmpty,
-    CommandPaletteGroup,
-    CommandPaletteGroupLabel,
-    CommandPaletteInput,
-    CommandPaletteItem,
-    CommandPaletteList,
-  } from "kumo-svelte";
+  import { CommandPalette } from "kumo-svelte";
 
   const groups = [
     { label: "Commands", items: ["Create New Project", "Open Settings", "Search Files"] },
@@ -19,17 +11,17 @@
 
 <div class="w-full max-w-xl rounded-lg border border-kumo-hairline shadow-sm">
   <CommandPalette bind:value={search}>
-    <CommandPaletteInput placeholder="Search inline commands..." />
-    <CommandPaletteList>
+    <CommandPalette.Input placeholder="Search inline commands..." />
+    <CommandPalette.List>
       {#each groups as group}
-        <CommandPaletteGroup value={group.label}>
-          <CommandPaletteGroupLabel>{group.label}</CommandPaletteGroupLabel>
+        <CommandPalette.Group value={group.label}>
+          <CommandPalette.GroupLabel>{group.label}</CommandPalette.GroupLabel>
           {#each group.items as item}
-            <CommandPaletteItem value={item}>{item}</CommandPaletteItem>
+            <CommandPalette.Item value={item}>{item}</CommandPalette.Item>
           {/each}
-        </CommandPaletteGroup>
+        </CommandPalette.Group>
       {/each}
-      <CommandPaletteEmpty>No commands found</CommandPaletteEmpty>
-    </CommandPaletteList>
+      <CommandPalette.Empty>No commands found</CommandPalette.Empty>
+    </CommandPalette.List>
   </CommandPalette>
 </div>

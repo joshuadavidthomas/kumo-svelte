@@ -1,53 +1,47 @@
 <script lang="ts">
-  import {
-      Autocomplete,
-      AutocompleteContent,
-      AutocompleteInputGroup,
-      AutocompleteItem,
-      AutocompleteList,
-  } from "kumo-svelte";
+  import { Autocomplete } from "kumo-svelte";
   import { fruits, fruitItems } from "./autocomplete-data";
 </script>
 
 <div class="flex flex-wrap items-center gap-4">
   <Autocomplete items={fruitItems}>
-    <AutocompleteInputGroup size="xs" placeholder="xs" />
-    <AutocompleteContent>
-      <AutocompleteList>
+    <Autocomplete.InputGroup size="xs" placeholder="xs" />
+    <Autocomplete.Content>
+      <Autocomplete.List>
         {#each fruits as fruit (fruit)}
-          <AutocompleteItem value={fruit}>{fruit}</AutocompleteItem>
+          <Autocomplete.Item value={fruit}>{fruit}</Autocomplete.Item>
         {/each}
-      </AutocompleteList>
-    </AutocompleteContent>
+      </Autocomplete.List>
+    </Autocomplete.Content>
   </Autocomplete>
   <Autocomplete items={fruitItems}>
-    <AutocompleteInputGroup size="sm" placeholder="sm" />
-    <AutocompleteContent>
-      <AutocompleteList>
+    <Autocomplete.InputGroup size="sm" placeholder="sm" />
+    <Autocomplete.Content>
+      <Autocomplete.List>
         {#each fruits as fruit (fruit)}
-          <AutocompleteItem value={fruit}>{fruit}</AutocompleteItem>
+          <Autocomplete.Item value={fruit}>{fruit}</Autocomplete.Item>
         {/each}
-      </AutocompleteList>
-    </AutocompleteContent>
+      </Autocomplete.List>
+    </Autocomplete.Content>
   </Autocomplete>
   <Autocomplete items={fruitItems}>
-    <AutocompleteInputGroup size="base" placeholder="base (default)" />
-    <AutocompleteContent>
-      <AutocompleteList>
+    <Autocomplete.InputGroup size="base" placeholder="base (default)" />
+    <Autocomplete.Content>
+      <Autocomplete.List>
         {#each fruits as fruit (fruit)}
-          <AutocompleteItem value={fruit}>{fruit}</AutocompleteItem>
+          <Autocomplete.Item value={fruit}>{fruit}</Autocomplete.Item>
         {/each}
-      </AutocompleteList>
-    </AutocompleteContent>
+      </Autocomplete.List>
+    </Autocomplete.Content>
   </Autocomplete>
   <Autocomplete items={fruitItems}>
-    <AutocompleteInputGroup size="lg" placeholder="lg" />
-    <AutocompleteContent>
-      <AutocompleteList>
+    <Autocomplete.InputGroup size="lg" placeholder="lg" />
+    <Autocomplete.Content>
+      <Autocomplete.List>
         {#each fruits as fruit (fruit)}
-          <AutocompleteItem value={fruit}>{fruit}</AutocompleteItem>
+          <Autocomplete.Item value={fruit}>{fruit}</Autocomplete.Item>
         {/each}
-      </AutocompleteList>
-    </AutocompleteContent>
+      </Autocomplete.List>
+    </Autocomplete.Content>
   </Autocomplete>
 </div>

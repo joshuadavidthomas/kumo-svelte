@@ -1,23 +1,17 @@
 <script lang="ts">
-  import {
-    Autocomplete,
-    AutocompleteContent,
-    AutocompleteInputGroup,
-    AutocompleteItem,
-    AutocompleteList,
-  } from "kumo-svelte";
+  import { Autocomplete } from "kumo-svelte";
 
   const fruits = ["Apple", "Banana", "Cherry", "Grape", "Mango", "Orange"];
   const items = fruits.map((fruit) => ({ label: fruit, value: fruit }));
 </script>
 
 <Autocomplete {items}>
-  <AutocompleteInputGroup placeholder="Search fruits…" />
-  <AutocompleteContent>
-    <AutocompleteList>
+  <Autocomplete.InputGroup placeholder="Search fruits…" />
+  <Autocomplete.Content>
+    <Autocomplete.List>
       {#each fruits as fruit (fruit)}
-        <AutocompleteItem value={fruit}>{fruit}</AutocompleteItem>
+        <Autocomplete.Item value={fruit}>{fruit}</Autocomplete.Item>
       {/each}
-    </AutocompleteList>
-  </AutocompleteContent>
+    </Autocomplete.List>
+  </Autocomplete.Content>
 </Autocomplete>

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Select, SelectOption } from "kumo-svelte";
+  import { Select } from "kumo-svelte";
 
   const languages = [
     { value: "en", label: "English", emoji: "🇬🇧" },
@@ -13,8 +13,8 @@
 
 <Select label="Language" class="w-[200px]" {value} onValueChange={(next) => (value = next as string)}>
   {#each languages as language (language.value)}
-    <SelectOption value={language.value} label={`${language.emoji} ${language.label}`}>
+    <Select.Option value={language.value} label={`${language.emoji} ${language.label}`}>
       {language.emoji} {language.label}
-    </SelectOption>
+    </Select.Option>
   {/each}
 </Select>

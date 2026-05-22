@@ -1,12 +1,6 @@
 <script lang="ts">
   import type { DocTocItem } from "$lib/routes/component-pages";
-  import {
-    TableOfContents as KumoTableOfContents,
-    TableOfContentsGroup,
-    TableOfContentsItem,
-    TableOfContentsList,
-    TableOfContentsTitle,
-  } from "kumo-svelte";
+  import { TableOfContents } from "kumo-svelte";
   import CaretDownIcon from "phosphor-svelte/lib/CaretDownIcon";
   import { onDestroy } from "svelte";
 
@@ -131,38 +125,38 @@
       </span>
     </nav>
   {:else}
-    <KumoTableOfContents>
-      <TableOfContentsTitle>On this page</TableOfContentsTitle>
-      <TableOfContentsList>
+    <TableOfContents>
+      <TableOfContents.Title>On this page</TableOfContents.Title>
+      <TableOfContents.List>
         {#each groups as group (group.h2.id)}
           {#if group.h3s.length === 0}
-            <TableOfContentsItem
+            <TableOfContents.Item
               href={`#${group.h2.id}`}
               active={activeHeadingId === group.h2.id}
               onclick={() => handleClick(group.h2.id)}
             >
               {group.h2.text}
-            </TableOfContentsItem>
+            </TableOfContents.Item>
           {:else}
-            <TableOfContentsGroup
+            <TableOfContents.Group
               label={group.h2.text}
               href={`#${group.h2.id}`}
               active={activeHeadingId === group.h2.id}
             >
               {#each group.h3s as h3 (h3.id)}
-                <TableOfContentsItem
+                <TableOfContents.Item
                   href={`#${h3.id}`}
                   active={activeHeadingId === h3.id}
                   onclick={() => handleClick(h3.id)}
                 >
                   {h3.text}
-                </TableOfContentsItem>
+                </TableOfContents.Item>
               {/each}
-            </TableOfContentsGroup>
+            </TableOfContents.Group>
           {/if}
         {/each}
-      </TableOfContentsList>
-    </KumoTableOfContents>
+      </TableOfContents.List>
+    </TableOfContents>
   {/if}
 {/if}
 

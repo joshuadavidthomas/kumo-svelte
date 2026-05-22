@@ -6,12 +6,28 @@ import TooltipRootComponent from "./tooltip-root.svelte";
 import TooltipTriggerComponent from "./tooltip-trigger.svelte";
 import TooltipComponent from "./tooltip.svelte";
 
-export { default as Tooltip } from "./tooltip.svelte";
-export { default as TooltipRoot } from "./tooltip-root.svelte";
-export { default as TooltipTrigger } from "./tooltip-trigger.svelte";
-export { default as TooltipPortal } from "./tooltip-portal.svelte";
-export { default as TooltipContent } from "./tooltip-content.svelte";
-export { default as TooltipProvider } from "./tooltip-provider.svelte";
+const Tooltip = Object.assign(TooltipComponent, {
+  Root: TooltipRootComponent,
+  Trigger: TooltipTriggerComponent,
+  Portal: TooltipPortalComponent,
+  Content: TooltipContentComponent,
+  Provider: TooltipProviderComponent,
+});
+
+export {
+  Tooltip,
+  TooltipRootComponent as TooltipRoot,
+  TooltipRootComponent as Root,
+  TooltipTriggerComponent as TooltipTrigger,
+  TooltipTriggerComponent as Trigger,
+  TooltipPortalComponent as TooltipPortal,
+  TooltipPortalComponent as Portal,
+  TooltipContentComponent as TooltipContent,
+  TooltipContentComponent as Content,
+  TooltipProviderComponent as TooltipProvider,
+  TooltipProviderComponent as Provider,
+};
+
 export type TooltipProps = ComponentProps<typeof TooltipComponent>;
 export type TooltipRootProps = ComponentProps<typeof TooltipRootComponent>;
 export type TooltipTriggerProps = ComponentProps<typeof TooltipTriggerComponent>;

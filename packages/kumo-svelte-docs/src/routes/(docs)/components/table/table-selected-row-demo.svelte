@@ -1,25 +1,25 @@
 <script lang="ts">
-  import { LayerCard, Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "kumo-svelte";
+  import { LayerCard, Table } from "kumo-svelte";
   import { emailData } from "./table-data";
 </script>
 
 <LayerCard class="p-0">
   <Table>
-    <TableHeader>
-      <TableRow>
-        <TableHead>Subject</TableHead>
-        <TableHead>From</TableHead>
-        <TableHead>Date</TableHead>
-      </TableRow>
-    </TableHeader>
-    <TableBody>
+    <Table.Header>
+      <Table.Row>
+        <Table.Head>Subject</Table.Head>
+        <Table.Head>From</Table.Head>
+        <Table.Head>Date</Table.Head>
+      </Table.Row>
+    </Table.Header>
+    <Table.Body>
       {#each emailData.slice(0, 3) as row (row.id)}
-        <TableRow variant={row.id === "2" ? "selected" : "default"}>
-          <TableCell>{row.subject}</TableCell>
-          <TableCell>{row.from}</TableCell>
-          <TableCell>{row.date}</TableCell>
-        </TableRow>
+        <Table.Row variant={row.id === "2" ? "selected" : "default"}>
+          <Table.Cell>{row.subject}</Table.Cell>
+          <Table.Cell>{row.from}</Table.Cell>
+          <Table.Cell>{row.date}</Table.Cell>
+        </Table.Row>
       {/each}
-    </TableBody>
+    </Table.Body>
   </Table>
 </LayerCard>

@@ -22,29 +22,29 @@ baseUIComponent: tooltip
 ### Barrel
 
 ```ts
-import { Tooltip, TooltipProvider } from "kumo-svelte";
+import { Tooltip } from "kumo-svelte";
 ```
 
 ### Granular
 
 ```ts
-import { Tooltip, TooltipProvider } from "kumo-svelte/components/tooltip";
+import * as Tooltip from "kumo-svelte/components/tooltip";
 ```
 
 ## Usage
 
 ```svelte
 <script lang="ts">
-  import { Button, Tooltip, TooltipProvider } from "kumo-svelte";
+  import { Button, Tooltip } from "kumo-svelte";
 </script>
 
-<TooltipProvider>
+<Tooltip.Provider>
   <Tooltip content="Tooltip text">
     {#snippet render({ props })}
       <Button {...props}>Hover me</Button>
     {/snippet}
   </Tooltip>
-</TooltipProvider>
+</Tooltip.Provider>
 ```
 
 For delay grouping across multiple tooltips, see [TooltipProvider](#tooltipprovider).
@@ -76,9 +76,9 @@ Use `delay` to control how long to wait before opening (default: 600ms) and `clo
 `TooltipProvider` groups multiple tooltips so that after the first tooltip has been shown, switching to another skips the open delay. Place it once at your app root or layout — not around each individual `Tooltip`.
 
 ```svelte
-<TooltipProvider>
+<Tooltip.Provider>
   <App />
-</TooltipProvider>
+</Tooltip.Provider>
 
 <Tooltip content="Add">
   {#snippet render({ props })}
@@ -104,7 +104,7 @@ Use `delay` to control how long to wait before opening (default: 600ms) and `clo
 | `closeDelay` | `number` | `0` | Close delay in milliseconds. |
 | `disabled` | `boolean` | `false` | Disables the tooltip. |
 
-### TooltipProvider
+### Tooltip.Provider
 
 | Prop | Type | Description |
 | --- | --- | --- |

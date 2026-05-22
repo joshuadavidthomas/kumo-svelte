@@ -1,25 +1,19 @@
 <script lang="ts">
-  import {
-    Pagination,
-    PaginationControls,
-    PaginationInfo,
-    PaginationPageSize,
-    PaginationSeparator,
-  } from "kumo-svelte";
+  import { Pagination } from "kumo-svelte";
 
   let page = $state(1);
   let perPage = $state(25);
 </script>
 
 <Pagination bind:page {perPage} totalCount={500}>
-  <PaginationInfo />
-  <PaginationSeparator />
-  <PaginationPageSize
+  <Pagination.Info />
+  <Pagination.Separator />
+  <Pagination.PageSize
     value={perPage}
     onValueChange={(size) => {
       perPage = size;
       page = 1;
     }}
   />
-  <PaginationControls />
+  <Pagination.Controls />
 </Pagination>

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Select, SelectOption, Text } from "kumo-svelte";
+  import { Select, Text } from "kumo-svelte";
 
   const authors = [
     { id: "1", name: "John Doe", title: "Programmer" },
@@ -20,11 +20,11 @@
   onValueChange={(next) => (value = next as string)}
 >
   {#each authors as author (author.id)}
-    <SelectOption value={author.id} label={author.name}>
+    <Select.Option value={author.id} label={author.name}>
       <div class="flex w-[300px] items-center justify-between gap-2">
         <Text>{author.name}</Text>
         <Text variant="secondary">{author.title}</Text>
       </div>
-    </SelectOption>
+    </Select.Option>
   {/each}
 </Select>

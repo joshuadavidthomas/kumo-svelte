@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { TableOfContents, TableOfContentsItem, TableOfContentsList } from "kumo-svelte";
+  import { TableOfContents } from "kumo-svelte";
 
   const headings = ["Introduction", "Installation", "Usage"];
   let clicked = $state("");
@@ -7,15 +7,15 @@
 
 <div class="min-w-48 space-y-3">
   <TableOfContents>
-    <TableOfContentsList>
+    <TableOfContents.List>
       {#each headings as heading}
-        <TableOfContentsItem active={heading === "Introduction"} onclick={() => (clicked = heading)}>
+        <TableOfContents.Item active={heading === "Introduction"} onclick={() => (clicked = heading)}>
           {#snippet child({ props })}
             <button {...props} type="button" onclick={() => (clicked = heading)}><span class="block min-w-0 leading-5">{heading}</span></button>
           {/snippet}
-        </TableOfContentsItem>
+        </TableOfContents.Item>
       {/each}
-    </TableOfContentsList>
+    </TableOfContents.List>
   </TableOfContents>
   {#if clicked}<p class="text-xs text-kumo-subtle">Clicked: {clicked}</p>{/if}
 </div>

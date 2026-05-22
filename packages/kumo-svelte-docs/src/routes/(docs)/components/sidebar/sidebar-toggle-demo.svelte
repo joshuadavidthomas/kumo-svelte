@@ -3,18 +3,7 @@
   import CodeIcon from "phosphor-svelte/lib/CodeIcon";
   import DatabaseIcon from "phosphor-svelte/lib/DatabaseIcon";
   import HouseIcon from "phosphor-svelte/lib/HouseIcon";
-  import {
-    Sidebar,
-    SidebarContent,
-    SidebarFooter,
-    SidebarGroup,
-    SidebarHeader,
-    SidebarMenu,
-    SidebarMenuButton,
-    SidebarProvider,
-    SidebarTrigger,
-    useSidebar,
-  } from "kumo-svelte";
+  import { Sidebar, useSidebar } from "kumo-svelte";
   import DemoShell from "./sidebar-demo-shell.svelte";
   import DemoMain from "./sidebar-main.svelte";
 </script>
@@ -36,31 +25,31 @@
 {/snippet}
 
 <DemoShell>
-  <SidebarProvider defaultOpen class="h-full min-h-0!">
+  <Sidebar.Provider defaultOpen class="h-full min-h-0!">
     <Sidebar>
-      <SidebarHeader>
+      <Sidebar.Header>
         <div class="flex w-full min-w-0 items-center gap-2 px-3 group-data-[state=collapsed]/sidebar:px-2">
           <div class="size-4 shrink-0 rounded bg-kumo-brand"></div>
           <span class="truncate text-sm font-semibold text-kumo-strong group-data-[state=collapsed]/sidebar:hidden">Acme Inc</span>
         </div>
-      </SidebarHeader>
-      <SidebarContent>
-        <SidebarGroup>
-          <SidebarMenu>
-            <SidebarMenuButton icon={homeIcon} tooltip="Home" active>Home</SidebarMenuButton>
-            <SidebarMenuButton icon={chartIcon} tooltip="Analytics">Analytics</SidebarMenuButton>
-            <SidebarMenuButton icon={codeIcon} tooltip="Compute">Compute</SidebarMenuButton>
-            <SidebarMenuButton icon={databaseIcon} tooltip="Storage">Storage</SidebarMenuButton>
-          </SidebarMenu>
-        </SidebarGroup>
-      </SidebarContent>
-      <SidebarFooter>
-        <SidebarTrigger />
-      </SidebarFooter>
+      </Sidebar.Header>
+      <Sidebar.Content>
+        <Sidebar.Group>
+          <Sidebar.Menu>
+            <Sidebar.MenuButton icon={homeIcon} tooltip="Home" active>Home</Sidebar.MenuButton>
+            <Sidebar.MenuButton icon={chartIcon} tooltip="Analytics">Analytics</Sidebar.MenuButton>
+            <Sidebar.MenuButton icon={codeIcon} tooltip="Compute">Compute</Sidebar.MenuButton>
+            <Sidebar.MenuButton icon={databaseIcon} tooltip="Storage">Storage</Sidebar.MenuButton>
+          </Sidebar.Menu>
+        </Sidebar.Group>
+      </Sidebar.Content>
+      <Sidebar.Footer>
+        <Sidebar.Trigger />
+      </Sidebar.Footer>
     </Sidebar>
     <DemoMain>
       {@render toggleButton()}
       <p class="text-sm">Click the button or the sidebar trigger to toggle</p>
     </DemoMain>
-  </SidebarProvider>
+  </Sidebar.Provider>
 </DemoShell>

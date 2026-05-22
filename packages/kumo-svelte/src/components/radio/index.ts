@@ -3,13 +3,31 @@ import RadioGroupComponent from "./radio-group.svelte";
 import RadioItemComponent from "./radio-item.svelte";
 import RadioLegendComponent from "./radio-legend.svelte";
 
-export { default as Radio } from "./radio-group.svelte";
-export { default as RadioGroup } from "./radio-group.svelte";
-export { default as RadioItem } from "./radio-item.svelte";
-export { default as RadioGroupItem } from "./radio-item.svelte";
-export { default as RadioLegend } from "./radio-legend.svelte";
+const Radio = Object.assign(RadioGroupComponent, {
+  Root: RadioGroupComponent,
+  Group: RadioGroupComponent,
+  Item: RadioItemComponent,
+  GroupItem: RadioItemComponent,
+  Legend: RadioLegendComponent,
+});
 
-export type RadioGroupProps = ComponentProps<typeof RadioGroupComponent>;
+export {
+  Radio,
+  RadioGroupComponent as RadioRoot,
+  RadioGroupComponent as RadioGroup,
+  RadioGroupComponent as Root,
+  RadioGroupComponent as Group,
+  RadioItemComponent as RadioItem,
+  RadioItemComponent as RadioGroupItem,
+  RadioItemComponent as Item,
+  RadioItemComponent as GroupItem,
+  RadioLegendComponent as RadioLegend,
+  RadioLegendComponent as Legend,
+};
+
+export type RadioProps = ComponentProps<typeof RadioGroupComponent>;
+export type RadioRootProps = RadioProps;
+export type RadioGroupProps = RadioProps;
 export type RadioItemProps = ComponentProps<typeof RadioItemComponent>;
 export type RadioGroupItemProps = RadioItemProps;
 export type RadioLegendProps = ComponentProps<typeof RadioLegendComponent>;

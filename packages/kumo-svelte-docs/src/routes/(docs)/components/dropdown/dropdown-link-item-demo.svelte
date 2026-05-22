@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Button, DropdownMenu, DropdownMenuContent, DropdownMenuLinkItem, DropdownMenuSeparator, DropdownMenuTrigger } from "kumo-svelte";
+  import { Button, DropdownMenu } from "kumo-svelte";
   import ArrowSquareOutIcon from "phosphor-svelte/lib/ArrowSquareOutIcon";
   import BookOpenIcon from "phosphor-svelte/lib/BookOpenIcon";
   import GearIcon from "phosphor-svelte/lib/GearIcon";
@@ -18,17 +18,17 @@
 {/snippet}
 
 <DropdownMenu>
-  <DropdownMenuTrigger>
+  <DropdownMenu.Trigger>
     {#snippet child({ props })}
       <Button {...props}>Resources</Button>
     {/snippet}
-  </DropdownMenuTrigger>
-  <DropdownMenuContent>
-    <DropdownMenuLinkItem href="/settings" icon={gearIcon}>Settings</DropdownMenuLinkItem>
-    <DropdownMenuLinkItem href="/docs" icon={bookIcon}>Documentation</DropdownMenuLinkItem>
-    <DropdownMenuSeparator />
-    <DropdownMenuLinkItem href="https://developers.cloudflare.com" target="_blank" icon={externalIcon}>
+  </DropdownMenu.Trigger>
+  <DropdownMenu.Content>
+    <DropdownMenu.LinkItem href="/settings" icon={gearIcon}>Settings</DropdownMenu.LinkItem>
+    <DropdownMenu.LinkItem href="/docs" icon={bookIcon}>Documentation</DropdownMenu.LinkItem>
+    <DropdownMenu.Separator />
+    <DropdownMenu.LinkItem href="https://developers.cloudflare.com" target="_blank" icon={externalIcon}>
       Developer Docs
-    </DropdownMenuLinkItem>
-  </DropdownMenuContent>
+    </DropdownMenu.LinkItem>
+  </DropdownMenu.Content>
 </DropdownMenu>

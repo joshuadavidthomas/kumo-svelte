@@ -25,34 +25,90 @@ import SidebarResizeHandleComponent from "./sidebar-resize-handle.svelte";
 import SidebarSeparatorComponent from "./sidebar-separator.svelte";
 import SidebarTriggerComponent from "./sidebar-trigger.svelte";
 
-export { default as Sidebar } from "./sidebar.svelte";
-export { default as SidebarContent } from "./sidebar-content.svelte";
-export { default as SidebarFooter } from "./sidebar-footer.svelte";
-export { default as SidebarGroup } from "./sidebar-group.svelte";
-export { default as SidebarGroupContent } from "./sidebar-group-content.svelte";
-export { default as SidebarGroupLabel } from "./sidebar-group-label.svelte";
-export { default as SidebarHeader } from "./sidebar-header.svelte";
-export { default as SidebarInput } from "./sidebar-input.svelte";
-export { default as SidebarMenu } from "./sidebar-menu.svelte";
-export { default as SidebarMenuAction } from "./sidebar-menu-action.svelte";
-export { default as SidebarMenuBadge } from "./sidebar-menu-badge.svelte";
-export { default as SidebarMenuButton } from "./sidebar-menu-button.svelte";
-export { default as SidebarMenuChevron } from "./sidebar-menu-chevron.svelte";
-export { default as SidebarMenuItem } from "./sidebar-menu-item.svelte";
-export { default as SidebarMenuSub } from "./sidebar-menu-sub.svelte";
-export { default as SidebarMenuSubButton } from "./sidebar-menu-sub-button.svelte";
-export { default as SidebarMenuSubItem } from "./sidebar-menu-sub-item.svelte";
-export { default as SidebarProvider } from "./sidebar-provider.svelte";
-export { default as SidebarRail } from "./sidebar-rail.svelte";
-export { default as SidebarResizeHandle } from "./sidebar-resize-handle.svelte";
-export { default as SidebarSeparator } from "./sidebar-separator.svelte";
-export { default as SidebarTrigger } from "./sidebar-trigger.svelte";
+const Sidebar = Object.assign(SidebarComponent, {
+  Root: SidebarComponent,
+  Provider: SidebarProviderComponent,
+  Header: SidebarHeaderComponent,
+  Content: SidebarContentComponent,
+  Footer: SidebarFooterComponent,
+  Group: SidebarGroupComponent,
+  GroupLabel: SidebarGroupLabelComponent,
+  GroupContent: SidebarGroupContentComponent,
+  Menu: SidebarMenuComponent,
+  MenuItem: SidebarMenuItemComponent,
+  MenuButton: SidebarMenuButtonComponent,
+  MenuAction: SidebarMenuActionComponent,
+  MenuBadge: SidebarMenuBadgeComponent,
+  MenuChevron: SidebarMenuChevronComponent,
+  MenuSub: SidebarMenuSubComponent,
+  MenuSubItem: SidebarMenuSubItemComponent,
+  MenuSubButton: SidebarMenuSubButtonComponent,
+  Separator: SidebarSeparatorComponent,
+  Input: SidebarInputComponent,
+  Trigger: SidebarTriggerComponent,
+  Rail: SidebarRailComponent,
+  ResizeHandle: SidebarResizeHandleComponent,
+  Collapsible: SidebarCollapsibleComponent,
+  CollapsibleTrigger: SidebarCollapsibleTriggerComponent,
+  CollapsibleContent: SidebarCollapsibleContentComponent,
+});
 
-export { default as SidebarCollapsible } from "./sidebar-collapsible.svelte";
-export { default as SidebarCollapsibleContent } from "./sidebar-collapsible-content.svelte";
-export { default as SidebarCollapsibleTrigger } from "./sidebar-collapsible-trigger.svelte";
+export {
+  Sidebar,
+  SidebarComponent as SidebarRoot,
+  SidebarComponent as Root,
+  SidebarContentComponent as SidebarContent,
+  SidebarContentComponent as Content,
+  SidebarFooterComponent as SidebarFooter,
+  SidebarFooterComponent as Footer,
+  SidebarGroupComponent as SidebarGroup,
+  SidebarGroupComponent as Group,
+  SidebarGroupContentComponent as SidebarGroupContent,
+  SidebarGroupContentComponent as GroupContent,
+  SidebarGroupLabelComponent as SidebarGroupLabel,
+  SidebarGroupLabelComponent as GroupLabel,
+  SidebarHeaderComponent as SidebarHeader,
+  SidebarHeaderComponent as Header,
+  SidebarInputComponent as SidebarInput,
+  SidebarInputComponent as Input,
+  SidebarMenuComponent as SidebarMenu,
+  SidebarMenuComponent as Menu,
+  SidebarMenuActionComponent as SidebarMenuAction,
+  SidebarMenuActionComponent as MenuAction,
+  SidebarMenuBadgeComponent as SidebarMenuBadge,
+  SidebarMenuBadgeComponent as MenuBadge,
+  SidebarMenuButtonComponent as SidebarMenuButton,
+  SidebarMenuButtonComponent as MenuButton,
+  SidebarMenuChevronComponent as SidebarMenuChevron,
+  SidebarMenuChevronComponent as MenuChevron,
+  SidebarMenuItemComponent as SidebarMenuItem,
+  SidebarMenuItemComponent as MenuItem,
+  SidebarMenuSubComponent as SidebarMenuSub,
+  SidebarMenuSubComponent as MenuSub,
+  SidebarMenuSubButtonComponent as SidebarMenuSubButton,
+  SidebarMenuSubButtonComponent as MenuSubButton,
+  SidebarMenuSubItemComponent as SidebarMenuSubItem,
+  SidebarMenuSubItemComponent as MenuSubItem,
+  SidebarProviderComponent as SidebarProvider,
+  SidebarProviderComponent as Provider,
+  SidebarRailComponent as SidebarRail,
+  SidebarRailComponent as Rail,
+  SidebarResizeHandleComponent as SidebarResizeHandle,
+  SidebarResizeHandleComponent as ResizeHandle,
+  SidebarSeparatorComponent as SidebarSeparator,
+  SidebarSeparatorComponent as Separator,
+  SidebarTriggerComponent as SidebarTrigger,
+  SidebarTriggerComponent as Trigger,
+  SidebarCollapsibleComponent as SidebarCollapsible,
+  SidebarCollapsibleComponent as Collapsible,
+  SidebarCollapsibleContentComponent as SidebarCollapsibleContent,
+  SidebarCollapsibleContentComponent as CollapsibleContent,
+  SidebarCollapsibleTriggerComponent as SidebarCollapsibleTrigger,
+  SidebarCollapsibleTriggerComponent as CollapsibleTrigger,
+};
 
 export type SidebarProps = ComponentProps<typeof SidebarComponent>;
+export type SidebarRootProps = SidebarProps;
 export type SidebarCollapsibleProps = ComponentProps<typeof SidebarCollapsibleComponent>;
 export type SidebarCollapsibleContentProps = ComponentProps<
   typeof SidebarCollapsibleContentComponent

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { LayerCard, Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "kumo-svelte";
+  import { LayerCard, Table } from "kumo-svelte";
   import { emailData } from "./table-data";
 </script>
 
@@ -10,21 +10,21 @@
       <col class="w-[150px]" />
       <col class="w-[150px]" />
     </colgroup>
-    <TableHeader>
-      <TableRow>
-        <TableHead>Subject</TableHead>
-        <TableHead>From</TableHead>
-        <TableHead>Date</TableHead>
-      </TableRow>
-    </TableHeader>
-    <TableBody>
+    <Table.Header>
+      <Table.Row>
+        <Table.Head>Subject</Table.Head>
+        <Table.Head>From</Table.Head>
+        <Table.Head>Date</Table.Head>
+      </Table.Row>
+    </Table.Header>
+    <Table.Body>
       {#each emailData as row (row.id)}
-        <TableRow>
-          <TableCell>{row.subject}</TableCell>
-          <TableCell>{row.from}</TableCell>
-          <TableCell>{row.date}</TableCell>
-        </TableRow>
+        <Table.Row>
+          <Table.Cell>{row.subject}</Table.Cell>
+          <Table.Cell>{row.from}</Table.Cell>
+          <Table.Cell>{row.date}</Table.Cell>
+        </Table.Row>
       {/each}
-    </TableBody>
+    </Table.Body>
   </Table>
 </LayerCard>

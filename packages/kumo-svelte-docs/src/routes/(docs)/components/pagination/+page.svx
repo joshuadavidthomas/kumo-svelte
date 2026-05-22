@@ -29,13 +29,13 @@ sourceFile: components/pagination
 ### Barrel
 
 ```ts
-import { Pagination, PaginationControls, PaginationInfo } from "kumo-svelte";
+import { Pagination } from "kumo-svelte";
 ```
 
 ### Granular
 
 ```ts
-import { Pagination, PaginationControls, PaginationInfo } from "kumo-svelte/components/pagination";
+import * as Pagination from "kumo-svelte/components/pagination";
 ```
 
 ## Usage
@@ -94,7 +94,7 @@ You can set custom pagination text with a snippet.
 
 ## Compound Components
 
-For more control over layout and features, use the compound component API. The Svelte package exports named components such as `PaginationInfo`, `PaginationPageSize`, `PaginationControls`, and `PaginationSeparator`.
+For more control over layout and features, use the compound component API: `Pagination.Info`, `Pagination.PageSize`, `Pagination.Controls`, and `Pagination.Separator`.
 
 ### Page Size Selector
 
@@ -130,7 +130,7 @@ Arrange components in any order. Here the page size selector is on the right.
 
 ### Dropdown Page Selector
 
-Use `pageSelector="dropdown"` on `PaginationControls` to render a dropdown select instead of a text input for page navigation.
+Use `pageSelector="dropdown"` on `Pagination.Controls` to render a dropdown select instead of a text input for page navigation.
 
 <Example demo="pagination-dropdown-selector-demo">
   <PaginationDropdownSelectorDemo />
@@ -160,14 +160,14 @@ Use the `labels` prop to customize all UI strings for different locales. All lab
 | `children` | `Snippet` | — | Compound component layout. |
 | `class` | `string` | — | Additional classes. |
 
-### `PaginationInfo`
+### `Pagination.Info`
 
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |
 | `text` | `Snippet<[PaginationInfoSnippetProps]>` | — | Custom info content. |
 | `class` | `string` | — | Additional classes. |
 
-### `PaginationControls`
+### `Pagination.Controls`
 
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -175,7 +175,7 @@ Use the `labels` prop to customize all UI strings for different locales. All lab
 | `pageSelector` | `"input" \| "dropdown"` | `"input"` | Page selector control for full pagination. |
 | `class` | `string` | — | Additional classes. |
 
-### `PaginationPageSize`
+### `Pagination.PageSize`
 
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -185,10 +185,10 @@ Use the `labels` prop to customize all UI strings for different locales. All lab
 | `label` | `Snippet \| string` | `"Per page:"` | Label text. |
 | `class` | `string` | — | Additional classes. |
 
-### `PaginationSeparator`
+### `Pagination.Separator`
 
 Accepts standard `HTMLDivElement` attributes plus `class`.
 
 ## Accessibility
 
-PaginationControls renders a navigation region with accessible labels for first, previous, next, last, page number, and page size controls. Use the `labels` prop to localize those labels.
+`Pagination.Controls` renders a navigation region with accessible labels for first, previous, next, last, page number, and page size controls. Use the `labels` prop to localize those labels.

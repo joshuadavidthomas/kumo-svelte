@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Pagination, PaginationControls, PaginationInfo } from "kumo-svelte";
+  import { Pagination } from "kumo-svelte";
 
   let page = $state(1);
 </script>
@@ -22,6 +22,6 @@
     pageSize: "Taille de page",
   }}
 >
-  <PaginationInfo text={frenchInfo} />
-  <PaginationControls />
+  <Pagination.Info text={frenchInfo} />
+  <Pagination.Controls />
 </Pagination>

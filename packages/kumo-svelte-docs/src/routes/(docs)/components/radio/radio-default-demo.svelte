@@ -1,11 +1,11 @@
 <script lang="ts">
-  import { RadioGroup, RadioItem } from "kumo-svelte";
+  import { Radio } from "kumo-svelte";
 
   let value = $state("personal");
 </script>
 
-<RadioGroup legend="Account type" {value} onValueChange={(next) => (value = next)}>
-  <RadioItem label="Personal" value="personal" />
-  <RadioItem label="Business" value="business" />
-  <RadioItem label="Enterprise" value="enterprise" />
-</RadioGroup>
+<Radio.Group legend="Account type" {value} onValueChange={(next) => (value = next)}>
+  <Radio.Item label="Personal" value="personal" />
+  <Radio.Item label="Business" value="business" />
+  <Radio.Item label="Enterprise" value="enterprise" />
+</Radio.Group>

@@ -1,13 +1,13 @@
 <script lang="ts">
-  import { Flow, FlowNode, FlowParallel } from "kumo-svelte";
+  import { Flow } from "kumo-svelte";
 </script>
 
 <Flow>
-  <FlowNode>Start</FlowNode>
-  <FlowParallel align="end">
-    <FlowNode>Short</FlowNode>
-    <FlowNode>Medium Length</FlowNode>
-    <FlowNode>Very Long Node Name</FlowNode>
-  </FlowParallel>
-  <FlowNode>End</FlowNode>
+  <Flow.Node>Start</Flow.Node>
+  <Flow.Parallel align="end">
+    <Flow.Node>Short</Flow.Node>
+    <Flow.Node>Medium Length</Flow.Node>
+    <Flow.Node>Very Long Node Name</Flow.Node>
+  </Flow.Parallel>
+  <Flow.Node>End</Flow.Node>
 </Flow>

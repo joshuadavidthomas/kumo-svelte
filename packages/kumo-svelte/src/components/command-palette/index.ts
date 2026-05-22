@@ -13,23 +13,57 @@ import CommandPaletteResultItemComponent from "./command-palette-result-item.sve
 import CommandPaletteSeparatorComponent from "./command-palette-separator.svelte";
 import HighlightedTextComponent from "./highlighted-text.svelte";
 
-export { default as CommandPalette } from "./command-palette.svelte";
-export { default as CommandPaletteRoot } from "./command-palette.svelte";
-export { default as CommandPaletteDialog } from "./command-palette-dialog.svelte";
-export { default as CommandPaletteEmpty } from "./command-palette-empty.svelte";
-export { default as CommandPaletteFooter } from "./command-palette-footer.svelte";
-export { default as CommandPaletteGroup } from "./command-palette-group.svelte";
-export { default as CommandPaletteGroupLabel } from "./command-palette-group-label.svelte";
-export { default as CommandPaletteInput } from "./command-palette-input.svelte";
-export { default as CommandPaletteItem } from "./command-palette-item.svelte";
-export { default as CommandPaletteList } from "./command-palette-list.svelte";
-export { default as CommandPaletteLoading } from "./command-palette-loading.svelte";
-export { default as CommandPaletteResultItem } from "./command-palette-result-item.svelte";
-export { default as CommandPaletteSeparator } from "./command-palette-separator.svelte";
-export { default as HighlightedText } from "./highlighted-text.svelte";
+const CommandPalette = Object.assign(CommandPaletteComponent, {
+  Root: CommandPaletteComponent,
+  Dialog: CommandPaletteDialogComponent,
+  Panel: CommandPaletteComponent,
+  Empty: CommandPaletteEmptyComponent,
+  Footer: CommandPaletteFooterComponent,
+  Group: CommandPaletteGroupComponent,
+  GroupLabel: CommandPaletteGroupLabelComponent,
+  Input: CommandPaletteInputComponent,
+  Item: CommandPaletteItemComponent,
+  List: CommandPaletteListComponent,
+  Loading: CommandPaletteLoadingComponent,
+  ResultItem: CommandPaletteResultItemComponent,
+  Separator: CommandPaletteSeparatorComponent,
+  HighlightedText: HighlightedTextComponent,
+});
+
+export {
+  CommandPalette,
+  CommandPaletteComponent as CommandPaletteRoot,
+  CommandPaletteComponent as CommandPalettePanel,
+  CommandPaletteComponent as Root,
+  CommandPaletteComponent as Panel,
+  CommandPaletteDialogComponent as CommandPaletteDialog,
+  CommandPaletteDialogComponent as Dialog,
+  CommandPaletteEmptyComponent as CommandPaletteEmpty,
+  CommandPaletteEmptyComponent as Empty,
+  CommandPaletteFooterComponent as CommandPaletteFooter,
+  CommandPaletteFooterComponent as Footer,
+  CommandPaletteGroupComponent as CommandPaletteGroup,
+  CommandPaletteGroupComponent as Group,
+  CommandPaletteGroupLabelComponent as CommandPaletteGroupLabel,
+  CommandPaletteGroupLabelComponent as GroupLabel,
+  CommandPaletteInputComponent as CommandPaletteInput,
+  CommandPaletteInputComponent as Input,
+  CommandPaletteItemComponent as CommandPaletteItem,
+  CommandPaletteItemComponent as Item,
+  CommandPaletteListComponent as CommandPaletteList,
+  CommandPaletteListComponent as List,
+  CommandPaletteLoadingComponent as CommandPaletteLoading,
+  CommandPaletteLoadingComponent as Loading,
+  CommandPaletteResultItemComponent as CommandPaletteResultItem,
+  CommandPaletteResultItemComponent as ResultItem,
+  CommandPaletteSeparatorComponent as CommandPaletteSeparator,
+  CommandPaletteSeparatorComponent as Separator,
+  HighlightedTextComponent as HighlightedText,
+};
 
 export type CommandPaletteProps = ComponentProps<typeof CommandPaletteComponent>;
 export type CommandPaletteRootProps = CommandPaletteProps;
+export type CommandPalettePanelProps = CommandPaletteProps;
 export type CommandPaletteDialogProps = ComponentProps<typeof CommandPaletteDialogComponent>;
 export type CommandPaletteEmptyProps = ComponentProps<typeof CommandPaletteEmptyComponent>;
 export type CommandPaletteFooterProps = ComponentProps<typeof CommandPaletteFooterComponent>;

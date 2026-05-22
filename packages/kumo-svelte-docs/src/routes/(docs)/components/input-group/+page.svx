@@ -27,45 +27,47 @@ sourceFile: components/input-group
 ### Barrel
 
 ```ts
-import { InputGroup, InputGroupAddon, InputGroupInput } from "kumo-svelte";
+import { InputGroup } from "kumo-svelte";
 ```
 
 ### Granular
 
 ```ts
-import { InputGroup, InputGroupAddon, InputGroupInput } from "kumo-svelte/components/input-group";
+import * as InputGroup from "kumo-svelte/components/input-group";
 ```
 
 ## Usage
 
 ### With Built-in Field (Recommended)
 
-Pass the `label` prop to InputGroup to enable the built-in Field wrapper with label, description, and error support.
+Pass the `label` prop to InputGroup to enable the built-in Field wrapper with label,
+  description,
+  and error support.
 
 ```svelte
 <script lang="ts">
   import MagnifyingGlassIcon from "phosphor-svelte/lib/MagnifyingGlassIcon";
-  import { InputGroup, InputGroupAddon, InputGroupInput } from "kumo-svelte";
+  import { InputGroup } from "kumo-svelte";
 </script>
 
 <InputGroup label="Search" description="Find pages, components, and more">
-  <InputGroupAddon>
+  <InputGroup.Addon>
     <MagnifyingGlassIcon />
-  </InputGroupAddon>
-  <InputGroupInput placeholder="Search..." />
+  </InputGroup.Addon>
+  <InputGroup.Input placeholder="Search..." />
 </InputGroup>
 ```
 
 ### Bare InputGroup (Custom Layouts)
 
-For custom form layouts, use InputGroup without `label`. Provide `aria-label` on `InputGroupInput` for accessibility.
+For custom form layouts, use InputGroup without `label`. Provide `aria-label` on `InputGroup.Input` for accessibility.
 
 ```svelte
 <InputGroup>
-  <InputGroupAddon>
+  <InputGroup.Addon>
     <MagnifyingGlassIcon />
-  </InputGroupAddon>
-  <InputGroupInput placeholder="Search..." aria-label="Search" />
+  </InputGroup.Addon>
+  <InputGroup.Input placeholder="Search..." aria-label="Search" />
 </InputGroup>
 ```
 
@@ -89,7 +91,7 @@ Use Addon to place text prefixes or suffixes alongside the input.
 
 ### Button
 
-Place `InputGroupButton` inside an Addon for actions that operate directly on the input value, such as reveal/hide or clear.
+Place `InputGroup.Button` inside an Addon for actions that operate directly on the input value, such as reveal/hide or clear.
 
 <Example demo="input-group-buttons-demo">
   <InputGroupButtonsDemo />
@@ -97,7 +99,7 @@ Place `InputGroupButton` inside an Addon for actions that operate directly on th
 
 ### Button with Tooltip
 
-Pass a `tooltip` prop to `InputGroupButton` to show a tooltip on hover. When no explicit `aria-label` is provided, the button derives it from a string tooltip value.
+Pass a `tooltip` prop to `InputGroup.Button` to show a tooltip on hover. When no explicit `aria-label` is provided, the button derives it from a string tooltip value.
 
 <Example demo="input-group-tooltip-button-demo">
   <InputGroupTooltipButtonDemo />
@@ -162,7 +164,7 @@ The root container that provides context to all child components. Accepts Field 
 | `size` | `"xs" \| "sm" \| "base" \| "lg"` | No | Size applied to the group. Defaults to `"base"`. |
 | `class` | `string` | No | Additional classes. |
 
-### `InputGroupInput`
+### `InputGroup.Input`
 
 The text input element. Inherits `size`, `disabled`, and error state from InputGroup context.
 
@@ -172,9 +174,9 @@ The text input element. Inherits `size`, `disabled`, and error state from InputG
 | `onValueChange` | `(value: string) => void` | No | Convenience handler called with the input value. |
 | `class` | `string` | No | Additional classes. |
 
-InputGroupInput also accepts standard input attributes such as `type`, `placeholder`, `maxlength`, `aria-label`, and `disabled`.
+`InputGroup.Input` also accepts standard input attributes such as `type`, `placeholder`, `maxlength`, `aria-label`, and `disabled`.
 
-### `InputGroupAddon`
+### `InputGroup.Addon`
 
 Container for icons, text, or compact buttons positioned at the start or end of the input.
 
@@ -182,10 +184,10 @@ Container for icons, text, or compact buttons positioned at the start or end of 
 | --- | --- | --- | --- |
 | `align` | `"start" \| "end"` | No | Addon position. Defaults to `"start"`. |
 | `children` | `Snippet` | No | Addon contents. |
-| `containsButton` | `boolean` | No | Adjusts padding for a nested `InputGroupButton`. |
+| `containsButton` | `boolean` | No | Adjusts padding for a nested `InputGroup.Button`. |
 | `class` | `string` | No | Additional classes. |
 
-### `InputGroupButton`
+### `InputGroup.Button`
 
 Button for secondary actions like toggle, copy, or help. Renders inside an Addon. Pass a `tooltip` prop to show a tooltip on hover.
 
@@ -195,9 +197,9 @@ Button for secondary actions like toggle, copy, or help. Renders inside an Addon
 | `tooltip` | `Snippet \| string` | No | Tooltip content. String tooltips also become the fallback `aria-label`. |
 | `tooltipSide` | `"top" \| "right" \| "bottom" \| "left"` | No | Tooltip placement. Defaults to `"bottom"`. |
 
-InputGroupButton also accepts Button props such as `variant`, `size`, `shape`, `disabled`, and `aria-label`.
+`InputGroup.Button` also accepts Button props such as `variant`, `size`, `shape`, `disabled`, and `aria-label`.
 
-### `InputGroupSuffix`
+### `InputGroup.Suffix`
 
 Inline text that flows seamlessly next to the typed value, such as `.workers.dev`. The input width adjusts automatically as the user types.
 
@@ -228,8 +230,8 @@ When using `error` as an object, the `match` property corresponds to HTML5 Valid
 InputGroup requires an accessible name via one of:
 
 - `label` prop on InputGroup, which renders a visible label with built-in Field support
-- `aria-label` on InputGroupInput for inputs without a visible label
-- `aria-labelledby` on InputGroupInput for custom label association
+- `aria-label` on `InputGroup.Input` for inputs without a visible label
+- `aria-labelledby` on `InputGroup.Input` for custom label association
 
 ### Group Semantics
 

@@ -3,17 +3,8 @@
     Badge,
     Button,
     DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
     LayerCard,
     Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
   } from "kumo-svelte";
   import DotsThreeIcon from "phosphor-svelte/lib/DotsThreeIcon";
   import EyeIcon from "phosphor-svelte/lib/EyeIcon";
@@ -24,48 +15,48 @@
 
 <LayerCard class="w-full max-w-md overflow-x-auto p-0">
   <Table>
-    <TableHeader variant="compact">
-      <TableRow>
-        <TableHead>Subject</TableHead>
-        <TableHead>From</TableHead>
-        <TableHead>Date</TableHead>
-        <TableHead>Tags</TableHead>
-        <TableHead sticky="right"><span class="sr-only">Actions</span></TableHead>
-      </TableRow>
-    </TableHeader>
-    <TableBody>
+    <Table.Header variant="compact">
+      <Table.Row>
+        <Table.Head>Subject</Table.Head>
+        <Table.Head>From</Table.Head>
+        <Table.Head>Date</Table.Head>
+        <Table.Head>Tags</Table.Head>
+        <Table.Head sticky="right"><span class="sr-only">Actions</span></Table.Head>
+      </Table.Row>
+    </Table.Header>
+    <Table.Body>
       {#each emailData as row (row.id)}
-        <TableRow>
-          <TableCell class="whitespace-nowrap">{row.subject}</TableCell>
-          <TableCell class="whitespace-nowrap">{row.from}</TableCell>
-          <TableCell class="whitespace-nowrap">{row.date}</TableCell>
-          <TableCell class="whitespace-nowrap">{#if row.tags}<Badge>{row.tags[0]}</Badge>{:else}—{/if}</TableCell>
-          <TableCell sticky="right" class="text-right">
+        <Table.Row>
+          <Table.Cell class="whitespace-nowrap">{row.subject}</Table.Cell>
+          <Table.Cell class="whitespace-nowrap">{row.from}</Table.Cell>
+          <Table.Cell class="whitespace-nowrap">{row.date}</Table.Cell>
+          <Table.Cell class="whitespace-nowrap">{#if row.tags}<Badge>{row.tags[0]}</Badge>{:else}—{/if}</Table.Cell>
+          <Table.Cell sticky="right" class="text-right">
             <DropdownMenu>
-              <DropdownMenuTrigger>
+              <DropdownMenu.Trigger>
                 {#snippet child({ props })}
                   <Button {...props} variant="ghost" size="sm" shape="square" aria-label="More options" icon={DotsThreeIcon} />
                 {/snippet}
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuItem>
+              </DropdownMenu.Trigger>
+              <DropdownMenu.Content>
+                <DropdownMenu.Item>
                   {#snippet icon()}<EyeIcon size={16} />{/snippet}
                   View
-                </DropdownMenuItem>
-                <DropdownMenuItem>
+                </DropdownMenu.Item>
+                <DropdownMenu.Item>
                   {#snippet icon()}<PencilSimpleIcon size={16} />{/snippet}
                   Edit
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem variant="danger">
+                </DropdownMenu.Item>
+                <DropdownMenu.Separator />
+                <DropdownMenu.Item variant="danger">
                   {#snippet icon()}<TrashIcon size={16} />{/snippet}
                   Delete
-                </DropdownMenuItem>
-              </DropdownMenuContent>
+                </DropdownMenu.Item>
+              </DropdownMenu.Content>
             </DropdownMenu>
-          </TableCell>
-        </TableRow>
+          </Table.Cell>
+        </Table.Row>
       {/each}
-    </TableBody>
+    </Table.Body>
   </Table>
 </LayerCard>

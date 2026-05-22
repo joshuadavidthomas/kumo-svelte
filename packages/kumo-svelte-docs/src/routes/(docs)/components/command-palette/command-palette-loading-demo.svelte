@@ -1,16 +1,5 @@
 <script lang="ts">
-  import {
-    Button,
-    CommandPalette,
-    CommandPaletteDialog,
-    CommandPaletteEmpty,
-    CommandPaletteGroup,
-    CommandPaletteGroupLabel,
-    CommandPaletteInput,
-    CommandPaletteItem,
-    CommandPaletteList,
-    CommandPaletteLoading,
-  } from "kumo-svelte";
+  import { Button, CommandPalette } from "kumo-svelte";
 
   const groups = [
     { label: "Commands", items: ["Create New Project", "Open Settings", "Search Files"] },
@@ -33,26 +22,26 @@
 <div>
   <Button onclick={handleOpen}>Open with Loading</Button>
 
-  <CommandPaletteDialog bind:open>
+  <CommandPalette.Dialog bind:open>
     <CommandPalette bind:value={search}>
-      <CommandPaletteInput placeholder="Search..." />
-      <CommandPaletteList>
+      <CommandPalette.Input placeholder="Search..." />
+      <CommandPalette.List>
         {#if loading}
-          <CommandPaletteLoading />
+          <CommandPalette.Loading />
         {:else}
           {#each groups as group}
-            <CommandPaletteGroup value={group.label}>
-              <CommandPaletteGroupLabel>{group.label}</CommandPaletteGroupLabel>
+            <CommandPalette.Group value={group.label}>
+              <CommandPalette.GroupLabel>{group.label}</CommandPalette.GroupLabel>
               {#each group.items as item}
-                <CommandPaletteItem value={item} onSelect={() => (open = false)}>
+                <CommandPalette.Item value={item} onSelect={() => (open = false)}>
                   {item}
-                </CommandPaletteItem>
+                </CommandPalette.Item>
               {/each}
-            </CommandPaletteGroup>
+            </CommandPalette.Group>
           {/each}
-          <CommandPaletteEmpty>No results found</CommandPaletteEmpty>
+          <CommandPalette.Empty>No results found</CommandPalette.Empty>
         {/if}
-      </CommandPaletteList>
+      </CommandPalette.List>
     </CommandPalette>
-  </CommandPaletteDialog>
+  </CommandPalette.Dialog>
 </div>

@@ -1,4 +1,4 @@
-export { default as Autocomplete } from "./components/autocomplete/autocomplete.svelte";
+export { Autocomplete } from "./components/autocomplete";
 export { default as AutocompleteRoot } from "./components/autocomplete/autocomplete.svelte";
 export { default as AutocompleteContent } from "./components/autocomplete/autocomplete-content.svelte";
 export { default as AutocompleteEmpty } from "./components/autocomplete/autocomplete-empty.svelte";
@@ -53,7 +53,7 @@ export {
   type KumoBannerVariantsProps,
 } from "./components/banner";
 
-export { default as Breadcrumbs } from "./components/breadcrumbs/breadcrumbs.svelte";
+export { Breadcrumb, Breadcrumbs } from "./components/breadcrumbs";
 export { default as BreadcrumbsRoot } from "./components/breadcrumbs/breadcrumbs.svelte";
 export { default as BreadcrumbsClipboard } from "./components/breadcrumbs/breadcrumbs-clipboard.svelte";
 export { default as BreadcrumbsCurrent } from "./components/breadcrumbs/breadcrumbs-current.svelte";
@@ -101,7 +101,7 @@ export {
   type LabelProps,
 } from "./components/label";
 
-export { default as Checkbox } from "./components/checkbox/checkbox.svelte";
+export { Checkbox } from "./components/checkbox";
 export { default as CheckboxGroup } from "./components/checkbox/checkbox-group.svelte";
 export { default as CheckboxItem } from "./components/checkbox/checkbox-item.svelte";
 export { default as CheckboxLegend } from "./components/checkbox/checkbox-legend.svelte";
@@ -146,7 +146,7 @@ export {
   type PoweredByCloudflareProps,
 } from "./components/cloudflare-logo";
 
-export { default as Collapsible } from "./components/collapsible/collapsible-root.svelte";
+export { Collapsible } from "./components/collapsible";
 export { default as CollapsibleRoot } from "./components/collapsible/collapsible-root.svelte";
 export { default as CollapsibleTrigger } from "./components/collapsible/collapsible-trigger.svelte";
 export { default as CollapsiblePanel } from "./components/collapsible/collapsible-panel.svelte";
@@ -167,7 +167,7 @@ export {
   type KumoCollapsibleVariantsProps,
 } from "./components/collapsible";
 
-export { default as Combobox } from "./components/combobox/combobox.svelte";
+export { Combobox } from "./components/combobox";
 export { default as ComboboxRoot } from "./components/combobox/combobox.svelte";
 export { default as ComboboxChip } from "./components/combobox/combobox-chip.svelte";
 export { default as ComboboxContent } from "./components/combobox/combobox-content.svelte";
@@ -208,7 +208,7 @@ export {
   type KumoComboboxVariantsProps,
 } from "./components/combobox";
 
-export { default as CommandPalette } from "./components/command-palette/command-palette.svelte";
+export { CommandPalette } from "./components/command-palette";
 export { default as CommandPaletteRoot } from "./components/command-palette/command-palette.svelte";
 export { default as CommandPaletteDialog } from "./components/command-palette/command-palette-dialog.svelte";
 export { default as CommandPaletteEmpty } from "./components/command-palette/command-palette-empty.svelte";
@@ -242,7 +242,7 @@ export {
   type HighlightRange,
 } from "./components/command-palette";
 
-export { default as Code } from "./components/code/code.svelte";
+export { Code } from "./components/code";
 export { default as CodeBlock } from "./components/code/code-block.svelte";
 export {
   codeVariants,
@@ -317,7 +317,7 @@ export {
   type KumoDeleteResourceVariantsProps,
 } from "./blocks/delete-resource";
 
-export { default as Dialog } from "./components/dialog/dialog-content.svelte";
+export { Dialog } from "./components/dialog";
 export { default as DialogRoot } from "./components/dialog/dialog-root.svelte";
 export { default as DialogPortal } from "./components/dialog/dialog-portal.svelte";
 export { default as DialogOverlay } from "./components/dialog/dialog-overlay.svelte";
@@ -349,7 +349,7 @@ export {
   type KumoDialogVariantsProps,
 } from "./components/dialog";
 
-export { default as DropdownMenu } from "./components/dropdown/dropdown-root.svelte";
+export { DropdownMenu } from "./components/dropdown";
 export { default as DropdownMenuRoot } from "./components/dropdown/dropdown-root.svelte";
 export { default as DropdownMenuTrigger } from "./components/dropdown/dropdown-trigger.svelte";
 export { default as DropdownMenuPortal } from "./components/dropdown/dropdown-portal.svelte";
@@ -416,7 +416,7 @@ export {
   type NormalizedFieldError,
 } from "./components/field";
 
-export { default as Flow } from "./components/flow/flow.svelte";
+export { Flow } from "./components/flow";
 export { default as FlowRoot } from "./components/flow/flow.svelte";
 export { default as FlowAnchor } from "./components/flow/flow-anchor.svelte";
 export { default as FlowConnectors } from "./components/flow/connectors.svelte";
@@ -479,7 +479,7 @@ export {
   type TextareaProps,
 } from "./components/input";
 
-export { default as InputGroup } from "./components/input-group/input-group.svelte";
+export { InputGroup } from "./components/input-group";
 export { default as InputGroupRoot } from "./components/input-group/input-group.svelte";
 export { default as InputGroupAddon } from "./components/input-group/input-group-addon.svelte";
 export { default as InputGroupButton } from "./components/input-group/input-group-button.svelte";
@@ -505,7 +505,7 @@ export {
   type KumoInputGroupVariantsProps,
 } from "./components/input-group";
 
-export { default as Tooltip } from "./components/tooltip/tooltip.svelte";
+export { Tooltip } from "./components/tooltip";
 export { default as TooltipRoot } from "./components/tooltip/tooltip-root.svelte";
 export { default as TooltipTrigger } from "./components/tooltip/tooltip-trigger.svelte";
 export { default as TooltipPortal } from "./components/tooltip/tooltip-portal.svelte";
@@ -526,7 +526,7 @@ export {
   type TooltipTriggerProps,
 } from "./components/tooltip";
 
-export { default as Link } from "./components/link/link.svelte";
+export { Link } from "./components/link";
 export { default as ExternalIcon } from "./components/link/external-icon.svelte";
 export {
   linkVariants,
@@ -538,7 +538,7 @@ export {
   type LinkProps,
 } from "./components/link";
 
-export { default as LayerCard } from "./components/layer-card/layer-card.svelte";
+export { LayerCard } from "./components/layer-card";
 export { default as LayerCardPrimary } from "./components/layer-card/layer-card-primary.svelte";
 export { default as LayerCardSecondary } from "./components/layer-card/layer-card-secondary.svelte";
 export {
@@ -585,7 +585,7 @@ export {
   type MeterProps,
 } from "./components/meter";
 
-export { default as Pagination } from "./components/pagination/pagination.svelte";
+export { Pagination } from "./components/pagination";
 export { default as PaginationControls } from "./components/pagination/pagination-controls.svelte";
 export { default as PaginationInfo } from "./components/pagination/pagination-info.svelte";
 export { default as PaginationPageSize } from "./components/pagination/pagination-page-size.svelte";
@@ -608,7 +608,7 @@ export {
   type PaginationSeparatorProps,
 } from "./components/pagination";
 
-export { default as Popover } from "./components/popover/popover-root.svelte";
+export { Popover } from "./components/popover";
 export { default as PopoverRoot } from "./components/popover/popover-root.svelte";
 export { default as PopoverPortal } from "./components/popover/popover-portal.svelte";
 export { default as PopoverTrigger } from "./components/popover/popover-trigger.svelte";
@@ -634,7 +634,7 @@ export {
   type PopoverTriggerProps,
 } from "./components/popover";
 
-export { default as Radio } from "./components/radio/radio-group.svelte";
+export { Radio } from "./components/radio";
 export { default as RadioGroup } from "./components/radio/radio-group.svelte";
 export { default as RadioItem } from "./components/radio/radio-item.svelte";
 export { default as RadioGroupItem } from "./components/radio/radio-item.svelte";
@@ -654,7 +654,7 @@ export {
   type RadioVariant,
 } from "./components/radio";
 
-export { default as Select } from "./components/select/select.svelte";
+export { Select } from "./components/select";
 export { default as SelectRoot } from "./components/select/select-root.svelte";
 export { default as SelectTrigger } from "./components/select/select-trigger.svelte";
 export { default as SelectValue } from "./components/select/select-value.svelte";
@@ -702,7 +702,7 @@ export {
   type SensitiveInputProps,
 } from "./components/sensitive-input";
 
-export { default as Sidebar } from "./components/sidebar/sidebar.svelte";
+export { Sidebar } from "./components/sidebar";
 export { default as SidebarCollapsible } from "./components/sidebar/sidebar-collapsible.svelte";
 export { default as SidebarCollapsibleContent } from "./components/sidebar/sidebar-collapsible-content.svelte";
 export { default as SidebarCollapsibleTrigger } from "./components/sidebar/sidebar-collapsible-trigger.svelte";
@@ -774,7 +774,7 @@ export {
   type SurfaceProps,
 } from "./components/surface";
 
-export { default as Switch } from "./components/switch/switch.svelte";
+export { Switch } from "./components/switch";
 export { default as SwitchControl } from "./components/switch/switch-control.svelte";
 export { default as SwitchGroup } from "./components/switch/switch-group.svelte";
 export { default as SwitchItem } from "./components/switch/switch-item.svelte";
@@ -796,7 +796,7 @@ export {
   type SwitchVariant,
 } from "./components/switch";
 
-export { default as TableOfContents } from "./components/table-of-contents/table-of-contents.svelte";
+export { TableOfContents } from "./components/table-of-contents";
 export { default as TableOfContentsRoot } from "./components/table-of-contents/table-of-contents.svelte";
 export { default as TableOfContentsGroup } from "./components/table-of-contents/table-of-contents-group.svelte";
 export { default as TableOfContentsItem } from "./components/table-of-contents/table-of-contents-item.svelte";
@@ -817,7 +817,7 @@ export {
   type TableOfContentsTitleProps,
 } from "./components/table-of-contents";
 
-export { default as Tabs } from "./components/tabs/tabs.svelte";
+export { Tabs } from "./components/tabs";
 export { default as TabsRoot } from "./components/tabs/tabs-root.svelte";
 export { default as TabsList } from "./components/tabs/tabs-list.svelte";
 export { default as TabsTrigger } from "./components/tabs/tabs-trigger.svelte";
@@ -839,7 +839,7 @@ export {
   type TabsTriggerProps,
 } from "./components/tabs";
 
-export { default as Table } from "./components/table/table.svelte";
+export { Table } from "./components/table";
 export { default as TableBody } from "./components/table/table-body.svelte";
 export { default as TableCell } from "./components/table/table-cell.svelte";
 export { default as TableCheckCell } from "./components/table/table-check-cell.svelte";

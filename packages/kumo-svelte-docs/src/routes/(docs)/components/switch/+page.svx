@@ -36,7 +36,7 @@ import { Switch } from "kumo-svelte";
 ### Granular
 
 ```ts
-import { Switch } from "kumo-svelte/components/switch";
+import * as Switch from "kumo-svelte/components/switch";
 ```
 
 ## Usage
@@ -111,7 +111,7 @@ When a custom `id` is provided, clicking the label still toggles the switch.
 
 ### Switch Group
 
-Group related switches with `SwitchGroup`. Provides a shared legend, description, and error message for the group.
+Group related switches with `Switch.Group`. Provides a shared legend, description, and error message for the group.
 
 <Example demo="switch-group-demo">
   <SwitchGroupDemo />
@@ -119,7 +119,7 @@ Group related switches with `SwitchGroup`. Provides a shared legend, description
 
 ### Visually Hidden Legend
 
-Use `SwitchLegend` with `class="sr-only"` to keep the legend accessible to screen readers while hiding it visually.
+Use `Switch.Legend` with `class="sr-only"` to keep the legend accessible to screen readers while hiding it visually.
 
 <Example demo="switch-legend-sr-only-demo">
   <SwitchLegendSrOnlyDemo />
@@ -127,7 +127,7 @@ Use `SwitchLegend` with `class="sr-only"` to keep the legend accessible to scree
 
 ### Custom Legend Styling
 
-`SwitchLegend` accepts `class` for full control over legend presentation.
+`Switch.Legend` accepts `class` for full control over legend presentation.
 
 <Example demo="switch-legend-custom-demo">
   <SwitchLegendCustomDemo />
@@ -152,7 +152,7 @@ Use `SwitchLegend` with `class="sr-only"` to keep the legend accessible to scree
 | `variant` | `"default" \| "neutral"` | `"default"` | Visual variant. |
 | `class` | `string` | — | Additional classes for the control. |
 
-### `SwitchGroup`
+### `Switch.Group`
 
 Container for multiple switches with legend, description, and error support.
 
@@ -166,14 +166,14 @@ Container for multiple switches with legend, description, and error support.
 | `controlFirst` | `boolean` | `true` | Control position for child items. |
 | `class` | `string` | — | Additional classes. |
 
-### `SwitchLegend`
+### `Switch.Legend`
 
-Composable legend sub-component for SwitchGroup. Accepts `class` for custom styling, such as `class="sr-only"`.
+Composable legend sub-component for `Switch.Group`. Accepts `class` for custom styling, such as `class="sr-only"`.
 
-### `SwitchItem`
+### `Switch.Item`
 
-Individual switch within SwitchGroup. Supports `checked`, `onCheckedChange`, `disabled`, `id`, `label`, `size`, `transitioning`, `variant`, and `class`.
+Individual switch within `Switch.Group`. Supports `checked`, `onCheckedChange`, `disabled`, `id`, `label`, `size`, `transitioning`, `variant`, and `class`.
 
 ## Svelte Notes
 
-The Svelte package exports named components (`Switch`, `SwitchGroup`, `SwitchItem`, `SwitchLegend`) instead of React compound properties (`Switch.Group`, `Switch.Item`, `Switch.Legend`).
+The Svelte package supports Kumo-style compound properties (`Switch.Group`, `Switch.Item`, `Switch.Legend`) and shadcn-svelte-style namespace imports.

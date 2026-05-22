@@ -28,24 +28,16 @@ import { CommandPalette } from "kumo-svelte";
 ### Granular
 
 ```ts
-import { CommandPalette } from "kumo-svelte/components/command-palette";
+import * as CommandPalette from "kumo-svelte/components/command-palette";
 ```
 
 ## Usage
 
-CommandPalette is built on Bits UI's Command primitive. Use `CommandPaletteDialog` when the palette should open in a modal dialog, or use `CommandPalette` directly for an inline command surface.
+CommandPalette is built on Bits UI's Command primitive. Use `CommandPalette.Dialog` when the palette should open in a modal dialog, or use `CommandPalette` directly for an inline command surface.
 
 ```svelte
 <script lang="ts">
-  import {
-    Button,
-    CommandPalette,
-    CommandPaletteDialog,
-    CommandPaletteEmpty,
-    CommandPaletteInput,
-    CommandPaletteItem,
-    CommandPaletteList,
-  } from "kumo-svelte";
+  import { Button, CommandPalette } from "kumo-svelte";
 
   const items = ["Create Project", "Open Settings"];
   let open = $state(false);
@@ -54,19 +46,19 @@ CommandPalette is built on Bits UI's Command primitive. Use `CommandPaletteDialo
 
 <Button onclick={() => (open = true)}>Open</Button>
 
-<CommandPaletteDialog bind:open>
+<CommandPalette.Dialog bind:open>
   <CommandPalette bind:value={search}>
-    <CommandPaletteInput placeholder="Search..." />
-    <CommandPaletteList>
+    <CommandPalette.Input placeholder="Search..." />
+    <CommandPalette.List>
       {#each items as item}
-        <CommandPaletteItem value={item} onSelect={() => (open = false)}>
+        <CommandPalette.Item value={item} onSelect={() => (open = false)}>
           {item}
-        </CommandPaletteItem>
+        </CommandPalette.Item>
       {/each}
-      <CommandPaletteEmpty>No results</CommandPaletteEmpty>
-    </CommandPaletteList>
+      <CommandPalette.Empty>No results</CommandPalette.Empty>
+    </CommandPalette.List>
   </CommandPalette>
-</CommandPaletteDialog>
+</CommandPalette.Dialog>
 ```
 
 ## Keyboard Navigation
@@ -77,7 +69,7 @@ Built-in keyboard navigation is provided automatically by the Command primitive:
 | --- | --- |
 | `↑` / `↓` | Move highlight between items. |
 | `Enter` | Select highlighted item. |
-| `Escape` | Close the dialog when used inside `CommandPaletteDialog`. |
+| `Escape` | Close the dialog when used inside `CommandPalette.Dialog`. |
 
 ## Examples
 
@@ -115,7 +107,7 @@ Pass standard HTML input attributes like `autocomplete` to suppress browser auto
 
 ### ResultItem with Breadcrumbs
 
-Use `CommandPaletteResultItem` for rich items with breadcrumbs, icons, and optional text highlighting.
+Use `CommandPalette.ResultItem` for rich items with breadcrumbs, icons, and optional text highlighting.
 
 <Example demo="command-palette-result-item-demo">
   <CommandPaletteResultItemDemo />
@@ -123,35 +115,35 @@ Use `CommandPaletteResultItem` for rich items with breadcrumbs, icons, and optio
 
 ## Component Parts
 
-### CommandPalette / CommandPaletteRoot
+### CommandPalette / CommandPalette.Root
 
 The root command surface. It manages search value and item filtering.
 
-### CommandPaletteDialog
+### CommandPalette.Dialog
 
 Modal dialog wrapper. Put a `CommandPalette` inside it when the command palette should open over the page.
 
-### CommandPaletteInput
+### CommandPalette.Input
 
 Search input field with auto-focus and keyboard handling.
 
-### CommandPaletteList
+### CommandPalette.List
 
 Scrollable container for results.
 
-### CommandPaletteGroup
+### CommandPalette.Group
 
 Category grouping container.
 
-### CommandPaletteGroupLabel
+### CommandPalette.GroupLabel
 
 Section header text within a group.
 
-### CommandPaletteItem
+### CommandPalette.Item
 
 Basic selectable item.
 
-### CommandPaletteResultItem
+### CommandPalette.ResultItem
 
 Rich item with breadcrumbs, icons, descriptions, external indicators, and text highlighting.
 
@@ -159,21 +151,21 @@ Rich item with breadcrumbs, icons, descriptions, external indicators, and text h
 
 Renders text with highlighted portions based on match indices.
 
-### CommandPaletteEmpty
+### CommandPalette.Empty
 
 Empty state when no results match.
 
-### CommandPaletteLoading
+### CommandPalette.Loading
 
 Loading spinner state.
 
-### CommandPaletteFooter
+### CommandPalette.Footer
 
 Footer for keyboard hints or other content.
 
 ## API Reference
 
-### CommandPalette / CommandPaletteRoot Props
+### CommandPalette / CommandPalette.Root Props
 
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -186,7 +178,7 @@ Footer for keyboard hints or other content.
 | `class` | `string` | — | Additional classes. |
 | `children` | `Snippet` | — | Input, list, groups, items, footer, and other content. |
 
-### CommandPaletteDialog Props
+### CommandPalette.Dialog Props
 
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -195,7 +187,7 @@ Footer for keyboard hints or other content.
 | `class` | `string` | — | Additional classes for dialog content. |
 | `children` | `Snippet` | — | Dialog content, usually `CommandPalette`. |
 
-### CommandPaletteInput Props
+### CommandPalette.Input Props
 
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -209,7 +201,7 @@ Footer for keyboard hints or other content.
 | `aria-label` | `string` | — | Accessible input label. |
 | `class` | `string` | — | Additional classes. |
 
-### CommandPaletteItem Props
+### CommandPalette.Item Props
 
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -221,7 +213,7 @@ Footer for keyboard hints or other content.
 | `class` | `string` | — | Additional classes. |
 | `children` | `Snippet` | — | Item content. |
 
-### CommandPaletteResultItem Props
+### CommandPalette.ResultItem Props
 
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -241,11 +233,11 @@ Footer for keyboard hints or other content.
 
 | Component | Description |
 | --- | --- |
-| `CommandPaletteList` | Scrollable results container. Accepts `children` and `class`. |
-| `CommandPaletteGroup` | Group wrapper. Accepts `children`, `class`, `forceMount`, and `value`. |
-| `CommandPaletteGroupLabel` | Group heading. Accepts `children` and `class`. |
-| `CommandPaletteEmpty` | Empty state. Accepts `children` and `forceMount`. |
-| `CommandPaletteLoading` | Loading state. Accepts `children` and `progress`. |
-| `CommandPaletteFooter` | Footer area. Accepts `children` and `class`. |
-| `CommandPaletteSeparator` | Separator for grouping sections. |
+| `CommandPalette.List` | Scrollable results container. Accepts `children` and `class`. |
+| `CommandPalette.Group` | Group wrapper. Accepts `children`, `class`, `forceMount`, and `value`. |
+| `CommandPalette.GroupLabel` | Group heading. Accepts `children` and `class`. |
+| `CommandPalette.Empty` | Empty state. Accepts `children` and `forceMount`. |
+| `CommandPalette.Loading` | Loading state. Accepts `children` and `progress`. |
+| `CommandPalette.Footer` | Footer area. Accepts `children` and `class`. |
+| `CommandPalette.Separator` | Separator for grouping sections. |
 | `HighlightedText` | Highlighted text helper with `text`, `highlights`, and `class`. |

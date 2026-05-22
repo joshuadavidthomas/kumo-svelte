@@ -1,10 +1,10 @@
 <script lang="ts">
   import PlusIcon from "phosphor-svelte/lib/PlusIcon";
   import TranslateIcon from "phosphor-svelte/lib/TranslateIcon";
-  import { Button, Tooltip, TooltipProvider } from "kumo-svelte";
+  import { Button, Tooltip } from "kumo-svelte";
 </script>
 
-<TooltipProvider>
+<Tooltip.Provider>
   <div class="flex gap-2">
     <Tooltip content="Add">
       {#snippet render({ props })}
@@ -21,4 +21,4 @@
       {/snippet}
     </Tooltip>
   </div>
-</TooltipProvider>
+</Tooltip.Provider>

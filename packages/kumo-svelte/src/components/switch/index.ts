@@ -5,13 +5,30 @@ import SwitchGroupComponent from "./switch-group.svelte";
 import SwitchItemComponent from "./switch-item.svelte";
 import SwitchLegendComponent from "./switch-legend.svelte";
 
-export { default as Switch } from "./switch.svelte";
-export { default as SwitchControl } from "./switch-control.svelte";
-export { default as SwitchGroup } from "./switch-group.svelte";
-export { default as SwitchItem } from "./switch-item.svelte";
-export { default as SwitchLegend } from "./switch-legend.svelte";
+const Switch = Object.assign(SwitchComponent, {
+  Root: SwitchComponent,
+  Control: SwitchControlComponent,
+  Group: SwitchGroupComponent,
+  Item: SwitchItemComponent,
+  Legend: SwitchLegendComponent,
+});
+
+export {
+  Switch,
+  SwitchComponent as SwitchRoot,
+  SwitchComponent as Root,
+  SwitchControlComponent as SwitchControl,
+  SwitchControlComponent as Control,
+  SwitchGroupComponent as SwitchGroup,
+  SwitchGroupComponent as Group,
+  SwitchItemComponent as SwitchItem,
+  SwitchItemComponent as Item,
+  SwitchLegendComponent as SwitchLegend,
+  SwitchLegendComponent as Legend,
+};
 
 export type SwitchProps = ComponentProps<typeof SwitchComponent>;
+export type SwitchRootProps = SwitchProps;
 export type SwitchControlProps = ComponentProps<typeof SwitchControlComponent>;
 export type SwitchGroupProps = ComponentProps<typeof SwitchGroupComponent>;
 export type SwitchItemProps = ComponentProps<typeof SwitchItemComponent>;

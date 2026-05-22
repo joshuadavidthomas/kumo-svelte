@@ -1,6 +1,6 @@
 <script lang="ts">
   import SidebarSimpleIcon from "phosphor-svelte/lib/SidebarSimpleIcon";
-  import { Flow, FlowNode, FlowParallel } from "kumo-svelte";
+  import { Flow } from "kumo-svelte";
 
   const navItems = ["Overview", "Settings", "Logs", "Analytics"];
 
@@ -37,17 +37,17 @@
 
     <div class="h-48 flex-1 overflow-auto p-4">
       <Flow>
-        <FlowNode>HTTP Request</FlowNode>
-        <FlowParallel>
-          <FlowNode>Auth Check</FlowNode>
-          <FlowNode>Rate Limit</FlowNode>
-          <FlowNode>Cache Lookup</FlowNode>
-        </FlowParallel>
-        <FlowNode>Route Handler</FlowNode>
-        <FlowParallel>
-          <FlowNode>Log</FlowNode>
-          <FlowNode>Respond</FlowNode>
-        </FlowParallel>
+        <Flow.Node>HTTP Request</Flow.Node>
+        <Flow.Parallel>
+          <Flow.Node>Auth Check</Flow.Node>
+          <Flow.Node>Rate Limit</Flow.Node>
+          <Flow.Node>Cache Lookup</Flow.Node>
+        </Flow.Parallel>
+        <Flow.Node>Route Handler</Flow.Node>
+        <Flow.Parallel>
+          <Flow.Node>Log</Flow.Node>
+          <Flow.Node>Respond</Flow.Node>
+        </Flow.Parallel>
       </Flow>
     </div>
   </div>

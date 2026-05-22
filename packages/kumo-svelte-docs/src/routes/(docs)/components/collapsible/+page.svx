@@ -24,25 +24,13 @@ primitive: collapsible
 ### Barrel
 
 ```ts
-import {
-  Collapsible,
-  CollapsibleDefaultPanel,
-  CollapsibleDefaultTrigger,
-  CollapsiblePanel,
-  CollapsibleTrigger,
-} from "kumo-svelte";
+import { Collapsible } from "kumo-svelte";
 ```
 
 ### Granular
 
 ```ts
-import {
-  Collapsible,
-  CollapsibleDefaultPanel,
-  CollapsibleDefaultTrigger,
-  CollapsiblePanel,
-  CollapsibleTrigger,
-} from "kumo-svelte/components/collapsible";
+import * as Collapsible from "kumo-svelte/components/collapsible";
 ```
 
 ## Usage
@@ -51,35 +39,35 @@ Collapsible uses named Svelte components for full composition control.
 
 ### With Default Styling
 
-Use `CollapsibleDefaultTrigger` and `CollapsibleDefaultPanel` for the classic Kumo style:
+Use `Collapsible.DefaultTrigger` and `Collapsible.DefaultPanel` for the classic Kumo style:
 
 ```svelte
 <script lang="ts">
-  import { Collapsible, CollapsibleDefaultPanel, CollapsibleDefaultTrigger } from "kumo-svelte";
+  import { Collapsible } from "kumo-svelte";
 
   let open = $state(false);
 </script>
 
 <Collapsible bind:open>
-  <CollapsibleDefaultTrigger>Show details</CollapsibleDefaultTrigger>
-  <CollapsibleDefaultPanel>
+  <Collapsible.DefaultTrigger>Show details</Collapsible.DefaultTrigger>
+  <Collapsible.DefaultPanel>
     Content with border-left accent styling.
-  </CollapsibleDefaultPanel>
+  </Collapsible.DefaultPanel>
 </Collapsible>
 ```
 
 ### Custom Trigger
 
-Use `CollapsibleTrigger` and `CollapsiblePanel` for full control over trigger and panel styling:
+Use `Collapsible.Trigger` and `Collapsible.Panel` for full control over trigger and panel styling:
 
 ```svelte
 <Collapsible bind:open>
-  <CollapsibleTrigger class="rounded-md border px-3 py-1.5">
+  <Collapsible.Trigger class="rounded-md border px-3 py-1.5">
     {open ? "Hide" : "Show"} details
-  </CollapsibleTrigger>
-  <CollapsiblePanel class="mt-2 rounded-lg bg-kumo-tint p-4">
+  </Collapsible.Trigger>
+  <Collapsible.Panel class="mt-2 rounded-lg bg-kumo-tint p-4">
     Custom styled panel content.
-  </CollapsiblePanel>
+  </Collapsible.Panel>
 </Collapsible>
 ```
 
@@ -99,7 +87,7 @@ Use `CollapsibleTrigger` and `CollapsiblePanel` for full control over trigger an
 
 ### Custom Trigger
 
-Use `CollapsibleTrigger` with custom classes for full control.
+Use `Collapsible.Trigger` with custom classes for full control.
 
 <Example demo="collapsible-custom-trigger-demo">
   <CollapsibleCustomTriggerDemo />
@@ -107,7 +95,7 @@ Use `CollapsibleTrigger` with custom classes for full control.
 
 ### Keep Mounted
 
-Use `forceMount` on `CollapsibleDefaultPanel` or `CollapsiblePanel` to preserve internal state — such as form inputs — when the panel is collapsed.
+Use `forceMount` on `Collapsible.DefaultPanel` or `Collapsible.Panel` to preserve internal state — such as form inputs — when the panel is collapsed.
 
 <Example demo="collapsible-force-mount-demo">
   <CollapsibleForceMountDemo />
@@ -127,11 +115,11 @@ Control which item is open to create an accordion where only one item can be exp
 | --- | --- |
 | `Collapsible` | Manages open state. Use `bind:open` or pass `open` and `onOpenChange` for controlled mode. |
 | `CollapsibleRoot` | Alias for `Collapsible`. |
-| `CollapsibleTrigger` | Button that toggles visibility. Add classes for custom styling. |
-| `CollapsiblePanel` | Container for collapsible content. |
-| `CollapsibleContent` | Alias for `CollapsiblePanel`. |
-| `CollapsibleDefaultTrigger` | Pre-styled trigger with text label and animated caret icon. |
-| `CollapsibleDefaultPanel` | Pre-styled panel with border-left accent and standard spacing. |
+| `Collapsible.Trigger` | Button that toggles visibility. Add classes for custom styling. |
+| `Collapsible.Panel` | Container for collapsible content. |
+| `Collapsible.Content` | Alias for `Collapsible.Panel`. |
+| `Collapsible.DefaultTrigger` | Pre-styled trigger with text label and animated caret icon. |
+| `Collapsible.DefaultPanel` | Pre-styled panel with border-left accent and standard spacing. |
 
 ## API Reference
 
@@ -147,7 +135,7 @@ Control which item is open to create an accordion where only one item can be exp
 | `class` | `string` | — | Additional CSS classes. |
 | `children` | `Snippet` | — | Trigger and panel content. |
 
-### CollapsibleTrigger
+### Collapsible.Trigger
 
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -156,7 +144,7 @@ Control which item is open to create an accordion where only one item can be exp
 | `id` | `string` | — | Trigger element ID. |
 | `class` | `string` | — | Additional CSS classes. |
 
-### CollapsiblePanel / CollapsibleContent
+### Collapsible.Panel / Collapsible.Content
 
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -166,7 +154,7 @@ Control which item is open to create an accordion where only one item can be exp
 | `id` | `string` | — | Panel element ID. |
 | `class` | `string` | — | Additional CSS classes. |
 
-### CollapsibleDefaultTrigger
+### Collapsible.DefaultTrigger
 
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -175,6 +163,6 @@ Control which item is open to create an accordion where only one item can be exp
 | `id` | `string` | — | Trigger element ID. |
 | `class` | `string` | — | Additional CSS classes. |
 
-### CollapsibleDefaultPanel
+### Collapsible.DefaultPanel
 
-Accepts the same props as `CollapsiblePanel`, with the default Kumo border-left accent and spacing applied.
+Accepts the same props as `Collapsible.Panel`, with the default Kumo border-left accent and spacing applied.

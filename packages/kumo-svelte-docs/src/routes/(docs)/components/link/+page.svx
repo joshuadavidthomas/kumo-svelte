@@ -23,13 +23,7 @@ primitive: a
 ### Barrel
 
 ```ts
-import { ExternalIcon, Link, LinkProvider } from "kumo-svelte";
-```
-
-### Granular
-
-```ts
-import { Link, ExternalIcon } from "kumo-svelte/components/link";
+import * as Link from "kumo-svelte/components/link";
 import { LinkProvider } from "kumo-svelte/utils";
 ```
 

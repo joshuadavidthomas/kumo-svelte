@@ -1,5 +1,10 @@
 <script lang="ts">
-  import { Badge, Input, LayerCard, LayerCardPrimary, LayerCardSecondary, Tabs } from "kumo-svelte";
+  import {
+    Badge,
+    Input,
+    LayerCard,
+    Tabs,
+  } from "kumo-svelte";
 
   const origins = [
     { origin: "challenges.cloudflare.com", s2xx: 1, s4xx: 0, duration: "95.4ms" },
@@ -23,9 +28,9 @@
 </script>
 
 <LayerCard layered class="w-full max-w-[540px]">
-  <LayerCardSecondary>Subrequests</LayerCardSecondary>
+  <LayerCard.Secondary>Subrequests</LayerCard.Secondary>
 
-  <LayerCardPrimary>
+  <LayerCard.Primary>
     <div class="mb-2 flex items-center gap-3">
       <Input
         size="sm"
@@ -78,5 +83,5 @@
     <div class="-mx-1 border-t border-kumo-fill pt-2 text-xs text-kumo-subtle">
       Showing {filtered.length} of {origins.length}
     </div>
-  </LayerCardPrimary>
+  </LayerCard.Primary>
 </LayerCard>

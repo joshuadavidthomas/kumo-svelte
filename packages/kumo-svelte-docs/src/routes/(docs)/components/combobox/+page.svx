@@ -36,20 +36,14 @@ import { Combobox } from "kumo-svelte";
 ### Granular
 
 ```ts
-import { Combobox } from "kumo-svelte/components/combobox";
+import * as Combobox from "kumo-svelte/components/combobox";
 ```
 
 ## Usage
 
 ```svelte
 <script lang="ts">
-  import {
-    Combobox,
-    ComboboxContent,
-    ComboboxItem,
-    ComboboxList,
-    ComboboxTriggerInput,
-  } from "kumo-svelte";
+  import { Combobox } from "kumo-svelte";
 
   const fruits = ["Apple", "Banana", "Cherry", "Date", "Elderberry"];
   const items = fruits.map((fruit) => ({ label: fruit, value: fruit }));
@@ -58,14 +52,14 @@ import { Combobox } from "kumo-svelte/components/combobox";
 </script>
 
 <Combobox bind:value bind:open {items}>
-  <ComboboxTriggerInput placeholder="Select a fruit" />
-  <ComboboxContent>
-    <ComboboxList>
+  <Combobox.TriggerInput placeholder="Select a fruit" />
+  <Combobox.Content>
+    <Combobox.List>
       {#each fruits as fruit}
-        <ComboboxItem value={fruit}>{fruit}</ComboboxItem>
+        <Combobox.Item value={fruit}>{fruit}</Combobox.Item>
       {/each}
-    </ComboboxList>
-  </ComboboxContent>
+    </Combobox.List>
+  </Combobox.Content>
 </Combobox>
 ```
 
@@ -79,7 +73,7 @@ The Combobox supports four size variants that match the Input component: `xs`, `
   <ComboboxSizesDemo />
 </Example>
 
-Size also applies to `ComboboxTriggerValue` for the searchable-inside variant.
+Size also applies to `Combobox.TriggerValue` for the searchable-inside variant.
 
 <Example demo="combobox-sizes-searchable-inside-demo">
   <ComboboxSizesSearchableInsideDemo />
@@ -87,7 +81,7 @@ Size also applies to `ComboboxTriggerValue` for the searchable-inside variant.
 
 ### Searchable Item (Inside)
 
-Use `ComboboxTriggerValue` for a select-style trigger and put `ComboboxInput` inside the popup to filter options.
+Use `Combobox.TriggerValue` for a select-style trigger and put `Combobox.Input` inside the popup to filter options.
 
 <Example demo="combobox-searchable-inside-demo">
   <ComboboxSearchableInsideDemo />
@@ -95,7 +89,7 @@ Use `ComboboxTriggerValue` for a select-style trigger and put `ComboboxInput` in
 
 ### Searchable Select with Placeholder
 
-Use `ComboboxTriggerValue` with a `placeholder` prop to create a searchable Select-style field. The placeholder is displayed until a value is selected.
+Use `Combobox.TriggerValue` with a `placeholder` prop to create a searchable Select-style field. The placeholder is displayed until a value is selected.
 
 <Example demo="combobox-searchable-select-demo">
   <ComboboxSearchableSelectDemo />
@@ -103,7 +97,7 @@ Use `ComboboxTriggerValue` with a `placeholder` prop to create a searchable Sele
 
 ### Custom Trigger
 
-Use `ComboboxTrigger` with a `child` snippet to replace the default input-like trigger with your own element. Pair it with your selected value label. This is useful for account switchers, sidebar navigation, or anywhere the default chrome does not fit.
+Use `Combobox.Trigger` with a `child` snippet to replace the default input-like trigger with your own element. Pair it with your selected value label. This is useful for account switchers, sidebar navigation, or anywhere the default chrome does not fit.
 
 <Example demo="combobox-custom-trigger-demo">
   <ComboboxCustomTriggerDemo />
@@ -111,7 +105,7 @@ Use `ComboboxTrigger` with a `child` snippet to replace the default input-like t
 
 ### Grouped
 
-Group items into categories with `ComboboxGroup` and `ComboboxGroupLabel`.
+Group items into categories with `Combobox.Group` and `Combobox.GroupLabel`.
 
 <Example demo="combobox-grouped-demo">
   <ComboboxGroupedDemo />
@@ -143,7 +137,7 @@ Pass the `disabled` prop to prevent interaction.
 
 ### Disabled Items
 
-Pass the `disabled` prop to an individual `ComboboxItem` to make it non-selectable. Disabled rows are rendered with a muted style and skipped during keyboard navigation selection.
+Pass the `disabled` prop to an individual `Combobox.Item` to make it non-selectable. Disabled rows are rendered with a muted style and skipped during keyboard navigation selection.
 
 <Example demo="combobox-disabled-items-demo">
   <ComboboxDisabledItemsDemo />
@@ -159,39 +153,39 @@ Display validation errors with the root `error` prop.
 
 ## Customizing Dropdown Height
 
-By default, `ComboboxContent` has a max height of `24rem` (384px) or the available viewport space, whichever is smaller. The dropdown scrolls automatically when content exceeds this height.
+By default, `Combobox.Content` has a max height of `24rem` (384px) or the available viewport space, whichever is smaller. The dropdown scrolls automatically when content exceeds this height.
 
-To customize the max height, pass a class to `ComboboxContent`:
+To customize the max height, pass a class to `Combobox.Content`:
 
 ```svelte
 <!-- Shorter dropdown (200px) -->
-<ComboboxContent class="max-h-[200px]">
+<Combobox.Content class="max-h-[200px]">
 
 <!-- Taller dropdown (500px) -->
-<ComboboxContent class="max-h-[500px]">
+<Combobox.Content class="max-h-[500px]">
 
 <!-- Use Tailwind presets -->
-<ComboboxContent class="max-h-64">
-<ComboboxContent class="max-h-96">
+<Combobox.Content class="max-h-64">
+<Combobox.Content class="max-h-96">
 ```
 
 ## Sub-components
 
 | Component | Description |
 | --- | --- |
-| `Combobox` / `ComboboxRoot` | Root component for searchable select state. |
-| `ComboboxTriggerInput` | Search input used as the trigger. |
-| `ComboboxTriggerValue` / `ComboboxTrigger` | Button trigger showing selected value or custom children. |
-| `ComboboxTriggerMultipleWithInput` | Multi-select trigger with selected chips and inline input. |
-| `ComboboxChip` | Selected item chip for multi-select triggers. |
-| `ComboboxContent` | Dropdown container for input and list content. |
-| `ComboboxInput` | Search input inside the dropdown. |
-| `ComboboxList` | Scrollable list viewport. |
-| `ComboboxItem` | Individual selectable option. |
-| `ComboboxEmpty` | Static empty state content. Render it conditionally when your filtered item list is empty. |
-| `ComboboxGroup` | Option group. |
-| `ComboboxGroupLabel` | Option group heading. |
-| `ComboboxSeparator` | Separator between groups or sections. |
+| `Combobox` / `Combobox.Root` | Root component for searchable select state. |
+| `Combobox.TriggerInput` | Search input used as the trigger. |
+| `Combobox.TriggerValue` / `Combobox.Trigger` | Button trigger showing selected value or custom children. |
+| `Combobox.TriggerMultipleWithInput` | Multi-select trigger with selected chips and inline input. |
+| `Combobox.Chip` | Selected item chip for multi-select triggers. |
+| `Combobox.Content` | Dropdown container for input and list content. |
+| `Combobox.Input` | Search input inside the dropdown. |
+| `Combobox.List` | Scrollable list viewport. |
+| `Combobox.Item` | Individual selectable option. |
+| `Combobox.Empty` | Static empty state content. Render it conditionally when your filtered item list is empty. |
+| `Combobox.Group` | Option group. |
+| `Combobox.GroupLabel` | Option group heading. |
+| `Combobox.Separator` | Separator between groups or sections. |
 
 ## API Reference
 
@@ -216,7 +210,7 @@ To customize the max height, pass a class to `ComboboxContent`:
 | `size` | `"xs" \| "sm" \| "base" \| "lg"` | `"base"` | Size variant. |
 | `children` | `Snippet` | — | Trigger and dropdown content. |
 
-### ComboboxTriggerInput
+### Combobox.TriggerInput
 
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -227,7 +221,7 @@ To customize the max height, pass a class to `ComboboxContent`:
 | `onValueChange` | `(value: string) => void` | — | Called as the input text changes. |
 | `class` | `string` | — | Additional classes for the wrapper. |
 
-### ComboboxTrigger / ComboboxTriggerValue
+### Combobox.Trigger / Combobox.TriggerValue
 
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -235,16 +229,16 @@ To customize the max height, pass a class to `ComboboxContent`:
 | `placeholder` | `string` | — | Placeholder text shown when no children are provided. |
 | `class` | `string` | — | Additional trigger classes. |
 
-### ComboboxTriggerMultipleWithInput
+### Combobox.TriggerMultipleWithInput
 
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |
 | `placeholder` | `string` | — | Input placeholder. |
-| `renderItem` | `Snippet<[value: string]>` | — | Render selected values as chips. Defaults to `ComboboxChip`. |
+| `renderItem` | `Snippet<[value: string]>` | — | Render selected values as chips. Defaults to `Combobox.Chip`. |
 | `inputSide` | `"right" \| "top"` | `"right"` | Position the input inline with chips or above them. |
 | `class` | `string` | — | Additional classes for the trigger wrapper. |
 
-### ComboboxChip
+### Combobox.Chip
 
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -253,7 +247,7 @@ To customize the max height, pass a class to `ComboboxContent`:
 | `children` | `Snippet` | — | Chip label. |
 | `class` | `string` | — | Additional classes. |
 
-### ComboboxContent
+### Combobox.Content
 
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -262,7 +256,7 @@ To customize the max height, pass a class to `ComboboxContent`:
 | `sideOffset` | `number` | `4` | Offset between trigger and content. |
 | `class` | `string` | — | Additional classes. |
 
-### ComboboxInput
+### Combobox.Input
 
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -273,7 +267,7 @@ To customize the max height, pass a class to `ComboboxContent`:
 | `onValueChange` | `(value: string) => void` | — | Called as the input text changes. |
 | `class` | `string` | — | Additional classes. |
 
-### ComboboxItem
+### Combobox.Item
 
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -283,6 +277,6 @@ To customize the max height, pass a class to `ComboboxContent`:
 | `children` | `Snippet` | — | Rendered item content. |
 | `class` | `string` | — | Additional classes. |
 
-### ComboboxEmpty, ComboboxList, ComboboxGroup, ComboboxGroupLabel, ComboboxSeparator
+### Combobox.Empty, Combobox.List, Combobox.Group, Combobox.GroupLabel, Combobox.Separator
 
 These layout sub-components accept `children` and, where supported by the implementation, a `class` prop for additional styling.

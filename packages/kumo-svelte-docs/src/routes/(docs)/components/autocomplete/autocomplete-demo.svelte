@@ -1,21 +1,15 @@
 <script lang="ts">
-  import {
-      Autocomplete,
-      AutocompleteContent,
-      AutocompleteInputGroup,
-      AutocompleteItem,
-      AutocompleteList,
-  } from "kumo-svelte";
+  import { Autocomplete } from "kumo-svelte";
   import { fruits, fruitItems } from "./autocomplete-data";
 </script>
 
 <Autocomplete items={fruitItems}>
-  <AutocompleteInputGroup placeholder="Search fruits…" />
-  <AutocompleteContent>
-    <AutocompleteList>
+  <Autocomplete.InputGroup placeholder="Search fruits…" />
+  <Autocomplete.Content>
+    <Autocomplete.List>
       {#each fruits as fruit (fruit)}
-        <AutocompleteItem value={fruit}>{fruit}</AutocompleteItem>
+        <Autocomplete.Item value={fruit}>{fruit}</Autocomplete.Item>
       {/each}
-    </AutocompleteList>
-  </AutocompleteContent>
+    </Autocomplete.List>
+  </Autocomplete.Content>
 </Autocomplete>

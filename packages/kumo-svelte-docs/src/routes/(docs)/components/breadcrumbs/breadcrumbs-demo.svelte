@@ -1,25 +1,19 @@
 <script lang="ts">
-  import {
-    Breadcrumbs,
-    BreadcrumbsCurrent,
-    BreadcrumbsEllipsis,
-    BreadcrumbsLink,
-    BreadcrumbsSeparator,
-  } from "kumo-svelte";
+  import { Breadcrumbs } from "kumo-svelte";
 </script>
 
 {#snippet mobileBreadcrumbs()}
-  <BreadcrumbsEllipsis />
-  <BreadcrumbsSeparator />
-  <BreadcrumbsLink href="#">Docs</BreadcrumbsLink>
-  <BreadcrumbsSeparator />
-  <BreadcrumbsCurrent>Breadcrumbs</BreadcrumbsCurrent>
+  <Breadcrumbs.Ellipsis />
+  <Breadcrumbs.Separator />
+  <Breadcrumbs.Link href="#">Docs</Breadcrumbs.Link>
+  <Breadcrumbs.Separator />
+  <Breadcrumbs.Current>Breadcrumbs</Breadcrumbs.Current>
 {/snippet}
 
 <Breadcrumbs mobileChildren={mobileBreadcrumbs}>
-  <BreadcrumbsLink href="#">Home</BreadcrumbsLink>
-  <BreadcrumbsSeparator />
-  <BreadcrumbsLink href="#">Docs</BreadcrumbsLink>
-  <BreadcrumbsSeparator />
-  <BreadcrumbsCurrent>Breadcrumbs</BreadcrumbsCurrent>
+  <Breadcrumbs.Link href="#">Home</Breadcrumbs.Link>
+  <Breadcrumbs.Separator />
+  <Breadcrumbs.Link href="#">Docs</Breadcrumbs.Link>
+  <Breadcrumbs.Separator />
+  <Breadcrumbs.Current>Breadcrumbs</Breadcrumbs.Current>
 </Breadcrumbs>

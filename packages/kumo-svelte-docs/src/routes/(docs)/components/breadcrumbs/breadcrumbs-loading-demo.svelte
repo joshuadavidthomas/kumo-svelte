@@ -1,11 +1,5 @@
 <script lang="ts">
-  import {
-    Breadcrumbs,
-    BreadcrumbsCurrent,
-    BreadcrumbsEllipsis,
-    BreadcrumbsLink,
-    BreadcrumbsSeparator,
-  } from "kumo-svelte";
+  import { Breadcrumbs } from "kumo-svelte";
   import HouseIcon from "phosphor-svelte/lib/HouseIcon";
 </script>
 
@@ -14,17 +8,17 @@
 {/snippet}
 
 {#snippet mobileBreadcrumbs()}
-  <BreadcrumbsEllipsis />
-  <BreadcrumbsSeparator />
-  <BreadcrumbsLink href="#">Docs</BreadcrumbsLink>
-  <BreadcrumbsSeparator />
-  <BreadcrumbsCurrent loading />
+  <Breadcrumbs.Ellipsis />
+  <Breadcrumbs.Separator />
+  <Breadcrumbs.Link href="#">Docs</Breadcrumbs.Link>
+  <Breadcrumbs.Separator />
+  <Breadcrumbs.Current loading />
 {/snippet}
 
 <Breadcrumbs mobileChildren={mobileBreadcrumbs}>
-  <BreadcrumbsLink href="#" icon={homeIcon}>Home</BreadcrumbsLink>
-  <BreadcrumbsSeparator />
-  <BreadcrumbsLink href="#">Docs</BreadcrumbsLink>
-  <BreadcrumbsSeparator />
-  <BreadcrumbsCurrent loading />
+  <Breadcrumbs.Link href="#" icon={homeIcon}>Home</Breadcrumbs.Link>
+  <Breadcrumbs.Separator />
+  <Breadcrumbs.Link href="#">Docs</Breadcrumbs.Link>
+  <Breadcrumbs.Separator />
+  <Breadcrumbs.Current loading />
 </Breadcrumbs>

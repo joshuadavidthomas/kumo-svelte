@@ -3,12 +3,7 @@
   import EyeSlashIcon from "phosphor-svelte/lib/EyeSlashIcon";
   import MagnifyingGlassIcon from "phosphor-svelte/lib/MagnifyingGlassIcon";
   import XIcon from "phosphor-svelte/lib/XIcon";
-  import {
-    InputGroup,
-    InputGroupAddon,
-    InputGroupButton,
-    InputGroupInput,
-  } from "kumo-svelte";
+  import { InputGroup } from "kumo-svelte";
 
   let show = $state(false);
   let searchValue = $state("search");
@@ -16,9 +11,9 @@
 
 <div class="flex flex-col gap-4">
   <InputGroup class="w-full max-w-3xs">
-    <InputGroupInput type={show ? "text" : "password"} value="password" aria-label="Password" />
-    <InputGroupAddon align="end" containsButton>
-      <InputGroupButton
+    <InputGroup.Input type={show ? "text" : "password"} value="password" aria-label="Password" />
+    <InputGroup.Addon align="end" containsButton>
+      <InputGroup.Button
         class="text-kumo-subtle"
         aria-label={show ? "Hide password" : "Show password"}
         onclick={() => {
@@ -30,27 +25,27 @@
         {:else}
           <EyeIcon />
         {/if}
-      </InputGroupButton>
-    </InputGroupAddon>
+      </InputGroup.Button>
+    </InputGroup.Addon>
   </InputGroup>
 
   <InputGroup class="w-full max-w-3xs" focusMode="individual">
-    <InputGroupAddon>
+    <InputGroup.Addon>
       <MagnifyingGlassIcon />
-    </InputGroupAddon>
-    <InputGroupInput bind:value={searchValue} placeholder="Search" aria-label="Search" />
+    </InputGroup.Addon>
+    <InputGroup.Input bind:value={searchValue} placeholder="Search" aria-label="Search" />
     {#if searchValue}
-      <InputGroupAddon align="end" containsButton class="pr-1">
-        <InputGroupButton
+      <InputGroup.Addon align="end" containsButton class="pr-1">
+        <InputGroup.Button
           aria-label="Clear search"
           onclick={() => {
             searchValue = "";
           }}
         >
           <XIcon />
-        </InputGroupButton>
-      </InputGroupAddon>
+        </InputGroup.Button>
+      </InputGroup.Addon>
     {/if}
-    <InputGroupButton variant="secondary">Search</InputGroupButton>
+    <InputGroup.Button variant="secondary">Search</InputGroup.Button>
   </InputGroup>
 </div>

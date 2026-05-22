@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Combobox, ComboboxContent, ComboboxItem, ComboboxList, ComboboxTriggerInput } from "kumo-svelte";
+  import { Combobox } from "kumo-svelte";
 
   const items = [
     { id: "bug", value: "bug", label: "bug" },
@@ -14,12 +14,12 @@
 </script>
 
 <Combobox {items} bind:open {value} onValueChange={(next) => (value = String(next))}>
-  <ComboboxTriggerInput placeholder="Select an issue..." />
-  <ComboboxContent>
-    <ComboboxList>
+  <Combobox.TriggerInput placeholder="Select an issue..." />
+  <Combobox.Content>
+    <Combobox.List>
       {#each items as item (item.id)}
-        <ComboboxItem value={item.value}>{item.value}</ComboboxItem>
+        <Combobox.Item value={item.value}>{item.value}</Combobox.Item>
       {/each}
-    </ComboboxList>
-  </ComboboxContent>
+    </Combobox.List>
+  </Combobox.Content>
 </Combobox>

@@ -25,32 +25,32 @@ baseUIComponent: popover
 ### Barrel
 
 ```ts
-import { Popover, PopoverContent, PopoverTrigger } from "kumo-svelte";
+import { Popover } from "kumo-svelte";
 ```
 
 ### Granular
 
 ```ts
-import { Popover, PopoverContent, PopoverTrigger } from "kumo-svelte/components/popover";
+import * as Popover from "kumo-svelte/components/popover";
 ```
 
 ## Usage
 
 ```svelte
 <script lang="ts">
-  import { Button, Popover, PopoverContent, PopoverDescription, PopoverTitle, PopoverTrigger } from "kumo-svelte";
+  import { Button, Popover } from "kumo-svelte";
 </script>
 
 <Popover>
-  <PopoverTrigger>
+  <Popover.Trigger>
     {#snippet child({ props })}
       <Button {...props}>Open</Button>
     {/snippet}
-  </PopoverTrigger>
-  <PopoverContent>
-    <PopoverTitle>Popover Title</PopoverTitle>
-    <PopoverDescription>Popover content goes here.</PopoverDescription>
-  </PopoverContent>
+  </Popover.Trigger>
+  <Popover.Content>
+    <Popover.Title>Popover Title</Popover.Title>
+    <Popover.Description>Popover content goes here.</Popover.Description>
+  </Popover.Content>
 </Popover>
 ```
 
@@ -107,7 +107,7 @@ Use controlled state to open the popover on hover. This keeps hover behavior exp
 
 ### Virtual Anchor
 
-Use the `anchor` prop on `PopoverContent` to position the popover against an element other than the trigger, or against a virtual element with `getBoundingClientRect()`.
+Use the `anchor` prop on `Popover.Content` to position the popover against an element other than the trigger, or against a virtual element with `getBoundingClientRect()`.
 
 <Example demo="popover-virtual-anchor-demo">
   <PopoverVirtualAnchorDemo />
@@ -126,13 +126,13 @@ The root component that manages the popover's open state.
 | `onOpenChangeComplete` | `(open: boolean) => void` | — | Called after open state transition completes. |
 | `children` | `Snippet` | — | Popover contents. |
 
-### `PopoverTrigger`
+### `Popover.Trigger`
 
 A trigger that opens the popover when clicked. Use the `child` snippet pattern to render your own component.
 
-PopoverTrigger accepts Bits UI Popover trigger props.
+`Popover.Trigger` accepts Bits UI Popover trigger props.
 
-### `PopoverContent`
+### `Popover.Content`
 
 The container for popover content. Controls positioning via `side`, `align`, `sideOffset`, and `alignOffset` props.
 
@@ -147,10 +147,10 @@ The container for popover content. Controls positioning via `side`, `align`, `si
 | `positionMethod` | `"absolute" \| "fixed"` | `"absolute"` | Positioning strategy. |
 | `class` | `string` | — | Additional classes. |
 
-### `PopoverTitle`, `PopoverDescription`, and `PopoverHeader`
+### `Popover.Title`, `Popover.Description`, and `Popover.Header`
 
 Semantic content helpers for labeling and structuring popover content. Each accepts `children`, `class`, and standard HTML attributes for its element.
 
-### `PopoverClose`
+### `Popover.Close`
 
 A button that closes the popover when clicked. Use the `child` snippet pattern to render your own Button.

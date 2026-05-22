@@ -1,17 +1,17 @@
 <script lang="ts">
-  import { Flow, FlowNode, FlowParallel } from "kumo-svelte";
+  import { Flow } from "kumo-svelte";
 </script>
 
 <Flow>
-  <FlowParallel>
-    <FlowNode>HTTP Trigger</FlowNode>
-    <FlowNode>Cron Trigger</FlowNode>
-  </FlowParallel>
-  <FlowNode>Process Request</FlowNode>
-  <FlowParallel>
-    <FlowNode>Log Analytics</FlowNode>
-    <FlowNode>Update Cache</FlowNode>
-    <FlowNode>Send Notification</FlowNode>
-  </FlowParallel>
-  <FlowNode>Complete</FlowNode>
+  <Flow.Parallel>
+    <Flow.Node>HTTP Trigger</Flow.Node>
+    <Flow.Node>Cron Trigger</Flow.Node>
+  </Flow.Parallel>
+  <Flow.Node>Process Request</Flow.Node>
+  <Flow.Parallel>
+    <Flow.Node>Log Analytics</Flow.Node>
+    <Flow.Node>Update Cache</Flow.Node>
+    <Flow.Node>Send Notification</Flow.Node>
+  </Flow.Parallel>
+  <Flow.Node>Complete</Flow.Node>
 </Flow>

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Combobox, ComboboxContent, ComboboxEmpty, ComboboxGroup, ComboboxGroupLabel, ComboboxItem, ComboboxList, ComboboxTriggerInput } from "kumo-svelte";
+  import { Combobox } from "kumo-svelte";
   import { servers } from "./combobox-data";
 
   const items = servers.flatMap((group) => group.items);
@@ -8,18 +8,18 @@
 </script>
 
 <Combobox bind:value bind:open {items}>
-  <ComboboxTriggerInput class="w-[200px]" placeholder="Select server" />
-  <ComboboxContent>
-    <ComboboxEmpty />
-    <ComboboxList>
+  <Combobox.TriggerInput class="w-[200px]" placeholder="Select server" />
+  <Combobox.Content>
+    <Combobox.Empty />
+    <Combobox.List>
       {#each servers as group}
-        <ComboboxGroup>
-          <ComboboxGroupLabel>{group.value}</ComboboxGroupLabel>
+        <Combobox.Group>
+          <Combobox.GroupLabel>{group.value}</Combobox.GroupLabel>
           {#each group.items as item}
-            <ComboboxItem value={item.value}>{item.label}</ComboboxItem>
+            <Combobox.Item value={item.value}>{item.label}</Combobox.Item>
           {/each}
-        </ComboboxGroup>
+        </Combobox.Group>
       {/each}
-    </ComboboxList>
-  </ComboboxContent>
+    </Combobox.List>
+  </Combobox.Content>
 </Combobox>

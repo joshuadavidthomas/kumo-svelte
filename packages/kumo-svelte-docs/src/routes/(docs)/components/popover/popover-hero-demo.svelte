@@ -1,16 +1,16 @@
 <script lang="ts">
   import BellIcon from "phosphor-svelte/lib/BellIcon";
-  import { Button, Popover, PopoverContent, PopoverDescription, PopoverTitle, PopoverTrigger } from "kumo-svelte";
+  import { Button, Popover } from "kumo-svelte";
 </script>
 
 <Popover>
-  <PopoverTrigger>
+  <Popover.Trigger>
     {#snippet child({ props })}
       <Button {...props} shape="square" icon={BellIcon} aria-label="Notifications" />
     {/snippet}
-  </PopoverTrigger>
-  <PopoverContent>
-    <PopoverTitle>Notifications</PopoverTitle>
-    <PopoverDescription>You are all caught up. Good job!</PopoverDescription>
-  </PopoverContent>
+  </Popover.Trigger>
+  <Popover.Content>
+    <Popover.Title>Notifications</Popover.Title>
+    <Popover.Description>You are all caught up. Good job!</Popover.Description>
+  </Popover.Content>
 </Popover>

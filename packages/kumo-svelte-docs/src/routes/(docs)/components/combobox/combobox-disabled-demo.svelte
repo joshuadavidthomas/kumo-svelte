@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Combobox, ComboboxContent, ComboboxEmpty, ComboboxInput, ComboboxItem, ComboboxList, ComboboxTriggerInput, ComboboxTriggerValue } from "kumo-svelte";
+  import { Combobox } from "kumo-svelte";
   import { fruits, languageItems, languages } from "./combobox-data";
 
   const fruitItems = fruits.map((fruit) => ({ label: fruit, value: fruit }));
@@ -8,29 +8,29 @@
 
 <div class="flex flex-wrap items-start gap-4">
   <Combobox disabled value="Apple" items={fruitItems}>
-    <ComboboxTriggerInput class="w-[200px]" placeholder="Select fruit" />
-    <ComboboxContent>
-      <ComboboxEmpty />
-      <ComboboxList>
+    <Combobox.TriggerInput class="w-[200px]" placeholder="Select fruit" />
+    <Combobox.Content>
+      <Combobox.Empty />
+      <Combobox.List>
         {#each fruits as fruit}
-          <ComboboxItem value={fruit}>{fruit}</ComboboxItem>
+          <Combobox.Item value={fruit}>{fruit}</Combobox.Item>
         {/each}
-      </ComboboxList>
-    </ComboboxContent>
+      </Combobox.List>
+    </Combobox.Content>
   </Combobox>
 
   <Combobox disabled value="en" items={languageItems}>
-    <ComboboxTriggerValue class="w-[200px]">{selectedLanguageLabel}</ComboboxTriggerValue>
-    <ComboboxContent>
-      <ComboboxInput placeholder="Search" />
-      <ComboboxEmpty />
-      <ComboboxList>
+    <Combobox.TriggerValue class="w-[200px]">{selectedLanguageLabel}</Combobox.TriggerValue>
+    <Combobox.Content>
+      <Combobox.Input placeholder="Search" />
+      <Combobox.Empty />
+      <Combobox.List>
         {#each languages as language}
-          <ComboboxItem value={language.value} label={`${language.emoji} ${language.label}`}>
+          <Combobox.Item value={language.value} label={`${language.emoji} ${language.label}`}>
             {language.emoji} {language.label}
-          </ComboboxItem>
+          </Combobox.Item>
         {/each}
-      </ComboboxList>
-    </ComboboxContent>
+      </Combobox.List>
+    </Combobox.Content>
   </Combobox>
 </div>

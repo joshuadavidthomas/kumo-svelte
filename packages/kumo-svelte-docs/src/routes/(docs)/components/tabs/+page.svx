@@ -29,7 +29,7 @@ import { Tabs } from "kumo-svelte";
 ### Granular
 
 ```ts
-import { Tabs } from "kumo-svelte/components/tabs";
+import * as Tabs from "kumo-svelte/components/tabs";
 ```
 
 ## Usage

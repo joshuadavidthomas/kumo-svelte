@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { LayerCard, LayerCardPrimary, LayerCardSecondary } from "kumo-svelte";
+  import { LayerCard } from "kumo-svelte";
 </script>
 
 <LayerCard layered class="w-[250px]">
-  <LayerCardSecondary>Getting Started</LayerCardSecondary>
-  <LayerCardPrimary>
+  <LayerCard.Secondary>Getting Started</LayerCard.Secondary>
+  <LayerCard.Primary>
     <p class="text-sm text-kumo-subtle">Quick start guide for new users</p>
-  </LayerCardPrimary>
+  </LayerCard.Primary>
 </LayerCard>

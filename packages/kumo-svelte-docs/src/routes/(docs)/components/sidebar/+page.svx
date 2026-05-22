@@ -23,40 +23,44 @@ sourceFile: components/sidebar
 ### Barrel
 
 ```ts
-import { Sidebar, SidebarProvider } from "kumo-svelte";
+import { Sidebar } from "kumo-svelte";
 ```
 
 ### Granular
 
 ```ts
-import { Sidebar, SidebarProvider } from "kumo-svelte/components/sidebar";
+import * as Sidebar from "kumo-svelte/components/sidebar";
 ```
 
 ## Usage
 
-At minimum you need `SidebarProvider`, `Sidebar`, `SidebarContent`, `SidebarMenu`, and `SidebarMenuButton`. Add `SidebarHeader` and `SidebarFooter` to pin content above or below the scroll area. Use `SidebarGroup` and `SidebarGroupLabel` to organize sections.
+At minimum you need `Sidebar.Provider`,
+  `Sidebar`,
+  `Sidebar.Content`,
+  `Sidebar.Menu`,
+  and `Sidebar.MenuButton`. Add `Sidebar.Header` and `Sidebar.Footer` to pin content above or below the scroll area. Use `Sidebar.Group` and `Sidebar.GroupLabel` to organize sections.
 
 ```svelte
 <script lang="ts">
   import HouseIcon from "phosphor-svelte/lib/HouseIcon";
-  import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarProvider } from "kumo-svelte";
+  import { Sidebar } from "kumo-svelte";
 </script>
 
 {#snippet homeIcon()}<HouseIcon />{/snippet}
 
-<SidebarProvider defaultOpen>
+<Sidebar.Provider defaultOpen>
   <Sidebar>
-    <SidebarContent>
-      <SidebarGroup>
-        <SidebarGroupLabel>Navigation</SidebarGroupLabel>
-        <SidebarMenu>
-          <SidebarMenuButton icon={homeIcon} active>Home</SidebarMenuButton>
-        </SidebarMenu>
-      </SidebarGroup>
-    </SidebarContent>
+    <Sidebar.Content>
+      <Sidebar.Group>
+        <Sidebar.GroupLabel>Navigation</Sidebar.GroupLabel>
+        <Sidebar.Menu>
+          <Sidebar.MenuButton icon={homeIcon} active>Home</Sidebar.MenuButton>
+        </Sidebar.Menu>
+      </Sidebar.Group>
+    </Sidebar.Content>
   </Sidebar>
   <main class="flex-1"><slot /></main>
-</SidebarProvider>
+</Sidebar.Provider>
 ```
 
 ## Examples
@@ -71,7 +75,7 @@ The minimum viable sidebar: just groups, menu buttons, and collapsible sub-menus
 
 ### Collapsible Groups
 
-Add `collapsible` to a `SidebarGroup` and wrap the menu in `SidebarGroupContent` to enable animated expand/collapse via the group label.
+Add `collapsible` to a `Sidebar.Group` and wrap the menu in `Sidebar.GroupContent` to enable animated expand/collapse via the group label.
 
 <Example demo="sidebar-collapsible-group-demo">
   <SidebarCollapsibleGroupDemo />
@@ -79,7 +83,7 @@ Add `collapsible` to a `SidebarGroup` and wrap the menu in `SidebarGroupContent`
 
 ### Toggle & Collapsed State
 
-Use `SidebarTrigger` in the footer or `useSidebar().toggleSidebar` programmatically. Pass `tooltip` to show labels on hover when collapsed.
+Use `Sidebar.Trigger` in the footer or `useSidebar().toggleSidebar` programmatically. Pass `tooltip` to show labels on hover when collapsed.
 
 <Example demo="sidebar-toggle-demo">
   <SidebarToggleDemo />
@@ -120,7 +124,7 @@ The main sidebar container. Renders as an `aside` on desktop and mobile sheet wh
 | `children` | `Snippet` | Sidebar content. |
 | `class` | `string` | Additional classes. |
 
-### `SidebarProvider`
+### `Sidebar.Provider`
 
 Context provider managing expand/collapse state and mobile detection.
 
@@ -143,16 +147,16 @@ Context provider managing expand/collapse state and mobile detection.
 
 ### Navigation components
 
-`SidebarContent`, `SidebarHeader`, `SidebarFooter`, `SidebarGroup`, `SidebarGroupLabel`, `SidebarGroupContent`, `SidebarMenu`, `SidebarMenuItem`, `SidebarMenuButton`, `SidebarMenuSub`, `SidebarMenuSubButton`, `SidebarMenuBadge`, `SidebarMenuChevron`, and `SidebarSeparator` compose the navigation structure.
+`Sidebar.Content`, `Sidebar.Header`, `Sidebar.Footer`, `Sidebar.Group`, `Sidebar.GroupLabel`, `Sidebar.GroupContent`, `Sidebar.Menu`, `Sidebar.MenuItem`, `Sidebar.MenuButton`, `Sidebar.MenuSub`, `Sidebar.MenuSubButton`, `Sidebar.MenuBadge`, `Sidebar.MenuChevron`, and `Sidebar.Separator` compose the navigation structure.
 
 ### Interactive components
 
-`SidebarCollapsible`, `SidebarCollapsibleTrigger`, `SidebarCollapsibleContent`, `SidebarTrigger`, `SidebarResizeHandle`, and `SidebarRail` provide collapsible and resizable behaviors.
+`Sidebar.Collapsible`, `Sidebar.CollapsibleTrigger`, `Sidebar.CollapsibleContent`, `Sidebar.Trigger`, `Sidebar.ResizeHandle`, and `Sidebar.Rail` provide collapsible and resizable behaviors.
 
-### `SidebarInput`
+### `Sidebar.Input`
 
 Search-style input for sidebar content. Supports `placeholder` and `shortcut` props.
 
 ## Svelte Notes
 
-The Svelte package exports named components rather than React compound properties. For icon props, pass a snippet such as `{#snippet homeIcon()}<HouseIcon />{/snippet}` and then `icon={homeIcon}`.
+The Svelte package supports Kumo-style compound properties and shadcn-svelte-style namespace imports. For icon props, pass a snippet such as `{#snippet homeIcon()}<HouseIcon />{/snippet}` and then `icon={homeIcon}`.

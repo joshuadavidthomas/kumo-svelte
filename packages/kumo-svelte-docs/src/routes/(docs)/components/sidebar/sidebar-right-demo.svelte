@@ -2,15 +2,7 @@
   import BellIcon from "phosphor-svelte/lib/BellIcon";
   import ChartBarIcon from "phosphor-svelte/lib/ChartBarIcon";
   import GearIcon from "phosphor-svelte/lib/GearIcon";
-  import {
-    Sidebar,
-    SidebarContent,
-    SidebarGroup,
-    SidebarGroupLabel,
-    SidebarMenu,
-    SidebarMenuButton,
-    SidebarProvider,
-  } from "kumo-svelte";
+  import { Sidebar } from "kumo-svelte";
   import DemoShell from "./sidebar-demo-shell.svelte";
   import DemoMain from "./sidebar-main.svelte";
 </script>
@@ -20,19 +12,19 @@
 {#snippet bellIcon()}<BellIcon />{/snippet}
 
 <DemoShell>
-  <SidebarProvider defaultOpen side="right" class="h-full min-h-0!">
+  <Sidebar.Provider defaultOpen side="right" class="h-full min-h-0!">
     <DemoMain />
     <Sidebar>
-      <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupLabel>Details</SidebarGroupLabel>
-          <SidebarMenu>
-            <SidebarMenuButton icon={gearIcon} active>Properties</SidebarMenuButton>
-            <SidebarMenuButton icon={chartIcon}>Metrics</SidebarMenuButton>
-            <SidebarMenuButton icon={bellIcon}>Alerts</SidebarMenuButton>
-          </SidebarMenu>
-        </SidebarGroup>
-      </SidebarContent>
+      <Sidebar.Content>
+        <Sidebar.Group>
+          <Sidebar.GroupLabel>Details</Sidebar.GroupLabel>
+          <Sidebar.Menu>
+            <Sidebar.MenuButton icon={gearIcon} active>Properties</Sidebar.MenuButton>
+            <Sidebar.MenuButton icon={chartIcon}>Metrics</Sidebar.MenuButton>
+            <Sidebar.MenuButton icon={bellIcon}>Alerts</Sidebar.MenuButton>
+          </Sidebar.Menu>
+        </Sidebar.Group>
+      </Sidebar.Content>
     </Sidebar>
-  </SidebarProvider>
+  </Sidebar.Provider>
 </DemoShell>

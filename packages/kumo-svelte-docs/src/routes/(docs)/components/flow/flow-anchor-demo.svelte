@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Flow, FlowNode, FlowParallel, type FlowNodeRenderProps } from "kumo-svelte";
+  import { Flow, type FlowNodeRenderProps } from "kumo-svelte";
 </script>
 
 {#snippet workerNode({ action, attrs }: FlowNodeRenderProps)}
@@ -12,10 +12,10 @@
 {/snippet}
 
 <Flow>
-  <FlowNode>Load balancer</FlowNode>
-  <FlowNode render={workerNode} />
-  <FlowParallel>
-    <FlowNode>DATABASE</FlowNode>
-    <FlowNode>OTHER_SERVICE</FlowNode>
-  </FlowParallel>
+  <Flow.Node>Load balancer</Flow.Node>
+  <Flow.Node render={workerNode} />
+  <Flow.Parallel>
+    <Flow.Node>DATABASE</Flow.Node>
+    <Flow.Node>OTHER_SERVICE</Flow.Node>
+  </Flow.Parallel>
 </Flow>

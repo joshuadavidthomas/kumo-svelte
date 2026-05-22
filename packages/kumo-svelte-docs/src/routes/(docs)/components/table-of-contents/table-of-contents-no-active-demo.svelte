@@ -1,16 +1,16 @@
 <script lang="ts">
-  import { TableOfContents, TableOfContentsItem, TableOfContentsList, TableOfContentsTitle } from "kumo-svelte";
+  import { TableOfContents } from "kumo-svelte";
 
   const headings = ["Introduction", "Installation", "Usage", "API Reference", "Examples"];
 </script>
 
 <div class="min-w-48">
   <TableOfContents>
-    <TableOfContentsTitle>On this page</TableOfContentsTitle>
-    <TableOfContentsList>
+    <TableOfContents.Title>On this page</TableOfContents.Title>
+    <TableOfContents.List>
       {#each headings as heading}
-        <TableOfContentsItem class="cursor-pointer">{heading}</TableOfContentsItem>
+        <TableOfContents.Item class="cursor-pointer">{heading}</TableOfContents.Item>
       {/each}
-    </TableOfContentsList>
+    </TableOfContents.List>
   </TableOfContents>
 </div>

@@ -1,14 +1,5 @@
 <script lang="ts">
-  import {
-    Button,
-    CommandPalette,
-    CommandPaletteDialog,
-    CommandPaletteEmpty,
-    CommandPaletteFooter,
-    CommandPaletteInput,
-    CommandPaletteList,
-    CommandPaletteResultItem,
-  } from "kumo-svelte";
+  import { Button, CommandPalette } from "kumo-svelte";
   import FileIcon from "phosphor-svelte/lib/FileIcon";
 
   const results = [
@@ -28,12 +19,12 @@
 <div>
   <Button onclick={() => (open = true)}>Open with ResultItem</Button>
 
-  <CommandPaletteDialog bind:open>
+  <CommandPalette.Dialog bind:open>
     <CommandPalette bind:value={search}>
-      <CommandPaletteInput placeholder="Search documentation..." />
-      <CommandPaletteList>
+      <CommandPalette.Input placeholder="Search documentation..." />
+      <CommandPalette.List>
         {#each results as result}
-          <CommandPaletteResultItem
+          <CommandPalette.ResultItem
             value={result.title}
             title={result.title}
             breadcrumbs={result.breadcrumbs}
@@ -41,9 +32,9 @@
             onSelect={() => (open = false)}
           />
         {/each}
-        <CommandPaletteEmpty>No pages found</CommandPaletteEmpty>
-      </CommandPaletteList>
-      <CommandPaletteFooter>
+        <CommandPalette.Empty>No pages found</CommandPalette.Empty>
+      </CommandPalette.List>
+      <CommandPalette.Footer>
         <span class="flex items-center gap-2">
           <kbd class="rounded border border-kumo-hairline bg-kumo-base px-1.5 py-0.5 text-[10px]">↑↓</kbd>
           <span>Navigate</span>
@@ -52,7 +43,7 @@
           <kbd class="rounded border border-kumo-hairline bg-kumo-base px-1.5 py-0.5 text-[10px]">⌘↵</kbd>
           <span>Open in new tab</span>
         </span>
-      </CommandPaletteFooter>
+      </CommandPalette.Footer>
     </CommandPalette>
-  </CommandPaletteDialog>
+  </CommandPalette.Dialog>
 </div>

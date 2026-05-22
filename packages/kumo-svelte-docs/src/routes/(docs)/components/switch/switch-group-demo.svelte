@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { SwitchGroup, SwitchItem } from "kumo-svelte";
+  import { Switch } from "kumo-svelte";
 </script>
 
-<SwitchGroup legend="Notification settings">
-  <SwitchItem label="Email notifications" />
-  <SwitchItem label="SMS notifications" />
-  <SwitchItem label="Push notifications" />
-</SwitchGroup>
+<Switch.Group legend="Notification settings">
+  <Switch.Item label="Email notifications" />
+  <Switch.Item label="SMS notifications" />
+  <Switch.Item label="Push notifications" />
+</Switch.Group>

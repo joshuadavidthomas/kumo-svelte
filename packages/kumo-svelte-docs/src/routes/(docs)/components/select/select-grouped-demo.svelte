@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Select, SelectGroup, SelectGroupLabel, SelectOption, SelectSeparator } from "kumo-svelte";
+  import { Select } from "kumo-svelte";
 
   const foods = {
     fruits: [
@@ -24,17 +24,17 @@
   {value}
   onValueChange={(next) => (value = next as string)}
 >
-  <SelectGroup>
-    <SelectGroupLabel>Fruits</SelectGroupLabel>
+  <Select.Group>
+    <Select.GroupLabel>Fruits</Select.GroupLabel>
     {#each foods.fruits as food (food.value)}
-      <SelectOption value={food.value}>{food.label}</SelectOption>
+      <Select.Option value={food.value}>{food.label}</Select.Option>
     {/each}
-  </SelectGroup>
-  <SelectSeparator />
-  <SelectGroup>
-    <SelectGroupLabel>Vegetables</SelectGroupLabel>
+  </Select.Group>
+  <Select.Separator />
+  <Select.Group>
+    <Select.GroupLabel>Vegetables</Select.GroupLabel>
     {#each foods.vegetables as food (food.value)}
-      <SelectOption value={food.value}>{food.label}</SelectOption>
+      <Select.Option value={food.value}>{food.label}</Select.Option>
     {/each}
-  </SelectGroup>
+  </Select.Group>
 </Select>

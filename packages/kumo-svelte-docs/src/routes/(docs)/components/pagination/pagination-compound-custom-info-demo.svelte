@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Pagination, PaginationControls, PaginationInfo } from "kumo-svelte";
+  import { Pagination } from "kumo-svelte";
 
   let page = $state(1);
 </script>
@@ -9,6 +9,6 @@
 {/snippet}
 
 <Pagination bind:page perPage={25} totalCount={100}>
-  <PaginationInfo text={info} />
-  <PaginationControls />
+  <Pagination.Info text={info} />
+  <Pagination.Controls />
 </Pagination>

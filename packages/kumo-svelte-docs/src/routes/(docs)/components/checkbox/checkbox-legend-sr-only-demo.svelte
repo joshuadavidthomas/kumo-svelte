@@ -1,12 +1,12 @@
 <script lang="ts">
-  import { CheckboxGroup, CheckboxItem, CheckboxLegend } from "kumo-svelte";
+  import { Checkbox } from "kumo-svelte";
 
   let preferences = $state(["email"]);
 </script>
 
-<CheckboxGroup value={preferences} onValueChange={(value) => (preferences = value)}>
-  <CheckboxLegend class="sr-only">Notification preferences</CheckboxLegend>
-  <CheckboxItem value="email" label="Email notifications" />
-  <CheckboxItem value="sms" label="SMS notifications" />
-  <CheckboxItem value="push" label="Push notifications" />
-</CheckboxGroup>
+<Checkbox.Group value={preferences} onValueChange={(value) => (preferences = value)}>
+  <Checkbox.Legend class="sr-only">Notification preferences</Checkbox.Legend>
+  <Checkbox.Item value="email" label="Email notifications" />
+  <Checkbox.Item value="sms" label="SMS notifications" />
+  <Checkbox.Item value="push" label="Push notifications" />
+</Checkbox.Group>

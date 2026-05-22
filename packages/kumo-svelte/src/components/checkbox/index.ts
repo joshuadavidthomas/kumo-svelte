@@ -4,11 +4,26 @@ import CheckboxGroupComponent from "./checkbox-group.svelte";
 import CheckboxItemComponent from "./checkbox-item.svelte";
 import CheckboxLegendComponent from "./checkbox-legend.svelte";
 
-export { default as Checkbox } from "./checkbox.svelte";
-export { default as CheckboxGroup } from "./checkbox-group.svelte";
-export { default as CheckboxItem } from "./checkbox-item.svelte";
-export { default as CheckboxLegend } from "./checkbox-legend.svelte";
+const Checkbox = Object.assign(CheckboxComponent, {
+  Root: CheckboxComponent,
+  Group: CheckboxGroupComponent,
+  Item: CheckboxItemComponent,
+  Legend: CheckboxLegendComponent,
+});
+
+export {
+  Checkbox,
+  CheckboxComponent as CheckboxRoot,
+  CheckboxComponent as Root,
+  CheckboxGroupComponent as CheckboxGroup,
+  CheckboxGroupComponent as Group,
+  CheckboxItemComponent as CheckboxItem,
+  CheckboxItemComponent as Item,
+  CheckboxLegendComponent as CheckboxLegend,
+  CheckboxLegendComponent as Legend,
+};
 export type CheckboxProps = ComponentProps<typeof CheckboxComponent>;
+export type CheckboxRootProps = CheckboxProps;
 export type CheckboxGroupProps = ComponentProps<typeof CheckboxGroupComponent>;
 export type CheckboxItemProps = ComponentProps<typeof CheckboxItemComponent>;
 export type CheckboxLegendProps = ComponentProps<typeof CheckboxLegendComponent>;

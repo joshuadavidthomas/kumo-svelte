@@ -1,16 +1,10 @@
 <script lang="ts">
-  import {
-    Breadcrumbs,
-    BreadcrumbsClipboard,
-    BreadcrumbsCurrent,
-    BreadcrumbsLink,
-    BreadcrumbsSeparator,
-  } from "kumo-svelte";
+  import { Breadcrumbs } from "kumo-svelte";
 </script>
 
 <Breadcrumbs>
-  <BreadcrumbsLink href="#">Home</BreadcrumbsLink>
-  <BreadcrumbsSeparator />
-  <BreadcrumbsCurrent>Breadcrumbs</BreadcrumbsCurrent>
-  <BreadcrumbsClipboard text="#" />
+  <Breadcrumbs.Link href="#">Home</Breadcrumbs.Link>
+  <Breadcrumbs.Separator />
+  <Breadcrumbs.Current>Breadcrumbs</Breadcrumbs.Current>
+  <Breadcrumbs.Clipboard text="#" />
 </Breadcrumbs>

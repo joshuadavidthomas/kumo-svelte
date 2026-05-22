@@ -1,15 +1,15 @@
 <script lang="ts">
-  import { Button, Popover, PopoverContent, PopoverDescription, PopoverTitle, PopoverTrigger } from "kumo-svelte";
+  import { Button, Popover } from "kumo-svelte";
 </script>
 
 <Popover>
-  <PopoverTrigger>
+  <Popover.Trigger>
     {#snippet child({ props })}
       <Button {...props}>Open Popover</Button>
     {/snippet}
-  </PopoverTrigger>
-  <PopoverContent>
-    <PopoverTitle>Popover Title</PopoverTitle>
-    <PopoverDescription>This is a popover.</PopoverDescription>
-  </PopoverContent>
+  </Popover.Trigger>
+  <Popover.Content>
+    <Popover.Title>Popover Title</Popover.Title>
+    <Popover.Description>This is a popover.</Popover.Description>
+  </Popover.Content>
 </Popover>

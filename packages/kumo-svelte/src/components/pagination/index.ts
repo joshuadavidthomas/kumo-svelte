@@ -5,12 +5,27 @@ import PaginationInfoComponent from "./pagination-info.svelte";
 import PaginationPageSizeComponent from "./pagination-page-size.svelte";
 import PaginationSeparatorComponent from "./pagination-separator.svelte";
 
-export { default as Pagination } from "./pagination.svelte";
-export { default as PaginationRoot } from "./pagination.svelte";
-export { default as PaginationInfo } from "./pagination-info.svelte";
-export { default as PaginationPageSize } from "./pagination-page-size.svelte";
-export { default as PaginationControls } from "./pagination-controls.svelte";
-export { default as PaginationSeparator } from "./pagination-separator.svelte";
+const Pagination = Object.assign(PaginationComponent, {
+  Root: PaginationComponent,
+  Controls: PaginationControlsComponent,
+  Info: PaginationInfoComponent,
+  PageSize: PaginationPageSizeComponent,
+  Separator: PaginationSeparatorComponent,
+});
+
+export {
+  Pagination,
+  PaginationComponent as PaginationRoot,
+  PaginationComponent as Root,
+  PaginationControlsComponent as PaginationControls,
+  PaginationControlsComponent as Controls,
+  PaginationInfoComponent as PaginationInfo,
+  PaginationInfoComponent as Info,
+  PaginationPageSizeComponent as PaginationPageSize,
+  PaginationPageSizeComponent as PageSize,
+  PaginationSeparatorComponent as PaginationSeparator,
+  PaginationSeparatorComponent as Separator,
+};
 
 export type PaginationProps = ComponentProps<typeof PaginationComponent>;
 export type PaginationRootProps = PaginationProps;

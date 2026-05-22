@@ -25,40 +25,40 @@ primitive: dialog
 ### Barrel
 
 ```ts
-import { Dialog, DialogRoot, DialogTitle } from "kumo-svelte";
+import { Dialog } from "kumo-svelte";
 ```
 
 ### Granular
 
 ```ts
-import { Dialog, DialogRoot, DialogTitle } from "kumo-svelte/components/dialog";
+import * as Dialog from "kumo-svelte/components/dialog";
 ```
 
 ## Usage
 
 ```svelte
 <script lang="ts">
-  import { Button, Dialog, DialogClose, DialogDescription, DialogRoot, DialogTitle, DialogTrigger } from "kumo-svelte";
+  import { Button, Dialog } from "kumo-svelte";
 </script>
 
-<DialogRoot>
-  <DialogTrigger>
+<Dialog.Root>
+  <Dialog.Trigger>
     {#snippet child({ props })}
       <Button {...props}>Open</Button>
     {/snippet}
-  </DialogTrigger>
+  </Dialog.Trigger>
   <Dialog class="p-8">
-    <DialogTitle>Dialog Title</DialogTitle>
-    <DialogDescription>Dialog content goes here.</DialogDescription>
+    <Dialog.Title>Dialog Title</Dialog.Title>
+    <Dialog.Description>Dialog content goes here.</Dialog.Description>
     <div class="mt-4 flex justify-end gap-2">
-      <DialogClose>
+      <Dialog.Close>
         {#snippet child({ props })}
           <Button {...props} variant="secondary">Cancel</Button>
         {/snippet}
-      </DialogClose>
+      </Dialog.Close>
     </div>
   </Dialog>
-</DialogRoot>
+</Dialog.Root>
 ```
 
 ## Dialog vs Alert Dialog
@@ -80,7 +80,7 @@ The Dialog component supports two ARIA roles to properly convey semantic meaning
 
 ### Alert Dialog (`role="alertdialog"`)
 
-For destructive or confirmation dialogs, use `role="alertdialog"` on `DialogRoot`. This provides proper accessibility semantics by rendering the dialog with `role="alertdialog"` instead of `role="dialog"`.
+For destructive or confirmation dialogs, use `role="alertdialog"` on `Dialog.Root`. This provides proper accessibility semantics by rendering the dialog with `role="alertdialog"` instead of `role="dialog"`.
 
 <Example demo="dialog-alert-demo">
   <DialogAlertDemo />
@@ -88,7 +88,7 @@ For destructive or confirmation dialogs, use `role="alertdialog"` on `DialogRoot
 
 ### Confirmation Dialog (with `disablePointerDismissal`)
 
-For confirmation dialogs that should not be dismissed by clicking outside, use `disablePointerDismissal` on `DialogRoot`.
+For confirmation dialogs that should not be dismissed by clicking outside, use `disablePointerDismissal` on `Dialog.Root`.
 
 <Example demo="dialog-confirmation-demo">
   <DialogConfirmationDemo />
@@ -126,7 +126,7 @@ Dialog containing a Dropdown menu.
 
 ## API Reference
 
-### Dialog / DialogContent
+### Dialog / Dialog.Content
 
 The main dialog container that renders the modal overlay and popup.
 
@@ -139,7 +139,7 @@ The main dialog container that renders the modal overlay and popup.
 | `class` | `string` | — | Additional classes. |
 | `children` | `Snippet` | — | Dialog content. |
 
-### DialogRoot
+### Dialog.Root
 
 Controls the open state of the dialog. Does not render its own HTML element.
 
@@ -151,7 +151,7 @@ Controls the open state of the dialog. Does not render its own HTML element.
 | `disablePointerDismissal` | `boolean` | `false` | Prevent outside pointer interactions from closing the dialog. |
 | `children` | `Snippet` | — | Trigger and content. |
 
-### DialogTrigger
+### Dialog.Trigger
 
 A button that opens the dialog when clicked.
 
@@ -162,7 +162,7 @@ A button that opens the dialog when clicked.
 | `id` | `string` | — | Trigger ID. |
 | `class` | `string` | — | Additional classes. |
 
-### DialogClose
+### Dialog.Close
 
 A button that closes the dialog when clicked.
 
@@ -173,10 +173,10 @@ A button that closes the dialog when clicked.
 | `id` | `string` | — | Close button ID. |
 | `class` | `string` | — | Additional classes. |
 
-### DialogTitle and DialogDescription
+### Dialog.Title and Dialog.Description
 
-Use `DialogTitle` to label the dialog and `DialogDescription` to describe it for assistive technologies.
+Use `Dialog.Title` to label the dialog and `Dialog.Description` to describe it for assistive technologies.
 
-### DialogHeader and DialogFooter
+### Dialog.Header and Dialog.Footer
 
 Layout helpers for common dialog header and footer arrangements. They accept standard `HTMLDivElement` attributes and `children`.

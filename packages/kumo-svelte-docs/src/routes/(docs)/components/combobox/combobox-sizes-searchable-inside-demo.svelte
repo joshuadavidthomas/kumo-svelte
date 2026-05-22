@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Combobox, ComboboxContent, ComboboxEmpty, ComboboxInput, ComboboxItem, ComboboxList, ComboboxTriggerValue } from "kumo-svelte";
+  import { Combobox } from "kumo-svelte";
   import { languageItems, languages } from "./combobox-data";
 
   let smValue = $state("en");
@@ -10,32 +10,32 @@
 
 <div class="flex flex-wrap items-center gap-4">
   <Combobox bind:value={smValue} items={languageItems} size="sm">
-    <ComboboxTriggerValue class="w-[160px]">{smLabel}</ComboboxTriggerValue>
-    <ComboboxContent>
-      <ComboboxInput placeholder="Search" />
-      <ComboboxEmpty />
-      <ComboboxList>
+    <Combobox.TriggerValue class="w-[160px]">{smLabel}</Combobox.TriggerValue>
+    <Combobox.Content>
+      <Combobox.Input placeholder="Search" />
+      <Combobox.Empty />
+      <Combobox.List>
         {#each languages as language}
-          <ComboboxItem value={language.value} label={`${language.emoji} ${language.label}`}>
+          <Combobox.Item value={language.value} label={`${language.emoji} ${language.label}`}>
             {language.emoji} {language.label}
-          </ComboboxItem>
+          </Combobox.Item>
         {/each}
-      </ComboboxList>
-    </ComboboxContent>
+      </Combobox.List>
+    </Combobox.Content>
   </Combobox>
 
   <Combobox bind:value={baseValue} items={languageItems} size="base">
-    <ComboboxTriggerValue class="w-[180px]">{baseLabel}</ComboboxTriggerValue>
-    <ComboboxContent>
-      <ComboboxInput placeholder="Search" />
-      <ComboboxEmpty />
-      <ComboboxList>
+    <Combobox.TriggerValue class="w-[180px]">{baseLabel}</Combobox.TriggerValue>
+    <Combobox.Content>
+      <Combobox.Input placeholder="Search" />
+      <Combobox.Empty />
+      <Combobox.List>
         {#each languages as language}
-          <ComboboxItem value={language.value} label={`${language.emoji} ${language.label}`}>
+          <Combobox.Item value={language.value} label={`${language.emoji} ${language.label}`}>
             {language.emoji} {language.label}
-          </ComboboxItem>
+          </Combobox.Item>
         {/each}
-      </ComboboxList>
-    </ComboboxContent>
+      </Combobox.List>
+    </Combobox.Content>
   </Combobox>
 </div>

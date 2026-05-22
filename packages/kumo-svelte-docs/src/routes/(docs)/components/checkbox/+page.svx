@@ -35,7 +35,7 @@ import { Checkbox } from "kumo-svelte";
 ### Granular
 
 ```ts
-import { Checkbox } from "kumo-svelte/components/checkbox";
+import * as Checkbox from "kumo-svelte/components/checkbox";
 ```
 
 ## Usage
@@ -88,7 +88,7 @@ Use `controlFirst={false}` to place the label before the checkbox.
 
 ### Error
 
-Error variant provides visual styling. For error messages, use `CheckboxGroup`.
+Error variant provides visual styling. For error messages, use `Checkbox.Group`.
 
 <Example demo="checkbox-error-demo">
   <CheckboxErrorDemo />
@@ -96,7 +96,7 @@ Error variant provides visual styling. For error messages, use `CheckboxGroup`.
 
 ### Checkbox Group
 
-Group multiple checkboxes with a legend, description, and shared error messages. Use `CheckboxGroup` and `CheckboxItem` in Svelte.
+Group multiple checkboxes with a legend, description, and shared error messages. Use `Checkbox.Group` and `Checkbox.Item`.
 
 <Example demo="checkbox-group-demo">
   <CheckboxGroupDemo />
@@ -112,7 +112,7 @@ Show validation errors at the group level.
 
 ### Visually Hidden Legend
 
-Use `CheckboxLegend` with `class="sr-only"` to keep the legend accessible to screen readers while hiding it visually. This is useful when the group is already labeled by a parent `Field` or heading.
+Use `Checkbox.Legend` with `class="sr-only"` to keep the legend accessible to screen readers while hiding it visually. This is useful when the group is already labeled by a parent `Field` or heading.
 
 <Example demo="checkbox-legend-sr-only-demo">
   <CheckboxLegendSrOnlyDemo />
@@ -120,7 +120,7 @@ Use `CheckboxLegend` with `class="sr-only"` to keep the legend accessible to scr
 
 ### Custom Legend Styling
 
-`CheckboxLegend` accepts `class` for full control over legend presentation. Use it instead of the `legend` string prop when you need custom typography, colors, or layout.
+`Checkbox.Legend` accepts `class` for full control over legend presentation. Use it instead of the `legend` string prop when you need custom typography, colors, or layout.
 
 <Example demo="checkbox-legend-custom-demo">
   <CheckboxLegendCustomDemo />
@@ -152,7 +152,7 @@ Single checkbox component with built-in label and horizontal layout.
 | `aria-labelledby` | `string` | No | Accessible labeling element id. |
 | `class` | `string` | No | Additional classes merged with the checkbox control styles. |
 
-### CheckboxGroup
+### Checkbox.Group
 
 Wrapper for multiple checkboxes with legend, description, and error support.
 
@@ -172,9 +172,9 @@ Wrapper for multiple checkboxes with legend, description, and error support.
 | `id` | `string` | No | Group id. |
 | `class` | `string` | No | Additional classes merged with the fieldset styles. |
 
-### CheckboxLegend
+### Checkbox.Legend
 
-Composable legend sub-component for `CheckboxGroup`.
+Composable legend sub-component for `Checkbox.Group`.
 
 | Prop | Type | Required | Description |
 | --- | --- | --- | --- |
@@ -183,15 +183,15 @@ Composable legend sub-component for `CheckboxGroup`.
 
 All other props are passed to the underlying `<legend>` element.
 
-### CheckboxItem
+### Checkbox.Item
 
-Individual checkbox within `CheckboxGroup`.
+Individual checkbox within `Checkbox.Group`.
 
 | Prop | Type | Required | Description |
 | --- | --- | --- | --- |
 | `variant` | `"default" \| "error"` | No | Visual style. Defaults to `"default"`. |
 | `label` | `Snippet \| string` | Yes | Item label. |
-| `value` | `string` | No | Item value used by `CheckboxGroup`. |
+| `value` | `string` | No | Item value used by `Checkbox.Group`. |
 | `checked` | `boolean` | No | Current checked state. Bind for controlled usage outside a group. |
 | `indeterminate` | `boolean` | No | Current indeterminate state. |
 | `disabled` | `boolean` | No | Disables the item. |
@@ -214,4 +214,4 @@ Single checkboxes require a `label` prop or `aria-label` for accessibility.
 
 ### Screen Readers
 
-`CheckboxGroup` uses semantic `<fieldset>` and `<legend>` elements for proper grouping announcement.
+`Checkbox.Group` uses semantic `<fieldset>` and `<legend>` elements for proper grouping announcement.

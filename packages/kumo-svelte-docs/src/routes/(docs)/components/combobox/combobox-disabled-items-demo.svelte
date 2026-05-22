@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Combobox, ComboboxContent, ComboboxEmpty, ComboboxItem, ComboboxList, ComboboxTriggerInput, Text } from "kumo-svelte";
+  import { Combobox, Text } from "kumo-svelte";
   import { disabledDatabases } from "./combobox-data";
 
   let value = $state("");
@@ -8,19 +8,19 @@
 
 <div class="w-80">
 <Combobox bind:value bind:open items={disabledDatabases}>
-  <ComboboxTriggerInput placeholder="Select database" />
-  <ComboboxContent>
-    <ComboboxEmpty />
-    <ComboboxList>
+  <Combobox.TriggerInput placeholder="Select database" />
+  <Combobox.Content>
+    <Combobox.Empty />
+    <Combobox.List>
       {#each disabledDatabases as item}
-        <ComboboxItem value={item.value} disabled={item.disabled}>
+        <Combobox.Item value={item.value} disabled={item.disabled}>
           {item.label}
           {#if item.reason}
             <Text variant="secondary" size="xs" as="span"> — {item.reason}</Text>
           {/if}
-        </ComboboxItem>
+        </Combobox.Item>
       {/each}
-    </ComboboxList>
-  </ComboboxContent>
+    </Combobox.List>
+  </Combobox.Content>
 </Combobox>
 </div>

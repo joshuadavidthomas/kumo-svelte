@@ -1,15 +1,15 @@
 <script lang="ts">
-  import { TableOfContents, TableOfContentsItem, TableOfContentsList } from "kumo-svelte";
+  import { TableOfContents } from "kumo-svelte";
 
   const headings = ["Introduction", "Installation", "Usage"];
 </script>
 
 <div class="min-w-48">
   <TableOfContents>
-    <TableOfContentsList>
+    <TableOfContents.List>
       {#each headings as heading}
-        <TableOfContentsItem active={heading === "Introduction"} class="cursor-pointer">{heading}</TableOfContentsItem>
+        <TableOfContents.Item active={heading === "Introduction"} class="cursor-pointer">{heading}</TableOfContents.Item>
       {/each}
-    </TableOfContentsList>
+    </TableOfContents.List>
   </TableOfContents>
 </div>

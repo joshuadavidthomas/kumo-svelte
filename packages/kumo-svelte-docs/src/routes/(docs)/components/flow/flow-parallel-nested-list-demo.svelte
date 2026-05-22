@@ -1,21 +1,21 @@
 <script lang="ts">
-  import { Flow, FlowList, FlowNode, FlowParallel } from "kumo-svelte";
+  import { Flow } from "kumo-svelte";
 </script>
 
 <Flow>
-  <FlowParallel>
-    <FlowList>
-      <FlowNode>Client Users</FlowNode>
-      <FlowNode>Engineering Team Access</FlowNode>
-    </FlowList>
-    <FlowList>
-      <FlowParallel>
-        <FlowNode>All Authenticated Users</FlowNode>
-        <FlowNode>Client Users</FlowNode>
-        <FlowNode>Site Users</FlowNode>
-      </FlowParallel>
-      <FlowNode>Contractor Access</FlowNode>
-    </FlowList>
-  </FlowParallel>
-  <FlowNode>Destinations</FlowNode>
+  <Flow.Parallel>
+    <Flow.List>
+      <Flow.Node>Client Users</Flow.Node>
+      <Flow.Node>Engineering Team Access</Flow.Node>
+    </Flow.List>
+    <Flow.List>
+      <Flow.Parallel>
+        <Flow.Node>All Authenticated Users</Flow.Node>
+        <Flow.Node>Client Users</Flow.Node>
+        <Flow.Node>Site Users</Flow.Node>
+      </Flow.Parallel>
+      <Flow.Node>Contractor Access</Flow.Node>
+    </Flow.List>
+  </Flow.Parallel>
+  <Flow.Node>Destinations</Flow.Node>
 </Flow>

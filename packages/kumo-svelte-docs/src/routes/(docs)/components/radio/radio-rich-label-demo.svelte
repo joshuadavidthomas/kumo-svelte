@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Badge, RadioGroup, RadioItem } from "kumo-svelte";
+  import { Radio, Badge } from "kumo-svelte";
 
   let value = $state("pro");
 </script>
@@ -12,7 +12,7 @@
   <span class="flex items-center gap-2">Pro <Badge variant="primary">Popular</Badge></span>
 {/snippet}
 
-<RadioGroup legend="Choose a plan" appearance="card" {value} onValueChange={(next) => (value = next)}>
-  <RadioItem label={freeLabel} description="For personal or hobby projects." value="free" />
-  <RadioItem label={proLabel} description="For professional websites." value="pro" />
-</RadioGroup>
+<Radio.Group legend="Choose a plan" appearance="card" {value} onValueChange={(next) => (value = next)}>
+  <Radio.Item label={freeLabel} description="For personal or hobby projects." value="free" />
+  <Radio.Item label={proLabel} description="For professional websites." value="pro" />
+</Radio.Group>

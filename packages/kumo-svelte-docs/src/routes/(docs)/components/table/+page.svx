@@ -25,36 +25,36 @@ sourceFile: components/table
 ### Barrel
 
 ```ts
-import { Table, TableBody, TableCell } from "kumo-svelte";
+import { Table } from "kumo-svelte";
 ```
 
 ### Granular
 
 ```ts
-import { Table, TableBody, TableCell } from "kumo-svelte/components/table";
+import * as Table from "kumo-svelte/components/table";
 ```
 
 ## Usage
 
 ```svelte
 <script lang="ts">
-  import { LayerCard, Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "kumo-svelte";
+  import { LayerCard, Table } from "kumo-svelte";
 </script>
 
 <LayerCard class="p-0">
   <Table>
-    <TableHeader>
-      <TableRow>
-        <TableHead>Name</TableHead>
-        <TableHead>Email</TableHead>
-      </TableRow>
-    </TableHeader>
-    <TableBody>
-      <TableRow>
-        <TableCell>John Doe</TableCell>
-        <TableCell>john@example.com</TableCell>
-      </TableRow>
-    </TableBody>
+    <Table.Header>
+      <Table.Row>
+        <Table.Head>Name</Table.Head>
+        <Table.Head>Email</Table.Head>
+      </Table.Row>
+    </Table.Header>
+    <Table.Body>
+      <Table.Row>
+        <Table.Cell>John Doe</Table.Cell>
+        <Table.Cell>john@example.com</Table.Cell>
+      </Table.Row>
+    </Table.Body>
   </Table>
 </LayerCard>
 ```
@@ -63,7 +63,7 @@ import { Table, TableBody, TableCell } from "kumo-svelte/components/table";
 
 ### With Checkboxes
 
-Add row selection with `TableCheckHead` and `TableCheckCell`. Both accept `onCheckedChange`, which matches the Checkbox component's callback shape.
+Add row selection with `Table.CheckHead` and `Table.CheckCell`. Both accept `onCheckedChange`, which matches the Checkbox component's callback shape.
 
 <Example demo="table-with-checkbox-demo">
   <TableWithCheckboxDemo />
@@ -71,7 +71,7 @@ Add row selection with `TableCheckHead` and `TableCheckCell`. Both accept `onChe
 
 ### Compact Header
 
-Use `variant="compact"` on `TableHeader` for a more condensed header style.
+Use `variant="compact"` on `Table.Header` for a more condensed header style.
 
 <Example demo="table-compact-header-demo">
   <TableWithCompactHeaderDemo />
@@ -79,7 +79,7 @@ Use `variant="compact"` on `TableHeader` for a more condensed header style.
 
 ### Selected Row
 
-Use `variant="selected"` on `TableRow` to highlight selected rows.
+Use `variant="selected"` on `Table.Row` to highlight selected rows.
 
 <Example demo="table-selected-row-demo">
   <TableSelectedRowDemo />
@@ -95,7 +95,7 @@ For precise control over column widths, set `layout="fixed"` and use `colgroup` 
 
 ### Sticky Column
 
-Pin a column to the left or right edge of the scroll container with `sticky="left"` or `sticky="right"` on `TableHead` and `TableCell`.
+Pin a column to the left or right edge of the scroll container with `sticky="left"` or `sticky="right"` on `Table.Head` and `Table.Cell`.
 
 <Example demo="table-sticky-column-demo">
   <TableStickyColumnDemo />
@@ -103,7 +103,7 @@ Pin a column to the left or right edge of the scroll container with `sticky="lef
 
 ### Compact Header with Sticky Column
 
-Combining `variant="compact"` on `TableHeader` with sticky columns.
+Combining `variant="compact"` on `Table.Header` with sticky columns.
 
 <Example demo="table-compact-sticky-demo">
   <TableCompactStickyDemo />
@@ -129,11 +129,11 @@ Root table component. Renders a semantic `table` element.
 | `children` | `Snippet` | — | Table contents. |
 | `class` | `string` | — | Additional classes. |
 
-### `TableHeader`, `TableBody`, and `TableFooter`
+### `Table.Header`, `Table.Body`, and `Table.Footer`
 
-Semantic table sections. `TableHeader` supports `variant="compact"` and `sticky`.
+Semantic table sections. `Table.Header` supports `variant="compact"` and `sticky`.
 
-### `TableRow`
+### `Table.Row`
 
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -141,11 +141,11 @@ Semantic table sections. `TableHeader` supports `variant="compact"` and `sticky`
 | `children` | `Snippet` | — | Row cells. |
 | `class` | `string` | — | Additional classes. |
 
-### `TableHead` and `TableCell`
+### `Table.Head` and `Table.Cell`
 
 Header and body cells. Both accept `sticky="left"` or `sticky="right"` to pin a column.
 
-### `TableCheckHead` and `TableCheckCell`
+### `Table.CheckHead` and `Table.CheckCell`
 
 Checkbox cells for selection.
 
@@ -167,4 +167,4 @@ For advanced features like sorting, filtering, and resizable columns, integrate 
 
 ## Svelte Notes
 
-The Svelte package exports named components (`TableHeader`, `TableRow`, `TableHead`, and so on) instead of React compound properties (`Table.Header`, `Table.Row`, `Table.Head`).
+The Svelte package supports Kumo-style compound properties (`Table.Header`, `Table.Row`, `Table.Head`, and so on) and shadcn-svelte-style namespace imports.

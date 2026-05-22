@@ -28,28 +28,30 @@ sourceFile: components/flow
 ### Barrel
 
 ```ts
-import { Flow, FlowNode, FlowParallel } from "kumo-svelte";
+import { Flow } from "kumo-svelte";
 ```
 
 ### Granular
 
 ```ts
-import { Flow, FlowNode, FlowParallel } from "kumo-svelte/components/flow";
+import * as Flow from "kumo-svelte/components/flow";
 ```
 
 ## Usage
 
-The Flow components work together to create directed flow diagrams. Use `Flow` as the container, `FlowNode` for individual steps, and `FlowParallel` to create branching paths.
+The Flow components work together to create directed flow diagrams. Use `Flow` as the container,
+  `Flow.Node` for individual steps,
+  and `Flow.Parallel` to create branching paths.
 
 ```svelte
 <script lang="ts">
-  import { Flow, FlowNode } from "kumo-svelte";
+  import { Flow } from "kumo-svelte";
 </script>
 
 <Flow>
-  <FlowNode>Step 1</FlowNode>
-  <FlowNode>Step 2</FlowNode>
-  <FlowNode>Step 3</FlowNode>
+  <Flow.Node>Step 1</Flow.Node>
+  <Flow.Node>Step 2</Flow.Node>
+  <Flow.Node>Step 3</Flow.Node>
 </Flow>
 ```
 
@@ -65,7 +67,7 @@ A simple linear flow with nodes connected in sequence.
 
 ### Parallel Branches
 
-Use `FlowParallel` to create branching paths that run in parallel.
+Use `Flow.Parallel` to create branching paths that run in parallel.
 
 <Example demo="flow-parallel-demo">
   <FlowParallelDemo />
@@ -97,7 +99,7 @@ Combine sequential and parallel nodes to build complex workflows.
 
 ### Custom Anchor Points
 
-By default, connectors attach to the center of each node. Use `FlowAnchor` to specify custom attachment points. The `type` prop controls whether the anchor serves as a `"start"` point or an `"end"` point.
+By default, connectors attach to the center of each node. Use `Flow.Anchor` to specify custom attachment points. The `type` prop controls whether the anchor serves as a `"start"` point or an `"end"` point.
 
 <Example demo="flow-anchor-demo">
   <FlowAnchorDemo />
@@ -121,7 +123,7 @@ Use the `disabled` prop on a node to visually indicate it's inactive. Connectors
 
 ### Parallel Node Alignment
 
-Use the `align` prop on `FlowParallel` to control how nodes with different widths are aligned. Use `"start"` (default) to align left, or `"end"` to align right.
+Use the `align` prop on `Flow.Parallel` to control how nodes with different widths are aligned. Use `"start"` (default) to align left, or `"end"` to align right.
 
 <Example demo="flow-parallel-align-end-demo">
   <FlowParallelAlignEndDemo />
@@ -139,7 +141,7 @@ Toggling the sidebar shifts the Flow container's viewport position. Connector co
 
 ### Nested Node Lists in Parallel
 
-Use `FlowList` inside `FlowParallel` to create parallel branches where each branch contains a sequence of connected nodes.
+Use `Flow.List` inside `Flow.Parallel` to create parallel branches where each branch contains a sequence of connected nodes.
 
 <Example demo="flow-parallel-nested-list-demo">
   <FlowParallelNestedListDemo />
@@ -147,7 +149,7 @@ Use `FlowList` inside `FlowParallel` to create parallel branches where each bran
 
 ## Components
 
-### Flow / FlowRoot
+### Flow / Flow.Root
 
 The root container for flow diagrams. Provides panning and scrolling for large diagrams.
 
@@ -161,7 +163,7 @@ The root container for flow diagrams. Provides panning and scrolling for large d
 | `class` | `string` | Additional classes. |
 | `children` | `Snippet` | Flow nodes, parallel groups, and lists. |
 
-### FlowNode
+### Flow.Node
 
 Individual node in the flow.
 
@@ -173,7 +175,7 @@ Individual node in the flow.
 | `id` | `string` | Stable node ID. |
 | `render` | `Snippet<[FlowNodeRenderProps]>` | Custom node renderer. Apply the provided `action` and `attrs`. |
 
-### FlowParallel
+### Flow.Parallel
 
 Container for parallel branches.
 
@@ -183,7 +185,7 @@ Container for parallel branches.
 | `id` | `string` | Stable group ID. |
 | `children` | `Snippet` | Branch nodes or lists. |
 
-### FlowList
+### Flow.List
 
 Nested sequential list. Use inside parallel branches when a branch contains multiple connected nodes.
 
@@ -193,7 +195,7 @@ Nested sequential list. Use inside parallel branches when a branch contains mult
 | `class` | `string` | Additional classes. |
 | `children` | `Snippet` | Nested flow nodes. |
 
-### FlowAnchor
+### Flow.Anchor
 
 Custom connector attachment point inside a custom node.
 

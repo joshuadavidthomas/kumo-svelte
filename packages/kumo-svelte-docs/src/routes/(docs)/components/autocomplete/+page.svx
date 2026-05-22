@@ -30,7 +30,7 @@ import { Autocomplete } from "kumo-svelte";
 ### Granular
 
 ```ts
-import { Autocomplete } from "kumo-svelte/components/autocomplete";
+import * as Autocomplete from "kumo-svelte/components/autocomplete";
 ```
 
 ## When to use
@@ -41,27 +41,21 @@ Use `Autocomplete` when the input value can be free-form text and suggestions ar
 
 ```svelte
 <script lang="ts">
-  import {
-    Autocomplete,
-    AutocompleteContent,
-    AutocompleteInputGroup,
-    AutocompleteItem,
-    AutocompleteList,
-  } from "kumo-svelte";
+  import { Autocomplete } from "kumo-svelte";
 
   const fruits = ["Apple", "Banana", "Cherry"];
   const fruitItems = fruits.map((fruit) => ({ label: fruit, value: fruit }));
 </script>
 
 <Autocomplete items={fruitItems}>
-  <AutocompleteInputGroup placeholder="Search fruits…" />
-  <AutocompleteContent>
-    <AutocompleteList>
+  <Autocomplete.InputGroup placeholder="Search fruits…" />
+  <Autocomplete.Content>
+    <Autocomplete.List>
       {#each fruits as fruit}
-        <AutocompleteItem value={fruit}>{fruit}</AutocompleteItem>
+        <Autocomplete.Item value={fruit}>{fruit}</Autocomplete.Item>
       {/each}
-    </AutocompleteList>
-  </AutocompleteContent>
+    </Autocomplete.List>
+  </Autocomplete.Content>
 </Autocomplete>
 ```
 
@@ -91,7 +85,7 @@ Display validation errors with the `error` prop.
 
 ## Grouped
 
-Group items into categories using `AutocompleteGroup` and `AutocompleteGroupLabel`.
+Group items into categories using `Autocomplete.Group` and `Autocomplete.GroupLabel`.
 
 <Example title="Grouped" demo="autocomplete-grouped-demo">
   <AutocompleteGroupedDemo />
@@ -99,7 +93,7 @@ Group items into categories using `AutocompleteGroup` and `AutocompleteGroupLabe
 
 ## Sizes
 
-The `size` prop on `AutocompleteInputGroup` supports `xs`, `sm`, `base`, and `lg`.
+The `size` prop on `Autocomplete.InputGroup` supports `xs`, `sm`, `base`, and `lg`.
 
 <Example title="Sizes" demo="autocomplete-sizes-demo">
   <AutocompleteSizesDemo />
@@ -111,14 +105,14 @@ For advanced matching or async search, keep filtered items in application state 
 
 ```svelte
 <Autocomplete>
-  <AutocompleteInputGroup placeholder="Search countries…" />
-  <AutocompleteContent>
-    <AutocompleteList>
+  <Autocomplete.InputGroup placeholder="Search countries…" />
+  <Autocomplete.Content>
+    <Autocomplete.List>
       {#each filteredCountries as country}
-        <AutocompleteItem value={country.value}>{country.label}</AutocompleteItem>
+        <Autocomplete.Item value={country.value}>{country.label}</Autocomplete.Item>
       {/each}
-    </AutocompleteList>
-  </AutocompleteContent>
+    </Autocomplete.List>
+  </Autocomplete.Content>
 </Autocomplete>
 ```
 
@@ -141,7 +135,7 @@ Root component. Wraps all sub-components and manages state.
 | `required` | `boolean` | No | Marks the field as required. |
 | `disabled` | `boolean` | No | Disables the autocomplete. |
 
-### AutocompleteInputGroup
+### Autocomplete.InputGroup
 
 Self-contained input wrapper that renders the text input.
 
@@ -151,15 +145,15 @@ Self-contained input wrapper that renders the text input.
 | `size` | `"xs" \| "sm" \| "base" \| "lg"` | No | Input size. |
 | `onValueChange` | `(value: string) => void` | No | Called when the input value changes. |
 
-### AutocompleteContent
+### Autocomplete.Content
 
 Dropdown popup container.
 
-### AutocompleteList
+### Autocomplete.List
 
 Scrollable list container.
 
-### AutocompleteItem
+### Autocomplete.Item
 
 Individual suggestion item.
 

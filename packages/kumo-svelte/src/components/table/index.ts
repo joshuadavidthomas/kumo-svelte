@@ -10,18 +10,45 @@ import TableResizeHandleComponent from "./table-resize-handle.svelte";
 import TableRowComponent from "./table-row.svelte";
 import TableComponent from "./table.svelte";
 
-export { default as Table } from "./table.svelte";
-export { default as TableBody } from "./table-body.svelte";
-export { default as TableCell } from "./table-cell.svelte";
-export { default as TableCheckCell } from "./table-check-cell.svelte";
-export { default as TableCheckHead } from "./table-check-head.svelte";
-export { default as TableFooter } from "./table-footer.svelte";
-export { default as TableHead } from "./table-head.svelte";
-export { default as TableHeader } from "./table-header.svelte";
-export { default as TableResizeHandle } from "./table-resize-handle.svelte";
-export { default as TableRow } from "./table-row.svelte";
+const Table = Object.assign(TableComponent, {
+  Root: TableComponent,
+  Header: TableHeaderComponent,
+  Head: TableHeadComponent,
+  Row: TableRowComponent,
+  Body: TableBodyComponent,
+  Cell: TableCellComponent,
+  CheckCell: TableCheckCellComponent,
+  CheckHead: TableCheckHeadComponent,
+  Footer: TableFooterComponent,
+  ResizeHandle: TableResizeHandleComponent,
+});
+
+export {
+  Table,
+  TableComponent as TableRoot,
+  TableComponent as Root,
+  TableBodyComponent as TableBody,
+  TableBodyComponent as Body,
+  TableCellComponent as TableCell,
+  TableCellComponent as Cell,
+  TableCheckCellComponent as TableCheckCell,
+  TableCheckCellComponent as CheckCell,
+  TableCheckHeadComponent as TableCheckHead,
+  TableCheckHeadComponent as CheckHead,
+  TableFooterComponent as TableFooter,
+  TableFooterComponent as Footer,
+  TableHeadComponent as TableHead,
+  TableHeadComponent as Head,
+  TableHeaderComponent as TableHeader,
+  TableHeaderComponent as Header,
+  TableResizeHandleComponent as TableResizeHandle,
+  TableResizeHandleComponent as ResizeHandle,
+  TableRowComponent as TableRow,
+  TableRowComponent as Row,
+};
 
 export type TableProps = ComponentProps<typeof TableComponent>;
+export type TableRootProps = TableProps;
 export type TableBodyProps = ComponentProps<typeof TableBodyComponent>;
 export type TableCellProps = ComponentProps<typeof TableCellComponent>;
 export type TableCheckCellProps = ComponentProps<typeof TableCheckCellComponent>;

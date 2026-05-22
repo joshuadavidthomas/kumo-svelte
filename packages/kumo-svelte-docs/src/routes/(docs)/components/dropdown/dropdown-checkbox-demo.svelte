@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Button, DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuGroup, DropdownMenuLabel, DropdownMenuTrigger } from "kumo-svelte";
+  import { Button, DropdownMenu } from "kumo-svelte";
 
   let showSidebar = $state(true);
   let showLineNumbers = $state(false);
@@ -7,17 +7,17 @@
 </script>
 
 <DropdownMenu>
-  <DropdownMenuTrigger>
+  <DropdownMenu.Trigger>
     {#snippet child({ props })}
       <Button {...props}>View Options</Button>
     {/snippet}
-  </DropdownMenuTrigger>
-  <DropdownMenuContent>
-    <DropdownMenuGroup>
-      <DropdownMenuLabel>Display</DropdownMenuLabel>
-      <DropdownMenuCheckboxItem bind:checked={showSidebar}>Show sidebar</DropdownMenuCheckboxItem>
-      <DropdownMenuCheckboxItem bind:checked={showLineNumbers}>Show line numbers</DropdownMenuCheckboxItem>
-      <DropdownMenuCheckboxItem bind:checked={wordWrap}>Word wrap</DropdownMenuCheckboxItem>
-    </DropdownMenuGroup>
-  </DropdownMenuContent>
+  </DropdownMenu.Trigger>
+  <DropdownMenu.Content>
+    <DropdownMenu.Group>
+      <DropdownMenu.Label>Display</DropdownMenu.Label>
+      <DropdownMenu.CheckboxItem bind:checked={showSidebar}>Show sidebar</DropdownMenu.CheckboxItem>
+      <DropdownMenu.CheckboxItem bind:checked={showLineNumbers}>Show line numbers</DropdownMenu.CheckboxItem>
+      <DropdownMenu.CheckboxItem bind:checked={wordWrap}>Word wrap</DropdownMenu.CheckboxItem>
+    </DropdownMenu.Group>
+  </DropdownMenu.Content>
 </DropdownMenu>

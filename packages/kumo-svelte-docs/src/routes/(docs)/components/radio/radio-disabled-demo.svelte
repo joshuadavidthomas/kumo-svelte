@@ -1,25 +1,25 @@
 <script lang="ts">
-  import { RadioGroup, RadioItem } from "kumo-svelte";
+  import { Radio } from "kumo-svelte";
 </script>
 
 <div class="grid gap-6 md:grid-cols-2">
-  <RadioGroup legend="Disabled group" disabled defaultValue="a">
-    <RadioItem label="Option A" value="a" />
-    <RadioItem label="Option B" value="b" />
-  </RadioGroup>
+  <Radio.Group legend="Disabled group" disabled defaultValue="a">
+    <Radio.Item label="Option A" value="a" />
+    <Radio.Item label="Option B" value="b" />
+  </Radio.Group>
 
-  <RadioGroup legend="Individual disabled" defaultValue="available">
-    <RadioItem label="Available" value="available" />
-    <RadioItem label="Unavailable" value="unavailable" disabled />
-  </RadioGroup>
+  <Radio.Group legend="Individual disabled" defaultValue="available">
+    <Radio.Item label="Available" value="available" />
+    <Radio.Item label="Unavailable" value="unavailable" disabled />
+  </Radio.Group>
 
-  <RadioGroup legend="Disabled card group" appearance="card" disabled defaultValue="a">
-    <RadioItem label="Option A" description="This option is disabled." value="a" />
-    <RadioItem label="Option B" description="This option is disabled." value="b" />
-  </RadioGroup>
+  <Radio.Group legend="Disabled card group" appearance="card" disabled defaultValue="a">
+    <Radio.Item label="Option A" description="This option is disabled." value="a" />
+    <Radio.Item label="Option B" description="This option is disabled." value="b" />
+  </Radio.Group>
 
-  <RadioGroup legend="Individual disabled card" appearance="card" defaultValue="available">
-    <RadioItem label="Available" description="This option can be selected." value="available" />
-    <RadioItem label="Unavailable" description="This option is not available." value="unavailable" disabled />
-  </RadioGroup>
+  <Radio.Group legend="Individual disabled card" appearance="card" defaultValue="available">
+    <Radio.Item label="Available" description="This option can be selected." value="available" />
+    <Radio.Item label="Unavailable" description="This option is not available." value="unavailable" disabled />
+  </Radio.Group>
 </div>

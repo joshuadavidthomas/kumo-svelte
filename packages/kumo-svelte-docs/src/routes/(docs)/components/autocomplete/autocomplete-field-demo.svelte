@@ -1,11 +1,5 @@
 <script lang="ts">
-  import {
-      Autocomplete,
-      AutocompleteContent,
-      AutocompleteInputGroup,
-      AutocompleteItem,
-      AutocompleteList,
-  } from "kumo-svelte";
+  import { Autocomplete } from "kumo-svelte";
   import { countries, countryItems } from "./autocomplete-data";
 
   interface Props {
@@ -23,13 +17,13 @@
     {error}
     required
   >
-    <AutocompleteInputGroup placeholder="Search countries…" />
-    <AutocompleteContent>
-      <AutocompleteList>
+    <Autocomplete.InputGroup placeholder="Search countries…" />
+    <Autocomplete.Content>
+      <Autocomplete.List>
         {#each countries as country (country.code)}
-          <AutocompleteItem value={country.value}>{country.label}</AutocompleteItem>
+          <Autocomplete.Item value={country.value}>{country.label}</Autocomplete.Item>
         {/each}
-      </AutocompleteList>
-    </AutocompleteContent>
+      </Autocomplete.List>
+    </Autocomplete.Content>
   </Autocomplete>
 </div>

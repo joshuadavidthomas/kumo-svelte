@@ -35,13 +35,13 @@ baseUIComponent: select
 ### Barrel
 
 ```ts
-import { Select, SelectOption } from "kumo-svelte";
+import { Select } from "kumo-svelte";
 ```
 
 ### Granular
 
 ```ts
-import { Select, SelectOption } from "kumo-svelte/components/select";
+import * as Select from "kumo-svelte/components/select";
 ```
 
 ## Usage
@@ -121,7 +121,7 @@ Add a tooltip icon next to the label for additional context using `labelTooltip`
 
 ### Custom Rendering
 
-Use `SelectOption` children and labels to customize how options appear in the list.
+Use `Select.Option` children and labels to customize how options appear in the list.
 
 <Example demo="select-custom-rendering-demo">
   <SelectCustomRenderingDemo />
@@ -172,7 +172,7 @@ The `items` object-map prop accepts descriptor objects with `disabled` alongside
 
 ### Grouped Options
 
-Use `SelectGroup`, `SelectGroupLabel`, and `SelectSeparator` to organize options under labeled headers with visual dividers.
+Use `Select.Group`, `Select.GroupLabel`, and `Select.Separator` to organize options under labeled headers with visual dividers.
 
 <Example demo="select-grouped-demo">
   <SelectGroupedDemo />
@@ -217,7 +217,7 @@ A select component with many options to test popup scrolling behavior.
 | `container` | `Portal target` | — | Portal target. |
 | `class` | `string` | — | Additional classes for the trigger. |
 
-### `SelectOption`
+### `Select.Option`
 
 | Prop | Type | Required | Description |
 | --- | --- | --- | --- |
@@ -227,10 +227,10 @@ A select component with many options to test popup scrolling behavior.
 | `children` | `Snippet` | No | Custom option content. |
 | `class` | `string` | No | Additional classes. |
 
-### `SelectGroup`, `SelectGroupLabel`, and `SelectSeparator`
+### `Select.Group`, `Select.GroupLabel`, and `Select.Separator`
 
-Use `SelectGroup` to group related options, `SelectGroupLabel` to provide a visible heading, and `SelectSeparator` to render a visual divider between groups.
+Use `Select.Group` to group related options, `Select.GroupLabel` to provide a visible heading, and `Select.Separator` to render a visual divider between groups.
 
 ## Svelte Notes
 
-The Svelte Select currently works with string values. For rich option rows, pass custom `SelectOption` children and a string `label` for the trigger display. Use named components (`SelectOption`, `SelectGroup`, `SelectGroupLabel`, `SelectSeparator`) instead of React compound properties.
+The Svelte Select currently works with string values. For rich option rows, pass custom `Select.Option` children and a string `label` for the trigger display. The barrel export supports Kumo-style compound properties, and granular imports support the shadcn-svelte namespace style.

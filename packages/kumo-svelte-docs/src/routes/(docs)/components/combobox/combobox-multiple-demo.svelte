@@ -1,15 +1,5 @@
 <script lang="ts">
-  import {
-    Button,
-    Combobox,
-    ComboboxChip,
-    ComboboxContent,
-    ComboboxEmpty,
-    ComboboxItem,
-    ComboboxList,
-    ComboboxTriggerMultipleWithInput,
-    Text,
-  } from "kumo-svelte";
+  import { Button, Combobox, Text } from "kumo-svelte";
   import { bots } from "./combobox-data";
 
   let value = $state<string[]>([]);
@@ -18,25 +8,25 @@
 </script>
 
 {#snippet selectedBot(value: string)}
-  <ComboboxChip {value}>{botLabels[value] ?? value}</ComboboxChip>
+  <Combobox.Chip {value}>{botLabels[value] ?? value}</Combobox.Chip>
 {/snippet}
 
 <div class="flex gap-2">
   <Combobox multiple bind:value bind:open items={bots}>
-    <ComboboxTriggerMultipleWithInput class="w-[400px]" placeholder="Select bots" renderItem={selectedBot} />
-    <ComboboxContent class="max-h-[200px] min-w-auto overflow-y-auto">
-      <ComboboxEmpty />
-      <ComboboxList>
+    <Combobox.TriggerMultipleWithInput class="w-[400px]" placeholder="Select bots" renderItem={selectedBot} />
+    <Combobox.Content class="max-h-[200px] min-w-auto overflow-y-auto">
+      <Combobox.Empty />
+      <Combobox.List>
         {#each bots as bot}
-          <ComboboxItem value={bot.value} label={bot.label}>
+          <Combobox.Item value={bot.value} label={bot.label}>
             <div class="flex gap-2">
               <Text>{bot.label}</Text>
               <Text variant="secondary">{bot.author}</Text>
             </div>
-          </ComboboxItem>
+          </Combobox.Item>
         {/each}
-      </ComboboxList>
-    </ComboboxContent>
+      </Combobox.List>
+    </Combobox.Content>
   </Combobox>
   <Button variant="primary">Submit</Button>
 </div>

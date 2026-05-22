@@ -22,27 +22,13 @@ sourceFile: components/breadcrumbs
 ### Barrel
 
 ```ts
-import {
-  Breadcrumbs,
-  BreadcrumbsClipboard,
-  BreadcrumbsCurrent,
-  BreadcrumbsEllipsis,
-  BreadcrumbsLink,
-  BreadcrumbsSeparator,
-} from "kumo-svelte";
+import { Breadcrumbs } from "kumo-svelte";
 ```
 
 ### Granular
 
 ```ts
-import {
-  Breadcrumbs,
-  BreadcrumbsClipboard,
-  BreadcrumbsCurrent,
-  BreadcrumbsEllipsis,
-  BreadcrumbsLink,
-  BreadcrumbsSeparator,
-} from "kumo-svelte/components/breadcrumbs";
+import * as Breadcrumbs from "kumo-svelte/components/breadcrumbs";
 ```
 
 ## Usage
@@ -94,7 +80,7 @@ Root navigation container.
 
 All other props are passed to the underlying `<nav>` element.
 
-### BreadcrumbsLink
+### Breadcrumbs.Link
 
 Clickable breadcrumb item.
 
@@ -107,7 +93,7 @@ Clickable breadcrumb item.
 
 All other props are passed to the underlying `<a>` element.
 
-### BreadcrumbsCurrent
+### Breadcrumbs.Current
 
 Current page breadcrumb item.
 
@@ -120,7 +106,7 @@ Current page breadcrumb item.
 
 All other props are passed to the underlying `<div>` element.
 
-### BreadcrumbsSeparator
+### Breadcrumbs.Separator
 
 Visual separator between breadcrumb items.
 
@@ -130,7 +116,7 @@ Visual separator between breadcrumb items.
 
 All other props are passed to the underlying `<span>` element.
 
-### BreadcrumbsEllipsis
+### Breadcrumbs.Ellipsis
 
 Mobile breadcrumb ellipsis.
 
@@ -140,7 +126,7 @@ Mobile breadcrumb ellipsis.
 
 All other props are passed to the underlying `<span>` element.
 
-### BreadcrumbsClipboard
+### Breadcrumbs.Clipboard
 
 Copy button for a breadcrumb deeplink.
 

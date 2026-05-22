@@ -6,16 +6,7 @@
   import HouseIcon from "phosphor-svelte/lib/HouseIcon";
   import LockIcon from "phosphor-svelte/lib/LockIcon";
   import ShieldCheckIcon from "phosphor-svelte/lib/ShieldCheckIcon";
-  import {
-    Sidebar,
-    SidebarContent,
-    SidebarGroup,
-    SidebarGroupContent,
-    SidebarGroupLabel,
-    SidebarMenu,
-    SidebarMenuButton,
-    SidebarProvider,
-  } from "kumo-svelte";
+  import { Sidebar } from "kumo-svelte";
   import DemoShell from "./sidebar-demo-shell.svelte";
   import DemoMain from "./sidebar-main.svelte";
 </script>
@@ -29,41 +20,41 @@
 {#snippet lockIcon()}<LockIcon />{/snippet}
 
 <DemoShell>
-  <SidebarProvider defaultOpen class="h-full min-h-0!">
+  <Sidebar.Provider defaultOpen class="h-full min-h-0!">
     <Sidebar>
-      <SidebarContent>
-        <SidebarGroup collapsible defaultOpen>
-          <SidebarGroupLabel>Overview</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              <SidebarMenuButton icon={homeIcon} active>Home</SidebarMenuButton>
-              <SidebarMenuButton icon={chartIcon}>Analytics</SidebarMenuButton>
-              <SidebarMenuButton icon={globeIcon}>Domains</SidebarMenuButton>
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
+      <Sidebar.Content>
+        <Sidebar.Group collapsible defaultOpen>
+          <Sidebar.GroupLabel>Overview</Sidebar.GroupLabel>
+          <Sidebar.GroupContent>
+            <Sidebar.Menu>
+              <Sidebar.MenuButton icon={homeIcon} active>Home</Sidebar.MenuButton>
+              <Sidebar.MenuButton icon={chartIcon}>Analytics</Sidebar.MenuButton>
+              <Sidebar.MenuButton icon={globeIcon}>Domains</Sidebar.MenuButton>
+            </Sidebar.Menu>
+          </Sidebar.GroupContent>
+        </Sidebar.Group>
 
-        <SidebarGroup collapsible defaultOpen>
-          <SidebarGroupLabel>Build</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              <SidebarMenuButton icon={codeIcon}>Compute</SidebarMenuButton>
-              <SidebarMenuButton icon={databaseIcon}>Storage</SidebarMenuButton>
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
+        <Sidebar.Group collapsible defaultOpen>
+          <Sidebar.GroupLabel>Build</Sidebar.GroupLabel>
+          <Sidebar.GroupContent>
+            <Sidebar.Menu>
+              <Sidebar.MenuButton icon={codeIcon}>Compute</Sidebar.MenuButton>
+              <Sidebar.MenuButton icon={databaseIcon}>Storage</Sidebar.MenuButton>
+            </Sidebar.Menu>
+          </Sidebar.GroupContent>
+        </Sidebar.Group>
 
-        <SidebarGroup collapsible defaultOpen={false}>
-          <SidebarGroupLabel>Protect & Connect</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              <SidebarMenuButton icon={shieldIcon}>Security</SidebarMenuButton>
-              <SidebarMenuButton icon={lockIcon}>Zero Trust</SidebarMenuButton>
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-      </SidebarContent>
+        <Sidebar.Group collapsible defaultOpen={false}>
+          <Sidebar.GroupLabel>Protect & Connect</Sidebar.GroupLabel>
+          <Sidebar.GroupContent>
+            <Sidebar.Menu>
+              <Sidebar.MenuButton icon={shieldIcon}>Security</Sidebar.MenuButton>
+              <Sidebar.MenuButton icon={lockIcon}>Zero Trust</Sidebar.MenuButton>
+            </Sidebar.Menu>
+          </Sidebar.GroupContent>
+        </Sidebar.Group>
+      </Sidebar.Content>
     </Sidebar>
     <DemoMain />
-  </SidebarProvider>
+  </Sidebar.Provider>
 </DemoShell>

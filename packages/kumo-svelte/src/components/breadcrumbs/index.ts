@@ -6,13 +6,32 @@ import BreadcrumbsEllipsisComponent from "./breadcrumbs-ellipsis.svelte";
 import BreadcrumbsLinkComponent from "./breadcrumbs-link.svelte";
 import BreadcrumbsSeparatorComponent from "./breadcrumbs-separator.svelte";
 
-export { default as Breadcrumbs } from "./breadcrumbs.svelte";
-export { default as BreadcrumbsRoot } from "./breadcrumbs.svelte";
-export { default as BreadcrumbsClipboard } from "./breadcrumbs-clipboard.svelte";
-export { default as BreadcrumbsCurrent } from "./breadcrumbs-current.svelte";
-export { default as BreadcrumbsEllipsis } from "./breadcrumbs-ellipsis.svelte";
-export { default as BreadcrumbsLink } from "./breadcrumbs-link.svelte";
-export { default as BreadcrumbsSeparator } from "./breadcrumbs-separator.svelte";
+const Breadcrumbs = Object.assign(BreadcrumbsComponent, {
+  Root: BreadcrumbsComponent,
+  Clipboard: BreadcrumbsClipboardComponent,
+  Current: BreadcrumbsCurrentComponent,
+  Ellipsis: BreadcrumbsEllipsisComponent,
+  Link: BreadcrumbsLinkComponent,
+  Separator: BreadcrumbsSeparatorComponent,
+});
+const Breadcrumb = Breadcrumbs;
+
+export {
+  Breadcrumb,
+  Breadcrumbs,
+  BreadcrumbsComponent as BreadcrumbsRoot,
+  BreadcrumbsComponent as Root,
+  BreadcrumbsClipboardComponent as BreadcrumbsClipboard,
+  BreadcrumbsClipboardComponent as Clipboard,
+  BreadcrumbsCurrentComponent as BreadcrumbsCurrent,
+  BreadcrumbsCurrentComponent as Current,
+  BreadcrumbsEllipsisComponent as BreadcrumbsEllipsis,
+  BreadcrumbsEllipsisComponent as Ellipsis,
+  BreadcrumbsLinkComponent as BreadcrumbsLink,
+  BreadcrumbsLinkComponent as Link,
+  BreadcrumbsSeparatorComponent as BreadcrumbsSeparator,
+  BreadcrumbsSeparatorComponent as Separator,
+};
 
 export type BreadcrumbsProps = ComponentProps<typeof BreadcrumbsComponent>;
 export type BreadcrumbsRootProps = BreadcrumbsProps;

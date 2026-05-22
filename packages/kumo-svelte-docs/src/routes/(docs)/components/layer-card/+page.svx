@@ -23,25 +23,25 @@ sourceFile: components/layer-card
 ### Barrel
 
 ```ts
-import { LayerCard, LayerCardPrimary, LayerCardSecondary } from "kumo-svelte";
+import { LayerCard } from "kumo-svelte";
 ```
 
 ### Granular
 
 ```ts
-import { LayerCard, LayerCardPrimary, LayerCardSecondary } from "kumo-svelte/components/layer-card";
+import * as LayerCard from "kumo-svelte/components/layer-card";
 ```
 
 ## Usage
 
 ```svelte
 <script lang="ts">
-  import { LayerCard, LayerCardPrimary, LayerCardSecondary } from "kumo-svelte";
+  import { LayerCard } from "kumo-svelte";
 </script>
 
 <LayerCard layered class="w-[250px]">
-  <LayerCardSecondary>Documentation</LayerCardSecondary>
-  <LayerCardPrimary>Learn how to use Kumo components</LayerCardPrimary>
+  <LayerCard.Secondary>Documentation</LayerCard.Secondary>
+  <LayerCard.Primary>Learn how to use Kumo components</LayerCard.Primary>
 </LayerCard>
 ```
 
@@ -63,7 +63,7 @@ LayerCard also supports a simple surface-style mode for cases where you do not n
 
 ### Surface-style Card
 
-For simple card containers, render content directly inside `LayerCard` without `LayerCardPrimary`.
+For simple card containers, render content directly inside `LayerCard` without `LayerCard.Primary`.
 
 <Example demo="layer-card-surface-demo">
   <LayerCardSurfaceDemo />
@@ -85,7 +85,7 @@ Combine `Tabs size="sm"` with `Input size="sm"` inside a LayerCard for compact f
 
 ### Test IDs
 
-`LayerCardPrimary` and `LayerCardSecondary` accept all standard HTML attributes, including `data-testid` for testing.
+`LayerCard.Primary` and `LayerCard.Secondary` accept all standard HTML attributes, including `data-testid` for testing.
 
 <Example demo="layer-card-test-id-demo">
   <LayerCardTestIdDemo />
@@ -100,28 +100,28 @@ Combine `Tabs size="sm"` with `Input size="sm"` inside a LayerCard for compact f
 | `as` | `keyof HTMLElementTagNameMap` | No | Element to render. Defaults to `"div"`. |
 | `children` | `Snippet` | No | Card contents. |
 | `class` | `string` | No | Additional classes. |
-| `layered` | `boolean` | No | Uses the layered root styles for `LayerCardSecondary` + `LayerCardPrimary` composition. Defaults to `false`. |
+| `layered` | `boolean` | No | Uses the layered root styles for `LayerCard.Secondary` + `LayerCard.Primary` composition. Defaults to `false`. |
 
 LayerCard also accepts standard HTML attributes for the rendered element.
 
-### `LayerCardPrimary`
+### `LayerCard.Primary`
 
 | Prop | Type | Required | Description |
 | --- | --- | --- | --- |
 | `children` | `Snippet` | No | Primary card content. |
 | `class` | `string` | No | Additional classes. |
 
-LayerCardPrimary also accepts standard `HTMLDivElement` attributes.
+`LayerCard.Primary` also accepts standard `HTMLDivElement` attributes.
 
-### `LayerCardSecondary`
+### `LayerCard.Secondary`
 
 | Prop | Type | Required | Description |
 | --- | --- | --- | --- |
 | `children` | `Snippet` | No | Secondary header content. |
 | `class` | `string` | No | Additional classes. |
 
-LayerCardSecondary also accepts standard `HTMLDivElement` attributes.
+`LayerCard.Secondary` also accepts standard `HTMLDivElement` attributes.
 
 ## Svelte Notes
 
-The Svelte package exports named components (`LayerCardPrimary`, `LayerCardSecondary`) instead of React compound properties (`LayerCard.Primary`, `LayerCard.Secondary`). Use `layered` on the root when composing the primary and secondary regions.
+The Svelte package supports Kumo-style compound properties (`LayerCard.Primary`, `LayerCard.Secondary`) and shadcn-svelte-style namespace imports. Use `layered` on the root when composing the primary and secondary regions.

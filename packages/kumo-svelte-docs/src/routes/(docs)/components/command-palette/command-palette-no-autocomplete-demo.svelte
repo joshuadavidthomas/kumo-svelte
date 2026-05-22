@@ -1,15 +1,5 @@
 <script lang="ts">
-  import {
-    Button,
-    CommandPalette,
-    CommandPaletteDialog,
-    CommandPaletteEmpty,
-    CommandPaletteGroup,
-    CommandPaletteGroupLabel,
-    CommandPaletteInput,
-    CommandPaletteItem,
-    CommandPaletteList,
-  } from "kumo-svelte";
+  import { Button, CommandPalette } from "kumo-svelte";
 
   const groups = [
     { label: "Commands", items: ["Create New Project", "Open Settings", "Search Files"] },
@@ -23,15 +13,15 @@
 <div class="flex flex-col items-start gap-4">
   <Button onclick={() => (open = true)}>Open Palette (No Autocomplete)</Button>
 
-  <CommandPaletteDialog bind:open>
+  <CommandPalette.Dialog bind:open>
     <CommandPalette bind:value={search}>
-      <CommandPaletteInput placeholder="Search commands..." autocomplete="off" />
-      <CommandPaletteList>
+      <CommandPalette.Input placeholder="Search commands..." autocomplete="off" />
+      <CommandPalette.List>
         {#each groups as group}
-          <CommandPaletteGroup value={group.label}>
-            <CommandPaletteGroupLabel>{group.label}</CommandPaletteGroupLabel>
+          <CommandPalette.Group value={group.label}>
+            <CommandPalette.GroupLabel>{group.label}</CommandPalette.GroupLabel>
             {#each group.items as item}
-              <CommandPaletteItem
+              <CommandPalette.Item
                 value={item}
                 onSelect={() => {
                   search = "";
@@ -39,12 +29,12 @@
                 }}
               >
                 {item}
-              </CommandPaletteItem>
+              </CommandPalette.Item>
             {/each}
-          </CommandPaletteGroup>
+          </CommandPalette.Group>
         {/each}
-        <CommandPaletteEmpty>No commands found</CommandPaletteEmpty>
-      </CommandPaletteList>
+        <CommandPalette.Empty>No commands found</CommandPalette.Empty>
+      </CommandPalette.List>
     </CommandPalette>
-  </CommandPaletteDialog>
+  </CommandPalette.Dialog>
 </div>

@@ -7,27 +7,7 @@
   import HouseIcon from "phosphor-svelte/lib/HouseIcon";
   import LockIcon from "phosphor-svelte/lib/LockIcon";
   import ShieldCheckIcon from "phosphor-svelte/lib/ShieldCheckIcon";
-  import {
-    Sidebar,
-    SidebarCollapsible,
-    SidebarCollapsibleContent,
-    SidebarCollapsibleTrigger,
-    SidebarContent,
-    SidebarFooter,
-    SidebarGroup,
-    SidebarGroupLabel,
-    SidebarHeader,
-    SidebarInput,
-    SidebarMenu,
-    SidebarMenuBadge,
-    SidebarMenuButton,
-    SidebarMenuChevron,
-    SidebarMenuItem,
-    SidebarMenuSub,
-    SidebarMenuSubButton,
-    SidebarProvider,
-    SidebarSeparator,
-  } from "kumo-svelte";
+  import { Sidebar } from "kumo-svelte";
   import DemoShell from "./sidebar-demo-shell.svelte";
   import DemoMain from "./sidebar-main.svelte";
 </script>
@@ -42,59 +22,59 @@
 {#snippet gearIcon()}<GearIcon />{/snippet}
 
 <DemoShell>
-  <SidebarProvider defaultOpen class="h-full min-h-0!">
+  <Sidebar.Provider defaultOpen class="h-full min-h-0!">
     <Sidebar>
-      <SidebarHeader>
+      <Sidebar.Header>
         <div class="flex w-full min-w-0 items-center gap-2 px-3 py-2">
           <div class="size-4 shrink-0 rounded bg-kumo-brand"></div>
           <span class="truncate text-sm font-semibold text-kumo-strong group-data-[state=collapsed]/sidebar:hidden">Acme Inc</span>
         </div>
-      </SidebarHeader>
-      <SidebarContent>
-        <div class="px-1 pb-2"><SidebarInput placeholder="Quick search..." shortcut="⌘K" /></div>
-        <SidebarGroup>
-          <SidebarGroupLabel>Overview</SidebarGroupLabel>
-          <SidebarMenu>
-            <SidebarMenuButton icon={homeIcon} active>Home</SidebarMenuButton>
-            <SidebarMenuButton icon={chartIcon}>Analytics & Logs</SidebarMenuButton>
-            <SidebarMenuButton icon={globeIcon}>Domains</SidebarMenuButton>
-          </SidebarMenu>
-        </SidebarGroup>
-        <SidebarSeparator />
-        <SidebarGroup>
-          <SidebarGroupLabel>Build</SidebarGroupLabel>
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarCollapsible open>
-                <SidebarCollapsibleTrigger>
+      </Sidebar.Header>
+      <Sidebar.Content>
+        <div class="px-1 pb-2"><Sidebar.Input placeholder="Quick search..." shortcut="⌘K" /></div>
+        <Sidebar.Group>
+          <Sidebar.GroupLabel>Overview</Sidebar.GroupLabel>
+          <Sidebar.Menu>
+            <Sidebar.MenuButton icon={homeIcon} active>Home</Sidebar.MenuButton>
+            <Sidebar.MenuButton icon={chartIcon}>Analytics & Logs</Sidebar.MenuButton>
+            <Sidebar.MenuButton icon={globeIcon}>Domains</Sidebar.MenuButton>
+          </Sidebar.Menu>
+        </Sidebar.Group>
+        <Sidebar.Separator />
+        <Sidebar.Group>
+          <Sidebar.GroupLabel>Build</Sidebar.GroupLabel>
+          <Sidebar.Menu>
+            <Sidebar.MenuItem>
+              <Sidebar.Collapsible open>
+                <Sidebar.CollapsibleTrigger>
                   {#snippet child({ props })}
-                    <SidebarMenuButton {...props} icon={codeIcon}>Compute <SidebarMenuChevron /></SidebarMenuButton>
+                    <Sidebar.MenuButton {...props} icon={codeIcon}>Compute <Sidebar.MenuChevron /></Sidebar.MenuButton>
                   {/snippet}
-                </SidebarCollapsibleTrigger>
-                <SidebarCollapsibleContent>
-                  <SidebarMenuSub>
-                    <SidebarMenuSubButton>Workers & Pages</SidebarMenuSubButton>
-                    <SidebarMenuSubButton>Durable Objects</SidebarMenuSubButton>
-                    <SidebarMenuSubButton>Containers <SidebarMenuBadge>Beta</SidebarMenuBadge></SidebarMenuSubButton>
-                  </SidebarMenuSub>
-                </SidebarCollapsibleContent>
-              </SidebarCollapsible>
-            </SidebarMenuItem>
-            <SidebarMenuButton icon={databaseIcon}>Storage</SidebarMenuButton>
-          </SidebarMenu>
-        </SidebarGroup>
-        <SidebarGroup>
-          <SidebarGroupLabel>Protect & Connect</SidebarGroupLabel>
-          <SidebarMenu>
-            <SidebarMenuButton icon={shieldIcon}>Security</SidebarMenuButton>
-            <SidebarMenuButton icon={lockIcon}>Zero Trust <SidebarMenuBadge>Beta</SidebarMenuBadge></SidebarMenuButton>
-          </SidebarMenu>
-        </SidebarGroup>
-      </SidebarContent>
-      <SidebarFooter>
-        <SidebarMenuButton icon={gearIcon}>Manage account</SidebarMenuButton>
-      </SidebarFooter>
+                </Sidebar.CollapsibleTrigger>
+                <Sidebar.CollapsibleContent>
+                  <Sidebar.MenuSub>
+                    <Sidebar.MenuSubButton>Workers & Pages</Sidebar.MenuSubButton>
+                    <Sidebar.MenuSubButton>Durable Objects</Sidebar.MenuSubButton>
+                    <Sidebar.MenuSubButton>Containers <Sidebar.MenuBadge>Beta</Sidebar.MenuBadge></Sidebar.MenuSubButton>
+                  </Sidebar.MenuSub>
+                </Sidebar.CollapsibleContent>
+              </Sidebar.Collapsible>
+            </Sidebar.MenuItem>
+            <Sidebar.MenuButton icon={databaseIcon}>Storage</Sidebar.MenuButton>
+          </Sidebar.Menu>
+        </Sidebar.Group>
+        <Sidebar.Group>
+          <Sidebar.GroupLabel>Protect & Connect</Sidebar.GroupLabel>
+          <Sidebar.Menu>
+            <Sidebar.MenuButton icon={shieldIcon}>Security</Sidebar.MenuButton>
+            <Sidebar.MenuButton icon={lockIcon}>Zero Trust <Sidebar.MenuBadge>Beta</Sidebar.MenuBadge></Sidebar.MenuButton>
+          </Sidebar.Menu>
+        </Sidebar.Group>
+      </Sidebar.Content>
+      <Sidebar.Footer>
+        <Sidebar.MenuButton icon={gearIcon}>Manage account</Sidebar.MenuButton>
+      </Sidebar.Footer>
     </Sidebar>
     <DemoMain />
-  </SidebarProvider>
+  </Sidebar.Provider>
 </DemoShell>

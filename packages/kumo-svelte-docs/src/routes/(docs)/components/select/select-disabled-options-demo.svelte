@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Select, SelectOption } from "kumo-svelte";
+  import { Select } from "kumo-svelte";
 
   const regions = [
     { value: "us-east", label: "US East" },
@@ -19,6 +19,6 @@
   onValueChange={(next) => (value = next as string)}
 >
   {#each regions as region (region.value)}
-    <SelectOption value={region.value} disabled={region.disabled}>{region.label}</SelectOption>
+    <Select.Option value={region.value} disabled={region.disabled}>{region.label}</Select.Option>
   {/each}
 </Select>

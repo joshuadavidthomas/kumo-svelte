@@ -1,6 +1,6 @@
 ---
 title: Radio
-description: A control that allows the user to select one option from a set. Always used within a RadioGroup.
+description: A control that allows the user to select one option from a set. Always used within a Radio.Group.
 sourceFile: components/radio
 baseUIComponent: radio-group
 ---
@@ -31,26 +31,26 @@ baseUIComponent: radio-group
 ### Barrel
 
 ```ts
-import { RadioGroup, RadioItem } from "kumo-svelte";
+import { Radio } from "kumo-svelte";
 ```
 
 ### Granular
 
 ```ts
-import { RadioGroup, RadioItem } from "kumo-svelte/components/radio";
+import * as Radio from "kumo-svelte/components/radio";
 ```
 
 ## Usage
 
 ```svelte
 <script lang="ts">
-  import { RadioGroup, RadioItem } from "kumo-svelte";
+  import { Radio } from "kumo-svelte";
 </script>
 
-<RadioGroup legend="Choose an option" defaultValue="a">
-  <RadioItem label="Option A" value="a" />
-  <RadioItem label="Option B" value="b" />
-</RadioGroup>
+<Radio.Group legend="Choose an option" defaultValue="a">
+  <Radio.Item label="Option A" value="a" />
+  <Radio.Item label="Option B" value="b" />
+</Radio.Group>
 ```
 
 ## Examples
@@ -105,7 +105,7 @@ Use `controlPosition="start"` on a card radio group to place the radio control o
 
 ### Rich Label Content
 
-The `label` prop on `RadioItem` accepts a string or snippet, so you can embed badges or other markup alongside the text.
+The `label` prop on `Radio.Item` accepts a string or snippet, so you can embed badges or other markup alongside the text.
 
 <Example demo="radio-rich-label-demo">
   <RadioRichLabelDemo />
@@ -137,7 +137,7 @@ Disable the entire group or individual items.
 
 ### Visually Hidden Legend
 
-Use `RadioLegend` with `class="sr-only"` to keep the legend accessible to screen readers while hiding it visually.
+Use `Radio.Legend` with `class="sr-only"` to keep the legend accessible to screen readers while hiding it visually.
 
 <Example demo="radio-legend-sr-only-demo">
   <RadioLegendSrOnlyDemo />
@@ -145,7 +145,7 @@ Use `RadioLegend` with `class="sr-only"` to keep the legend accessible to screen
 
 ### Custom Legend Styling
 
-`RadioLegend` accepts `class` for full control over legend presentation. Use it instead of the `legend` string prop when you need custom typography, colors, or layout.
+`Radio.Legend` accepts `class` for full control over legend presentation. Use it instead of the `legend` string prop when you need custom typography, colors, or layout.
 
 <Example demo="radio-legend-custom-demo">
   <RadioLegendCustomDemo />
@@ -153,13 +153,13 @@ Use `RadioLegend` with `class="sr-only"` to keep the legend accessible to screen
 
 ## API Reference
 
-### `RadioGroup`
+### `Radio.Group`
 
 Container for radio buttons with legend, description, and error support.
 
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |
-| `children` | `Snippet` | — | Radio items and optional `RadioLegend`. |
+| `children` | `Snippet` | — | Radio items and optional `Radio.Legend`. |
 | `value` | `string` | — | Controlled value. Use with `onValueChange`. |
 | `defaultValue` | `string` | `""` | Initial uncontrolled value. |
 | `onValueChange` | `(value: string) => void` | — | Called when selection changes. |
@@ -174,18 +174,18 @@ Container for radio buttons with legend, description, and error support.
 | `required` | `boolean` | — | Marks the group as required. |
 | `class` | `string` | — | Additional classes for the fieldset. |
 
-### `RadioLegend`
+### `Radio.Legend`
 
-Composable legend sub-component for RadioGroup. Accepts `class` for custom styling, such as `class="sr-only"`.
+Composable legend sub-component for `Radio.Group`. Accepts `class` for custom styling, such as `class="sr-only"`.
 
 | Prop | Type | Required | Description |
 | --- | --- | --- | --- |
 | `children` | `Snippet` | Yes | Legend content. |
 | `class` | `string` | No | Additional classes. |
 
-### `RadioItem`
+### `Radio.Item`
 
-Individual radio button within RadioGroup.
+Individual radio button within `Radio.Group`.
 
 | Prop | Type | Required | Description |
 | --- | --- | --- | --- |
@@ -200,13 +200,13 @@ Individual radio button within RadioGroup.
 
 ## Svelte Notes
 
-The Svelte package exports named components (`RadioGroup`, `RadioItem`, `RadioLegend`) instead of React compound properties (`Radio.Group`, `Radio.Item`, `Radio.Legend`). `value` is controlled with `onValueChange`; use `defaultValue` for simple uncontrolled demos.
+The Svelte package supports Kumo-style compound properties (`Radio.Group`, `Radio.Item`, `Radio.Legend`) and shadcn-svelte-style namespace imports. `value` is controlled with `onValueChange`; use `defaultValue` for simple uncontrolled demos.
 
 ## Accessibility
 
 ### Semantic HTML
 
-RadioGroup uses semantic `fieldset` and `legend` elements for proper grouping and screen reader announcement.
+`Radio.Group` uses semantic `fieldset` and `legend` elements for proper grouping and screen reader announcement.
 
 ### Keyboard Navigation
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Select, SelectOption } from "kumo-svelte";
+  import { Select } from "kumo-svelte";
 
   let value = $state<string[]>(["Name", "Location", "Size"]);
 </script>
@@ -11,10 +11,10 @@
   {value}
   onValueChange={(next) => (value = next as string[])}
 >
-  <SelectOption value="Name">Name</SelectOption>
-  <SelectOption value="Location">Location</SelectOption>
-  <SelectOption value="Size">Size</SelectOption>
-  <SelectOption value="Read">Read</SelectOption>
-  <SelectOption value="Write">Write</SelectOption>
-  <SelectOption value="CreatedAt">Created At</SelectOption>
+  <Select.Option value="Name">Name</Select.Option>
+  <Select.Option value="Location">Location</Select.Option>
+  <Select.Option value="Size">Size</Select.Option>
+  <Select.Option value="Read">Read</Select.Option>
+  <Select.Option value="Write">Write</Select.Option>
+  <Select.Option value="CreatedAt">Created At</Select.Option>
 </Select>

@@ -23,28 +23,28 @@ sourceFile: components/table-of-contents
 ### Barrel
 
 ```ts
-import { TableOfContents, TableOfContentsItem } from "kumo-svelte";
+import { TableOfContents } from "kumo-svelte";
 ```
 
 ### Granular
 
 ```ts
-import { TableOfContents, TableOfContentsItem } from "kumo-svelte/components/table-of-contents";
+import * as TableOfContents from "kumo-svelte/components/table-of-contents";
 ```
 
 ## Usage
 
 ```svelte
 <script lang="ts">
-  import { TableOfContents, TableOfContentsItem, TableOfContentsList, TableOfContentsTitle } from "kumo-svelte";
+  import { TableOfContents } from "kumo-svelte";
 </script>
 
 <TableOfContents>
-  <TableOfContentsTitle>On this page</TableOfContentsTitle>
-  <TableOfContentsList>
-    <TableOfContentsItem href="#intro" active>Introduction</TableOfContentsItem>
-    <TableOfContentsItem href="#api">API Reference</TableOfContentsItem>
-  </TableOfContentsList>
+  <TableOfContents.Title>On this page</TableOfContents.Title>
+  <TableOfContents.List>
+    <TableOfContents.Item href="#intro" active>Introduction</TableOfContents.Item>
+    <TableOfContents.Item href="#api">API Reference</TableOfContents.Item>
+  </TableOfContents.List>
 </TableOfContents>
 ```
 
@@ -70,7 +70,7 @@ When no item has `active` set, all items show the default subtle text style with
 
 ### Groups
 
-Use `TableOfContentsGroup` to organize items into labeled sections with indented children. Pass an `href` to make the group label a clickable link, or omit it for a plain non-interactive title.
+Use `TableOfContents.Group` to organize items into labeled sections with indented children. Pass an `href` to make the group label a clickable link, or omit it for a plain non-interactive title.
 
 <Example demo="table-of-contents-group-demo">
   <TableOfContentsGroupDemo />
@@ -78,7 +78,7 @@ Use `TableOfContentsGroup` to organize items into labeled sections with indented
 
 ### Without title
 
-The title sub-component is optional — use `TableOfContentsList` directly if you don't need a heading.
+The title sub-component is optional — use `TableOfContents.List` directly if you don't need a heading.
 
 <Example demo="table-of-contents-without-title-demo">
   <TableOfContentsWithoutTitleDemo />
@@ -103,15 +103,15 @@ Root nav container with a default `aria-label` of `"Table of contents"`.
 | `children` | `Snippet` | Table of contents structure. |
 | `aria-label` | `string` | Accessible nav label. |
 
-### `TableOfContentsTitle`
+### `TableOfContents.Title`
 
 Optional uppercase heading displayed above the list. Renders a `p`.
 
-### `TableOfContentsList`
+### `TableOfContents.List`
 
 List container with a left border rail.
 
-### `TableOfContentsItem`
+### `TableOfContents.Item`
 
 | Prop | Type | Description |
 | --- | --- | --- |
@@ -121,10 +121,10 @@ List container with a left border rail.
 | `children` | `Snippet` | Item content. |
 | `class` | `string` | Additional classes. |
 
-### `TableOfContentsGroup`
+### `TableOfContents.Group`
 
 Groups items under a labeled section with indented children. Pass `href` to make the label a clickable link, or omit for a plain title.
 
 ## Svelte Notes
 
-The Svelte package exports named components instead of React compound properties. Use `child` snippets rather than React `render` props for custom elements.
+The Svelte package supports Kumo-style compound properties and shadcn-svelte-style namespace imports. Use `child` snippets rather than React `render` props for custom elements.

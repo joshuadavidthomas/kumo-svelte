@@ -1,14 +1,14 @@
 <script lang="ts">
-  import { Breadcrumbs, BreadcrumbsCurrent, BreadcrumbsLink, BreadcrumbsSeparator } from "kumo-svelte";
+  import { Breadcrumbs } from "kumo-svelte";
   import PageHeaderDemoShell from "./page-header-demo-shell.svelte";
 </script>
 
 <PageHeaderDemoShell>
   {#snippet breadcrumbs()}
     <Breadcrumbs>
-      <BreadcrumbsLink href="#">Home</BreadcrumbsLink>
-      <BreadcrumbsSeparator />
-      <BreadcrumbsCurrent>Dashboard</BreadcrumbsCurrent>
+      <Breadcrumbs.Link href="#">Home</Breadcrumbs.Link>
+      <Breadcrumbs.Separator />
+      <Breadcrumbs.Current>Dashboard</Breadcrumbs.Current>
     </Breadcrumbs>
   {/snippet}
 </PageHeaderDemoShell>

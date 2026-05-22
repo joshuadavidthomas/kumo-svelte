@@ -1,13 +1,5 @@
 <script lang="ts">
-  import {
-    CloudflareLogo,
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-    generateCloudflareLogoSvg,
-  } from "kumo-svelte";
+  import { CloudflareLogo, DropdownMenu, generateCloudflareLogoSvg } from "kumo-svelte";
   import ArrowSquareOutIcon from "phosphor-svelte/lib/ArrowSquareOutIcon";
   import CloudIcon from "phosphor-svelte/lib/CloudIcon";
   import CodeIcon from "phosphor-svelte/lib/CodeIcon";
@@ -50,7 +42,7 @@
 
 <div class="flex items-center gap-4">
   <DropdownMenu>
-    <DropdownMenuTrigger>
+    <DropdownMenu.Trigger>
       {#snippet child({ props })}
         <button
           {...props}
@@ -61,35 +53,35 @@
           <span class="font-medium">Logo</span>
         </button>
       {/snippet}
-    </DropdownMenuTrigger>
-    <DropdownMenuContent>
-      <DropdownMenuItem
+    </DropdownMenu.Trigger>
+    <DropdownMenu.Content>
+      <DropdownMenu.Item
         icon={cloudIcon}
         onclick={() =>
           copyToClipboard(generateCloudflareLogoSvg({ variant: "glyph" }), "glyph")}
       >
         {copied === "glyph" ? "Copied!" : "Copy logo as SVG"}
-      </DropdownMenuItem>
-      <DropdownMenuItem
+      </DropdownMenu.Item>
+      <DropdownMenu.Item
         icon={codeIcon}
         onclick={() => copyToClipboard(generateCloudflareLogoSvg({ variant: "full" }), "full")}
       >
         {copied === "full" ? "Copied!" : "Copy full logo as SVG"}
-      </DropdownMenuItem>
-      <DropdownMenuItem
+      </DropdownMenu.Item>
+      <DropdownMenu.Item
         icon={downloadIcon}
         onclick={() => openExternal("https://www.cloudflare.com/press-kit/")}
       >
         Download brand assets
-      </DropdownMenuItem>
-      <DropdownMenuSeparator />
-      <DropdownMenuItem
+      </DropdownMenu.Item>
+      <DropdownMenu.Separator />
+      <DropdownMenu.Item
         icon={externalIcon}
         onclick={() => openExternal("https://www.cloudflare.com/brand-assets/")}
       >
         Visit brand guidelines
-      </DropdownMenuItem>
-    </DropdownMenuContent>
+      </DropdownMenu.Item>
+    </DropdownMenu.Content>
   </DropdownMenu>
 
   <span class="text-sm text-kumo-subtle">Click to open the brand assets menu</span>

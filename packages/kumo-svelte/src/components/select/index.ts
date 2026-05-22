@@ -11,19 +11,48 @@ import SelectTriggerComponent from "./select-trigger.svelte";
 import SelectValueComponent from "./select-value.svelte";
 import SelectViewportComponent from "./select-viewport.svelte";
 
-export { default as Select } from "./select.svelte";
-export { default as SelectRoot } from "./select-root.svelte";
-export { default as SelectTrigger } from "./select-trigger.svelte";
-export { default as SelectValue } from "./select-value.svelte";
-export { default as SelectPortal } from "./select-portal.svelte";
-export { default as SelectContent } from "./select-content.svelte";
-export { default as SelectViewport } from "./select-viewport.svelte";
-export { default as SelectOption } from "./select-option.svelte";
-export { default as SelectItem } from "./select-option.svelte";
-export { default as SelectGroup } from "./select-group.svelte";
-export { default as SelectGroupHeading } from "./select-group-heading.svelte";
-export { default as SelectGroupLabel } from "./select-group-heading.svelte";
-export { default as SelectSeparator } from "./select-separator.svelte";
+const Select = Object.assign(SelectComponent, {
+  Root: SelectRootComponent,
+  Trigger: SelectTriggerComponent,
+  Value: SelectValueComponent,
+  Portal: SelectPortalComponent,
+  Content: SelectContentComponent,
+  Viewport: SelectViewportComponent,
+  Option: SelectOptionComponent,
+  Item: SelectOptionComponent,
+  Group: SelectGroupComponent,
+  GroupHeading: SelectGroupHeadingComponent,
+  GroupLabel: SelectGroupHeadingComponent,
+  Separator: SelectSeparatorComponent,
+});
+
+export {
+  Select,
+  SelectRootComponent as SelectRoot,
+  SelectRootComponent as Root,
+  SelectTriggerComponent as SelectTrigger,
+  SelectTriggerComponent as Trigger,
+  SelectValueComponent as SelectValue,
+  SelectValueComponent as Value,
+  SelectPortalComponent as SelectPortal,
+  SelectPortalComponent as Portal,
+  SelectContentComponent as SelectContent,
+  SelectContentComponent as Content,
+  SelectViewportComponent as SelectViewport,
+  SelectViewportComponent as Viewport,
+  SelectOptionComponent as SelectOption,
+  SelectOptionComponent as SelectItem,
+  SelectOptionComponent as Option,
+  SelectOptionComponent as Item,
+  SelectGroupComponent as SelectGroup,
+  SelectGroupComponent as Group,
+  SelectGroupHeadingComponent as SelectGroupHeading,
+  SelectGroupHeadingComponent as SelectGroupLabel,
+  SelectGroupHeadingComponent as GroupHeading,
+  SelectGroupHeadingComponent as GroupLabel,
+  SelectSeparatorComponent as SelectSeparator,
+  SelectSeparatorComponent as Separator,
+};
 
 export type SelectProps = ComponentProps<typeof SelectComponent>;
 export type SelectRootProps = ComponentProps<typeof SelectRootComponent>;

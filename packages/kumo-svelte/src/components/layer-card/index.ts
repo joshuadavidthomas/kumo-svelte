@@ -3,11 +3,24 @@ import LayerCardPrimaryComponent from "./layer-card-primary.svelte";
 import LayerCardSecondaryComponent from "./layer-card-secondary.svelte";
 import LayerCardComponent from "./layer-card.svelte";
 
-export { default as LayerCard } from "./layer-card.svelte";
-export { default as LayerCardPrimary } from "./layer-card-primary.svelte";
-export { default as LayerCardSecondary } from "./layer-card-secondary.svelte";
+const LayerCard = Object.assign(LayerCardComponent, {
+  Root: LayerCardComponent,
+  Primary: LayerCardPrimaryComponent,
+  Secondary: LayerCardSecondaryComponent,
+});
+
+export {
+  LayerCard,
+  LayerCardComponent as LayerCardRoot,
+  LayerCardComponent as Root,
+  LayerCardPrimaryComponent as LayerCardPrimary,
+  LayerCardPrimaryComponent as Primary,
+  LayerCardSecondaryComponent as LayerCardSecondary,
+  LayerCardSecondaryComponent as Secondary,
+};
 
 export type LayerCardProps = ComponentProps<typeof LayerCardComponent>;
+export type LayerCardRootProps = LayerCardProps;
 export type LayerCardPrimaryProps = ComponentProps<typeof LayerCardPrimaryComponent>;
 export type LayerCardSecondaryProps = ComponentProps<typeof LayerCardSecondaryComponent>;
 

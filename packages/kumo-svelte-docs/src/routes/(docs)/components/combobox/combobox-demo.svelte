@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Combobox, ComboboxContent, ComboboxEmpty, ComboboxItem, ComboboxList, ComboboxTriggerInput } from "kumo-svelte";
+  import { Combobox } from "kumo-svelte";
   import { fruits } from "./combobox-data";
 
   const items = fruits.map((fruit) => ({ label: fruit, value: fruit }));
@@ -8,13 +8,13 @@
 </script>
 
 <Combobox bind:value bind:open {items}>
-  <ComboboxTriggerInput placeholder="Please select" />
-  <ComboboxContent>
-    <ComboboxEmpty />
-    <ComboboxList>
+  <Combobox.TriggerInput placeholder="Please select" />
+  <Combobox.Content>
+    <Combobox.Empty />
+    <Combobox.List>
       {#each fruits as fruit}
-        <ComboboxItem value={fruit}>{fruit}</ComboboxItem>
+        <Combobox.Item value={fruit}>{fruit}</Combobox.Item>
       {/each}
-    </ComboboxList>
-  </ComboboxContent>
+    </Combobox.List>
+  </Combobox.Content>
 </Combobox>

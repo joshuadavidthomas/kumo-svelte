@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { RadioGroup, RadioItem } from "kumo-svelte";
+  import { Radio } from "kumo-svelte";
 </script>
 
-<RadioGroup legend="Preferences" controlPosition="end" defaultValue="a">
-  <RadioItem label="Label before radio" value="a" />
-  <RadioItem label="Another option" value="b" />
-</RadioGroup>
+<Radio.Group legend="Preferences" controlPosition="end" defaultValue="a">
+  <Radio.Item label="Label before radio" value="a" />
+  <Radio.Item label="Another option" value="b" />
+</Radio.Group>

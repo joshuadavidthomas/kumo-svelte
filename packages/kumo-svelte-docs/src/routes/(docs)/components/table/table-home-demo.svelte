@@ -1,26 +1,26 @@
 <script lang="ts">
-  import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "kumo-svelte";
+  import { Table } from "kumo-svelte";
 </script>
 
 <Table class="w-[200px] text-sm">
-  <TableHeader>
-    <TableRow>
-      <TableHead>Name</TableHead>
-      <TableHead>Status</TableHead>
-    </TableRow>
-  </TableHeader>
-  <TableBody>
-    <TableRow>
-      <TableCell>Worker 1</TableCell>
-      <TableCell>Active</TableCell>
-    </TableRow>
-    <TableRow>
-      <TableCell>Worker 2</TableCell>
-      <TableCell>Paused</TableCell>
-    </TableRow>
-    <TableRow>
-      <TableCell>Worker 3</TableCell>
-      <TableCell>Active</TableCell>
-    </TableRow>
-  </TableBody>
+  <Table.Header>
+    <Table.Row>
+      <Table.Head>Name</Table.Head>
+      <Table.Head>Status</Table.Head>
+    </Table.Row>
+  </Table.Header>
+  <Table.Body>
+    <Table.Row>
+      <Table.Cell>Worker 1</Table.Cell>
+      <Table.Cell>Active</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>Worker 2</Table.Cell>
+      <Table.Cell>Paused</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>Worker 3</Table.Cell>
+      <Table.Cell>Active</Table.Cell>
+    </Table.Row>
+  </Table.Body>
 </Table>

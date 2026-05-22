@@ -4,22 +4,7 @@
   import DatabaseIcon from "phosphor-svelte/lib/DatabaseIcon";
   import GlobeIcon from "phosphor-svelte/lib/GlobeIcon";
   import HouseIcon from "phosphor-svelte/lib/HouseIcon";
-  import {
-    Sidebar,
-    SidebarCollapsible,
-    SidebarCollapsibleContent,
-    SidebarCollapsibleTrigger,
-    SidebarContent,
-    SidebarGroup,
-    SidebarGroupLabel,
-    SidebarMenu,
-    SidebarMenuButton,
-    SidebarMenuChevron,
-    SidebarMenuItem,
-    SidebarMenuSub,
-    SidebarMenuSubButton,
-    SidebarProvider,
-  } from "kumo-svelte";
+  import { Sidebar } from "kumo-svelte";
   import DemoShell from "./sidebar-demo-shell.svelte";
   import DemoMain from "./sidebar-main.svelte";
 </script>
@@ -31,41 +16,41 @@
 {#snippet databaseIcon()}<DatabaseIcon />{/snippet}
 
 <DemoShell>
-  <SidebarProvider defaultOpen class="h-full min-h-0!">
+  <Sidebar.Provider defaultOpen class="h-full min-h-0!">
     <Sidebar>
-      <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupLabel>Overview</SidebarGroupLabel>
-          <SidebarMenu>
-            <SidebarMenuButton icon={homeIcon} active>Home</SidebarMenuButton>
-            <SidebarMenuButton icon={chartIcon}>Analytics</SidebarMenuButton>
-            <SidebarMenuButton icon={globeIcon}>Domains</SidebarMenuButton>
-          </SidebarMenu>
-        </SidebarGroup>
+      <Sidebar.Content>
+        <Sidebar.Group>
+          <Sidebar.GroupLabel>Overview</Sidebar.GroupLabel>
+          <Sidebar.Menu>
+            <Sidebar.MenuButton icon={homeIcon} active>Home</Sidebar.MenuButton>
+            <Sidebar.MenuButton icon={chartIcon}>Analytics</Sidebar.MenuButton>
+            <Sidebar.MenuButton icon={globeIcon}>Domains</Sidebar.MenuButton>
+          </Sidebar.Menu>
+        </Sidebar.Group>
 
-        <SidebarGroup>
-          <SidebarGroupLabel>Build</SidebarGroupLabel>
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarCollapsible open>
-                <SidebarCollapsibleTrigger>
+        <Sidebar.Group>
+          <Sidebar.GroupLabel>Build</Sidebar.GroupLabel>
+          <Sidebar.Menu>
+            <Sidebar.MenuItem>
+              <Sidebar.Collapsible open>
+                <Sidebar.CollapsibleTrigger>
                   {#snippet child({ props })}
-                    <SidebarMenuButton {...props} icon={codeIcon}>Compute <SidebarMenuChevron /></SidebarMenuButton>
+                    <Sidebar.MenuButton {...props} icon={codeIcon}>Compute <Sidebar.MenuChevron /></Sidebar.MenuButton>
                   {/snippet}
-                </SidebarCollapsibleTrigger>
-                <SidebarCollapsibleContent>
-                  <SidebarMenuSub>
-                    <SidebarMenuSubButton>Workers & Pages</SidebarMenuSubButton>
-                    <SidebarMenuSubButton>Durable Objects</SidebarMenuSubButton>
-                  </SidebarMenuSub>
-                </SidebarCollapsibleContent>
-              </SidebarCollapsible>
-            </SidebarMenuItem>
-            <SidebarMenuButton icon={databaseIcon}>Storage</SidebarMenuButton>
-          </SidebarMenu>
-        </SidebarGroup>
-      </SidebarContent>
+                </Sidebar.CollapsibleTrigger>
+                <Sidebar.CollapsibleContent>
+                  <Sidebar.MenuSub>
+                    <Sidebar.MenuSubButton>Workers & Pages</Sidebar.MenuSubButton>
+                    <Sidebar.MenuSubButton>Durable Objects</Sidebar.MenuSubButton>
+                  </Sidebar.MenuSub>
+                </Sidebar.CollapsibleContent>
+              </Sidebar.Collapsible>
+            </Sidebar.MenuItem>
+            <Sidebar.MenuButton icon={databaseIcon}>Storage</Sidebar.MenuButton>
+          </Sidebar.Menu>
+        </Sidebar.Group>
+      </Sidebar.Content>
     </Sidebar>
     <DemoMain />
-  </SidebarProvider>
+  </Sidebar.Provider>
 </DemoShell>
