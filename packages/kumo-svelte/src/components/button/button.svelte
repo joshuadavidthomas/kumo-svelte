@@ -48,6 +48,26 @@
     base: 14,
     lg: 16,
   };
+
+  function composeClickHandlers(props: Record<string, unknown>) {
+    const childClick = props.onclick;
+
+    if (typeof childClick !== "function") {
+      return onclick;
+    }
+
+    if (!onclick) {
+      return childClick as HTMLButtonAttributes["onclick"];
+    }
+
+    return ((event) => {
+      childClick(event);
+
+      if (!event.defaultPrevented) {
+        onclick(event);
+      }
+    }) satisfies HTMLButtonAttributes["onclick"];
+  }
 </script>
 
 {#snippet button(props: Record<string, unknown> = {})}
@@ -63,9 +83,9 @@
     )}
     disabled={loading || disabled}
     {type}
-    {onclick}
     {...restProps}
     {...props}
+    onclick={composeClickHandlers(props)}
   >
     {#if loading}
       <Loader size={spinnerSizes[size]} aria-hidden="true" />
