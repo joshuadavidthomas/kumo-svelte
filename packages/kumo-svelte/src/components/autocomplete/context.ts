@@ -2,8 +2,10 @@ import { getContext, setContext } from "svelte";
 import type { KumoAutocompleteSize } from "./variants";
 
 export interface AutocompleteContextValue {
+  readonly hasVisibleItems: boolean;
   readonly inputValue: string;
   readonly size: KumoAutocompleteSize;
+  registerVisibleItem(id: string): () => void;
   setInputValue(value: string): void;
   shouldShowItem(value: string, label?: string): boolean;
 }

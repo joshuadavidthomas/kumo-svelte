@@ -1,16 +1,19 @@
 <script lang="ts">
   import * as Autocomplete from "kumo-svelte/components/autocomplete";
-  import { countries, countryItems } from "./autocomplete-data";
+  import { countries } from "./autocomplete-data";
 </script>
 
 <div class="w-80">
-  <Autocomplete.Root items={countryItems} label="Country" error="Please enter a valid country">
+  <Autocomplete.Root label="Country" error="Please enter a valid country">
     <Autocomplete.InputGroup placeholder="Search countries…" />
     <Autocomplete.Content>
       <Autocomplete.List>
         {#each countries as country (country.code)}
-          <Autocomplete.Item value={country.value}>{country.label}</Autocomplete.Item>
+          <Autocomplete.Item value={country.value} label={country.label}>
+            {country.label}
+          </Autocomplete.Item>
         {/each}
+        <Autocomplete.Empty>No countries found.</Autocomplete.Empty>
       </Autocomplete.List>
     </Autocomplete.Content>
   </Autocomplete.Root>

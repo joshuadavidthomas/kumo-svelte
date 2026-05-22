@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
+  import type { Action } from "svelte/action";
   import CheckIcon from "phosphor-svelte/lib/CheckIcon";
   import { Combobox as ComboboxPrimitive } from "bits-ui";
   import { cn } from "../../utils/cn";
@@ -20,7 +21,13 @@
   }: AutocompleteItemProps = $props();
 
   const context = getAutocompleteContext("Item");
+  const itemId = $props.id();
   let visible = $derived(context.shouldShowItem(value, label));
+
+  const visibleItemAction: Action<HTMLElement> = () => {
+    const unregister = context.registerVisibleItem(itemId);
+    return { destroy: unregister };
+  };
 </script>
 
 {#if visible}
@@ -34,7 +41,7 @@
     )}
   >
     {#snippet children({ selected })}
-      <div class="col-start-1">
+      <div use:visibleItemAction class="col-start-1">
         {#if childrenProp}
           {@render childrenProp()}
         {:else}

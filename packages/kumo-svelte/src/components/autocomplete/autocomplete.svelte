@@ -9,12 +9,6 @@
     type KumoAutocompleteSize,
   } from "./variants";
 
-  export interface AutocompleteItemDescriptor {
-    disabled?: boolean;
-    label: string;
-    value: string;
-  }
-
   export interface AutocompleteProps {
     allowDeselect?: boolean;
     children?: Snippet;
@@ -22,7 +16,6 @@
     description?: Snippet | string;
     disabled?: boolean;
     error?: string | { message: Snippet | string; match: FieldErrorMatch };
-    items?: AutocompleteItemDescriptor[];
     label?: Snippet | string;
     labelTooltip?: Snippet;
     name?: string;
@@ -41,7 +34,6 @@
     description,
     disabled = false,
     error,
-    items = [],
     label,
     labelTooltip,
     name,
@@ -54,6 +46,8 @@
   }: AutocompleteProps = $props();
 
   let inputValue = $derived(value ?? "");
+  let visibleItems = $state<Record<string, true>>({});
+  let visibleItemCount = $derived(Object.keys(visibleItems).length);
   let fieldRequired = $derived(required === true ? true : required === false ? false : undefined);
   let normalizedError = $derived(normalizeFieldError(error));
 
@@ -67,23 +61,34 @@
     onValueChange?.(nextValue);
   }
 
-  function shouldShowItem(value: string, label?: string) {
-    if (!items.length) return true;
+  function registerVisibleItem(id: string) {
+    visibleItems = { ...visibleItems, [id]: true };
 
+    return () => {
+      let { [id]: _removed, ...nextVisibleItems } = visibleItems;
+      visibleItems = nextVisibleItems;
+    };
+  }
+
+  function shouldShowItem(value: string, label?: string) {
     let query = inputValue.trim().toLocaleLowerCase();
     if (!query) return true;
 
-    let text = (label ?? items.find((item) => item.value === value)?.label ?? value).toLocaleLowerCase();
+    let text = (label ?? value).toLocaleLowerCase();
     return text.includes(query);
   }
 
   setAutocompleteContext({
+    get hasVisibleItems() {
+      return inputValue.trim() === "" || visibleItemCount > 0;
+    },
     get inputValue() {
       return inputValue;
     },
     get size() {
       return size;
     },
+    registerVisibleItem,
     setInputValue,
     shouldShowItem,
   });
@@ -95,7 +100,6 @@
     {allowDeselect}
     {disabled}
     inputValue={inputValue}
-    {items}
     {name}
     bind:open
     {required}

@@ -37,16 +37,16 @@ Use `Autocomplete` when the input value can be free-form text and suggestions ar
 <script lang="ts">
   import * as Autocomplete from "kumo-svelte/components/autocomplete";
   const fruits = ["Apple", "Banana", "Cherry"];
-  const fruitItems = fruits.map((fruit) => ({ label: fruit, value: fruit }));
 </script>
 
-<Autocomplete.Root items={fruitItems}>
+<Autocomplete.Root>
   <Autocomplete.InputGroup placeholder="Search fruits…" />
   <Autocomplete.Content>
     <Autocomplete.List>
-      {#each fruits as fruit}
+      {#each fruits as fruit (fruit)}
         <Autocomplete.Item value={fruit}>{fruit}</Autocomplete.Item>
       {/each}
+      <Autocomplete.Empty>No fruits found.</Autocomplete.Empty>
     </Autocomplete.List>
   </Autocomplete.Content>
 </Autocomplete.Root>
@@ -101,9 +101,12 @@ For advanced matching or async search, keep filtered items in application state 
   <Autocomplete.InputGroup placeholder="Search countries…" />
   <Autocomplete.Content>
     <Autocomplete.List>
-      {#each filteredCountries as country}
-        <Autocomplete.Item value={country.value}>{country.label}</Autocomplete.Item>
+      {#each filteredCountries as country (country.value)}
+        <Autocomplete.Item value={country.value} label={country.label}>
+          {country.label}
+        </Autocomplete.Item>
       {/each}
+      <Autocomplete.Empty>No countries found.</Autocomplete.Empty>
     </Autocomplete.List>
   </Autocomplete.Content>
 </Autocomplete.Root>

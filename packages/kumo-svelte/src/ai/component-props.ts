@@ -191,29 +191,6 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
         ],
       },
     },
-    items: {
-      type: "AutocompleteItemDescriptor[]",
-      runtime: {
-        kind: "array",
-        item: {
-          kind: "object",
-          props: {
-            disabled: {
-              kind: "boolean",
-              required: false,
-            },
-            label: {
-              kind: "string",
-              required: true,
-            },
-            value: {
-              kind: "string",
-              required: true,
-            },
-          },
-        },
-      },
-    },
     labelTooltip: {
       type: "Snippet",
       runtime: {

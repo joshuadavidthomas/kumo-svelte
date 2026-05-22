@@ -34,8 +34,6 @@ export const fruits = [
   "Watermelon",
 ];
 
-export const fruitItems = fruits.map((fruit) => ({ label: fruit, value: fruit }));
-
 export const countries = [
   { code: "us", label: "United States", value: "United States" },
   { code: "gb", label: "United Kingdom", value: "United Kingdom" },
@@ -58,11 +56,6 @@ export const countries = [
   { code: "ar", label: "Argentina", value: "Argentina" },
   { code: "za", label: "South Africa", value: "South Africa" },
 ];
-
-export const countryItems = countries.map((country) => ({
-  label: country.label,
-  value: country.value,
-}));
 
 export const servers = [
   {
@@ -91,6 +84,3 @@ export const servers = [
   },
 ];
 
-export const serverItems = servers.flatMap((group) =>
-  group.items.map((item) => ({ label: item.label, value: item.label })),
-);

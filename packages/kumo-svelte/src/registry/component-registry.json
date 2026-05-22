@@ -246,31 +246,6 @@
           },
           "description": "Validation error content."
         },
-        "items": {
-          "type": "AutocompleteItemDescriptor[]",
-          "required": false,
-          "runtime": {
-            "kind": "array",
-            "item": {
-              "kind": "object",
-              "props": {
-                "disabled": {
-                  "kind": "boolean",
-                  "required": false
-                },
-                "label": {
-                  "kind": "string",
-                  "required": true
-                },
-                "value": {
-                  "kind": "string",
-                  "required": true
-                }
-              }
-            }
-          },
-          "description": "Items rendered by the component."
-        },
         "labelTooltip": {
           "type": "Snippet",
           "required": false,
