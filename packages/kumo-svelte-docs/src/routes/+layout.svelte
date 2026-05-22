@@ -1,7 +1,7 @@
 <script lang="ts">
   import Sidebar from "$lib/components/sidebar.svelte";
   import SidebarSimpleIcon from "phosphor-svelte/lib/SidebarSimpleIcon";
-  import { TooltipProvider } from "kumo-svelte";
+  import * as Tooltip from "kumo-svelte/components/tooltip";
   import "../styles.css";
 
   let { children } = $props();
@@ -44,9 +44,9 @@
   </header>
 
   <div data-slot="main" class="min-w-0">
-    <TooltipProvider>
+    <Tooltip.Provider>
       {@render children()}
-    </TooltipProvider>
+    </Tooltip.Provider>
   </div>
 </div>
 
