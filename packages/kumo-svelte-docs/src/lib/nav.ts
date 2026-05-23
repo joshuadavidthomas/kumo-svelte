@@ -11,8 +11,6 @@ export const staticPages: DocsNavItem[] = [
   { label: "Contributing", href: "/contributing" },
   { label: "Colors", href: "/colors" },
   { label: "Accessibility", href: "/accessibility" },
-  { label: "Figma Resources", href: "/figma" },
-  { label: "CLI", href: "/cli" },
   { label: "Registry", href: "/registry" },
   { label: "Changelog", href: "/changelog" },
 ];

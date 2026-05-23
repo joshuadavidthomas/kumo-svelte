@@ -70,6 +70,3 @@ This docs app imports its project stylesheet from `src/routes/+layout.svelte`; y
 </LayerCard.Root>
 ```
 
-## Blocks vs Components
-
-Components are versioned package exports. Blocks are higher-level compositions that you copy, own, and customize. See [Components vs Blocks](/components-vs-blocks) for the ownership model.

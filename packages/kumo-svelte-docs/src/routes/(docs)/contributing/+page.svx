@@ -61,6 +61,5 @@ Use a feature branch, keep commits focused, and prefer follow-up commits after r
 
 ## Related
 
-- [Components vs Blocks](/components-vs-blocks)
 - [Installation](/installation)
 - [Registry](/registry)
