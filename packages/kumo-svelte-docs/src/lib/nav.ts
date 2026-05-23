@@ -8,7 +8,6 @@ export interface DocsNavGroup {
 export const staticPages: DocsNavItem[] = [
   { label: "Home", href: "/" },
   { label: "Installation", href: "/installation" },
-  { label: "Contributing", href: "/contributing" },
   { label: "Colors", href: "/colors" },
   { label: "Accessibility", href: "/accessibility" },
   { label: "Registry", href: "/registry" },
