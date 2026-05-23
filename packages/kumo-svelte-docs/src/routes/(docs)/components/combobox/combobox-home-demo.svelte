@@ -12,7 +12,7 @@
   let open = $state(false);
 </script>
 
-<Combobox.Root {items} bind:open {value} onValueChange={(next) => (value = String(next))}>
+<Combobox.Root bind:open {value} onValueChange={(next) => (value = String(next))}>
   <Combobox.TriggerInput placeholder="Select an issue..." />
   <Combobox.Content>
     <Combobox.List>

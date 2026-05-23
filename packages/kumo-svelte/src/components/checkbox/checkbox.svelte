@@ -25,7 +25,6 @@
     value?: string;
     required?: boolean;
     class?: string;
-    children?: Snippet;
     id?: string;
     "aria-label"?: string;
     "aria-labelledby"?: string;

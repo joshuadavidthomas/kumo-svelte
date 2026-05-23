@@ -2,10 +2,10 @@
 title: Dialog
 description: A window overlaid on either the primary window or another dialog window, rendering the content underneath inert.
 sourceFile: components/dialog
-primitive: dialog
 ---
 
 <script lang="ts">
+  import ApiReference from "$lib/components/api-reference.svelte";
   import Example from "$lib/components/example.svelte";
   import DialogAlertDemo from "./dialog-alert-demo.svelte";
   import DialogBasicDemo from "./dialog-basic-demo.svelte";
@@ -20,9 +20,7 @@ primitive: dialog
   <DialogWithActionsDemo />
 </Example>
 
-## Installation
-
-### Namespace
+## Import
 
 ```ts
 import * as Dialog from "kumo-svelte/components/dialog";
@@ -121,57 +119,4 @@ Dialog containing a Dropdown menu.
 
 ## API Reference
 
-### Dialog / Dialog.Content
-
-The main dialog container that renders the modal overlay and popup.
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `size` | `"base" \| "sm" \| "lg" \| "xl"` | `"base"` | Dialog width variant. |
-| `container` | `HTMLElement \| string` | — | Portal target. |
-| `id` | `string` | — | Dialog content ID. |
-| `style` | `string` | — | Inline style string. |
-| `class` | `string` | — | Additional classes. |
-| `children` | `Snippet` | — | Dialog content. |
-
-### Dialog.Root
-
-Controls the open state of the dialog. Does not render its own HTML element.
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `open` | `boolean` | `false` | Open state. Bind with `bind:open`. |
-| `onOpenChange` | `(open: boolean) => void` | — | Called when the open state changes. |
-| `role` | `"dialog" \| "alertdialog"` | `"dialog"` | ARIA role. Use `"alertdialog"` for destructive or confirmation flows. |
-| `disablePointerDismissal` | `boolean` | `false` | Prevent outside pointer interactions from closing the dialog. |
-| `children` | `Snippet` | — | Trigger and content. |
-
-### Dialog.Trigger
-
-A button that opens the dialog when clicked.
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `children` | `Snippet` | — | Trigger content. |
-| `disabled` | `boolean` | `false` | Disable the trigger. |
-| `id` | `string` | — | Trigger ID. |
-| `class` | `string` | — | Additional classes. |
-
-### Dialog.Close
-
-A button that closes the dialog when clicked.
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `children` | `Snippet` | — | Close button content. |
-| `disabled` | `boolean` | `false` | Disable the close button. |
-| `id` | `string` | — | Close button ID. |
-| `class` | `string` | — | Additional classes. |
-
-### Dialog.Title and Dialog.Description
-
-Use `Dialog.Title` to label the dialog and `Dialog.Description` to describe it for assistive technologies.
-
-### Dialog.Header and Dialog.Footer
-
-Layout helpers for common dialog header and footer arrangements. They accept standard `HTMLDivElement` attributes and `children`.
+<ApiReference family="Dialog" />

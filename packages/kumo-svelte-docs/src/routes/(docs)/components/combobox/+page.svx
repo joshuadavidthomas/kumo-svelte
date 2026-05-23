@@ -2,10 +2,10 @@
 title: Combobox
 description: A searchable select component that allows users to filter and select from a list of options.
 sourceFile: components/combobox
-primitive: combobox
 ---
 
 <script lang="ts">
+  import ApiReference from "$lib/components/api-reference.svelte";
   import Example from "$lib/components/example.svelte";
   import ComboboxHeroDemo from "./combobox-demo.svelte";
   import ComboboxCustomTriggerDemo from "./combobox-custom-trigger-demo.svelte";
@@ -25,9 +25,7 @@ primitive: combobox
   <ComboboxHeroDemo />
 </Example>
 
-## Installation
-
-### Namespace
+## Import
 
 ```ts
 import * as Combobox from "kumo-svelte/components/combobox";
@@ -39,12 +37,11 @@ import * as Combobox from "kumo-svelte/components/combobox";
 <script lang="ts">
   import * as Combobox from "kumo-svelte/components/combobox";
   const fruits = ["Apple", "Banana", "Cherry", "Date", "Elderberry"];
-  const items = fruits.map((fruit) => ({ label: fruit, value: fruit }));
   let value = $state("Apple");
   let open = $state(false);
 </script>
 
-<Combobox.Root bind:value bind:open {items}>
+<Combobox.Root bind:value bind:open>
   <Combobox.TriggerInput placeholder="Select a fruit" />
   <Combobox.Content>
     <Combobox.List>
@@ -162,114 +159,6 @@ To customize the max height, pass a class to `Combobox.Content`:
 <Combobox.Content class="max-h-96">
 ```
 
-## Sub-components
-
-| Component | Description |
-| --- | --- |
-| `Combobox` / `Combobox.Root` | Root component for searchable select state. |
-| `Combobox.TriggerInput` | Search input used as the trigger. |
-| `Combobox.TriggerValue` / `Combobox.Trigger` | Button trigger showing selected value or custom children. |
-| `Combobox.TriggerMultipleWithInput` | Multi-select trigger with selected chips and inline input. |
-| `Combobox.Chip` | Selected item chip for multi-select triggers. |
-| `Combobox.Content` | Dropdown container for input and list content. |
-| `Combobox.Input` | Search input inside the dropdown. |
-| `Combobox.List` | Scrollable list viewport. |
-| `Combobox.Item` | Individual selectable option. |
-| `Combobox.Empty` | Static empty state content. Render it conditionally when your filtered item list is empty. |
-| `Combobox.Group` | Option group. |
-| `Combobox.GroupLabel` | Option group heading. |
-| `Combobox.Separator` | Separator between groups or sections. |
-
 ## API Reference
 
-### Combobox
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `value` | `string \| string[]` | `""` or `[]` | Selected value. Bind with `bind:value` for two-way state. |
-| `defaultValue` | `string \| string[]` | — | Initial selected value. |
-| `items` | `{ label: string; value: string; disabled?: boolean }[]` | `[]` | Items used by the Combobox primitive for filtering and selection. |
-| `multiple` | `boolean` | `false` | Enable multiple selection. Use a `string[]` value. |
-| `allowDeselect` | `boolean` | `false` | Allow deselecting the selected single value. |
-| `open` | `boolean` | — | Controlled open state. |
-| `onOpenChange` | `(open: boolean) => void` | — | Called when the dropdown opens or closes. |
-| `onValueChange` | `(value: string \| string[]) => void` | — | Called when selection changes. |
-| `disabled` | `boolean` | `false` | Disable the combobox. |
-| `name` | `string` | — | Form field name. |
-| `label` | `Snippet \| string` | — | Field label. |
-| `description` | `Snippet \| string` | — | Field description. |
-| `error` | `string \| { message: Snippet \| string; match: FieldErrorMatch }` | — | Field error state. |
-| `required` | `boolean` | — | Mark the field required. |
-| `size` | `"xs" \| "sm" \| "base" \| "lg"` | `"base"` | Size variant. |
-| `children` | `Snippet` | — | Trigger and dropdown content. |
-
-### Combobox.TriggerInput
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `placeholder` | `string` | — | Input placeholder. |
-| `disabled` | `boolean` | — | Disable the input. |
-| `clearLabel` | `string` | `"Clear selection"` | Accessible label for the clear button. |
-| `showOptionsLabel` | `string` | `"Show options"` | Accessible label for the trigger button. |
-| `onValueChange` | `(value: string) => void` | — | Called as the input text changes. |
-| `class` | `string` | — | Additional classes for the wrapper. |
-
-### Combobox.Trigger / Combobox.TriggerValue
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `children` | `Snippet` | — | Trigger content, usually the selected label. |
-| `placeholder` | `string` | — | Placeholder text shown when no children are provided. |
-| `class` | `string` | — | Additional trigger classes. |
-
-### Combobox.TriggerMultipleWithInput
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `placeholder` | `string` | — | Input placeholder. |
-| `renderItem` | `Snippet<[value: string]>` | — | Render selected values as chips. Defaults to `Combobox.Chip`. |
-| `inputSide` | `"right" \| "top"` | `"right"` | Position the input inline with chips or above them. |
-| `class` | `string` | — | Additional classes for the trigger wrapper. |
-
-### Combobox.Chip
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `value` | `string` | — | Selected value to remove when the chip remove button is clicked. |
-| `removeLabel` | `string` | `"Remove"` | Accessible label for the remove button. |
-| `children` | `Snippet` | — | Chip label. |
-| `class` | `string` | — | Additional classes. |
-
-### Combobox.Content
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `children` | `Snippet` | — | Dropdown content. |
-| `container` | `HTMLElement \| string` | Portal provider container | Portal target. |
-| `sideOffset` | `number` | `4` | Offset between trigger and content. |
-| `class` | `string` | — | Additional classes. |
-
-### Combobox.Input
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `placeholder` | `string` | — | Search input placeholder. |
-| `disabled` | `boolean` | — | Disable the input. |
-| `clearOnDeselect` | `boolean` | — | Clear input when an item is deselected. |
-| `size` | `"xs" \| "sm" \| "base" \| "lg"` | Combobox size | Override input size. |
-| `onValueChange` | `(value: string) => void` | — | Called as the input text changes. |
-| `class` | `string` | — | Additional classes. |
-
-### Combobox.Item
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `value` | `string` | — | Item value. |
-| `label` | `string` | `value` | Text used for filtering and accessibility. |
-| `disabled` | `boolean` | `false` | Disable this item. |
-| `children` | `Snippet` | — | Rendered item content. |
-| `class` | `string` | — | Additional classes. |
-
-### Combobox.Empty, Combobox.List, Combobox.Group, Combobox.GroupLabel, Combobox.Separator
-
-These layout sub-components accept `children` and, where supported by the implementation, a `class` prop for additional styling.
+<ApiReference family="Combobox" />

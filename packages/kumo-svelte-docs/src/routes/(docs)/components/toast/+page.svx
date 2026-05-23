@@ -5,6 +5,7 @@ sourceFile: components/toast
 ---
 
 <script lang="ts">
+  import ApiReference from "$lib/components/api-reference.svelte";
   import Example from "$lib/components/example.svelte";
   import ToastActionsDemo from "./toast-actions-demo.svelte";
   import ToastBasicDemo from "./toast-basic-demo.svelte";
@@ -23,15 +24,7 @@ sourceFile: components/toast
   <ToastBasicDemo />
 </Example>
 
-## Installation
-
-### Barrel
-
-```ts
-import { Toasty, createKumoToastManager, useKumoToastManager } from "kumo-svelte/components/toast";
-```
-
-### Granular
+## Import
 
 ```ts
 import { Toasty, createKumoToastManager, useKumoToastManager } from "kumo-svelte/components/toast";
@@ -167,47 +160,4 @@ Use the promise method to show loading, success, and error states automatically.
 
 ## API Reference
 
-### Toasty
-
-The provider component that wraps your app and manages the toast system. It extends Svelte Sonner's `Toaster` props.
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `children` | `Snippet` | — | App or demo content rendered before the toast viewport. |
-| `position` | `Position` | `"bottom-right"` | Toast viewport position. |
-| `closeButton` | `boolean` | `true` | Shows close buttons on toasts. |
-| `expand` | `boolean` | `true` | Expands stacked toasts. |
-| `visibleToasts` | `number` | `3` | Number of visible toasts. |
-| `toastOptions` | `ToastOptions` | — | Default options/classes passed to Svelte Sonner. |
-
-### createKumoToastManager() and useKumoToastManager()
-
-Return a toast manager for creating toasts. `createKumoToastManager()` does not require context and works well for button handlers and demos. `useKumoToastManager()` also exposes contextual `toasts` from Svelte Sonner.
-
-```ts
-const toastManager = createKumoToastManager();
-
-toastManager.add(options);
-toastManager.dismiss(id);
-toastManager.promise(promise, {
-  loading: "Loading...",
-  success: "Done",
-  error: "Failed",
-});
-```
-
-### Toast Options
-
-Options passed to `toastManager.add()`.
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `title` | `string` | — | The toast title displayed prominently. |
-| `description` | `string \| Component` | — | Secondary text or component displayed below the title. |
-| `variant` | `"default" \| "success" \| "error" \| "warning" \| "info"` | `"default"` | Visual style of the toast. |
-| `component` | `Component` | — | Custom Svelte component to render inside the toast. |
-| `componentProps` | `object` | — | Props for the custom component. |
-| `action` | `ToastAction \| Component` | — | Primary action button or component. |
-| `cancel` | `ToastAction \| Component` | — | Secondary action button or component. |
-| `duration` | `number` | `4000` | Time in milliseconds before the toast auto-dismisses. |
-
+<ApiReference components={["Toasty", "Toaster", "ToastProvider"]} />

@@ -5,6 +5,7 @@ sourceFile: components/badge
 ---
 
 <script lang="ts">
+  import ApiReference from "$lib/components/api-reference.svelte";
   import Example from "$lib/components/example.svelte";
   import BadgeColorVariantsDemo from "./badge-color-variants-demo.svelte";
   import BadgeDotDemo from "./badge-dot-demo.svelte";
@@ -16,15 +17,7 @@ sourceFile: components/badge
   <BadgeSemanticVariantsDemo />
 </Example>
 
-## Installation
-
-### Barrel
-
-```ts
-import { Badge } from "kumo-svelte/components/badge";
-```
-
-### Granular
+## Import
 
 ```ts
 import { Badge } from "kumo-svelte/components/badge";
@@ -72,15 +65,4 @@ Use `appearance="dot"` for a subtle status indicator with a colored dot. Support
 
 ## API Reference
 
-### Badge
-
-Displays a small label for status, categorization, or metadata.
-
-| Prop | Type | Required | Description |
-| --- | --- | --- | --- |
-| `variant` | `"primary" \| "secondary" \| "error" \| "warning" \| "success" \| "info" \| "beta" \| "outline" \| "neutral" \| "red" \| "orange" \| "green" \| "teal" \| "teal-subtle" \| "blue" \| "purple" \| "destructive"` | No | Color variant. Defaults to `"primary"`. |
-| `appearance` | `"filled" \| "dot"` | No | Visual appearance. Defaults to `"filled"`. |
-| `children` | `Snippet` | Yes | Badge label content. |
-| `class` | `string` | No | Additional classes merged with the badge styles. |
-
-All other props are passed to the underlying `<span>` element.
+<ApiReference family="Badge" />

@@ -70,7 +70,7 @@ export function getShikiContext() {
 
   if (!context) {
     throw new Error(
-      "useShikiHighlighter must be used within a ShikiProvider from 'kumo-svelte/code'.",
+      "useShikiHighlighter must be used within a ShikiProvider from 'kumo-svelte/components/code'.",
     );
   }
 

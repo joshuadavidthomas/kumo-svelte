@@ -2,7 +2,19 @@
   import { Button } from "kumo-svelte/components/button";
   import * as Combobox from "kumo-svelte/components/combobox";
   import CaretUpDownIcon from "phosphor-svelte/lib/CaretUpDownIcon";
-  import { languageItems, languages } from "./combobox-data";
+
+  const languages = [
+    { value: "en", label: "English", emoji: "🇬🇧" },
+    { value: "fr", label: "French", emoji: "🇫🇷" },
+    { value: "de", label: "German", emoji: "🇩🇪" },
+    { value: "es", label: "Spanish", emoji: "🇪🇸" },
+    { value: "ja", label: "Japanese", emoji: "🇯🇵" },
+  ];
+
+  const languageItems = languages.map((language) => ({
+    label: `${language.emoji} ${language.label}`,
+    value: language.value,
+  }));
 
   let value = $state("en");
   let open = $state(false);
@@ -16,7 +28,7 @@
   </Button>
 {/snippet}
 
-<Combobox.Root bind:value bind:open items={languageItems}>
+<Combobox.Root bind:value bind:open>
   <Combobox.Trigger child={triggerChild} />
   <Combobox.Content>
     <Combobox.Input placeholder="Search languages" />

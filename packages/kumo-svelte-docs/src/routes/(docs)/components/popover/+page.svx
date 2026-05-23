@@ -2,10 +2,10 @@
 title: Popover
 description: An accessible popup anchored to a trigger element, used for displaying rich content like menus, forms, or additional information.
 sourceFile: components/popover
-baseUIComponent: popover
 ---
 
 <script lang="ts">
+  import ApiReference from "$lib/components/api-reference.svelte";
   import Example from "$lib/components/example.svelte";
   import PopoverBasicDemo from "./popover-basic-demo.svelte";
   import PopoverCustomContentDemo from "./popover-custom-content-demo.svelte";
@@ -20,9 +20,7 @@ baseUIComponent: popover
   <PopoverHeroDemo />
 </Example>
 
-## Installation
-
-### Namespace
+## Import
 
 ```ts
 import * as Popover from "kumo-svelte/components/popover";
@@ -110,42 +108,4 @@ Use the `anchor` prop on `Popover.Content` to position the popover against an el
 
 ## API Reference
 
-### `Popover`
-
-The root component that manages the popover's open state.
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `open` | `boolean` | `false` | Open state. Bind with `bind:open`. |
-| `onOpenChange` | `(open: boolean) => void` | — | Called when open state changes. |
-| `onOpenChangeComplete` | `(open: boolean) => void` | — | Called after open state transition completes. |
-| `children` | `Snippet` | — | Popover contents. |
-
-### `Popover.Trigger`
-
-A trigger that opens the popover when clicked. Use the `child` snippet pattern to render your own component.
-
-`Popover.Trigger` accepts Bits UI Popover trigger props.
-
-### `Popover.Content`
-
-The container for popover content. Controls positioning via `side`, `align`, `sideOffset`, and `alignOffset` props.
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `side` | `"top" \| "right" \| "bottom" \| "left"` | `"bottom"` | Preferred side. |
-| `align` | `"start" \| "center" \| "end"` | `"center"` | Alignment relative to anchor. |
-| `sideOffset` | `number` | `8` | Distance from anchor. |
-| `alignOffset` | `number` | `0` | Alignment offset. |
-| `anchor` | `customAnchor` | — | Custom or virtual anchor for positioning. |
-| `container` | `Portal target` | — | Portal target. |
-| `positionMethod` | `"absolute" \| "fixed"` | `"absolute"` | Positioning strategy. |
-| `class` | `string` | — | Additional classes. |
-
-### `Popover.Title`, `Popover.Description`, and `Popover.Header`
-
-Semantic content helpers for labeling and structuring popover content. Each accepts `children`, `class`, and standard HTML attributes for its element.
-
-### `Popover.Close`
-
-A button that closes the popover when clicked. Use the `child` snippet pattern to render your own Button.
+<ApiReference family="Popover" />

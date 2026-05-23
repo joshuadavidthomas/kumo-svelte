@@ -59,6 +59,7 @@
     flow: "/components/flow",
     grid: "/components/grid",
     input: "/components/input",
+    "input-validation": "/components/input",
     "input-area": "/components/input-area",
     "input-group": "/components/input-group",
     label: "/components/label",
@@ -89,7 +90,7 @@
     { name: "Autocomplete", id: "autocomplete", Component: AutocompleteHomeDemo },
     { name: "Combobox", id: "combobox", Component: ComboboxHomeDemo },
     { name: "Switch", id: "switch", Component: SwitchHomeDemo },
-    { name: "Input (with validation)", id: "input", Component: InputValidationHomeDemo },
+    { name: "Input (with validation)", id: "input-validation", Component: InputValidationHomeDemo },
     { name: "Dialog", id: "dialog", Component: DialogHomeDemo },
     { name: "Tooltip", id: "tooltip", Component: TooltipHomeDemo },
     { name: "Dropdown", id: "dropdown", Component: DropdownHomeDemo },
@@ -135,25 +136,27 @@
   <meta name="description" content="A SvelteKit documentation site for the Kumo Svelte component library." />
 </svelte:head>
 
-<ul class="grid auto-rows-min grid-cols-1 gap-px bg-kumo-hairline md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
-  {#each components as component, index (component.name)}
-    {@const route = componentRoutes[component.id]}
-    {@const Preview = component.Component}
-    <li
-      class="relative flex aspect-square items-center justify-center bg-kumo-canvas"
-    >
-      {#if route}
-        <a href={route} class="absolute top-4 left-4 text-base font-medium text-kumo-subtle hover:text-kumo-default">
-          {component.name}
-        </a>
-      {:else}
-        <span class="absolute top-4 left-4 text-base font-medium text-kumo-subtle italic">{component.name}</span>
-      {/if}
-      <div class="flex w-full items-center justify-center p-8 tracking-normal leading-normal">
-        {#if isCardVisible(component.name, index)}
-          <Preview />
+<div class="grid min-h-[calc(100vh-3rem-1px)] grid-cols-[minmax(0,1fr)_3rem]">
+  <ul class="grid auto-rows-min grid-cols-1 gap-px bg-kumo-hairline md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+    {#each components as component, index (component.name)}
+      {@const route = componentRoutes[component.id]}
+      {@const Preview = component.Component}
+      <li class="relative flex aspect-square items-center justify-center bg-kumo-canvas">
+        {#if route}
+          <a href={route} class="absolute top-4 left-4 text-base font-medium text-kumo-subtle hover:text-kumo-default">
+            {component.name}
+          </a>
+        {:else}
+          <span class="absolute top-4 left-4 text-base font-medium text-kumo-subtle italic">{component.name}</span>
         {/if}
-      </div>
-    </li>
-  {/each}
-</ul>
+        <div class="flex w-full items-center justify-center p-8 tracking-normal leading-normal">
+          {#if isCardVisible(component.name, index)}
+            <Preview />
+          {/if}
+        </div>
+      </li>
+    {/each}
+  </ul>
+
+  <div class="border-l border-kumo-hairline bg-kumo-canvas" aria-hidden="true"></div>
+</div>

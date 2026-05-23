@@ -1,10 +1,11 @@
 ---
 title: Empty
-description: A component to display when there's no content or data to show, with optional command line and actions.
+description: A component to display when there's no content or data to show, with an optional copyable command and actions.
 sourceFile: components/empty
 ---
 
 <script lang="ts">
+  import ApiReference from "$lib/components/api-reference.svelte";
   import Example from "$lib/components/example.svelte";
   import EmptyBasicDemo from "./empty-basic-demo.svelte";
   import EmptyDemo from "./empty-demo.svelte";
@@ -18,15 +19,7 @@ sourceFile: components/empty
   <EmptyDemo />
 </Example>
 
-## Installation
-
-### Barrel
-
-```ts
-import { Empty } from "kumo-svelte/components/empty";
-```
-
-### Granular
+## Import
 
 ```ts
 import { Empty } from "kumo-svelte/components/empty";
@@ -40,16 +33,15 @@ import { Empty } from "kumo-svelte/components/empty";
   import PackageIcon from "phosphor-svelte/lib/PackageIcon";
 </script>
 
-{#snippet packageIcon()}
-  <PackageIcon size={48} />
-{/snippet}
-
 <Empty
-  icon={packageIcon}
   title="No packages found"
   description="Get started by installing your first package."
-  commandLine="npm install kumo-svelte"
-/>
+  command="npm install kumo-svelte"
+>
+  {#snippet icon()}
+    <PackageIcon size={48} />
+  {/snippet}
+</Empty>
 ```
 
 ## Examples
@@ -68,7 +60,7 @@ Empty states come in three sizes to fit different container contexts.
   <EmptySizesDemo />
 </Example>
 
-## With Command Line
+## With Command
 
 Include a copyable command to help users get started.
 
@@ -78,7 +70,7 @@ Include a copyable command to help users get started.
 
 ## With Actions
 
-Add custom action buttons using the `contents` snippet prop or child content.
+Add custom action buttons as child content.
 
 <Example demo="empty-with-actions-demo">
   <EmptyWithActionsDemo />
@@ -94,15 +86,4 @@ At minimum, only a title is required.
 
 ## API Reference
 
-| Prop | Type | Required | Description |
-| --- | --- | --- | --- |
-| `title` | `string` | Yes | Primary empty state message. |
-| `description` | `string` | No | Supporting text. |
-| `icon` | `Snippet` | No | Icon rendered above the title. |
-| `commandLine` | `string` | No | Copyable command line rendered with a copy button. |
-| `contents` | `Snippet` | No | Custom content such as action buttons. |
-| `children` | `Snippet` | No | Fallback custom content when `contents` is not provided. |
-| `size` | `"sm" \| "base" \| "lg"` | No | Empty state size. Defaults to `"base"`. |
-| `class` | `string` | No | Additional classes. |
-
-The component also accepts standard `HTMLDivElement` attributes.
+<ApiReference family="Empty" />

@@ -5,12 +5,18 @@ description: Get started with Kumo Svelte by installing the package and importin
 
 ## NPM Registry
 
-The `kumo-svelte` package is used from this workspace/package registry like any other npm package. No special runtime configuration is required beyond Svelte and the package peer dependencies used by the components you render.
+The `kumo-svelte` package is published to npm. No special registry configuration is required.
 
 ## Install Package
 
 ```bash
 pnpm add kumo-svelte
+```
+
+Install peer dependencies if needed:
+
+```bash
+pnpm add svelte tailwindcss
 ```
 
 If you use chart components, install ECharts too:
@@ -21,21 +27,12 @@ pnpm add echarts
 
 ## Import Components
 
-Import components from the main package or use granular imports for better tree-shaking.
-
-### Main Package Import
+Import component families from their subpaths.
 
 ```ts
 import { Button } from "kumo-svelte/components/button";
 import { Input } from "kumo-svelte/components/input";
 import * as LayerCard from "kumo-svelte/components/layer-card";
-```
-
-### Granular Import
-
-```ts
-import { Button } from "kumo-svelte/components/button";
-import { Input } from "kumo-svelte/components/input";
 ```
 
 ## Import Styles
@@ -46,13 +43,12 @@ Import the Kumo Svelte stylesheet in your app entry point or root layout:
 import "kumo-svelte/styles";
 ```
 
-If your app does not use Tailwind CSS, import the standalone build instead:
+For apps without Tailwind CSS, import the standalone build instead:
 
 ```ts
 import "kumo-svelte/styles/standalone";
 ```
 
-This docs app imports its project stylesheet from `src/routes/+layout.svelte`; your application can do the same from its root `+layout.svelte`.
 
 ## Usage Example
 

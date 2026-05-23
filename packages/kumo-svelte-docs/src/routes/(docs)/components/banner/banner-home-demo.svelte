@@ -4,16 +4,22 @@
   import { Banner } from "kumo-svelte/components/banner";
 </script>
 
-{#snippet warningIcon()}
-  <WarningIcon weight="fill" />
-{/snippet}
-
-{#snippet warningOctagonIcon()}
-  <WarningOctagonIcon weight="fill" />
-{/snippet}
-
 <div class="flex flex-col gap-2">
-  <Banner text="This is a default banner." />
-  <Banner icon={warningIcon} text="This is an alert banner." variant="alert" />
-  <Banner icon={warningOctagonIcon} text="This is an error banner." variant="error" />
+  <Banner>This is a default banner.</Banner>
+
+  <Banner variant="alert">
+    {#snippet icon()}
+      <WarningIcon weight="fill" />
+    {/snippet}
+
+    This is an alert banner.
+  </Banner>
+
+  <Banner variant="error">
+    {#snippet icon()}
+      <WarningOctagonIcon weight="fill" />
+    {/snippet}
+
+    This is an error banner.
+  </Banner>
 </div>

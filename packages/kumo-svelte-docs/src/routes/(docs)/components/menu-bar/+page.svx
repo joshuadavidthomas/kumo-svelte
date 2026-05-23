@@ -2,10 +2,10 @@
 title: MenuBar
 description: A horizontal menu bar with icon buttons, commonly used for text editors or toolbars.
 sourceFile: components/menubar
-primitive: toolbar
 ---
 
 <script lang="ts">
+  import ApiReference from "$lib/components/api-reference.svelte";
   import Example from "$lib/components/example.svelte";
   import MenuBarBasicDemo from "./menu-bar-basic-demo.svelte";
   import MenuBarNoActiveDemo from "./menu-bar-no-active-demo.svelte";
@@ -16,15 +16,7 @@ primitive: toolbar
   <MenuBarBasicDemo />
 </Example>
 
-## Installation
-
-### Barrel
-
-```ts
-import { MenuBar } from "kumo-svelte/components/menubar";
-```
-
-### Granular
+## Import
 
 ```ts
 import { MenuBar } from "kumo-svelte/components/menubar";
@@ -75,23 +67,7 @@ import { MenuBar } from "kumo-svelte/components/menubar";
 
 ## API Reference
 
-| Prop | Type | Required | Description |
-| --- | --- | --- | --- |
-| `options` | `MenuBarOption[]` | Yes | Buttons rendered in the toolbar. |
-| `isActive` | `number \| boolean \| string \| undefined` | Yes | Active option value. Compared against an option id or index. |
-| `optionIds` | `boolean` | No | When true, compares `isActive` to each option's `id`; otherwise compares to the option index. |
-| `class` | `string` | No | Additional classes. |
-
-MenuBar also accepts Bits UI Toolbar root props.
-
-### `MenuBarOption`
-
-| Property | Type | Required | Description |
-| --- | --- | --- | --- |
-| `icon` | `Snippet` | Yes | Icon snippet rendered inside the button. |
-| `id` | `number \| string` | No | Stable option id, used for keyed rendering and active matching when `optionIds` is true. |
-| `onSelect` | `() => void` | Yes | Called when the option is selected. |
-| `tooltip` | `string` | Yes | Tooltip text and accessible label for the button. |
+<ApiReference family="MenuBar" />
 
 ## Accessibility
 

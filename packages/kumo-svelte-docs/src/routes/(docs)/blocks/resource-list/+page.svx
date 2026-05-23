@@ -15,11 +15,9 @@ sourceFile: blocks/resource-list
   <ResourceListCompleteDemo />
 </Example>
 
-## Installation
-
-The Svelte package does not currently export a `ResourceListPage` block or a block-install CLI. Compose the pattern from `Surface` and page-level layout markup, or copy the demo shell below into your application and adapt it.
-
 ## Usage
+
+Compose resource list pages from `Surface` and page-level layout markup.
 
 ```svelte
 <script lang="ts">
@@ -64,21 +62,3 @@ Include a sidebar with usage examples or quick-start guides.
   <ResourceListCompleteDemo />
 </Example>
 
-## API Reference
-
-Because the Svelte library does not yet ship this block as an exported component, there is no package API to document. Use the demo shell as a starting point.
-
-### Suggested props
-
-| Prop | Type | Description |
-| --- | --- | --- |
-| `title` | `string` | Page title displayed at the top. |
-| `description` | `string` | Page description below the title. |
-| `icon` | `Snippet` | Icon displayed next to the title. |
-| `usage` | `Snippet` | Sidebar content for usage examples or quick-start guides. |
-| `additionalContent` | `Snippet` | Additional sidebar content, such as resources or links. |
-| `children` | `Snippet` | Main content area for the resource list. |
-
-## Content Slots
-
-Use snippets for `icon`, `usage`, and `additionalContent`. Pass the resource rows as ordinary children.

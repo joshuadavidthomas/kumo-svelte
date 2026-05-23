@@ -2,10 +2,10 @@
 title: Select
 description: Displays a list of options for the user to pick from—triggered by a button.
 sourceFile: components/select
-baseUIComponent: select
 ---
 
 <script lang="ts">
+  import ApiReference from "$lib/components/api-reference.svelte";
   import Example from "$lib/components/example.svelte";
   import SelectBasicDemo from "./select-basic-demo.svelte";
   import SelectComplexDemo from "./select-complex-demo.svelte";
@@ -30,9 +30,7 @@ baseUIComponent: select
   <SelectBasicDemo />
 </Example>
 
-## Installation
-
-### Namespace
+## Import
 
 ```ts
 import * as Select from "kumo-svelte/components/select";
@@ -189,40 +187,7 @@ A select component with many options to test popup scrolling behavior.
 
 ## API Reference
 
-### `Select`
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `value` | `string \| string[]` | — | Controlled value. Use with `onValueChange`. |
-| `defaultValue` | `string \| string[]` | — | Initial uncontrolled value. |
-| `onValueChange` | `(value: string \| string[]) => void` | — | Called when the selection changes. |
-| `items` | `Record<string, string \| { label: string; disabled?: boolean }> \| NormalizedSelectItem[]` | — | Option list for simple selects. |
-| `multiple` | `boolean` | `false` | Enables multiple selection. |
-| `label` | `Snippet \| string` | — | Visible or accessible label. |
-| `description` | `Snippet \| string` | — | Helper text. |
-| `error` | `string \| { message: Snippet \| string; match: FieldErrorMatch }` | — | Error message or validity-matched error. |
-| `placeholder` | `string` | — | Placeholder text when no value is selected. |
-| `labelTooltip` | `Snippet` | — | Tooltip content next to the label. |
-| `loading` | `boolean` | `false` | Shows loading skeleton and disables the trigger. |
-| `disabled` | `boolean` | `false` | Disables the select. |
-| `allowDeselect` | `boolean` | `false` | Allows clearing a selected value in single mode. |
-| `size` | `"xs" \| "sm" \| "base" \| "lg"` | `"base"` | Trigger size. |
-| `container` | `Portal target` | — | Portal target. |
-| `class` | `string` | — | Additional classes for the trigger. |
-
-### `Select.Option`
-
-| Prop | Type | Required | Description |
-| --- | --- | --- | --- |
-| `value` | `string` | Yes | Option value. |
-| `label` | `string` | No | Label used by the trigger value. Defaults to `value`. |
-| `disabled` | `boolean` | No | Disables the option. |
-| `children` | `Snippet` | No | Custom option content. |
-| `class` | `string` | No | Additional classes. |
-
-### `Select.Group`, `Select.GroupLabel`, and `Select.Separator`
-
-Use `Select.Group` to group related options, `Select.GroupLabel` to provide a visible heading, and `Select.Separator` to render a visual divider between groups.
+<ApiReference family="Select" />
 
 ## Option Values
 

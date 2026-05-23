@@ -99,10 +99,6 @@
   }
 </script>
 
-{#snippet warningIcon()}
-  <WarningCircleIcon aria-hidden="true" size={18} />
-{/snippet}
-
 <DialogRoot role="alertdialog" {open} onOpenChange={handleOpenChange}>
   <Dialog size={size} class={cn("p-0", className)}>
     <div class="flex items-center justify-between border-b border-kumo-line px-6 py-4">
@@ -124,7 +120,13 @@
     <div class="flex flex-col gap-4 p-6">
       <div class="flex flex-col gap-2">
         {#if errorMessage}
-          <Banner icon={warningIcon} variant="error" text={errorMessage} />
+          <Banner variant="error">
+            {#snippet icon()}
+              <WarningCircleIcon aria-hidden="true" size={18} />
+            {/snippet}
+
+            {errorMessage}
+          </Banner>
         {/if}
         <p class="max-w-prose text-pretty text-base text-kumo-subtle">
           This action cannot be undone. This will permanently delete the

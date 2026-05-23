@@ -5,6 +5,7 @@ sourceFile: components/sidebar
 ---
 
 <script lang="ts">
+  import ApiReference from "$lib/components/api-reference.svelte";
   import Example from "$lib/components/example.svelte";
   import SidebarBasicDemo from "./sidebar-basic-demo.svelte";
   import SidebarCollapsibleGroupDemo from "./sidebar-collapsible-group-demo.svelte";
@@ -18,9 +19,7 @@ sourceFile: components/sidebar
   <SidebarFullDemo />
 </Example>
 
-## Installation
-
-### Namespace
+## Import
 
 ```ts
 import * as Sidebar from "kumo-svelte/components/sidebar";
@@ -109,47 +108,7 @@ Use `side="right"` for a sidebar on the right edge. Place main content before `S
 
 ## API Reference
 
-### `Sidebar`
-
-The main sidebar container. Renders as an `aside` on desktop and mobile sheet when applicable.
-
-| Prop | Type | Description |
-| --- | --- | --- |
-| `children` | `Snippet` | Sidebar content. |
-| `class` | `string` | Additional classes. |
-
-### `Sidebar.Provider`
-
-Context provider managing expand/collapse state and mobile detection.
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `defaultOpen` | `boolean` | `true` | Initial open state. |
-| `open` | `boolean` | `defaultOpen` | Controlled open state. Bind with `bind:open`. |
-| `onOpenChange` | `(open: boolean) => void` | — | Called when open state changes. |
-| `side` | `"left" \| "right"` | `"left"` | Sidebar side. |
-| `variant` | `SidebarVariant` | default | Visual variant. |
-| `collapsible` | `SidebarCollapsibleMode` | default | Collapsible behavior. |
-| `resizable` | `boolean` | `false` | Enables resize handle behavior. |
-| `defaultWidth` | `number` | `256` | Initial resizable width. |
-| `width` | `number` | `defaultWidth` | Controlled width. Bind with `bind:width`. |
-| `minWidth` | `number` | `200` | Minimum resizable width. |
-| `maxWidth` | `number` | `480` | Maximum resizable width. |
-| `onWidthChange` | `(width: number) => void` | — | Called when width changes. |
-| `class` | `string` | — | Additional wrapper classes. |
-| `style` | `string` | — | Additional inline style. |
-
-### Navigation components
-
-`Sidebar.Content`, `Sidebar.Header`, `Sidebar.Footer`, `Sidebar.Group`, `Sidebar.GroupLabel`, `Sidebar.GroupContent`, `Sidebar.Menu`, `Sidebar.MenuItem`, `Sidebar.MenuButton`, `Sidebar.MenuSub`, `Sidebar.MenuSubButton`, `Sidebar.MenuBadge`, `Sidebar.MenuChevron`, and `Sidebar.Separator` compose the navigation structure.
-
-### Interactive components
-
-`Sidebar.Collapsible`, `Sidebar.CollapsibleTrigger`, `Sidebar.CollapsibleContent`, `Sidebar.Trigger`, `Sidebar.ResizeHandle`, and `Sidebar.Rail` provide collapsible and resizable behaviors.
-
-### `Sidebar.Input`
-
-Search-style input for sidebar content. Supports `placeholder` and `shortcut` props.
+<ApiReference family="Sidebar" />
 
 ## Icon Props
 

@@ -12,7 +12,6 @@ export interface ComponentDocsNavItem extends DocsNavItem {
 
 export const componentMetadataSchema = v.object({
   description: v.pipe(v.string(), v.nonEmpty()),
-  primitive: v.optional(v.string()),
   sourceFile: v.optional(v.string()),
   title: v.pipe(v.string(), v.nonEmpty()),
 });

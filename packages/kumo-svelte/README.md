@@ -1,98 +1,53 @@
 # kumo-svelte
 
-Svelte 5 port of Cloudflare's Kumo component library.
+Svelte 5 components inspired by [Cloudflare's Kumo design system](https://github.com/cloudflare/kumo).
 
-This package follows the source-export shape used by `agents-svelte`: Svelte
-components and TypeScript helpers are exported directly from `src`.
-Where upstream Kumo uses Base UI primitives, this port uses Bits UI primitives
-and keeps Kumo's styling and variant metadata on top.
+`kumo-svelte` brings Kumo's visual language, semantic tokens, and component patterns to Svelte. It uses [Bits UI](https://bits-ui.com/) for accessible primitives and keeps the public API Svelte-shaped instead of copying React-only patterns.
 
-## Usage
+> [!NOTE]
+> This is a community package, not an official Cloudflare package. Expect API and parity fixes before `1.0`.
 
-Import components from their package subpaths.
+## Install
 
-```svelte
-<script lang="ts">
-  import * as Autocomplete from "kumo-svelte/components/autocomplete";
-</script>
-
-<Autocomplete.Root>
-  <Autocomplete.InputGroup />
-</Autocomplete.Root>
+```bash
+pnpm add kumo-svelte
 ```
 
-## Current Scope
+Install the peer dependencies if your app does not already have them:
 
-The current port includes all top-level component groups from upstream Kumo:
+```bash
+pnpm add svelte tailwindcss
+```
 
-- `Autocomplete` components backed by Bits UI `Combobox`
-- `Badge`
-- `Banner`
-- `Breadcrumbs` with `Breadcrumbs.Link`, `Breadcrumbs.Current`, `Breadcrumbs.Separator`, `Breadcrumbs.Ellipsis`, and `Breadcrumbs.Clipboard`
-- `Button`, `RefreshButton`, and `LinkButton` backed by Bits UI `Button`
-- `Chart`, `TimeseriesChart`, `SankeyChart`, and chart legend helpers backed by ECharts
-- `Checkbox` with `Checkbox.Group`, `Checkbox.Item`, and `Checkbox.Legend` backed by Bits UI `Checkbox`
-- `ClipboardText`
-- `CloudflareLogo` and `PoweredByCloudflare`
-- `Code`, `CodeBlock`, and the Shiki-backed `CodeHighlighted` entrypoint
-- `Collapsible` root/trigger/panel components backed by Bits UI `Collapsible`
-- `Combobox` components backed by Bits UI `Combobox`
-- `CommandPalette` components backed by Bits UI `Command`
-- `DatePicker` backed by Bits UI `Calendar`
-- `DateRangePicker` backed by Bits UI `RangeCalendar`
-- `DeleteResource`
-- `Dialog` convenience and primitive wrapper components backed by Bits UI `Dialog` / `AlertDialog`
-- `DropdownMenu` primitive wrapper components backed by Bits UI `DropdownMenu`
-- `Empty`
-- `Field`
-- `Flow` with `Flow.Node`, `Flow.List`, `Flow.Parallel`, and `Flow.Anchor`
-- `Grid` and `GridItem`
-- `Input`, `InputArea`, and `Textarea`
-- `InputGroup` with `InputGroup.Input`, `InputGroup.Button`, `InputGroup.Addon`, and `InputGroup.Suffix`
-- `Label` backed by Bits UI `Label`
-- `LayerCard` with `LayerCard.Primary` and `LayerCard.Secondary`
-- `Link` and `ExternalIcon`
-- `Loader` and `SkeletonLine`
-- `MenuBar`
-- `Meter` backed by Bits UI `Meter`
-- `Pagination` root/info/page-size/controls/separator components
-- `Popover` primitive wrapper components backed by Bits UI `Popover`
-- `Radio` with `Radio.Group`, `Radio.Item`, and `Radio.Legend` backed by Bits UI `RadioGroup`
-- `Select` convenience and primitive wrapper components backed by Bits UI `Select`
-- `SensitiveInput`
-- `Sidebar`
-- `Surface`
-- `Switch` with `Switch.Group`, `Switch.Item`, and `Switch.Legend` backed by Bits UI `Switch`
-- `TableOfContents` with `TableOfContents.Title`, `TableOfContents.List`, `TableOfContents.Item`, and `TableOfContents.Group`
-- `Tabs` convenience and primitive wrapper components backed by Bits UI `Tabs`
-- `Table` and table section/cell helpers
-- `Text`
-- `Toast` backed by `svelte-sonner`
-- `Tooltip` convenience and primitive wrapper components backed by Bits UI `Tooltip`
-- `KumoPortalProvider`, `LinkProvider`, `cn()`, and `resolveVariant()`
-- Registry metadata from `kumo-svelte/registry`, including component props,
-  upstream component descriptions, common prop descriptions, generated examples,
-  variant values, variant classes, defaults, and available style metadata
-- Catalog validation from `kumo-svelte/catalog` for UI tree shape, known
-  components, literal variant prop values, and generated runtime prop metadata
-- Kumo style exports
+Chart components also need ECharts:
 
-Kumo styles are Tailwind utility classes plus the Kumo CSS variables and
-component CSS. Import Tailwind and the Kumo CSS once in your app:
+```bash
+pnpm add echarts
+```
+
+Use this package from a Svelte 5 app built with Vite or another toolchain that supports Svelte package exports.
+
+## Set up styles
+
+Import Tailwind and Kumo styles once in your app-level CSS:
 
 ```css
 @import "tailwindcss";
 @import "kumo-svelte/styles";
 ```
 
-The upstream-style aliases are also available:
+The package also exposes upstream-style aliases:
 
 ```css
 @import "kumo-svelte/styles/tailwind";
 @import "kumo-svelte/styles/standalone";
 ```
 
-Then use components from the root package or component subpaths:
+Kumo themes use semantic CSS variables. Set `data-mode="dark"` on a parent element to use dark mode.
+
+## Use components
+
+Import components from their subpaths:
 
 ```svelte
 <script lang="ts">
@@ -106,34 +61,66 @@ Then use components from the root package or component subpaths:
 <Button variant="primary">Create</Button>
 ```
 
-When you need lower-level composition, use Bits UI directly. `kumo-svelte`
-builds Kumo components on those primitives, but does not re-export them:
+Compound components use Svelte bindings and snippets where they fit:
+
+```svelte
+<script lang="ts">
+  import * as Tabs from "kumo-svelte/components/tabs";
+
+  let value = $state("overview");
+</script>
+
+<Tabs.Root bind:value>
+  <Tabs.List>
+    <Tabs.Trigger value="overview">Overview</Tabs.Trigger>
+    <Tabs.Trigger value="settings">Settings</Tabs.Trigger>
+  </Tabs.List>
+
+  <Tabs.Content value="overview">Overview content</Tabs.Content>
+  <Tabs.Content value="settings">Settings content</Tabs.Content>
+</Tabs.Root>
+```
+
+Single controls stay direct:
+
+```svelte
+<script lang="ts">
+  import { Checkbox } from "kumo-svelte/components/checkbox";
+
+  let checked = $state(false);
+</script>
+
+<Checkbox label="Accept terms and conditions" bind:checked />
+```
+
+## Lower-level primitives
+
+Some component families are built on Bits UI. If you need lower-level primitives, import Bits UI directly:
 
 ```ts
 import { Dialog, Popover, Select } from "bits-ui";
 ```
 
-## Dependency Policy
+## Project status
 
-This port leans on the Svelte ecosystem instead of rebuilding common primitives:
+The package currently includes Svelte implementations for the upstream Kumo component families, Kumo styles and themes, shared utilities, charts, and the `DeleteResource` block.
 
-- Bits UI is the primitive layer. Use it directly for lower-level composition;
-  `kumo-svelte` does not re-export a primitives namespace.
-- Phosphor icons come from `phosphor-svelte`, matching upstream Kumo's Phosphor
-  icon dependency.
-- Tailwind CSS is a peer dependency because Kumo component classes are Tailwind
-  utilities.
-- `tailwind-merge` stays because `cn()` needs Tailwind-aware conflict merging.
-- `tailwind-variants` is intentionally not included yet; Kumo's current variant
-  metadata is simple enough for `resolveVariant()`. Add it only when a component
-  grows slot-heavy variant logic.
-- `@internationalized/date` stays for Bits UI calendar values.
-- `svelte-sonner` replaces the notification plumbing for toast components.
-- `echarts` is a peer dependency because chart components wrap caller-provided
-  ECharts modules.
-- `shiki`, `@shikijs/langs`, and `@shikijs/themes` are isolated behind
-  `kumo-svelte/code`, matching upstream Kumo's separate syntax-highlighting
-  entrypoint.
-- Upstream Kumo's `motion` and `zod` dependencies are not included yet. Current
-  Svelte components do not need them: flow uses local SVG geometry, and no
-  schema-driven public API has been ported.
+## Development
+
+```bash
+pnpm install
+pnpm check
+pnpm test
+pnpm docs:dev
+```
+
+`pnpm check` verifies synced upstream theme files, formatting, linting, and type checking. `pnpm docs:dev` starts the local documentation site.
+
+## Documentation
+
+- Upstream Kumo: <https://github.com/cloudflare/kumo>
+- Local docs: run `pnpm docs:dev`
+
+## License
+
+MIT. See [`LICENSE`](LICENSE).

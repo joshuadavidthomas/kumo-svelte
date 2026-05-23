@@ -2,10 +2,10 @@
 title: Link
 description: A styled anchor component for inline text links with multiple variants and app-wide router integration.
 sourceFile: components/link
-primitive: a
 ---
 
 <script lang="ts">
+  import ApiReference from "$lib/components/api-reference.svelte";
   import Example from "$lib/components/example.svelte";
   import LinkBasicDemo from "./link-basic-demo.svelte";
   import LinkCurrentVariantDemo from "./link-current-variant-demo.svelte";
@@ -18,12 +18,10 @@ primitive: a
   <LinkBasicDemo />
 </Example>
 
-## Installation
-
-### Barrel
+## Import
 
 ```ts
-import * as Link from "kumo-svelte/components/link";
+import { ExternalIcon, Link } from "kumo-svelte/components/link";
 import { LinkProvider } from "kumo-svelte/utils";
 ```
 
@@ -108,42 +106,7 @@ Use `LinkProvider` when you need all Link components to render through a framewo
 
 ## API Reference
 
-### Link Props
-
-Extends all native anchor element attributes.
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `variant` | `"inline" \| "current" \| "plain"` | `"inline"` | Visual style variant. |
-| `href` | `string` | — | Link destination URL. |
-| `to` | `string` | — | Compatibility destination used by custom link providers. Prefer `href` for Link usage. |
-| `class` | `string` | — | Additional CSS classes. |
-| `children` | `Snippet` | — | Link content. |
-
-### Variants
-
-| Variant | Description | Use Case |
-| --- | --- | --- |
-| `inline` | Primary color with underline. | Default for inline text links. |
-| `current` | Inherits parent text color with underline. | Links within colored contexts, such as alerts or errors. |
-| `plain` | Primary color without underline. | Navigation links, menus, and footers. |
-
-### ExternalIcon
-
-SVG icon component to indicate external links. Accepts all SVG element attributes.
-
-```svelte
-<Link href="https://example.com" target="_blank" rel="noopener noreferrer">
-  External Site <ExternalIcon />
-</Link>
-```
-
-### LinkProvider
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `component` | `Component<LinkComponentProps>` | — | Component used to render all descendant Link components. |
-| `children` | `Snippet` | — | Provider contents. |
+<ApiReference family="Link" />
 
 ## Design Guidelines
 

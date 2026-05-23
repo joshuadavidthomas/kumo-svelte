@@ -3,11 +3,17 @@
   import TranslateIcon from "phosphor-svelte/lib/TranslateIcon";
   import { Button } from "kumo-svelte/components/button";
   import * as Tooltip from "kumo-svelte/components/tooltip";
+
+  let addTooltipOpen = $state(true);
+
+  $effect(() => {
+    if (!addTooltipOpen) addTooltipOpen = true;
+  });
 </script>
 
 <Tooltip.Provider>
   <div class="flex gap-2">
-    <Tooltip.Root content="Add" open>
+    <Tooltip.Root content="Add" bind:open={addTooltipOpen}>
       {#snippet render({ props })}
         <Button {...props} shape="square" aria-label="Add">
           <PlusIcon class="size-4" />

@@ -6,30 +6,48 @@
   import { setComboboxContext } from "./context";
   import { KUMO_COMBOBOX_DEFAULT_VARIANTS, type KumoComboboxSize } from "./variants";
 
-  export interface ComboboxItemDescriptor {
-    disabled?: boolean;
-    label: string;
-    value: string;
-  }
-
+  /** Root component for the searchable select. */
   export interface ComboboxProps {
+    /** Allow selecting the current single value again to clear it. */
     allowDeselect?: boolean;
+    /** Trigger and dropdown content. */
     children?: Snippet;
+    /** Initial selected value. Use a string array when `multiple` is true. */
     defaultValue?: string | string[];
+    /** Helper text displayed below the combobox. */
     description?: Snippet | string;
+    /** Disable the combobox and descendant controls. */
     disabled?: boolean;
+    /** Error message or validation error object. */
     error?: string | { message: Snippet | string; match: FieldErrorMatch };
-    items?: ComboboxItemDescriptor[];
+    /** Label content for the combobox. Enables the built-in Field wrapper. */
     label?: Snippet | string;
+    /** Tooltip content displayed next to the label. */
     labelTooltip?: Snippet;
+    /** Allow multiple selections. Use a string array value. */
     multiple?: boolean;
+    /** Form field name. */
     name?: string;
+    /** Called when the dropdown opens or closes. */
     onOpenChange?: (open: boolean) => void;
+    /** Called after the open or close transition completes. */
     onOpenChangeComplete?: (open: boolean) => void;
+    /** Called when selection changes. */
     onValueChange?: (value: string | string[]) => void;
+    /** Dropdown open state. Bind with `bind:open` for two-way state. */
     open?: boolean;
+    /** Mark the field as required. */
     required?: boolean;
+    /**
+     * Size of the combobox trigger. Matches Input component sizes.
+     * @displayType "xs" | "sm" | "base" | "lg"
+     * @default "base"
+     */
     size?: KumoComboboxSize;
+    /**
+     * Selected value. Bind with `bind:value` for two-way state.
+     * @default "" or []
+     */
     value?: string | string[];
   }
 
@@ -40,7 +58,6 @@
     description,
     disabled = false,
     error,
-    items = [],
     label,
     labelTooltip,
     multiple = false,
@@ -57,6 +74,8 @@
   let searchValue = $state<string | undefined>();
   let filterValue = $state("");
   let triggerNode = $state<HTMLElement | null>(null);
+  let visibleItems = $state<Record<string, true>>({});
+  let visibleItemCount = $derived(Object.keys(visibleItems).length);
   let fieldRequired = $derived(required === true ? true : required === false ? false : undefined);
   let normalizedError = $derived(normalizeFieldError(error));
   let singleValue = $derived(typeof value === "string" ? value : "");
@@ -121,13 +140,20 @@
     triggerNode = node;
   }
 
-  function shouldShowItem(value: string, label?: string) {
-    if (!items.length) return true;
+  function registerVisibleItem(id: string) {
+    visibleItems = { ...visibleItems, [id]: true };
 
+    return () => {
+      let { [id]: _removed, ...nextVisibleItems } = visibleItems;
+      visibleItems = nextVisibleItems;
+    };
+  }
+
+  function shouldShowItem(value: string, label?: string) {
     let query = filterValue.trim().toLocaleLowerCase();
     if (!query) return true;
 
-    let text = (label ?? items.find((item) => item.value === value)?.label ?? value).toLocaleLowerCase();
+    let text = (label ?? value).toLocaleLowerCase();
     return text.includes(query);
   }
 
@@ -136,7 +162,7 @@
       return multiple ? multipleValue.length > 0 : singleValue.length > 0;
     },
     get hasVisibleItems() {
-      return items.length === 0 || items.some((item) => shouldShowItem(item.value, item.label));
+      return filterValue.trim() === "" || visibleItemCount > 0;
     },
     get inputValue() {
       return inputValue;
@@ -151,6 +177,7 @@
       return triggerNode;
     },
     clearValue,
+    registerVisibleItem,
     removeValue,
     resetInputValue,
     setInputValue,
@@ -165,7 +192,6 @@
       type="multiple"
       {disabled}
       inputValue={inputValue}
-      {items}
       {name}
       open={open ?? false}
       {required}
@@ -182,7 +208,6 @@
       {allowDeselect}
       {disabled}
       inputValue={inputValue}
-      {items}
       {name}
       open={open ?? false}
       {required}

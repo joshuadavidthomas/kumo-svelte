@@ -5,6 +5,7 @@ sourceFile: components/command-palette
 ---
 
 <script lang="ts">
+  import ApiReference from "$lib/components/api-reference.svelte";
   import Example from "$lib/components/example.svelte";
   import CommandPaletteBasicDemo from "./command-palette-basic-demo.svelte";
   import CommandPaletteLoadingDemo from "./command-palette-loading-demo.svelte";
@@ -17,9 +18,7 @@ sourceFile: components/command-palette
   <CommandPaletteBasicDemo />
 </Example>
 
-## Installation
-
-### Namespace
+## Import
 
 ```ts
 import * as CommandPalette from "kumo-svelte/components/command-palette";
@@ -107,131 +106,22 @@ Use `CommandPalette.ResultItem` for rich items with breadcrumbs, icons, and opti
   <CommandPaletteResultItemDemo />
 </Example>
 
-## Component Parts
-
-### CommandPalette / CommandPalette.Root
-
-The root command surface. It manages search value and item filtering.
-
-### CommandPalette.Dialog
-
-Modal dialog wrapper. Put a `CommandPalette` inside it when the command palette should open over the page.
-
-### CommandPalette.Input
-
-Search input field with auto-focus and keyboard handling.
-
-### CommandPalette.List
-
-Scrollable container for results.
-
-### CommandPalette.Group
-
-Category grouping container.
-
-### CommandPalette.GroupLabel
-
-Section header text within a group.
-
-### CommandPalette.Item
-
-Basic selectable item.
-
-### CommandPalette.ResultItem
-
-Rich item with breadcrumbs, icons, descriptions, external indicators, and text highlighting.
-
-### HighlightedText
-
-Renders text with highlighted portions based on match indices.
-
-### CommandPalette.Empty
-
-Empty state when no results match.
-
-### CommandPalette.Loading
-
-Loading spinner state.
-
-### CommandPalette.Footer
-
-Footer for keyboard hints or other content.
-
 ## API Reference
 
-### CommandPalette / CommandPalette.Root Props
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `value` | `string` | `""` | Search value. Bind with `bind:value` for two-way state. |
-| `onValueChange` | `(value: string) => void` | — | Called when the search value changes. |
-| `filter` | `(value: string, search: string, keywords?: string[]) => number` | — | Custom command item filtering function. |
-| `label` | `string` | `"Command palette"` | Accessible label for the command root. |
-| `loop` | `boolean` | — | Whether keyboard navigation loops at the ends. |
-| `shouldFilter` | `boolean` | — | Whether the primitive should filter items. |
-| `class` | `string` | — | Additional classes. |
-| `children` | `Snippet` | — | Input, list, groups, items, footer, and other content. |
-
-### CommandPalette.Dialog Props
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `open` | `boolean` | `false` | Dialog open state. Bind with `bind:open`. |
-| `onOpenChange` | `(open: boolean) => void` | — | Called when the dialog opens or closes. |
-| `class` | `string` | — | Additional classes for dialog content. |
-| `children` | `Snippet` | — | Dialog content, usually `CommandPalette`. |
-
-### CommandPalette.Input Props
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `value` | `string` | `""` | Input value. Normally inherited from the root command state. |
-| `placeholder` | `string` | — | Input placeholder. |
-| `autofocus` | `boolean` | `true` | Focus the input when mounted. |
-| `autocomplete` | `HTMLInputAttributes["autocomplete"]` | — | Browser autocomplete setting. |
-| `leading` | `Snippet` | Magnifying glass icon | Custom leading content. |
-| `trailing` | `Snippet` | — | Custom trailing content. |
-| `onkeydown` | `(event) => void` | — | Keydown handler. |
-| `aria-label` | `string` | — | Accessible input label. |
-| `class` | `string` | — | Additional classes. |
-
-### CommandPalette.Item Props
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `value` | `string` | — | Value used by the command primitive for filtering and selection. |
-| `onSelect` | `() => void` | — | Called when the item is selected. |
-| `disabled` | `boolean` | `false` | Disable the item. |
-| `forceMount` | `boolean` | — | Keep the item mounted. |
-| `keywords` | `string[]` | — | Additional search keywords. |
-| `class` | `string` | — | Additional classes. |
-| `children` | `Snippet` | — | Item content. |
-
-### CommandPalette.ResultItem Props
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `title` | `string` | — | Primary item title. |
-| `value` | `string` | — | Value used by the command primitive. |
-| `breadcrumbs` | `string[]` | `[]` | Breadcrumbs shown before the title. |
-| `description` | `string` | — | Optional trailing description. |
-| `icon` | `Snippet` | — | Leading icon snippet. |
-| `titleHighlights` | `[number, number][]` | — | Highlight ranges for title text. |
-| `breadcrumbHighlights` | `[number, number][][]` | — | Highlight ranges for breadcrumbs. |
-| `external` | `boolean` | `false` | Show external-link icon. |
-| `nonInteractive` | `boolean` | `false` | Render as non-interactive. |
-| `showArrow` | `boolean` | `true` | Show arrow on highlighted item. |
-| `onSelect` | `() => void` | — | Called when the result is selected. |
-
-### Other Parts
-
-| Component | Description |
-| --- | --- |
-| `CommandPalette.List` | Scrollable results container. Accepts `children` and `class`. |
-| `CommandPalette.Group` | Group wrapper. Accepts `children`, `class`, `forceMount`, and `value`. |
-| `CommandPalette.GroupLabel` | Group heading. Accepts `children` and `class`. |
-| `CommandPalette.Empty` | Empty state. Accepts `children` and `forceMount`. |
-| `CommandPalette.Loading` | Loading state. Accepts `children` and `progress`. |
-| `CommandPalette.Footer` | Footer area. Accepts `children` and `class`. |
-| `CommandPalette.Separator` | Separator for grouping sections. |
-| `HighlightedText` | Highlighted text helper with `text`, `highlights`, and `class`. |
+<ApiReference
+  components={[
+    "CommandPalette",
+    "CommandPalette.Dialog",
+    "CommandPalette.Input",
+    "CommandPalette.List",
+    "CommandPalette.Group",
+    "CommandPalette.GroupLabel",
+    "CommandPalette.Item",
+    "CommandPalette.ResultItem",
+    "HighlightedText",
+    "CommandPalette.Empty",
+    "CommandPalette.Loading",
+    "CommandPalette.Footer",
+    "CommandPalette.Separator",
+  ]}
+/>

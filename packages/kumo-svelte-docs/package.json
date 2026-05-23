@@ -4,9 +4,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "vite build",
-    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-    "dev": "vite dev",
+    "api-docs:generate": "node scripts/generate-api-docs.mjs && oxfmt --write src/lib/generated/api-docs.ts",
+    "build": "pnpm api-docs:generate && vite build",
+    "check": "pnpm api-docs:generate && svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "dev": "pnpm api-docs:generate && vite dev",
     "preview": "vite preview"
   },
   "dependencies": {

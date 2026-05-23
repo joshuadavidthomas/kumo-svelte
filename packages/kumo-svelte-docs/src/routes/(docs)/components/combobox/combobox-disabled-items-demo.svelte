@@ -1,14 +1,21 @@
 <script lang="ts">
   import { Text } from "kumo-svelte/components/text";
   import * as Combobox from "kumo-svelte/components/combobox";
-  import { disabledDatabases } from "./combobox-data";
+
+  const disabledDatabases = [
+    { value: "postgres", label: "PostgreSQL" },
+    { value: "mysql", label: "MySQL" },
+    { value: "mariadb", label: "MariaDB", disabled: true, reason: "Beta" },
+    { value: "redis", label: "Redis" },
+    { value: "d1", label: "Cloudflare D1" },
+  ];
 
   let value = $state("");
   let open = $state(false);
 </script>
 
 <div class="w-80">
-<Combobox.Root bind:value bind:open items={disabledDatabases}>
+<Combobox.Root bind:value bind:open>
   <Combobox.TriggerInput placeholder="Select database" />
   <Combobox.Content>
     <Combobox.Empty />

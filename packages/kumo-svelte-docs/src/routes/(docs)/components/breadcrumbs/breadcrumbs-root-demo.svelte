@@ -3,10 +3,12 @@
   import HouseIcon from "phosphor-svelte/lib/HouseIcon";
 </script>
 
-{#snippet homeIcon()}
-  <HouseIcon size={16} />
-{/snippet}
-
 <Breadcrumbs.Root>
-  <Breadcrumbs.Current icon={homeIcon}>Worker Analytics</Breadcrumbs.Current>
+  <Breadcrumbs.Current>
+    {#snippet icon()}
+      <HouseIcon size={16} />
+    {/snippet}
+
+    Worker Analytics
+  </Breadcrumbs.Current>
 </Breadcrumbs.Root>

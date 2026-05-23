@@ -17,24 +17,16 @@ sourceFile: components/chart
   <SankeyChartBasicDemo />
 </Example>
 
-## Installation
+## Import
 
 SankeyChart requires `echarts` as a peer dependency.
 
 ```bash
-npm install echarts
+pnpm add echarts
 ```
 
-### Barrel
-
 ```ts
-import { SankeyChart } from "kumo-svelte/components/chart";
-```
-
-### Granular
-
-```ts
-import { SankeyChart } from "kumo-svelte/components/chart";
+import { ChartPalette, SankeyChart } from "kumo-svelte/components/chart";
 ```
 
 ## Usage

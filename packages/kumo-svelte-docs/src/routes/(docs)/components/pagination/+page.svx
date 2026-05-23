@@ -5,6 +5,7 @@ sourceFile: components/pagination
 ---
 
 <script lang="ts">
+  import ApiReference from "$lib/components/api-reference.svelte";
   import Example from "$lib/components/example.svelte";
   import PaginationBasicDemo from "./pagination-basic-demo.svelte";
   import PaginationCompoundCustomInfoDemo from "./pagination-compound-custom-info-demo.svelte";
@@ -24,9 +25,7 @@ sourceFile: components/pagination
   <PaginationBasicDemo />
 </Example>
 
-## Installation
-
-### Namespace
+## Import
 
 ```ts
 import * as Pagination from "kumo-svelte/components/pagination";
@@ -139,48 +138,7 @@ Use the `labels` prop to customize all UI strings for different locales. All lab
 
 ## API Reference
 
-### `Pagination`
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `page` | `number` | `1` | Current page. Bind with `bind:page`. |
-| `setPage` | `(page: number) => void` | — | Optional callback called when the page changes. |
-| `perPage` | `number` | — | Items per page. |
-| `totalCount` | `number` | — | Total item count. |
-| `controls` | `"full" \| "simple"` | `"full"` | Controls shown when using the default layout. |
-| `text` | `Snippet<[PaginationInfoSnippetProps]>` | — | Custom info text snippet. |
-| `labels` | `PaginationLabels` | English labels | UI labels for accessibility and localization. |
-| `children` | `Snippet` | — | Compound component layout. |
-| `class` | `string` | — | Additional classes. |
-
-### `Pagination.Info`
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `text` | `Snippet<[PaginationInfoSnippetProps]>` | — | Custom info content. |
-| `class` | `string` | — | Additional classes. |
-
-### `Pagination.Controls`
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `controls` | `"full" \| "simple"` | `"full"` | Controls to render. |
-| `pageSelector` | `"input" \| "dropdown"` | `"input"` | Page selector control for full pagination. |
-| `class` | `string` | — | Additional classes. |
-
-### `Pagination.PageSize`
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `value` | `number` | — | Current page size. |
-| `onValueChange` | `(size: number) => void` | — | Called with the selected page size. |
-| `options` | `number[]` | `[25, 50, 100, 250]` | Available page sizes. |
-| `label` | `Snippet \| string` | `"Per page:"` | Label text. |
-| `class` | `string` | — | Additional classes. |
-
-### `Pagination.Separator`
-
-Accepts standard `HTMLDivElement` attributes plus `class`.
+<ApiReference family="Pagination" />
 
 ## Accessibility
 

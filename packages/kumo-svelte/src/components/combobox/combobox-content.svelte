@@ -6,10 +6,18 @@
   import { getKumoPortalContext } from "../../utils/portal-provider.svelte";
   import { getComboboxContext } from "./context";
 
+  /** Dropdown container for the list. */
   export interface ComboboxContentProps {
+    /** Dropdown content, usually input, empty state, and list. */
     children?: Snippet;
+    /** Additional CSS classes. */
     class?: string;
+    /** Portal target. Defaults to the configured portal provider container. */
     container?: PortalProps["to"];
+    /**
+     * Offset between trigger and content.
+     * @default 4
+     */
     sideOffset?: number;
   }
 

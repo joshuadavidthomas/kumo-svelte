@@ -2,7 +2,14 @@
   import { Button } from "kumo-svelte/components/button";
   import { Text } from "kumo-svelte/components/text";
   import * as Combobox from "kumo-svelte/components/combobox";
-  import { bots } from "./combobox-data";
+
+  const bots = [
+    { value: "googlebot", label: "Googlebot", author: "Google" },
+    { value: "bingbot", label: "Bingbot", author: "Microsoft" },
+    { value: "duckduckbot", label: "DuckDuckBot", author: "DuckDuckGo" },
+    { value: "slackbot", label: "Slackbot", author: "Slack" },
+    { value: "discordbot", label: "Discordbot", author: "Discord" },
+  ];
 
   let value = $state<string[]>([]);
   let open = $state(false);
@@ -14,7 +21,7 @@
 {/snippet}
 
 <div class="flex gap-2">
-  <Combobox.Root multiple bind:value bind:open items={bots}>
+  <Combobox.Root multiple bind:value bind:open>
     <Combobox.TriggerMultipleWithInput class="w-[400px]" placeholder="Select bots" renderItem={selectedBot} />
     <Combobox.Content class="max-h-[200px] min-w-auto overflow-y-auto">
       <Combobox.Empty />

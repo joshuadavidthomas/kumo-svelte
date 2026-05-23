@@ -2,10 +2,10 @@
 title: Autocomplete
 description: A free-form text input with an optional filtered suggestion list. Unlike Combobox, the value is not constrained to the items list.
 sourceFile: components/autocomplete
-primitive: autocomplete
 ---
 
 <script lang="ts">
+  import ApiReference from "$lib/components/api-reference.svelte";
   import Example from "$lib/components/example.svelte";
   import AutocompleteDemo from "./autocomplete-demo.svelte";
   import AutocompleteControlledDemo from "./autocomplete-controlled-demo.svelte";
@@ -19,9 +19,7 @@ primitive: autocomplete
   <AutocompleteDemo />
 </Example>
 
-## Installation
-
-### Namespace
+## Import
 
 ```ts
 import * as Autocomplete from "kumo-svelte/components/autocomplete";
@@ -114,47 +112,4 @@ For advanced matching or async search, keep filtered items in application state 
 
 ## API Reference
 
-### Autocomplete
-
-Root component. Wraps all sub-components and manages state.
-
-| Prop | Type | Required | Description |
-| --- | --- | --- | --- |
-| `value` | `string` | No | Current input value. Bind for controlled usage. |
-| `defaultValue` | `string` | No | Initial input value. |
-| `open` | `boolean` | No | Current popup open state. Bind for controlled open state. |
-| `onValueChange` | `(value: string) => void` | No | Called when the input value changes. |
-| `onOpenChange` | `(open: boolean) => void` | No | Called when the popup opens or closes. |
-| `label` | `Snippet \| string` | No | Field label. Enables the built-in Field wrapper. |
-| `description` | `Snippet \| string` | No | Field description text. |
-| `error` | `string \| { message: Snippet \| string; match: FieldErrorMatch }` | No | Field error message. |
-| `required` | `boolean` | No | Marks the field as required. |
-| `disabled` | `boolean` | No | Disables the autocomplete. |
-
-### Autocomplete.InputGroup
-
-Self-contained input wrapper that renders the text input.
-
-| Prop | Type | Required | Description |
-| --- | --- | --- | --- |
-| `placeholder` | `string` | No | Placeholder text. |
-| `size` | `"xs" \| "sm" \| "base" \| "lg"` | No | Input size. |
-| `onValueChange` | `(value: string) => void` | No | Called when the input value changes. |
-
-### Autocomplete.Content
-
-Dropdown popup container.
-
-### Autocomplete.List
-
-Scrollable list container.
-
-### Autocomplete.Item
-
-Individual suggestion item.
-
-| Prop | Type | Required | Description |
-| --- | --- | --- | --- |
-| `value` | `string` | Yes | Item value. |
-| `label` | `string` | No | Accessible item label. |
-| `disabled` | `boolean` | No | Disables the item. |
+<ApiReference family="Autocomplete" />

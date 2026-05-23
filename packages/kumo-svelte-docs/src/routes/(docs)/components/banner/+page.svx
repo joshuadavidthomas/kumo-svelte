@@ -5,6 +5,7 @@ sourceFile: components/banner
 ---
 
 <script lang="ts">
+  import ApiReference from "$lib/components/api-reference.svelte";
   import Example from "$lib/components/example.svelte";
   import BannerAlertDemo from "./banner-alert-demo.svelte";
   import BannerCustomContentDemo from "./banner-custom-content-demo.svelte";
@@ -20,15 +21,7 @@ sourceFile: components/banner
   <BannerVariantsDemo />
 </Example>
 
-## Installation
-
-### Barrel
-
-```ts
-import { Banner } from "kumo-svelte/components/banner";
-```
-
-### Granular
+## Import
 
 ```ts
 import { Banner } from "kumo-svelte/components/banner";
@@ -42,15 +35,11 @@ import { Banner } from "kumo-svelte/components/banner";
   import InfoIcon from "phosphor-svelte/lib/InfoIcon";
 </script>
 
-{#snippet icon()}
-  <InfoIcon weight="fill" />
-{/snippet}
-
-<Banner
-  {icon}
-  title="Update available"
-  description="A new version is ready to install."
-/>
+<Banner title="Update available" description="A new version is ready to install.">
+  {#snippet icon()}
+    <InfoIcon weight="fill" />
+  {/snippet}
+</Banner>
 ```
 
 ## Examples
@@ -95,7 +84,7 @@ import { Banner } from "kumo-svelte/components/banner";
 
 ### Custom content
 
-Use a snippet for custom description content.
+Use a named `description` snippet for custom description content.
 
 <Example demo="banner-custom-content-demo">
   <BannerCustomContentDemo />
@@ -103,19 +92,4 @@ Use a snippet for custom description content.
 
 ## API Reference
 
-### Banner
-
-Displays contextual inline messages for informational, alert, or error states.
-
-| Prop | Type | Required | Description |
-| --- | --- | --- | --- |
-| `variant` | `"default" \| "alert" \| "error"` | No | Visual style. Defaults to `"default"`. |
-| `icon` | `Snippet` | No | Icon snippet rendered before the banner content. |
-| `title` | `string` | No | Structured banner title. |
-| `description` | `Snippet \| string` | No | Structured banner description. |
-| `action` | `Snippet` | No | Action area rendered at the end of structured banners. |
-| `children` | `Snippet` | No | Legacy simple banner content when `title` and `description` are not provided. |
-| `text` | `string` | No | Fallback simple text content when no children are provided. |
-| `class` | `string` | No | Additional classes merged with the banner styles. |
-
-All other props are passed to the underlying `<div>` element.
+<ApiReference family="Banner" />

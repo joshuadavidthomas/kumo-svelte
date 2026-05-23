@@ -1,5 +1,5 @@
 <script lang="ts">
-  import * as Checkbox from "kumo-svelte/components/checkbox";
+  import { Checkbox } from "kumo-svelte/components/checkbox";
 </script>
 
-<Checkbox.Root label="Invalid option" variant="error" />
+<Checkbox label="Invalid option" variant="error" />

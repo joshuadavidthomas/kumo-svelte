@@ -5,6 +5,7 @@ sourceFile: components/flow
 ---
 
 <script lang="ts">
+  import ApiReference from "$lib/components/api-reference.svelte";
   import Example from "$lib/components/example.svelte";
   import FlowAnchorDemo from "./flow-anchor-demo.svelte";
   import FlowBasicDemo from "./flow-basic-demo.svelte";
@@ -23,9 +24,7 @@ sourceFile: components/flow
   <FlowParallelDemo />
 </Example>
 
-## Installation
-
-### Namespace
+## Import
 
 ```ts
 import * as Flow from "kumo-svelte/components/flow";
@@ -141,61 +140,6 @@ Use `Flow.List` inside `Flow.Parallel` to create parallel branches where each br
   <FlowParallelNestedListDemo />
 </Example>
 
-## Components
+## API Reference
 
-### Flow / Flow.Root
-
-The root container for flow diagrams. Provides panning and scrolling for large diagrams.
-
-| Prop | Type | Description |
-| --- | --- | --- |
-| `align` | `"start" \| "center"` | Vertical alignment for nodes. Defaults to `"start"`. |
-| `orientation` | `"horizontal" \| "vertical"` | Flow direction. Defaults to `"horizontal"`. |
-| `canvas` | `boolean` | Enable panning behavior. Defaults to `true`. |
-| `padding` | `{ x?: number; y?: number }` | Canvas padding around the content. |
-| `onOverflowChange` | `(overflow: { x: boolean; y: boolean }) => void` | Called when overflow changes. |
-| `class` | `string` | Additional classes. |
-| `children` | `Snippet` | Flow nodes, parallel groups, and lists. |
-
-### Flow.Node
-
-Individual node in the flow.
-
-| Prop | Type | Description |
-| --- | --- | --- |
-| `children` | `Snippet` | Node content. |
-| `class` | `string` | Additional classes for the node. |
-| `disabled` | `boolean` | Render node and connectors as inactive. |
-| `id` | `string` | Stable node ID. |
-| rest props | `HTMLLiAttributes` | Forwarded to the underlying `<li>`. |
-
-### Flow.Parallel
-
-Container for parallel branches.
-
-| Prop | Type | Description |
-| --- | --- | --- |
-| `align` | `"start" \| "end"` | Horizontal alignment of branches. Defaults to `"start"`. |
-| `id` | `string` | Stable group ID. |
-| `children` | `Snippet` | Branch nodes or lists. |
-
-### Flow.List
-
-Nested sequential list. Use inside parallel branches when a branch contains multiple connected nodes.
-
-| Prop | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Stable list ID. |
-| `class` | `string` | Additional classes. |
-| `children` | `Snippet` | Nested flow nodes. |
-
-### Flow.Anchor
-
-Custom connector attachment point inside a custom node.
-
-| Prop | Type | Description |
-| --- | --- | --- |
-| `type` | `"start" \| "end"` | Which connector endpoint this anchor controls. If omitted, controls both. |
-| `children` | `Snippet` | Anchor content. |
-| `class` | `string` | Additional classes for the anchor element. |
-| rest props | `HTMLAttributes<HTMLDivElement>` | Forwarded to the underlying `<div>`. |
+<ApiReference family="Flow" />

@@ -2,10 +2,10 @@
 title: Input
 description: A text input field for user input with built-in label, description, and error support.
 sourceFile: components/input
-primitive: input
 ---
 
 <script lang="ts">
+  import ApiReference from "$lib/components/api-reference.svelte";
   import Example from "$lib/components/example.svelte";
   import InputBareDemo from "./input-bare-demo.svelte";
   import InputBasicDemo from "./input-basic-demo.svelte";
@@ -28,15 +28,7 @@ primitive: input
   <InputBasicDemo />
 </Example>
 
-## Installation
-
-### Barrel
-
-```ts
-import { Input } from "kumo-svelte/components/input";
-```
-
-### Granular
+## Import
 
 ```ts
 import { Input } from "kumo-svelte/components/input";
@@ -182,16 +174,4 @@ Set `passwordManagerIgnore` to add common password-manager ignore attributes.
 
 ## API Reference
 
-| Prop | Type | Required | Description |
-| --- | --- | --- | --- |
-| `label` | `Snippet \| string` | No | Enables the built-in Field wrapper and renders a label. |
-| `description` | `Snippet \| string` | No | Supporting field description. |
-| `error` | `string \| { message: Snippet \| string; match: FieldErrorMatch }` | No | Error message or validity-matched error. |
-| `labelTooltip` | `Snippet` | No | Additional tooltip content for the label. |
-| `passwordManagerIgnore` | `boolean` | No | Adds common ignore attributes for password managers. |
-| `size` | `"xs" \| "sm" \| "base" \| "lg"` | No | Size variant. Defaults to `"base"`. |
-| `variant` | `"default" \| "error"` | No | Visual variant. Defaults to `"error"` when `error` is present. |
-| `value` | `string \| number \| string[]` | No | Input value. Bind with `bind:value`. |
-| `class` | `string` | No | Additional classes. |
-
-Input also accepts standard `HTMLInputElement` attributes such as `type`, `placeholder`, `disabled`, `required`, `minlength`, and `aria-label`.
+<ApiReference family="Input" />

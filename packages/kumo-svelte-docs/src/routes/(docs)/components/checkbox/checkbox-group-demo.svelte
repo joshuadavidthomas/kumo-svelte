@@ -6,8 +6,7 @@
 <Checkbox.Group
   legend="Email preferences"
   description="Choose how you'd like to receive updates"
-  value={preferences}
-  onValueChange={(value) => (preferences = value)}
+  bind:value={preferences}
 >
   <Checkbox.Item value="email" label="Email notifications" />
   <Checkbox.Item value="sms" label="SMS notifications" />

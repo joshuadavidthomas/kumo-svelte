@@ -2,10 +2,10 @@
 title: Button
 description: Displays a button or a component that looks like a button.
 sourceFile: components/button
-primitive: button
 ---
 
 <script lang="ts">
+  import ApiReference from "$lib/components/api-reference.svelte";
   import Example from "$lib/components/example.svelte";
   import ButtonAsLinkDemo from "./button-as-link-demo.svelte";
   import ButtonBasicDemo from "./button-basic-demo.svelte";
@@ -29,18 +29,10 @@ primitive: button
   <ButtonBasicDemo />
 </Example>
 
-## Installation
-
-### Barrel
+## Import
 
 ```ts
-import { Button } from "kumo-svelte/components/button";
-```
-
-### Granular
-
-```ts
-import { Button } from "kumo-svelte/components/button";
+import { Button, LinkButton } from "kumo-svelte/components/button";
 ```
 
 ## Usage
@@ -161,35 +153,4 @@ Use `LinkButton` when the interaction should navigate somewhere but still look l
 
 ## API Reference
 
-### Button
-
-Renders a native button with Kumo variants and optional tooltip wrapping.
-
-| Prop | Type | Required | Description |
-| --- | --- | --- | --- |
-| `variant` | `"primary" \| "secondary" \| "ghost" \| "destructive" \| "secondary-destructive" \| "outline"` | No | Visual style. Defaults to `"secondary"`. |
-| `size` | `"xs" \| "sm" \| "base" \| "lg"` | No | Button size. Defaults to `"base"`. |
-| `shape` | `"base" \| "square" \| "circle"` | No | Button shape. Use compact shapes for icon-only actions. |
-| `icon` | `Component` | No | Svelte component rendered before the label. |
-| `loading` | `boolean` | No | Shows a loader and disables the button while true. |
-| `title` | `Snippet \| string` | No | Wraps the button in a tooltip with the given content. |
-| `disabled` | `boolean` | No | Disables the button. |
-| `children` | `Snippet` | No | Button label or custom child markup. |
-
-All other props are passed to the underlying `<button>` element. The default `type` is `"button"`.
-
-### LinkButton
-
-Renders an anchor styled like a Kumo button for navigation actions.
-
-| Prop | Type | Required | Description |
-| --- | --- | --- | --- |
-| `href` | `string` | No | Link destination. |
-| `variant` | `"primary" \| "secondary" \| "ghost" \| "destructive" \| "secondary-destructive" \| "outline"` | No | Visual style. Defaults to `"ghost"`. |
-| `size` | `"xs" \| "sm" \| "base" \| "lg"` | No | Button size. Defaults to `"base"`. |
-| `shape` | `"base" \| "square" \| "circle"` | No | Link button shape. |
-| `icon` | `Component` | No | Svelte component rendered before the label. |
-| `external` | `boolean` | No | Opens the link in a new tab with `rel="noopener noreferrer"`. |
-| `children` | `Snippet` | No | Link label or custom child markup. |
-
-All other props are passed to the underlying `<a>` element.
+<ApiReference components={["Button", "LinkButton"]} />

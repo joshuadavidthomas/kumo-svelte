@@ -3,20 +3,22 @@
   import HouseIcon from "phosphor-svelte/lib/HouseIcon";
 </script>
 
-{#snippet homeIcon()}
-  <HouseIcon size={16} />
-{/snippet}
+<Breadcrumbs.Root>
+  {#snippet mobile()}
+    <Breadcrumbs.Ellipsis />
+    <Breadcrumbs.Separator />
+    <Breadcrumbs.Link href="#">Docs</Breadcrumbs.Link>
+    <Breadcrumbs.Separator />
+    <Breadcrumbs.Current loading />
+  {/snippet}
 
-{#snippet mobileBreadcrumbs()}
-  <Breadcrumbs.Ellipsis />
-  <Breadcrumbs.Separator />
-  <Breadcrumbs.Link href="#">Docs</Breadcrumbs.Link>
-  <Breadcrumbs.Separator />
-  <Breadcrumbs.Current loading />
-{/snippet}
+  <Breadcrumbs.Link href="#">
+    {#snippet icon()}
+      <HouseIcon size={16} />
+    {/snippet}
 
-<Breadcrumbs.Root mobileChildren={mobileBreadcrumbs}>
-  <Breadcrumbs.Link href="#" icon={homeIcon}>Home</Breadcrumbs.Link>
+    Home
+  </Breadcrumbs.Link>
   <Breadcrumbs.Separator />
   <Breadcrumbs.Link href="#">Docs</Breadcrumbs.Link>
   <Breadcrumbs.Separator />

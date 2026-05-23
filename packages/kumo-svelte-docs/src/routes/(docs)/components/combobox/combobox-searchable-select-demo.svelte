@@ -1,13 +1,25 @@
 <script lang="ts">
   import * as Combobox from "kumo-svelte/components/combobox";
-  import { languageItems, languages } from "./combobox-data";
+
+  const languages = [
+    { value: "en", label: "English", emoji: "🇬🇧" },
+    { value: "fr", label: "French", emoji: "🇫🇷" },
+    { value: "de", label: "German", emoji: "🇩🇪" },
+    { value: "es", label: "Spanish", emoji: "🇪🇸" },
+    { value: "ja", label: "Japanese", emoji: "🇯🇵" },
+  ];
+
+  const languageItems = languages.map((language) => ({
+    label: `${language.emoji} ${language.label}`,
+    value: language.value,
+  }));
 
   let value = $state("");
   let open = $state(false);
   let selectedLabel = $derived(languageItems.find((language) => language.value === value)?.label);
 </script>
 
-<Combobox.Root bind:value bind:open items={languageItems}>
+<Combobox.Root bind:value bind:open>
   <Combobox.TriggerValue class="w-[200px]" placeholder="Select a language">
     {selectedLabel}
   </Combobox.TriggerValue>

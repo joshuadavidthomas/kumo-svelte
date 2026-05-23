@@ -1,13 +1,13 @@
 <script lang="ts">
   import * as Combobox from "kumo-svelte/components/combobox";
-  import { fruits } from "./combobox-data";
 
-  const items = fruits.map((fruit) => ({ label: fruit, value: fruit }));
+  const fruits = ["Apple", "Apricot", "Banana", "Blueberry", "Cherry", "Mango", "Orange", "Pear"];
+
   let value = $state("Apple");
   let open = $state(false);
 </script>
 
-<Combobox.Root bind:value bind:open {items}>
+<Combobox.Root bind:value bind:open>
   <Combobox.TriggerInput placeholder="Please select" />
   <Combobox.Content>
     <Combobox.Empty />

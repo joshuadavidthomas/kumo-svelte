@@ -1,6 +1,18 @@
 <script lang="ts">
   import * as Combobox from "kumo-svelte/components/combobox";
-  import { languageItems, languages } from "./combobox-data";
+
+  const languages = [
+    { value: "en", label: "English", emoji: "🇬🇧" },
+    { value: "fr", label: "French", emoji: "🇫🇷" },
+    { value: "de", label: "German", emoji: "🇩🇪" },
+    { value: "es", label: "Spanish", emoji: "🇪🇸" },
+    { value: "ja", label: "Japanese", emoji: "🇯🇵" },
+  ];
+
+  const languageItems = languages.map((language) => ({
+    label: `${language.emoji} ${language.label}`,
+    value: language.value,
+  }));
 
   let smValue = $state("en");
   let baseValue = $state("fr");
@@ -9,7 +21,7 @@
 </script>
 
 <div class="flex flex-wrap items-center gap-4">
-  <Combobox.Root bind:value={smValue} items={languageItems} size="sm">
+  <Combobox.Root bind:value={smValue} size="sm">
     <Combobox.TriggerValue class="w-[160px]">{smLabel}</Combobox.TriggerValue>
     <Combobox.Content>
       <Combobox.Input placeholder="Search" />
@@ -24,7 +36,7 @@
     </Combobox.Content>
   </Combobox.Root>
 
-  <Combobox.Root bind:value={baseValue} items={languageItems} size="base">
+  <Combobox.Root bind:value={baseValue} size="base">
     <Combobox.TriggerValue class="w-[180px]">{baseLabel}</Combobox.TriggerValue>
     <Combobox.Content>
       <Combobox.Input placeholder="Search" />

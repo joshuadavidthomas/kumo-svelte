@@ -15,17 +15,9 @@ sourceFile: blocks/delete-resource
   <DeleteResourceBasicDemo />
 </Example>
 
-## Installation
+## Import
 
 DeleteResource is a **block**: a component you own and can customize. The Svelte package currently exports the block directly.
-
-### Barrel
-
-```ts
-import { DeleteResource } from "kumo-svelte/blocks/delete-resource";
-```
-
-### Granular
 
 ```ts
 import { DeleteResource } from "kumo-svelte/blocks/delete-resource";

@@ -1,6 +1,6 @@
 <script lang="ts">
   import * as Tabs from "kumo-svelte/components/tabs";
-  const tabs = [
+  const items = [
     { value: "overview", label: "Overview" },
     { value: "analytics", label: "Analytics" },
     { value: "reports", label: "Reports" },
@@ -13,5 +13,11 @@
 </script>
 
 <div class="w-full max-w-md">
-  <Tabs.Root {tabs} selectedValue="overview" />
+  <Tabs.Root value="overview">
+    <Tabs.List>
+      {#each items as item (item.value)}
+        <Tabs.Trigger value={item.value}>{item.label}</Tabs.Trigger>
+      {/each}
+    </Tabs.List>
+  </Tabs.Root>
 </div>

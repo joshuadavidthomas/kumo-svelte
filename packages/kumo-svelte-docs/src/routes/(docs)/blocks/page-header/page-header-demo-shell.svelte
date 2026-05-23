@@ -1,6 +1,4 @@
 <script lang="ts">
-  import { type TabsItem } from "kumo-svelte/components/tabs";
-  import * as Tabs from "kumo-svelte/components/tabs";
   import type { Snippet } from "svelte";
 
   interface Props {
@@ -8,9 +6,7 @@
     breadcrumbs?: Snippet;
     class?: string;
     description?: string;
-    onValueChange?: (value: string) => void;
-    selectedValue?: string;
-    tabs?: TabsItem[];
+    tabs?: Snippet;
     title?: string;
   }
 
@@ -19,9 +15,7 @@
     breadcrumbs,
     class: className = "",
     description,
-    onValueChange,
-    selectedValue,
-    tabs = [],
+    tabs,
     title,
   }: Props = $props();
 </script>
@@ -43,9 +37,9 @@
       <div class="flex shrink-0 gap-2">{@render actions()}</div>
     {/if}
   </div>
-  {#if tabs.length > 0}
+  {#if tabs}
     <div class="border-t border-kumo-hairline px-4 py-3">
-      <Tabs.Root {tabs} selectedValue={selectedValue ?? tabs[0]?.value} {onValueChange} />
+      {@render tabs()}
     </div>
   {/if}
 </div>

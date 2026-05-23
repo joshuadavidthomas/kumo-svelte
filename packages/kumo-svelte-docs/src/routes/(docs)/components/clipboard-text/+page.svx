@@ -5,6 +5,7 @@ sourceFile: components/clipboard-text
 ---
 
 <script lang="ts">
+  import ApiReference from "$lib/components/api-reference.svelte";
   import Example from "$lib/components/example.svelte";
   import ClipboardTextAlternateTextToCopyDemo from "./clipboard-text-alternate-text-to-copy-demo.svelte";
   import ClipboardTextApiKeyDemo from "./clipboard-text-api-key-demo.svelte";
@@ -18,15 +19,7 @@ sourceFile: components/clipboard-text
   <ClipboardTextBasicDemo />
 </Example>
 
-## Installation
-
-### Barrel
-
-```ts
-import { ClipboardText } from "kumo-svelte/components/clipboard-text";
-```
-
-### Granular
+## Import
 
 ```ts
 import { ClipboardText } from "kumo-svelte/components/clipboard-text";
@@ -78,18 +71,4 @@ Shows a “Copy” tooltip on hover and “Copied!” after a successful copy.
 
 ## API Reference
 
-### ClipboardText
-
-A text component with a copy-to-clipboard button.
-
-| Prop | Type | Required | Description |
-| --- | --- | --- | --- |
-| `text` | `string` | Yes | Visible text. |
-| `textToCopy` | `string` | No | Alternate text copied to the clipboard. Defaults to `text`. |
-| `size` | `"sm" \| "base" \| "lg"` | No | Clipboard text size. Defaults to `"lg"`. |
-| `tooltip` | `{ text?: string; copiedText?: string; side?: "top" \| "bottom" \| "left" \| "right" }` | No | Tooltip text and placement. |
-| `labels` | `{ copyAction?: string }` | No | Accessible labels for the copy action. |
-| `onCopy` | `() => void` | No | Called after a successful copy. |
-| `class` | `string` | No | Additional classes merged with the container styles. |
-
-All other props are passed to the underlying `<div>` element.
+<ApiReference family="ClipboardText" />

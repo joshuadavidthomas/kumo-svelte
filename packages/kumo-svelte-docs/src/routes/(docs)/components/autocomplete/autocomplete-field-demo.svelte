@@ -1,6 +1,13 @@
 <script lang="ts">
   import * as Autocomplete from "kumo-svelte/components/autocomplete";
-  import { countries } from "./autocomplete-data";
+
+  const countries = [
+    { code: "us", label: "United States", value: "United States" },
+    { code: "gb", label: "United Kingdom", value: "United Kingdom" },
+    { code: "de", label: "Germany", value: "Germany" },
+    { code: "fr", label: "France", value: "France" },
+    { code: "jp", label: "Japan", value: "Japan" },
+  ];
 
   interface Props {
     error?: string;

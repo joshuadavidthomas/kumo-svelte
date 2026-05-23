@@ -1,5 +1,8 @@
+import { existsSync } from "node:fs";
 import { error } from "@sveltejs/kit";
 import { parseComponentMetadata } from "$lib/component-docs";
+import { apiDocs, type ApiComponentDoc } from "$lib/generated/api-docs";
+import { docsChangelogMarkdown } from "$lib/package-changelog";
 import {
   pageFromMetadata,
   type ComponentPageMetadata,
@@ -15,10 +18,10 @@ interface DocPageMetadata {
 }
 
 interface DocPageData {
+  bitsUiUrl?: string;
   description: string;
   editUrl?: string;
   href: string;
-  primitiveUrl?: string;
   sourceFile?: string;
   title: string;
   toc: DocTocItem[];
@@ -63,14 +66,11 @@ const chartPages = import.meta.glob<DocPageMetadata>(
     import: "metadata",
   },
 );
-const chartPageSources = import.meta.glob<string>(
-  ["./charts/+page.svx", "./charts/*/+page.svx"],
-  {
-    eager: true,
-    query: "?raw",
-    import: "default",
-  },
-);
+const chartPageSources = import.meta.glob<string>(["./charts/+page.svx", "./charts/*/+page.svx"], {
+  eager: true,
+  query: "?raw",
+  import: "default",
+});
 const chartDemoSources = import.meta.glob<string>(
   ["./charts/*-demo.svelte", "./charts/*/*-demo.svelte"],
   {
@@ -156,7 +156,7 @@ function loadStaticPage(slug: string): DocsLoadData {
       description: pageEntry.description,
       href: `/${slug}`,
       title: pageEntry.title,
-      toc: tocFromMarkdown(sourceEntry),
+      toc: tocFromMarkdown(slug === "changelog" ? docsChangelogMarkdown : sourceEntry),
     },
   };
 }
@@ -211,13 +211,21 @@ async function loadSectionPage({
     highlightedDemos: await highlightedDemosForSlug(demoSources, section, demoSlug),
     page: {
       description: pageEntry.description,
-      editUrl: `https://github.com/joshuadavidthomas/kumo-svelte/tree/main/packages/kumo-svelte/src/${sourceFile}`,
+      editUrl: editUrlForSourceFile(sourceFile),
       href,
       sourceFile,
       title: pageEntry.title,
       toc: tocFromMarkdown(sourceEntry),
     },
   };
+}
+
+function editUrlForSourceFile(sourceFile: string) {
+  const sourceUrl = new URL(`../../../../kumo-svelte/src/${sourceFile}`, import.meta.url);
+
+  if (!existsSync(sourceUrl)) return undefined;
+
+  return `https://github.com/joshuadavidthomas/kumo-svelte/tree/main/packages/kumo-svelte/src/${sourceFile}`;
 }
 
 function entryForDocPath<T>(entries: Record<string, T>, docPath: string) {
@@ -259,10 +267,10 @@ async function highlightedDemosForSlug(
 
 function tocFromMarkdown(source: string) {
   const content = source.replace(/^---[\s\S]*?---/, "");
-  const headings = Array.from(content.matchAll(/^(#{2,3})\s+(.+)$/gm));
   const seen = new Map<string, number>();
+  const tocEntries: Array<{ index: number; items: DocTocItem[] }> = [];
 
-  return headings.map((heading) => {
+  for (const heading of content.matchAll(/^(#{2,3})\s+(.+)$/gm)) {
     const text = heading[2]
       .replace(/`([^`]+)`/g, "$1")
       .replace(/<[^>]+>/g, "")
@@ -271,12 +279,74 @@ function tocFromMarkdown(source: string) {
     const count = seen.get(baseId) ?? 0;
     seen.set(baseId, count + 1);
 
-    return {
-      depth: heading[1].length,
-      id: count === 0 ? baseId : `${baseId}-${count}`,
-      text,
-    };
-  });
+    tocEntries.push({
+      index: heading.index ?? 0,
+      items: [
+        {
+          depth: heading[1].length,
+          id: count === 0 ? baseId : `${baseId}-${count}`,
+          text,
+        },
+      ],
+    });
+  }
+
+  for (const apiReference of content.matchAll(/<ApiReference\s+([^>]*?)\/>/gs)) {
+    tocEntries.push({
+      index: apiReference.index ?? 0,
+      items: apiReferenceTocItems(apiReference[1]),
+    });
+  }
+
+  return tocEntries.sort((a, b) => a.index - b.index).flatMap((entry) => entry.items);
+}
+
+function apiReferenceTocItems(propsSource: string): DocTocItem[] {
+  return apiReferenceComponents(propsSource).map((component) => ({
+    depth: 3,
+    id: component.name,
+    text: component.name,
+  }));
+}
+
+function apiReferenceComponents(propsSource: string): ApiComponentDoc[] {
+  const componentNames = arrayPropValues(propsSource, "components");
+  if (componentNames.length > 0) {
+    return componentNames
+      .map((name) => apiDocs.find((component) => component.name === name))
+      .filter((component): component is ApiComponentDoc => component !== undefined);
+  }
+
+  const family = stringPropValue(propsSource, "family");
+  if (!family) return [];
+
+  const excluded = new Set(arrayPropValues(propsSource, "exclude"));
+  return apiDocs
+    .filter((component) => component.family === family && !excluded.has(component.name))
+    .sort(compareApiComponents);
+}
+
+function arrayPropValues(propsSource: string, propName: string) {
+  const match = propsSource.match(new RegExp(`${propName}=\\{\\[([\\s\\S]*?)\\]\\}`));
+  if (!match) return [];
+
+  return Array.from(match[1].matchAll(/["']([^"']+)["']/g), (value) => value[1]);
+}
+
+function stringPropValue(propsSource: string, propName: string) {
+  const match = propsSource.match(
+    new RegExp(`${propName}=(?:"([^"]+)"|'([^']+)'|\\{["']([^"']+)["']\\})`),
+  );
+  return match?.[1] ?? match?.[2] ?? match?.[3];
+}
+
+function compareApiComponents(a: ApiComponentDoc, b: ApiComponentDoc) {
+  const aIsRoot = a.name === a.family;
+  const bIsRoot = b.name === b.family;
+
+  if (aIsRoot && !bIsRoot) return -1;
+  if (!aIsRoot && bIsRoot) return 1;
+  return a.name.localeCompare(b.name);
 }
 
 function slugify(text: string) {

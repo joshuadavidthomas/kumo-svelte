@@ -2,10 +2,10 @@
 title: Switch
 description: A two-state button that can be either on or off.
 sourceFile: components/switch
-baseUIComponent: switch
 ---
 
 <script lang="ts">
+  import ApiReference from "$lib/components/api-reference.svelte";
   import Example from "$lib/components/example.svelte";
   import SwitchBasicDemo from "./switch-basic-demo.svelte";
   import SwitchCustomIdDemo from "./switch-custom-id-demo.svelte";
@@ -25,9 +25,7 @@ baseUIComponent: switch
   <SwitchBasicDemo />
 </Example>
 
-## Installation
-
-### Namespace
+## Import
 
 ```ts
 import * as Switch from "kumo-svelte/components/switch";
@@ -128,42 +126,4 @@ Use `Switch.Legend` with `class="sr-only"` to keep the legend accessible to scre
 
 ## API Reference
 
-### `Switch`
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `checked` | `boolean` | `false` | Checked state. Bind with `bind:checked`. |
-| `onCheckedChange` | `(checked: boolean) => void` | — | Called when checked state changes. |
-| `label` | `Snippet \| string` | — | Optional label. |
-| `labelTooltip` | `Snippet` | — | Tooltip content next to the label. |
-| `controlFirst` | `boolean` | `true` | Whether the control appears before the label. |
-| `disabled` | `boolean` | `false` | Disables the switch. |
-| `id` | `string` | — | Switch id. |
-| `name` | `string` | — | Form name. |
-| `required` | `boolean` | — | Required state. |
-| `size` | `"sm" \| "base" \| "lg"` | `"base"` | Switch size. |
-| `variant` | `"default" \| "neutral"` | `"default"` | Visual variant. |
-| `class` | `string` | — | Additional classes for the control. |
-
-### `Switch.Group`
-
-Container for multiple switches with legend, description, and error support.
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `children` | `Snippet` | — | Switch items and optional legend. |
-| `legend` | `string` | — | Legend text. |
-| `description` | `Snippet \| string` | — | Helper text. |
-| `error` | `string` | — | Group error. |
-| `disabled` | `boolean` | `false` | Disables the group. |
-| `controlFirst` | `boolean` | `true` | Control position for child items. |
-| `class` | `string` | — | Additional classes. |
-
-### `Switch.Legend`
-
-Composable legend sub-component for `Switch.Group`. Accepts `class` for custom styling, such as `class="sr-only"`.
-
-### `Switch.Item`
-
-Individual switch within `Switch.Group`. Supports `checked`, `onCheckedChange`, `disabled`, `id`, `label`, `size`, `transitioning`, `variant`, and `class`.
-
+<ApiReference family="Switch" />

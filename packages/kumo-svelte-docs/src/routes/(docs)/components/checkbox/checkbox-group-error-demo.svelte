@@ -6,8 +6,7 @@
 <Checkbox.Group
   legend="Required preferences"
   error="Please select at least one notification method"
-  value={preferences}
-  onValueChange={(value) => (preferences = value)}
+  bind:value={preferences}
 >
   <Checkbox.Item value="email" label="Email" variant="error" />
   <Checkbox.Item value="sms" label="SMS" variant="error" />

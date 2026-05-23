@@ -32,7 +32,7 @@
     <Dialog.Description class="mb-4 text-kumo-subtle">
       Search and select a region for your new resource.
     </Dialog.Description>
-    <Combobox.Root bind:value={region} items={regions}>
+    <Combobox.Root bind:value={region}>
       <Combobox.TriggerInput class="w-full" placeholder="Search regions..." />
       <Combobox.Content>
         <Combobox.Empty>No regions found</Combobox.Empty>

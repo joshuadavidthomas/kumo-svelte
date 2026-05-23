@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { CodeHighlighted } from "kumo-svelte/code";
+  import { CodeHighlighted } from "kumo-svelte/components/code";
   import ShikiDemoProvider from "./shiki-demo-provider.svelte";
 
   const code = `<script lang="ts">
-  import { CodeHighlighted, ShikiProvider } from "kumo-svelte/code";
+  import { CodeHighlighted, ShikiProvider } from "kumo-svelte/components/code";
 
   const code = "const answer = 42;";
 <\/script>

@@ -1,10 +1,11 @@
 ---
 title: CodeHighlighted
 description: Shiki-powered syntax highlighting with Kumo themes, lazy loading, line highlighting, line numbers, and copy buttons.
-sourceFile: code
+sourceFile: components/code
 ---
 
 <script lang="ts">
+  import ApiReference from "$lib/components/api-reference.svelte";
   import Example from "$lib/components/example.svelte";
   import CodeHighlightedBasicDemo from "./code-highlighted-basic-demo.svelte";
   import CodeHighlightedBashDemo from "./code-highlighted-bash-demo.svelte";
@@ -20,13 +21,6 @@ sourceFile: code
   import CodeHighlightedTypeScriptDemo from "./code-highlighted-typescript-demo.svelte";
 </script>
 
-<div class="mb-4 rounded-md border border-kumo-brand/20 bg-kumo-brand/5 p-4">
-  <p class="text-sm text-kumo-strong">
-    <strong>Separate entry point:</strong> import from <code>kumo-svelte/code</code>
-    so apps that do not render highlighted code do not load Shiki.
-  </p>
-</div>
-
 <Example demo="code-highlighted-basic-demo">
   <CodeHighlightedBasicDemo />
 </Example>
@@ -35,15 +29,15 @@ sourceFile: code
 
 A Shiki-powered syntax highlighter. It supports a curated set of bundled languages with TextMate grammars, Kumo light/dark themes, lazy loading, line highlighting, line numbers, and copy buttons.
 
-`CodeHighlighted` is exported from the separate `kumo-svelte/code` entry point to keep Shiki out of the main component bundle.
+Import `CodeHighlighted` and `ShikiProvider` from `kumo-svelte/components/code`.
 
-## Installation
+## Import
+
+Import the highlighting components from the code component subpath.
 
 ```ts
-import { CodeHighlighted, ShikiProvider } from "kumo-svelte/code";
+import { CodeHighlighted, ShikiProvider } from "kumo-svelte/components/code";
 ```
-
-Do not import `CodeHighlighted` from the main `kumo-svelte` entry point. The code components live in `kumo-svelte/code` so Shiki remains opt-in.
 
 ## Basic Usage
 
@@ -51,7 +45,7 @@ Wrap the relevant part of your app with `ShikiProvider` to configure Shiki once.
 
 ```svelte
 <script lang="ts">
-  import { CodeHighlighted, ShikiProvider } from "kumo-svelte/code";
+  import { CodeHighlighted, ShikiProvider } from "kumo-svelte/components/code";
 </script>
 
 <ShikiProvider engine="javascript" languages={["typescript", "bash", "json"]}>
@@ -147,12 +141,10 @@ Multiple code blocks can share a single `ShikiProvider`. Shiki loads once and is
 
 ## Themes
 
-`CodeHighlighted` uses hardcoded themes for consistent styling across Kumo applications:
+`CodeHighlighted` uses the Kumo theme pair for consistent styling across applications:
 
 - **Light mode:** `github-light`
 - **Dark mode:** `vesper`
-
-Theme customization is not supported. This keeps code blocks visually consistent across applications.
 
 ## Server-Side Usage
 
@@ -161,7 +153,7 @@ For SSR and static rendering, use the server utilities to highlight at build tim
 ### One-off highlighting
 
 ```ts
-import { highlightCode } from "kumo-svelte/code/server";
+import { highlightCode } from "kumo-svelte/components/code/server";
 
 const html = await highlightCode(`const x = 1;`, "typescript");
 ```
@@ -169,7 +161,7 @@ const html = await highlightCode(`const x = 1;`, "typescript");
 ### Reusable highlighter
 
 ```ts
-import { createServerHighlighter } from "kumo-svelte/code/server";
+import { createServerHighlighter } from "kumo-svelte/components/code/server";
 
 const highlighter = await createServerHighlighter({
   languages: ["typescript", "bash", "json"],
@@ -187,7 +179,7 @@ Use `useShikiHighlighter` inside components rendered under a `ShikiProvider` whe
 
 ```svelte
 <script lang="ts">
-  import { useShikiHighlighter } from "kumo-svelte/code";
+  import { useShikiHighlighter } from "kumo-svelte/components/code";
 
   let { code, lang } = $props();
   const shiki = useShikiHighlighter();
@@ -229,7 +221,7 @@ Configure a shared provider in your root layout or in the route group that rende
 ```svelte
 <!-- src/routes/+layout.svelte -->
 <script lang="ts">
-  import { ShikiProvider } from "kumo-svelte/code";
+  import { ShikiProvider } from "kumo-svelte/components/code";
   import type { Snippet } from "svelte";
 
   let { children }: { children: Snippet } = $props();
@@ -240,58 +232,6 @@ Configure a shared provider in your root layout or in the route group that rende
 </ShikiProvider>
 ```
 
-## Bundle Size
-
-Shiki is lazy-loaded on first render. The lazy-loaded size depends on your configuration.
-
-| Scenario | Languages | Engine | Lazy Load Size |
-| --- | --- | --- | --- |
-| Minimal | `typescript`, `json` | JS | ~75 KB |
-| Standard | `typescript`, `bash`, `json`, `css`, `yaml` | JS | ~95 KB |
-| Full | 15+ languages | WASM | ~250 KB |
-
-Teams that do not import from `kumo-svelte/code` pay 0 KB for Shiki.
-
 ## API Reference
 
-### ShikiProvider Props
-
-| Prop | Type | Required | Description |
-| --- | --- | --- | --- |
-| `engine` | `"javascript" \| "wasm"` | Yes | JavaScript is smaller; WASM is more accurate. |
-| `languages` | `SupportedLanguage[]` | Yes | Languages to support, such as `["typescript", "bash"]`. |
-| `labels` | `{ copy?: string; copied?: string }` | No | Localized labels for copy buttons. |
-| `children` | `Snippet` | No | Child content rendered inside the provider. |
-
-### CodeHighlighted Props
-
-| Prop | Type | Required | Description |
-| --- | --- | --- | --- |
-| `code` | `string` | Yes | Source code to display. |
-| `lang` | `SupportedLanguage` | Yes | Language identifier. It must be included in the provider's `languages`. |
-| `showLineNumbers` | `boolean` | No | Display line numbers for multi-line blocks. |
-| `highlightLines` | `number[]` | No | Lines to emphasize. Line numbers are 1-indexed. |
-| `showCopyButton` | `boolean` | No | Show a copy-to-clipboard button. |
-| `labels` | `{ copy?: string; copied?: string }` | No | Override provider copy labels for this instance. |
-| `class` | `string` | No | Additional CSS classes. |
-
-### SupportedLanguage
-
-`"javascript" | "typescript" | "jsx" | "tsx" | "json" | "jsonc" | "html" | "css" | "python" | "yaml" | "markdown" | "graphql" | "sql" | "bash" | "shell" | "diff" | "hcl" | "toml"`
-
-### useShikiHighlighter Return Value
-
-| Property | Type | Description |
-| --- | --- | --- |
-| `highlight` | `(code, lang) => string \| null` | Returns highlighted HTML, or `null` if the highlighter is not ready. |
-| `isLoading` | `boolean` | True while Shiki is loading. |
-| `isReady` | `boolean` | True when `highlight()` is safe to call. |
-| `error` | `Error \| null` | Error if Shiki initialization failed. |
-| `labels` | `{ copy: string; copied: string }` | Copy button labels after provider defaults and overrides are applied. |
-
-### Server Utilities
-
-| Export | Type | Description |
-| --- | --- | --- |
-| `highlightCode` | `(code, lang, options?) => Promise<string>` | Create a highlighter for one block, return highlighted HTML, then dispose it. |
-| `createServerHighlighter` | `(options) => Promise<ServerHighlighter>` | Create a reusable server highlighter. Call `dispose()` when done. |
+<ApiReference family="CodeHighlighted" />

@@ -5,6 +5,7 @@ sourceFile: components/text
 ---
 
 <script lang="ts">
+  import ApiReference from "$lib/components/api-reference.svelte";
   import Example from "$lib/components/example.svelte";
   import { Text } from "kumo-svelte/components/text";
   import TextTruncateDemo from "./text-truncate-demo.svelte";
@@ -15,15 +16,7 @@ sourceFile: components/text
   <TextVariantsDemo />
 </Example>
 
-## Installation
-
-### Barrel
-
-```ts
-import { Text } from "kumo-svelte/components/text";
-```
-
-### Granular
+## Import
 
 ```ts
 import { Text } from "kumo-svelte/components/text";
@@ -83,15 +76,4 @@ import { Text } from "kumo-svelte/components/text";
 
 ## API Reference
 
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `variant` | `KumoTextVariant` | `"body"` | Visual style variant. |
-| `size` | `"xs" \| "sm" \| "base" \| "lg"` | `"base"` | Text size for supported variants. |
-| `bold` | `boolean` | `false` | Medium font weight for supported variants. |
-| `truncate` | `boolean` | `false` | Adds truncation classes. |
-| `as` | `"h1" \| "h2" \| "h3" \| "h4" \| "h5" \| "h6" \| "p" \| "span"` | inferred | Rendered element. |
-| `class` | `string` | — | Additional classes. |
-| `style` | `string` | — | Inline styles. |
-| `children` | `Snippet` | — | Text content. |
-
-Text also accepts standard HTML attributes for the rendered element.
+<ApiReference family="Text" />

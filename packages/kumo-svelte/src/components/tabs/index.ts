@@ -7,7 +7,7 @@ import TabsTriggerComponent from "./tabs-trigger.svelte";
 
 export {
   TabsComponent as Tabs,
-  TabsComponent as Root,
+  TabsRootComponent as Root,
   TabsRootComponent as TabsRoot,
   TabsListComponent as TabsList,
   TabsListComponent as List,
@@ -18,7 +18,6 @@ export {
 };
 
 export type TabsProps = ComponentProps<typeof TabsComponent>;
-export type TabsItem = NonNullable<TabsProps["tabs"]>[number];
 export type TabsRootProps = ComponentProps<typeof TabsRootComponent>;
 export type TabsListProps = ComponentProps<typeof TabsListComponent>;
 export type TabsTriggerProps = ComponentProps<typeof TabsTriggerComponent>;

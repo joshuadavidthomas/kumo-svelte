@@ -5,6 +5,7 @@ sourceFile: components/date-picker
 ---
 
 <script lang="ts">
+  import ApiReference from "$lib/components/api-reference.svelte";
   import Example from "$lib/components/example.svelte";
   import DatePickerDisabledWithFooterDemo from "./date-picker-disabled-with-footer-demo.svelte";
   import DatePickerMultipleDemo from "./date-picker-multiple-demo.svelte";
@@ -20,15 +21,7 @@ sourceFile: components/date-picker
   <DatePickerSingleDemo />
 </Example>
 
-## Installation
-
-### Barrel
-
-```ts
-import { DatePicker, type DatePickerValue } from "kumo-svelte/components/date-picker";
-```
-
-### Granular
+## Import
 
 ```ts
 import { DatePicker, type DatePickerValue } from "kumo-svelte/components/date-picker";
@@ -147,30 +140,4 @@ Here's a complete example showing how to compose DatePicker with Popover:
 
 ## API Reference
 
-DatePicker forwards most props to Bits UI's `Calendar` and `RangeCalendar` primitives. Key props include:
-
-| Prop | Type | Description |
-| --- | --- | --- |
-| `mode` | `"single" \| "multiple" \| "range"` | Selection mode. Defaults to `"single"`. |
-| `value` | `DateValue \| DateValue[] \| DateRange \| undefined` | Selected date, dates, or range. Bind with `bind:value`. |
-| `onValueChange` | `(value: DatePickerValue) => void` | Callback when selection changes. |
-| `numberOfMonths` | `number` | Number of months to display. Defaults to `1`. |
-| `isDateDisabled` | `DateMatcher` | Dates that cannot be selected. |
-| `footer` | `Snippet` | Content rendered below the calendar. |
-| `isDateUnavailable` | `DateMatcher` | Dates shown as unavailable. |
-| `minValue` / `maxValue` | `DateValue` | Minimum and maximum selectable dates. |
-| `minDays` / `maxDays` | `number` | Minimum and maximum range length in range mode. |
-| `placeholder` | `DateValue` | Visible calendar month. Bind with `bind:placeholder` to control navigation. |
-| `onPlaceholderChange` | `(value: DateValue) => void` | Called when the visible month changes. |
-| `onStartValueChange` / `onEndValueChange` | `(value: DateValue \| undefined) => void` | Range endpoint callbacks. |
-| `weekStartsOn` | `0 \| 1 \| 2 \| 3 \| 4 \| 5 \| 6` | First day of the week. |
-| `locale` | `string` | Locale identifier. |
-| `disabled` | `boolean` | Disable the calendar. |
-| `readonly` | `boolean` | Make the calendar read-only. |
-| `fixedWeeks` | `boolean` | Render a fixed number of weeks. |
-| `class` | `string` | Additional CSS classes. |
-| `children` | `Snippet<[DatePickerSnippetProps]>` | Custom calendar rendering snippet. |
-
-### Value Model
-
-Use `bind:value` for state, `onValueChange` for callbacks, and `{ start, end }` ranges for range selection.
+<ApiReference family="DatePicker" />

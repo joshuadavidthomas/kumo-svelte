@@ -5,6 +5,7 @@ sourceFile: components/loader
 ---
 
 <script lang="ts">
+  import ApiReference from "$lib/components/api-reference.svelte";
   import Example from "$lib/components/example.svelte";
   import SkeletonLineBlockHeightDemo from "./skeleton-line-block-height-demo.svelte";
   import SkeletonLineCardDemo from "./skeleton-line-card-demo.svelte";
@@ -17,15 +18,7 @@ sourceFile: components/loader
   <SkeletonLineDemo />
 </Example>
 
-## Installation
-
-### Barrel
-
-```ts
-import { SkeletonLine } from "kumo-svelte/components/loader";
-```
-
-### Granular
+## Import
 
 ```ts
 import { SkeletonLine } from "kumo-svelte/components/loader";
@@ -65,13 +58,4 @@ Use skeleton lines to create loading states for cards and content areas.
 
 ## API Reference
 
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `minWidth` | `number` | `30` | Minimum randomized width percentage. |
-| `maxWidth` | `number` | `100` | Maximum randomized width percentage. |
-| `minDuration` | `number` | `1.3` | Minimum shimmer duration in seconds. |
-| `maxDuration` | `number` | `1.7` | Maximum shimmer duration in seconds. |
-| `minDelay` | `number` | `0` | Minimum shimmer delay in seconds. |
-| `maxDelay` | `number` | `0.5` | Maximum shimmer delay in seconds. |
-| `blockHeight` | `string \| number` | — | Optional wrapper height. Numbers are treated as pixels. |
-| `class` | `string` | — | Additional classes for the line. |
+<ApiReference family="SkeletonLine" />

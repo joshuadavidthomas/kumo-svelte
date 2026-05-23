@@ -15,21 +15,15 @@ sourceFile: blocks/page-header
   <PageHeaderCompleteDemo />
 </Example>
 
-## Installation
-
-The Svelte package does not currently export a `PageHeader` block or a block-install CLI. Compose the pattern from `Breadcrumbs`, `Tabs`, and `Button`, or copy the demo shell below into your application and adapt it.
-
 ## Usage
+
+Compose page headers from `Breadcrumbs`, `Tabs`, and `Button`.
 
 ```svelte
 <script lang="ts">
   import { Button } from "kumo-svelte/components/button";
   import * as Breadcrumbs from "kumo-svelte/components/breadcrumbs";
   import * as Tabs from "kumo-svelte/components/tabs";
-  const tabs = [
-    { label: "Overview", value: "overview" },
-    { label: "Settings", value: "settings" },
-  ];
 </script>
 
 <header class="rounded-lg border border-kumo-hairline bg-kumo-base">
@@ -42,7 +36,12 @@ The Svelte package does not currently export a `PageHeader` block or a block-ins
     <Button variant="primary" size="sm">Deploy</Button>
   </div>
   <div class="border-t border-kumo-hairline px-4 py-3">
-    <Tabs.Root {tabs} selectedValue="overview" />
+    <Tabs.Root value="overview">
+      <Tabs.List>
+        <Tabs.Trigger value="overview">Overview</Tabs.Trigger>
+        <Tabs.Trigger value="settings">Settings</Tabs.Trigger>
+      </Tabs.List>
+    </Tabs.Root>
   </div>
 </header>
 ```
@@ -69,20 +68,3 @@ Combining breadcrumbs, title, description, tabs, and actions.
   <PageHeaderCompleteDemo />
 </Example>
 
-## API Reference
-
-Because the Svelte library does not yet ship this block as an exported component, there is no package API to document. Use the demo shell as a starting point.
-
-### Suggested props
-
-| Prop | Type | Description |
-| --- | --- | --- |
-| `breadcrumbs` | `Snippet` | Breadcrumb navigation shown at the top left. |
-| `title` | `string` | Optional page title. |
-| `description` | `string` | Optional page description. |
-| `tabs` | `TabsItem[]` | Optional tab definitions passed to `Tabs`. |
-| `actions` | `Snippet` | Optional action buttons shown on the right. |
-
-## Content Slots
-
-Use snippets for `breadcrumbs` and `actions`. Tabs are passed to the `Tabs` component.

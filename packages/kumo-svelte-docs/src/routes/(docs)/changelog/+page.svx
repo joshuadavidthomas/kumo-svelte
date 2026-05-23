@@ -3,17 +3,9 @@ title: Changelog
 description: Latest package updates and release notes.
 ---
 
-## Release Notes
+<script lang="ts">
+  import ChangelogContent from "$lib/components/changelog-content.svelte";
+  import { docsChangelogMarkdown } from "$lib/package-changelog";
+</script>
 
-This package does not yet have release automation wired to a published changelog feed, so this page documents where to find release history.
-
-## Kumo Svelte
-
-Use the repository history and package changelog artifacts for now:
-
-- [GitHub commits](https://github.com/joshuadavidthomas/kumo-svelte/commits/main)
-- [GitHub releases](https://github.com/joshuadavidthomas/kumo-svelte/releases)
-
-## Planned Changelog
-
-When this package has a generated changelog, this route should parse it, group entries by version and bump type, and expose paginated pages plus an all-entries view.
+<ChangelogContent markdown={docsChangelogMarkdown} />

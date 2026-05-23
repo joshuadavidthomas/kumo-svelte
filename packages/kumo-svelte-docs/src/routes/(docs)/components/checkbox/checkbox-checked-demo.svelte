@@ -1,6 +1,6 @@
 <script lang="ts">
-  import * as Checkbox from "kumo-svelte/components/checkbox";
+  import { Checkbox } from "kumo-svelte/components/checkbox";
   let checked = $state(true);
 </script>
 
-<Checkbox.Root label="I agree" bind:checked />
+<Checkbox label="I agree" bind:checked />

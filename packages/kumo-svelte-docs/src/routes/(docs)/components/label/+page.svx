@@ -2,10 +2,10 @@
 title: Label
 description: A label component for form fields with support for required/optional indicators and tooltips.
 sourceFile: components/label
-primitive: label
 ---
 
 <script lang="ts">
+  import ApiReference from "$lib/components/api-reference.svelte";
   import Example from "$lib/components/example.svelte";
   import LabelBasicDemo from "./label-basic-demo.svelte";
   import LabelFormMixedDemo from "./label-form-mixed-demo.svelte";
@@ -19,15 +19,7 @@ primitive: label
   <LabelBasicDemo />
 </Example>
 
-## Installation
-
-### Barrel
-
-```ts
-import { Label } from "kumo-svelte/components/label";
-```
-
-### Granular
+## Import
 
 ```ts
 import { Label } from "kumo-svelte/components/label";
@@ -112,29 +104,7 @@ Use Label directly for custom layouts or non-form contexts.
 
 ## API Reference
 
-### Label Props
-
-Props for the standalone Label component:
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `children` | `Snippet` | — | Label content. |
-| `showOptional` | `boolean` | `false` | Shows gray optional text. |
-| `tooltip` | `Snippet` | — | Tooltip content shown via info icon. |
-| `class` | `string` | — | Additional CSS classes. |
-| `for` | `string` | — | Associated control id. |
-| `id` | `string` | — | Label element id. |
-| `asContent` | `boolean` | `false` | Renders label content as a span instead of a label element. |
-
-### Form Component Label Props
-
-These props are available on form components such as Input, InputArea, Select, Checkbox, Switch, SensitiveInput, and Combobox:
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `label` | `Snippet \| string` | — | Label content; often enables the Field wrapper. |
-| `required` | `boolean` | — | When false, shows optional text. Some controls also use this for the HTML required attribute. |
-| `labelTooltip` | `Snippet` | — | Tooltip content shown via info icon next to the label. |
+<ApiReference family="Label" />
 
 ## Design Guidelines
 

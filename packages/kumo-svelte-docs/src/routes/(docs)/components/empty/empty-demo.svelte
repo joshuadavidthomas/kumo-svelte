@@ -6,21 +6,17 @@
   import PackageIcon from "phosphor-svelte/lib/PackageIcon";
 </script>
 
-{#snippet packageIcon()}
-  <PackageIcon size={48} />
-{/snippet}
+<Empty
+  title="No packages found"
+  description="Get started by installing your first package."
+  command="npm install kumo-svelte"
+>
+  {#snippet icon()}
+    <PackageIcon size={48} />
+  {/snippet}
 
-{#snippet actions()}
   <div class="flex items-center gap-2">
     <Button icon={CodeIcon}>See examples</Button>
     <Button icon={GlobeIcon} variant="primary">View documentation</Button>
   </div>
-{/snippet}
-
-<Empty
-  icon={packageIcon}
-  title="No packages found"
-  description="Get started by installing your first package."
-  commandLine="npm install @cloudflare/kumo"
-  contents={actions}
-/>
+</Empty>

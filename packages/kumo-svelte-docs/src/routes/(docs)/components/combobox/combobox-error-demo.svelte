@@ -1,6 +1,15 @@
 <script lang="ts">
   import * as Combobox from "kumo-svelte/components/combobox";
-  import { databases } from "./combobox-data";
+
+  const databases = [
+    { value: "postgres", label: "PostgreSQL" },
+    { value: "mysql", label: "MySQL" },
+    { value: "mongodb", label: "MongoDB" },
+    { value: "redis", label: "Redis" },
+    { value: "sqlite", label: "SQLite" },
+    { value: "d1", label: "Cloudflare D1" },
+  ];
+
   let value = $state("");
   let open = $state(false);
 </script>
@@ -8,7 +17,6 @@
 <Combobox.Root
   bind:value
   bind:open
-  items={databases}
   label="Database"
   error="Please select a database"
   required

@@ -5,6 +5,7 @@ sourceFile: components/cloudflare-logo
 ---
 
 <script lang="ts">
+  import ApiReference from "$lib/components/api-reference.svelte";
   import Example from "$lib/components/example.svelte";
   import CloudflareLogoBasicDemo from "./cloudflare-logo-basic-demo.svelte";
   import CloudflareLogoColorVariantsDemo from "./cloudflare-logo-color-variants-demo.svelte";
@@ -21,15 +22,7 @@ sourceFile: components/cloudflare-logo
   <CloudflareLogoBasicDemo />
 </Example>
 
-## Installation
-
-### Barrel
-
-```ts
-import { CloudflareLogo, PoweredByCloudflare, generateCloudflareLogoSvg } from "kumo-svelte/components/cloudflare-logo";
-```
-
-### Granular
+## Import
 
 ```ts
 import {
@@ -128,33 +121,4 @@ await navigator.clipboard.writeText(
 
 ## API Reference
 
-### CloudflareLogo
-
-Extends `SVGSVGElement` and accepts all standard SVG attributes.
-
-| Prop | Type | Required | Description |
-| --- | --- | --- | --- |
-| `variant` | `"glyph" \| "full"` | No | Logo variant. Defaults to `"full"`. |
-| `color` | `"color" \| "black" \| "white"` | No | Color scheme. Defaults to `"color"`. |
-| `class` | `string` | No | CSS classes for sizing, such as `w-36`. Height adjusts automatically. |
-
-### PoweredByCloudflare
-
-Extends `HTMLAnchorElement` and accepts all standard anchor attributes.
-
-| Prop | Type | Required | Description |
-| --- | --- | --- | --- |
-| `color` | `"color" \| "black" \| "white"` | No | Color scheme for the logo and text. Defaults to `"color"`. |
-| `href` | `string` | No | Link destination. Defaults to `"https://www.cloudflare.com"`. |
-| `target` | `string` | No | Link target. Defaults to `"_blank"`. |
-| `rel` | `string` | No | Link relationship. Defaults to `"noopener noreferrer"`. |
-| `class` | `string` | No | Additional classes merged with the badge styles. |
-
-### generateCloudflareLogoSvg
-
-Generates SVG markup as a string.
-
-| Option | Type | Required | Description |
-| --- | --- | --- | --- |
-| `variant` | `"glyph" \| "full"` | No | SVG variant. Defaults to `"full"`. |
-| `color` | `"color" \| "black" \| "white"` | No | SVG color scheme. Defaults to `"color"`. |
+<ApiReference components={["CloudflareLogo", "PoweredByCloudflare"]} />

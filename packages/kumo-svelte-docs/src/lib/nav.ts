@@ -10,7 +10,6 @@ export const staticPages: DocsNavItem[] = [
   { label: "Installation", href: "/installation" },
   { label: "Colors", href: "/colors" },
   { label: "Accessibility", href: "/accessibility" },
-  { label: "Registry", href: "/registry" },
   { label: "Changelog", href: "/changelog" },
 ];
 

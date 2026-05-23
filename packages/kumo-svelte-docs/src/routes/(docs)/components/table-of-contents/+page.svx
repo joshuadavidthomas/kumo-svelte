@@ -5,6 +5,7 @@ sourceFile: components/table-of-contents
 ---
 
 <script lang="ts">
+  import ApiReference from "$lib/components/api-reference.svelte";
   import Example from "$lib/components/example.svelte";
   import TableOfContentsBasicDemo from "./table-of-contents-basic-demo.svelte";
   import TableOfContentsCustomElementDemo from "./table-of-contents-custom-element-demo.svelte";
@@ -18,9 +19,7 @@ sourceFile: components/table-of-contents
   <TableOfContentsBasicDemo />
 </Example>
 
-## Installation
-
-### Namespace
+## Import
 
 ```ts
 import * as TableOfContents from "kumo-svelte/components/table-of-contents";
@@ -88,36 +87,7 @@ Use the `child` snippet to swap the default anchor for a button, router link, or
 
 ## API Reference
 
-### `TableOfContents`
-
-Root nav container with a default `aria-label` of `"Table of contents"`.
-
-| Prop | Type | Description |
-| --- | --- | --- |
-| `children` | `Snippet` | Table of contents structure. |
-| `aria-label` | `string` | Accessible nav label. |
-
-### `TableOfContents.Title`
-
-Optional uppercase heading displayed above the list. Renders a `p`.
-
-### `TableOfContents.List`
-
-List container with a left border rail.
-
-### `TableOfContents.Item`
-
-| Prop | Type | Description |
-| --- | --- | --- |
-| `active` | `boolean` | Marks the current section. |
-| `href` | `string` | Link target when rendering the default anchor. |
-| `child` | `Snippet` | Custom element snippet receiving merged props. |
-| `children` | `Snippet` | Item content. |
-| `class` | `string` | Additional classes. |
-
-### `TableOfContents.Group`
-
-Groups items under a labeled section with indented children. Pass `href` to make the label a clickable link, or omit for a plain title.
+<ApiReference family="TableOfContents" />
 
 ## Custom Elements
 

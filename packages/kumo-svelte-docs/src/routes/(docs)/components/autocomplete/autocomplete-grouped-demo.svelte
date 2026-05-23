@@ -1,6 +1,24 @@
 <script lang="ts">
   import * as Autocomplete from "kumo-svelte/components/autocomplete";
-  import { servers } from "./autocomplete-data";
+
+  const servers = [
+    {
+      value: "North America",
+      items: [
+        { label: "US East", value: "us-east" },
+        { label: "US West", value: "us-west" },
+        { label: "Canada", value: "canada" },
+      ],
+    },
+    {
+      value: "Europe",
+      items: [
+        { label: "Germany", value: "germany" },
+        { label: "France", value: "france" },
+        { label: "United Kingdom", value: "uk" },
+      ],
+    },
+  ];
 </script>
 
 <Autocomplete.Root>

@@ -1,13 +1,26 @@
 <script lang="ts">
   import * as Combobox from "kumo-svelte/components/combobox";
-  import { fruits, languageItems, languages } from "./combobox-data";
 
-  const fruitItems = fruits.map((fruit) => ({ label: fruit, value: fruit }));
+  const fruits = ["Apple", "Apricot", "Banana", "Blueberry", "Cherry", "Mango", "Orange", "Pear"];
+
+  const languages = [
+    { value: "en", label: "English", emoji: "🇬🇧" },
+    { value: "fr", label: "French", emoji: "🇫🇷" },
+    { value: "de", label: "German", emoji: "🇩🇪" },
+    { value: "es", label: "Spanish", emoji: "🇪🇸" },
+    { value: "ja", label: "Japanese", emoji: "🇯🇵" },
+  ];
+
+  const languageItems = languages.map((language) => ({
+    label: `${language.emoji} ${language.label}`,
+    value: language.value,
+  }));
+
   let selectedLanguageLabel = $derived(languageItems.find((language) => language.value === "en")?.label);
 </script>
 
 <div class="flex flex-wrap items-start gap-4">
-  <Combobox.Root disabled value="Apple" items={fruitItems}>
+  <Combobox.Root disabled value="Apple">
     <Combobox.TriggerInput class="w-[200px]" placeholder="Select fruit" />
     <Combobox.Content>
       <Combobox.Empty />
@@ -19,7 +32,7 @@
     </Combobox.Content>
   </Combobox.Root>
 
-  <Combobox.Root disabled value="en" items={languageItems}>
+  <Combobox.Root disabled value="en">
     <Combobox.TriggerValue class="w-[200px]">{selectedLanguageLabel}</Combobox.TriggerValue>
     <Combobox.Content>
       <Combobox.Input placeholder="Search" />

@@ -12,14 +12,14 @@
     extends Omit<HTMLAttributes<HTMLElement>, "class" | "children"> {
     children?: Snippet;
     class?: string;
-    mobileChildren?: Snippet;
+    mobile?: Snippet;
     size?: KumoBreadcrumbsSize;
   }
 
   let {
     children,
     class: className,
-    mobileChildren,
+    mobile,
     size = KUMO_BREADCRUMBS_DEFAULT_VARIANTS.size,
     ...restProps
   }: BreadcrumbsProps = $props();
@@ -31,9 +31,9 @@
   class={cn(breadcrumbsVariants({ size }), className)}
   {...restProps}
 >
-  {#if mobileChildren}
+  {#if mobile}
     <div class="contents sm:hidden">
-      {@render mobileChildren()}
+      {@render mobile()}
     </div>
     <div class="hidden sm:contents">
       {@render children?.()}

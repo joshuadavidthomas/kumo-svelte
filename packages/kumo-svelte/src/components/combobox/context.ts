@@ -9,6 +9,7 @@ export interface ComboboxContextValue {
   readonly size: KumoComboboxSize;
   readonly triggerNode: HTMLElement | null;
   clearValue(): void;
+  registerVisibleItem(id: string): () => void;
   removeValue(value: string): void;
   resetInputValue(): void;
   setInputValue(value: string): void;

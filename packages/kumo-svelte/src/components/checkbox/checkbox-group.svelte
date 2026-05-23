@@ -27,7 +27,7 @@
     error,
     description,
     defaultValue = [],
-    value,
+    value = $bindable(defaultValue),
     onValueChange,
     disabled = false,
     controlFirst = true,
@@ -38,11 +38,8 @@
     allValues: _allValues,
   }: CheckboxGroupProps = $props();
 
-  let internalValue = $state<string[] | undefined>();
-  let groupValue = $derived(value ?? internalValue ?? defaultValue);
-
   function handleValueChange(nextValue: string[]) {
-    internalValue = nextValue;
+    value = nextValue;
     onValueChange?.(nextValue);
   }
 
@@ -55,7 +52,7 @@
 
 <CheckboxPrimitive.Group
   data-slot="checkbox-group"
-  value={groupValue}
+  {value}
   onValueChange={handleValueChange}
   {disabled}
   {name}

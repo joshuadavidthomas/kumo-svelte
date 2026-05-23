@@ -2,20 +2,13 @@
   import PlusIcon from "phosphor-svelte/lib/PlusIcon";
   import { Button } from "kumo-svelte/components/button";
   import * as Breadcrumbs from "kumo-svelte/components/breadcrumbs";
+  import * as Tabs from "kumo-svelte/components/tabs";
   import PageHeaderDemoShell from "./page-header-demo-shell.svelte";
-
-  const tabs = [
-    { label: "Overview", value: "overview" },
-    { label: "Analytics", value: "analytics" },
-    { label: "Settings", value: "settings" },
-  ];
 </script>
 
 <PageHeaderDemoShell
   title="Page title"
   description="Action-led, value-oriented description of what this page does."
-  {tabs}
-  selectedValue="overview"
 >
   {#snippet breadcrumbs()}
     <Breadcrumbs.Root>
@@ -32,5 +25,14 @@
       <PlusIcon class="size-4" />
       New Item
     </Button>
+  {/snippet}
+  {#snippet tabs()}
+    <Tabs.Root value="overview">
+      <Tabs.List>
+        <Tabs.Trigger value="overview">Overview</Tabs.Trigger>
+        <Tabs.Trigger value="analytics">Analytics</Tabs.Trigger>
+        <Tabs.Trigger value="settings">Settings</Tabs.Trigger>
+      </Tabs.List>
+    </Tabs.Root>
   {/snippet}
 </PageHeaderDemoShell>

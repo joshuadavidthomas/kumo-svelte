@@ -40,18 +40,19 @@
         variant="segmented"
         size="sm"
         class="shrink-0"
-        tabs={[
-          { value: "all", label: "All" },
-          { value: "2xx", label: "2xx" },
-          { value: "3xx", label: "3xx" },
-          { value: "4xx", label: "4xx" },
-          { value: "5xx", label: "5xx" },
-        ]}
         value={filter}
         onValueChange={(value) => {
           filter = value as StatusFilter;
         }}
-      />
+      >
+        <Tabs.List>
+          <Tabs.Trigger value="all">All</Tabs.Trigger>
+          <Tabs.Trigger value="2xx">2xx</Tabs.Trigger>
+          <Tabs.Trigger value="3xx">3xx</Tabs.Trigger>
+          <Tabs.Trigger value="4xx">4xx</Tabs.Trigger>
+          <Tabs.Trigger value="5xx">5xx</Tabs.Trigger>
+        </Tabs.List>
+      </Tabs.Root>
     </div>
 
     <div class="-mx-1 text-sm">

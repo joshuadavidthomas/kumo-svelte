@@ -2,10 +2,10 @@
 title: Collapsible
 description: A composable disclosure component for showing and hiding content.
 sourceFile: components/collapsible
-primitive: collapsible
 ---
 
 <script lang="ts">
+  import ApiReference from "$lib/components/api-reference.svelte";
   import Example from "$lib/components/example.svelte";
   import CollapsibleAccordionDemo from "./collapsible-accordion-demo.svelte";
   import CollapsibleBasicDemo from "./collapsible-basic-demo.svelte";
@@ -19,9 +19,7 @@ primitive: collapsible
   <CollapsibleHeroDemo />
 </Example>
 
-## Installation
-
-### Namespace
+## Import
 
 ```ts
 import * as Collapsible from "kumo-svelte/components/collapsible";
@@ -102,60 +100,6 @@ Control which item is open to create an accordion where only one item can be exp
   <CollapsibleAccordionDemo />
 </Example>
 
-## Sub-components
-
-| Component | Description |
-| --- | --- |
-| `Collapsible` | Manages open state. Use `bind:open` or pass `open` and `onOpenChange` for controlled mode. |
-| `CollapsibleRoot` | Alias for `Collapsible`. |
-| `Collapsible.Trigger` | Button that toggles visibility. Add classes for custom styling. |
-| `Collapsible.Panel` | Container for collapsible content. |
-| `Collapsible.Content` | Alias for `Collapsible.Panel`. |
-| `Collapsible.DefaultTrigger` | Pre-styled trigger with text label and animated caret icon. |
-| `Collapsible.DefaultPanel` | Pre-styled panel with border-left accent and standard spacing. |
-
 ## API Reference
 
-### Collapsible / CollapsibleRoot
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `open` | `boolean` | `false` | Whether the panel is visible. Bind with `bind:open` for two-way state. |
-| `onOpenChange` | `(open: boolean) => void` | — | Callback when open state changes. |
-| `onOpenChangeComplete` | `(open: boolean) => void` | — | Callback after the open change completes. |
-| `disabled` | `boolean` | `false` | Whether the collapsible is disabled. |
-| `id` | `string` | — | Root element ID. |
-| `class` | `string` | — | Additional CSS classes. |
-| `children` | `Snippet` | — | Trigger and panel content. |
-
-### Collapsible.Trigger
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `children` | `Snippet` | — | Trigger label or content. |
-| `disabled` | `boolean` | `false` | Whether the trigger is disabled. |
-| `id` | `string` | — | Trigger element ID. |
-| `class` | `string` | — | Additional CSS classes. |
-
-### Collapsible.Panel / Collapsible.Content
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `children` | `Snippet` | — | Panel content. |
-| `forceMount` | `boolean` | — | Keep the panel mounted in the DOM when closed. |
-| `hiddenUntilFound` | `boolean` | — | Use browser find-in-page support for hidden content. |
-| `id` | `string` | — | Panel element ID. |
-| `class` | `string` | — | Additional CSS classes. |
-
-### Collapsible.DefaultTrigger
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `children` | `Snippet` | — | Label displayed in the trigger. |
-| `disabled` | `boolean` | `false` | Whether the trigger is disabled. |
-| `id` | `string` | — | Trigger element ID. |
-| `class` | `string` | — | Additional CSS classes. |
-
-### Collapsible.DefaultPanel
-
-Accepts the same props as `Collapsible.Panel`, with the default Kumo border-left accent and spacing applied.
+<ApiReference family="Collapsible" />

@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onDestroy } from "svelte";
-  import Button from "../components/button/button.svelte";
-  import { cn } from "../utils/cn";
+  import Button from "../button/button.svelte";
+  import { cn } from "../../utils/cn";
   import { processHighlightedHtml } from "./shared";
   import type { CodeHighlightedProps } from "./types";
   import { useShikiHighlighter } from "./use-shiki-highlighter";

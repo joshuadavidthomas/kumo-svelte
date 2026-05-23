@@ -11,8 +11,7 @@
     extends Omit<HTMLAttributes<HTMLDivElement>, "class" | "children"> {
     children?: Snippet;
     class?: string;
-    commandLine?: string;
-    contents?: Snippet;
+    command?: string;
     description?: string;
     icon?: Snippet;
     size?: KumoEmptySize;
@@ -22,8 +21,7 @@
   let {
     children,
     class: className,
-    commandLine,
-    contents,
+    command,
     description,
     icon,
     size = KUMO_EMPTY_DEFAULT_VARIANTS.size,
@@ -41,7 +39,7 @@
   });
 
   async function copyCommand() {
-    if (!commandLine) {
+    if (!command) {
       return;
     }
 
@@ -59,7 +57,7 @@
       return;
     }
 
-    await navigator.clipboard.writeText(commandLine);
+    await navigator.clipboard.writeText(command);
   }
 </script>
 
@@ -74,7 +72,7 @@
     <p class="max-w-140 text-center text-kumo-subtle">{description}</p>
   {/if}
 
-  {#if commandLine}
+  {#if command}
     <div
       class={cn(
         "group/cmd relative inline-flex h-10 max-w-8/10 transform-gpu items-center gap-2 rounded-lg font-mono shadow-sm",
@@ -85,7 +83,7 @@
     >
       <span class="text-xs text-kumo-inactive select-none">$</span>
       <span class="no-scrollbar overflow-scroll text-base whitespace-nowrap text-kumo-brand">
-        {commandLine}
+        {command}
       </span>
       <Button
         class="group"
@@ -104,9 +102,7 @@
     </div>
   {/if}
 
-  {#if contents}
-    {@render contents()}
-  {:else if children}
+  {#if children}
     {@render children()}
   {/if}
 </div>

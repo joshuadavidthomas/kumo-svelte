@@ -16,7 +16,6 @@
     class?: string;
     description?: Snippet | string;
     icon?: Snippet;
-    text?: string;
     title?: string;
     variant?: KumoBannerVariant;
   }
@@ -27,7 +26,6 @@
     class: className,
     description,
     icon,
-    text,
     title,
     variant = KUMO_BANNER_DEFAULT_VARIANTS.variant,
     ...restProps
@@ -73,7 +71,5 @@
     </div>
   {:else if children}
     {@render children()}
-  {:else}
-    <p>{text}</p>
   {/if}
 </div>

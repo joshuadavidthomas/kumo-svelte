@@ -10,9 +10,22 @@ export {
   CodeBlockComponent as Block,
 };
 
+export { default as CodeHighlighted } from "./code-highlighted.svelte";
+export { default as ShikiProvider } from "./shiki-provider.svelte";
+export { useShikiHighlighter } from "./use-shiki-highlighter";
+
 export type CodeProps = ComponentProps<typeof CodeComponent>;
 export type CodeRootProps = CodeProps;
 export type CodeBlockProps = ComponentProps<typeof CodeBlockComponent>;
+
+export type {
+  CodeHighlightedLabels,
+  CodeHighlightedProps,
+  ShikiEngine,
+  ShikiProviderProps,
+  SupportedLanguage,
+  UseShikiHighlighterResult,
+} from "./types";
 
 export {
   codeVariants,

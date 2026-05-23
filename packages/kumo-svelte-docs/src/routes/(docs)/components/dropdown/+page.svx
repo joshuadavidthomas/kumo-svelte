@@ -2,10 +2,10 @@
 title: Dropdown Menu
 description: Displays a menu to the user—such as a set of actions or functions—triggered by a button.
 sourceFile: components/dropdown
-primitive: dropdown-menu
 ---
 
 <script lang="ts">
+  import ApiReference from "$lib/components/api-reference.svelte";
   import Example from "$lib/components/example.svelte";
   import DropdownAvatarTriggerDemo from "./dropdown-avatar-trigger-demo.svelte";
   import DropdownBasicDemo from "./dropdown-basic-demo.svelte";
@@ -20,9 +20,7 @@ primitive: dropdown-menu
   <DropdownBasicDemo />
 </Example>
 
-## Installation
-
-### Namespace
+## Import
 
 ```ts
 import * as DropdownMenu from "kumo-svelte/components/dropdown";
@@ -109,78 +107,4 @@ Use `DropdownMenu.LinkItem` for menu items that navigate to a URL. This renders 
 
 ## API Reference
 
-### DropdownMenu / DropdownMenu.Root
-
-Root component that manages dropdown state.
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `open` | `boolean` | `false` | Open state. Bind with `bind:open`. |
-| `onOpenChange` | `(open: boolean) => void` | — | Called when open state changes. |
-| `onOpenChangeComplete` | `(open: boolean) => void` | — | Called after the open change completes. |
-| `dir` | `"ltr" \| "rtl"` | — | Text direction. |
-| `children` | `Snippet` | — | Trigger and menu content. |
-
-### DropdownMenu.Trigger
-
-Button that opens the dropdown when clicked. Use a `child` snippet to render a custom trigger such as `Button`.
-
-### DropdownMenu.Content
-
-Dropdown container for menu items.
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `sideOffset` | `number` | `8` | Offset between trigger and content. |
-| `container` | `HTMLElement \| string` | — | Portal target. |
-| `class` | `string` | — | Additional classes. |
-| `children` | `Snippet` | — | Menu items and groups. |
-
-### DropdownMenu.Item
-
-Individual menu item for actions.
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `children` | `Snippet` | — | Item content. |
-| `icon` | `Snippet` | — | Leading icon. |
-| `inset` | `boolean` | `false` | Align text with items that have icons. |
-| `selected` | `boolean` | `false` | Show a trailing check icon. |
-| `variant` | `"default" \| "danger"` | `"default"` | Visual variant. |
-| `class` | `string` | — | Additional classes. |
-
-### DropdownMenu.LinkItem
-
-A menu item that navigates to a URL. Renders a semantic `<a>` element.
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `href` | `string` | — | Link destination. |
-| `target` | `string` | — | Link target. |
-| `rel` | `string` | — | Link relationship. |
-| `icon` | `Snippet` | — | Leading icon. |
-| `inset` | `boolean` | `false` | Align text with items that have icons. |
-| `variant` | `"default" \| "danger"` | `"default"` | Visual variant. |
-
-### DropdownMenu.CheckboxItem
-
-A menu item that can be toggled on or off. Use for independent boolean options.
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `checked` | `boolean` | `false` | Checked state. Bind with `bind:checked`. |
-| `indeterminate` | `boolean` | `false` | Indeterminate state. Bind with `bind:indeterminate`. |
-| `children` | `Snippet` | — | Item content. |
-| `class` | `string` | — | Additional classes. |
-
-### DropdownMenu.Sub, DropdownMenu.SubTrigger, DropdownMenu.SubContent
-
-Use these parts to create nested submenus. `DropdownMenu.Sub` supports `bind:open`; trigger and content accept the same primitive positioning and event props exposed by Bits UI.
-
-### DropdownMenu.RadioGroup and DropdownMenu.RadioItem
-
-Use radio group and item components for single-selection menu sections. `DropdownMenu.RadioGroup` supports `bind:value`; `DropdownMenu.RadioItem` accepts `value`, optional `icon`, and optional `inset`.
-
-### DropdownMenu.Label, DropdownMenu.Separator, and DropdownMenu.Shortcut
-
-Use labels, separators, and shortcuts to structure dropdown content. Labels support `inset`; shortcuts render trailing keyboard hints.
+<ApiReference family="DropdownMenu" />

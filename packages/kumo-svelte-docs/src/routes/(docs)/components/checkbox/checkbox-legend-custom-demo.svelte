@@ -3,7 +3,7 @@
   let preferences = $state(["email"]);
 </script>
 
-<Checkbox.Group value={preferences} onValueChange={(value) => (preferences = value)}>
+<Checkbox.Group bind:value={preferences}>
   <Checkbox.Legend class="text-sm font-normal text-kumo-subtle">
     Notification preferences
   </Checkbox.Legend>

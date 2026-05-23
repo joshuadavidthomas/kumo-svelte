@@ -5,6 +5,7 @@ sourceFile: components/table
 ---
 
 <script lang="ts">
+  import ApiReference from "$lib/components/api-reference.svelte";
   import Example from "$lib/components/example.svelte";
   import TableBasicDemo from "./table-basic-demo.svelte";
   import TableCompactStickyDemo from "./table-compact-sticky-demo.svelte";
@@ -20,9 +21,7 @@ sourceFile: components/table
   <TableBasicDemo />
 </Example>
 
-## Installation
-
-### Namespace
+## Import
 
 ```ts
 import * as Table from "kumo-svelte/components/table";
@@ -114,47 +113,7 @@ Complete table with checkboxes, badges, action buttons, and fixed column widths.
 
 ## API Reference
 
-### `Table`
-
-Root table component. Renders a semantic `table` element.
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `layout` | `"auto" \| "fixed"` | `"auto"` | CSS table layout. |
-| `children` | `Snippet` | — | Table contents. |
-| `class` | `string` | — | Additional classes. |
-
-### `Table.Header`, `Table.Body`, and `Table.Footer`
-
-Semantic table sections. `Table.Header` supports `variant="compact"` and `sticky`.
-
-### `Table.Row`
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `variant` | `"default" \| "selected"` | `"default"` | Row visual state. |
-| `children` | `Snippet` | — | Row cells. |
-| `class` | `string` | — | Additional classes. |
-
-### `Table.Head` and `Table.Cell`
-
-Header and body cells. Both accept `sticky="left"` or `sticky="right"` to pin a column.
-
-### `Table.CheckHead` and `Table.CheckCell`
-
-Checkbox cells for selection.
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `checked` | `boolean` | `false` | Checked state. |
-| `indeterminate` | `boolean` | `false` | Indeterminate state. |
-| `disabled` | `boolean` | `false` | Disabled state. |
-| `label` | `string` | default label | Accessible checkbox label. |
-| `onCheckedChange` | `(checked: boolean, eventDetails?: CheckboxChangeEventDetails) => void` | — | Called when checked state changes. |
-
-### `TableResizeHandle`
-
-Draggable handle for column resizing. Use with TanStack Table or custom resize logic.
+<ApiReference family="Table" />
 
 ## TanStack Table Integration
 

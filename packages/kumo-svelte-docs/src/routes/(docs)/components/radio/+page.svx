@@ -2,10 +2,10 @@
 title: Radio
 description: A control that allows the user to select one option from a set. Always used within a Radio.Group.
 sourceFile: components/radio
-baseUIComponent: radio-group
 ---
 
 <script lang="ts">
+  import ApiReference from "$lib/components/api-reference.svelte";
   import Example from "$lib/components/example.svelte";
   import RadioBasicDemo from "./radio-basic-demo.svelte";
   import RadioCardControlStartDemo from "./radio-card-control-start-demo.svelte";
@@ -26,9 +26,7 @@ baseUIComponent: radio-group
   <RadioBasicDemo />
 </Example>
 
-## Installation
-
-### Namespace
+## Import
 
 ```ts
 import * as Radio from "kumo-svelte/components/radio";
@@ -147,53 +145,7 @@ Use `Radio.Legend` with `class="sr-only"` to keep the group label accessible to 
 
 ## API Reference
 
-### `Radio.Group`
-
-Container for radio buttons with group label, description, and error support.
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `children` | `Snippet` | — | Radio items and optional `Radio.Legend`. |
-| `value` | `string` | — | Controlled value. Use with `onValueChange`. |
-| `defaultValue` | `string` | `""` | Initial uncontrolled value. |
-| `onValueChange` | `(value: string) => void` | — | Called when selection changes. |
-| `legend` | `string` | — | Group label text rendered before items. |
-| `description` | `Snippet \| string` | — | Helper text rendered below the group. |
-| `error` | `string` | — | Group-level validation error. |
-| `appearance` | `"default" \| "card"` | `"default"` | Radio item appearance. |
-| `controlPosition` | `"start" \| "end"` | depends on appearance | Position of the control relative to text. |
-| `orientation` | `"vertical" \| "horizontal"` | `"vertical"` | Group layout. |
-| `disabled` | `boolean` | `false` | Disables the group. |
-| `name` | `string` | — | Radio group name. |
-| `required` | `boolean` | — | Marks the group as required. |
-| `aria-label` | `string` | — | Accessible label when no visible group label is rendered. |
-| `aria-labelledby` | `string` | — | ID of an external element that labels the group. |
-| `class` | `string` | — | Additional classes for the radio group root. |
-
-### `Radio.Legend`
-
-Composable group label sub-component for `Radio.Group`. Accepts `class` for custom styling, such as `class="sr-only"`.
-
-| Prop | Type | Required | Description |
-| --- | --- | --- | --- |
-| `children` | `Snippet` | Yes | Label content. |
-| `id` | `string` | No | Custom id for advanced `aria-labelledby` wiring. |
-| `class` | `string` | No | Additional classes. |
-
-### `Radio.Item`
-
-Individual radio button within `Radio.Group`.
-
-| Prop | Type | Required | Description |
-| --- | --- | --- | --- |
-| `label` | `Snippet \| string` | Yes | Item label. |
-| `value` | `string` | Yes | Item value. |
-| `description` | `Snippet \| string` | No | Item description, most useful with card appearance. |
-| `disabled` | `boolean` | No | Disables the item. |
-| `id` | `string` | No | Radio item id. |
-| `appearance` | `"default" \| "card"` | No | Overrides group appearance for this item. |
-| `variant` | `"default" \| "error"` | No | Visual state. |
-| `class` | `string` | No | Additional classes. |
+<ApiReference family="Radio" />
 
 ## Usage Notes
 

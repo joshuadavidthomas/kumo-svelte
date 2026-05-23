@@ -1,6 +1,6 @@
 import { createKumoHighlighter, highlightWithKumoThemes } from "./shared";
 import type { ComponentProps } from "svelte";
-import CodeBlockComponent from "./code-block.svelte";
+import CodeBlockComponent from "./highlighted-code-block.svelte";
 import type { ShikiEngine, SupportedLanguage } from "./types";
 
 export interface HighlightCodeOptions {
@@ -48,5 +48,5 @@ export async function createServerHighlighter({
   };
 }
 
-export { default as CodeBlock } from "./code-block.svelte";
+export { default as CodeBlock } from "./highlighted-code-block.svelte";
 export type CodeBlockProps = ComponentProps<typeof CodeBlockComponent>;

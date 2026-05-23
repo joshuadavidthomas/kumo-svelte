@@ -2,10 +2,10 @@
 title: Loader
 description: A loading spinner to indicate loading state.
 sourceFile: components/loader
-primitive: svg
 ---
 
 <script lang="ts">
+  import ApiReference from "$lib/components/api-reference.svelte";
   import Example from "$lib/components/example.svelte";
   import LoaderBasicDemo from "./loader-basic-demo.svelte";
   import LoaderCustomSizeDemo from "./loader-custom-size-demo.svelte";
@@ -15,15 +15,7 @@ primitive: svg
   <LoaderBasicDemo />
 </Example>
 
-## Installation
-
-### Barrel
-
-```ts
-import { Loader } from "kumo-svelte/components/loader";
-```
-
-### Granular
+## Import
 
 ```ts
 import { Loader } from "kumo-svelte/components/loader";
@@ -57,14 +49,7 @@ Pass a number to set a custom pixel size.
 
 ## API Reference
 
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `aria-label` | `string` | `"Loading"` | Accessible label for the status indicator. |
-| `size` | `"sm" \| "base" \| "lg" \| number` | `"base"` | Loader size. Numeric values are treated as pixels. |
-| `class` | `string` | — | Additional CSS classes. |
-| `style` | `string` | — | Additional inline styles. |
-
-Loader also accepts standard SVG attributes except `width` and `height`, which are controlled by the `size` prop.
+<ApiReference family="Loader" />
 
 ## Accessibility
 

@@ -23,6 +23,7 @@
   "files": [
     "src",
     "README.md",
+    "CHANGELOG.md",
     "LICENSE"
   ],
   "type": "module",
@@ -30,14 +31,7 @@
     "*.css",
     "src/styles/*.css"
   ],
-  "types": "./src/index.ts",
-  "svelte": "./src/index.ts",
   "exports": {
-    ".": {
-      "svelte": "./src/index.ts",
-      "types": "./src/index.ts",
-      "default": "./src/index.ts"
-    },
     "./components/autocomplete": {
       "svelte": "./src/components/autocomplete/index.ts",
       "types": "./src/components/autocomplete/index.ts",
@@ -97,6 +91,11 @@
       "svelte": "./src/components/code/index.ts",
       "types": "./src/components/code/index.ts",
       "default": "./src/components/code/index.ts"
+    },
+    "./components/code/server": {
+      "svelte": "./src/components/code/server.ts",
+      "types": "./src/components/code/server.ts",
+      "default": "./src/components/code/server.ts"
     },
     "./components/chart": {
       "svelte": "./src/components/chart/index.ts",
@@ -271,31 +270,6 @@
       "types": "./src/utils/index.ts",
       "default": "./src/utils/index.ts"
     },
-    "./code": {
-      "svelte": "./src/code/index.ts",
-      "types": "./src/code/index.ts",
-      "default": "./src/code/index.ts"
-    },
-    "./code/server": {
-      "svelte": "./src/code/server.ts",
-      "types": "./src/code/server.ts",
-      "default": "./src/code/server.ts"
-    },
-    "./registry": {
-      "types": "./src/registry/index.ts",
-      "default": "./src/registry/index.ts"
-    },
-    "./registry/component-registry.json": "./src/registry/component-registry.json",
-    "./registry/component-registry.md": "./src/registry/component-registry.md",
-    "./ai/component-registry.json": "./src/ai/component-registry.json",
-    "./ai/schemas": {
-      "types": "./src/ai/schemas.ts",
-      "default": "./src/ai/schemas.ts"
-    },
-    "./catalog": {
-      "types": "./src/catalog/index.ts",
-      "default": "./src/catalog/index.ts"
-    },
     "./scripts/theme-generator/types": {
       "types": "./src/scripts/theme-generator/types.ts",
       "default": "./src/scripts/theme-generator/types.ts"
@@ -314,10 +288,9 @@
     "check:upstream-theme": "node ../../scripts/sync-upstream-theme.mjs --check",
     "format": "oxfmt --write package.json tsconfig.json svelte.config.js src",
     "format:check": "oxfmt --check package.json tsconfig.json svelte.config.js src",
-    "generate:registry": "node ../../scripts/generate-basic-registry.mjs",
     "sync:upstream-theme": "node ../../scripts/sync-upstream-theme.mjs",
     "lint": "oxlint src package.json svelte.config.js",
-    "test": "vitest run --dir src",
+    "test": "vitest run --dir tests",
     "typecheck": "svelte-check --tsconfig ./tsconfig.json && tsc --noEmit -p ./tsconfig.json"
   },
   "dependencies": {

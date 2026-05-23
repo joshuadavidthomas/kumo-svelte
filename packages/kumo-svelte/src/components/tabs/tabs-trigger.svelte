@@ -1,8 +1,8 @@
 <script lang="ts">
   import { Tabs as TabsPrimitive } from "bits-ui";
   import { cn } from "../../utils/cn";
+  import { getTabsStyleContext, resolveTabsSize, resolveTabsVariant } from "./context";
   import {
-    KUMO_TABS_DEFAULT_VARIANTS,
     tabsTriggerVariants,
     type KumoTabsSize,
     type KumoTabsVariant,
@@ -13,17 +13,16 @@
     variant?: KumoTabsVariant;
   };
 
-  let {
-    class: className,
-    size = KUMO_TABS_DEFAULT_VARIANTS.size,
-    variant = KUMO_TABS_DEFAULT_VARIANTS.variant,
-    ...restProps
-  }: TabsTriggerProps = $props();
+  let { class: className, size, variant, ...restProps }: TabsTriggerProps = $props();
+
+  const tabsStyle = getTabsStyleContext();
+  let resolvedSize = $derived(resolveTabsSize(size, tabsStyle));
+  let resolvedVariant = $derived(resolveTabsVariant(variant, tabsStyle));
 </script>
 
 <TabsPrimitive.Trigger
   data-slot="tabs-trigger"
-  data-variant={variant}
-  class={cn(tabsTriggerVariants({ size, variant }), className)}
+  data-variant={resolvedVariant}
+  class={cn(tabsTriggerVariants({ size: resolvedSize, variant: resolvedVariant }), className)}
   {...restProps}
 />

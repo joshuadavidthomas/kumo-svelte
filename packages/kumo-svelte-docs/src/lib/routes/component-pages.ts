@@ -9,31 +9,34 @@ export interface DocTocItem {
 }
 
 export interface ComponentDocPage {
+  bitsUiUrl?: string;
   description: string;
   editUrl?: string;
   href: string;
-  primitiveUrl?: string;
   sourceFile: string;
   title: string;
   toc: DocTocItem[];
 }
 
-const primitivePages = new Set([
-  "autocomplete",
-  "checkbox",
-  "collapsible",
-  "combobox",
-  "date-picker",
-  "dialog",
-  "dropdown",
-  "menu-bar",
-  "popover",
-  "radio",
-  "select",
-  "switch",
-  "tabs",
-  "tooltip",
-]);
+const bitsUiDocsSlugs: Record<string, string> = {
+  autocomplete: "combobox",
+  button: "button",
+  checkbox: "checkbox",
+  collapsible: "collapsible",
+  combobox: "combobox",
+  "command-palette": "command",
+  "date-picker": "date-picker",
+  dialog: "dialog",
+  dropdown: "dropdown-menu",
+  label: "label",
+  meter: "meter",
+  popover: "popover",
+  radio: "radio-group",
+  select: "select",
+  switch: "switch",
+  tabs: "tabs",
+  tooltip: "tooltip",
+};
 
 export function pageFromMetadata(
   slug: string,
@@ -41,13 +44,13 @@ export function pageFromMetadata(
   toc: DocTocItem[] = [],
 ): ComponentDocPage {
   const sourceFile = metadata.sourceFile ?? `components/${slug}`;
-  const primitive = metadata.primitive ?? (primitivePages.has(slug) ? slug : undefined);
+  const bitsUiSlug = bitsUiDocsSlugs[slug];
 
   return {
+    bitsUiUrl: bitsUiSlug ? bitsUiUrl(bitsUiSlug) : undefined,
     description: metadata.description,
     editUrl: `https://github.com/joshuadavidthomas/kumo-svelte/tree/main/packages/kumo-svelte/src/${sourceFile}`,
     href: `/components/${slug}`,
-    primitiveUrl: primitive ? primitiveUrl(primitive) : undefined,
     sourceFile,
     title: metadata.title,
     toc,
@@ -61,13 +64,8 @@ export function componentLabel(slug: string) {
   );
 }
 
-function primitiveUrl(primitive: string) {
-  const bitsName = primitive
-    .replace("dropdown", "dropdown-menu")
-    .replace("radio", "radio-group")
-    .replace("menu-bar", "menubar");
-
-  return `https://www.bits-ui.com/docs/components/${bitsName}`;
+function bitsUiUrl(slug: string) {
+  return `https://www.bits-ui.com/docs/components/${slug}`;
 }
 
 function titleize(slug: string) {

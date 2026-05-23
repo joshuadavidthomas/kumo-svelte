@@ -1,6 +1,7 @@
 <script lang="ts">
   import * as Autocomplete from "kumo-svelte/components/autocomplete";
-  import { fruits } from "./autocomplete-data";
+
+  const fruits = ["Apple", "Apricot", "Banana", "Blueberry", "Cherry", "Mango"];
 
   let value = $state("");
 </script>

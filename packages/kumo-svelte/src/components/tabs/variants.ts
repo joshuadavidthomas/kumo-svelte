@@ -75,7 +75,5 @@ export function tabsTriggerVariants({
     underline &&
       "text-kumo-subtle hover:bg-kumo-tint hover:text-kumo-default data-[state=active]:font-medium data-[state=active]:text-kumo-default",
     underline && (size === "sm" ? "px-1.5 py-2.5" : "px-2 py-3"),
-    underline &&
-      "after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:bg-kumo-brand after:opacity-0 after:transition-opacity data-[state=active]:after:opacity-100",
   );
 }

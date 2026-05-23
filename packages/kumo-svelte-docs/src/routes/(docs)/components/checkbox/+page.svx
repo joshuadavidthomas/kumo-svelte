@@ -1,11 +1,11 @@
 ---
 title: Checkbox
-description: A control that allows the user to toggle between checked and not checked. Features built-in label support with automatic horizontal layout.
+description: A control that allows the user to toggle between checked and not checked.
 sourceFile: components/checkbox
-primitive: checkbox
 ---
 
 <script lang="ts">
+  import ApiReference from "$lib/components/api-reference.svelte";
   import Example from "$lib/components/example.svelte";
   import CheckboxBasicDemo from "./checkbox-basic-demo.svelte";
   import CheckboxCheckedDemo from "./checkbox-checked-demo.svelte";
@@ -24,9 +24,15 @@ primitive: checkbox
   <CheckboxBasicDemo />
 </Example>
 
-## Installation
+## Import
 
-### Namespace
+Single checkbox:
+
+```ts
+import { Checkbox } from "kumo-svelte/components/checkbox";
+```
+
+Checkbox group:
 
 ```ts
 import * as Checkbox from "kumo-svelte/components/checkbox";
@@ -36,17 +42,17 @@ import * as Checkbox from "kumo-svelte/components/checkbox";
 
 ```svelte
 <script lang="ts">
-  import * as Checkbox from "kumo-svelte/components/checkbox";
+  import { Checkbox } from "kumo-svelte/components/checkbox";
 </script>
 
-<Checkbox.Root label="Accept terms" />
+<Checkbox label="Accept terms" />
 ```
 
 ## Examples
 
 ### Default
 
-Checkbox with built-in label. The label automatically displays in a horizontal layout with the checkbox before the label.
+Checkbox with a built-in label. The component automatically displays it in a horizontal layout with the checkbox before the label.
 
 <Example demo="checkbox-default-demo">
   <CheckboxDefaultDemo />
@@ -122,77 +128,7 @@ Use `Checkbox.Legend` with `class="sr-only"` to keep the legend accessible to sc
 
 ## API Reference
 
-### Checkbox
-
-Single checkbox component with built-in label and horizontal layout.
-
-| Prop | Type | Required | Description |
-| --- | --- | --- | --- |
-| `variant` | `"default" \| "error"` | No | Visual style. Defaults to `"default"`. |
-| `label` | `Snippet \| string` | No | Visible label content. |
-| `labelTooltip` | `Snippet` | No | Tooltip content for the label. |
-| `controlFirst` | `boolean` | No | Places the control before the label when true. Defaults to `true`. |
-| `checked` | `boolean` | No | Current checked state. Bind for controlled usage. |
-| `indeterminate` | `boolean` | No | Current indeterminate state. Bind for controlled usage. |
-| `disabled` | `boolean` | No | Disables the checkbox. |
-| `onCheckedChange` | `(checked: boolean) => void` | No | Called when the checked state changes. |
-| `name` | `string` | No | Form field name. |
-| `value` | `string` | No | Form value. |
-| `required` | `boolean` | No | Marks the field as required. |
-| `id` | `string` | No | Control id. |
-| `aria-label` | `string` | No | Accessible label when no visible label is provided. |
-| `aria-labelledby` | `string` | No | Accessible labeling element id. |
-| `class` | `string` | No | Additional classes merged with the checkbox control styles. |
-
-### Checkbox.Group
-
-Wrapper for multiple checkboxes with legend, description, and error support.
-
-| Prop | Type | Required | Description |
-| --- | --- | --- | --- |
-| `legend` | `string` | No | Group legend text. |
-| `children` | `Snippet` | Yes | Checkbox items and optional custom legend. |
-| `description` | `Snippet \| string` | No | Group description. |
-| `error` | `string` | No | Group error message. |
-| `defaultValue` | `string[]` | No | Initial selected values. |
-| `value` | `string[]` | No | Selected values. Bind for controlled usage. |
-| `onValueChange` | `(value: string[]) => void` | No | Called when selected values change. |
-| `disabled` | `boolean` | No | Disables the group. |
-| `controlFirst` | `boolean` | No | Places item controls before labels when true. Defaults to `true`. |
-| `name` | `string` | No | Form field name. |
-| `required` | `boolean` | No | Marks the group as required. |
-| `id` | `string` | No | Group id. |
-| `class` | `string` | No | Additional classes merged with the fieldset styles. |
-
-### Checkbox.Legend
-
-Composable legend sub-component for `Checkbox.Group`.
-
-| Prop | Type | Required | Description |
-| --- | --- | --- | --- |
-| `children` | `Snippet` | Yes | Legend content. |
-| `class` | `string` | No | Additional classes merged with the legend styles. |
-
-All other props are passed to the underlying `<legend>` element.
-
-### Checkbox.Item
-
-Individual checkbox within `Checkbox.Group`.
-
-| Prop | Type | Required | Description |
-| --- | --- | --- | --- |
-| `variant` | `"default" \| "error"` | No | Visual style. Defaults to `"default"`. |
-| `label` | `Snippet \| string` | Yes | Item label. |
-| `value` | `string` | No | Item value used by `Checkbox.Group`. |
-| `checked` | `boolean` | No | Current checked state. Bind for controlled usage outside a group. |
-| `indeterminate` | `boolean` | No | Current indeterminate state. |
-| `disabled` | `boolean` | No | Disables the item. |
-| `onCheckedChange` | `(checked: boolean) => void` | No | Called when the checked state changes. |
-| `name` | `string` | No | Form field name. |
-| `id` | `string` | No | Control id. |
-| `aria-label` | `string` | No | Accessible label when needed. |
-| `aria-labelledby` | `string` | No | Accessible labeling element id. |
-| `class` | `string` | No | Additional classes merged with the item label wrapper. |
+<ApiReference family="Checkbox" />
 
 ## Accessibility
 

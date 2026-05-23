@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
-  import { ShikiProvider } from "kumo-svelte/code";
+  import { ShikiProvider } from "kumo-svelte/components/code";
 
   let { children }: { children: Snippet } = $props();
 </script>

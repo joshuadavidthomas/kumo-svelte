@@ -1,10 +1,11 @@
 <script lang="ts">
   import * as Tabs from "kumo-svelte/components/tabs";
-  const tabs = [
-    { value: "tab1", label: "Tab 1" },
-    { value: "tab2", label: "Tab 2" },
-    { value: "tab3", label: "Tab 3" },
-  ];
 </script>
 
-<Tabs.Root variant="underline" {tabs} selectedValue="tab1" />
+<Tabs.Root variant="underline" value="tab1">
+  <Tabs.List>
+    <Tabs.Trigger value="tab1">Tab 1</Tabs.Trigger>
+    <Tabs.Trigger value="tab2">Tab 2</Tabs.Trigger>
+    <Tabs.Trigger value="tab3">Tab 3</Tabs.Trigger>
+  </Tabs.List>
+</Tabs.Root>
