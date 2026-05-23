@@ -1,7 +1,7 @@
 <script lang="ts">
   import Sidebar from "$lib/components/sidebar.svelte";
-  import SidebarSimpleIcon from "phosphor-svelte/lib/SidebarSimpleIcon";
   import * as Tooltip from "kumo-svelte/components/tooltip";
+  import SidebarSimpleIcon from "phosphor-svelte/lib/SidebarSimpleIcon";
   import "../styles.css";
 
   let { children } = $props();
@@ -66,10 +66,10 @@
   }
 
   [data-slot="mark"] {
+    grid-area: mark;
     position: sticky;
     top: 0;
     display: grid;
-    grid-area: mark;
     place-items: center;
     border-bottom: 1px solid var(--color-kumo-line);
     background: var(--color-kumo-canvas);
@@ -102,21 +102,20 @@
   }
 
   [data-slot="left-rail"] {
+    grid-area: left-rail;
     position: sticky;
     top: calc(3rem + 1px);
-    grid-area: left-rail;
     height: calc(100dvh - 3rem - 1px);
     min-height: 0;
     background: var(--color-kumo-canvas);
   }
 
   [data-slot="brand"] {
+    grid-area: brand;
     position: sticky;
     top: 0;
     min-width: 0;
     overflow: hidden;
-    grid-area: brand;
-    border-right: 1px solid var(--color-kumo-line);
     border-bottom: 1px solid var(--color-kumo-line);
     border-left: 1px solid var(--color-kumo-line);
     background: var(--color-kumo-canvas);
@@ -129,14 +128,13 @@
   }
 
   [data-slot="sidebar"] {
+    grid-area: sidebar;
     position: sticky;
     top: calc(3rem + 1px);
     min-width: 0;
     overflow: hidden;
-    grid-area: sidebar;
     height: calc(100dvh - 3rem - 1px);
     min-height: 0;
-    border-right: 1px solid var(--color-kumo-line);
     border-left: 1px solid var(--color-kumo-line);
     transition: opacity 200ms ease;
   }
@@ -147,13 +145,16 @@
   }
 
   [data-slot="topbar"] {
+    grid-area: topbar;
     position: sticky;
     top: 0;
-    grid-area: topbar;
+    z-index: 10;
+    border-left: 1px solid var(--color-kumo-line);
     border-bottom: 1px solid var(--color-kumo-line);
   }
 
   [data-slot="main"] {
     grid-area: main;
+    border-left: 1px solid var(--color-kumo-line);
   }
 </style>
