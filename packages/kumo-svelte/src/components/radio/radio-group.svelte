@@ -10,6 +10,8 @@
   } from "./variants";
 
   export interface RadioGroupProps {
+    "aria-label"?: string;
+    "aria-labelledby"?: string;
     appearance?: KumoRadioAppearance;
     children: Snippet;
     class?: string;
@@ -27,6 +29,8 @@
   }
 
   let {
+    "aria-label": ariaLabel,
+    "aria-labelledby": ariaLabelledby,
     appearance = KUMO_RADIO_DEFAULT_VARIANTS.appearance,
     children,
     class: className,
@@ -43,6 +47,10 @@
     value,
   }: RadioGroupProps = $props();
 
+  const generatedId = $props.id();
+
+  let legendId = $derived(`${generatedId}-legend`);
+  let groupAriaLabelledby = $derived(ariaLabelledby ?? (!ariaLabel ? legendId : undefined));
   let internalValue = $state<string | undefined>();
   let groupValue = $derived(value ?? internalValue ?? defaultValue);
 
@@ -58,11 +66,17 @@
     get controlPosition() {
       return controlPosition;
     },
+    get legendId() {
+      return legendId;
+    },
   });
 </script>
 
 <RadioGroupPrimitive.Root
   data-slot="radio-group"
+  aria-label={ariaLabel}
+  aria-labelledby={groupAriaLabelledby}
+  class={cn("flex flex-col gap-4", className)}
   value={groupValue}
   onValueChange={handleValueChange}
   {disabled}
@@ -70,32 +84,30 @@
   {orientation}
   {required}
 >
-  <fieldset class={cn("flex flex-col gap-4", className)} disabled={disabled}>
-    {#if legend}
-      <legend class="text-base font-medium text-kumo-default">{legend}</legend>
-    {/if}
-    <div
-      class={cn(
-        orientation === "vertical"
-          ? cn("flex flex-col", appearance === "card" ? "gap-3" : "gap-2")
-          : appearance === "card"
-            ? "grid grid-cols-2 gap-3"
-            : "flex flex-row flex-wrap gap-2",
-      )}
-    >
-      {@render children()}
-    </div>
-    {#if error}
-      <p class="text-sm text-kumo-danger">{error}</p>
-    {/if}
-    {#if description}
-      <p class="text-sm text-kumo-subtle">
-        {#if typeof description === "string"}
-          {description}
-        {:else}
-          {@render description()}
-        {/if}
-      </p>
-    {/if}
-  </fieldset>
+  {#if legend}
+    <div id={legendId} class="text-base font-medium text-kumo-default">{legend}</div>
+  {/if}
+  <div
+    class={cn(
+      orientation === "vertical"
+        ? cn("flex flex-col", appearance === "card" ? "gap-3" : "gap-2")
+        : appearance === "card"
+          ? "grid grid-cols-2 gap-3"
+          : "flex flex-row flex-wrap gap-2",
+    )}
+  >
+    {@render children()}
+  </div>
+  {#if error}
+    <p class="text-sm text-kumo-danger">{error}</p>
+  {/if}
+  {#if description}
+    <p class="text-sm text-kumo-subtle">
+      {#if typeof description === "string"}
+        {description}
+      {:else}
+        {@render description()}
+      {/if}
+    </p>
+  {/if}
 </RadioGroupPrimitive.Root>

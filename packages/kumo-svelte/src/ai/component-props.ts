@@ -3563,6 +3563,18 @@ export const KUMO_COMPONENT_PROP_SCHEMAS = {
     },
   },
   Radio: {
+    "aria-label": {
+      type: "string",
+      runtime: {
+        kind: "string",
+      },
+    },
+    "aria-labelledby": {
+      type: "string",
+      runtime: {
+        kind: "string",
+      },
+    },
     appearance: {
       type: "KumoRadioAppearance",
       values: ["default", "card"],

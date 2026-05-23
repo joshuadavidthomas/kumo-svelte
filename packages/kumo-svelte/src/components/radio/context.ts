@@ -10,6 +10,7 @@ const RADIO_GROUP_CONTEXT = Symbol("kumo-radio-group");
 export interface RadioGroupContextValue {
   readonly appearance: KumoRadioAppearance;
   readonly controlPosition: RadioControlPosition | undefined;
+  readonly legendId: string | undefined;
 }
 
 export function setRadioGroupContext(value: RadioGroupContextValue) {
@@ -21,6 +22,7 @@ export function getRadioGroupContext() {
     getContext<RadioGroupContextValue | undefined>(RADIO_GROUP_CONTEXT) ?? {
       appearance: KUMO_RADIO_DEFAULT_VARIANTS.appearance,
       controlPosition: undefined,
+      legendId: undefined,
     }
   );
 }

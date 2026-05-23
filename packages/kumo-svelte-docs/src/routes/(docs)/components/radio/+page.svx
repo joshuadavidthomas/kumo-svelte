@@ -131,7 +131,7 @@ Disable the entire group or individual items.
 
 ### Visually Hidden Legend
 
-Use `Radio.Legend` with `class="sr-only"` to keep the legend accessible to screen readers while hiding it visually.
+Use `Radio.Legend` with `class="sr-only"` to keep the group label accessible to screen readers while hiding it visually.
 
 <Example demo="radio-legend-sr-only-demo">
   <RadioLegendSrOnlyDemo />
@@ -139,7 +139,7 @@ Use `Radio.Legend` with `class="sr-only"` to keep the legend accessible to scree
 
 ### Custom Legend Styling
 
-`Radio.Legend` accepts `class` for full control over legend presentation. Use it instead of the `legend` string prop when you need custom typography, colors, or layout.
+`Radio.Legend` accepts `class` for full control over label presentation. Use it instead of the `legend` string prop when you need custom typography, colors, or layout.
 
 <Example demo="radio-legend-custom-demo">
   <RadioLegendCustomDemo />
@@ -149,7 +149,7 @@ Use `Radio.Legend` with `class="sr-only"` to keep the legend accessible to scree
 
 ### `Radio.Group`
 
-Container for radio buttons with legend, description, and error support.
+Container for radio buttons with group label, description, and error support.
 
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -157,7 +157,7 @@ Container for radio buttons with legend, description, and error support.
 | `value` | `string` | — | Controlled value. Use with `onValueChange`. |
 | `defaultValue` | `string` | `""` | Initial uncontrolled value. |
 | `onValueChange` | `(value: string) => void` | — | Called when selection changes. |
-| `legend` | `string` | — | Legend text rendered before items. |
+| `legend` | `string` | — | Group label text rendered before items. |
 | `description` | `Snippet \| string` | — | Helper text rendered below the group. |
 | `error` | `string` | — | Group-level validation error. |
 | `appearance` | `"default" \| "card"` | `"default"` | Radio item appearance. |
@@ -166,15 +166,18 @@ Container for radio buttons with legend, description, and error support.
 | `disabled` | `boolean` | `false` | Disables the group. |
 | `name` | `string` | — | Radio group name. |
 | `required` | `boolean` | — | Marks the group as required. |
-| `class` | `string` | — | Additional classes for the fieldset. |
+| `aria-label` | `string` | — | Accessible label when no visible group label is rendered. |
+| `aria-labelledby` | `string` | — | ID of an external element that labels the group. |
+| `class` | `string` | — | Additional classes for the radio group root. |
 
 ### `Radio.Legend`
 
-Composable legend sub-component for `Radio.Group`. Accepts `class` for custom styling, such as `class="sr-only"`.
+Composable group label sub-component for `Radio.Group`. Accepts `class` for custom styling, such as `class="sr-only"`.
 
 | Prop | Type | Required | Description |
 | --- | --- | --- | --- |
-| `children` | `Snippet` | Yes | Legend content. |
+| `children` | `Snippet` | Yes | Label content. |
+| `id` | `string` | No | Custom id for advanced `aria-labelledby` wiring. |
 | `class` | `string` | No | Additional classes. |
 
 ### `Radio.Item`
@@ -198,9 +201,9 @@ Use `value` with `onValueChange` for controlled state. Use `defaultValue` for si
 
 ## Accessibility
 
-### Semantic HTML
+### Semantics
 
-`Radio.Group` uses semantic `fieldset` and `legend` elements for proper grouping and screen reader announcement.
+`Radio.Group` uses Bits UI's radio group primitive for `radiogroup` semantics and associates the `legend` prop or `Radio.Legend` with the group through `aria-labelledby`.
 
 ### Keyboard Navigation
 
@@ -208,4 +211,4 @@ Arrow keys move between options. Space selects the focused option. Tab moves foc
 
 ### Screen Readers
 
-Each radio is announced with its label and selection state. The group legend provides context for all options.
+Each radio is announced with its label and selection state. The group label provides context for all options.
