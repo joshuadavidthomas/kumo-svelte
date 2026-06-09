@@ -2,12 +2,12 @@
 
 Svelte 5 components inspired by [Cloudflare's Kumo design system](https://github.com/cloudflare/kumo).
 
-`kumo-svelte` brings Kumo's visual language, semantic tokens, and component patterns to Svelte. It uses [Bits UI](https://bits-ui.com/) for accessible primitives and keeps the public API Svelte-shaped instead of copying React-only patterns.
+`kumo-svelte` brings Kumo's visual language, semantic tokens, and component patterns to Svelte. It uses [Bits UI](https://bits-ui.com/) for accessible primitives and keeps the public API Svelte-shaped.
 
 > [!NOTE]
 > This is a community package, not an official Cloudflare package. Expect API and parity fixes before `1.0`.
 
-## Install
+## Installation
 
 ```bash
 pnpm add kumo-svelte
@@ -25,10 +25,6 @@ Chart components also need ECharts:
 pnpm add echarts
 ```
 
-Use this package from a Svelte 5 app built with Vite or another toolchain that supports Svelte package exports.
-
-## Set up styles
-
 Import Tailwind and Kumo styles once in your app-level CSS:
 
 ```css
@@ -36,7 +32,7 @@ Import Tailwind and Kumo styles once in your app-level CSS:
 @import "kumo-svelte/styles";
 ```
 
-The package also exposes upstream-style aliases:
+Additional style entrypoints are available if you want explicit files:
 
 ```css
 @import "kumo-svelte/styles/tailwind";
@@ -45,7 +41,9 @@ The package also exposes upstream-style aliases:
 
 Kumo themes use semantic CSS variables. Set `data-mode="dark"` on a parent element to use dark mode.
 
-## Use components
+Use this package from a Svelte 5 app built with Vite or another toolchain that supports Svelte package exports.
+
+## Getting Started
 
 Import components from their subpaths:
 
@@ -60,6 +58,8 @@ Import components from their subpaths:
 <Badge variant="green">Active</Badge>
 <Button variant="primary">Create</Button>
 ```
+
+## Usage
 
 Compound components use Svelte bindings and snippets where they fit:
 
@@ -93,7 +93,7 @@ Single controls stay direct:
 <Checkbox label="Accept terms and conditions" bind:checked />
 ```
 
-## Lower-level primitives
+### Bits UI primitives
 
 Some component families are built on Bits UI. If you need lower-level primitives, import Bits UI directly:
 
@@ -101,9 +101,10 @@ Some component families are built on Bits UI. If you need lower-level primitives
 import { Dialog, Popover, Select } from "bits-ui";
 ```
 
-## Project status
+## Documentation
 
-The package currently includes Svelte implementations for the upstream Kumo component families, Kumo styles and themes, shared utilities, charts, and the `DeleteResource` block.
+- Local docs: run `pnpm docs:dev`
+- Upstream Kumo: <https://github.com/cloudflare/kumo>
 
 ## Development
 
@@ -115,11 +116,6 @@ pnpm docs:dev
 ```
 
 `pnpm check` verifies synced upstream theme files, formatting, linting, and type checking. `pnpm docs:dev` starts the local documentation site.
-
-## Documentation
-
-- Upstream Kumo: <https://github.com/cloudflare/kumo>
-- Local docs: run `pnpm docs:dev`
 
 ## License
 
