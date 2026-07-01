@@ -10,7 +10,7 @@
   } from "./variants";
 
   export interface BannerProps
-    extends Omit<HTMLAttributes<HTMLDivElement>, "class" | "children"> {
+    extends Omit<HTMLAttributes<HTMLDivElement>, "class" | "children" | "title"> {
     action?: Snippet;
     children?: Snippet;
     class?: string;
@@ -48,7 +48,7 @@
   {/if}
 
   {#if structured}
-    <div class="flex min-w-0 flex-1 items-center justify-between gap-3">
+    <div class={cn("flex min-w-0 flex-1 items-center justify-between gap-3", !title && "pt-px")}>
       <div class="flex flex-col gap-0.5">
         {#if title}
           <p class="font-medium leading-snug">{title}</p>
@@ -70,6 +70,6 @@
       {/if}
     </div>
   {:else if children}
-    {@render children()}
+    <p>{@render children()}</p>
   {/if}
 </div>

@@ -31,4 +31,14 @@
       <WarningCircleIcon weight="fill" />
     {/snippet}
   </Banner>
+
+  <Banner
+    variant="secondary"
+    title="Maintenance scheduled"
+    description="This service will be unavailable for 10 minutes."
+  >
+    {#snippet icon()}
+      <InfoIcon weight="fill" />
+    {/snippet}
+  </Banner>
 </div>

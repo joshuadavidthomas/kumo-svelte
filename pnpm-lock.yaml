@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       '@cloudflare/kumo':
-        specifier: ^2.2.2
-        version: 2.2.2(@date-fns/tz@1.5.0)(@phosphor-icons/react@2.1.10(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(date-fns@4.2.1)(echarts@6.0.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+        specifier: ^2.6.0
+        version: 2.6.0(@date-fns/tz@1.5.0)(@phosphor-icons/react@2.1.10(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(date-fns@4.2.1)(echarts@6.0.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       oxfmt:
         specifier: ^0.48.0
         version: 0.48.0
@@ -185,8 +185,8 @@ packages:
       '@types/react':
         optional: true
 
-  '@cloudflare/kumo@2.2.2':
-    resolution: {integrity: sha512-83ut6gH4j1AJNFySmmoyGdrZzhMLeZ8f+tXl7A4jv89Ga+KTci42QDe5I7ksytPcUTwiepmRM6qFrbAikelOMg==}
+  '@cloudflare/kumo@2.6.0':
+    resolution: {integrity: sha512-rcUUvhrtxI0veNJZLgKVSnxH/L0M48jtc4UoNhvu0l0RiRmjHORFTBYq/phFQyt7JGG3s98QPZc5w1eW+UQIOg==}
     hasBin: true
     peerDependencies:
       '@phosphor-icons/react': ^2.1.10
@@ -195,6 +195,8 @@ packages:
       react-dom: ^18.0.0 || ^19.0.0
       zod: ^4.0.0
     peerDependenciesMeta:
+      echarts:
+        optional: true
       zod:
         optional: true
 
@@ -2035,20 +2037,21 @@ snapshots:
       reselect: 5.2.0
       use-sync-external-store: 1.6.0(react@19.2.6)
 
-  '@cloudflare/kumo@2.2.2(@date-fns/tz@1.5.0)(@phosphor-icons/react@2.1.10(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(date-fns@4.2.1)(echarts@6.0.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)':
+  '@cloudflare/kumo@2.6.0(@date-fns/tz@1.5.0)(@phosphor-icons/react@2.1.10(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(date-fns@4.2.1)(echarts@6.0.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)':
     dependencies:
       '@base-ui/react': 1.5.0(@date-fns/tz@1.5.0)(date-fns@4.2.1)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       '@phosphor-icons/react': 2.1.10(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       '@shikijs/langs': 4.0.2
       '@shikijs/themes': 4.0.2
       clsx: 2.1.1
-      echarts: 6.0.0
       motion: 12.40.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       react: 19.2.6
       react-day-picker: 9.14.0(react@19.2.6)
       react-dom: 19.2.6(react@19.2.6)
       shiki: 4.0.2
       tailwind-merge: 3.6.0
+    optionalDependencies:
+      echarts: 6.0.0
     transitivePeerDependencies:
       - '@date-fns/tz'
       - '@emotion/is-prop-valid'

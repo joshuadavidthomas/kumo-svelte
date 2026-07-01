@@ -5,21 +5,17 @@
 </script>
 
 <div class="flex flex-col gap-2">
-  <Banner>This is a default banner.</Banner>
+  <Banner description="This is a default banner." />
 
-  <Banner variant="alert">
+  <Banner title="This is an alert banner." variant="alert">
     {#snippet icon()}
       <WarningIcon weight="fill" />
     {/snippet}
-
-    This is an alert banner.
   </Banner>
 
-  <Banner variant="error">
+  <Banner title="This is an error banner." variant="error">
     {#snippet icon()}
       <WarningOctagonIcon weight="fill" />
     {/snippet}
-
-    This is an error banner.
   </Banner>
 </div>

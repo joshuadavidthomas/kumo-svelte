@@ -11,6 +11,7 @@ sourceFile: components/banner
   import BannerCustomContentDemo from "./banner-custom-content-demo.svelte";
   import BannerDefaultDemo from "./banner-default-demo.svelte";
   import BannerErrorDemo from "./banner-error-demo.svelte";
+  import BannerSecondaryDemo from "./banner-secondary-demo.svelte";
   import BannerVariantsDemo from "./banner-variants-demo.svelte";
   import BannerWithActionDemo from "./banner-with-action-demo.svelte";
   import BannerWithActionsDemo from "./banner-with-actions-demo.svelte";
@@ -62,6 +63,12 @@ import { Banner } from "kumo-svelte/components/banner";
 
 <Example demo="banner-error-demo">
   <BannerErrorDemo />
+</Example>
+
+#### Secondary
+
+<Example demo="banner-secondary-demo">
+  <BannerSecondaryDemo />
 </Example>
 
 ### With icon
