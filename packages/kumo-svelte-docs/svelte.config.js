@@ -4,9 +4,12 @@ import { escapeSvelte, mdsvex } from "mdsvex";
 import rehypeSlug from "rehype-slug";
 import { createHighlighter } from "shiki";
 
-const theme = "vesper";
+const themes = {
+  light: "github-light",
+  dark: "vesper",
+};
 const highlighter = await createHighlighter({
-  themes: [theme],
+  themes: [themes.light, themes.dark],
   langs: ["bash", "css", "javascript", "json", "svelte", "typescript"],
 });
 
@@ -23,7 +26,9 @@ const config = {
       highlight: {
         highlighter: async (code, lang = "text") => {
           const loadedLang = highlighter.getLoadedLanguages().includes(lang) ? lang : "text";
-          const html = escapeSvelte(highlighter.codeToHtml(code, { lang: loadedLang, theme }));
+          const html = escapeSvelte(
+            highlighter.codeToHtml(code, { lang: loadedLang, themes, defaultColor: false }),
+          );
           return `{@html \`${html}\`}`;
         },
       },

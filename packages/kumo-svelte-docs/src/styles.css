@@ -50,4 +50,28 @@
     --tw-prose-th-borders: var(--color-kumo-line);
     --tw-prose-td-borders: var(--color-kumo-line);
   }
+
+  pre.shiki-themes {
+    overflow: hidden;
+    border: 1px solid var(--color-kumo-hairline);
+    border-radius: 0.5rem;
+  }
+
+  pre.shiki-themes,
+  pre.shiki-themes span {
+    color: var(--shiki-light) !important;
+    background-color: var(--shiki-light-bg) !important;
+  }
+
+  [data-mode="dark"] pre.shiki-themes,
+  [data-mode="dark"] pre.shiki-themes span {
+    color: var(--shiki-dark) !important;
+    background-color: var(--shiki-dark-bg) !important;
+  }
+
+  [data-docs-example-code] pre.shiki-themes {
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+  }
 }
