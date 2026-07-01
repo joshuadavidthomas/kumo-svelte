@@ -4,6 +4,8 @@
   "account_id": "0d52c99870b49aa52ccc7d5feca16714",
   "compatibility_date": "2026-07-01",
   "main": ".svelte-kit/cloudflare/_worker.js",
+  "workers_dev": true,
+  "preview_urls": true,
   "assets": {
     "binding": "ASSETS",
     "directory": ".svelte-kit/cloudflare",
