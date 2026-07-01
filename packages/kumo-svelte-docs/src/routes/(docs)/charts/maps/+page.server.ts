@@ -9,9 +9,7 @@ export const load: PageServerLoad = async ({ fetch }) => {
     const response = await fetch(WORLD_GEO_JSON_URL);
 
     if (!response.ok) {
-      console.warn(
-        `Failed to fetch BubbleMap GeoJSON: ${response.status} ${response.statusText}`,
-      );
+      console.warn(`Failed to fetch BubbleMap GeoJSON: ${response.status} ${response.statusText}`);
       return { geoJson: null };
     }
 
