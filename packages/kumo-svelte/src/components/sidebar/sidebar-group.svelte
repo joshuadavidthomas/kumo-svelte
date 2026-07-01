@@ -39,11 +39,7 @@
   <div
     data-slot="sidebar-group"
     data-sidebar="group"
-    class={cn(
-      "flex min-w-0 flex-col gap-0.5",
-      "group-data-[state=collapsed]/sidebar:gap-0",
-      className,
-    )}
+    class={cn("flex min-w-0 flex-col gap-y-px", className)}
     {...restProps}
   >
     {@render children?.()}

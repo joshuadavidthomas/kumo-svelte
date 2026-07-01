@@ -5,7 +5,7 @@ Svelte 5 components inspired by [Cloudflare's Kumo design system](https://github
 `kumo-svelte` brings Kumo's visual language, semantic tokens, and component patterns to Svelte. It uses [Bits UI](https://bits-ui.com/) for accessible primitives and keeps the public API Svelte-shaped.
 
 > [!NOTE]
-> This is a community package, not an official Cloudflare package. Expect API and parity fixes before `1.0`.
+> kumo-svelte is a community package and not associated with Cloudflare, Inc.
 
 ## Installation
 
@@ -19,7 +19,7 @@ Install the peer dependencies if your app does not already have them:
 pnpm add svelte tailwindcss
 ```
 
-Chart components also need ECharts:
+Chart components, including `TimeseriesChart`, `SankeyChart`, and `BubbleMap`, also need ECharts:
 
 ```bash
 pnpm add echarts
@@ -38,10 +38,6 @@ Additional style entrypoints are available if you want explicit files:
 @import "kumo-svelte/styles/tailwind";
 @import "kumo-svelte/styles/standalone";
 ```
-
-Kumo themes use semantic CSS variables. Set `data-mode="dark"` on a parent element to use dark mode.
-
-Use this package from a Svelte 5 app built with Vite or another toolchain that supports Svelte package exports.
 
 ## Getting Started
 
@@ -104,7 +100,7 @@ import { Dialog, Popover, Select } from "bits-ui";
 ## Documentation
 
 - Local docs: run `pnpm docs:dev`
-- Upstream Kumo: <https://github.com/cloudflare/kumo>
+- Kumo: <https://kumo-ui.com>
 
 ## Development
 
@@ -115,8 +111,6 @@ pnpm test
 pnpm docs:dev
 ```
 
-`pnpm check` verifies synced upstream theme files, formatting, linting, and type checking. `pnpm docs:dev` starts the local documentation site.
-
 ## License
 
-MIT. See [`LICENSE`](LICENSE).
+kumo-svelte is licensed under the MIT license. See the [`LICENSE`](LICENSE) file for more information.

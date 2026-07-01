@@ -1,0 +1,95 @@
+---
+title: Bubble Map
+description: A proportional-symbol map component for plotting values over GeoJSON using ECharts.
+sourceFile: components/chart
+---
+
+<script lang="ts">
+  import Example from "$lib/components/example.svelte";
+  import BubbleMapBasicDemo from "./bubble-map-basic-demo.svelte";
+  import BubbleMapCustomDemo from "./bubble-map-custom-demo.svelte";
+</script>
+
+`BubbleMap` plots data points by longitude and latitude over a GeoJSON base map. Bubble area scales with the `value` accessor.
+
+## Import
+
+BubbleMap requires `echarts` as a peer dependency. Register `MapChart`, `ScatterChart`, `GeoComponent`, `TooltipComponent`, and a renderer before rendering the component.
+
+```ts
+import { MapChart, ScatterChart } from "echarts/charts";
+import { GeoComponent, TooltipComponent } from "echarts/components";
+import * as echarts from "echarts/core";
+import { CanvasRenderer } from "echarts/renderers";
+
+echarts.use([MapChart, ScatterChart, GeoComponent, TooltipComponent, CanvasRenderer]);
+```
+
+```ts
+import { BubbleMap } from "kumo-svelte/components/chart";
+```
+
+## Usage
+
+```svelte
+<script lang="ts">
+  import { BubbleMap } from "kumo-svelte/components/chart";
+  import { echarts } from "./chart-echarts";
+
+  const data = [{ city: "London", requests: 980000, longitude: -0.1, latitude: 51.5 }];
+</script>
+
+<BubbleMap
+  {echarts}
+  geoJson={world}
+  {data}
+  lng="longitude"
+  lat="latitude"
+  name="city"
+  value="requests"
+/>
+```
+
+## Examples
+
+### Basic Bubble Map
+
+<Example demo="bubble-map-basic-demo">
+  <BubbleMapBasicDemo />
+</Example>
+
+### Custom Bubble Styling
+
+Use style callbacks to color or stroke bubbles from row data.
+
+<Example demo="bubble-map-custom-demo">
+  <BubbleMapCustomDemo />
+</Example>
+
+## API Reference
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| `echarts` | `typeof echarts` | Registered ECharts module instance. |
+| `geoJson` | `MapGeoJson` | GeoJSON `FeatureCollection` used as the land base. |
+| `data` | `T[]` | Raw data rows. |
+| `lng` / `lat` | `MapAccessor<T, number>` | Longitude and latitude accessors. |
+| `value` | `MapAccessor<T, number>` | Value accessor used for bubble sizing. |
+| `name` | `MapAccessor<T, string>` | Optional label accessor used by the default tooltip. |
+| `mapName` | `string` | Optional stable ECharts map registry name. |
+| `minRadius` / `maxRadius` | `number` | Bubble radius range in pixels. |
+| `bubbleSize` | `(value: number) => number` | Custom bubble radius function. |
+| `bubbleColor` | `MapStyle<T, string>` | Bubble fill color or row callback. |
+| `bubbleBorderColor` | `MapStyle<T, string>` | Bubble border color or row callback. |
+| `bubbleBorderWidth` | `MapStyle<T, number>` | Bubble border width or row callback. |
+| `center` | `[number, number]` | Optional map center as `[longitude, latitude]`. |
+| `zoom` | `number` | Initial map zoom. |
+| `roam` | `boolean` | Enables drag-to-pan and scroll-to-zoom. |
+| `showTooltip` | `boolean` | Shows the default tooltip. |
+| `valueFormat` | `(value: number) => string` | Formats values in the default tooltip. |
+| `tooltipFormatter` | `(row: T) => string` | Custom tooltip HTML. Sanitize user-provided content before returning it. |
+| `onBubbleHover` | `(row: T \| undefined) => void` | Called when the pointer enters or leaves a bubble. |
+| `onBubbleClick` | `(row: T) => void` | Called when a bubble is clicked. |
+| `height` | `number` | Chart height in pixels. |
+| `isDarkMode` | `boolean` | Uses the dark chart palette. |
+| `ref` | `ECharts \| null` | Bindable chart instance. |

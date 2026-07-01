@@ -23,6 +23,8 @@ import SidebarProviderComponent from "./sidebar-provider.svelte";
 import SidebarRailComponent from "./sidebar-rail.svelte";
 import SidebarResizeHandleComponent from "./sidebar-resize-handle.svelte";
 import SidebarSeparatorComponent from "./sidebar-separator.svelte";
+import SidebarSlidingViewComponent from "./sidebar-sliding-view.svelte";
+import SidebarSlidingViewsComponent from "./sidebar-sliding-views.svelte";
 import SidebarTriggerComponent from "./sidebar-trigger.svelte";
 
 export {
@@ -69,6 +71,10 @@ export {
   SidebarResizeHandleComponent as ResizeHandle,
   SidebarSeparatorComponent as SidebarSeparator,
   SidebarSeparatorComponent as Separator,
+  SidebarSlidingViewComponent as SidebarSlidingView,
+  SidebarSlidingViewComponent as SlidingView,
+  SidebarSlidingViewsComponent as SidebarSlidingViews,
+  SidebarSlidingViewsComponent as SlidingViews,
   SidebarTriggerComponent as SidebarTrigger,
   SidebarTriggerComponent as Trigger,
   SidebarCollapsibleComponent as SidebarCollapsible,
@@ -108,9 +114,12 @@ export type SidebarProviderProps = ComponentProps<typeof SidebarProviderComponen
 export type SidebarRailProps = ComponentProps<typeof SidebarRailComponent>;
 export type SidebarResizeHandleProps = ComponentProps<typeof SidebarResizeHandleComponent>;
 export type SidebarSeparatorProps = ComponentProps<typeof SidebarSeparatorComponent>;
+export type SidebarSlidingViewProps = ComponentProps<typeof SidebarSlidingViewComponent>;
+export type SidebarSlidingViewsProps = ComponentProps<typeof SidebarSlidingViewsComponent>;
 export type SidebarTriggerProps = ComponentProps<typeof SidebarTriggerComponent>;
 
 export { useSidebar } from "./context.svelte";
+export type { SidebarContextValue, SidebarState } from "./context.svelte";
 export {
   KUMO_SIDEBAR_DEFAULT_VARIANTS,
   KUMO_SIDEBAR_STYLING,
@@ -118,6 +127,8 @@ export {
   sidebarVariants,
   type KumoSidebarVariantsProps,
   type SidebarCollapsible as SidebarCollapsibleMode,
+  type SidebarCollapsible as SidebarCollapsibleType,
   type SidebarSide,
   type SidebarVariant,
 } from "./variants";
+export type SidebarMenuButtonSize = NonNullable<SidebarMenuButtonProps["size"]>;

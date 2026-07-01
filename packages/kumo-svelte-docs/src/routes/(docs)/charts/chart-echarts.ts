@@ -1,8 +1,16 @@
-import { BarChart, LineChart, PieChart, SankeyChart as EChartsSankeyChart } from "echarts/charts";
+import {
+  BarChart,
+  LineChart,
+  MapChart,
+  PieChart,
+  SankeyChart as EChartsSankeyChart,
+  ScatterChart,
+} from "echarts/charts";
 import {
   AriaComponent,
   AxisPointerComponent,
   BrushComponent,
+  GeoComponent,
   GridComponent,
   LegendComponent,
   ToolboxComponent,
@@ -18,10 +26,13 @@ echarts.use([
   BrushComponent,
   CanvasRenderer,
   EChartsSankeyChart,
+  GeoComponent,
   GridComponent,
   LegendComponent,
   LineChart,
+  MapChart,
   PieChart,
+  ScatterChart,
   ToolboxComponent,
   TooltipComponent,
 ]);

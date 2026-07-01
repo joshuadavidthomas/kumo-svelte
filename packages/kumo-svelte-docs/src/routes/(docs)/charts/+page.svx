@@ -6,6 +6,7 @@ sourceFile: components/chart
 
 <script lang="ts">
   import Example from "$lib/components/example.svelte";
+  import BubbleMapPreviewDemo from "./index/bubble-map-preview-demo.svelte";
   import LegendCompactDemo from "./index/legend-compact-demo.svelte";
   import LegendDefaultDemo from "./index/legend-default-demo.svelte";
   import PieChartPreviewDemo from "./index/pie-chart-preview-demo.svelte";
@@ -21,12 +22,22 @@ npm install echarts
 For optimal bundle size, import only the ECharts components you need. The examples below show a shared setup module used by the docs.
 
 ```ts
-import { BarChart, LineChart, PieChart } from "echarts/charts";
-import { GridComponent, TooltipComponent } from "echarts/components";
+import { BarChart, LineChart, MapChart, PieChart, ScatterChart } from "echarts/charts";
+import { GeoComponent, GridComponent, TooltipComponent } from "echarts/components";
 import * as echarts from "echarts/core";
 import { CanvasRenderer } from "echarts/renderers";
 
-echarts.use([BarChart, LineChart, PieChart, GridComponent, TooltipComponent, CanvasRenderer]);
+echarts.use([
+  BarChart,
+  LineChart,
+  MapChart,
+  PieChart,
+  ScatterChart,
+  GeoComponent,
+  GridComponent,
+  TooltipComponent,
+  CanvasRenderer,
+]);
 ```
 
 ## Available Charts
@@ -36,6 +47,12 @@ echarts.use([BarChart, LineChart, PieChart, GridComponent, TooltipComponent, Can
     <h3 class="mb-1 text-base font-semibold text-kumo-default">Timeseries Chart</h3>
     <p class="mb-4 text-sm text-kumo-subtle">A specialized chart for displaying time-based data.</p>
     <TimeseriesChartPreviewDemo />
+  </a>
+
+  <a class="not-prose rounded-lg border border-kumo-hairline bg-kumo-base p-4 no-underline" href="/charts/bubble-map">
+    <h3 class="mb-1 text-base font-semibold text-kumo-default">Bubble Map</h3>
+    <p class="mb-4 text-sm text-kumo-subtle">A proportional-symbol map for GeoJSON data.</p>
+    <BubbleMapPreviewDemo />
   </a>
 
   <a class="not-prose rounded-lg border border-kumo-hairline bg-kumo-base p-4 no-underline" href="/charts/custom">

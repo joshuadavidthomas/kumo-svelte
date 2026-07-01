@@ -1,17 +1,21 @@
 ---
 title: Sidebar
-description: A composable sidebar navigation component with collapsible groups, icon-only mode, and responsive mobile support.
+description: A composable sidebar navigation component with collapsible groups, icon-only mode, sliding views, and responsive mobile support.
 sourceFile: components/sidebar
 ---
 
 <script lang="ts">
   import ApiReference from "$lib/components/api-reference.svelte";
   import Example from "$lib/components/example.svelte";
+  import SidebarAutoScrollDemo from "./sidebar-auto-scroll-demo.svelte";
   import SidebarBasicDemo from "./sidebar-basic-demo.svelte";
   import SidebarCollapsibleGroupDemo from "./sidebar-collapsible-group-demo.svelte";
   import SidebarFullDemo from "./sidebar-full-demo.svelte";
+  import SidebarMobileDemo from "./sidebar-mobile-demo.svelte";
+  import SidebarPeekingDemo from "./sidebar-peeking-demo.svelte";
   import SidebarResizableDemo from "./sidebar-resizable-demo.svelte";
   import SidebarRightDemo from "./sidebar-right-demo.svelte";
+  import SidebarSlidingViewsDemo from "./sidebar-sliding-views-demo.svelte";
   import SidebarToggleDemo from "./sidebar-toggle-demo.svelte";
 </script>
 
@@ -28,7 +32,7 @@ import * as Sidebar from "kumo-svelte/components/sidebar";
 ## Usage
 
 At minimum you need `Sidebar.Provider`,
-  `Sidebar`,
+  `Sidebar.Root`,
   `Sidebar.Content`,
   `Sidebar.Menu`,
   and `Sidebar.MenuButton`. Add `Sidebar.Header` and `Sidebar.Footer` to pin content above or below the scroll area. Use `Sidebar.Group` and `Sidebar.GroupLabel` to organize sections.
@@ -39,15 +43,16 @@ At minimum you need `Sidebar.Provider`,
   import * as Sidebar from "kumo-svelte/components/sidebar";
 </script>
 
-{#snippet homeIcon()}<HouseIcon />{/snippet}
-
 <Sidebar.Provider defaultOpen>
   <Sidebar.Root>
     <Sidebar.Content>
       <Sidebar.Group>
         <Sidebar.GroupLabel>Navigation</Sidebar.GroupLabel>
         <Sidebar.Menu>
-          <Sidebar.MenuButton icon={homeIcon} active>Home</Sidebar.MenuButton>
+          <Sidebar.MenuButton active>
+            {#snippet icon()}<HouseIcon />{/snippet}
+            Home
+          </Sidebar.MenuButton>
         </Sidebar.Menu>
       </Sidebar.Group>
     </Sidebar.Content>
@@ -66,28 +71,12 @@ The minimum viable sidebar: just groups, menu buttons, and collapsible sub-menus
   <SidebarBasicDemo />
 </Example>
 
-### Collapsible Groups
-
-Add `collapsible` to a `Sidebar.Group` and wrap the menu in `Sidebar.GroupContent` to enable animated expand/collapse via the group label.
-
-<Example demo="sidebar-collapsible-group-demo">
-  <SidebarCollapsibleGroupDemo />
-</Example>
-
 ### Toggle & Collapsed State
 
 Use `Sidebar.Trigger` in the footer or `useSidebar().toggleSidebar` programmatically. Pass `tooltip` to show labels on hover when collapsed.
 
 <Example demo="sidebar-toggle-demo">
   <SidebarToggleDemo />
-</Example>
-
-### Full Example
-
-Kitchen sink: header, search input, badges, collapsible sub-menus, and a footer action.
-
-<Example demo="sidebar-full-demo">
-  <SidebarFullDemo />
 </Example>
 
 ### Resizable
@@ -100,16 +89,86 @@ Drag the edge to resize. Dragging below `minWidth` collapses; dragging outward f
 
 ### Right Side
 
-Use `side="right"` for a sidebar on the right edge. Place main content before `Sidebar` in the DOM.
+Use `side="right"` for a sidebar on the right edge. Place main content before `Sidebar.Root` in the DOM.
 
 <Example demo="sidebar-right-demo">
   <SidebarRightDemo />
+</Example>
+
+### Peeking
+
+Set `peekable` to temporarily expand the collapsed sidebar on hover or focus.
+
+<Example demo="sidebar-peeking-demo">
+  <SidebarPeekingDemo />
+</Example>
+
+### Auto Scroll
+
+Set `autoScrollOnOpen` on a nested `Sidebar.Collapsible` to keep newly revealed items in view.
+
+<Example demo="sidebar-auto-scroll-demo">
+  <SidebarAutoScrollDemo />
+</Example>
+
+### Sliding Views
+
+Use `Sidebar.SlidingViews` and `Sidebar.SlidingView` to animate between navigation surfaces while keeping inactive views hidden from assistive technology and keyboard focus.
+
+<Example demo="sidebar-sliding-views-demo">
+  <SidebarSlidingViewsDemo />
+</Example>
+
+### Full Example
+
+Kitchen sink: account switcher, sliding views, badges, nested collapsible sub-menus, and a footer action.
+
+<Example demo="sidebar-full-demo">
+  <SidebarFullDemo />
+</Example>
+
+### Mobile
+
+Use `mobileBreakpoint` to choose when the sidebar switches to a mobile drawer. This demo sets a high breakpoint to force the mobile variant.
+
+<Example demo="sidebar-mobile-demo">
+  <SidebarMobileDemo />
+</Example>
+
+### Collapsible Groups
+
+Add `collapsible` to a `Sidebar.Group` and wrap the menu in `Sidebar.GroupContent` to enable animated expand/collapse via the group label. This is a Svelte-specific convenience on top of the upstream Sidebar primitives.
+
+<Example demo="sidebar-collapsible-group-demo">
+  <SidebarCollapsibleGroupDemo />
 </Example>
 
 ## API Reference
 
 <ApiReference family="Sidebar" />
 
-## Icon Props
+## Icon Snippets
 
-For icon props, pass a snippet such as `{#snippet homeIcon()}<HouseIcon />{/snippet}` and then `icon={homeIcon}`.
+For menu button icons, place a named `icon` snippet inside `Sidebar.MenuButton` so the icon stays colocated with its label.
+
+```svelte
+<Sidebar.MenuButton active>
+  {#snippet icon()}<HouseIcon />{/snippet}
+  Home
+</Sidebar.MenuButton>
+```
+
+## Child Snippets
+
+`Sidebar.MenuButton` and `Sidebar.MenuSubButton` render a button or link by default. Use a `child` snippet when you need to render a custom interactive element, and forward the provided `props` to that element. This follows the [Bits UI child snippet pattern](https://bits-ui.com/docs/child-snippet).
+
+```svelte
+<Sidebar.MenuButton>
+  {#snippet child({ props })}
+    <a href="/home" {...props}>
+      <HouseIcon />
+      <span>Home</span>
+    </a>
+  {/snippet}
+</Sidebar.MenuButton>
+```
