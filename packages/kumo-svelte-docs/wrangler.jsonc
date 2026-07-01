@@ -1,0 +1,10 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "kumo-svelte-docs",
+  "account_id": "89d731ba65ea3354c4c94f167dc810ec",
+  "compatibility_date": "2026-07-01",
+  "assets": {
+    "directory": "build",
+    "not_found_handling": "404-page",
+  },
+}
