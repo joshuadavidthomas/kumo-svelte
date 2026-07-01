@@ -111,7 +111,7 @@ import { Dialog, Popover, Select } from "bits-ui";
 
 ## Documentation
 
-- Local docs: run `pnpm docs:dev`
+- Docs: <https://kumo-svelte.joshthomas.dev>
 - Kumo: <https://kumo-ui.com>
 
 ## Development
