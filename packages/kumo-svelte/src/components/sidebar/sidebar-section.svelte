@@ -15,23 +15,29 @@
   let sectionClass = $derived.by(() => {
     if (section === "header") {
       return cn(
-        "flex items-center gap-2 border-b border-kumo-hairline px-2 py-3",
-        "overflow-hidden group-data-[state=collapsed]/sidebar:border-b-0",
+        "flex h-[58px] shrink-0 items-center gap-1 overflow-hidden border-b border-kumo-line px-3",
+        className,
       );
     }
     if (section === "content") {
       return cn(
-        "flex min-w-0 flex-1 flex-col gap-2 overflow-y-auto overflow-x-hidden px-2 py-2",
-        "group-data-[state=collapsed]/sidebar:gap-0 group-data-[state=collapsed]/sidebar:overflow-x-hidden group-data-[state=collapsed]/sidebar:py-0",
+        "relative min-w-0 flex-1 overflow-y-auto overflow-x-hidden px-[11px] py-3 group-not-data-[state=collapsed]/sidebar:px-3.5",
+        "transition-[padding] duration-(--sidebar-animation-duration)",
+        "[mask-image:linear-gradient(to_bottom,transparent_0,black_24px,black_calc(100%-24px),transparent_100%)]",
+        className,
       );
     }
     return cn(
-      "flex min-w-0 flex-col gap-2 border-t border-kumo-hairline px-2 py-2",
-      "group-data-[state=collapsed]/sidebar:border-t-0 group-data-[state=collapsed]/sidebar:py-1",
+      "sticky bottom-0 flex h-12 w-(--sidebar-width) shrink-0 items-center gap-4 overflow-hidden whitespace-nowrap border-t border-kumo-line bg-(--sidebar-bg)",
+      "px-[11px] group-not-data-[state=collapsed]/sidebar:px-4",
+      "transition-[width,padding] duration-(--sidebar-animation-duration) ease-(--sidebar-easing)",
+      "motion-reduce:transition-none",
+      "group-data-[state=collapsed]/sidebar:w-(--sidebar-width-icon) group-data-[state=collapsed]/sidebar:border-r group-data-[state=collapsed]/sidebar:border-kumo-line group-data-[state=collapsed]/sidebar:bg-clip-padding",
+      className,
     );
   });
 </script>
 
-<div data-sidebar={section} class={cn(sectionClass, className)} {...restProps}>
+<div data-sidebar={section} class={sectionClass} {...restProps}>
   {@render children?.()}
 </div>

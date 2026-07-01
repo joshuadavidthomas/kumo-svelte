@@ -15,6 +15,6 @@
   setSidebarMenuItemContext(true);
 </script>
 
-<li data-sidebar="menu-item" class={cn("relative", className)} {...restProps}>
+<li data-sidebar="menu-item" class={cn("relative group-data-[state=collapsed]/sidebar:overflow-hidden", className)} {...restProps}>
   {@render children?.()}
 </li>

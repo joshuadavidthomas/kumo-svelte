@@ -21,9 +21,10 @@ and this project attempts to adhere to [Semantic Versioning](https://semver.org/
 ### Added
 
 - Initial Svelte 5 port of Cloudflare's Kumo component library.
-- Component-family exports under `kumo-svelte/components/*`.
 - Kumo theme styles and package style exports.
+- Component-family exports under `kumo-svelte/components/*`.
 - Code highlighting components in `kumo-svelte/components/code` and server helpers in `kumo-svelte/components/code/server`.
-- Chart components backed by ECharts.
+- Chart components backed by ECharts, including timeseries, Sankey, and BubbleMap charts.
+- Toolbar components and sidebar sliding views.
 - `DeleteResource` block export.
 - Documentation site with component examples, API reference tables, theme toggle, page actions, and Markdown views.

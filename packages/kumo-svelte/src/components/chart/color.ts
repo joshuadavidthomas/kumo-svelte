@@ -42,6 +42,16 @@ export type ChartSemanticColorName =
   | "Disabled"
   | "Skeleton";
 
+export interface MapColors {
+  area: string;
+  bubble: string;
+}
+
+const mapAreaByMode = {
+  light: "#E5E7EB",
+  dark: "#2B2C31",
+} as const;
+
 const sequentialLight = {
   blues: ["#E1EAF4", "#8EBCF6", "#4290F0", "#0E58B4", "#03254F"],
 };
@@ -89,5 +99,14 @@ export const ChartPalette = {
       dark: { primary: "#9CA3AF", secondary: "#6B7280" },
     };
     return isDarkMode ? colors.dark[variant] : colors.light[variant];
+  },
+
+  mapColors(isDarkMode = false): MapColors {
+    const mode = isDarkMode ? "dark" : "light";
+
+    return {
+      area: mapAreaByMode[mode],
+      bubble: ChartPalette.categorical(0, isDarkMode),
+    };
   },
 };

@@ -2,26 +2,42 @@
   import ChartBarIcon from "phosphor-svelte/lib/ChartBarIcon";
   import DatabaseIcon from "phosphor-svelte/lib/DatabaseIcon";
   import HouseIcon from "phosphor-svelte/lib/HouseIcon";
+  import type { Component } from "svelte";
   import * as Sidebar from "kumo-svelte/components/sidebar";
+  import BrandLogo from "./sidebar-brand-logo.svelte";
   import DemoShell from "./sidebar-demo-shell.svelte";
   import DemoMain from "./sidebar-main.svelte";
+
+  interface MenuItem {
+    active?: boolean;
+    icon: Component;
+    label: string;
+  }
+
+  const menuItems: MenuItem[] = [
+    { label: "Home", icon: HouseIcon, active: true },
+    { label: "Analytics", icon: ChartBarIcon },
+    { label: "Storage", icon: DatabaseIcon },
+  ];
 </script>
 
-{#snippet homeIcon()}<HouseIcon />{/snippet}
-{#snippet chartIcon()}<ChartBarIcon />{/snippet}
-{#snippet databaseIcon()}<DatabaseIcon />{/snippet}
-
 <DemoShell>
-  <Sidebar.Provider defaultOpen resizable defaultWidth={240} minWidth={180} maxWidth={400} class="h-full min-h-0!">
+  <Sidebar.Provider contained defaultOpen resizable defaultWidth={240} minWidth={180} maxWidth={400} class="h-full min-h-0!">
     <Sidebar.Root>
-      <Sidebar.Header><div class="px-3 text-sm font-semibold text-kumo-strong">Acme Inc</div></Sidebar.Header>
+      <Sidebar.Header>
+        <BrandLogo />
+      </Sidebar.Header>
       <Sidebar.Content>
         <Sidebar.Group>
           <Sidebar.GroupLabel>Overview</Sidebar.GroupLabel>
           <Sidebar.Menu>
-            <Sidebar.MenuButton icon={homeIcon} active>Home</Sidebar.MenuButton>
-            <Sidebar.MenuButton icon={chartIcon}>Analytics</Sidebar.MenuButton>
-            <Sidebar.MenuButton icon={databaseIcon}>Storage</Sidebar.MenuButton>
+            {#each menuItems as item (item.label)}
+              {@const Icon = item.icon}
+              <Sidebar.MenuButton active={item.active}>
+                {#snippet icon()}<Icon />{/snippet}
+                {item.label}
+              </Sidebar.MenuButton>
+            {/each}
           </Sidebar.Menu>
         </Sidebar.Group>
       </Sidebar.Content>

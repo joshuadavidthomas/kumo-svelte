@@ -247,6 +247,11 @@
       "types": "./src/components/toast/index.ts",
       "default": "./src/components/toast/index.ts"
     },
+    "./components/toolbar": {
+      "svelte": "./src/components/toolbar/index.ts",
+      "types": "./src/components/toolbar/index.ts",
+      "default": "./src/components/toolbar/index.ts"
+    },
     "./components/tooltip": {
       "svelte": "./src/components/tooltip/index.ts",
       "types": "./src/components/tooltip/index.ts",

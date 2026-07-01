@@ -38,6 +38,7 @@
   import TabsHomeDemo from "./(docs)/components/tabs/tabs-home-demo.svelte";
   import TextHomeDemo from "./(docs)/components/text/text-home-demo.svelte";
   import ToastHomeDemo from "./(docs)/components/toast/toast-home-demo.svelte";
+  import ToolbarHomeDemo from "./(docs)/components/toolbar/toolbar-home-demo.svelte";
   import TooltipHomeDemo from "./(docs)/components/tooltip/tooltip-home-demo.svelte";
 
   const componentRoutes: Record<string, string> = {
@@ -80,6 +81,7 @@
     tabs: "/components/tabs",
     text: "/components/text",
     toast: "/components/toast",
+    toolbar: "/components/toolbar",
     tooltip: "/components/tooltip",
   };
 
@@ -104,6 +106,7 @@
     { name: "Tabs", id: "tabs", Component: TabsHomeDemo },
     { name: "Badge", id: "badge", Component: BadgeHomeDemo },
     { name: "Toast", id: "toast", Component: ToastHomeDemo },
+    { name: "Toolbar", id: "toolbar", Component: ToolbarHomeDemo },
     { name: "Pagination", id: "pagination", Component: PaginationHomeDemo },
     { name: "InputArea", id: "input-area", Component: InputAreaHomeDemo },
     { name: "InputGroup", id: "input-group", Component: InputGroupHomeDemo },

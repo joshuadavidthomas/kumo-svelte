@@ -92,6 +92,8 @@ const genericAliases = new Set([
   "Body",
   "Footer",
   "ResizeHandle",
+  "SlidingView",
+  "SlidingViews",
 ]);
 
 function pascalCase(value) {

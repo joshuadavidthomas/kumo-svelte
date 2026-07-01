@@ -11,8 +11,8 @@
 
 <CaretRightIcon
   class={cn(
-    "ml-auto size-4 shrink-0 text-kumo-subtle transition-transform duration-200",
-    "group-data-[state=open]/menu-button:rotate-90",
+    "ml-auto size-3 shrink-0 opacity-40 transition-[transform,rotate,opacity] duration-200",
+    "group-hover/menu-button:opacity-100 group-data-[state=open]/menu-button:rotate-90",
     "group-data-[state=collapsed]/sidebar:hidden",
     className,
   )}

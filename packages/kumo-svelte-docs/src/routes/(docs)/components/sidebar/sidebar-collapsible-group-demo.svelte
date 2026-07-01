@@ -6,40 +6,62 @@
   import HouseIcon from "phosphor-svelte/lib/HouseIcon";
   import LockIcon from "phosphor-svelte/lib/LockIcon";
   import ShieldCheckIcon from "phosphor-svelte/lib/ShieldCheckIcon";
+  import type { Component } from "svelte";
   import * as Sidebar from "kumo-svelte/components/sidebar";
   import DemoShell from "./sidebar-demo-shell.svelte";
   import DemoMain from "./sidebar-main.svelte";
+
+  interface MenuItem {
+    active?: boolean;
+    icon: Component;
+    label: string;
+  }
+
+  const overviewItems: MenuItem[] = [
+    { label: "Home", icon: HouseIcon, active: true },
+    { label: "Analytics", icon: ChartBarIcon },
+    { label: "Domains", icon: GlobeIcon },
+  ];
+
+  const buildItems: MenuItem[] = [
+    { label: "Compute", icon: CodeIcon },
+    { label: "Storage", icon: DatabaseIcon },
+  ];
+
+  const protectItems: MenuItem[] = [
+    { label: "Security", icon: ShieldCheckIcon },
+    { label: "Zero Trust", icon: LockIcon },
+  ];
 </script>
 
-{#snippet homeIcon()}<HouseIcon />{/snippet}
-{#snippet chartIcon()}<ChartBarIcon />{/snippet}
-{#snippet globeIcon()}<GlobeIcon />{/snippet}
-{#snippet codeIcon()}<CodeIcon />{/snippet}
-{#snippet databaseIcon()}<DatabaseIcon />{/snippet}
-{#snippet shieldIcon()}<ShieldCheckIcon />{/snippet}
-{#snippet lockIcon()}<LockIcon />{/snippet}
-
 <DemoShell>
-  <Sidebar.Provider defaultOpen class="h-full min-h-0!">
+  <Sidebar.Provider contained defaultOpen class="h-full min-h-0!">
     <Sidebar.Root>
       <Sidebar.Content>
-        <Sidebar.Group collapsible defaultOpen>
+        <Sidebar.Group>
           <Sidebar.GroupLabel>Overview</Sidebar.GroupLabel>
-          <Sidebar.GroupContent>
-            <Sidebar.Menu>
-              <Sidebar.MenuButton icon={homeIcon} active>Home</Sidebar.MenuButton>
-              <Sidebar.MenuButton icon={chartIcon}>Analytics</Sidebar.MenuButton>
-              <Sidebar.MenuButton icon={globeIcon}>Domains</Sidebar.MenuButton>
-            </Sidebar.Menu>
-          </Sidebar.GroupContent>
+          <Sidebar.Menu>
+            {#each overviewItems as item (item.label)}
+              {@const Icon = item.icon}
+              <Sidebar.MenuButton active={item.active}>
+                {#snippet icon()}<Icon />{/snippet}
+                {item.label}
+              </Sidebar.MenuButton>
+            {/each}
+          </Sidebar.Menu>
         </Sidebar.Group>
 
         <Sidebar.Group collapsible defaultOpen>
           <Sidebar.GroupLabel>Build</Sidebar.GroupLabel>
           <Sidebar.GroupContent>
             <Sidebar.Menu>
-              <Sidebar.MenuButton icon={codeIcon}>Compute</Sidebar.MenuButton>
-              <Sidebar.MenuButton icon={databaseIcon}>Storage</Sidebar.MenuButton>
+              {#each buildItems as item (item.label)}
+                {@const Icon = item.icon}
+                <Sidebar.MenuButton>
+                  {#snippet icon()}<Icon />{/snippet}
+                  {item.label}
+                </Sidebar.MenuButton>
+              {/each}
             </Sidebar.Menu>
           </Sidebar.GroupContent>
         </Sidebar.Group>
@@ -48,8 +70,13 @@
           <Sidebar.GroupLabel>Protect & Connect</Sidebar.GroupLabel>
           <Sidebar.GroupContent>
             <Sidebar.Menu>
-              <Sidebar.MenuButton icon={shieldIcon}>Security</Sidebar.MenuButton>
-              <Sidebar.MenuButton icon={lockIcon}>Zero Trust</Sidebar.MenuButton>
+              {#each protectItems as item (item.label)}
+                {@const Icon = item.icon}
+                <Sidebar.MenuButton>
+                  {#snippet icon()}<Icon />{/snippet}
+                  {item.label}
+                </Sidebar.MenuButton>
+              {/each}
             </Sidebar.Menu>
           </Sidebar.GroupContent>
         </Sidebar.Group>

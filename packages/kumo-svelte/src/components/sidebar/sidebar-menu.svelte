@@ -15,8 +15,7 @@
 <ul
   data-sidebar="menu"
   class={cn(
-    "m-0 flex min-w-0 list-none flex-col gap-0.5 p-0",
-    "group-data-[state=collapsed]/sidebar:gap-0",
+    "m-0 flex min-w-0 list-none flex-col items-stretch gap-y-px p-0",
     className,
   )}
   {...restProps}

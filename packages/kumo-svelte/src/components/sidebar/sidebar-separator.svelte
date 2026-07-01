@@ -3,15 +3,13 @@
   import { cn } from "../../utils";
 
   export interface SidebarSeparatorProps
-    extends Omit<HTMLAttributes<HTMLHRElement>, "class"> {
+    extends Omit<HTMLAttributes<HTMLDivElement>, "class"> {
     class?: string;
   }
 
   let { class: className, ...restProps }: SidebarSeparatorProps = $props();
 </script>
 
-<hr
-  data-sidebar="separator"
-  class={cn("mx-2 h-px min-h-px border-0 bg-kumo-hairline", className)}
-  {...restProps}
-/>
+<div data-sidebar="separator" class={cn("my-3 px-2", className)} {...restProps}>
+  <div class="border-b border-kumo-line"></div>
+</div>

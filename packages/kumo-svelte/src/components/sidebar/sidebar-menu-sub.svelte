@@ -15,8 +15,8 @@
 <ul
   data-sidebar="menu-sub"
   class={cn(
-    "m-0 ml-3.5 flex min-w-0 list-none flex-col gap-0.5 border-l border-kumo-hairline p-0 pl-2.5",
-    "group-data-[state=collapsed]/sidebar:hidden",
+    "relative m-0 flex min-w-0 list-none flex-col gap-y-px overflow-hidden p-0 pr-0 pl-7",
+    "before:absolute before:inset-y-px before:left-[19px] before:z-10 before:w-px before:bg-kumo-line",
     className,
   )}
   {...restProps}

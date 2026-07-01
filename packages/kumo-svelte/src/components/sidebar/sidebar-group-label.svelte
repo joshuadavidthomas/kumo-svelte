@@ -7,7 +7,7 @@
   import SidebarCollapsibleTrigger from "./sidebar-collapsible-trigger.svelte";
 
   export interface SidebarGroupLabelProps
-    extends Omit<HTMLAttributes<HTMLDivElement>, "children" | "class"> {
+    extends Omit<HTMLAttributes<HTMLElement>, "children" | "class"> {
     children?: Snippet;
     class?: string;
   }
@@ -20,6 +20,7 @@
   <SidebarCollapsibleTrigger>
     {#snippet child({ props })}
       <button
+        {...restProps}
         {...props}
         type="button"
         data-slot="sidebar-group-label"
@@ -43,12 +44,21 @@
     data-slot="sidebar-group-label"
     data-sidebar="group-label"
     class={cn(
-      "truncate px-3 py-1 text-xs font-medium text-kumo-subtle",
-      "group-data-[state=collapsed]/sidebar:hidden",
+      "grid overflow-hidden",
+      "transition-[grid-template-rows,margin,border-color] duration-(--sidebar-animation-duration) ease-(--sidebar-easing)",
+      "group-data-[mobile=true]/sidebar:transition-none",
+      "my-3 grid-rows-[0fr] border-b border-kumo-line",
+      "[[data-sidebar=group]:first-child_&]:my-0 [[data-sidebar=group]:first-child_&]:border-transparent",
+      "group-not-data-[state=collapsed]/sidebar:my-0 group-not-data-[state=collapsed]/sidebar:grid-rows-[1fr] group-not-data-[state=collapsed]/sidebar:border-transparent",
+      "group-data-[mobile=true]/sidebar:my-0 group-data-[mobile=true]/sidebar:grid-rows-[1fr] group-data-[mobile=true]/sidebar:border-transparent",
       className,
     )}
     {...restProps}
   >
-    {@render children?.()}
+    <div class="min-h-0 min-w-0">
+      <div class="mt-4 mb-2 truncate px-3 text-sm font-medium text-kumo-subtle [[data-sidebar=group]:first-child_&]:mt-2">
+        {@render children?.()}
+      </div>
+    </div>
   </div>
 {/if}

@@ -1,10 +1,13 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
   import { Collapsible as CollapsiblePrimitive } from "bits-ui";
+  import { setSidebarCollapsibleContext } from "./context.svelte";
 
   export interface SidebarCollapsibleProps {
+    autoScrollOnOpen?: boolean;
     children: Snippet;
     class?: string;
+    defaultOpen?: boolean;
     disabled?: boolean;
     id?: string;
     open?: boolean;
@@ -13,14 +16,25 @@
   }
 
   let {
+    autoScrollOnOpen = false,
     children,
     class: className,
+    defaultOpen = false,
     disabled = false,
     id,
-    open = $bindable(false),
+    open = $bindable(defaultOpen),
     onOpenChange,
     onOpenChangeComplete,
   }: SidebarCollapsibleProps = $props();
+
+  setSidebarCollapsibleContext({
+    get autoScrollOnOpen() {
+      return autoScrollOnOpen;
+    },
+    get open() {
+      return open;
+    },
+  });
 </script>
 
 <CollapsiblePrimitive.Root

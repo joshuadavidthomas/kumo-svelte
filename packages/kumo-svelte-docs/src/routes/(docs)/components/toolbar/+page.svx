@@ -1,0 +1,84 @@
+---
+title: Toolbar
+description: A grouped action bar for buttons, inputs, and compact resource controls.
+sourceFile: components/toolbar
+---
+
+<script lang="ts">
+  import ApiReference from "$lib/components/api-reference.svelte";
+  import Example from "$lib/components/example.svelte";
+  import ToolbarBasicDemo from "./toolbar-basic-demo.svelte";
+  import ToolbarDisabledDemo from "./toolbar-disabled-demo.svelte";
+  import ToolbarSearchDemo from "./toolbar-search-demo.svelte";
+  import ToolbarSizesDemo from "./toolbar-sizes-demo.svelte";
+</script>
+
+<Example demo="toolbar-basic-demo">
+  <ToolbarBasicDemo />
+</Example>
+
+## Import
+
+```ts
+import * as Toolbar from "kumo-svelte/components/toolbar";
+```
+
+## Usage
+
+```svelte
+<script lang="ts">
+  import PlusIcon from "phosphor-svelte/lib/PlusIcon";
+  import * as Toolbar from "kumo-svelte/components/toolbar";
+</script>
+
+<Toolbar.Root aria-label="Resource actions">
+  <Toolbar.Button icon={PlusIcon}>Create</Toolbar.Button>
+  <Toolbar.Button>Refresh</Toolbar.Button>
+</Toolbar.Root>
+```
+
+## Examples
+
+### Actions
+
+Use `Toolbar.Button` for related actions that should read as one grouped control.
+
+<Example demo="toolbar-basic-demo">
+  <ToolbarBasicDemo />
+</Example>
+
+### Search
+
+Use `Toolbar.Input` for a plain text input or `Toolbar.InputGroup` when the field needs addons, icons, or inline buttons.
+
+<Example demo="toolbar-search-demo">
+  <ToolbarSearchDemo />
+</Example>
+
+### Sizes
+
+The toolbar `size` flows to nested buttons, inputs, and input groups.
+
+<Example demo="toolbar-sizes-demo">
+  <ToolbarSizesDemo />
+</Example>
+
+### Focusable Disabled Controls
+
+Set `focusableWhenDisabled` when disabled toolbar controls should stay reachable for tooltip or status context. The control receives `aria-disabled` and suppresses activation.
+
+<Example demo="toolbar-disabled-demo">
+  <ToolbarDisabledDemo />
+</Example>
+
+## API Reference
+
+<ApiReference family="Toolbar" />
+
+## Accessibility
+
+- Toolbar renders with `role="toolbar"` by default. Provide `aria-label` when the toolbar does not have a visible label.
+- Arrow keys move focus between controls. `Home` and `End` move to the first and last focusable control.
+- Text editing controls keep their native arrow-key behavior.
+- Use `aria-orientation="vertical"` for vertical toolbars so up/down arrows move focus.
+- Icon-only buttons need an `aria-label`.

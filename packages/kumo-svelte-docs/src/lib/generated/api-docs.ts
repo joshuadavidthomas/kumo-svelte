@@ -4717,6 +4717,11 @@ export const apiDocs: ApiComponentDoc[] = [
         required: false,
       },
       {
+        name: "contentClassName",
+        type: "string",
+        required: false,
+      },
+      {
         name: "ref",
         type: "HTMLElement | null",
         required: false,
@@ -4730,6 +4735,12 @@ export const apiDocs: ApiComponentDoc[] = [
     source: "kumo-svelte/src/components/sidebar/sidebar-collapsible.svelte",
     props: [
       {
+        name: "autoScrollOnOpen",
+        type: "boolean",
+        required: false,
+        default: "false",
+      },
+      {
         name: "children",
         type: "Snippet",
         required: true,
@@ -4738,6 +4749,12 @@ export const apiDocs: ApiComponentDoc[] = [
         name: "class",
         type: "string",
         required: false,
+      },
+      {
+        name: "defaultOpen",
+        type: "boolean",
+        required: false,
+        default: "false",
       },
       {
         name: "disabled",
@@ -4754,7 +4771,7 @@ export const apiDocs: ApiComponentDoc[] = [
         name: "open",
         type: "boolean",
         required: false,
-        default: "false",
+        default: "defaultOpen",
       },
       {
         name: "onOpenChange",
@@ -4975,6 +4992,12 @@ export const apiDocs: ApiComponentDoc[] = [
         default: "false",
       },
       {
+        name: "child",
+        type: "Snippet<[{ props: ChildProps }]>",
+        required: false,
+        description: "Render a custom interactive element. Spread `props` onto that element.",
+      },
+      {
         name: "children",
         type: "Snippet",
         required: false,
@@ -5070,6 +5093,12 @@ export const apiDocs: ApiComponentDoc[] = [
         default: "false",
       },
       {
+        name: "child",
+        type: "Snippet<[{ props: ChildProps }]>",
+        required: false,
+        description: "Render a custom interactive element. Spread `props` onto that element.",
+      },
+      {
         name: "children",
         type: "Snippet",
         required: false,
@@ -5114,6 +5143,12 @@ export const apiDocs: ApiComponentDoc[] = [
     source: "kumo-svelte/src/components/sidebar/sidebar-provider.svelte",
     props: [
       {
+        name: "animationDuration",
+        type: "number",
+        required: false,
+        default: "KUMO_SIDEBAR_STYLING.animation.duration",
+      },
+      {
         name: "children",
         type: "Snippet",
         required: true,
@@ -5128,6 +5163,12 @@ export const apiDocs: ApiComponentDoc[] = [
         type: "SidebarCollapsible",
         required: false,
         default: "KUMO_SIDEBAR_DEFAULT_VARIANTS.collapsible",
+      },
+      {
+        name: "contained",
+        type: "boolean",
+        required: false,
+        default: "false",
       },
       {
         name: "defaultOpen",
@@ -5154,6 +5195,12 @@ export const apiDocs: ApiComponentDoc[] = [
         default: "MIN_WIDTH_PX",
       },
       {
+        name: "mobileBreakpoint",
+        type: "number",
+        required: false,
+        default: "KUMO_SIDEBAR_STYLING.mobile.breakpoint",
+      },
+      {
         name: "onOpenChange",
         type: "(open: boolean) => void",
         required: false,
@@ -5168,6 +5215,12 @@ export const apiDocs: ApiComponentDoc[] = [
         type: "boolean",
         required: false,
         default: "defaultOpen",
+      },
+      {
+        name: "peekable",
+        type: "boolean",
+        required: false,
+        default: "false",
       },
       {
         name: "resizable",
@@ -5233,6 +5286,74 @@ export const apiDocs: ApiComponentDoc[] = [
         name: "class",
         type: "string",
         required: false,
+      },
+    ],
+  },
+  {
+    name: "Sidebar.SlidingView",
+    family: "Sidebar",
+    source: "kumo-svelte/src/components/sidebar/sidebar-sliding-view.svelte",
+    props: [
+      {
+        name: "children",
+        type: "Snippet",
+        required: false,
+      },
+      {
+        name: "class",
+        type: "string",
+        required: false,
+      },
+      {
+        name: "ref",
+        type: "HTMLDivElement | null",
+        required: false,
+        default: "null",
+      },
+      {
+        name: "value",
+        type: "string",
+        required: true,
+        description:
+          "Unique key matching this view. Must correspond to `activeKey` on `SidebarSlidingViews`.",
+      },
+    ],
+  },
+  {
+    name: "Sidebar.SlidingViews",
+    family: "Sidebar",
+    source: "kumo-svelte/src/components/sidebar/sidebar-sliding-views.svelte",
+    props: [
+      {
+        name: "activeKey",
+        type: "string",
+        required: true,
+        description:
+          "Key of the currently active view. Must match a child `SidebarSlidingView` value.",
+      },
+      {
+        name: "children",
+        type: "Snippet",
+        required: true,
+      },
+      {
+        name: "class",
+        type: "string",
+        required: false,
+      },
+      {
+        name: "direction",
+        type: '"left" | "right"',
+        required: false,
+        default: '"left"',
+        description:
+          "Slide direction for the transition.\n- `left`: new view slides in from the right\n- `right`: new view slides in from the left",
+      },
+      {
+        name: "ref",
+        type: "HTMLDivElement | null",
+        required: false,
+        default: "null",
       },
     ],
   },
@@ -6311,6 +6432,87 @@ export const apiDocs: ApiComponentDoc[] = [
         required: false,
       },
     ],
+  },
+  {
+    name: "Toolbar",
+    family: "Toolbar",
+    source: "kumo-svelte/src/components/toolbar/toolbar.svelte",
+    props: [
+      {
+        name: "children",
+        type: "Snippet",
+        required: true,
+      },
+      {
+        name: "class",
+        type: "string",
+        required: false,
+      },
+      {
+        name: "size",
+        type: "ToolbarSize",
+        required: false,
+        default: "KUMO_TOOLBAR_DEFAULT_VARIANTS.size",
+      },
+    ],
+  },
+  {
+    name: "Toolbar.Button",
+    family: "Toolbar",
+    source: "kumo-svelte/src/components/toolbar/toolbar-button.svelte",
+    props: [
+      {
+        name: "children",
+        type: "Snippet",
+        required: false,
+      },
+      {
+        name: "class",
+        type: "string",
+        required: false,
+      },
+      {
+        name: "focusableWhenDisabled",
+        type: "boolean",
+        required: false,
+        default: "false",
+      },
+      {
+        name: "icon",
+        type: "Component",
+        required: false,
+      },
+      {
+        name: "loading",
+        type: "boolean",
+        required: false,
+        default: "false",
+      },
+      {
+        name: "shape",
+        type: "KumoButtonShape",
+        required: false,
+      },
+    ],
+  },
+  {
+    name: "Toolbar.Input",
+    family: "Toolbar",
+    source: "kumo-svelte/src/components/toolbar/toolbar-input.svelte",
+    props: [
+      {
+        name: "focusableWhenDisabled",
+        type: "boolean",
+        required: false,
+        default: "false",
+      },
+    ],
+  },
+  {
+    name: "Toolbar.InputGroup",
+    family: "Toolbar",
+    source: "kumo-svelte/src/components/toolbar/toolbar-input-group.svelte",
+    props: [],
   },
   {
     name: "Tooltip",

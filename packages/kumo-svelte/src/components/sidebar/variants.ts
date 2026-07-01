@@ -49,11 +49,15 @@ export const KUMO_SIDEBAR_DEFAULT_VARIANTS = {
 
 export const KUMO_SIDEBAR_STYLING = {
   width: {
-    expanded: "16rem",
-    icon: "3rem",
+    expanded: "16.25rem",
+    icon: "57px",
   },
   mobile: {
     breakpoint: 768,
+  },
+  animation: {
+    duration: 250,
+    easing: "cubic-bezier(0.77, 0, 0.175, 1)",
   },
 } as const;
 
