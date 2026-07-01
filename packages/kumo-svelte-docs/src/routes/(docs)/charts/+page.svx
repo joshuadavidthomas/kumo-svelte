@@ -49,9 +49,9 @@ echarts.use([
     <TimeseriesChartPreviewDemo />
   </a>
 
-  <a class="not-prose rounded-lg border border-kumo-hairline bg-kumo-base p-4 no-underline" href="/charts/bubble-map">
-    <h3 class="mb-1 text-base font-semibold text-kumo-default">Bubble Map</h3>
-    <p class="mb-4 text-sm text-kumo-subtle">A proportional-symbol map for GeoJSON data.</p>
+  <a class="not-prose rounded-lg border border-kumo-hairline bg-kumo-base p-4 no-underline" href="/charts/maps">
+    <h3 class="mb-1 text-base font-semibold text-kumo-default">Maps</h3>
+    <p class="mb-4 text-sm text-kumo-subtle">Map chart components for GeoJSON data.</p>
     <BubbleMapPreviewDemo />
   </a>
 

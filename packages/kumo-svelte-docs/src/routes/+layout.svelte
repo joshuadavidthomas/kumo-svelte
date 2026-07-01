@@ -3,6 +3,7 @@
   import BitsUIIcon from "$lib/components/bits-ui-icon.svelte";
   import Sidebar from "$lib/components/sidebar.svelte";
   import ThemeToggle from "$lib/components/theme-toggle.svelte";
+  import { ModeWatcher } from "mode-watcher";
   import { tick } from "svelte";
   import * as Tooltip from "kumo-svelte/components/tooltip";
   import GithubLogoIcon from "phosphor-svelte/lib/GithubLogoIcon";
@@ -49,6 +50,8 @@
     };
   });
 </script>
+
+<ModeWatcher defaultMode="system" modeStorageKey="theme" darkClassNames={[]} />
 
 <div class="site-shell" class:sidebar-open={sidebarOpen}>
   <div data-slot="mark">

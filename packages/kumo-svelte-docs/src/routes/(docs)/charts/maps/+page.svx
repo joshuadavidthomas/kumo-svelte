@@ -1,20 +1,32 @@
 ---
-title: Bubble Map
-description: A proportional-symbol map component for plotting values over GeoJSON using ECharts.
+title: Maps
+description: Map chart components for visualizing geographic data with GeoJSON.
 sourceFile: components/chart
 ---
 
 <script lang="ts">
   import Example from "$lib/components/example.svelte";
   import BubbleMapBasicDemo from "./bubble-map-basic-demo.svelte";
-  import BubbleMapCustomDemo from "./bubble-map-custom-demo.svelte";
+  import type { PageData } from "./$types";
+
+  let { data }: { data: PageData } = $props();
 </script>
 
-`BubbleMap` plots data points by longitude and latitude over a GeoJSON base map. Bubble area scales with the `value` accessor.
+<Example demo="bubble-map-basic-demo">
+  <BubbleMapBasicDemo geoJson={data.geoJson} />
+</Example>
+
+## Installation
+
+`BubbleMap` requires `echarts` as a peer dependency. Consumers provide the GeoJSON feature collection; the component does not fetch map data or use map tiles.
+
+```bash
+pnpm add echarts
+```
 
 ## Import
 
-BubbleMap requires `echarts` as a peer dependency. Register `MapChart`, `ScatterChart`, `GeoComponent`, `TooltipComponent`, and a renderer before rendering the component.
+Register the ECharts map, scatter, tooltip, geo, and renderer modules before rendering the component.
 
 ```ts
 import { MapChart, ScatterChart } from "echarts/charts";
@@ -52,19 +64,31 @@ import { BubbleMap } from "kumo-svelte/components/chart";
 
 ## Examples
 
-### Basic Bubble Map
+### Bubble Map
+
+Plot raw rows by longitude and latitude. The `value` accessor controls proportional bubble size.
 
 <Example demo="bubble-map-basic-demo">
-  <BubbleMapBasicDemo />
+  <BubbleMapBasicDemo geoJson={data.geoJson} />
 </Example>
 
-### Custom Bubble Styling
+### Custom Tooltips
 
-Use style callbacks to color or stroke bubbles from row data.
+Provide `tooltipFormatter` when the default name/value tooltip is not enough. The formatter returns HTML rendered by ECharts, so escape user-provided values.
 
-<Example demo="bubble-map-custom-demo">
-  <BubbleMapCustomDemo />
-</Example>
+```svelte
+<BubbleMap
+  {echarts}
+  geoJson={map}
+  {data}
+  lng="longitude"
+  lat="latitude"
+  name="city"
+  value="requests"
+  tooltipFormatter={(row) =>
+    `<strong>${row.city}</strong><br>${row.requests.toLocaleString()} requests`}
+/>
+```
 
 ## API Reference
 

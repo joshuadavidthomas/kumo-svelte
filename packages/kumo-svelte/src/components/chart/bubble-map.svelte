@@ -38,8 +38,8 @@
   }: BubbleMapProps<T> = $props();
 
   let registeredMapName = $state<string | null>(null);
-  let registeredGeoJson = $state<MapGeoJson | null>(null);
-  let registeredEcharts = $state<typeof echartsModule | null>(null);
+  let registeredGeoJson = $state.raw<MapGeoJson | null>(null);
+  let registeredEcharts = $state.raw<typeof echartsModule | null>(null);
 
   let mapName = $derived(getMapName(geoJson, mapNameProp));
   let isMapRegistered = $derived(

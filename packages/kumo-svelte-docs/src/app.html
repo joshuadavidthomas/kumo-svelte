@@ -5,15 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light dark" />
     <script>
-      // Initialize theme from localStorage or system preference.
-      // This runs immediately to prevent a theme flash.
+      // Initialize Kumo's data-mode before hydration to prevent a theme flash.
       (() => {
         const stored = localStorage.getItem("theme");
-        if (stored) {
-          document.documentElement.setAttribute("data-mode", stored);
-        } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-          document.documentElement.setAttribute("data-mode", "dark");
-        }
+        const mode =
+          stored === "light" || stored === "dark"
+            ? stored
+            : window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light";
+        document.documentElement.setAttribute("data-mode", mode);
       })();
     </script>
     %sveltekit.head%
