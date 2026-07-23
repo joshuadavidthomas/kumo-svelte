@@ -50,4 +50,46 @@ echo "Installing workspace dependencies..."
 cd "$repo_root"
 pnpm install --frozen-lockfile
 
+upstream_dir="$repo_root/.amp/upstream/kumo"
+upstream_bin_dir="$repo_root/.amp/bin"
+upstream_build_marker="$upstream_dir/.amp-built-sha"
+
+upstream_pnpm() {
+  PATH="$upstream_bin_dir:$PATH" pnpm "$@"
+}
+
+echo "Preparing the managed cloudflare/kumo comparison checkout..."
+mkdir -p "$(dirname "$upstream_dir")"
+mkdir -p "$upstream_bin_dir"
+cat >"$upstream_bin_dir/pnpm" <<EOF
+#!/usr/bin/env bash
+exec "$node_dir/bin/npx" -y pnpm@10.22.0 "\$@"
+EOF
+chmod +x "$upstream_bin_dir/pnpm"
+
+if [[ ! -d "$upstream_dir/.git" ]]; then
+  git clone --depth=1 --branch=main https://github.com/cloudflare/kumo.git "$upstream_dir"
+else
+  git -C "$upstream_dir" remote set-url origin https://github.com/cloudflare/kumo.git
+  git -C "$upstream_dir" fetch --depth=1 origin main
+  # This is a disposable, ignored comparison checkout owned by this setup script.
+  git -C "$upstream_dir" reset --hard FETCH_HEAD
+fi
+
+upstream_sha="$(git -C "$upstream_dir" rev-parse HEAD)"
+if [[ ! -f "$upstream_build_marker" ]] ||
+  [[ "$(cat "$upstream_build_marker")" != "$upstream_sha" ]] ||
+  [[ ! -f "$upstream_dir/packages/kumo/dist/index.js" ]]; then
+  echo "Installing and generating upstream Kumo docs at ${upstream_sha:0:7}..."
+  upstream_pnpm --dir "$upstream_dir" install --frozen-lockfile
+  upstream_pnpm --dir "$upstream_dir" codegen
+  upstream_pnpm --dir "$upstream_dir" --filter @cloudflare/kumo build
+  printf '%s\n' "$upstream_sha" >"$upstream_build_marker"
+else
+  echo "Upstream Kumo ${upstream_sha:0:7} is already built."
+fi
+
+echo "Starting supervised local and upstream documentation services..."
+amp orb services ensure
+
 echo "Orb setup complete (Node.js $(node --version), pnpm $(pnpm --version))."

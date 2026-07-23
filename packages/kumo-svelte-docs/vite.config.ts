@@ -4,4 +4,7 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   plugins: [tailwindcss(), sveltekit()],
+  server: {
+    allowedHosts: [".e2b.app", ".onamp.dev"],
+  },
 });

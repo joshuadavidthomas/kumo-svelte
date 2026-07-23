@@ -10,3 +10,10 @@ build
 **/build
 coverage
 .DS_Store
+
+# Amp orb runtime data and the managed upstream comparison checkout.
+.amp/bin/
+.amp/in/
+.amp/portals/
+.amp/services-resume.log
+.amp/upstream/

@@ -17,4 +17,10 @@ if [[ ! -x "$pnpm_bin" ]] || [[ "$(cd / && "$pnpm_bin" --version 2>/dev/null || 
   exit 1
 fi
 
-echo "Orb prerequisites are ready; no services need restarting."
+mkdir -p "$repo_root/.amp"
+
+# Keep this in the foreground. Amp stops waiting after ten seconds and lets a
+# slower service recovery continue while preserving diagnostics for the agent.
+amp orb services ensure >"$repo_root/.amp/services-resume.log" 2>&1
+
+echo "Orb prerequisites and comparison services are ready."

@@ -3310,6 +3310,12 @@ export const apiDocs: ApiComponentDoc[] = [
     source: "kumo-svelte/src/components/input/input-area.svelte",
     props: [
       {
+        name: "autoResize",
+        type: "boolean",
+        required: false,
+        default: "false",
+      },
+      {
         name: "description",
         type: "Snippet | string",
         required: false,
@@ -3328,6 +3334,17 @@ export const apiDocs: ApiComponentDoc[] = [
         name: "labelTooltip",
         type: "Snippet",
         required: false,
+      },
+      {
+        name: "maxRows",
+        type: "number",
+        required: false,
+      },
+      {
+        name: "minRows",
+        type: "number",
+        required: false,
+        default: "1",
       },
       {
         name: "onValueChange",
@@ -6247,6 +6264,12 @@ export const apiDocs: ApiComponentDoc[] = [
     source: "kumo-svelte/src/components/input/input-area.svelte",
     props: [
       {
+        name: "autoResize",
+        type: "boolean",
+        required: false,
+        default: "false",
+      },
+      {
         name: "description",
         type: "Snippet | string",
         required: false,
@@ -6265,6 +6288,17 @@ export const apiDocs: ApiComponentDoc[] = [
         name: "labelTooltip",
         type: "Snippet",
         required: false,
+      },
+      {
+        name: "maxRows",
+        type: "number",
+        required: false,
+      },
+      {
+        name: "minRows",
+        type: "number",
+        required: false,
+        default: "1",
       },
       {
         name: "onValueChange",
