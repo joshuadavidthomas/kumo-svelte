@@ -93,8 +93,13 @@ export function setInputGroupContext(context: InputGroupContextValue) {
 
 export function getInputGroupContext(componentName: string) {
   const context = getContext<InputGroupContextValue | undefined>(inputGroupContextKey);
+  const nodeProcess = (
+    globalThis as typeof globalThis & {
+      process?: { env?: { NODE_ENV?: string } };
+    }
+  ).process;
 
-  if (typeof process !== "undefined" && process.env.NODE_ENV !== "production" && !context) {
+  if (nodeProcess && nodeProcess.env?.NODE_ENV !== "production" && !context) {
     console.warn(
       `<InputGroup.${componentName}> must be used within <InputGroup>. Falling back to default values.`,
     );

@@ -7,7 +7,13 @@ export function resolveVariant<T extends Record<string, unknown>>(
 
   if (config !== undefined) return config;
 
-  if (globalThis.process?.env?.NODE_ENV !== "production") {
+  const nodeEnv = (
+    globalThis as typeof globalThis & {
+      process?: { env?: { NODE_ENV?: string } };
+    }
+  ).process?.env?.NODE_ENV;
+
+  if (nodeEnv !== "production") {
     console.warn(
       `[kumo] Unknown variant "${key}". Expected one of: ${Object.keys(variants).join(", ")}. Falling back to "${fallback}".`,
     );
