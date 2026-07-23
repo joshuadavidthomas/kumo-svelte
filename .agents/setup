@@ -68,6 +68,10 @@ exec "$node_dir/bin/npx" -y pnpm@10.22.0 "\$@"
 EOF
 chmod +x "$upstream_bin_dir/pnpm"
 
+# Avoid Astro reloading the pristine config between reset and the managed
+# portal-host adjustment below. The final services ensure restarts it.
+amp orb service stop kumo-react-docs >/dev/null 2>&1 || true
+
 if [[ ! -d "$upstream_dir/.git" ]]; then
   git clone --depth=1 --branch="$upstream_ref" https://github.com/cloudflare/kumo.git "$upstream_dir"
 else
@@ -76,6 +80,24 @@ else
   # This is a disposable, ignored comparison checkout owned by this setup script.
   git -C "$upstream_dir" reset --hard FETCH_HEAD
 fi
+
+upstream_astro_config="$upstream_dir/packages/kumo-docs-astro/astro.config.mjs"
+node --input-type=module - "$upstream_astro_config" <<'NODE'
+import { readFileSync, writeFileSync } from "node:fs";
+
+const configPath = process.argv[2];
+const allowedHosts = '    server: { allowedHosts: [".e2b.app", ".onamp.dev"] },\n';
+const viteMarker = "  vite: {\n";
+const source = readFileSync(configPath, "utf8");
+
+if (!source.includes(allowedHosts)) {
+  const matches = source.split(viteMarker).length - 1;
+  if (matches !== 1) {
+    throw new Error(`Expected one Vite config block in ${configPath}, found ${matches}`);
+  }
+  writeFileSync(configPath, source.replace(viteMarker, viteMarker + allowedHosts));
+}
+NODE
 
 upstream_sha="$(git -C "$upstream_dir" rev-parse HEAD)"
 if [[ ! -f "$upstream_build_marker" ]] ||

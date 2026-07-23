@@ -12,8 +12,6 @@ services:
   kumo-react-docs:
     command: >-
       export PATH="$HOME/.local/bin:$PATH" &&
-      portal_host="$(node -e 'console.log(new URL(process.env.PUBLIC_URL).hostname)')" &&
-      export __VITE_ADDITIONAL_SERVER_ALLOWED_HOSTS="$portal_host" &&
       export PATH="$PWD/.amp/bin:$PATH" &&
       exec pnpm --dir .amp/upstream/kumo
       --filter @cloudflare/kumo-docs-astro dev
