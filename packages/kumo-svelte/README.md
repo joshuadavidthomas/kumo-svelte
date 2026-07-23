@@ -117,11 +117,15 @@ import { Dialog, Popover, Select } from "bits-ui";
 ## Development
 
 ```bash
-pnpm install
-pnpm check
-pnpm test
+pnpm install --frozen-lockfile
+pnpm exec playwright install chromium
+pnpm maintenance:check
 pnpm docs:dev
 ```
+
+`maintenance:check` is the serial, fail-fast automated maintenance gate used by CI. The current upstream inventory accounts for all 44 published component families through exact correspondence or reviewed mappings. Durable observable contracts intentionally cover six selected vectors across Button, Input, and Collapsible; the packed consumer executes those same six vectors in one Chromium engine after type, client, SSR, and hydration checks. React/Svelte paired proof remains on demand and requires human review.
+
+Maintainers updating the exact upstream release should follow the [upstream maintenance runbook](https://github.com/joshuadavidthomas/kumo-svelte/blob/main/.agents/skills/proving-kumo-parity/reference/upstream-maintenance.md). These are separate, narrow authorities—not a global parity or readiness score.
 
 ## License
 

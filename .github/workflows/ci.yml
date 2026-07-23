@@ -27,23 +27,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Check formatting
-        run: pnpm format:check
-
-      - name: Check
-        run: pnpm check
-
-      - name: Check upstream inventory coverage
-        run: pnpm upstream:coverage
-
-      - name: Test
-        run: pnpm test
-
       - name: Install Chromium
         run: pnpm exec playwright install --with-deps chromium
 
-      - name: Test packed package consumer
-        run: pnpm test:packed-consumer
-
-      - name: Build docs
-        run: pnpm docs:build
+      - name: Run maintenance gate
+        run: pnpm maintenance:check

@@ -10,6 +10,7 @@
     "docs:dev": "pnpm --filter @kumo-svelte/docs dev",
     "format": "oxfmt --write package.json pnpm-workspace.yaml tsconfig.json README.md scripts packages",
     "format:check": "oxfmt --check package.json pnpm-workspace.yaml tsconfig.json README.md scripts packages",
+    "maintenance:check": "pnpm format:check && pnpm check:upstream-theme && pnpm lint && pnpm typecheck && pnpm docs:check && pnpm test && pnpm upstream:coverage && pnpm test:packed-consumer && pnpm docs:build",
     "parity:proof": "node scripts/prove-parity.mjs",
     "parity:proof:test": "node --test scripts/prove-parity.test.mjs",
     "upstream:baseline:update": "node scripts/report-upstream-coverage.mjs --update-baseline",

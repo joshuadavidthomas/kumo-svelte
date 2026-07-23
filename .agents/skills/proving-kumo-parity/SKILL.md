@@ -21,6 +21,8 @@ Before changing code, record:
 
 Use source, tests, and docs from the target release—not upstream `main`. Classify post-release findings as deferred work. Never patch a released dependency to emulate unreleased behavior without explicit approval for that exception.
 
+For an upstream release update, follow the ordered [upstream maintenance runbook](reference/upstream-maintenance.md). It defines the pin, review, proof, implementation, baseline-acceptance, and final-gate boundaries; failure routing; bounded calibration; definition of done; and non-goals.
+
 Create a parity matrix before implementation:
 
 | Dimension     | Cases to compare                                                  |
