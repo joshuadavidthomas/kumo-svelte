@@ -125,8 +125,8 @@ export const THEME_CONFIG: ThemeConfig = {
       newName: "",
       theme: {
         kumo: {
-          light: "oklch(59.7% 0.144 57.5)",
-          dark: "var(--color-orange-400, oklch(75% 0.183 55.934))",
+          light: "var(--color-yellow-800, oklch(47.6% 0.114 61.907))",
+          dark: "var(--color-yellow-400, oklch(85.2% 0.199 91.936))",
         },
       },
     },
@@ -295,7 +295,7 @@ export const THEME_CONFIG: ThemeConfig = {
       theme: {
         kumo: {
           light: "oklch(0.5772 0.2324 260)",
-          dark: "color-mix(in oklch, oklch(0.5772 0.2324 260), black 10%)",
+          dark: "oklch(0.5772 0.2324 260)",
         },
       },
     },
@@ -382,8 +382,8 @@ export const THEME_CONFIG: ThemeConfig = {
       newName: "",
       theme: {
         kumo: {
-          light: "oklch(93.2% 0.032 255.6 / 0.45)",
-          dark: "oklch(38.0% 0.145 265.5 / 0.22)",
+          light: "var(--color-blue-100, oklch(93.2% 0.032 255.585))",
+          dark: "var(--color-blue-900, oklch(37.9% 0.146 265.522))",
         },
       },
     },
@@ -391,8 +391,8 @@ export const THEME_CONFIG: ThemeConfig = {
       newName: "",
       theme: {
         kumo: {
-          light: "var(--color-blue-500, oklch(68.5% 0.169 237.323))",
-          dark: "var(--color-blue-500, oklch(68.5% 0.169 237.323))",
+          light: "var(--color-blue-300, oklch(80.9% 0.105 251.813))",
+          dark: "var(--color-blue-900, oklch(37.9% 0.146 265.522))",
         },
       },
     },
@@ -400,8 +400,8 @@ export const THEME_CONFIG: ThemeConfig = {
       newName: "",
       theme: {
         kumo: {
-          light: "oklch(93.1% 0.107 94.6 / 0.20)",
-          dark: "oklch(35.3% 0.079 65.0 / 0.37)",
+          light: "var(--color-yellow-100, oklch(97.3% 0.071 103.193))",
+          dark: "var(--color-yellow-700, oklch(55.4% 0.135 66.442))",
         },
       },
     },
@@ -409,8 +409,8 @@ export const THEME_CONFIG: ThemeConfig = {
       newName: "",
       theme: {
         kumo: {
-          light: "oklch(73.9% 0.177 58.2)",
-          dark: "oklch(64.5% 0.168 50.0)",
+          light: "var(--color-yellow-300, oklch(90.5% 0.182 98.111))",
+          dark: "var(--color-yellow-900, oklch(42.1% 0.095 57.708))",
         },
       },
     },
@@ -418,18 +418,17 @@ export const THEME_CONFIG: ThemeConfig = {
       newName: "",
       theme: {
         kumo: {
-          light: "oklch(93.6% 0.032 17.7 / 0.42)",
-          dark: "oklch(42.9% 0.176 28.7 / 0.17)",
+          light: "var(--color-red-100, oklch(93.6% 0.032 17.717))",
+          dark: "var(--color-red-900, oklch(39.6% 0.141 25.723))",
         },
       },
     },
     "kumo-danger": {
       newName: "",
-      // Aligned with fill.kumo-danger so `bg-kumo-danger` matches `fill-kumo-danger`.
       theme: {
         kumo: {
           light: "var(--color-red-500, oklch(63.7% 0.237 25.331))",
-          dark: "var(--color-red-600, oklch(57.7% 0.245 27.325))",
+          dark: "var(--color-red-900, oklch(39.6% 0.141 25.723))",
         },
       },
     },
@@ -437,8 +436,8 @@ export const THEME_CONFIG: ThemeConfig = {
       newName: "",
       theme: {
         kumo: {
-          light: "oklch(96.2% 0.043 156.7 / 0.57)",
-          dark: "oklch(39.3% 0.096 152.3 / 0.20)",
+          light: "var(--color-emerald-100, oklch(95% 0.052 163.051))",
+          dark: "var(--color-emerald-900, oklch(37.8% 0.077 168.94))",
         },
       },
     },
@@ -446,34 +445,8 @@ export const THEME_CONFIG: ThemeConfig = {
       newName: "",
       theme: {
         kumo: {
-          light: "var(--color-emerald-600, oklch(59.6% 0.145 163.225))",
-          dark: "var(--color-emerald-400, oklch(76.5% 0.177 163.223))",
-        },
-      },
-    },
-
-    /*
-     * Banner background tokens
-     * Pre-baked opacity per mode so banners don't need dark: overrides.
-     * Mirrors the *-tint hues but tuned for the Banner component's surface contrast.
-     */
-    "kumo-banner-info": {
-      newName: "",
-      description: "Info banner background (informational/default variant)",
-      theme: {
-        kumo: {
-          light: "oklch(93.2% 0.032 255.585 / 0.7)",
-          dark: "oklch(37.9% 0.146 265.522 / 0.5)",
-        },
-      },
-    },
-    "kumo-banner-warning": {
-      newName: "",
-      description: "Warning banner background (alert variant)",
-      theme: {
-        kumo: {
-          light: "var(--color-yellow-100, oklch(97.3% 0.071 103.193))",
-          dark: "oklch(55.4% 0.135 66.442 / 0.5)",
+          light: "var(--color-green-300, oklch(87.1% 0.15 154.449))",
+          dark: "var(--color-green-900, oklch(39.3% 0.095 152.535))",
         },
       },
     },
@@ -496,18 +469,6 @@ export const THEME_CONFIG: ThemeConfig = {
       },
     },
 
-    // Green
-    "kumo-badge-green": {
-      newName: "",
-      description: "Green badge background",
-      theme: {
-        kumo: {
-          light: "var(--color-emerald-600, oklch(59.6% 0.145 163.225))",
-          dark: "var(--color-emerald-700, oklch(50.8% 0.118 165.612))",
-        },
-      },
-    },
-
     // Orange
     "kumo-badge-orange": {
       newName: "",
@@ -519,15 +480,36 @@ export const THEME_CONFIG: ThemeConfig = {
         },
       },
     },
+    "kumo-badge-orange-subtle": {
+      newName: "",
+      description: "Subtle orange badge background",
+      theme: {
+        kumo: {
+          light: "var(--color-orange-100, oklch(95.4% 0.038 75.164))",
+          dark: "var(--color-orange-900, oklch(40.8% 0.123 38.172))",
+        },
+      },
+    },
 
-    // Purple
     "kumo-badge-purple": {
       newName: "",
       description: "Purple badge background",
       theme: {
         kumo: {
-          light: "var(--color-purple-600, oklch(55.8% 0.288 302.321))",
-          dark: "var(--color-purple-700, oklch(49.6% 0.265 301.924))",
+          light: "var(--color-purple-600, oklch(60% 0.118 184.704))",
+          dark: "var(--color-purple-700, oklch(50.8% 0.118 165.612))",
+        },
+      },
+    },
+
+    // Green (emerald scale)
+    "kumo-badge-green": {
+      newName: "",
+      description: "Green badge background",
+      theme: {
+        kumo: {
+          light: "var(--color-emerald-700, oklch(50.8% 0.118 165.612))",
+          dark: "var(--color-emerald-700, oklch(50.8% 0.118 165.612))",
         },
       },
     },
@@ -540,6 +522,16 @@ export const THEME_CONFIG: ThemeConfig = {
         kumo: {
           light: "var(--color-teal-650, oklch(54.9% 0.096 184.565))",
           dark: "var(--color-teal-700, oklch(51.1% 0.096 186.391))",
+        },
+      },
+    },
+    "kumo-badge-teal-subtle": {
+      newName: "",
+      description: "Subtle teal badge background",
+      theme: {
+        kumo: {
+          light: "var(--color-teal-100, oklch(95.3% 0.051 180.801))",
+          dark: "var(--color-teal-900, oklch(38.6% 0.063 188.416))",
         },
       },
     },
@@ -562,7 +554,7 @@ export const THEME_CONFIG: ThemeConfig = {
       description: "Neutral badge background",
       theme: {
         kumo: {
-          light: "var(--color-neutral-500, oklch(55.6% 0 0))",
+          light: "var(--color-neutral-600, oklch(43.9% 0 0))",
           dark: "var(--color-neutral-600, oklch(43.9% 0 0))",
         },
       },
@@ -625,7 +617,7 @@ export const THEME_CONFIG: ThemeConfig = {
     "base--line-height": {
       newName: "",
       theme: {
-        kumo: "1.5",
+        kumo: "calc(1.25 / 0.875)",
       },
     },
     lg: {
@@ -637,7 +629,7 @@ export const THEME_CONFIG: ThemeConfig = {
     "lg--line-height": {
       newName: "",
       theme: {
-        kumo: "1.5",
+        kumo: "calc(1.25 / 1)",
       },
     },
   },
