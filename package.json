@@ -12,10 +12,12 @@
     "format:check": "oxfmt --check package.json pnpm-workspace.yaml tsconfig.json README.md scripts packages",
     "parity:proof": "node scripts/prove-parity.mjs",
     "parity:proof:test": "node --test scripts/prove-parity.test.mjs",
+    "upstream:coverage": "node scripts/report-upstream-coverage.mjs",
+    "upstream:coverage:test": "node --test scripts/report-upstream-coverage.test.mjs",
     "sync:upstream-theme": "node scripts/sync-upstream-theme.mjs",
     "check:upstream-theme": "node scripts/sync-upstream-theme.mjs --check",
     "lint": "pnpm --filter kumo-svelte lint",
-    "test": "pnpm --filter kumo-svelte test",
+    "test": "pnpm upstream:coverage:test && pnpm --filter kumo-svelte test",
     "typecheck": "pnpm --filter kumo-svelte typecheck"
   },
   "devDependencies": {

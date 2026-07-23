@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "familyMappings": [],
+  "intentionalUpstreamFamilies": [],
+  "intentionalLocalFamilies": [
+    {
+      "local": "code/server",
+      "reason": "Kumo Svelte exposes its server-only Shiki helpers under the component namespace; upstream publishes the analogous server helpers at @cloudflare/kumo/code/server."
+    }
+  ],
+  "symbolMappings": [],
+  "intentionalUpstreamExports": []
+}
