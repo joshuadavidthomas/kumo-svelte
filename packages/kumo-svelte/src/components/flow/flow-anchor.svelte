@@ -18,34 +18,16 @@
   const context = useFlowNodeAnchorContext();
 
   const anchorAction: Action<HTMLElement, FlowAnchorType | undefined> = (element, anchorType) => {
-    function register(nextType: FlowAnchorType | undefined) {
-      if (nextType === "start" || nextType === undefined) {
-        context.registerStartAnchor(element);
-      }
-      if (nextType === "end" || nextType === undefined) {
-        context.registerEndAnchor(element);
-      }
-    }
-
-    function unregister(nextType: FlowAnchorType | undefined) {
-      if (nextType === "start" || nextType === undefined) {
-        context.registerStartAnchor(null);
-      }
-      if (nextType === "end" || nextType === undefined) {
-        context.registerEndAnchor(null);
-      }
-    }
-
-    register(anchorType);
+    context.registerAnchor(anchorType, element);
 
     return {
       update(nextType) {
-        unregister(anchorType);
+        context.registerAnchor(anchorType, null);
         anchorType = nextType;
-        register(anchorType);
+        context.registerAnchor(anchorType, element);
       },
       destroy() {
-        unregister(anchorType);
+        context.registerAnchor(anchorType, null);
       },
     };
   };
@@ -54,4 +36,3 @@
 <div use:anchorAction={type} {...restProps} class={cn(className)}>
   {@render children?.()}
 </div>
-

@@ -28,7 +28,7 @@
   );
 </script>
 
-<svg width="100%" height="100%" aria-hidden="true" class="overflow-visible text-kumo-inactive">
+<svg width="100%" height="100%" aria-hidden="true" class="overflow-visible text-kumo-placeholder">
   <defs>
     <marker
       id={markerId}

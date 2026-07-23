@@ -13,11 +13,15 @@ sourceFile: components/flow
   import FlowComplexDemo from "./flow-complex-demo.svelte";
   import FlowCustomContentDemo from "./flow-custom-content-demo.svelte";
   import FlowDisabledDemo from "./flow-disabled-demo.svelte";
+  import FlowDynamicNodeDemo from "./flow-dynamic-node-demo.svelte";
+  import FlowExpandableDemo from "./flow-expandable-demo.svelte";
   import FlowPanningDemo from "./flow-panning-demo.svelte";
   import FlowParallelAlignEndDemo from "./flow-parallel-align-end-demo.svelte";
   import FlowParallelDemo from "./flow-parallel-demo.svelte";
   import FlowParallelNestedListDemo from "./flow-parallel-nested-list-demo.svelte";
   import FlowSidebarBugDemo from "./flow-sidebar-bug-demo.svelte";
+  import FlowVerticalDemo from "./flow-vertical-demo.svelte";
+  import FlowVerticalParallelDemo from "./flow-vertical-parallel-demo.svelte";
 </script>
 
 <Example demo="flow-parallel-demo">
@@ -64,6 +68,20 @@ Use `Flow.Parallel` to create branching paths that run in parallel.
 
 <Example demo="flow-parallel-demo">
   <FlowParallelDemo />
+</Example>
+
+### Vertical Orientation
+
+Set `orientation="vertical"` to lay nodes out top-to-bottom instead of the default left-to-right. Connectors, parallel branches, and `align` all adapt to the vertical axis.
+
+<Example demo="flow-vertical-demo">
+  <FlowVerticalDemo />
+</Example>
+
+Parallel branches work the same way in vertical flows. In this orientation `align` controls horizontal alignment of nodes.
+
+<Example demo="flow-vertical-parallel-demo">
+  <FlowVerticalParallelDemo />
 </Example>
 
 ### Custom Node Styling
@@ -122,15 +140,31 @@ Use the `align` prop on `Flow.Parallel` to control how nodes with different widt
   <FlowParallelAlignEndDemo />
 </Example>
 
-## Known Issue: Sidebar / Layout Shift
+## Layout Shifts and Scrolling
 
-Toggling the sidebar shifts the Flow container's viewport position. Connector coordinates should stay aligned through the layout shift and through scrolling while the sidebar is open.
+Flow computes connector paths from measured node sizes and derived positions, so connectors stay aligned when a surrounding layout resizes or scrolls. Toggle the sidebar to exercise both behaviors.
 
 <Example demo="flow-sidebar-bug-demo">
   <FlowSidebarBugDemo />
 </Example>
 
 ## Other Examples
+
+### Dynamic Nodes
+
+Flow reconstructs its derived tree when nodes are added or removed, preserving render order and connector placement.
+
+<Example demo="flow-dynamic-node-demo">
+  <FlowDynamicNodeDemo />
+</Example>
+
+### Expandable Nodes
+
+Node measurements and connector paths update when content changes a node's dimensions.
+
+<Example demo="flow-expandable-demo">
+  <FlowExpandableDemo />
+</Example>
 
 ### Nested Node Lists in Parallel
 

@@ -2,13 +2,10 @@
   import * as Flow from "kumo-svelte/components/flow";
 </script>
 
-<Flow.Root>
+<Flow.Root orientation="vertical" align="center">
   <Flow.Node>Start</Flow.Node>
   <Flow.Parallel>
-    <Flow.List>
-      <Flow.Node>Branch A1</Flow.Node>
-      <Flow.Node>Branch A2</Flow.Node>
-    </Flow.List>
+    <Flow.Node>Branch A</Flow.Node>
     <Flow.Node>Branch B</Flow.Node>
     <Flow.Node>Branch C</Flow.Node>
   </Flow.Parallel>

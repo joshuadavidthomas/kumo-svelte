@@ -59,7 +59,7 @@ export function createRoundedPath(
 
     return [
       `M ${x1} ${y1}`,
-      isBottom ? bottomCurveCommands : topCurveCommands,
+      ...(isBottom ? bottomCurveCommands : topCurveCommands),
       `L ${pathEndX} ${y2}`,
     ].join(" ");
   }
@@ -80,18 +80,22 @@ export function createRoundedPath(
   const bottomCurveCommands = [
     `L ${x1} ${firstVerticalEnd}`,
     `Q ${x1} ${horizontalY} ${horizontalStart} ${horizontalY}`,
-    `L ${x2} ${horizontalY}`,
+    single
+      ? `L ${horizontalEnd} ${horizontalY} Q ${x2} ${horizontalY} ${x2} ${secondVerticalStart}`
+      : `L ${x2} ${horizontalY}`,
   ];
 
   const topCurveCommands = [
-    `L ${x1} ${horizontalY}`,
+    single
+      ? `L ${x1} ${firstVerticalEnd} Q ${x1} ${horizontalY} ${horizontalStart} ${horizontalY}`
+      : `L ${x1} ${horizontalY}`,
     `L ${horizontalEnd} ${horizontalY}`,
     `Q ${x2} ${horizontalY} ${x2} ${secondVerticalStart}`,
   ];
 
   return [
     `M ${x1} ${y1}`,
-    isBottom ? bottomCurveCommands : topCurveCommands,
+    ...(isBottom ? bottomCurveCommands : topCurveCommands),
     `L ${x2} ${pathEndY}`,
   ].join(" ");
 }

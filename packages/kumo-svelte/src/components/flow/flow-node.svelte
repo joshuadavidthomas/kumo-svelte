@@ -5,10 +5,10 @@
   import { cn } from "../../utils";
   import {
     setFlowNodeAnchorContext,
+    useFlowDiagramContext,
     useFlowNodeGroup,
   } from "./context.svelte";
-  import { sameRect, toRectLike } from "./geometry";
-  import type { FlowNodeData, RectLike } from "./types";
+  import type { FlowAnchorType, FlowMeasuredNode } from "./types";
 
   export interface FlowNodeProps extends Omit<HTMLLiAttributes, "children" | "class"> {
     children?: Snippet;
@@ -26,136 +26,90 @@
   }: FlowNodeProps = $props();
 
   const group = useFlowNodeGroup();
+  const diagram = useFlowDiagramContext("Flow.Node");
   const generatedId = $props.id();
 
   interface NodeActionData {
+    disabled: boolean;
     id: string;
-    nodeData: FlowNodeData;
   }
 
   let id = $derived(idProp ?? generatedId);
   let index = $derived(group.indexOf(id));
+  let position = $derived(diagram.nodePositions[id]);
   let startAnchorElement: HTMLElement | null = null;
   let endAnchorElement: HTMLElement | null = null;
   let nodeElement: HTMLElement | null = null;
-  let cleanupLayoutObserver: (() => void) | undefined;
-  let measureFrame: number | undefined;
-  let startRect = $state<RectLike | null>(null);
-  let endRect = $state<RectLike | null>(null);
-
-  let nodeData = $derived<FlowNodeData>({
-    disabled,
-    end: endRect,
-    parallel: false,
-    start: startRect,
-  });
-  let nodeActionData = $derived<NodeActionData>({ id, nodeData });
+  let observer: ResizeObserver | undefined;
+  let nodeActionData = $derived<NodeActionData>({ disabled, id });
 
   function measure() {
-    if (!nodeElement) return null;
+    if (!nodeElement) return;
 
-    const nodeRect = toRectLike(nodeElement.getBoundingClientRect());
-    const nextStartRect = startAnchorElement
-      ? toRectLike(startAnchorElement.getBoundingClientRect())
-      : nodeRect;
-    const nextEndRect = endAnchorElement
-      ? toRectLike(endAnchorElement.getBoundingClientRect())
-      : nodeRect;
-
-    startRect = sameRect(startRect, nextStartRect) ? startRect : nextStartRect;
-    endRect = sameRect(endRect, nextEndRect) ? endRect : nextEndRect;
-
-    return {
+    const nodeRect = nodeElement.getBoundingClientRect();
+    const data: FlowMeasuredNode = {
       disabled,
-      end: nextEndRect,
-      parallel: false,
-      start: nextStartRect,
-    } satisfies FlowNodeData;
-  }
+      height: nodeRect.height,
+      width: nodeRect.width,
+    };
 
-  function cancelScheduledMeasure() {
-    if (measureFrame === undefined) return;
-    cancelAnimationFrame(measureFrame);
-    measureFrame = undefined;
-  }
+    if (startAnchorElement) {
+      const rect = startAnchorElement.getBoundingClientRect();
+      data.startAnchorOffset = rect.top - nodeRect.top + rect.height / 2;
+    }
+    if (endAnchorElement) {
+      const rect = endAnchorElement.getBoundingClientRect();
+      data.endAnchorOffset = rect.top - nodeRect.top + rect.height / 2;
+    }
 
-  function scheduleMeasure() {
-    cancelScheduledMeasure();
-    measureFrame = requestAnimationFrame(() => {
-      measureFrame = undefined;
-      const measuredNodeData = measure();
-      if (nodeElement && measuredNodeData) {
-        group.update(id, measuredNodeData, nodeElement);
-      }
-      group.notifySizeChange();
-    });
+    diagram.reportNode(id, data);
   }
 
   function observeLayout() {
-    cleanupLayoutObserver?.();
+    observer?.disconnect();
     if (!nodeElement) return;
 
-    const element = nodeElement;
-    const startElement = startAnchorElement;
-    const endElement = endAnchorElement;
-    const onLayoutChange = scheduleMeasure;
-
-    scheduleMeasure();
-    const observer = new ResizeObserver(onLayoutChange);
-    observer.observe(element);
-    if (startElement && startElement !== element) observer.observe(startElement);
-    if (endElement && endElement !== element && endElement !== startElement) {
-      observer.observe(endElement);
+    observer = new ResizeObserver(measure);
+    observer.observe(nodeElement);
+    if (startAnchorElement) observer.observe(startAnchorElement);
+    if (endAnchorElement && endAnchorElement !== startAnchorElement) {
+      observer.observe(endAnchorElement);
     }
-
-    window.addEventListener("scroll", onLayoutChange, {
-      capture: true,
-      passive: true,
-    });
-    window.addEventListener("resize", onLayoutChange, { passive: true });
-
-    cleanupLayoutObserver = () => {
-      cancelScheduledMeasure();
-      observer.disconnect();
-      window.removeEventListener("scroll", onLayoutChange, { capture: true });
-      window.removeEventListener("resize", onLayoutChange);
-      cleanupLayoutObserver = undefined;
-    };
+    measure();
   }
 
   const nodeAction: Action<HTMLElement, NodeActionData> = (element, data) => {
     nodeElement = element;
     let current = data;
-    let unregister = group.register(current.id, element, current.nodeData);
+    let registration = { kind: "node" } as const;
+    let unregister = group.register(current.id, element, registration);
     observeLayout();
 
     return {
       update(next) {
         if (next.id !== current.id) {
           unregister();
-          unregister = group.register(next.id, element, next.nodeData);
-        } else {
-          group.update(next.id, next.nodeData, element);
+          diagram.removeNode(current.id);
+          registration = { kind: "node" };
+          unregister = group.register(next.id, element, registration);
         }
         current = next;
+        measure();
       },
       destroy() {
-          cleanupLayoutObserver?.();
+        observer?.disconnect();
+        observer = undefined;
         unregister();
+        diagram.removeNode(current.id);
         if (nodeElement === element) nodeElement = null;
       },
     };
   };
 
   setFlowNodeAnchorContext({
-    registerEndAnchor(element) {
-      if (endAnchorElement === element) return;
-      endAnchorElement = element;
-      observeLayout();
-    },
-    registerStartAnchor(element) {
-      if (startAnchorElement === element) return;
-      startAnchorElement = element;
+    registerAnchor(type: FlowAnchorType | undefined, element) {
+      if (type === "start" || type === undefined) startAnchorElement = element;
+      if (type === "end" || type === undefined) endAnchorElement = element;
       observeLayout();
     },
   });
@@ -165,10 +119,14 @@
   use:nodeAction={nodeActionData}
   {...restProps}
   class={cn(
-    "rounded-md bg-kumo-base px-3 py-2 shadow ring ring-kumo-line data-[disabled]:bg-kumo-control data-[disabled]:text-kumo-placeholder",
+    "absolute rounded-md bg-kumo-base px-3 py-2 shadow ring ring-kumo-line data-[disabled]:bg-kumo-control data-[disabled]:text-kumo-placeholder",
     className,
   )}
+  style:top={position ? `${position.y}px` : undefined}
+  style:left={position ? `${position.x}px` : undefined}
+  style:opacity={position ? undefined : 0}
   style:cursor="default"
+  aria-hidden={position ? undefined : "true"}
   data-disabled={disabled ? "" : undefined}
   data-node-index={index}
   data-node-id={id}

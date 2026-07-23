@@ -1,31 +1,41 @@
 import { getContext, setContext, untrack } from "svelte";
-import type { FlowAlign, FlowNodeData, FlowOrientation } from "./types";
+import type {
+  FlowAlign,
+  FlowAnchorType,
+  FlowEdges,
+  FlowMeasuredNode,
+  FlowNodePositions,
+  FlowOrientation,
+  FlowParallelAlign,
+} from "./types";
 
-export interface DescendantInfo<T> {
+export type FlowGroupNodeData =
+  | { kind: "node" }
+  | { align?: FlowParallelAlign; group: FlowNodeGroup; kind: "parallel" }
+  | { group: FlowNodeGroup; kind: "list" };
+
+export interface DescendantInfo<T = FlowGroupNodeData> {
   element: HTMLElement;
   id: string;
   props: T;
 }
 
-export class FlowNodeGroup<T extends FlowNodeData = FlowNodeData> {
+export class FlowNodeGroup<T = FlowGroupNodeData> {
   descendants = $state.raw<DescendantInfo<T>[]>([]);
-  measurementEpoch = $state(0);
 
   #nodes = new Map<string, DescendantInfo<T>>();
 
   register(id: string, element: HTMLElement, props: T) {
     const current = this.#nodes.get(id);
-    if (!current || current.element !== element || !sameFlowNodeProps(current.props, props)) {
+    if (!current || current.element !== element || current.props !== props) {
       this.#nodes.set(id, { element, id, props });
       this.#sort();
-      this.#bumpMeasurementEpoch();
     }
 
     return () => {
       if (this.#nodes.get(id)?.element !== element) return;
       this.#nodes.delete(id);
       this.#sort();
-      this.#bumpMeasurementEpoch();
     };
   }
 
@@ -34,7 +44,7 @@ export class FlowNodeGroup<T extends FlowNodeData = FlowNodeData> {
     if (!current) return;
 
     const nextElement = element ?? current.element;
-    if (current.element === nextElement && sameFlowNodeProps(current.props, props)) return;
+    if (current.element === nextElement && current.props === props) return;
 
     this.#nodes.set(id, {
       element: nextElement,
@@ -44,8 +54,8 @@ export class FlowNodeGroup<T extends FlowNodeData = FlowNodeData> {
     this.#sort();
   }
 
-  notifySizeChange() {
-    this.#bumpMeasurementEpoch();
+  resort() {
+    this.#sort();
   }
 
   indexOf(id: string) {
@@ -76,19 +86,17 @@ export class FlowNodeGroup<T extends FlowNodeData = FlowNodeData> {
     if (untrack(() => sameDescendants(this.descendants, nextDescendants))) return;
     this.descendants = nextDescendants;
   }
-
-  #bumpMeasurementEpoch() {
-    this.measurementEpoch = untrack(() => this.measurementEpoch) + 1;
-  }
 }
 
-function sameFlowNodeProps<T extends FlowNodeData>(left: T, right: T) {
-  return (
-    left.disabled === right.disabled &&
-    left.parallel === right.parallel &&
-    sameFlowRect(left.start, right.start) &&
-    sameFlowRect(left.end, right.end)
-  );
+export function observeFlowNodeGroup(element: HTMLUListElement, group: FlowNodeGroup) {
+  const observer = new MutationObserver(() => group.resort());
+  observer.observe(element, { childList: true });
+
+  return {
+    destroy() {
+      observer.disconnect();
+    },
+  };
 }
 
 function sameDescendants<T>(left: DescendantInfo<T>[], right: DescendantInfo<T>[]) {
@@ -100,38 +108,24 @@ function sameDescendants<T>(left: DescendantInfo<T>[], right: DescendantInfo<T>[
         next &&
         descendant.id === next.id &&
         descendant.element === next.element &&
-        sameFlowNodeProps(descendant.props as FlowNodeData, next.props as FlowNodeData)
+        descendant.props === next.props
       );
     })
   );
 }
 
-function sameFlowRect(left: FlowNodeData["start"], right: FlowNodeData["start"]) {
-  if (left === right) return true;
-  if (!left || !right) return false;
-  return (
-    left.x === right.x &&
-    left.y === right.y &&
-    left.top === right.top &&
-    left.right === right.right &&
-    left.bottom === right.bottom &&
-    left.left === right.left &&
-    left.width === right.width &&
-    left.height === right.height
-  );
-}
-
 export interface FlowDiagramContextValue {
   align: FlowAlign;
+  edges: FlowEdges;
+  nodePositions: FlowNodePositions;
+  nodes: Record<string, FlowMeasuredNode>;
   orientation: FlowOrientation;
-  wrapper: HTMLElement | null;
-  x: number;
-  y: number;
+  removeNode: (id: string) => void;
+  reportNode: (id: string, node: FlowMeasuredNode) => void;
 }
 
 export interface FlowNodeAnchorContextValue {
-  registerEndAnchor: (element: HTMLElement | null) => void;
-  registerStartAnchor: (element: HTMLElement | null) => void;
+  registerAnchor: (type: FlowAnchorType | undefined, element: HTMLElement | null) => void;
 }
 
 const FLOW_DIAGRAM_CONTEXT = Symbol("kumo.flow.diagram");

@@ -3,9 +3,27 @@
   import type { Action } from "svelte/action";
   import type { HTMLAttributes } from "svelte/elements";
   import { cn } from "../../utils";
-  import { setFlowDiagramContext } from "./context.svelte";
-  import FlowList from "./flow-list.svelte";
-  import type { FlowAlign, FlowOrientation } from "./types";
+  import Connectors from "./connectors.svelte";
+  import {
+    FlowNodeGroup,
+    observeFlowNodeGroup,
+    setFlowDiagramContext,
+    setFlowNodeGroupContext,
+    type FlowGroupNodeData,
+  } from "./context.svelte";
+  import {
+    computeConnectors,
+    computeDiagramRect,
+    computeEdges,
+    computePositions,
+  } from "./geometry";
+  import type {
+    FlowAlign,
+    FlowMeasuredNode,
+    FlowOrientation,
+    FlowState,
+    FlowTreeNode,
+  } from "./types";
 
   const DEFAULT_PADDING = {
     x: 16,
@@ -35,9 +53,12 @@
     ...restProps
   }: FlowProps = $props();
 
+  const rootGroup = new FlowNodeGroup();
+
   let wrapperElement: HTMLDivElement | null = null;
   let contentElement: HTMLDivElement | null = null;
   let cleanupCanvasObserver: (() => void) | undefined;
+  let nodes = $state.raw<Record<string, FlowMeasuredNode>>({});
   let x = $state(0);
   let y = $state(0);
   let bounds = $state<{ x: number; y: number } | null>(null);
@@ -85,6 +106,54 @@
   );
   let contentStyle = $derived(`transform: translate3d(${x}px, ${y}px, 0);`);
   let canvasActionData = $derived({ padding });
+  let tree = $derived(groupToTree(rootGroup));
+  let flowState = $derived<FlowState>({ align, nodes, orientation, tree });
+  let edges = $derived(computeEdges(flowState));
+  let nodePositions = $derived(computePositions(flowState));
+  let diagramRect = $derived(computeDiagramRect(nodePositions, flowState));
+  let connectors = $derived(computeConnectors(edges, nodePositions, nodes, orientation));
+
+  function groupToTree(
+    group: FlowNodeGroup,
+  ): Extract<FlowTreeNode, { kind: "list" }> {
+    return {
+      kind: "list",
+      children: group.descendants.map(({ id, props }: { id: string; props: FlowGroupNodeData }) => {
+        if (props.kind === "node") return { id, kind: "node" };
+
+        const subtree = groupToTree(props.group);
+        if (props.kind === "parallel") {
+          return {
+            align: props.align === "end" ? "end" : undefined,
+            children: subtree.children,
+            kind: "parallel",
+          };
+        }
+        return subtree;
+      }),
+    };
+  }
+
+  function reportNode(id: string, node: FlowMeasuredNode) {
+    const current = nodes[id];
+    if (
+      current?.width === node.width &&
+      current?.height === node.height &&
+      current?.disabled === node.disabled &&
+      current?.startAnchorOffset === node.startAnchorOffset &&
+      current?.endAnchorOffset === node.endAnchorOffset
+    ) {
+      return;
+    }
+    nodes = { ...nodes, [id]: node };
+  }
+
+  function removeNode(id: string) {
+    if (!(id in nodes)) return;
+    const next = { ...nodes };
+    delete next[id];
+    nodes = next;
+  }
 
   setFlowDiagramContext({
     get align() {
@@ -93,16 +162,19 @@
     get orientation() {
       return orientation;
     },
-    get wrapper() {
-      return wrapperElement;
+    get edges() {
+      return edges;
     },
-    get x() {
-      return x;
+    get nodePositions() {
+      return nodePositions;
     },
-    get y() {
-      return y;
+    get nodes() {
+      return nodes;
     },
+    removeNode,
+    reportNode,
   });
+  setFlowNodeGroupContext(rootGroup);
 
   function isEventFromNode(target: EventTarget | null) {
     return target instanceof Element && target.closest("[data-node-id]") !== null;
@@ -260,12 +332,17 @@
     <div
       use:contentAction
       data-testid="flow-contents"
-      class="mx-auto w-max"
+      class="relative mx-auto"
       style={contentStyle}
+      style:width={diagramRect.width ? `${diagramRect.width}px` : undefined}
+      style:height={diagramRect.height ? `${diagramRect.height}px` : undefined}
     >
-      <FlowList>
+      <ul use:observeFlowNodeGroup={rootGroup} class="m-0 list-none p-0">
         {@render children?.()}
-      </FlowList>
+      </ul>
+      <div class="pointer-events-none absolute inset-0">
+        <Connectors {connectors} {orientation} />
+      </div>
     </div>
 
     {#if canScrollY}
@@ -294,9 +371,17 @@
   </div>
 {:else}
   <div class={cn("relative grow", className)} {...restProps}>
-    <FlowList>
-      {@render children?.()}
-    </FlowList>
+    <div
+      class="relative"
+      style:width={diagramRect.width ? `${diagramRect.width}px` : undefined}
+      style:height={diagramRect.height ? `${diagramRect.height}px` : undefined}
+    >
+      <ul use:observeFlowNodeGroup={rootGroup} class="m-0 list-none p-0">
+        {@render children?.()}
+      </ul>
+      <div class="pointer-events-none absolute inset-0">
+        <Connectors {connectors} {orientation} />
+      </div>
+    </div>
   </div>
 {/if}
-
