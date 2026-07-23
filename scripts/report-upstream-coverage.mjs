@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { existsSync, readFileSync, realpathSync, statSync } from "node:fs";
+import { existsSync, readFileSync, realpathSync, statSync, writeFileSync } from "node:fs";
 import { dirname, isAbsolute, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import process from "node:process";
@@ -7,6 +7,7 @@ import ts from "typescript";
 
 const scriptDirectory = dirname(fileURLToPath(import.meta.url));
 const defaultRepoRoot = resolve(scriptDirectory, "..");
+const defaultBaselinePath = join(scriptDirectory, "upstream-coverage-baseline.json");
 const familyPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*(?:\/[a-z0-9]+(?:-[a-z0-9]+)*)*$/;
 const componentExportPattern = new RegExp(
   `^\\./components/(${familyPattern.source.slice(1, -1)})$`,
@@ -46,10 +47,10 @@ function assertObject(value, label, code = "malformed-authority") {
   return value;
 }
 
-function assertKeys(value, allowed, label) {
+function assertKeys(value, allowed, label, code = "malformed-mappings") {
   const unexpected = Object.keys(value).filter((key) => !allowed.includes(key));
   if (unexpected.length > 0) {
-    fail("malformed-mappings", `${label} has unknown keys: ${unexpected.sort().join(", ")}`);
+    fail(code, `${label} has unknown keys: ${unexpected.sort().join(", ")}`);
   }
 }
 
@@ -134,7 +135,45 @@ export function parseLockfileKumo(source) {
     fail("malformed-lockfile", `cannot extract an exact Kumo version from ${fields.version}`);
   }
 
-  return { specifier: fields.specifier, version };
+  const packagesStart = lines.findIndex((line) => line === "packages:");
+  if (packagesStart === -1) fail("malformed-lockfile", "pnpm-lock.yaml has no packages section");
+  let packagesEnd = lines.length;
+  for (let index = packagesStart + 1; index < lines.length; index += 1) {
+    if (/^\S.*:$/.test(lines[index])) {
+      packagesEnd = index;
+      break;
+    }
+  }
+
+  const packageEntries = [];
+  for (let index = packagesStart + 1; index < packagesEnd; index += 1) {
+    const match = lines[index].match(/^  ['"]?(@cloudflare\/kumo@[^'"]+)['"]?:\s*$/);
+    if (!match || match[1] !== `@cloudflare/kumo@${version}`) continue;
+    let entryEnd = lines.length;
+    for (let cursor = index + 1; cursor < lines.length; cursor += 1) {
+      if (/^  \S.*:$/.test(lines[cursor]) || /^\S.*:$/.test(lines[cursor])) {
+        entryEnd = cursor;
+        break;
+      }
+    }
+    const entry = lines.slice(index + 1, entryEnd).join("\n");
+    const integrity = entry.match(
+      /^    resolution:\s*\{[^\n}]*integrity:\s*([^,}\s]+)[^\n}]*\}\s*$/m,
+    )?.[1];
+    if (!integrity) {
+      fail("malformed-lockfile", `${match[1]} lacks a resolution integrity`);
+    }
+    packageEntries.push({ integrity: unquoteYamlScalar(integrity), packageKey: match[1] });
+  }
+
+  if (packageEntries.length !== 1) {
+    fail(
+      "malformed-lockfile",
+      `expected one resolved @cloudflare/kumo@${version} package entry, found ${packageEntries.length}`,
+    );
+  }
+
+  return { ...packageEntries[0], specifier: fields.specifier, version };
 }
 
 export function parseManagedCheckoutVersion(source) {
@@ -185,14 +224,19 @@ export function assertVersionAuthority({
 
 function resolveRelativeModule(fromPath, specifier) {
   const base = resolve(dirname(fromPath), specifier);
+  const extensionlessBase = base.replace(/\.(?:c|m)?js$/, "");
   const candidates = [
     base,
     `${base}.ts`,
     `${base}.d.ts`,
+    `${extensionlessBase}.ts`,
+    `${extensionlessBase}.d.ts`,
+    `${extensionlessBase}.d.mts`,
+    `${extensionlessBase}.d.cts`,
     join(base, "index.ts"),
     join(base, "index.d.ts"),
   ];
-  const matches = candidates.filter(
+  const matches = sortedUnique(candidates).filter(
     (candidate) => existsSync(candidate) && statSync(candidate).isFile(),
   );
   if (matches.length === 0) {
@@ -209,28 +253,132 @@ function addBindingNames(name, names, path) {
   fail("unsupported-declaration", `unsupported exported binding in ${path}`);
 }
 
-export function parseDeclaredExports(path, visited = new Set()) {
+function pathWithinRoot(root, path) {
+  const child = relative(root, path);
+  return child !== "" && !child.startsWith("..") && !isAbsolute(child);
+}
+
+function declarationPath(root, path) {
+  return relative(root, path).replaceAll("\\", "/");
+}
+
+function readDeclarationGraph(path, packageRoot) {
+  const canonicalRoot = realpathSync(packageRoot);
+  const sourceFiles = new Map();
+  const files = new Map();
+  const visiting = new Set();
+
+  function visit(targetPath) {
+    const canonicalPath = realpathSync(targetPath);
+    if (!pathWithinRoot(canonicalRoot, canonicalPath)) {
+      fail("unreadable-declarations", `relative declaration escapes its package: ${targetPath}`);
+    }
+    if (sourceFiles.has(canonicalPath) || visiting.has(canonicalPath)) return;
+    visiting.add(canonicalPath);
+
+    let bytes;
+    try {
+      bytes = readFileSync(canonicalPath);
+    } catch (error) {
+      fail("unreadable-declarations", `cannot read declarations: ${error.code ?? error.message}`);
+    }
+    const source = bytes.toString("utf8");
+    const sourceFile = ts.createSourceFile(
+      canonicalPath,
+      source,
+      ts.ScriptTarget.Latest,
+      true,
+      ts.ScriptKind.TS,
+    );
+    if (sourceFile.parseDiagnostics.length > 0) {
+      const diagnostic = sourceFile.parseDiagnostics[0];
+      fail(
+        "malformed-declarations",
+        `TypeScript could not parse ${declarationPath(canonicalRoot, canonicalPath)}: ${ts.flattenDiagnosticMessageText(diagnostic.messageText, " ")}`,
+      );
+    }
+
+    const relativePath = declarationPath(canonicalRoot, canonicalPath);
+    const digest = sha256(bytes);
+    const existing = files.get(relativePath);
+    if (existing && existing !== digest) {
+      fail(
+        "duplicate-authority",
+        `duplicate declaration identity has different bytes: ${relativePath}`,
+      );
+    }
+    files.set(relativePath, digest);
+    sourceFiles.set(canonicalPath, sourceFile);
+
+    const visitSpecifier = (specifier) => {
+      if (!specifier.startsWith(".")) return;
+      visit(resolveRelativeModule(canonicalPath, specifier));
+    };
+    for (const reference of sourceFile.referencedFiles) {
+      visit(resolveRelativeModule(canonicalPath, reference.fileName));
+    }
+    for (const statement of sourceFile.statements) {
+      if (
+        (ts.isImportDeclaration(statement) || ts.isExportDeclaration(statement)) &&
+        statement.moduleSpecifier &&
+        ts.isStringLiteral(statement.moduleSpecifier)
+      ) {
+        visitSpecifier(statement.moduleSpecifier.text);
+      } else if (
+        ts.isImportEqualsDeclaration(statement) &&
+        ts.isExternalModuleReference(statement.moduleReference) &&
+        statement.moduleReference.expression &&
+        ts.isStringLiteral(statement.moduleReference.expression)
+      ) {
+        visitSpecifier(statement.moduleReference.expression.text);
+      }
+    }
+    const visitInlineImports = (node) => {
+      if (
+        (ts.isImportDeclaration(node) || ts.isExportDeclaration(node)) &&
+        node.moduleSpecifier &&
+        ts.isStringLiteral(node.moduleSpecifier)
+      ) {
+        visitSpecifier(node.moduleSpecifier.text);
+      } else if (
+        ts.isImportEqualsDeclaration(node) &&
+        ts.isExternalModuleReference(node.moduleReference) &&
+        node.moduleReference.expression &&
+        ts.isStringLiteral(node.moduleReference.expression)
+      ) {
+        visitSpecifier(node.moduleReference.expression.text);
+      }
+      if (
+        ts.isImportTypeNode(node) &&
+        ts.isLiteralTypeNode(node.argument) &&
+        ts.isStringLiteral(node.argument.literal)
+      ) {
+        visitSpecifier(node.argument.literal.text);
+      }
+      if (
+        ts.isModuleDeclaration(node) &&
+        ts.isStringLiteral(node.name) &&
+        node.name.text.startsWith(".")
+      ) {
+        fail("unsupported-declaration", "relative ambient module declarations are unsupported");
+      }
+      ts.forEachChild(node, visitInlineImports);
+    };
+    visitInlineImports(sourceFile);
+    visiting.delete(canonicalPath);
+  }
+
+  visit(path);
+  return { canonicalRoot, files, sourceFiles };
+}
+
+function exportedNames(path, graph, active = new Set(), cache = new Map()) {
   const canonicalPath = realpathSync(path);
-  if (visited.has(canonicalPath)) return [];
-  visited.add(canonicalPath);
-
-  let source;
-  try {
-    source = readFileSync(canonicalPath, "utf8");
-  } catch (error) {
-    fail("unreadable-declarations", `cannot read declarations: ${error.code ?? error.message}`);
-  }
-
-  const sourceFile = ts.createSourceFile(
-    canonicalPath,
-    source,
-    ts.ScriptTarget.Latest,
-    true,
-    ts.ScriptKind.TS,
-  );
-  if (sourceFile.parseDiagnostics.length > 0) {
-    fail("malformed-declarations", "TypeScript could not parse a component declaration barrel");
-  }
+  if (cache.has(canonicalPath)) return cache.get(canonicalPath);
+  if (active.has(canonicalPath)) return [];
+  active.add(canonicalPath);
+  const sourceFile = graph.sourceFiles.get(canonicalPath);
+  if (!sourceFile) fail("unreadable-declarations", `declaration graph omitted ${canonicalPath}`);
 
   const names = [];
   for (const statement of sourceFile.statements) {
@@ -250,7 +398,7 @@ export function parseDeclaredExports(path, visited = new Set()) {
         fail("unsupported-declaration", "cannot inventory an export-all from an external package");
       }
       const target = resolveRelativeModule(canonicalPath, statement.moduleSpecifier.text);
-      names.push(...parseDeclaredExports(target, visited));
+      names.push(...exportedNames(target, graph, active, cache));
       continue;
     }
 
@@ -293,7 +441,102 @@ export function parseDeclaredExports(path, visited = new Set()) {
     );
   }
 
+  active.delete(canonicalPath);
+  const result = sortedUnique(names);
+  cache.set(canonicalPath, result);
+  return result;
+}
+
+export function parseDeclaredExports(path, visited = new Set()) {
+  const canonicalPath = realpathSync(path);
+  if (visited.has(canonicalPath)) return [];
+  visited.add(canonicalPath);
+  let source;
+  try {
+    source = readFileSync(canonicalPath, "utf8");
+  } catch (error) {
+    fail("unreadable-declarations", `cannot read declarations: ${error.code ?? error.message}`);
+  }
+  const sourceFile = ts.createSourceFile(
+    canonicalPath,
+    source,
+    ts.ScriptTarget.Latest,
+    true,
+    ts.ScriptKind.TS,
+  );
+  if (sourceFile.parseDiagnostics.length > 0) {
+    fail("malformed-declarations", `TypeScript could not parse ${canonicalPath}`);
+  }
+
+  const names = [];
+  for (const statement of sourceFile.statements) {
+    if (ts.isExportDeclaration(statement)) {
+      if (statement.exportClause && ts.isNamedExports(statement.exportClause)) {
+        for (const element of statement.exportClause.elements) names.push(element.name.text);
+        continue;
+      }
+      if (statement.exportClause && ts.isNamespaceExport(statement.exportClause)) {
+        names.push(statement.exportClause.name.text);
+        continue;
+      }
+      if (!statement.moduleSpecifier || !ts.isStringLiteral(statement.moduleSpecifier)) {
+        fail("unsupported-declaration", "unsupported export declaration");
+      }
+      if (!statement.moduleSpecifier.text.startsWith(".")) {
+        fail("unsupported-declaration", "cannot inventory an export-all from an external package");
+      }
+      names.push(
+        ...parseDeclaredExports(
+          resolveRelativeModule(canonicalPath, statement.moduleSpecifier.text),
+          visited,
+        ),
+      );
+      continue;
+    }
+    if (ts.isExportAssignment(statement)) {
+      names.push("default");
+      continue;
+    }
+    const modifiers = statement.modifiers ?? [];
+    if (!modifiers.some((modifier) => modifier.kind === ts.SyntaxKind.ExportKeyword)) continue;
+    if (modifiers.some((modifier) => modifier.kind === ts.SyntaxKind.DefaultKeyword)) {
+      names.push("default");
+      continue;
+    }
+    if (ts.isVariableStatement(statement)) {
+      for (const declaration of statement.declarationList.declarations) {
+        addBindingNames(declaration.name, names, canonicalPath);
+      }
+      continue;
+    }
+    if (
+      ts.isClassDeclaration(statement) ||
+      ts.isEnumDeclaration(statement) ||
+      ts.isFunctionDeclaration(statement) ||
+      ts.isInterfaceDeclaration(statement) ||
+      ts.isTypeAliasDeclaration(statement) ||
+      ts.isImportEqualsDeclaration(statement)
+    ) {
+      if (!statement.name) fail("unsupported-declaration", "unnamed exported declaration");
+      names.push(statement.name.text);
+      continue;
+    }
+    fail(
+      "unsupported-declaration",
+      `unsupported exported TypeScript syntax kind ${statement.kind}`,
+    );
+  }
   return sortedUnique(names);
+}
+
+function readDeclaredExportInventory(path, packageRoot) {
+  const graph = readDeclarationGraph(path, packageRoot);
+  return {
+    declarationFiles: [...graph.files.entries()]
+      .map(([filePath, digest]) => ({ path: filePath, sha256: digest }))
+      .sort((left, right) => (left.path < right.path ? -1 : left.path > right.path ? 1 : 0)),
+    declarations: exportedNames(path, graph),
+  };
 }
 
 function resolvePackageTarget(packageRoot, target, exportPath) {
@@ -311,7 +554,7 @@ function resolvePackageTarget(packageRoot, target, exportPath) {
   return path;
 }
 
-export function readFamilyInventory(packageRoot, packageJson, authority) {
+export function readFamilyInventory(packageRoot, packageJson, authority, options = {}) {
   assertObject(packageJson, `${authority} package.json`);
   const exports = assertObject(packageJson.exports, `${authority} package exports`);
   const entries = [];
@@ -329,11 +572,25 @@ export function readFamilyInventory(packageRoot, packageJson, authority) {
     }
     const config = assertObject(exports[exportPath], `${authority} ${exportPath}`);
     const typesPath = resolvePackageTarget(packageRoot, config.types, exportPath);
-    const declarations = parseDeclaredExports(typesPath);
+    const { declarationFiles, declarations } =
+      options.includeDeclarationContent === false
+        ? { declarationFiles: [], declarations: parseDeclaredExports(typesPath) }
+        : readDeclaredExportInventory(typesPath, packageRoot);
     if (declarations.length === 0) {
       fail("empty-inventory", `${authority} ${exportPath} has no declared exports`);
     }
-    entries.push({ declarations, exportPath, family: match[1] });
+    const entry = {
+      declarations,
+      evidenceKey: `component:${match[1]}`,
+      exportPath,
+      family: match[1],
+    };
+    if (options.includeDeclarationContent === false) {
+      entries.push(entry);
+    } else {
+      const factualEntry = { declarationFiles, ...entry };
+      entries.push({ ...factualEntry, declarationDigest: digestValue(factualEntry) });
+    }
   }
 
   if (entries.length === 0) {
@@ -826,7 +1083,7 @@ export function compareReleases(previousInventory, currentInventory, fromVersion
   return {
     changes: { declarationsChanged, familiesAdded, familiesRemoved },
     fromVersion,
-    status: "passed",
+    status: "review-required",
     toVersion,
   };
 }
@@ -850,7 +1107,347 @@ function normalizeRepository(repository) {
   return null;
 }
 
-export function buildCoverageReport(options = {}) {
+function digestValue(value) {
+  return sha256(JSON.stringify(canonicalize(value)));
+}
+
+function exactVersion(value, label, code) {
+  if (typeof value !== "string" || !/^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/.test(value)) {
+    fail(code, `${label} must be an exact version`);
+  }
+  return value;
+}
+
+function hashValue(value, label, code) {
+  if (typeof value !== "string" || !/^[a-f0-9]{64}$/.test(value)) {
+    fail(code, `${label} must be a lowercase SHA-256 digest`);
+  }
+  return value;
+}
+
+function sortedWithoutDuplicates(values, label, code, identity = (value) => value) {
+  const identities = values.map(identity);
+  if (new Set(identities).size !== identities.length) {
+    fail(code, `${label} contains duplicate identities`);
+  }
+  const sorted = [...identities].sort();
+  if (identities.some((value, index) => value !== sorted[index])) {
+    fail(code, `${label} must be sorted deterministically`);
+  }
+}
+
+export function createAcceptedBaseline({
+  integrity,
+  inventory,
+  packageJsonSha256,
+  packageKey,
+  specifier,
+  version,
+  workspaceSpecifier,
+}) {
+  const families = inventory.map((entry) => ({
+    declarationDigest: entry.declarationDigest,
+    declarationFileCount: entry.declarationFiles.length,
+    declarations: entry.declarations,
+    evidenceKey: entry.evidenceKey,
+    exportPath: entry.exportPath,
+    family: entry.family,
+  }));
+  return {
+    authority: {
+      lock: { integrity, packageKey, specifier, version },
+      package: "@cloudflare/kumo",
+      packageJsonSha256,
+      version,
+      workspaceSpecifier,
+    },
+    inventory: {
+      digest: digestValue(families),
+      families,
+    },
+    schemaVersion: 1,
+  };
+}
+
+export function validateAcceptedBaseline(input) {
+  const code = "malformed-baseline";
+  const baseline = assertObject(input, "accepted upstream baseline", code);
+  assertKeys(
+    baseline,
+    ["schemaVersion", "authority", "inventory"],
+    "accepted upstream baseline",
+    code,
+  );
+  if (baseline.schemaVersion !== 1) {
+    fail(
+      "unsupported-baseline-schema",
+      `unsupported accepted upstream baseline schema: ${baseline.schemaVersion}`,
+    );
+  }
+
+  const authority = assertObject(baseline.authority, "baseline authority", code);
+  assertKeys(
+    authority,
+    ["package", "version", "workspaceSpecifier", "lock", "packageJsonSha256"],
+    "baseline authority",
+    code,
+  );
+  if (authority.package !== "@cloudflare/kumo") {
+    fail("stale-baseline", `baseline package must be @cloudflare/kumo, found ${authority.package}`);
+  }
+  const version = exactVersion(authority.version, "baseline authority.version", code);
+  if (authority.workspaceSpecifier !== version) {
+    fail("stale-baseline", "baseline workspace specifier does not exactly match its version");
+  }
+  hashValue(authority.packageJsonSha256, "baseline packageJsonSha256", code);
+
+  const lock = assertObject(authority.lock, "baseline lock authority", code);
+  assertKeys(
+    lock,
+    ["integrity", "packageKey", "specifier", "version"],
+    "baseline lock authority",
+    code,
+  );
+  if (lock.version !== version || lock.specifier !== version) {
+    fail("stale-baseline", "baseline lock version and specifier do not match its version");
+  }
+  if (lock.packageKey !== `@cloudflare/kumo@${version}`) {
+    fail("stale-baseline", "baseline resolved lock package key does not match its version");
+  }
+  if (
+    typeof lock.integrity !== "string" ||
+    !/^sha(?:256|384|512)-[A-Za-z0-9+/=]+$/.test(lock.integrity)
+  ) {
+    fail(code, "baseline lock integrity must be an SRI digest");
+  }
+
+  const inventory = assertObject(baseline.inventory, "baseline inventory", code);
+  assertKeys(inventory, ["digest", "families"], "baseline inventory", code);
+  hashValue(inventory.digest, "baseline inventory digest", code);
+  if (!Array.isArray(inventory.families) || inventory.families.length === 0) {
+    fail("empty-baseline", "baseline inventory must contain component families");
+  }
+
+  for (const [index, familyEntry] of inventory.families.entries()) {
+    const label = `baseline inventory.families[${index}]`;
+    const entry = assertObject(familyEntry, label, code);
+    assertKeys(
+      entry,
+      [
+        "declarationDigest",
+        "declarationFileCount",
+        "declarations",
+        "evidenceKey",
+        "exportPath",
+        "family",
+      ],
+      label,
+      code,
+    );
+    if (typeof entry.family !== "string" || !familyPattern.test(entry.family)) {
+      fail(code, `${label}.family must be a canonical component family`);
+    }
+    if (entry.exportPath !== `./components/${entry.family}`) {
+      fail("stale-baseline", `${label}.exportPath does not match its family`);
+    }
+    if (entry.evidenceKey !== `component:${entry.family}`) {
+      fail("stale-baseline", `${label}.evidenceKey does not match its family`);
+    }
+    if (!Array.isArray(entry.declarations) || entry.declarations.length === 0) {
+      fail("empty-baseline", `${label}.declarations must not be empty`);
+    }
+    if (entry.declarations.some((name) => typeof name !== "string" || name.length === 0)) {
+      fail(code, `${label}.declarations must contain names`);
+    }
+    sortedWithoutDuplicates(
+      entry.declarations,
+      `${label}.declarations`,
+      "duplicate-baseline-identity",
+    );
+    if (!Number.isSafeInteger(entry.declarationFileCount) || entry.declarationFileCount < 1) {
+      fail("empty-baseline", `${label}.declarationFileCount must be positive`);
+    }
+    hashValue(entry.declarationDigest, `${label}.declarationDigest`, code);
+  }
+  sortedWithoutDuplicates(
+    inventory.families,
+    "baseline inventory families",
+    "duplicate-baseline-identity",
+    (entry) => entry.exportPath,
+  );
+  for (const identity of ["family", "evidenceKey"]) {
+    if (
+      new Set(inventory.families.map((entry) => entry[identity])).size !== inventory.families.length
+    ) {
+      fail(
+        "duplicate-baseline-identity",
+        `baseline inventory has duplicate ${identity} identities`,
+      );
+    }
+  }
+  if (inventory.digest !== digestValue(inventory.families)) {
+    fail("stale-baseline", "baseline inventory digest does not match its family facts");
+  }
+  return baseline;
+}
+
+function readAcceptedBaseline(path) {
+  let source;
+  try {
+    source = readFileSync(path, "utf8");
+  } catch (error) {
+    fail(
+      "missing-baseline",
+      `cannot read accepted upstream baseline: ${error.code ?? error.message}`,
+    );
+  }
+  let value;
+  try {
+    value = JSON.parse(source);
+  } catch {
+    fail("malformed-baseline", "accepted upstream baseline is not valid JSON");
+  }
+  const baseline = validateAcceptedBaseline(value);
+  if (source !== serializeReport(baseline)) {
+    fail("noncanonical-baseline", "accepted upstream baseline is not canonically serialized");
+  }
+  return { baseline, sha256: sha256(source) };
+}
+
+export function compareAcceptedBaseline(baselineInput, currentInput) {
+  const baseline = validateAcceptedBaseline(baselineInput);
+  const current = validateAcceptedBaseline(currentInput);
+  const authorityChanges = [];
+  const compareAuthority = (field, previous, next) => {
+    if (previous !== next)
+      authorityChanges.push({ field, from: previous, kind: "changed", to: next });
+  };
+  compareAuthority("version", baseline.authority.version, current.authority.version);
+  compareAuthority(
+    "workspaceSpecifier",
+    baseline.authority.workspaceSpecifier,
+    current.authority.workspaceSpecifier,
+  );
+  compareAuthority("lock.version", baseline.authority.lock.version, current.authority.lock.version);
+  compareAuthority(
+    "lock.specifier",
+    baseline.authority.lock.specifier,
+    current.authority.lock.specifier,
+  );
+  compareAuthority(
+    "lock.packageKey",
+    baseline.authority.lock.packageKey,
+    current.authority.lock.packageKey,
+  );
+  compareAuthority(
+    "lock.integrity",
+    baseline.authority.lock.integrity,
+    current.authority.lock.integrity,
+  );
+  compareAuthority(
+    "packageJsonSha256",
+    baseline.authority.packageJsonSha256,
+    current.authority.packageJsonSha256,
+  );
+  if (baseline.authority.version === current.authority.version && authorityChanges.length > 0) {
+    fail(
+      "authority-mismatch",
+      `installed ${current.authority.package}@${current.authority.version} identity differs from its accepted baseline without a version change`,
+    );
+  }
+
+  const previousFamilies = inventoryMap(baseline.inventory.families);
+  const currentFamilies = inventoryMap(current.inventory.families);
+  const familyChanges = [];
+  for (const family of [...currentFamilies.keys()]
+    .filter((name) => !previousFamilies.has(name))
+    .sort()) {
+    const entry = currentFamilies.get(family);
+    familyChanges.push({
+      declarations: entry.declarations,
+      evidenceKey: entry.evidenceKey,
+      exportPath: entry.exportPath,
+      family,
+      kind: "family-added",
+    });
+  }
+  for (const family of [...previousFamilies.keys()]
+    .filter((name) => !currentFamilies.has(name))
+    .sort()) {
+    const entry = previousFamilies.get(family);
+    familyChanges.push({
+      declarations: entry.declarations,
+      evidenceKey: entry.evidenceKey,
+      exportPath: entry.exportPath,
+      family,
+      kind: "family-removed",
+    });
+  }
+  for (const family of [...currentFamilies.keys()]
+    .filter((name) => previousFamilies.has(name))
+    .sort()) {
+    const previous = previousFamilies.get(family);
+    const next = currentFamilies.get(family);
+    if (previous.exportPath !== next.exportPath) {
+      familyChanges.push({
+        evidenceKey: next.evidenceKey,
+        family,
+        from: previous.exportPath,
+        kind: "export-path-changed",
+        to: next.exportPath,
+      });
+    }
+    const added = next.declarations.filter((name) => !previous.declarations.includes(name));
+    const removed = previous.declarations.filter((name) => !next.declarations.includes(name));
+    if (added.length > 0 || removed.length > 0) {
+      familyChanges.push({
+        added,
+        evidenceKey: next.evidenceKey,
+        family,
+        kind: "declaration-names-changed",
+        removed,
+      });
+    }
+    if (previous.declarationDigest !== next.declarationDigest) {
+      familyChanges.push({
+        evidenceKey: next.evidenceKey,
+        family,
+        fromDigest: previous.declarationDigest,
+        kind: "declaration-content-changed",
+        stableDeclarationNames: added.length === 0 && removed.length === 0,
+        toDigest: next.declarationDigest,
+      });
+    }
+  }
+  familyChanges.sort((left, right) =>
+    `${left.evidenceKey}\0${left.kind}` < `${right.evidenceKey}\0${right.kind}`
+      ? -1
+      : `${left.evidenceKey}\0${left.kind}` > `${right.evidenceKey}\0${right.kind}`
+        ? 1
+        : 0,
+  );
+  const affectedEvidenceKeys = sortedUnique(familyChanges.map((change) => change.evidenceKey));
+  const status =
+    authorityChanges.length > 0 || familyChanges.length > 0 ? "review-required" : "unchanged";
+  return {
+    affectedEvidenceKeys,
+    authorityChanges,
+    baseline: {
+      inventoryDigest: baseline.inventory.digest,
+      version: baseline.authority.version,
+    },
+    boundary:
+      "Upstream baseline drift prioritizes release/source review; unchanged machine facts do not prove runtime behavior, accessibility, rendering, visual, interaction, SSR, hydration, or framework parity.",
+    current: {
+      inventoryDigest: current.inventory.digest,
+      version: current.authority.version,
+    },
+    familyChanges,
+    status,
+  };
+}
+
+function loadCurrentAuthority(options = {}) {
   const repoRoot = options.repoRoot ?? defaultRepoRoot;
   const upstreamPackagePath =
     options.upstreamPackagePath ?? join(repoRoot, "node_modules/@cloudflare/kumo/package.json");
@@ -890,15 +1487,100 @@ export function buildCoverageReport(options = {}) {
     upstream.packageJson,
     "upstream",
   );
-  const localInventory = readFamilyInventory(local.packageRoot, local.packageJson, "local");
+  const localInventory = readFamilyInventory(local.packageRoot, local.packageJson, "local", {
+    includeDeclarationContent: false,
+  });
   const mappings = readJson(mappingsPath, "upstream coverage mappings");
-  const coverage = classifyCoverage(
-    upstreamInventory,
-    localInventory,
-    mappings.value,
+  const validatedMappings = validateMappings(mappings.value, { repoRoot });
+  return {
     installedVersion,
-    { repoRoot },
+    local,
+    localInventory,
+    lock,
+    managedCheckoutVersion,
+    mappings,
+    repoRoot,
+    upstream,
+    upstreamInventory,
+    validatedMappings,
+    workspaceSpecifier,
+  };
+}
+
+function currentBaselineFacts(authority) {
+  return createAcceptedBaseline({
+    integrity: authority.lock.integrity,
+    inventory: authority.upstreamInventory,
+    packageJsonSha256: authority.upstream.packageJsonSha256,
+    packageKey: authority.lock.packageKey,
+    specifier: authority.lock.specifier,
+    version: authority.installedVersion,
+    workspaceSpecifier: authority.workspaceSpecifier,
+  });
+}
+
+export function buildAcceptedBaseline(options = {}) {
+  const authority = loadCurrentAuthority(options);
+  if (authority.validatedMappings.reviewedUpstreamVersion !== authority.installedVersion) {
+    fail(
+      "stale-mapping",
+      `cannot update baseline: mappings target ${authority.validatedMappings.reviewedUpstreamVersion}, not installed ${authority.installedVersion}`,
+    );
+  }
+  const coverage = classifyCoverage(
+    authority.upstreamInventory,
+    authority.localInventory,
+    authority.mappings.value,
+    authority.installedVersion,
+    { repoRoot: authority.repoRoot },
   );
+  if (coverage.status !== "passed") {
+    fail("unexplained-coverage", "cannot update baseline while current inventory is unexplained");
+  }
+  return validateAcceptedBaseline(currentBaselineFacts(authority));
+}
+
+export function buildCoverageReport(options = {}) {
+  const authority = loadCurrentAuthority(options);
+  const baselinePath =
+    options.baselinePath ?? join(authority.repoRoot, "scripts/upstream-coverage-baseline.json");
+  const accepted = readAcceptedBaseline(baselinePath);
+  const currentFacts = currentBaselineFacts(authority);
+  const baselineDrift = compareAcceptedBaseline(accepted.baseline, currentFacts);
+  const mappingVersion = authority.validatedMappings.reviewedUpstreamVersion;
+  const baselineVersion = accepted.baseline.authority.version;
+  let coverage;
+  let mappingStatus;
+  if (mappingVersion === authority.installedVersion) {
+    coverage = classifyCoverage(
+      authority.upstreamInventory,
+      authority.localInventory,
+      authority.mappings.value,
+      authority.installedVersion,
+      { repoRoot: authority.repoRoot },
+    );
+    mappingStatus = "accepted";
+  } else if (mappingVersion === baselineVersion) {
+    coverage = classifyCoverage(
+      authority.upstreamInventory,
+      authority.localInventory,
+      {
+        familyMappings: [],
+        intentionalLocalFamilies: [],
+        intentionalUpstreamFamilies: [],
+        reviewedUpstreamExports: [],
+        reviewedUpstreamVersion: authority.installedVersion,
+        schemaVersion: 2,
+      },
+      authority.installedVersion,
+    );
+    mappingStatus = "review-required";
+  } else {
+    fail(
+      "stale-mapping",
+      `mapping review targets ${mappingVersion}, neither accepted baseline ${baselineVersion} nor installed upstream ${authority.installedVersion}`,
+    );
+  }
 
   let releaseChanges;
   if (options.previousPackagePath) {
@@ -922,22 +1604,31 @@ export function buildCoverageReport(options = {}) {
     );
     releaseChanges = compareReleases(
       previousInventory,
-      upstreamInventory,
+      authority.upstreamInventory,
       previous.packageJson.version,
-      installedVersion,
+      authority.installedVersion,
     );
   } else {
     releaseChanges = {
-      fromVersion: null,
-      reason:
-        "No previous authoritative package installation or recorded inventory is configured; changelog prose is not treated as an export authority.",
-      status: "not-run",
-      toVersion: installedVersion,
+      ...baselineDrift,
+      source: "accepted-baseline",
     };
   }
 
+  const status =
+    baselineDrift.status === "review-required" || coverage.status !== "passed"
+      ? "review-required"
+      : "unchanged";
+
   return {
-    authorityValidation: { status: "passed" },
+    acceptedBaseline: {
+      path: relative(authority.repoRoot, baselinePath).replaceAll("\\", "/"),
+      schemaVersion: accepted.baseline.schemaVersion,
+      sha256: accepted.sha256,
+      version: baselineVersion,
+    },
+    authorityValidation: { status: "validated" },
+    baselineDrift,
     boundary:
       "This report proves component-subpath export inventory correspondence only; root, primitives, utils, and code subpaths are out of scope. Name matches and reviewed classifications do not prove behavioral, accessibility, rendering, visual, interaction, SSR, or hydration parity.",
     claim: "component-subpath-export-inventory-correspondence",
@@ -950,34 +1641,36 @@ export function buildCoverageReport(options = {}) {
     },
     interpretation: {
       exactFacts:
-        "Package versions, export subpaths, declaration names, and exact-name set differences come directly from the checked authorities.",
+        "Package versions, lock integrity, installed package manifest bytes, export subpaths, declaration names, and installed declaration bytes come directly from the checked authorities. Lock integrity provenance-attests the package resolution; this report does not independently reconstruct the registry tarball.",
       heuristic:
         "An identical family or declaration name is inventory correspondence only; investigate means a maintainer must determine whether a difference is a gap or an idiomatic framework adaptation.",
       reviewedClassifications:
         "Categories, reasons, and source paths are maintainer-authored review metadata pinned to the installed upstream version. This command validates their schema and declaration references; it does not machine-verify the source-review conclusions or behavioral parity.",
     },
     local: {
-      name: local.packageJson.name,
-      packageJsonSha256: local.packageJsonSha256,
-      version: local.packageJson.version,
+      name: authority.local.packageJson.name,
+      packageJsonSha256: authority.local.packageJsonSha256,
+      version: authority.local.packageJson.version,
     },
     mappingAuthority: {
       ...coverage.mappingAuthority,
-      sha256: sha256(mappings.source),
-      status: "passed",
+      sha256: sha256(authority.mappings.source),
+      status: mappingStatus,
     },
     releaseChanges,
-    schemaVersion: 2,
-    status: coverage.status,
+    schemaVersion: 3,
+    status,
     summary: coverage.summary,
     upstream: {
       authority: "installed package exports and published TypeScript declarations",
-      managedCheckoutTag: `@cloudflare/kumo@${managedCheckoutVersion}`,
-      name: upstream.packageJson.name,
-      packageJsonSha256: upstream.packageJsonSha256,
-      repository: normalizeRepository(upstream.packageJson.repository),
-      version: installedVersion,
-      workspaceSpecifier,
+      lockIntegrity: authority.lock.integrity,
+      lockPackageKey: authority.lock.packageKey,
+      managedCheckoutTag: `@cloudflare/kumo@${authority.managedCheckoutVersion}`,
+      name: authority.upstream.packageJson.name,
+      packageJsonSha256: authority.upstream.packageJsonSha256,
+      repository: normalizeRepository(authority.upstream.packageJson.repository),
+      version: authority.installedVersion,
+      workspaceSpecifier: authority.workspaceSpecifier,
     },
   };
 }
@@ -1005,10 +1698,12 @@ export function renderHumanReport(report) {
     .map(([category, count]) => `${count} ${category}`)
     .join(", ");
   const lines = [
-    `Upstream Kumo inventory coverage: ${report.status.toUpperCase()}`,
+    `Upstream Kumo authority gate: ${report.status.toUpperCase()}`,
     `Authority: ${report.upstream.name}@${report.upstream.version} installed package exports + TypeScript declarations`,
-    `Provenance: lockfile ${report.upstream.version}; managed checkout ${report.upstream.managedCheckoutTag}`,
-    `Mapping authority: schema ${report.mappingAuthority.schemaVersion}; reviewed upstream ${report.mappingAuthority.reviewedUpstreamVersion}; sha256 ${report.mappingAuthority.sha256}`,
+    `Provenance: ${report.upstream.lockPackageKey}; integrity ${report.upstream.lockIntegrity}; managed checkout ${report.upstream.managedCheckoutTag}`,
+    `Accepted baseline: schema ${report.acceptedBaseline.schemaVersion}; ${report.upstream.name}@${report.acceptedBaseline.version}; sha256 ${report.acceptedBaseline.sha256}`,
+    `Baseline drift: ${report.baselineDrift.status.toUpperCase()}`,
+    `Mapping authority: ${report.mappingAuthority.status.toUpperCase()}; schema ${report.mappingAuthority.schemaVersion}; reviewed upstream ${report.mappingAuthority.reviewedUpstreamVersion}; sha256 ${report.mappingAuthority.sha256}`,
     "",
     `Families: ${report.summary.upstreamFamilies} upstream, ${report.summary.localFamilies} local`,
     `Classifications: ${report.summary.matched} matched, ${report.summary.investigate} investigate, ${report.summary["upstream-only"]} upstream-only, ${report.summary["local-only"]} local-only, ${report.summary["reviewed-difference"]} reviewed-difference`,
@@ -1019,7 +1714,7 @@ export function renderHumanReport(report) {
     ["investigate", "upstream-only", "local-only"].includes(entry.classification),
   );
   if (findings.length > 0) {
-    lines.push("", "Requires investigation:");
+    lines.push("", "Unexplained current inventory:");
     for (const entry of findings) {
       const family = entry.upstream?.family ?? entry.local.families.join(" + ");
       const names = entry.exportCorrespondence.investigate;
@@ -1028,9 +1723,27 @@ export function renderHumanReport(report) {
       );
     }
   }
+  if (report.baselineDrift.authorityChanges.length > 0) {
+    lines.push("", "Authority drift:");
+    for (const change of report.baselineDrift.authorityChanges) {
+      lines.push(`- ${change.field}: ${change.from} -> ${change.to}`);
+    }
+  }
+  if (report.baselineDrift.familyChanges.length > 0) {
+    lines.push("", "Affected component families:");
+    for (const change of report.baselineDrift.familyChanges) {
+      const details =
+        change.kind === "declaration-names-changed"
+          ? ` (added: ${change.added.join(", ") || "none"}; removed: ${change.removed.join(", ") || "none"})`
+          : change.kind === "declaration-content-changed"
+            ? ` (digest ${change.fromDigest} -> ${change.toDigest}; stable names: ${change.stableDeclarationNames})`
+            : "";
+      lines.push(`- ${change.evidenceKey} [${change.kind}]${details}`);
+    }
+  }
   lines.push(
     "",
-    `Release changes: ${report.releaseChanges.status.toUpperCase()}${report.releaseChanges.reason ? ` — ${report.releaseChanges.reason}` : ""}`,
+    `Release comparison${report.releaseChanges.source === "accepted-baseline" ? "" : " (advisory)"}: ${report.releaseChanges.status.toUpperCase()}${report.releaseChanges.reason ? ` — ${report.releaseChanges.reason}` : ""}`,
     `Evidence aggregation: ${report.evidenceAggregation.status.toUpperCase()} — ${report.evidenceAggregation.reason}`,
     "",
     `Interpretation: ${report.interpretation.heuristic}`,
@@ -1041,11 +1754,13 @@ export function renderHumanReport(report) {
 }
 
 function parseArguments(argv) {
-  const options = { json: false, previousPackagePath: undefined };
+  const options = { json: false, previousPackagePath: undefined, updateBaseline: false };
   for (let index = 0; index < argv.length; index += 1) {
     const argument = argv[index];
     if (argument === "--json") {
       options.json = true;
+    } else if (argument === "--update-baseline") {
+      options.updateBaseline = true;
     } else if (argument === "--previous-package") {
       options.previousPackagePath = argv[index + 1];
       if (!options.previousPackagePath) fail("usage", "--previous-package requires a path");
@@ -1056,13 +1771,16 @@ function parseArguments(argv) {
       fail("usage", `unknown argument: ${argument}`);
     }
   }
+  if (options.updateBaseline && (options.json || options.previousPackagePath)) {
+    fail("usage", "--update-baseline cannot be combined with report options");
+  }
   return options;
 }
 
 function blockedReport(error) {
   return {
     error: { code: error.code ?? "unexpected-error", message: error.message },
-    schemaVersion: 2,
+    schemaVersion: 3,
     status: "blocked",
   };
 }
@@ -1073,13 +1791,21 @@ async function main() {
     options = parseArguments(process.argv.slice(2));
     if (options.help) {
       process.stdout.write(
-        "Usage: pnpm upstream:coverage [--json] [--previous-package <package-directory-or-package.json>]\n",
+        "Usage: pnpm upstream:coverage [--json] [--previous-package <package-directory-or-package.json>]\n       pnpm upstream:baseline:update\n",
+      );
+      return;
+    }
+    if (options.updateBaseline) {
+      const baseline = buildAcceptedBaseline();
+      writeFileSync(defaultBaselinePath, serializeReport(baseline), "utf8");
+      process.stdout.write(
+        `Wrote deterministic machine facts for ${baseline.authority.package}@${baseline.authority.version} to ${relative(defaultRepoRoot, defaultBaselinePath)}. Git/PR review, not this command, accepts the baseline.\n`,
       );
       return;
     }
     const report = buildCoverageReport({ previousPackagePath: options.previousPackagePath });
     process.stdout.write(options.json ? serializeReport(report) : renderHumanReport(report));
-    if (report.status !== "passed") process.exitCode = 1;
+    if (report.status !== "unchanged") process.exitCode = 1;
   } catch (error) {
     const blocked = blockedReport(error);
     if (options?.json) process.stdout.write(serializeReport(blocked));

@@ -1,19 +1,29 @@
 import assert from "node:assert/strict";
-import { mkdirSync, mkdtempSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { join } from "node:path";
+import { dirname, join } from "node:path";
 import { describe, it } from "node:test";
+import { fileURLToPath } from "node:url";
 import {
   CoverageReportError,
   assertVersionAuthority,
+  buildAcceptedBaseline,
+  buildCoverageReport,
   classifyCoverage,
+  compareAcceptedBaseline,
   compareReleases,
+  createAcceptedBaseline,
   parseDeclaredExports,
   parseLockfileKumo,
   parseManagedCheckoutVersion,
   readFamilyInventory,
+  serializeReport,
+  validateAcceptedBaseline,
   validateMappings,
 } from "./report-upstream-coverage.mjs";
+
+const scriptDirectory = dirname(fileURLToPath(import.meta.url));
+const acceptedBaselinePath = join(scriptDirectory, "upstream-coverage-baseline.json");
 
 const emptyMappings = {
   schemaVersion: 2,
@@ -26,6 +36,29 @@ const emptyMappings = {
 
 function family(name, declarations) {
   return { declarations, exportPath: `./components/${name}`, family: name };
+}
+
+function factualFamily(name, declarations, digest = "a".repeat(64)) {
+  return {
+    declarationDigest: digest,
+    declarationFiles: [{ path: `dist/src/components/${name}/index.d.ts`, sha256: digest }],
+    declarations: [...declarations].sort(),
+    evidenceKey: `component:${name}`,
+    exportPath: `./components/${name}`,
+    family: name,
+  };
+}
+
+function acceptedBaseline(version = "2.8.0", inventory = [factualFamily("button", ["Button"])]) {
+  return createAcceptedBaseline({
+    integrity: `sha512-${Buffer.from(version).toString("base64")}`,
+    inventory,
+    packageJsonSha256: "f".repeat(64),
+    packageKey: `@cloudflare/kumo@${version}`,
+    specifier: version,
+    version,
+    workspaceSpecifier: version,
+  });
 }
 
 function review(overrides = {}) {
@@ -65,8 +98,13 @@ describe("declaration and lockfile parsing", () => {
   });
 
   it("reads the exact root importer version without treating peer suffixes as versions", () => {
-    const lockfile = `lockfileVersion: '9.0'\n\nimporters:\n\n  .:\n    devDependencies:\n      '@cloudflare/kumo':\n        specifier: ^2.8.0\n        version: 2.8.0(react@19.2.0)\n      typescript:\n        specifier: ^6.0.0\n        version: 6.0.3\n\n  packages/example:\n    dependencies: {}\n`;
-    assert.deepEqual(parseLockfileKumo(lockfile), { specifier: "^2.8.0", version: "2.8.0" });
+    const lockfile = `lockfileVersion: '9.0'\n\nimporters:\n\n  .:\n    devDependencies:\n      '@cloudflare/kumo':\n        specifier: ^2.8.0\n        version: 2.8.0(react@19.2.0)\n      typescript:\n        specifier: ^6.0.0\n        version: 6.0.3\n\npackages:\n\n  '@cloudflare/kumo@2.8.0':\n    resolution: {integrity: sha512-dGVzdA==}\n\nsnapshots:\n\n  '@cloudflare/kumo@2.8.0':\n    dependencies: {}\n`;
+    assert.deepEqual(parseLockfileKumo(lockfile), {
+      integrity: "sha512-dGVzdA==",
+      packageKey: "@cloudflare/kumo@2.8.0",
+      specifier: "^2.8.0",
+      version: "2.8.0",
+    });
   });
 
   it("requires an exact managed-checkout tag", () => {
@@ -115,10 +153,12 @@ describe("declaration and lockfile parsing", () => {
           },
         },
         "fixture",
+        { includeDeclarationContent: false },
       ),
       [
         {
           declarations: ["render"],
+          evidenceKey: "component:code/server",
           exportPath: "./components/code/server",
           family: "code/server",
         },
@@ -200,9 +240,152 @@ describe("coverage classification", () => {
           familiesRemoved: ["removed"],
         },
         fromVersion: "2.7.0",
-        status: "passed",
+        status: "review-required",
         toVersion: "2.8.0",
       },
+    );
+  });
+});
+
+describe("accepted upstream baseline drift", () => {
+  it("reports the checked-in 2.8.0 authority as unchanged without rewriting it", () => {
+    const before = readFileSync(acceptedBaselinePath, "utf8");
+    const report = buildCoverageReport();
+    const after = readFileSync(acceptedBaselinePath, "utf8");
+
+    assert.equal(report.status, "unchanged");
+    assert.equal(report.baselineDrift.status, "unchanged");
+    assert.equal(report.acceptedBaseline.version, "2.8.0");
+    assert.deepEqual(report.baselineDrift.affectedEvidenceKeys, []);
+    assert.equal(after, before);
+  });
+
+  it("derives deterministic baseline bytes from the same live parser", () => {
+    const first = serializeReport(buildAcceptedBaseline());
+    const second = serializeReport(buildAcceptedBaseline());
+
+    assert.equal(second, first);
+    assert.equal(first, readFileSync(acceptedBaselinePath, "utf8"));
+  });
+
+  it("detects declaration text drift under stable exported names", () => {
+    const baseline = acceptedBaseline();
+    const current = acceptedBaseline("2.8.0", [
+      factualFamily("button", ["Button"], "b".repeat(64)),
+    ]);
+    const drift = compareAcceptedBaseline(baseline, current);
+
+    assert.equal(drift.status, "review-required");
+    assert.deepEqual(drift.affectedEvidenceKeys, ["component:button"]);
+    assert.deepEqual(
+      drift.familyChanges.map(({ evidenceKey, kind, stableDeclarationNames }) => ({
+        evidenceKey,
+        kind,
+        stableDeclarationNames,
+      })),
+      [
+        {
+          evidenceKey: "component:button",
+          kind: "declaration-content-changed",
+          stableDeclarationNames: true,
+        },
+      ],
+    );
+  });
+
+  it("reports declaration and family additions and removals with affected evidence keys", () => {
+    const baseline = acceptedBaseline("2.8.0", [
+      factualFamily("button", ["Button", "Old"]),
+      factualFamily("removed", ["Removed"], "c".repeat(64)),
+    ]);
+    const current = acceptedBaseline("2.8.0", [
+      factualFamily("added", ["Added"], "d".repeat(64)),
+      factualFamily("button", ["Button", "New"], "b".repeat(64)),
+    ]);
+    const drift = compareAcceptedBaseline(baseline, current);
+
+    assert.equal(drift.status, "review-required");
+    assert.deepEqual(drift.affectedEvidenceKeys, [
+      "component:added",
+      "component:button",
+      "component:removed",
+    ]);
+    assert.deepEqual(
+      drift.familyChanges.map((change) => [change.evidenceKey, change.kind]),
+      [
+        ["component:added", "family-added"],
+        ["component:button", "declaration-content-changed"],
+        ["component:button", "declaration-names-changed"],
+        ["component:removed", "family-removed"],
+      ],
+    );
+  });
+
+  it("requires review for a version bump even when declaration facts are unchanged", () => {
+    const baseline = acceptedBaseline();
+    const current = acceptedBaseline("2.9.0");
+    const drift = compareAcceptedBaseline(baseline, current);
+
+    assert.equal(drift.status, "review-required");
+    assert.deepEqual(drift.affectedEvidenceKeys, []);
+    assert.ok(drift.authorityChanges.some((change) => change.field === "version"));
+    assert.deepEqual(drift.familyChanges, []);
+  });
+
+  it("hashes transitive inline type imports rather than only exported names", () => {
+    const directory = mkdtempSync(join(tmpdir(), "kumo-declaration-drift-"));
+    mkdirSync(join(directory, "types"));
+    writeFileSync(
+      join(directory, "types/index.d.ts"),
+      '/// <reference path="reference.d.ts" />\nexport interface ExampleProps { value: import("./value").Value }\n',
+    );
+    writeFileSync(join(directory, "types/value.d.ts"), "export type Value = string;\n");
+    writeFileSync(join(directory, "types/reference.d.ts"), "interface Referenced { ok: true }\n");
+    const packageJson = {
+      exports: { "./components/example": { types: "./types/index.d.ts" } },
+    };
+    const before = readFamilyInventory(directory, packageJson, "fixture")[0];
+    writeFileSync(join(directory, "types/value.d.ts"), "export type Value = number;\n");
+    const afterInlineImport = readFamilyInventory(directory, packageJson, "fixture")[0];
+    writeFileSync(join(directory, "types/reference.d.ts"), "interface Referenced { ok: false }\n");
+    const afterReference = readFamilyInventory(directory, packageJson, "fixture")[0];
+
+    assert.deepEqual(afterReference.declarations, before.declarations);
+    assert.notEqual(afterInlineImport.declarationDigest, before.declarationDigest);
+    assert.notEqual(afterReference.declarationDigest, afterInlineImport.declarationDigest);
+    assert.equal(afterReference.declarationFiles.length, 3);
+  });
+
+  it("blocks missing, malformed, unsupported, and stale baselines distinctly", () => {
+    const directory = mkdtempSync(join(tmpdir(), "kumo-baseline-errors-"));
+    const missingPath = join(directory, "missing.json");
+    assert.throws(
+      () => buildCoverageReport({ baselinePath: missingPath }),
+      (error) => error instanceof CoverageReportError && error.code === "missing-baseline",
+    );
+
+    const malformedPath = join(directory, "malformed.json");
+    writeFileSync(malformedPath, "{\n");
+    assert.throws(
+      () => buildCoverageReport({ baselinePath: malformedPath }),
+      (error) => error instanceof CoverageReportError && error.code === "malformed-baseline",
+    );
+
+    const unsupported = acceptedBaseline();
+    unsupported.schemaVersion = 999;
+    assert.throws(
+      () => validateAcceptedBaseline(unsupported),
+      (error) =>
+        error instanceof CoverageReportError && error.code === "unsupported-baseline-schema",
+    );
+
+    const stalePath = join(directory, "stale.json");
+    const stale = JSON.parse(readFileSync(acceptedBaselinePath, "utf8"));
+    stale.inventory.digest = "0".repeat(64);
+    writeFileSync(stalePath, serializeReport(stale));
+    assert.throws(
+      () => buildCoverageReport({ baselinePath: stalePath }),
+      (error) => error instanceof CoverageReportError && error.code === "stale-baseline",
     );
   });
 });

@@ -12,6 +12,7 @@
     "format:check": "oxfmt --check package.json pnpm-workspace.yaml tsconfig.json README.md scripts packages",
     "parity:proof": "node scripts/prove-parity.mjs",
     "parity:proof:test": "node --test scripts/prove-parity.test.mjs",
+    "upstream:baseline:update": "node scripts/report-upstream-coverage.mjs --update-baseline",
     "upstream:coverage": "node scripts/report-upstream-coverage.mjs",
     "upstream:coverage:test": "node --test scripts/report-upstream-coverage.test.mjs",
     "sync:upstream-theme": "node scripts/sync-upstream-theme.mjs",

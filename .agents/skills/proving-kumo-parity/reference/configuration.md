@@ -95,7 +95,30 @@ The command exits nonzero when assertions, console errors, or page errors are re
 The repository now ships three adjacent, separately enforced authorities:
 
 - package-owned observable contracts run with the package test suite;
-- `pnpm upstream:coverage` checks exact installed-package component-subpath export inventory correspondence and reviewed differences, never behavioral parity;
+- `pnpm upstream:coverage` checks the exact installed package against the accepted factual baseline and checks component-subpath export inventory correspondence and reviewed differences, never behavioral parity;
 - `pnpm test:packed-consumer` checks the packed package from a consumer installation.
 
-None of those gates is an aggregate parity score or an automatic release verdict. Paired React/Svelte capture remains on demand, its review remains human-authored, and promotion of an exploratory `.amp` scenario into a committed observable contract remains a deliberate reviewed change. An accepted release baseline is intentionally not part of this milestone and must be introduced separately from a clean classified inventory.
+None of those gates is an aggregate parity score or an automatic release verdict. Paired React/Svelte capture remains on demand, its review remains human-authored, and promotion of an exploratory `.amp` scenario into a committed observable contract remains a deliberate reviewed change.
+
+## Updating the accepted upstream release
+
+`scripts/upstream-coverage-baseline.json` schema 1 contains machine-observed facts only: the exact `@cloudflare/kumo` version, root and resolved lock identity and integrity, installed package manifest hash, canonical component-family export paths, exported declaration names, and per-family digests over the reachable installed declaration graph. `scripts/upstream-coverage-mappings.json` schema 2 remains the sole authority for reviewed React-to-Svelte correspondence decisions. Neither file proves runtime behavior.
+
+The normal `pnpm upstream:coverage` command is read-only. It compares the internally consistent installed/workspace/lock/managed-checkout authority to the accepted baseline and reports a closed state:
+
+- `unchanged` exits 0: accepted and current machine facts match and current coverage is fully explained;
+- `review-required` exits 1: the version, public family/export inventory, declaration names, reachable declaration content, or current correspondence needs review;
+- `blocked` exits 2: an authority cannot be read or trusted, including a missing, malformed, unsupported, noncanonical, internally stale, or duplicate baseline; inconsistent package/lock/setup pins; unreadable declarations; malformed mappings; or an empty inventory.
+
+A version change is always `review-required`, even when the export and declaration digests are unchanged. Family additions/removals, declaration-name changes, and declaration-content drift retain their `component:<family>` evidence keys. Baseline drift and unexplained current correspondence are printed separately. The declaration hashes detect review targets; they do not establish behavior, accessibility, SSR, hydration, visual, interaction, or parity outcomes.
+
+Use this release update flow:
+
+1. Bump the exact `@cloudflare/kumo` pin consistently in the root package, lockfile, and `.agents/setup`. The coverage CI step should intentionally remain red with `review-required`.
+2. Review upstream release notes and the exact release source. Use the reported affected evidence keys plus high-risk adjacent families to choose focused review targets.
+3. Run targeted paired parity proof where behavior, rendering, accessibility, visuals, interaction, SSR, or hydration could have changed. Human-review its screenshots, recordings, observations, and provenance; generated proof does not authorize acceptance.
+4. Update the Svelte implementation, observable contracts, packed-browser vectors, docs, and schema-v2 correspondence mappings as needed. The packed consumer still proves only the installed tarball and its six named Chromium vectors.
+5. Only after the current mapping version matches the installed version and coverage has no unexplained inventory, run `pnpm upstream:baseline:update`. The command deterministically replaces machine facts and explicitly does not claim review or acceptance.
+6. Run the update command a second time and verify it is byte-identical, then run `pnpm upstream:coverage` and the targeted/full validation. Accept the new baseline only through normal Git diff and PR review.
+
+Do not run the baseline update from CI or from the report path, and do not treat a green baseline diff as a parity or release-readiness verdict. Observable contracts continue to preserve selected local behavior, on-demand paired parity evidence remains separately human-reviewed, and packed-browser conformance keeps its narrow installed-package claim.

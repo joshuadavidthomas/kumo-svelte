@@ -6,3 +6,4 @@ build
 **/build
 coverage
 packages/kumo-svelte/src/styles/theme-*.css
+scripts/upstream-coverage-baseline.json
