@@ -88,13 +88,14 @@ Put temporary proof configuration and fixtures under `.amp/`; they are ignored b
 
 The command exits nonzero when assertions, console errors, or page errors are recorded, no assertions are configured, or release provenance is unverified. Console warnings are preserved for review without automatically failing a scenario. Capture failures include the scenario and framework in the diagnostic. Regardless of exit status, generated output never claims visual parity or readiness to ship.
 
-## Architectural inspiration and deferred layers
+## Architectural inspiration and adjacent authority layers
 
 [acoyfellow/kumo-compiler](https://github.com/acoyfellow/kumo-compiler) is architectural inspiration for the evidence philosophy used here: observable behavior contracts and vectors, framework-idiomatic differential comparison, fail-closed evidence states, provenance-linked evidence, semantic/interaction/SSR/hydration proof, and eventual installed-package conformance. This runner mines those proof ideas; it does **not** adopt kumo-compiler’s framework-neutral IR or generated Svelte emitter. Kumo Svelte remains an idiomatic Svelte 5 implementation using its established Bits UI and shadcn-svelte patterns.
 
-The following are intentionally deferred follow-ons, not capabilities of this scoped runner:
+The repository now ships three adjacent, separately enforced authorities:
 
-- promotion of exploratory `.amp` scenarios into committed, package-owned regression contracts;
-- packed-package consumer conformance against the installed artifact;
-- upstream release/change coverage reporting;
-- package-level evidence status and coverage reporting.
+- package-owned observable contracts run with the package test suite;
+- `pnpm upstream:coverage` checks exact installed-package component-subpath export inventory correspondence and reviewed differences, never behavioral parity;
+- `pnpm test:packed-consumer` checks the packed package from a consumer installation.
+
+None of those gates is an aggregate parity score or an automatic release verdict. Paired React/Svelte capture remains on demand, its review remains human-authored, and promotion of an exploratory `.amp` scenario into a committed observable contract remains a deliberate reviewed change. An accepted release baseline is intentionally not part of this milestone and must be introduced separately from a clean classified inventory.

@@ -33,6 +33,9 @@ jobs:
       - name: Check
         run: pnpm check
 
+      - name: Check upstream inventory coverage
+        run: pnpm upstream:coverage
+
       - name: Test
         run: pnpm test
 

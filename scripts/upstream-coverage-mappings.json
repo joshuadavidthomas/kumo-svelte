@@ -1,5 +1,6 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
+  "reviewedUpstreamVersion": "2.8.0",
   "familyMappings": [],
   "intentionalUpstreamFamilies": [],
   "intentionalLocalFamilies": [
@@ -8,6 +9,372 @@
       "reason": "Kumo Svelte exposes its server-only Shiki helpers under the component namespace; upstream publishes the analogous server helpers at @cloudflare/kumo/code/server."
     }
   ],
-  "symbolMappings": [],
-  "intentionalUpstreamExports": []
+  "reviewedUpstreamExports": [
+    {
+      "family": "autocomplete",
+      "export": "AutocompleteFilter",
+      "category": "actual-missing-capability",
+      "local": [],
+      "reason": "Upstream re-exports Base UI's AutocompleteFilter and its generic root accepts Base UI filter props. The local autocomplete exposes no filter callback and hard-codes case-insensitive substring filtering, so custom filtering is a missing local capability.",
+      "sources": {
+        "upstream": [
+          "packages/kumo/src/components/autocomplete/index.ts",
+          "packages/kumo/src/components/autocomplete/autocomplete.tsx"
+        ],
+        "local": [
+          "packages/kumo-svelte/src/components/autocomplete/index.ts",
+          "packages/kumo-svelte/src/components/autocomplete/autocomplete.svelte",
+          "packages/kumo-svelte/src/components/autocomplete/autocomplete-item.svelte"
+        ]
+      }
+    },
+    {
+      "family": "chart",
+      "export": "ChartLegend",
+      "category": "partial-local-equivalent",
+      "local": [
+        {
+          "family": "chart",
+          "export": "ChartLegendLargeItem"
+        },
+        {
+          "family": "chart",
+          "export": "ChartLegendSmallItem"
+        }
+      ],
+      "reason": "Local chart legend items correspond to upstream ChartLegend.LargeItem and SmallItem as separate Svelte exports, but their public props omit upstream pointer-enter, pointer-leave, click, and keyboard-activation behavior. This is a partial local correspondence, not behavioral parity.",
+      "sources": {
+        "upstream": [
+          "packages/kumo/src/components/chart/index.ts",
+          "packages/kumo/src/components/chart/Legend.tsx"
+        ],
+        "local": [
+          "packages/kumo-svelte/src/components/chart/index.ts",
+          "packages/kumo-svelte/src/components/chart/legend-types.ts",
+          "packages/kumo-svelte/src/components/chart/chart-legend-large-item.svelte",
+          "packages/kumo-svelte/src/components/chart/chart-legend-small-item.svelte"
+        ]
+      }
+    },
+    {
+      "family": "chart",
+      "export": "ChoroplethMap",
+      "category": "actual-missing-capability",
+      "local": [],
+      "reason": "Upstream shades joined GeoJSON regions through an ECharts map series and continuous visual map. Local chart exports only BubbleMap's scatter-on-geo implementation and has no choropleth component, so this capability is missing.",
+      "sources": {
+        "upstream": [
+          "packages/kumo/src/components/chart/index.ts",
+          "packages/kumo/src/components/chart/Maps.tsx"
+        ],
+        "local": [
+          "packages/kumo-svelte/src/components/chart/index.ts",
+          "packages/kumo-svelte/src/components/chart/bubble-map.svelte",
+          "packages/kumo-svelte/src/components/chart/map-types.ts"
+        ]
+      }
+    },
+    {
+      "family": "chart",
+      "export": "ChoroplethMapProps",
+      "category": "actual-missing-capability",
+      "local": [],
+      "reason": "This declaration is the public configuration contract for the missing ChoroplethMap component, including region joins, color scale, projection, and region interactions. Local BubbleMapProps describes a different scatter-map renderer and is not an equivalent.",
+      "sources": {
+        "upstream": [
+          "packages/kumo/src/components/chart/index.ts",
+          "packages/kumo/src/components/chart/Maps.tsx"
+        ],
+        "local": [
+          "packages/kumo-svelte/src/components/chart/index.ts",
+          "packages/kumo-svelte/src/components/chart/map-types.ts"
+        ]
+      }
+    },
+    {
+      "family": "chart",
+      "export": "MapProjection",
+      "category": "actual-missing-capability",
+      "local": [],
+      "reason": "Upstream map props accept a project/unproject pair, default to a clamped Mercator projection, and permit raw coordinates. Local BubbleMapProps and its ECharts geo construction expose no projection option, so custom projection support is missing.",
+      "sources": {
+        "upstream": [
+          "packages/kumo/src/components/chart/index.ts",
+          "packages/kumo/src/components/chart/Maps.tsx"
+        ],
+        "local": [
+          "packages/kumo-svelte/src/components/chart/map-types.ts",
+          "packages/kumo-svelte/src/components/chart/bubble-map.svelte"
+        ]
+      }
+    },
+    {
+      "family": "chart",
+      "export": "TimeseriesMarker",
+      "category": "actual-missing-capability",
+      "local": [],
+      "reason": "Upstream TimeseriesChart accepts timestamp markers, clusters nearby markers, and renders interactive vertical mark-line annotations. Local TimeseriesChart has no markers prop or marker annotation path, so the capability and its input type are missing.",
+      "sources": {
+        "upstream": [
+          "packages/kumo/src/components/chart/index.ts",
+          "packages/kumo/src/components/chart/TimeseriesChart.tsx",
+          "packages/kumo/src/components/chart/timeseries-markers.ts"
+        ],
+        "local": [
+          "packages/kumo-svelte/src/components/chart/index.ts",
+          "packages/kumo-svelte/src/components/chart/timeseries-chart.svelte"
+        ]
+      }
+    },
+    {
+      "family": "chart",
+      "export": "TimeseriesThreshold",
+      "category": "actual-missing-capability",
+      "local": [],
+      "reason": "Upstream TimeseriesChart accepts thresholds, renders horizontal mark-line annotations, and includes threshold values in the chart extent. Local TimeseriesChart has no thresholds prop or threshold annotation path, so the capability and its input type are missing.",
+      "sources": {
+        "upstream": [
+          "packages/kumo/src/components/chart/index.ts",
+          "packages/kumo/src/components/chart/TimeseriesChart.tsx",
+          "packages/kumo/src/components/chart/timeseries-thresholds.ts"
+        ],
+        "local": [
+          "packages/kumo-svelte/src/components/chart/index.ts",
+          "packages/kumo-svelte/src/components/chart/timeseries-chart.svelte"
+        ]
+      }
+    },
+    {
+      "family": "combobox",
+      "export": "ComboboxFilter",
+      "category": "actual-missing-capability",
+      "local": [],
+      "reason": "Upstream re-exports Base UI's ComboboxFilter and its generic root accepts Base UI filter props. The local combobox exposes no filter callback and hard-codes case-insensitive substring filtering, so custom filtering is a missing local capability.",
+      "sources": {
+        "upstream": [
+          "packages/kumo/src/components/combobox/index.ts",
+          "packages/kumo/src/components/combobox/combobox.tsx"
+        ],
+        "local": [
+          "packages/kumo-svelte/src/components/combobox/index.ts",
+          "packages/kumo-svelte/src/components/combobox/combobox.svelte",
+          "packages/kumo-svelte/src/components/combobox/combobox-item.svelte"
+        ]
+      }
+    },
+    {
+      "family": "date-picker",
+      "export": "DateRange",
+      "category": "framework-specific-omission",
+      "local": [],
+      "reason": "Upstream convenience-re-exports react-day-picker's DateRange shape. Local range selection is implemented with Bits UI and @internationalized/date and is represented inside DatePickerValue, so the React dependency's from/to type is intentionally not mirrored.",
+      "sources": {
+        "upstream": [
+          "packages/kumo/src/components/date-picker/index.ts",
+          "packages/kumo/src/components/date-picker/date-picker.tsx"
+        ],
+        "local": [
+          "packages/kumo-svelte/src/components/date-picker/index.ts",
+          "packages/kumo-svelte/src/components/date-picker/types.ts",
+          "packages/kumo-svelte/src/components/date-picker/date-picker.svelte"
+        ]
+      }
+    },
+    {
+      "family": "date-picker",
+      "export": "DayPickerProps",
+      "category": "framework-specific-omission",
+      "local": [],
+      "reason": "Upstream convenience-re-exports the react-day-picker component's props. Local DatePicker is built on Bits UI and exposes its own idiomatic DatePickerProps, so exporting DayPickerProps would describe the wrong framework primitive and is intentionally omitted.",
+      "sources": {
+        "upstream": [
+          "packages/kumo/src/components/date-picker/index.ts",
+          "packages/kumo/src/components/date-picker/date-picker.tsx"
+        ],
+        "local": [
+          "packages/kumo-svelte/src/components/date-picker/index.ts",
+          "packages/kumo-svelte/src/components/date-picker/types.ts",
+          "packages/kumo-svelte/src/components/date-picker/date-picker.svelte"
+        ]
+      }
+    },
+    {
+      "family": "input",
+      "export": "InputGroup",
+      "category": "grouped-local-equivalent",
+      "local": [
+        {
+          "family": "input-group",
+          "export": "InputGroup"
+        }
+      ],
+      "reason": "Upstream keeps InputGroup available from the input subpath as a compatibility re-export from its dedicated input-group family. Kumo Svelte exposes the component from its separate input-group subpath, so this is cross-family inventory correspondence only.",
+      "sources": {
+        "upstream": [
+          "packages/kumo/src/components/input/index.ts",
+          "packages/kumo/src/components/input-group/input-group.tsx"
+        ],
+        "local": [
+          "packages/kumo-svelte/src/components/input/index.ts",
+          "packages/kumo-svelte/src/components/input-group/index.ts",
+          "packages/kumo-svelte/src/components/input-group/input-group.svelte"
+        ]
+      }
+    },
+    {
+      "family": "input",
+      "export": "KUMO_INPUT_GROUP_DEFAULT_VARIANTS",
+      "category": "grouped-local-equivalent",
+      "local": [
+        {
+          "family": "input-group",
+          "export": "KUMO_INPUT_GROUP_DEFAULT_VARIANTS"
+        }
+      ],
+      "reason": "Upstream compatibility-re-exports the input-group default variants from the input subpath. Kumo Svelte exposes the same base-size default from its separate input-group subpath.",
+      "sources": {
+        "upstream": [
+          "packages/kumo/src/components/input/index.ts",
+          "packages/kumo/src/components/input-group/input-group.tsx"
+        ],
+        "local": [
+          "packages/kumo-svelte/src/components/input-group/index.ts",
+          "packages/kumo-svelte/src/components/input-group/variants.ts"
+        ]
+      }
+    },
+    {
+      "family": "input",
+      "export": "KUMO_INPUT_GROUP_VARIANTS",
+      "category": "grouped-local-equivalent",
+      "local": [
+        {
+          "family": "input-group",
+          "export": "KUMO_INPUT_GROUP_VARIANTS"
+        }
+      ],
+      "reason": "Upstream compatibility-re-exports the input-group size variants from the input subpath. Kumo Svelte exposes the corresponding xs, sm, base, and lg variant metadata from its separate input-group subpath.",
+      "sources": {
+        "upstream": [
+          "packages/kumo/src/components/input/index.ts",
+          "packages/kumo/src/components/input-group/input-group.tsx"
+        ],
+        "local": [
+          "packages/kumo-svelte/src/components/input-group/index.ts",
+          "packages/kumo-svelte/src/components/input-group/variants.ts"
+        ]
+      }
+    },
+    {
+      "family": "input",
+      "export": "KumoInputGroupFocusMode",
+      "category": "deprecated-upstream-alias",
+      "local": [
+        {
+          "family": "input-group",
+          "export": "InputGroupFocusMode"
+        }
+      ],
+      "reason": "Upstream retains this deprecated container/individual union only for compatibility after removing focusMode as a public prop and adding automatic mode detection. Local input-group still exposes an analogous explicitly configured union as InputGroupFocusMode; the APIs are not asserted equivalent.",
+      "sources": {
+        "upstream": [
+          "packages/kumo/src/components/input/index.ts",
+          "packages/kumo/src/components/input-group/context.ts",
+          "packages/kumo/src/components/input-group/input-group.tsx"
+        ],
+        "local": [
+          "packages/kumo-svelte/src/components/input-group/index.ts",
+          "packages/kumo-svelte/src/components/input-group/context.ts",
+          "packages/kumo-svelte/src/components/input-group/input-group.svelte"
+        ]
+      }
+    },
+    {
+      "family": "input",
+      "export": "KumoInputGroupVariantsProps",
+      "category": "deprecated-upstream-alias",
+      "local": [],
+      "reason": "Upstream retains this deprecated focusMode-only interface for compatibility after focus mode became auto-detected. Local input-group has an unrelated same-named size-only variants interface, so exact spelling across different families is not declaration correspondence and no local symbol is claimed.",
+      "sources": {
+        "upstream": ["packages/kumo/src/components/input/index.ts"],
+        "local": [
+          "packages/kumo-svelte/src/components/input-group/index.ts",
+          "packages/kumo-svelte/src/components/input-group/variants.ts"
+        ]
+      }
+    },
+    {
+      "family": "menubar",
+      "export": "useMenuNavigation",
+      "category": "framework-specific-omission",
+      "local": [],
+      "reason": "Upstream exports a React RefObject/useEffect hook supporting horizontal or vertical focus traversal and uses it horizontally inside MenuBar. Local MenuBar implements its required horizontal wrapping button navigation directly and intentionally exposes no reusable React-style hook.",
+      "sources": {
+        "upstream": [
+          "packages/kumo/src/components/menubar/index.ts",
+          "packages/kumo/src/components/menubar/use-menu-navigation.ts",
+          "packages/kumo/src/components/menubar/menubar.tsx"
+        ],
+        "local": [
+          "packages/kumo-svelte/src/components/menubar/index.ts",
+          "packages/kumo-svelte/src/components/menubar/menubar.svelte"
+        ]
+      }
+    },
+    {
+      "family": "radio",
+      "export": "RadioGroupChangeEventDetails",
+      "category": "partial-local-equivalent",
+      "local": [
+        {
+          "family": "radio",
+          "export": "RadioGroupProps"
+        }
+      ],
+      "reason": "Both implementations expose value-change notification, but upstream forwards Base UI native interaction details as a second callback argument while local RadioGroupProps exposes only the selected string. The local callback is therefore only a partial correspondence.",
+      "sources": {
+        "upstream": [
+          "packages/kumo/src/components/radio/index.ts",
+          "packages/kumo/src/components/radio/radio.tsx"
+        ],
+        "local": [
+          "packages/kumo-svelte/src/components/radio/index.ts",
+          "packages/kumo-svelte/src/components/radio/radio-group.svelte"
+        ]
+      }
+    },
+    {
+      "family": "tabs",
+      "export": "TabsItem",
+      "category": "grouped-local-equivalent",
+      "local": [
+        {
+          "family": "tabs",
+          "export": "TabsList"
+        },
+        {
+          "family": "tabs",
+          "export": "TabsRoot"
+        },
+        {
+          "family": "tabs",
+          "export": "TabsTrigger"
+        }
+      ],
+      "reason": "Upstream TabsItem configures React tab triggers through a tabs array with ReactNode labels and a render prop. Kumo Svelte expresses the same trigger configuration idiomatically through composable Root, List, and Trigger components instead of exporting the React data-item type.",
+      "sources": {
+        "upstream": [
+          "packages/kumo/src/components/tabs/index.ts",
+          "packages/kumo/src/components/tabs/tabs.tsx"
+        ],
+        "local": [
+          "packages/kumo-svelte/src/components/tabs/index.ts",
+          "packages/kumo-svelte/src/components/tabs/tabs.svelte",
+          "packages/kumo-svelte/src/components/tabs/tabs-list.svelte",
+          "packages/kumo-svelte/src/components/tabs/tabs-root.svelte",
+          "packages/kumo-svelte/src/components/tabs/tabs-trigger.svelte"
+        ]
+      }
+    }
+  ]
 }

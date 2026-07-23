@@ -17,12 +17,12 @@
     "sync:upstream-theme": "node scripts/sync-upstream-theme.mjs",
     "check:upstream-theme": "node scripts/sync-upstream-theme.mjs --check",
     "lint": "pnpm --filter kumo-svelte lint",
-    "test": "pnpm upstream:coverage:test && pnpm --filter kumo-svelte test",
+    "test": "pnpm upstream:coverage:test && pnpm parity:proof:test && pnpm --filter kumo-svelte test",
     "test:packed-consumer": "node scripts/test-packed-package-consumer.mjs",
     "typecheck": "pnpm --filter kumo-svelte typecheck"
   },
   "devDependencies": {
-    "@cloudflare/kumo": "^2.8.0",
+    "@cloudflare/kumo": "2.8.0",
     "oxfmt": "^0.48.0",
     "oxlint": "^1.60.0",
     "playwright": "1.57.0",

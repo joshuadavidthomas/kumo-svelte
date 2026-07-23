@@ -11,6 +11,13 @@ const familyPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*(?:\/[a-z0-9]+(?:-[a-z0-9]+)*)*$
 const componentExportPattern = new RegExp(
   `^\\./components/(${familyPattern.source.slice(1, -1)})$`,
 );
+const reviewedCategories = [
+  "actual-missing-capability",
+  "deprecated-upstream-alias",
+  "framework-specific-omission",
+  "grouped-local-equivalent",
+  "partial-local-equivalent",
+];
 
 export class CoverageReportError extends Error {
   constructor(code, message) {
@@ -32,9 +39,9 @@ function sortedUnique(values) {
   return [...new Set(values)].sort();
 }
 
-function assertObject(value, label) {
+function assertObject(value, label, code = "malformed-authority") {
   if (value === null || typeof value !== "object" || Array.isArray(value)) {
-    fail("malformed-authority", `${label} must be an object`);
+    fail(code, `${label} must be an object`);
   }
   return value;
 }
@@ -143,6 +150,37 @@ export function parseManagedCheckoutVersion(source) {
     fail("malformed-setup", `managed-checkout tag is not an exact version: ${version}`);
   }
   return version;
+}
+
+export function assertVersionAuthority({
+  installedVersion,
+  lockSpecifier,
+  lockVersion,
+  managedCheckoutVersion,
+  workspaceSpecifier,
+}) {
+  if (workspaceSpecifier !== lockSpecifier) {
+    fail(
+      "version-mismatch",
+      `workspace specifier ${workspaceSpecifier ?? "<missing>"} does not match lockfile ${lockSpecifier}`,
+    );
+  }
+  if (workspaceSpecifier !== installedVersion) {
+    fail(
+      "version-mismatch",
+      `workspace @cloudflare/kumo specifier must exactly pin installed ${installedVersion}, found ${workspaceSpecifier ?? "<missing>"}`,
+    );
+  }
+  const mismatches = [
+    ["lockfile", lockVersion],
+    ["managed checkout", managedCheckoutVersion],
+  ].filter(([, version]) => version !== installedVersion);
+  if (mismatches.length > 0) {
+    fail(
+      "version-mismatch",
+      `installed ${installedVersion} does not match ${mismatches.map(([name, version]) => `${name} ${version}`).join(" or ")}`,
+    );
+  }
 }
 
 function resolveRelativeModule(fromPath, specifier) {
@@ -332,34 +370,52 @@ function requireArray(value, label) {
   return value;
 }
 
+function requireSourcePath(value, label) {
+  if (
+    typeof value !== "string" ||
+    value.trim().length === 0 ||
+    isAbsolute(value) ||
+    value.split("/").includes("..")
+  ) {
+    fail("malformed-mappings", `${label} must be a repository-relative source path`);
+  }
+  return value.trim();
+}
+
 function validateNoDuplicates(values, label) {
   if (new Set(values).size !== values.length) {
     fail("duplicate-mapping", `${label} contains duplicate mappings`);
   }
 }
 
-export function validateMappings(input) {
-  const value = assertObject(input, "mapping config");
+export function validateMappings(input, options = {}) {
+  const value = assertObject(input, "mapping config", "malformed-mappings");
   const topLevelKeys = [
     "schemaVersion",
+    "reviewedUpstreamVersion",
     "familyMappings",
     "intentionalUpstreamFamilies",
     "intentionalLocalFamilies",
-    "symbolMappings",
-    "intentionalUpstreamExports",
+    "reviewedUpstreamExports",
   ];
   assertKeys(value, topLevelKeys, "mapping config");
-  if (value.schemaVersion !== 1) {
+  if (value.schemaVersion !== 2) {
     fail("malformed-mappings", `unsupported mapping schema version: ${value.schemaVersion}`);
   }
+  if (!/^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/.test(value.reviewedUpstreamVersion)) {
+    fail(
+      "malformed-mappings",
+      `reviewedUpstreamVersion must be an exact version: ${value.reviewedUpstreamVersion}`,
+    );
+  }
 
-  const arrays = topLevelKeys.slice(1);
+  const arrays = topLevelKeys.slice(2);
   for (const key of arrays) {
     if (!Array.isArray(value[key])) fail("malformed-mappings", `${key} must be an array`);
   }
 
   const familyMappings = value.familyMappings.map((entry, index) => {
-    assertObject(entry, `familyMappings[${index}]`);
+    assertObject(entry, `familyMappings[${index}]`, "malformed-mappings");
     assertKeys(entry, ["upstream", "locals", "kind", "reason"], `familyMappings[${index}]`);
     if (!["renamed", "grouped"].includes(entry.kind)) {
       fail("malformed-mappings", `familyMappings[${index}] has an unknown kind`);
@@ -378,7 +434,7 @@ export function validateMappings(input) {
 
   const intentionalFamilies = (entries, side) =>
     entries.map((entry, index) => {
-      assertObject(entry, `intentional${side}Families[${index}]`);
+      assertObject(entry, `intentional${side}Families[${index}]`, "malformed-mappings");
       const key = side === "Upstream" ? "upstream" : "local";
       assertKeys(entry, [key, "reason"], `intentional${side}Families[${index}]`);
       return {
@@ -387,51 +443,87 @@ export function validateMappings(input) {
       };
     });
 
-  const symbolMappings = value.symbolMappings.map((entry, index) => {
-    assertObject(entry, `symbolMappings[${index}]`);
-    assertKeys(entry, ["upstream", "local", "kind", "reason"], `symbolMappings[${index}]`);
-    if (!["renamed", "grouped"].includes(entry.kind)) {
-      fail("malformed-mappings", `symbolMappings[${index}] has an unknown kind`);
+  const reviewedUpstreamExports = value.reviewedUpstreamExports.map((entry, index) => {
+    const label = `reviewedUpstreamExports[${index}]`;
+    assertObject(entry, label, "malformed-mappings");
+    assertKeys(entry, ["family", "export", "category", "local", "reason", "sources"], label);
+    if (!reviewedCategories.includes(entry.category)) {
+      fail("malformed-mappings", `${label} has an unknown category: ${entry.category}`);
     }
-    const parseSymbol = (symbol, side) => {
-      assertObject(symbol, `symbolMappings[${index}].${side}`);
-      assertKeys(symbol, ["family", "export"], `symbolMappings[${index}].${side}`);
+    if (!Array.isArray(entry.local)) {
+      fail("malformed-mappings", `${label}.local must be an array`);
+    }
+    const local = entry.local.map((symbol, localIndex) => {
+      const symbolLabel = `${label}.local[${localIndex}]`;
+      assertObject(symbol, symbolLabel, "malformed-mappings");
+      assertKeys(symbol, ["family", "export"], symbolLabel);
       return {
-        export: requireExport(symbol.export, `symbolMappings[${index}].${side}.export`),
-        family: requireFamily(symbol.family, `symbolMappings[${index}].${side}.family`),
-      };
-    };
-    return {
-      kind: entry.kind,
-      local: parseSymbol(entry.local, "local"),
-      reason: requireReason(entry.reason, `symbolMappings[${index}]`),
-      upstream: parseSymbol(entry.upstream, "upstream"),
-    };
-  });
-
-  const intentionalExports = (entries, side) =>
-    entries.map((entry, index) => {
-      const label = `intentional${side}Exports[${index}]`;
-      assertObject(entry, label);
-      assertKeys(entry, ["family", "exports", "reason"], label);
-      const exports = requireArray(entry.exports, `${label}.exports`).map((name) =>
-        requireExport(name, `${label}.exports`),
-      );
-      validateNoDuplicates(exports, `${label}.exports`);
-      return {
-        exports: [...exports].sort(),
-        family: requireFamily(entry.family, `${label}.family`),
-        reason: requireReason(entry.reason, label),
+        export: requireExport(symbol.export, `${symbolLabel}.export`),
+        family: requireFamily(symbol.family, `${symbolLabel}.family`),
       };
     });
+    validateNoDuplicates(
+      local.map((symbol) => `${symbol.family}\0${symbol.export}`),
+      `${label}.local`,
+    );
+
+    const localCount = local.length;
+    if (
+      ["grouped-local-equivalent", "partial-local-equivalent"].includes(entry.category) &&
+      localCount === 0
+    ) {
+      fail("malformed-mappings", `${label}.${entry.category} requires a local reference`);
+    }
+    if (
+      ["actual-missing-capability", "framework-specific-omission"].includes(entry.category) &&
+      localCount !== 0
+    ) {
+      fail("malformed-mappings", `${label}.${entry.category} cannot claim a local reference`);
+    }
+    if (entry.category === "deprecated-upstream-alias" && localCount > 1) {
+      fail(
+        "malformed-mappings",
+        `${label}.deprecated-upstream-alias accepts at most one analogous local reference`,
+      );
+    }
+
+    const sources = assertObject(entry.sources, `${label}.sources`, "malformed-mappings");
+    assertKeys(sources, ["upstream", "local"], `${label}.sources`);
+    const parseSources = (side) => {
+      const paths = requireArray(sources[side], `${label}.sources.${side}`).map((path, pathIndex) =>
+        requireSourcePath(path, `${label}.sources.${side}[${pathIndex}]`),
+      );
+      validateNoDuplicates(paths, `${label}.sources.${side}`);
+      if (side === "local" && options.repoRoot) {
+        for (const path of paths) {
+          const absolutePath = resolve(options.repoRoot, path);
+          if (!existsSync(absolutePath) || !statSync(absolutePath).isFile()) {
+            fail("stale-mapping", `${label}.sources.local does not exist: ${path}`);
+          }
+        }
+      }
+      return [...paths].sort();
+    };
+
+    return {
+      category: entry.category,
+      export: requireExport(entry.export, `${label}.export`),
+      family: requireFamily(entry.family, `${label}.family`),
+      local: [...local].sort((left, right) =>
+        `${left.family}\0${left.export}`.localeCompare(`${right.family}\0${right.export}`),
+      ),
+      reason: requireReason(entry.reason, label),
+      sources: { local: parseSources("local"), upstream: parseSources("upstream") },
+    };
+  });
 
   const normalized = {
     familyMappings,
     intentionalLocalFamilies: intentionalFamilies(value.intentionalLocalFamilies, "Local"),
-    intentionalUpstreamExports: intentionalExports(value.intentionalUpstreamExports, "Upstream"),
     intentionalUpstreamFamilies: intentionalFamilies(value.intentionalUpstreamFamilies, "Upstream"),
-    schemaVersion: 1,
-    symbolMappings,
+    reviewedUpstreamExports,
+    reviewedUpstreamVersion: value.reviewedUpstreamVersion,
+    schemaVersion: 2,
   };
 
   validateNoDuplicates(
@@ -451,18 +543,8 @@ export function validateMappings(input) {
     "intentionalLocalFamilies",
   );
   validateNoDuplicates(
-    symbolMappings.map((entry) => `${entry.upstream.family}\0${entry.upstream.export}`),
-    "symbolMappings upstream",
-  );
-  validateNoDuplicates(
-    symbolMappings.map((entry) => `${entry.local.family}\0${entry.local.export}`),
-    "symbolMappings local",
-  );
-  validateNoDuplicates(
-    normalized.intentionalUpstreamExports.flatMap((entry) =>
-      entry.exports.map((name) => `${entry.family}\0${name}`),
-    ),
-    "intentionalUpstreamExports",
+    reviewedUpstreamExports.map((entry) => `${entry.family}\0${entry.export}`),
+    "reviewedUpstreamExports",
   );
 
   return normalized;
@@ -476,8 +558,20 @@ function declarationExists(inventory, symbol) {
   return inventory.get(symbol.family)?.declarations.includes(symbol.export) ?? false;
 }
 
-export function classifyCoverage(upstreamInventory, localInventory, mappingsInput) {
-  const mappings = validateMappings(mappingsInput);
+export function classifyCoverage(
+  upstreamInventory,
+  localInventory,
+  mappingsInput,
+  upstreamVersion,
+  options = {},
+) {
+  const mappings = validateMappings(mappingsInput, options);
+  if (mappings.reviewedUpstreamVersion !== upstreamVersion) {
+    fail(
+      "version-mismatch",
+      `mapping review targets ${mappings.reviewedUpstreamVersion}, not installed upstream ${upstreamVersion ?? "<missing>"}`,
+    );
+  }
   const upstream = inventoryMap(upstreamInventory);
   const local = inventoryMap(localInventory);
 
@@ -506,26 +600,28 @@ export function classifyCoverage(upstreamInventory, localInventory, mappingsInpu
       fail("stale-mapping", `intentional local family does not exist: ${entry.family}`);
     }
   }
-  for (const mapping of mappings.symbolMappings) {
-    if (!declarationExists(upstream, mapping.upstream)) {
+  for (const review of mappings.reviewedUpstreamExports) {
+    const upstreamSymbol = { export: review.export, family: review.family };
+    if (!declarationExists(upstream, upstreamSymbol)) {
       fail(
         "stale-mapping",
-        `mapped upstream declaration does not exist: ${mapping.upstream.family}.${mapping.upstream.export}`,
+        `reviewed upstream declaration does not exist: ${review.family}.${review.export}`,
       );
     }
-    if (!declarationExists(local, mapping.local)) {
+    const mappedLocalFamilies =
+      mappings.familyMappings.find((mapping) => mapping.upstream === review.family)?.locals ??
+      (local.has(review.family) ? [review.family] : []);
+    if (mappedLocalFamilies.length === 0) {
       fail(
         "stale-mapping",
-        `mapped local declaration does not exist: ${mapping.local.family}.${mapping.local.export}`,
+        `reviewed upstream declaration belongs to an unmapped family: ${review.family}.${review.export}`,
       );
     }
-  }
-  for (const entry of mappings.intentionalUpstreamExports) {
-    for (const name of entry.exports) {
-      if (!declarationExists(upstream, { export: name, family: entry.family })) {
+    for (const localSymbol of review.local) {
+      if (!declarationExists(local, localSymbol)) {
         fail(
           "stale-mapping",
-          `intentional upstream declaration does not exist: ${entry.family}.${name}`,
+          `reviewed local declaration does not exist: ${localSymbol.family}.${localSymbol.export}`,
         );
       }
     }
@@ -537,16 +633,8 @@ export function classifyCoverage(upstreamInventory, localInventory, mappingsInpu
   const intentionalLocalFamilies = new Map(
     mappings.intentionalLocalFamilies.map((entry) => [entry.family, entry]),
   );
-  const symbolMappings = new Map(
-    mappings.symbolMappings.map((entry) => [
-      `${entry.upstream.family}\0${entry.upstream.export}`,
-      entry,
-    ]),
-  );
-  const intentionalUpstreamExports = new Map(
-    mappings.intentionalUpstreamExports.flatMap((entry) =>
-      entry.exports.map((name) => [`${entry.family}\0${name}`, entry]),
-    ),
+  const reviewedUpstreamExports = new Map(
+    mappings.reviewedUpstreamExports.map((entry) => [`${entry.family}\0${entry.export}`, entry]),
   );
   const claimedLocalFamilies = new Set();
   const entries = [];
@@ -563,12 +651,12 @@ export function classifyCoverage(upstreamInventory, localInventory, mappingsInpu
     if (localFamilies.length === 0) {
       const intentional = intentionalUpstreamFamilies.get(upstreamEntry.family);
       entries.push({
-        classification: intentional ? "intentional-mapping" : "upstream-only",
+        classification: intentional ? "reviewed-difference" : "upstream-only",
         evidenceKey: `component:${upstreamEntry.family}`,
         exportCorrespondence: {
-          intentional: intentional
+          reviewed: intentional
             ? upstreamEntry.declarations.map((name) => ({
-                kind: "omitted-family",
+                category: "omitted-family",
                 name,
                 reason: intentional.reason,
               }))
@@ -587,40 +675,27 @@ export function classifyCoverage(upstreamInventory, localInventory, mappingsInpu
     );
     const matched = [];
     const investigate = [];
-    const intentional = [];
+    const reviewed = [];
     for (const name of upstreamEntry.declarations) {
       if (localDeclarations.includes(name)) {
-        if (
-          symbolMappings.has(`${upstreamEntry.family}\0${name}`) ||
-          intentionalUpstreamExports.has(`${upstreamEntry.family}\0${name}`)
-        ) {
+        if (reviewedUpstreamExports.has(`${upstreamEntry.family}\0${name}`)) {
           fail(
             "stale-mapping",
-            `mapped upstream declaration now has an exact local match: ${upstreamEntry.family}.${name}`,
+            `reviewed upstream declaration now has an exact local match: ${upstreamEntry.family}.${name}`,
           );
         }
         matched.push(name);
         continue;
       }
-      const symbolMapping = symbolMappings.get(`${upstreamEntry.family}\0${name}`);
-      if (symbolMapping) {
-        if (!localFamilies.includes(symbolMapping.local.family)) {
-          fail(
-            "stale-mapping",
-            `mapped local declaration ${symbolMapping.local.family}.${symbolMapping.local.export} is outside the mapped family correspondence for ${upstreamEntry.family}`,
-          );
-        }
-        intentional.push({
-          kind: symbolMapping.kind,
-          local: symbolMapping.local,
+      const review = reviewedUpstreamExports.get(`${upstreamEntry.family}\0${name}`);
+      if (review) {
+        reviewed.push({
+          category: review.category,
+          local: review.local,
           name,
-          reason: symbolMapping.reason,
+          reason: review.reason,
+          sources: review.sources,
         });
-        continue;
-      }
-      const allowed = intentionalUpstreamExports.get(`${upstreamEntry.family}\0${name}`);
-      if (allowed) {
-        intentional.push({ kind: "intentional-upstream-only", name, reason: allowed.reason });
         continue;
       }
       investigate.push(name);
@@ -629,13 +704,13 @@ export function classifyCoverage(upstreamInventory, localInventory, mappingsInpu
     const classification =
       investigate.length > 0
         ? "investigate"
-        : familyMapping || intentional.length > 0
-          ? "intentional-mapping"
+        : familyMapping || reviewed.length > 0
+          ? "reviewed-difference"
           : "matched";
     entries.push({
       classification,
       evidenceKey: `component:${upstreamEntry.family}`,
-      exportCorrespondence: { intentional, investigate, matched },
+      exportCorrespondence: { investigate, matched, reviewed },
       local: {
         declarationCount: localDeclarations.length,
         exportPaths: localFamilies.map((family) => local.get(family).exportPath),
@@ -661,11 +736,11 @@ export function classifyCoverage(upstreamInventory, localInventory, mappingsInpu
     if (claimedLocalFamilies.has(localEntry.family)) continue;
     const intentional = intentionalLocalFamilies.get(localEntry.family);
     entries.push({
-      classification: intentional ? "intentional-mapping" : "local-only",
+      classification: intentional ? "reviewed-difference" : "local-only",
       evidenceKey: `local-component:${localEntry.family}`,
       exportCorrespondence: {
-        intentional: intentional
-          ? [{ kind: "intentional-local-only", reason: intentional.reason }]
+        reviewed: intentional
+          ? [{ category: "intentional-local-only", reason: intentional.reason }]
           : [],
         investigate: [],
         matched: [],
@@ -688,7 +763,7 @@ export function classifyCoverage(upstreamInventory, localInventory, mappingsInpu
     "investigate",
     "upstream-only",
     "local-only",
-    "intentional-mapping",
+    "reviewed-difference",
   ];
   const summary = Object.fromEntries(
     classifications.map((classification) => [
@@ -701,6 +776,13 @@ export function classifyCoverage(upstreamInventory, localInventory, mappingsInpu
     0,
   );
   summary.localFamilies = localInventory.length;
+  summary.reviewedCategories = Object.fromEntries(
+    reviewedCategories.map((category) => [
+      category,
+      mappings.reviewedUpstreamExports.filter((entry) => entry.category === category).length,
+    ]),
+  );
+  summary.reviewedDeclarations = mappings.reviewedUpstreamExports.length;
   summary.upstreamDeclarations = upstreamInventory.reduce(
     (count, entry) => count + entry.declarations.length,
     0,
@@ -711,7 +793,15 @@ export function classifyCoverage(upstreamInventory, localInventory, mappingsInpu
     summary.investigate > 0 || summary["upstream-only"] > 0 || summary["local-only"] > 0
       ? "failed"
       : "passed";
-  return { entries, status, summary };
+  return {
+    entries,
+    mappingAuthority: {
+      reviewedUpstreamVersion: mappings.reviewedUpstreamVersion,
+      schemaVersion: mappings.schemaVersion,
+    },
+    status,
+    summary,
+  };
 }
 
 export function compareReleases(previousInventory, currentInventory, fromVersion, toVersion) {
@@ -783,26 +873,17 @@ export function buildCoverageReport(options = {}) {
   const lock = parseLockfileKumo(readText(lockfilePath, "pnpm-lock.yaml"));
   const rootPackage = readJson(join(repoRoot, "package.json"), "workspace package.json").value;
   const workspaceSpecifier = rootPackage.devDependencies?.["@cloudflare/kumo"];
-  if (workspaceSpecifier !== lock.specifier) {
-    fail(
-      "version-mismatch",
-      `workspace specifier ${workspaceSpecifier ?? "<missing>"} does not match lockfile ${lock.specifier}`,
-    );
-  }
   const managedCheckoutVersion = parseManagedCheckoutVersion(
     readText(setupPath, "managed checkout setup"),
   );
   const installedVersion = upstream.packageJson.version;
-  const mismatches = [
-    ["lockfile", lock.version],
-    ["managed checkout", managedCheckoutVersion],
-  ].filter(([, version]) => version !== installedVersion);
-  if (mismatches.length > 0) {
-    fail(
-      "version-mismatch",
-      `installed ${installedVersion} does not match ${mismatches.map(([name, version]) => `${name} ${version}`).join(" or ")}`,
-    );
-  }
+  assertVersionAuthority({
+    installedVersion,
+    lockSpecifier: lock.specifier,
+    lockVersion: lock.version,
+    managedCheckoutVersion,
+    workspaceSpecifier,
+  });
 
   const upstreamInventory = readFamilyInventory(
     upstream.packageRoot,
@@ -810,8 +891,14 @@ export function buildCoverageReport(options = {}) {
     "upstream",
   );
   const localInventory = readFamilyInventory(local.packageRoot, local.packageJson, "local");
-  const mappings = readJson(mappingsPath, "upstream coverage mappings").value;
-  const coverage = classifyCoverage(upstreamInventory, localInventory, mappings);
+  const mappings = readJson(mappingsPath, "upstream coverage mappings");
+  const coverage = classifyCoverage(
+    upstreamInventory,
+    localInventory,
+    mappings.value,
+    installedVersion,
+    { repoRoot },
+  );
 
   let releaseChanges;
   if (options.previousPackagePath) {
@@ -852,8 +939,8 @@ export function buildCoverageReport(options = {}) {
   return {
     authorityValidation: { status: "passed" },
     boundary:
-      "This report proves package-export inventory correspondence only. Name matches and intentional mappings do not prove behavioral, accessibility, rendering, visual, interaction, SSR, or hydration parity.",
-    claim: "package-export-inventory-correspondence",
+      "This report proves component-subpath export inventory correspondence only; root, primitives, utils, and code subpaths are out of scope. Name matches and reviewed classifications do not prove behavioral, accessibility, rendering, visual, interaction, SSR, or hydration parity.",
+    claim: "component-subpath-export-inventory-correspondence",
     coverage: coverage.entries,
     evidenceAggregation: {
       reason:
@@ -866,14 +953,21 @@ export function buildCoverageReport(options = {}) {
         "Package versions, export subpaths, declaration names, and exact-name set differences come directly from the checked authorities.",
       heuristic:
         "An identical family or declaration name is inventory correspondence only; investigate means a maintainer must determine whether a difference is a gap or an idiomatic framework adaptation.",
+      reviewedClassifications:
+        "Categories, reasons, and source paths are maintainer-authored review metadata pinned to the installed upstream version. This command validates their schema and declaration references; it does not machine-verify the source-review conclusions or behavioral parity.",
     },
     local: {
       name: local.packageJson.name,
       packageJsonSha256: local.packageJsonSha256,
       version: local.packageJson.version,
     },
+    mappingAuthority: {
+      ...coverage.mappingAuthority,
+      sha256: sha256(mappings.source),
+      status: "passed",
+    },
     releaseChanges,
-    schemaVersion: 1,
+    schemaVersion: 2,
     status: coverage.status,
     summary: coverage.summary,
     upstream: {
@@ -906,13 +1000,19 @@ export function serializeReport(report) {
 }
 
 export function renderHumanReport(report) {
+  const reviewedCategorySummary = Object.entries(report.summary.reviewedCategories)
+    .filter(([, count]) => count > 0)
+    .map(([category, count]) => `${count} ${category}`)
+    .join(", ");
   const lines = [
     `Upstream Kumo inventory coverage: ${report.status.toUpperCase()}`,
     `Authority: ${report.upstream.name}@${report.upstream.version} installed package exports + TypeScript declarations`,
     `Provenance: lockfile ${report.upstream.version}; managed checkout ${report.upstream.managedCheckoutTag}`,
+    `Mapping authority: schema ${report.mappingAuthority.schemaVersion}; reviewed upstream ${report.mappingAuthority.reviewedUpstreamVersion}; sha256 ${report.mappingAuthority.sha256}`,
     "",
     `Families: ${report.summary.upstreamFamilies} upstream, ${report.summary.localFamilies} local`,
-    `Classifications: ${report.summary.matched} matched, ${report.summary.investigate} investigate, ${report.summary["upstream-only"]} upstream-only, ${report.summary["local-only"]} local-only, ${report.summary["intentional-mapping"]} intentional-mapping`,
+    `Classifications: ${report.summary.matched} matched, ${report.summary.investigate} investigate, ${report.summary["upstream-only"]} upstream-only, ${report.summary["local-only"]} local-only, ${report.summary["reviewed-difference"]} reviewed-difference`,
+    `Reviewed upstream declarations: ${report.summary.reviewedDeclarations}${reviewedCategorySummary ? ` (${reviewedCategorySummary})` : ""}`,
     `Unaccounted upstream declarations: ${report.summary.investigateDeclarations}`,
   ];
   const findings = report.coverage.filter((entry) =>
@@ -934,6 +1034,7 @@ export function renderHumanReport(report) {
     `Evidence aggregation: ${report.evidenceAggregation.status.toUpperCase()} — ${report.evidenceAggregation.reason}`,
     "",
     `Interpretation: ${report.interpretation.heuristic}`,
+    `Reviewed classifications: ${report.interpretation.reviewedClassifications}`,
     `Boundary: ${report.boundary}`,
   );
   return `${lines.join("\n")}\n`;
@@ -961,7 +1062,7 @@ function parseArguments(argv) {
 function blockedReport(error) {
   return {
     error: { code: error.code ?? "unexpected-error", message: error.message },
-    schemaVersion: 1,
+    schemaVersion: 2,
     status: "blocked",
   };
 }
