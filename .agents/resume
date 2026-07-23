@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+expected_node="v24.18.0"
+expected_pnpm="11.1.1"
+pnpm_bin="$HOME/.local/bin/pnpm"
+
+if [[ "$(node --version 2>/dev/null || true)" != "$expected_node" ]]; then
+  echo "Expected Node.js $expected_node; rerun .agents/setup." >&2
+  exit 1
+fi
+
+if [[ ! -x "$pnpm_bin" ]] || [[ "$(cd / && "$pnpm_bin" --version 2>/dev/null || true)" != "$expected_pnpm" ]]; then
+  echo "Expected pnpm $expected_pnpm; rerun .agents/setup." >&2
+  exit 1
+fi
+
+echo "Orb prerequisites are ready; no services need restarting."

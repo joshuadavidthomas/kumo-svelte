@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+node_version="24.18.0"
+pnpm_version="11.1.1"
+install_root="$HOME/.local"
+node_dir="$install_root/share/node-v$node_version"
+
+mkdir -p "$install_root/bin" "$install_root/share"
+export PATH="$install_root/bin:$PATH"
+
+if [[ ! -x "$node_dir/bin/node" ]] || [[ "$($node_dir/bin/node --version)" != "v$node_version" ]]; then
+  case "$(uname -m)" in
+    x86_64) node_arch="x64" ;;
+    aarch64 | arm64) node_arch="arm64" ;;
+    *)
+      echo "Unsupported architecture: $(uname -m)" >&2
+      exit 1
+      ;;
+  esac
+
+  archive="node-v$node_version-linux-$node_arch.tar.xz"
+  download_dir="$(mktemp -d)"
+  trap 'rm -rf "$download_dir"' EXIT
+
+  echo "Installing Node.js v$node_version..."
+  curl -fsSLo "$download_dir/$archive" "https://nodejs.org/dist/v$node_version/$archive"
+  curl -fsSLo "$download_dir/SHASUMS256.txt" "https://nodejs.org/dist/v$node_version/SHASUMS256.txt"
+  (
+    cd "$download_dir"
+    grep "  $archive\$" SHASUMS256.txt | sha256sum --check --status
+  )
+  tar -xJf "$download_dir/$archive" -C "$download_dir"
+  rm -rf "$node_dir"
+  mv "$download_dir/node-v$node_version-linux-$node_arch" "$node_dir"
+fi
+
+for executable in node npm npx; do
+  ln -sfn "$node_dir/bin/$executable" "$install_root/bin/$executable"
+done
+
+if [[ ! -x "$install_root/bin/pnpm" ]] || [[ "$(cd / && "$install_root/bin/pnpm" --version 2>/dev/null || true)" != "$pnpm_version" ]]; then
+  echo "Installing pnpm $pnpm_version..."
+  npm install --global --prefix "$install_root" "pnpm@$pnpm_version"
+fi
+
+echo "Installing workspace dependencies..."
+cd "$repo_root"
+pnpm install --frozen-lockfile
+
+echo "Orb setup complete (Node.js $(node --version), pnpm $(pnpm --version))."
