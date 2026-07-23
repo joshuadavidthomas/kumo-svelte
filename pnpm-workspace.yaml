@@ -4,3 +4,5 @@ allowBuilds:
   esbuild: true
   sharp: true
   workerd: true
+patchedDependencies:
+  "@cloudflare/kumo@2.8.0": patches/@cloudflare__kumo@2.8.0.patch
