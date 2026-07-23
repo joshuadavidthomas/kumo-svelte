@@ -2,8 +2,7 @@
 set -euo pipefail
 
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-node_version="24.18.0"
-pnpm_version="11.1.1"
+node_version="$(<"$repo_root/.node-version")"
 install_root="$HOME/.local"
 node_dir="$install_root/share/node-v$node_version"
 
@@ -40,9 +39,11 @@ for executable in node npm npx; do
   ln -sfn "$node_dir/bin/$executable" "$install_root/bin/$executable"
 done
 
+package_manager="$(node -p 'require(process.argv[1]).packageManager' "$repo_root/package.json")"
+pnpm_version="${package_manager#pnpm@}"
 if [[ ! -x "$install_root/bin/pnpm" ]] || [[ "$(cd / && "$install_root/bin/pnpm" --version 2>/dev/null || true)" != "$pnpm_version" ]]; then
   echo "Installing pnpm $pnpm_version..."
-  npm install --global --prefix "$install_root" "pnpm@$pnpm_version"
+  npm install --global --prefix "$install_root" "$package_manager"
 fi
 
 echo "Installing workspace dependencies..."

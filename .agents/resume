@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-expected_node="v24.18.0"
-expected_pnpm="11.1.1"
+repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+expected_node="v$(<"$repo_root/.node-version")"
+package_manager="$(node -p 'require(process.argv[1]).packageManager' "$repo_root/package.json")"
+expected_pnpm="${package_manager#pnpm@}"
 pnpm_bin="$HOME/.local/bin/pnpm"
 
 if [[ "$(node --version 2>/dev/null || true)" != "$expected_node" ]]; then
