@@ -291,10 +291,10 @@
   "scripts": {
     "check": "pnpm check:upstream-theme && pnpm format:check && pnpm lint && pnpm typecheck",
     "check:upstream-theme": "node ../../scripts/sync-upstream-theme.mjs --check",
-    "format": "oxfmt --write package.json tsconfig.json svelte.config.js src",
-    "format:check": "oxfmt --check package.json tsconfig.json svelte.config.js src",
+    "format": "oxfmt --write package.json tsconfig.json svelte.config.js vitest.config.ts src tests",
+    "format:check": "oxfmt --check package.json tsconfig.json svelte.config.js vitest.config.ts src tests",
     "sync:upstream-theme": "node ../../scripts/sync-upstream-theme.mjs",
-    "lint": "oxlint src package.json svelte.config.js",
+    "lint": "oxlint src tests package.json svelte.config.js vitest.config.ts",
     "test": "vitest run",
     "typecheck": "svelte-check --tsconfig ./tsconfig.json && tsc --noEmit -p ./tsconfig.json"
   },
@@ -314,6 +314,7 @@
     "@tailwindcss/vite": "^4.3.0",
     "@types/node": "^24.0.0",
     "echarts": "^6.0.0",
+    "happy-dom": "^20.11.1",
     "oxfmt": "^0.48.0",
     "oxlint": "^1.60.0",
     "svelte": "^5.0.0",
