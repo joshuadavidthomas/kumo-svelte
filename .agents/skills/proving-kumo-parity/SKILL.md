@@ -49,6 +49,16 @@ Port semantics, not React mechanics or prop names. Prefer existing Svelte 5, Bit
 
 Compare live authoritative and candidate renders. Keep matched fixture routes available until review is complete.
 
+For repeatable browser evidence, create a small JSON config and run:
+
+```bash
+pnpm parity:proof --config .amp/parity-proof.json
+```
+
+Start from [`reference/configuration.md`](reference/configuration.md). Run with `--dry-run` first to validate the release metadata, endpoints, matched URLs, viewport/state conditions, actions, observations, and output paths without launching a browser. The runner accepts either explicit reviewable URLs or the existing `kumo-react-docs` and `kumo-svelte-docs` portal names. It writes to `.amp/in/artifacts/parity/<proof-id>/` so proof output remains separate from product changes.
+
+Use the runner for mechanical collection only: matched screenshots, optional WEBM recordings, SSR responses, hydrated DOM, accessibility snapshots, expected-versus-observed assertions, console/page errors, hashes, provenance, and a side-by-side artifact index. A completed capture or passing automated check is **not** a parity or ship verdict. Generated evidence fails closed as `release-provenance-unverified` or remains `awaiting-human-review`, always with `readyToRecommend: false`; inspect the final artifacts and report conclusions separately.
+
 Use the actual reviewable comparison URLs. Treat authentication or host-policy failures as infrastructure blockers; do not silently substitute private loopback-only results and call the proof complete.
 
 Separate temporary proof fixtures from the integration diff. Record fixture paths and hashes so evidence can be traced to the exact inputs. Record the integration patch hash independently and verify proof work did not alter it.
@@ -110,6 +120,8 @@ Capture paired React-versus-Svelte screenshots at identical viewport sizes for a
 
 Prefer a side-by-side composite with React on the left and Svelte on the right. Keep full-resolution originals when creating composites.
 
+The generated `index.html` pairs full-resolution originals without modifying them. Use it as the concise review index; create a separate composite only when a single shareable image is useful.
+
 Inspect final captures—not preliminary screenshots—for:
 
 - component dimensions, layout, spacing, and alignment;
@@ -156,6 +168,8 @@ Save an evidence artifact containing:
 - visual inspection verdicts;
 - discrepancies classified as blockers, intentional adaptations, or pre-existing differences;
 - an overall verdict derived from individual checks.
+
+The capture runner intentionally leaves visual verdicts and the overall parity verdict unset. After inspection, copy `review-template.json` into a separate review record and preserve the reviewer, reviewed evidence hash, verdicts, and discrepancy notes there; do not rewrite generated observations to make them pass.
 
 Do not report only a pass count. Preserve the underlying expected and observed values.
 

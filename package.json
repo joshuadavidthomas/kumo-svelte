@@ -10,6 +10,8 @@
     "docs:dev": "pnpm --filter @kumo-svelte/docs dev",
     "format": "oxfmt --write package.json pnpm-workspace.yaml tsconfig.json README.md scripts packages",
     "format:check": "oxfmt --check package.json pnpm-workspace.yaml tsconfig.json README.md scripts packages",
+    "parity:proof": "node scripts/prove-parity.mjs",
+    "parity:proof:test": "node --test scripts/prove-parity.test.mjs",
     "sync:upstream-theme": "node scripts/sync-upstream-theme.mjs",
     "check:upstream-theme": "node scripts/sync-upstream-theme.mjs --check",
     "lint": "pnpm --filter kumo-svelte lint",
@@ -20,6 +22,7 @@
     "@cloudflare/kumo": "^2.8.0",
     "oxfmt": "^0.48.0",
     "oxlint": "^1.60.0",
+    "playwright": "1.57.0",
     "typescript": "^6.0.3"
   },
   "engines": {

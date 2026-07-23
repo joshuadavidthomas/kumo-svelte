@@ -49,6 +49,7 @@ fi
 echo "Installing workspace dependencies..."
 cd "$repo_root"
 pnpm install --frozen-lockfile
+pnpm exec playwright install chromium
 
 upstream_dir="$repo_root/.amp/upstream/kumo"
 upstream_bin_dir="$repo_root/.amp/bin"
