@@ -53,6 +53,7 @@ pnpm install --frozen-lockfile
 upstream_dir="$repo_root/.amp/upstream/kumo"
 upstream_bin_dir="$repo_root/.amp/bin"
 upstream_build_marker="$upstream_dir/.amp-built-sha"
+upstream_ref="@cloudflare/kumo@2.8.0"
 
 upstream_pnpm() {
   PATH="$upstream_bin_dir:$PATH" pnpm "$@"
@@ -68,10 +69,10 @@ EOF
 chmod +x "$upstream_bin_dir/pnpm"
 
 if [[ ! -d "$upstream_dir/.git" ]]; then
-  git clone --depth=1 --branch=main https://github.com/cloudflare/kumo.git "$upstream_dir"
+  git clone --depth=1 --branch="$upstream_ref" https://github.com/cloudflare/kumo.git "$upstream_dir"
 else
   git -C "$upstream_dir" remote set-url origin https://github.com/cloudflare/kumo.git
-  git -C "$upstream_dir" fetch --depth=1 origin main
+  git -C "$upstream_dir" fetch --depth=1 origin "refs/tags/$upstream_ref"
   # This is a disposable, ignored comparison checkout owned by this setup script.
   git -C "$upstream_dir" reset --hard FETCH_HEAD
 fi

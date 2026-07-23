@@ -20,4 +20,4 @@ services:
       --host 0.0.0.0 --port "$PORT"
     portal:
       title: Kumo React
-      description: Authoritative cloudflare/kumo main checkout for side-by-side parity review.
+      description: Published cloudflare/kumo 2.8.0 release for side-by-side parity review.
