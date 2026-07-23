@@ -39,6 +39,9 @@ jobs:
       - name: Test
         run: pnpm test
 
+      - name: Install Chromium
+        run: pnpm exec playwright install --with-deps chromium
+
       - name: Test packed package consumer
         run: pnpm test:packed-consumer
 

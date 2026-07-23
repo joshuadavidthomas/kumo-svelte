@@ -1,8 +1,8 @@
 # Observable regression contracts
 
-These internal, test-only contracts preserve selected accepted behavior of the local Svelte package. They execute semantic DOM, selected attributes and classes, normalized text, events, control state, focus, and accessibility relationships in Vitest. The schema and execution receipt fail closed for empty, malformed, unsupported, or incomplete inputs.
+These internal, test-only contracts preserve selected accepted behavior of the local Svelte package. They execute semantic DOM, selected attributes and classes, normalized text, events, control state, focus, and accessibility relationships in Vitest. Their click, type, and keyboard-press outcomes are also consumed by the packed-package Chromium pilot without importing test code into the temporary application. The schema and execution receipt fail closed for empty, malformed, unsupported, or incomplete inputs.
 
-The contracts are durable product regression assertions, not visual evidence. They do not establish ancestry to a particular upstream Kumo release, React parity, pixel parity, or ship readiness. Generated IDs, complete utility-class strings, wrapper markup, and React prop shapes are deliberately outside the vocabulary.
+The contracts are durable product regression assertions, not visual evidence. The packed-package pilot covers only its named Button, Input, and Collapsible vectors in one Chromium engine; it is not a package-wide result. These contracts do not establish ancestry to a particular upstream Kumo release, React parity, pixel parity, accessibility certification, or ship readiness. Generated IDs, complete utility-class strings, wrapper markup, and React prop shapes are deliberately outside the vocabulary.
 
 ## Promotion from exploratory proof
 

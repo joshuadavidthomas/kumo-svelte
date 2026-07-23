@@ -5,6 +5,7 @@ export type ObservableComponent = "button" | "collapsible" | "input";
 
 export type ObservableAction =
   | { selector: string; type: "click" }
+  | { key: string; selector: string; type: "press" }
   | { selector: string; type: "type"; value: string };
 
 export type ObservableAttributeValue = null | string | true;
@@ -77,6 +78,24 @@ const buttonContract: ObservableContract = {
       },
       fixtureCase: "enabled-primary",
       id: "enabled-primary-click",
+    },
+    {
+      actions: [{ key: "Enter", selector: 'button[data-slot="button"]', type: "press" }],
+      expected: {
+        events: ["click"],
+        focus: 'button[data-slot="button"]',
+        nodes: [
+          {
+            attributes: { disabled: null, type: "button" },
+            count: 1,
+            selector: 'button[data-slot="button"]',
+            tag: "button",
+            text: "Save changes",
+          },
+        ],
+      },
+      fixtureCase: "enabled-primary",
+      id: "enabled-primary-keyboard-activation",
     },
     {
       actions: [{ selector: 'button[data-slot="button"]', type: "click" }],

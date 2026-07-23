@@ -18,7 +18,7 @@
     "check:upstream-theme": "node scripts/sync-upstream-theme.mjs --check",
     "lint": "pnpm --filter kumo-svelte lint",
     "test": "pnpm upstream:coverage:test && pnpm parity:proof:test && pnpm --filter kumo-svelte test",
-    "test:packed-consumer": "node scripts/test-packed-package-consumer.mjs",
+    "test:packed-consumer": "node --test --test-concurrency=1 scripts/test-packed-package-consumer.test.mjs && node scripts/test-packed-package-consumer.mjs",
     "typecheck": "pnpm --filter kumo-svelte typecheck"
   },
   "devDependencies": {

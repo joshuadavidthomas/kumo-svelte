@@ -9,8 +9,8 @@ describe("package-owned observable contracts", () => {
     const receipt = await runObservableContracts(observableContracts);
 
     expect(receipt).toEqual({
-      declared: 5,
-      executed: 5,
+      declared: 6,
+      executed: 6,
       scope: "local-svelte-regression",
     });
   });
@@ -27,6 +27,15 @@ describe("package-owned observable contracts", () => {
         },
       ]),
     ).toThrow("expected at least one vector");
+  });
+
+  it("rejects an incomplete keyboard action", () => {
+    const malformed = structuredClone(observableContracts);
+    const action = malformed[0].vectors[1].actions?.[0];
+    if (!action) throw new Error("keyboard calibration action is missing");
+    delete (action as { key?: string }).key;
+
+    expect(() => validateObservableContracts(malformed)).toThrow('missing required field "key"');
   });
 
   it("rejects unknown schema fields", () => {

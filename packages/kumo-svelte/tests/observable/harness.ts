@@ -150,6 +150,9 @@ function validateAction(value: unknown, path: string) {
   const action = recordAt(value, path);
   if (action.type === "click") {
     exactKeys(action, ["selector", "type"], [], path);
+  } else if (action.type === "press") {
+    exactKeys(action, ["key", "selector", "type"], [], path);
+    nonEmptyString(action.key, `${path}.key`);
   } else if (action.type === "type") {
     exactKeys(action, ["selector", "type", "value"], [], path);
     if (typeof action.value !== "string") fail(`${path}.value`, "expected a string");
@@ -355,7 +358,7 @@ async function performAction(container: ParentNode, action: ObservableAction, pa
     }
     element.focus();
     element.click();
-  } else {
+  } else if (action.type === "type") {
     if (!(element instanceof HTMLInputElement || element instanceof HTMLTextAreaElement)) {
       fail(
         path,
@@ -365,6 +368,28 @@ async function performAction(container: ParentNode, action: ObservableAction, pa
     element.focus();
     element.value = action.value;
     element.dispatchEvent(new InputEvent("input", { bubbles: true, data: action.value }));
+  } else {
+    if (!(element instanceof HTMLElement)) {
+      fail(
+        path,
+        `press action requires an HTML element, observed ${element.tagName.toLowerCase()}`,
+      );
+    }
+    element.focus();
+    const keydown = new KeyboardEvent("keydown", {
+      bubbles: true,
+      cancelable: true,
+      key: action.key,
+    });
+    element.dispatchEvent(keydown);
+    if (
+      !keydown.defaultPrevented &&
+      element instanceof HTMLButtonElement &&
+      action.key === "Enter"
+    ) {
+      element.click();
+    }
+    element.dispatchEvent(new KeyboardEvent("keyup", { bubbles: true, key: action.key }));
   }
 
   await tick();
