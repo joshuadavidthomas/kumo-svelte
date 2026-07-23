@@ -5135,6 +5135,12 @@ export const apiDocs: ApiComponentDoc[] = [
         type: 'Omit<HTMLAnchorAttributes, "children" | "class" | "href">',
         required: false,
       },
+      {
+        name: "target",
+        type: 'HTMLAnchorAttributes["target"]',
+        required: false,
+        description: "Link target. Only meaningful when `href` is provided.",
+      },
     ],
   },
   {

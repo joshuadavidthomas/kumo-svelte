@@ -17,6 +17,8 @@
     class?: string;
     href?: string;
     linkProps?: Omit<HTMLAnchorAttributes, "children" | "class" | "href">;
+    /** Link target. Only meaningful when `href` is provided. */
+    target?: HTMLAnchorAttributes["target"];
   }
 
   let {
@@ -26,6 +28,7 @@
     class: className,
     href,
     linkProps,
+    target,
     ...restProps
   }: SidebarMenuSubButtonProps = $props();
 
@@ -68,6 +71,7 @@
         ...baseProps,
         ...linkProps,
         href,
+        ...(target !== undefined && { target }),
         class: cn(buttonClasses, "no-underline!"),
         "data-kumo-part": "menu-sub-button-link",
       },
